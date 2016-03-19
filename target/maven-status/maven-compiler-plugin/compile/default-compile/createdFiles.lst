@@ -1,6 +1,0 @@
-matrix/MatrixUtil.class
-matrix/DateUtil.class
-anomaly_detection/MOS.class
-anomaly_detection/EigenAnalysis.class
-matrix/JAMATest.class
-anomaly_detection/Parser.class
