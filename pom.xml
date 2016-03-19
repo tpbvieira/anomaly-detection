@@ -3,7 +3,7 @@
 
 	<groupId>anomaly-detection</groupId>
 	<artifactId>mos</artifactId>
-	<version>0.3.4-SNAPSHOT</version>
+	<version>0.3.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>mos</name>
@@ -49,10 +49,10 @@
 		</dependency>
 	</dependencies>
 	<scm>
-		<connection>scm:git:ssh://git@github.com:tpbvieira/mos.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:tpbvieira/mos.git</developerConnection>
-		<url>https://github.com/tpbvieira/siec</url>
-		<tag>mos-0.3.3</tag>
+		<connection>scm:git:git@github.com:tpbvieira/mos.git</connection>
+		<developerConnection>scm:git:git@github.com:tpbvieira/mos.git</developerConnection>
+		<url>https://github.com/tpbvieira/mos</url>
+		<tag>mos-0.3.4</tag>
 	</scm>
 	<build>
 		<finalName>GatewayArcher</finalName>
