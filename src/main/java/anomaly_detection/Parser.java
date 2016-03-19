@@ -28,7 +28,7 @@ public class Parser {
 
 	public static void main(String[] args) { 
 		long initTime, startTime, endTime;
-		short windowSize = 20;// minutes		
+		short windowSize = 80;// minutes		
 		//		String folderPath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/";
 		String filePath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/storgrid-2016-01-27.log";
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.usDateTimeMS);
@@ -118,7 +118,7 @@ public class Parser {
 		Matrix matrix = new Matrix(arrMatrix);
 		Matrix[] matrices = new Matrix[matrixColumnIndeces.size()/windowSize];
 		int startColumn = 0;
-		int endColumn = 19;
+		int endColumn = windowSize - 1;
 		for(int i = 0; endColumn < matrixColumnIndeces.size(); i++){				
 			matrices[i] = matrix.getMatrix(0, matrixRowIndeces.size()-1, startColumn, endColumn);
 			startColumn = startColumn + windowSize;
