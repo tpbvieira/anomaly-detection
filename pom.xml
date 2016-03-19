@@ -3,7 +3,7 @@
 
 	<groupId>anomaly-detection</groupId>
 	<artifactId>mos</artifactId>
-	<version>0.3.7-SNAPSHOT</version>
+	<version>0.3.7</version>
 	<packaging>jar</packaging>
 
 	<name>mos</name>
@@ -53,7 +53,7 @@
 		<connection>scm:git:git@github.com:tpbvieira/mos.git</connection>
 		<developerConnection>scm:git:git@github.com:tpbvieira/mos.git</developerConnection>
 		<url>https://github.com/tpbvieira/mos</url>
-		<tag>mos-0.3.4</tag>
+		<tag>mos-0.3.7</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
