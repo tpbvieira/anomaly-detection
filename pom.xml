@@ -65,7 +65,7 @@
 		</repository>
 	</distributionManagement>
 	<build>
-		<finalName>GatewayArcher</finalName>
+		<finalName>mos</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -78,7 +78,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
+				<version>2.5.2</version>
 				<configuration>
 				</configuration>
 			</plugin>
