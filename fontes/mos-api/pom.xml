@@ -1,11 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>br.unb.lasp.anomaly</groupId>
 	<artifactId>mos-api</artifactId>
 	<version>0.3.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>mos-api</name>
 	<url>https://github.com/tpbvieira/mos/</url>
 
@@ -48,19 +47,7 @@
 			<artifactId>ojalgo</artifactId>
 			<version>37.1</version>
 		</dependency>
-	</dependencies>
-	<scm>
-		<connection>scm:git:git@github.com:tpbvieira/mos.git</connection>
-		<developerConnection>scm:git:git@github.com:tpbvieira/mos.git</developerConnection>
-		<url>https://github.com/tpbvieira/mos</url>
-		<tag>mos-0.3.4</tag>
-	</scm>
-	<distributionManagement>
-		<repository>
-			<id>maven-repository</id>
-			<url>${github.maven.repository}</url>
-		</repository>
-	</distributionManagement>
+	</dependencies>	
 	<build>
 		<finalName>mos</finalName>
 		<plugins>
@@ -105,4 +92,16 @@
 			</resource>
 		</resources>
 	</build>
+	<scm>
+		<connection>scm:git:git@github.com:tpbvieira/mos.git</connection>
+		<developerConnection>scm:git:git@github.com:tpbvieira/mos.git</developerConnection>
+		<url>https://github.com/tpbvieira/mos</url>
+		<tag>mos-0.3.4</tag>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>maven-repository</id>
+			<url>${github.maven.repository}</url>
+		</repository>
+	</distributionManagement>
 </project>
