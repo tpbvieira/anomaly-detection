@@ -6,7 +6,6 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
-
 import org.ojalgo.matrix.BasicMatrix.Factory;
 import org.ojalgo.matrix.PrimitiveMatrix;
 
@@ -32,7 +31,6 @@ public class EigenAnalysis{
 		for(int line = 0; line < rowSize; line++){
 			double[] row = realMatrix.getRow(line);			
 			double rowStd = std.evaluate(row);			
-			System.out.println("Std");
 			if(rowStd > 0){
 				double rowMean = mean.evaluate(row);
 				for(int column = 0; column < columnSize; column++){
@@ -53,7 +51,7 @@ public class EigenAnalysis{
 	}
 
 	public static EigenvalueDecomposition eigencovariance(Matrix matrix){
-
+		
 		int rowSize = matrix.getRowDimension();
 		int columnSize = matrix.getColumnDimension();
 		double[][] eigCor = new double[rowSize][columnSize];
@@ -67,7 +65,7 @@ public class EigenAnalysis{
 				eigCor[line][column] = row[column] - rowMean;
 			}			
 		}
-
+		
 		// EstimatedCorrelationMatrix
 		Matrix eigCorMatrix = new Matrix(eigCor);
 		eigCorMatrix = eigCorMatrix.times(1D/Double.valueOf(columnSize));
@@ -75,7 +73,7 @@ public class EigenAnalysis{
 		PrimitiveMatrix pMatrix = tmpFactory.rows(eigCor).conjugate();
 		Matrix conjTranspose = MatrixUtil.primitiveMatrixToJamaMatrix(pMatrix);
 		eigCorMatrix = eigCorMatrix.times(conjTranspose);		
-
+		
 		return eigCorMatrix.eig();
 	}
 

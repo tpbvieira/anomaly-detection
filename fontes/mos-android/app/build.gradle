@@ -28,6 +28,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
-    compile 'anomaly-detection:mos:0.3.8-SNAPSHOT'
+    compile 'br.unb.lasp.anomaly:mos-api:0.3.8'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

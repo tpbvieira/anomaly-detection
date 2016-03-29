@@ -36,9 +36,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import Jama.Matrix;
-import anomaly_detection.MOS;
-import anomaly_detection.Parser;
-import matrix.DateUtil;
+import br.unb.lasp.anomaly.mos.MOS;
+import br.unb.lasp.anomaly.mos.Parser;
+import br.unb.lasp.matrix.DateUtil;
 
 /**
  * A login screen that offers login via email/password.

@@ -28,9 +28,9 @@ public class Parser {
 
 	public static void main(String[] args) { 
 		long initTime, startTime, endTime;
-		short windowSize = 40;// minutes		
+		short windowSize = 60;// minutes		
 		//		String folderPath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/";
-		String filePath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/10.0.log";
+		String filePath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/4.1.log";
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.usDateTimeMS);
 
 		// Parsing
