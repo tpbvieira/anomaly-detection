@@ -30,7 +30,7 @@ public class Parser {
 		long initTime, startTime, endTime;
 		short windowSize = 40;// minutes		
 		//		String folderPath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/";
-		String filePath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/6.0.log";
+		String filePath = "/home/thiago/Dropbox/doutorado/tanya/storgrid.log/10.0.log";
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.usDateTimeMS);
 
 		// Parsing
@@ -51,9 +51,12 @@ public class Parser {
 		// EigenAnalysis
 		startTime = System.currentTimeMillis();
 		double[][] largestEigValCov = getLargestEigValCov(matrices);
+		endTime = System.currentTimeMillis();
+		System.out.println("EigenCovAnalysisTime: " + (endTime - startTime));
+		startTime = System.currentTimeMillis();
 		double[][] largestEigValCor = getLargestEigValCor(matrices);
 		endTime = System.currentTimeMillis();
-		System.out.println("EigenAnalysisTime: " + (endTime - startTime));
+		System.out.println("EigenCorAnalysisTime: " + (endTime - startTime));
 
 		// MOS Analysis
 		startTime = System.currentTimeMillis();

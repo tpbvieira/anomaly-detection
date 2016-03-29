@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,6 +27,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +58,7 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
     private AutoCompleteTextView mFilePathView, mWindowSizeView;
 
     long parsingTime, modelingTime, eigTime, mosTime, totalTime;
+    String eigMsg, mosMsg;
 
     private String msg = "";
     /**
@@ -249,13 +254,13 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mFilePath;
+        private final String mFileName;
         private final Short mWindowSize;
         private Context mContext;
 
-        UserLoginTask(Context context, String filePath, Short windowSize) {
+        UserLoginTask(Context context, String fileName, Short windowSize) {
             mContext = context;
-            mFilePath = filePath;
+            mFileName = fileName;
             mWindowSize = windowSize;
             msg="";
         }
@@ -263,16 +268,14 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
         @Override
         protected Boolean doInBackground(Void... params) {
             try{
-                // TODO: attempt authentication against a network service.
-
                 SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.usDateTimeMS);
-                short windowSize = 40;
 
                 // Parsing
                 Log.d(TAG, "Parsing...");
                 totalTime = parsingTime = System.currentTimeMillis();
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), mFileName);
                 HashMap<String,Integer> matrixRowIndeces = new HashMap<String,Integer>();
-                HashMap<Long,HashMap<String,Integer>> values = Parser.parseCSV(mFilePath, sdf, matrixRowIndeces);
+                HashMap<Long,HashMap<String,Integer>> values = Parser.parseCSV(file.getPath(), sdf, matrixRowIndeces);
                 parsingTime =  System.currentTimeMillis() - parsingTime;
                 Log.d(TAG, "parsingTime=" + parsingTime );
 
@@ -280,7 +283,7 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                 Log.d(TAG, "Modeling...");
                 modelingTime = System.currentTimeMillis();
                 HashMap<Long,Integer> matrixColumnIndeces = new HashMap<Long,Integer>();
-                Matrix[] matrices = Parser.modelIntoMatrices(windowSize, matrixRowIndeces, values, matrixColumnIndeces);
+                Matrix[] matrices = Parser.modelIntoMatrices(mWindowSize, matrixRowIndeces, values, matrixColumnIndeces);
                 modelingTime = System.currentTimeMillis() - modelingTime;
                 Log.d(TAG, "modelingTime=" + modelingTime);
 
@@ -288,25 +291,29 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                 matrixRowIndeces = null;
                 matrixColumnIndeces = null;
 
-                // EigenAnalysis
-                eigTime = System.currentTimeMillis();
-                Log.d(TAG, "EigenCov Analysis...");
-                double[][] largestEigValCov = Parser.getLargestEigValCov(matrices);
-                Log.d(TAG, "EigenCor Analysis...");
-                double[][] largestEigValCor = Parser.getLargestEigValCov(matrices);
-                eigTime = System.currentTimeMillis() - eigTime;
-                Log.d(TAG, "eigTime=" + eigTime);
+                DescriptiveStatistics eigenStats = new DescriptiveStatistics();
+                DescriptiveStatistics mosStats = new DescriptiveStatistics();
 
-                // MOS Analysis
-                Log.d(TAG, "MOS Analysis...");
-                mosTime = System.currentTimeMillis();
-                int mosCov = MOS.edcJAMA(new Matrix(largestEigValCov), windowSize);
-                int mosCor = MOS.edcJAMA(new Matrix(largestEigValCor), windowSize);
-                mosTime = System.currentTimeMillis() - mosTime;
-                totalTime = System.currentTimeMillis() - totalTime;
-                Log.d(TAG, "mosTime=" + mosTime);
-                Log.d(TAG, "TotalTime=" + totalTime);
-                msg = "Success!";
+                for(int i=0; i<30;i++){
+                    // EigenAnalysis
+                    eigTime = System.currentTimeMillis();
+                    double[][] largestEigValCov = Parser.getLargestEigValCov(matrices);
+                    double[][] largestEigValCor = Parser.getLargestEigValCor(matrices);
+                    eigTime = System.currentTimeMillis() - eigTime;
+                    eigenStats.addValue(eigTime);
+
+                    // MOS Analysis
+                    mosTime = System.currentTimeMillis();
+                    int mosCov = MOS.edcJAMA(new Matrix(largestEigValCov), mWindowSize);
+                    int mosCor = MOS.edcJAMA(new Matrix(largestEigValCor), mWindowSize);
+                    mosTime = System.currentTimeMillis() - mosTime;
+                    mosStats.addValue(mosTime);
+                }
+
+                eigMsg = "Eig - Avg=" + eigenStats.getMean() + ", Stdv=" + eigenStats.getStandardDeviation() + ", Min=" + eigenStats.getMin() + ", Max="+ eigenStats.getMax();
+                mosMsg = "MOS - Avg=" + mosStats.getMean() + ", Stdv=" + mosStats.getStandardDeviation() + ", Min=" + mosStats.getMin() + ", Max="+ mosStats.getMax();
+
+                msg = "Success! Size=" + (double)file.length()/(double)(1024*1024) + ", Window=" + mWindowSize;
 
                 return true;
 
@@ -325,8 +332,8 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                     "Msg:" + msg +
                             "\nParsingTime: " + parsingTime +
                             "\nDataModellingTime: " + modelingTime +
-                            "\nEigenAnalysisTime: " + eigTime +
-                            "\nMOSTime:" + mosTime +
+                            "\nEig: " + eigMsg +
+                            "\nMOS:" + mosMsg +
                             "\nTotal:" + totalTime);
         }
 

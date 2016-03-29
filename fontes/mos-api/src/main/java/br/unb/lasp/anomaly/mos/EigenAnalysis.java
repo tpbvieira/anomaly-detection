@@ -32,7 +32,7 @@ public class EigenAnalysis{
 		for(int line = 0; line < rowSize; line++){
 			double[] row = realMatrix.getRow(line);			
 			double rowStd = std.evaluate(row);			
-			
+			System.out.println("Std");
 			if(rowStd > 0){
 				double rowMean = mean.evaluate(row);
 				for(int column = 0; column < columnSize; column++){
