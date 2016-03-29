@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.unb.lasp.anomaly</groupId>
 	<artifactId>mos-api</artifactId>
-	<version>0.3.9-SNAPSHOT</version>
+	<version>0.3.9</version>
 	<packaging>jar</packaging>
 	<name>mos-api</name>
 	<url>https://github.com/tpbvieira/mos/</url>
@@ -96,7 +96,7 @@
 		<connection>scm:git:git@github.com:tpbvieira/mos.git</connection>
 		<developerConnection>scm:git:git@github.com:tpbvieira/mos.git</developerConnection>
 		<url>https://github.com/tpbvieira/mos</url>
-		<tag>mos-0.3.4</tag>
+		<tag>mos-api-0.3.9</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
