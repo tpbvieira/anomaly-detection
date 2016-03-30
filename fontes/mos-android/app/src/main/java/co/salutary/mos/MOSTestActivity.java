@@ -271,9 +271,9 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                 SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.usDateTimeMS);
 
                 // Parsing
-                Log.d(TAG, "Parsing...");
-                totalTime = parsingTime = System.currentTimeMillis();
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), mFileName);
+                Log.d(TAG, "Parsing " + file.getPath());
+                totalTime = parsingTime = System.currentTimeMillis();
                 HashMap<String,Integer> matrixRowIndeces = new HashMap<String,Integer>();
                 HashMap<Long,HashMap<String,Integer>> values = Parser.parseCSV(file.getPath(), sdf, matrixRowIndeces);
                 parsingTime =  System.currentTimeMillis() - parsingTime;
@@ -294,7 +294,7 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                 DescriptiveStatistics eigenStats = new DescriptiveStatistics();
                 DescriptiveStatistics mosStats = new DescriptiveStatistics();
 
-                for(int i=0; i<30;i++){
+                for(int i=0; i<50;i++){
                     // EigenAnalysis
                     eigTime = System.currentTimeMillis();
                     double[][] largestEigValCov = Parser.getLargestEigValCov(matrices);
@@ -310,10 +310,12 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
                     mosStats.addValue(mosTime);
                 }
 
-                eigMsg = "Eig - Avg=" + eigenStats.getMean() + ", Stdv=" + eigenStats.getStandardDeviation() + ", Min=" + eigenStats.getMin() + ", Max="+ eigenStats.getMax();
-                mosMsg = "MOS - Avg=" + mosStats.getMean() + ", Stdv=" + mosStats.getStandardDeviation() + ", Min=" + mosStats.getMin() + ", Max="+ mosStats.getMax();
+                eigMsg = "Avg=" + eigenStats.getMean() + ", Stdv=" + eigenStats.getStandardDeviation() + ", Min=" + eigenStats.getMin() + ", Max="+ eigenStats.getMax();
+                mosMsg = "Avg=" + mosStats.getMean() + ", Stdv=" + mosStats.getStandardDeviation() + ", Min=" + mosStats.getMin() + ", Max="+ mosStats.getMax();
 
-                msg = "Success! Size=" + (double)file.length()/(double)(1024*1024) + ", Window=" + mWindowSize;
+                msg = "Success! " +
+                        "\n" + file.getPath() +
+                        "\nSize=" + (double)file.length()/(double)(1024*1024) + ", Window=" + mWindowSize;
 
                 return true;
 
@@ -330,11 +332,11 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
             showProgress(false);
             mMessageResultTextView.setText(
                     "Msg:" + msg +
-                            "\nParsingTime: " + parsingTime +
-                            "\nDataModellingTime: " + modelingTime +
-                            "\nEig: " + eigMsg +
-                            "\nMOS:" + mosMsg +
-                            "\nTotal:" + totalTime);
+                    "\n\nParsingTime: " + parsingTime +
+                    "\n\nDataModellingTime: " + modelingTime +
+                    "\n\nEig: " + eigMsg +
+                    "\n\nMOS:" + mosMsg +
+                    "\n\nTotal:" + totalTime);
         }
 
         @Override
@@ -342,5 +344,7 @@ public class MOSTestActivity extends AppCompatActivity implements LoaderCallback
             mAuthTask = null;
             showProgress(false);
         }
+
     }
+
 }
