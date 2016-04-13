@@ -1,0 +1,90 @@
+MATRIX		PERIOD	TIMES WITH ATTACK
+all 		4 	[11]    [12]    [13]    [15]    [16]    [17]    [18]    [19]    [20]
+all 		5 	[11]    [12]    [13]    [14]    [15]    [16]    [17]    [18]    [19]    [20]
+portscan	3 	[15]
+synflood 	4 	[11]    [12]    [13]    [15]    [16]    [17]    [18]    [19]    [20]
+fraggle 	5 	[11]    [12]    [13]    [14]    [15]    [16]    [17]    [18]    [19]    [20]
+
+Warning: Matrix = all, Period(q) = 5, Time(t) = 11, Ports= 15 
+> In rgetv at 198 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 12, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 13, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 14, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 15, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 16, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 17, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 18, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 19, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 5, Time(t) = 20, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 11, Ports= 14 
+> In rgetv at 198 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 12, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 13, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 14, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 15, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 16, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 17, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 18, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 19, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = all, Period(q) = 4, Time(t) = 20, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = portscan, Period(q) = 3, Time(t) = 15, Ports= [5 6 7 8 9 10 11 12 13] 
+> In rgetv at 198 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 11, Ports= 14 
+> In rgetv at 198 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 12, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 13, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 14, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 15, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 16, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 17, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 18, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 19, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = synflood, Period(q) = 4, Time(t) = 20, Ports= 14 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 11, Ports= 15 
+> In rgetv at 198 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 12, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 13, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 14, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 15, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 16, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 17, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 18, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 19, Ports= 15 
+> In rgetv at 211 
+Warning: Matrix = fraggle, Period(q) = 5, Time(t) = 20, Ports= 15 
+> In rgetv at 211 
+

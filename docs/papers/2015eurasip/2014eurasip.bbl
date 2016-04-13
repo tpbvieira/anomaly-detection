@@ -1,0 +1,806 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{25}
+% BibTex style file: bmc-mathphys.bst (version 2.0), 2013-07-15
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\textsf{#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem{lakhina2005mining}
+\begin{bchapter}
+\bauthor{\bsnm{Lakhina}, \binits{A.}},
+\bauthor{\bsnm{Crovella}, \binits{M.}},
+\bauthor{\bsnm{Diot}, \binits{C.}}:
+\bctitle{Mining anomalies using traffic feature distributions}.
+In: \bbtitle{ACM SIGCOMM Computer Communication Review},
+vol. \bseriesno{35},
+pp. \bfpage{217}--\blpage{228}
+(\byear{2005}).
+\bcomment{ACM}
+\end{bchapter}
+\endbibitem
+
+%%% 2
+\bibitem{Lu2009}
+\begin{barticle}
+\bauthor{\bsnm{Lu}, \binits{W.}},
+\bauthor{\bsnm{Ghorbani}, \binits{A.A.}}:
+\batitle{Network anomaly detection based on wavelet analysis}.
+\bjtitle{EURASIP J. Adv. Signal Process}
+\bvolume{2009},
+\bfpage{4}--\blpage{1416}
+(\byear{2009}).
+doi:\doiurl{10.1155/2009/837601}
+\end{barticle}
+\endbibitem
+
+%%% 3
+\bibitem{Huang2009}
+\begin{barticle}
+\bauthor{\bsnm{Huang}, \binits{C.-T.}},
+\bauthor{\bsnm{Chang}, \binits{R.K.C.}},
+\bauthor{\bsnm{Huang}, \binits{P.}}:
+\batitle{Editorial: Signal processing applications in network intrusion
+  detection systems}.
+\bjtitle{EURASIP J. Adv. Signal Process}
+\bvolume{2009},
+\bfpage{9}--\blpage{192}
+(\byear{2009}).
+doi:\doiurl{10.1155/2009/527689}
+\end{barticle}
+\endbibitem
+
+%%% 4
+\bibitem{Zonglin2009}
+\begin{barticle}
+\bauthor{\bsnm{Zonglin}, \binits{L.}},
+\bauthor{\bsnm{Guangmin}, \binits{H.}},
+\bauthor{\bsnm{Xingmiao}, \binits{Y.}},
+\bauthor{\bsnm{Dan}, \binits{Y.}}:
+\batitle{Detecting distributed network traffic anomaly with network-wide
+  correlation analysis}.
+\bjtitle{EURASIP J. Adv. Signal Process}
+\bvolume{2009},
+\bfpage{2}--\blpage{1211}
+(\byear{2009}).
+doi:\doiurl{10.1155/2009/752818}
+\end{barticle}
+\endbibitem
+
+%%% 5
+\bibitem{david2011blind}
+\begin{bchapter}
+\bauthor{\bsnm{David}, \binits{B.M.}},
+\bauthor{\bparticle{da} \bsnm{Costa}, \binits{J.P.C.L.}},
+\bauthor{\bsnm{Nascimento}, \binits{A.C.}},
+\bauthor{\bsnm{Amaral}, \binits{D.}},
+\bauthor{\bsnm{Holtz}, \binits{M.}},
+\bauthor{\bparticle{de} \bsnm{Sousa~Jr}, \binits{R.T.}}:
+\bctitle{Blind automatic malicious activity detection in honeypot data}.
+In: \bbtitle{The International Conference on Forensic Computer Science
+  (ICoFCS)}
+(\byear{2011})
+\end{bchapter}
+\endbibitem
+
+%%% 6
+\bibitem{da2012improved}
+\begin{bchapter}
+\bauthor{\bparticle{da} \bsnm{Costa}, \binits{J.P.C.L.}},
+\bauthor{\bparticle{de} \bsnm{Freitas}, \binits{E.P.}},
+\bauthor{\bsnm{David}, \binits{B.M.}},
+\bauthor{\bsnm{Serrano}, \binits{A.M.R.}},
+\bauthor{\bsnm{Amaral}, \binits{D.}},
+\bauthor{\bparticle{de} \bsnm{Sousa~Jr}, \binits{R.T.}}:
+\bctitle{Improved blind automatic malicious activity detection in honeypot
+  data}.
+In: \bbtitle{The International Conference on Forensic Computer Science
+  (ICoFCS)}
+(\byear{2012})
+\end{bchapter}
+\endbibitem
+
+%%% 7
+\bibitem{tenorio2013greatest}
+\begin{bchapter}
+\bauthor{\bsnm{Ten{\'o}rio}, \binits{D.F.}},
+\bauthor{\bparticle{da} \bsnm{Costa}, \binits{J.P.C.L.}},
+\bauthor{\bparticle{de} \bsnm{Sousa~Jr}, \binits{R.T.}}:
+\bctitle{Greatest eigenvalue time vector approach for blind detection of
+  malicious traffic}.
+In: \bbtitle{The International Conference on Forensic Computer Science
+  (ICoFCS)}
+(\byear{2013})
+\end{bchapter}
+\endbibitem
+
+%%% 8
+\bibitem{mudzingwa2012study}
+\begin{bchapter}
+\bauthor{\bsnm{Mudzingwa}, \binits{D.}},
+\bauthor{\bsnm{Agrawal}, \binits{R.}}:
+\bctitle{A study of methodologies used in intrusion detection and prevention
+  systems (idps)}.
+In: \bbtitle{Southeastcon, 2012 Proceedings of IEEE},
+pp. \bfpage{1}--\blpage{6}
+(\byear{2012}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 9
+\bibitem{he2008applying}
+\begin{bchapter}
+\bauthor{\bsnm{He}, \binits{W.}},
+\bauthor{\bsnm{Hu}, \binits{G.}},
+\bauthor{\bsnm{Yao}, \binits{X.}},
+\bauthor{\bsnm{Kan}, \binits{G.}},
+\bauthor{\bsnm{Wang}, \binits{H.}},
+\bauthor{\bsnm{Xiang}, \binits{H.}}:
+\bctitle{Applying multiple time series data mining to large-scale network
+  traffic analysis}.
+In: \bbtitle{2008 IEEE Conference on Cybernetics and Intelligent Systems},
+pp. \bfpage{394}--\blpage{399}
+(\byear{2008})
+\end{bchapter}
+\endbibitem
+
+%%% 10
+\bibitem{ghourabi2010data}
+\begin{bchapter}
+\bauthor{\bsnm{Ghourabi}, \binits{A.}},
+\bauthor{\bsnm{Abbes}, \binits{T.}},
+\bauthor{\bsnm{Bouhoula}, \binits{A.}}:
+\bctitle{Data analyzer based on data mining for honeypot router}.
+In: \bbtitle{Computer Systems and Applications (AICCSA), 2010 IEEE/ACS
+  International Conference On},
+pp. \bfpage{1}--\blpage{6}
+(\byear{2010}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 11
+\bibitem{raynal2004honeypot}
+\begin{bchapter}
+\bauthor{\bsnm{Raynal}, \binits{F.}},
+\bauthor{\bsnm{Berthier}, \binits{Y.}},
+\bauthor{\bsnm{Biondi}, \binits{P.}},
+\bauthor{\bsnm{Kaminsky}, \binits{D.}}:
+\bctitle{Honeypot forensics}.
+In: \bbtitle{Information Assurance Workshop, 2004. Proceedings from the Fifth
+  Annual IEEE SMC},
+pp. \bfpage{22}--\blpage{29}
+(\byear{2004}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 12
+\bibitem{almotairi2009technique}
+\begin{bchapter}
+\bauthor{\bsnm{Almotairi}, \binits{S.}},
+\bauthor{\bsnm{Clark}, \binits{A.}},
+\bauthor{\bsnm{Mohay}, \binits{G.}},
+\bauthor{\bsnm{Zimmermann}, \binits{J.}}:
+\bctitle{A technique for detecting new attacks in low-interaction honeypot
+  traffic}.
+In: \bbtitle{Internet Monitoring and Protection, 2009. ICIMP'09. Fourth
+  International Conference On},
+pp. \bfpage{7}--\blpage{13}
+(\byear{2009}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 13
+\bibitem{zakaria2012review}
+\begin{bchapter}
+\bauthor{\bsnm{Zakaria}, \binits{W.Z.A.}},
+\bauthor{\bsnm{Kiah}, \binits{M.L.M.}}:
+\bctitle{A review on artificial intelligence techniques for developing
+  intelligent honeypot}.
+In: \bbtitle{Proceeding Of: 8th International Conference on Computing
+  Technology and Information Management, At Seoul, Korea}
+(\byear{2012})
+\end{bchapter}
+\endbibitem
+
+%%% 14
+\bibitem{Lee2013}
+\begin{barticle}
+\bauthor{\bsnm{Lee}, \binits{Y.-J.}},
+\bauthor{\bsnm{Yeh}, \binits{Y.-R.}},
+\bauthor{\bsnm{Wang}, \binits{Y.-C.F.}}:
+\batitle{Anomaly detection via online oversampling principal component
+  analysis}.
+\bjtitle{Knowledge and Data Engineering, IEEE Transactions on}
+\bvolume{25}(\bissue{7}),
+\bfpage{1460}--\blpage{1470}
+(\byear{2013}).
+doi:\doiurl{10.1109/TKDE.2012.99}
+\end{barticle}
+\endbibitem
+
+%%% 15
+\bibitem{jin2004covariance}
+\begin{bchapter}
+\bauthor{\bsnm{Jin}, \binits{S.}},
+\bauthor{\bsnm{Yeung}, \binits{D.S.}}:
+\bctitle{A covariance analysis model for ddos attack detection}.
+In: \bbtitle{Communications, 2004 IEEE International Conference On},
+vol. \bseriesno{4},
+pp. \bfpage{1882}--\blpage{1886}
+(\byear{2004}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 16
+\bibitem{da2009comparison}
+\begin{bchapter}
+\bauthor{\bparticle{da} \bsnm{Costa}, \binits{J.P.C.L.}},
+\bauthor{\bsnm{Thakre}, \binits{A.}},
+\bauthor{\bsnm{Roemer}, \binits{F.}},
+\bauthor{\bsnm{Haardt}, \binits{M.}}:
+\bctitle{Comparison of model order selection techniques for high-resolution
+  parameter estimation algorithms}.
+In: \bbtitle{Proc. 54th International Scientific Colloquium (IWK’09),
+  Ilmenau, Germany}
+(\byear{2009})
+\end{bchapter}
+\endbibitem
+
+%%% 17
+\bibitem{rajan1997model}
+\begin{barticle}
+\bauthor{\bsnm{Rajan}, \binits{J.}},
+\bauthor{\bsnm{Rayner}, \binits{P.}}:
+\batitle{Model order selection for the singular value decomposition and the
+  discrete karhunen--loeve transform using a bayesian approach}.
+\bjtitle{IEE Proceedings-Vision, Image and Signal Processing}
+\bvolume{144}(\bissue{2}),
+\bfpage{116}--\blpage{123}
+(\byear{1997})
+\end{barticle}
+\endbibitem
+
+%%% 18
+\bibitem{akaike1974new}
+\begin{barticle}
+\bauthor{\bsnm{Akaike}, \binits{H.}}:
+\batitle{A new look at the statistical model identification}.
+\bjtitle{Automatic Control, IEEE Transactions on}
+\bvolume{19}(\bissue{6}),
+\bfpage{716}--\blpage{723}
+(\byear{1974})
+\end{barticle}
+\endbibitem
+
+%%% 19
+\bibitem{wax1985detection}
+\begin{barticle}
+\bauthor{\bsnm{Wax}, \binits{M.}},
+\bauthor{\bsnm{Kailath}, \binits{T.}}:
+\batitle{Detection of signals by information theoretic criteria}.
+\bjtitle{Acoustics, Speech and Signal Processing, IEEE Transactions on}
+\bvolume{33}(\bissue{2}),
+\bfpage{387}--\blpage{392}
+(\byear{1985})
+\end{barticle}
+\endbibitem
+
+%%% 20
+\bibitem{barron1998minimum}
+\begin{barticle}
+\bauthor{\bsnm{Barron}, \binits{A.}},
+\bauthor{\bsnm{Rissanen}, \binits{J.}},
+\bauthor{\bsnm{Yu}, \binits{B.}}:
+\batitle{The minimum description length principle in coding and modeling}.
+\bjtitle{Information Theory, IEEE Transactions on}
+\bvolume{44}(\bissue{6}),
+\bfpage{2743}--\blpage{2760}
+(\byear{1998})
+\end{barticle}
+\endbibitem
+
+%%% 21
+\bibitem{zhao1986detection}
+\begin{barticle}
+\bauthor{\bsnm{Zhao}, \binits{L.}},
+\bauthor{\bsnm{Krishnaiah}, \binits{P.}},
+\bauthor{\bsnm{Bai}, \binits{Z.}}:
+\batitle{On detection of the number of signals in presence of white noise}.
+\bjtitle{Journal of Multivariate Analysis}
+\bvolume{20}(\bissue{1}),
+\bfpage{1}--\blpage{25}
+(\byear{1986})
+\end{barticle}
+\endbibitem
+
+%%% 22
+\bibitem{ulfarsson2008rank}
+\begin{bchapter}
+\bauthor{\bsnm{Ulfarsson}, \binits{M.O.}},
+\bauthor{\bsnm{Solo}, \binits{V.}}:
+\bctitle{Rank selection in noist pca with sure and random matrix theory}.
+In: \bbtitle{Acoustics, Speech and Signal Processing, 2008. ICASSP 2008. IEEE
+  International Conference On},
+pp. \bfpage{3317}--\blpage{3320}
+(\byear{2008}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 23
+\bibitem{radoi2004new}
+\begin{barticle}
+\bauthor{\bsnm{Radoi}, \binits{E.}},
+\bauthor{\bsnm{Quinquis}, \binits{A.}}:
+\batitle{A new method for estimating the number of harmonic components in noise
+  with application in high resolution radar}.
+\bjtitle{EURASIP Journal on Applied Signal Processing}
+\bvolume{2004},
+\bfpage{1177}--\blpage{1188}
+(\byear{2004})
+\end{barticle}
+\endbibitem
+
+%%% 24
+\bibitem{grouffaud1996some}
+\begin{bchapter}
+\bauthor{\bsnm{Grouffaud}, \binits{J.}},
+\bauthor{\bsnm{Larzabal}, \binits{P.}},
+\bauthor{\bsnm{Clergeot}, \binits{H.}}:
+\bctitle{Some properties of ordered eigenvalues of a wishart matrix:
+  application in detection test and model order selection}.
+In: \bbtitle{Acoustics, Speech, and Signal Processing, 1996. ICASSP-96.
+  Conference Proceedings., 1996 IEEE International Conference On},
+vol. \bseriesno{5},
+pp. \bfpage{2463}--\blpage{2466}
+(\byear{1996}).
+\bcomment{IEEE}
+\end{bchapter}
+\endbibitem
+
+%%% 25
+\bibitem{quinlan2006model}
+\begin{botherref}
+\oauthor{\bsnm{Quinlan}, \binits{A.}},
+\oauthor{\bsnm{Barbot}, \binits{J.-P.}},
+\oauthor{\bsnm{Larzabal}, \binits{P.}},
+\oauthor{\bsnm{Haardt}, \binits{M.}}:
+Model order selection for short data: An exponential fitting test (eft).
+EURASIP Journal on Advances in Signal Processing
+\textbf{2007}
+(2006)
+\end{botherref}
+\endbibitem
+
+\end{thebibliography}
+
+\newcommand{\BMCxmlcomment}[1]{}
+
+\BMCxmlcomment{
+
+<refgrp>
+
+<bibl id="B1">
+  <title><p>Mining anomalies using traffic feature distributions</p></title>
+  <aug>
+    <au><snm>Lakhina</snm><fnm>A</fnm></au>
+    <au><snm>Crovella</snm><fnm>M</fnm></au>
+    <au><snm>Diot</snm><fnm>C</fnm></au>
+  </aug>
+  <source>ACM SIGCOMM Computer Communication Review</source>
+  <pubdate>2005</pubdate>
+  <volume>35</volume>
+  <issue>4</issue>
+  <fpage>217</fpage>
+  <lpage>-228</lpage>
+</bibl>
+
+<bibl id="B2">
+  <title><p>Network Anomaly Detection Based on Wavelet Analysis</p></title>
+  <aug>
+    <au><snm>Lu</snm><fnm>W</fnm></au>
+    <au><snm>Ghorbani</snm><fnm>AA</fnm></au>
+  </aug>
+  <source>EURASIP J. Adv. Signal Process</source>
+  <publisher>New York, NY, United States: Hindawi Publishing Corp.</publisher>
+  <pubdate>2009</pubdate>
+  <volume>2009</volume>
+  <fpage>4:1</fpage>
+  <lpage>-4:16</lpage>
+  <url>http://dx.doi.org/10.1155/2009/837601</url>
+</bibl>
+
+<bibl id="B3">
+  <title><p>Editorial: Signal Processing Applications in Network Intrusion
+  Detection Systems</p></title>
+  <aug>
+    <au><snm>Huang</snm><fnm>CT</fnm></au>
+    <au><snm>Chang</snm><fnm>RKC</fnm></au>
+    <au><snm>Huang</snm><fnm>P</fnm></au>
+  </aug>
+  <source>EURASIP J. Adv. Signal Process</source>
+  <publisher>New York, NY, United States: Hindawi Publishing Corp.</publisher>
+  <pubdate>2009</pubdate>
+  <volume>2009</volume>
+  <fpage>9:1</fpage>
+  <lpage>-9:2</lpage>
+  <url>http://dx.doi.org/10.1155/2009/527689</url>
+</bibl>
+
+<bibl id="B4">
+  <title><p>Detecting Distributed Network Traffic Anomaly with Network-wide
+  Correlation Analysis</p></title>
+  <aug>
+    <au><snm>Zonglin</snm><fnm>L</fnm></au>
+    <au><snm>Guangmin</snm><fnm>H</fnm></au>
+    <au><snm>Xingmiao</snm><fnm>Y</fnm></au>
+    <au><snm>Dan</snm><fnm>Y</fnm></au>
+  </aug>
+  <source>EURASIP J. Adv. Signal Process</source>
+  <publisher>New York, NY, United States: Hindawi Publishing Corp.</publisher>
+  <pubdate>2009</pubdate>
+  <volume>2009</volume>
+  <fpage>2:1</fpage>
+  <lpage>-2:11</lpage>
+  <url>http://dx.doi.org/10.1155/2009/752818</url>
+</bibl>
+
+<bibl id="B5">
+  <title><p>Blind automatic malicious activity detection in honeypot
+  data</p></title>
+  <aug>
+    <au><snm>David</snm><fnm>BM</fnm></au>
+    <au><snm>Costa</snm><fnm>JPCL</fnm></au>
+    <au><snm>Nascimento</snm><fnm>AC</fnm></au>
+    <au><snm>Amaral</snm><fnm>D</fnm></au>
+    <au><snm>Holtz</snm><fnm>MD</fnm></au>
+    <au><snm>Sousa Jr</snm><fnm>RT</fnm></au>
+  </aug>
+  <source>The International Conference on Forensic Computer Science
+  (ICoFCS)</source>
+  <pubdate>2011</pubdate>
+</bibl>
+
+<bibl id="B6">
+  <title><p>Improved blind automatic malicious activity detection in honeypot
+  data</p></title>
+  <aug>
+    <au><snm>Costa</snm><fnm>JPCL</fnm></au>
+    <au><snm>Freitas</snm><fnm>EP</fnm></au>
+    <au><snm>David</snm><fnm>BM</fnm></au>
+    <au><snm>Serrano</snm><fnm>AMR</fnm></au>
+    <au><snm>Amaral</snm><fnm>D</fnm></au>
+    <au><snm>Sousa Jr</snm><fnm>RT</fnm></au>
+  </aug>
+  <source>The International Conference on Forensic Computer Science
+  (ICoFCS)</source>
+  <pubdate>2012</pubdate>
+</bibl>
+
+<bibl id="B7">
+  <title><p>Greatest Eigenvalue Time Vector Approach for Blind Detection of
+  Malicious Traffic</p></title>
+  <aug>
+    <au><snm>Ten{\'o}rio</snm><fnm>DF</fnm></au>
+    <au><snm>Costa</snm><fnm>JPCL</fnm></au>
+    <au><snm>Sousa Jr</snm><fnm>RT</fnm></au>
+  </aug>
+  <source>The International Conference on Forensic Computer Science
+  (ICoFCS)</source>
+  <pubdate>2013</pubdate>
+</bibl>
+
+<bibl id="B8">
+  <title><p>A study of Methodologies used in Intrusion Detection and Prevention
+  Systems (IDPS)</p></title>
+  <aug>
+    <au><snm>Mudzingwa</snm><fnm>D</fnm></au>
+    <au><snm>Agrawal</snm><fnm>R</fnm></au>
+  </aug>
+  <source>Southeastcon, 2012 Proceedings of IEEE</source>
+  <pubdate>2012</pubdate>
+  <fpage>1</fpage>
+  <lpage>-6</lpage>
+</bibl>
+
+<bibl id="B9">
+  <title><p>Applying multiple time series data mining to large-scale network
+  traffic analysis</p></title>
+  <aug>
+    <au><snm>He</snm><fnm>W</fnm></au>
+    <au><snm>Hu</snm><fnm>G</fnm></au>
+    <au><snm>Yao</snm><fnm>X</fnm></au>
+    <au><snm>Kan</snm><fnm>G</fnm></au>
+    <au><snm>Wang</snm><fnm>H</fnm></au>
+    <au><snm>Xiang</snm><fnm>H</fnm></au>
+  </aug>
+  <source>2008 IEEE Conference on Cybernetics and Intelligent Systems</source>
+  <pubdate>2008</pubdate>
+  <fpage>394</fpage>
+  <lpage>-399</lpage>
+</bibl>
+
+<bibl id="B10">
+  <title><p>Data analyzer based on data mining for honeypot router</p></title>
+  <aug>
+    <au><snm>Ghourabi</snm><fnm>A</fnm></au>
+    <au><snm>Abbes</snm><fnm>T</fnm></au>
+    <au><snm>Bouhoula</snm><fnm>A</fnm></au>
+  </aug>
+  <source>Computer Systems and Applications (AICCSA), 2010 IEEE/ACS
+  International Conference on</source>
+  <pubdate>2010</pubdate>
+  <fpage>1</fpage>
+  <lpage>-6</lpage>
+</bibl>
+
+<bibl id="B11">
+  <title><p>Honeypot forensics</p></title>
+  <aug>
+    <au><snm>Raynal</snm><fnm>F</fnm></au>
+    <au><snm>Berthier</snm><fnm>Y</fnm></au>
+    <au><snm>Biondi</snm><fnm>P</fnm></au>
+    <au><snm>Kaminsky</snm><fnm>D</fnm></au>
+  </aug>
+  <source>Information Assurance Workshop, 2004. Proceedings from the Fifth
+  Annual IEEE SMC</source>
+  <pubdate>2004</pubdate>
+  <fpage>22</fpage>
+  <lpage>-29</lpage>
+</bibl>
+
+<bibl id="B12">
+  <title><p>A technique for detecting new attacks in low-interaction honeypot
+  traffic</p></title>
+  <aug>
+    <au><snm>Almotairi</snm><fnm>S</fnm></au>
+    <au><snm>Clark</snm><fnm>A</fnm></au>
+    <au><snm>Mohay</snm><fnm>G</fnm></au>
+    <au><snm>Zimmermann</snm><fnm>J</fnm></au>
+  </aug>
+  <source>Internet Monitoring and Protection, 2009. ICIMP'09. Fourth
+  International Conference on</source>
+  <pubdate>2009</pubdate>
+  <fpage>7</fpage>
+  <lpage>-13</lpage>
+</bibl>
+
+<bibl id="B13">
+  <title><p>A review on artificial intelligence techniques for developing
+  intelligent honeypot</p></title>
+  <aug>
+    <au><snm>Zakaria</snm><fnm>WZA</fnm></au>
+    <au><snm>Kiah</snm><fnm>MLM</fnm></au>
+  </aug>
+  <source>Proceeding of: 8th International Conference on Computing Technology
+  and Information Management, At Seoul, Korea</source>
+  <pubdate>2012</pubdate>
+</bibl>
+
+<bibl id="B14">
+  <title><p>Anomaly Detection via Online Oversampling Principal Component
+  Analysis</p></title>
+  <aug>
+    <au><snm>Lee</snm><fnm>YJ</fnm></au>
+    <au><snm>Yeh</snm><fnm>YR</fnm></au>
+    <au><snm>Wang</snm><fnm>YCF</fnm></au>
+  </aug>
+  <source>Knowledge and Data Engineering, IEEE Transactions on</source>
+  <pubdate>2013</pubdate>
+  <volume>25</volume>
+  <issue>7</issue>
+  <fpage>1460</fpage>
+  <lpage>1470</lpage>
+</bibl>
+
+<bibl id="B15">
+  <title><p>A covariance analysis model for DDoS attack detection</p></title>
+  <aug>
+    <au><snm>Jin</snm><fnm>S</fnm></au>
+    <au><snm>Yeung</snm><fnm>DS</fnm></au>
+  </aug>
+  <source>Communications, 2004 IEEE International Conference on</source>
+  <pubdate>2004</pubdate>
+  <volume>4</volume>
+  <fpage>1882</fpage>
+  <lpage>-1886</lpage>
+</bibl>
+
+<bibl id="B16">
+  <title><p>Comparison of model order selection techniques for high-resolution
+  parameter estimation algorithms</p></title>
+  <aug>
+    <au><snm>Costa</snm><fnm>JPCL</fnm></au>
+    <au><snm>Thakre</snm><fnm>A</fnm></au>
+    <au><snm>Roemer</snm><fnm>F</fnm></au>
+    <au><snm>Haardt</snm><fnm>M</fnm></au>
+  </aug>
+  <source>Proc. 54th International Scientific Colloquium (IWK’09), Ilmenau,
+  Germany</source>
+  <pubdate>2009</pubdate>
+</bibl>
+
+<bibl id="B17">
+  <title><p>Model order selection for the singular value decomposition and the
+  discrete Karhunen--Loeve transform using a Bayesian approach</p></title>
+  <aug>
+    <au><snm>Rajan</snm><fnm>JJ</fnm></au>
+    <au><snm>Rayner</snm><fnm>PJW</fnm></au>
+  </aug>
+  <source>IEE Proceedings-Vision, Image and Signal Processing</source>
+  <publisher>IET</publisher>
+  <pubdate>1997</pubdate>
+  <volume>144</volume>
+  <issue>2</issue>
+  <fpage>116</fpage>
+  <lpage>-123</lpage>
+</bibl>
+
+<bibl id="B18">
+  <title><p>A new look at the statistical model identification</p></title>
+  <aug>
+    <au><snm>Akaike</snm><fnm>H</fnm></au>
+  </aug>
+  <source>Automatic Control, IEEE Transactions on</source>
+  <publisher>Ieee</publisher>
+  <pubdate>1974</pubdate>
+  <volume>19</volume>
+  <issue>6</issue>
+  <fpage>716</fpage>
+  <lpage>-723</lpage>
+</bibl>
+
+<bibl id="B19">
+  <title><p>Detection of signals by information theoretic criteria</p></title>
+  <aug>
+    <au><snm>Wax</snm><fnm>M</fnm></au>
+    <au><snm>Kailath</snm><fnm>T</fnm></au>
+  </aug>
+  <source>Acoustics, Speech and Signal Processing, IEEE Transactions
+  on</source>
+  <publisher>IEEE</publisher>
+  <pubdate>1985</pubdate>
+  <volume>33</volume>
+  <issue>2</issue>
+  <fpage>387</fpage>
+  <lpage>-392</lpage>
+</bibl>
+
+<bibl id="B20">
+  <title><p>The minimum description length principle in coding and
+  modeling</p></title>
+  <aug>
+    <au><snm>Barron</snm><fnm>A</fnm></au>
+    <au><snm>Rissanen</snm><fnm>J</fnm></au>
+    <au><snm>Yu</snm><fnm>B</fnm></au>
+  </aug>
+  <source>Information Theory, IEEE Transactions on</source>
+  <publisher>IEEE</publisher>
+  <pubdate>1998</pubdate>
+  <volume>44</volume>
+  <issue>6</issue>
+  <fpage>2743</fpage>
+  <lpage>-2760</lpage>
+</bibl>
+
+<bibl id="B21">
+  <title><p>On detection of the number of signals in presence of white
+  noise</p></title>
+  <aug>
+    <au><snm>Zhao</snm><fnm>LC</fnm></au>
+    <au><snm>Krishnaiah</snm><fnm>PR</fnm></au>
+    <au><snm>Bai</snm><fnm>ZD</fnm></au>
+  </aug>
+  <source>Journal of Multivariate Analysis</source>
+  <publisher>Elsevier</publisher>
+  <pubdate>1986</pubdate>
+  <volume>20</volume>
+  <issue>1</issue>
+  <fpage>1</fpage>
+  <lpage>-25</lpage>
+</bibl>
+
+<bibl id="B22">
+  <title><p>Rank selection in noist PCA with SURE and random matrix
+  theory</p></title>
+  <aug>
+    <au><snm>Ulfarsson</snm><fnm>MO</fnm></au>
+    <au><snm>Solo</snm><fnm>V</fnm></au>
+  </aug>
+  <source>Acoustics, Speech and Signal Processing, 2008. ICASSP 2008. IEEE
+  International Conference on</source>
+  <pubdate>2008</pubdate>
+  <fpage>3317</fpage>
+  <lpage>-3320</lpage>
+</bibl>
+
+<bibl id="B23">
+  <title><p>A new method for estimating the number of harmonic components in
+  noise with application in high resolution radar</p></title>
+  <aug>
+    <au><snm>Radoi</snm><fnm>E</fnm></au>
+    <au><snm>Quinquis</snm><fnm>A</fnm></au>
+  </aug>
+  <source>EURASIP Journal on Applied Signal Processing</source>
+  <publisher>Hindawi Publishing Corp.</publisher>
+  <pubdate>2004</pubdate>
+  <volume>2004</volume>
+  <fpage>1177</fpage>
+  <lpage>-1188</lpage>
+</bibl>
+
+<bibl id="B24">
+  <title><p>Some properties of ordered eigenvalues of a Wishart matrix:
+  application in detection test and model order selection</p></title>
+  <aug>
+    <au><snm>Grouffaud</snm><fnm>J</fnm></au>
+    <au><snm>Larzabal</snm><fnm>P</fnm></au>
+    <au><snm>Clergeot</snm><fnm>H</fnm></au>
+  </aug>
+  <source>Acoustics, Speech, and Signal Processing, 1996. ICASSP-96. Conference
+  Proceedings., 1996 IEEE International Conference on</source>
+  <pubdate>1996</pubdate>
+  <volume>5</volume>
+  <fpage>2463</fpage>
+  <lpage>-2466</lpage>
+</bibl>
+
+<bibl id="B25">
+  <title><p>Model order selection for short data: An exponential fitting test
+  (EFT)</p></title>
+  <aug>
+    <au><snm>Quinlan</snm><fnm>A</fnm></au>
+    <au><snm>Barbot</snm><fnm>JP</fnm></au>
+    <au><snm>Larzabal</snm><fnm>P</fnm></au>
+    <au><snm>Haardt</snm><fnm>M</fnm></au>
+  </aug>
+  <source>EURASIP Journal on Advances in Signal Processing</source>
+  <publisher>Hindawi Publishing Corporation</publisher>
+  <pubdate>2006</pubdate>
+  <volume>2007</volume>
+</bibl>
+
+</refgrp>
+} % end of \BMCxmlcomment

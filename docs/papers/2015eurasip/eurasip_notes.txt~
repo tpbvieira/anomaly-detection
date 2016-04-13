@@ -1,0 +1,228 @@
+Submition
+===========================================================================================================================================================================================================
+	use BioMed Central's TeX template and BibTeX stylefile 
+	submit your TeX file as the main manuscript file and your bib/bbl file as a dependent file
+	convert your TeX file into a PDF and submit this PDF as an additional file with the name 'Reference PDF'
+	all figures must be coded at the end of the TeX file and not inline.
+	Pagamento de £865. Havia opção para solicitar pagamento institucional, mas a UnB não estava na lista da instituições possíveisl
+
+ToDo
+===========================================================================================================================================================================================================
+ - Thiago, você precisa detalhar bem como era o cenário dos experimentos. Por favor inclua todas as infos do experimento e daí voce explica a figura 1.
+ - analisar valor estranho de similarity em q5 n15
+ - rever motivo para os valores serem diferentes para a abordagem incremental e incremental e individual, necessário corrigir isto no paper
+ - comparar os indicativos de ataques na tabela e o tempo de ataque declarado no paper
+ - Similarity Analysis
+	- inserir no texto que os comportamentos de DOS apresentaram variações extremamente evidentes, com mudanças de similaridae em torno de uma ordem de grandeza, já os comportamentos anômalos detectados por correlação apresentam menos variação que os casos de covariancia, entretanto ainda temos variações significantes
+	- inserir no texto e nos resultados que se os valores são concatenados desde o o valor inicial de referência até o alvo, a mudança de direção observada através da análise de correlação fica ainda mais evidente. 
+	- testar: trabalhar com a soma de uma janela deslizante, ao achar um erro fazer uma redução para 1 de tamanho de janela. 
+	- testar: é utilizar o esquema de aumento do tamanho da janela, da mesma forma que o tcp faz.
+	- testar: ao encontrar uma anomalia, manter o valor concatenado até antes da anomalia e ir calcular individualmente os valores futuros enquanto houver anomalia, para identificar quando a anomalia inicia e termina.
+	 - Problema: O autor desta obra não a publicou efetivamente, há uma coutra publicação dos mesmos autores e título, mas com uma implementação diferente
+ - Título: Eigen Similarity Analysis for Network Attack Detection
+ - alinhar captions
+ - redimensionar figuras
+ - retirar ? das referências
+ - adicionar e-mail dos autores
+ - revisar teoria do artigo
+ - reimplementar os algoritmos
+	- Não foi possível, pois o dataset utilizado não foi disponibilizado. Mesmo se eu tivesse implementado os cálculos a partir do código Mathlab fornecido, teríamos valores diferentes como resultado, embora estes novos valores resultem na mesma conclusão;
+	- como alternativa, posso redesenhar as imagens sem refazer os experimentos
+ - Citar "Greatest Eigenvalue Time Vector Approach for Blind Detection of Malicious Traffic" e descrever o trabalho feito.
+ - http://asp.eurasipjournals.com/manuscript
+	- If you are planning to submit a TeX file, please submit your TeX file as the main manuscript file and your bib/bbl file as a dependent file. Please also convert your TeX file into a PDF and submit this PDF as an additional file with the name 'Reference PDF'. This PDF will be used by internal staff as a reference point to check the layout of the article as the author intended.
+	- Tables less than 2 pages (about 90 rows) should be included at the end of the manuscript. Longer tables should be submitted, and referred to in the text, as additional files.
+ - incluir as citações e comentários das principais referências, incluindo do eurasip sobre traffic analysis
+	Detecting Distributed Network Traffic Anomaly with Network-Wide Correlation Analysis - eurasip - 2009 
+	Network Anomaly Detection Based on Wavelet Analysis - eurasip - 2009 
+	Detecting Network Intrusions Using Signal Processing with Query-Based Sampling Filter - eurasip - 2009 
+	Signal Processing Applications in Network Intrusion Detection Systems - eurasip - 2009 
+	Anomaly Detection via Online Over-Sampling Principal Component Analysis - transaction - 2012 
+ - Trabalhos futuros
+	 - ica
+		testar se sas tem recurso para ICA
+	 - parafac com a terceira dimensão sendo o tamanho dos pacotes
+	 - testar se há uma estrutura tensorial ao quebrar o tempo em q períodos
+ - obter o contato do sas e verificar como pode ser disponibilizadas licenças para uso das universidade
+
+
+Review
+===========================================================================================================================================================================================================
+ - para as imagens de danilo, melhorar o caption
+ - colocar um texto que descreve a seção logo após apresentar as notacoes
+ - Por que as afiliações não aparecem também na primeira página do artigo? Eu as encontrei apenas no final do artigo. Por favor veja isto no template ou em outros artigos publicados. É estranho.
+	Esta formatação é feita pelo template. Verifiquei um artigo de 2015 e está desta forma também.
+ - "... Logo, ou é bilnd ou semi-blind não pode ser ambos."
+	Eu tinha colocado o termo "partially blind" por ser necessário estabeler um limiar para identificação de ataques por análise de similaridade. Mas pensando bem, ele ainda poderia ser considerado blind, mas dependente de ação humana para definição do limiar.
+ - Trocar "this" por "our" ou vice versa tem se tornado recorrente, acho que precisamos definir um padrão para este estilo de linguagem.
+
+Problemas
+===========================================================================================================================================================================================================
+ - equação 2 deve ser bold ou não?
+ - O mesmo código e dados apresenta resultados diferentes no matlab do windows e linux.
+ - a função calc_coef_paper não retorna sempre os mesmos valores. os cálculos feitos por danilo isoladamente dão sempre o mesmo resultado, mas quando executado em um programa, os valores não são sempre os mesmos. os valores usados por danilo são eft_coeff = [0.3000    0.4000    0.4000    0s .4000    0.4000]. eu verifiquei que mesmo casos com os mesmos parâmetro de entrada apresentaram resultados distintos. Talvez esta variação explique os resultados diferentes entre windows e linux que observamos anteriormente. Eu perdi certo tempo debugando até identificar este problema, a partir disto passei a considerar o valor acima como resultado para esta função.
+ - danilo utilizou arredondadmentos que podem interferir no resultado final, dado que os resultados de um processamento são salvos conforme exibidos na tela, em vez de ser salvos conforme serialização
+ - os dados fornecidos pelo danilo não batem com os apresentados na dissertação, o que dificulta a reprodução dos mesmos resultados;
+ - greatest não é um termo totalmente válido, dado em casos em que não haja ataque o greatest value não corresponde a um ataque. além disto, o termo correto seria largest.
+
+
+PCA - Principal Components Analysis
+===========================================================================================================================================================================================================
+ - converter um conjunto de observações de variáveis possivelmente correlacionadas a um conjunto de valores de variáveis linearmente descorrelacionadas chamadas componentes principais
+ - o primeiro componente principal tem a maior variância possível (ou seja, é responsável pelo máximo de variabilidade nos dados), e cada componente seguinte, por sua vez, tem a máxima variância sob a restrição de ser ortogonal a (i.e., não-correlacionado com) os componentes anteriores
+ - Os componentes principais são garantidamente independentes apenas se os dados forem normalmente distribuídos (conjuntamente).
+ - PCA pode ser feito por decomposição em autovalores de uma matriz de covariância (ou de correlação) ou por decomposição em valores singulares de uma matriz de dados
+ - Os resultados de PCA são geralmente discutidos em termos pontuações de componentes, também chamados de pontuações de fatores (os valores de variável transformados correspondem a um ponto de dado particular), e carregamentos (loadings), i.e., o peso pelo qual cada variável normalizada original deve ser multiplicada para se obter a pontuação de componente.
+ - O PCA é a mais simples das verdadeiras análises multivariadas por autovetores.
+
+Jolliffe, I.: Principal Component Analysis. Wiley Online Library, ??? (2005)
+
+Cichocki, A., Zdunek, R., Phan, A.H., Amari, S.-i.: Nonnegative Matrix and Tensor Factorizations: Applications to Exploratory Multi-way Data Analysis and Blind Source Separation. John Wiley & Sons, ??? (2009)
+
+Almotairi, S., Clark, A., Mohay, G., Zimmermann, J.: A technique for detecting new attacks in low-interaction honeypot traffic. In: Internet Monitoring and Protection, 2009. ICIMP’09. Fourth International Conference On, pp. 7–13 (2009). IEEE
+
+
+===========================================================================================================================================================================================================
+Reviewers' comments:
+
+I am recommending the paper for a reject. There are fundamental problems with the current submission:
+The main claim of GETV efficiency is not proven.
+
+=> NÃO CONCORDO, ACHO QUE CONSEGUIMOS SIM PROVAR O QUE FOI PROPOSTO.
+
+The experimental approach and results do not prove the claims to novelty.
+
+=> NÃO VI EM NENHUM PAPER ESTUDADO COISA PARECIDA.
+
+The writing of the paper is quite rough.
+
+=> AQUI SIM CONCORDO, ACHO QUE EU PODERIA TER MELHORADO A ESCRITA DO TRABALHO, PRINCIPALMENTE EM RELAÇÃO AO MEU INGLÊS, QUE É INTERMEDIÁRIO, MAS ESTOU ESTUDANDO PARA MELHORÁ-LO.
+
+Reviewer #1: Please refer to the attachment.
+
+Reviewer #2: The paper proposed an approach called Greatest Eigenvalue Time Vector (GETV) for the detection of malicious traffic, especially for Denial of Service and Port Scanning. To automate the process, Model Order Selection is then used to determine whether there is an attack.
+
+The English writing of the paper needs major revision since there are lots of sentences that are not written well and have grammar errors. For example, "Values greater than one returned by the scheme, that there was more than one attack", "Although the effect of the attack through the PCA, it is relevant the application of MOS schemes in order to make the process automated", etc.
+
+=> VERDADE, PODERIA MESMO TER ESCRITO MELHOR, UTILIZADO EXPRESSÕES MAIS ADEQUADAS, ETC.
+
+The qualities of figures in the paper are poor. Most of them cannot been seen clearly after printed out.
+
+=> TALVEZ SIM, CREIO SER POSSÍVEL MELHORAR.
+
+More information on the related work should be provided in the literture review. For example, PCA has been used a lot in anomaly detection and intrusion detection, but only one work (Almotairi 2009) was cited. As an example, [Jollif, 2002] is not listed in the References.
+
+=> PROCEDE TAMBÉM.
+
+The experiment scenario is over-simplified. First, the network is composed by two computers and a router. One computer is the attacker, and the other one is the victim. Second, the traffic generated in the environment consists of legitimate traffic, noise traffic, and attacking traffic, and the amount of traffic by synflood and fraggle is much larger than the legitimate traffic and noise traffic in the given short time period. The attack traffic exhibits an obviously different pattern than the normal and noise traffic, which makes it easier for the detection. For a better evaluation, experiments should be performed in a more realistic environment, with more computers generating heterogeneous traffic under different applications. In this way, the advantages of the proposed method can be better judged.
+
+=> NÃO PROCEDE, POIS O PROPÓSITO DO TRABALHO FOI CRIAR UM MÉTODO NOVO E EM UM DETERMINADO AMBIENTE TESTÁ-LO. FIZ DIVERSAS REFERÊNCIAS SOBRE O ESCOPO DO TRABALHO E PROCUREI SER DETALHISTA COMO TUDO FOI FEITO. O ÓBVIO QUE ELE FALA NÃO FAZ SENTIDO, POIS PARA CHEGAR NO "ÓBVIO" TIVE QUE FAZER MUITA COISA. É CLARO E EVIDENTE QUE UM AMBIENTE REAL É MAIS COMPLEXO QUE O AMBIENTE CONSIDERADO, MAS ISSO FOI FALADO E, INCLUSIVE, COMO O PROF RAFAEL FALOU NO DIA DA DEFESA, EU TINHA QUE TERMINAR O TRABALHO, SENÃO NÃO TERIA FIM. O QUE O REVISOR FALOU EM RELAÇÃO A AMBIENTE REAL EU MESMO FALEI SOBRE ISSO, QUE PODERIAM SER FEITOS TRABALHOS FUTUROS E APLICAR O MÉTODO PARA VERIFICAR A EFICÁCIA DELE.
+
+Table 4 presents the results when GETV is used with different model order selection schemes. Among 4 types of analyses, EDC and EFT present correct results of detection. Based on this, the conclusion is GETV with EFT and EDC presented consistent results. The validity of this conclusion is doubtful. Since there are only 4 scenarios, it is hard to judge the precision of the detection when GETV is used together EFT or EDC. Can this conclusion be applied to denial of service attacks under different network configurations and traffic?
+
+=> NÃO PROCEDE. ALÉM DO RESULTADO ENCONTRADO, FOI EXPLICADO O PORQUÊ DISSO E TAMBÉM QUE SE ESPERAVA TAL TIPO DE COMPORTAMENTO. A PERGUNTA DELE PODE SER RESPONDIDA COM TRABALHOS FUTUROS, COMO CITEI NO NOSSO. PODE SER QUE EM UMA DETERMINADA REDE ELE SEJA MAIS EFICIENTE QUE EM OUTRA, A QUESTÃO NÃO É ESSA, A QUESTÃO É QUE O MÉTODO PODE SER EMPREGADO PARA DETECTAR OS ATAQUES EM QUESTÃO. EM REDES É DIFÍCIL DE SE GENERALIZAR TUDO, MAS APESAR DISSO ACREDITO VERDADEIRAMENTE NA EFICÁCIA DO NOSSO MÉTODO EM DIFERENTES AMBIENTES.
+EXISTEM "FALSOS POSITIVOS, FALSOS NEGATIVOS, TÉCNICAS DE EVASÃO, ETC", ISSO NÃO QUER DIZER QUE A FERRAMENTE NÃO SEJA BOA, SÃO COISAS QUE PODEM ACONTECER E DEVEM SER INTERPRETADAS. 
+
+The experimental results presented in the paper are not enough to prove the efficiency of the method. It only provides the performance of the proposed method itself. To evaluate the performance of the proposed work, GETV with EFT or EDC should be applied to another set of network traffic to find out the precision of the detection. Or the proposed method can be compared with other existing methods to demonstrate its advantages.
+
+=> TRABALHOS FUTUROS, ISSO FOI DITO. FOI "PLANTADA A SEMENTE" QUE NÃO HAVIA SIDO AINDA, AGORA FOI ABERTA A PORTA PARA DIVERSOS E DIVERSOS TRABALHOS FUTUROS, COMO FOI DITO NO PAPER E NA DISSERTAÇÃO.
+
+Acho que é isso, as críticas são válidas, esperadas e bem-vindas, espero (ou um aluno) continuar um dia com o trabalho e responder na prática as questões abordadas.
+
+
+
+
+English:
+
+Thiago Vieira: hello
+
+Daryn B: Are you there Tiago? 
+
+Daryn B: -Can you hear me?
+
+Daryn B: daryn.barnard@etteachers.com 
+
+Daryn B: make "IT" harder to detect
+
+Daryn B: malicious behaviour "BY" network traffic
+
+Daryn B: applied "to" 
+
+Daryn B: and "their" variations
+
+Daryn B: "it is neccessary to develope or improve tecchniques to achieve...
+
+Daryn B: it is "ALSO"
+
+Daryn B: high detections accuracy and capacity 
+
+Daryn B: - detection 
+
+Daryn B: have been applied
+
+Daryn B: to THE detection 
+
+Daryn B: advances IN network traffic 
+
+Daryn B: THE detection of malicious 
+
+Daryn B: Information security consists of both technical... 
+
+Daryn B: refers to the fact that it is not necessary... 
+
+Daryn B: -IGNORE
+
+Daryn B: The terms "blind" implies that prior information is not necessary for attack detection. 
+
+Daryn B: networks ports
+
+Daryn B: can be detected accuractely and with great detail... 
+
+Daryn B: in AN automatic 
+
+Daryn B: are: The proposition of an approach based on... 
+
+Daryn B: section 5 discusses
+
+Daryn B: for THE identification...
+
+Daryn B: improve intrusion detection performance
+
+Daryn B: -NO ARTICLE "THE
+
+Daryn B: which is a weakness
+
+Daryn B: consists of using
+
+Daryn B: TO the study of collected traddic
+
+Daryn B: traffic*
+
+Daryn B: of the details of the attacks
+
+Daryn B: have the largest
+
+Daryn B: without the combination of 
+
+Daryn B: is necessary because of the subjectiveness of human intervention 
+
+Daryn B: REMOVE "it" add "THE"
+
+Daryn B: developed FOR honeypots
+
+Daryn B: due to the fact that honeypots emulate
+
+Daryn B: allows one to determine
+
+Daryn B: "one" -Placeholder subject 
+
+Daryn B: In contrast to Lee...
+
+Daryn B: ports
+
+Daryn B: for the detection 
+
+Daryn B: either a significant
+
+Daryn B: nor prior data collection 
+

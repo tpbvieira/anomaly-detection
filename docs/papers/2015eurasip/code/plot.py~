@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+x1 = y1 = np.linspace(0, 10, 100)
+x2 = np.sin(x1)
+y2 = np.cos(y1)
+plt.plot(x1,x2,'g--^', label='regional')
+plt.plot(y1,y2,'b-o', label='local')
+plt.legend( loc='upper left', numpoints = 1 )
+plt.show()
+plt.savefig('test.eps')

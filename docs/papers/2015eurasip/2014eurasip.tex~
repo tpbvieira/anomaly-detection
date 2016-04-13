@@ -1,0 +1,1088 @@
+%% BioMed_Central_Tex_Template_v1.06
+%%                                      %
+%  bmc_article.tex            ver: 1.06 %
+%                                       %
+
+%%IMPORTANT: do not delete the first line of this template
+%%It must be present to enable the BMC Submission system to
+%%recognise this template!!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                     %%
+%%  LaTeX template for BioMed Central  %%
+%%     journal article submissions     %%
+%%                                     %%
+%%          <8 June 2012>              %%
+%%                                     %%
+%%                                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% For instructions on how to fill out this Tex template           %%
+%% document please refer to Readme.html and the instructions for   %%
+%% authors page on the biomed central website                      %%
+%% http://www.biomedcentral.com/info/authors/                      %%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%% BioMed Central currently use the MikTex distribution of         %%
+%% TeX for Windows) of TeX and LaTeX.  This is available from      %%
+%% http://www.miktex.org                                           %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% additional documentclass options:
+%  [doublespacing]
+%  [linenumbers]   - put the line numbers on margins
+
+%%% loading packages, author definitions
+
+%\documentclass[twocolumn]{bmcart}% uncomment this for twocolumn layout and comment line below
+\documentclass{bmcart}
+\usepackage[titletoc,title]{appendix}
+%%% Load packages
+\usepackage{amsthm,amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min}
+%\RequirePackage{natbib}
+%\RequirePackage{hyperref}
+%\usepackage[utf8]{inputenc} %unicode support
+\usepackage[mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+%\usepackage[applemac]{inputenc} %applemac support if unicode package fails
+%\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
+
+\usepackage{algorithm,algorithmic}% http://ctan.org/pkg/algorithms
+
+\usepackage{natbib}
+
+\usepackage{supertabular}
+\usepackage{fancybox}
+\usepackage{acronym}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{setspace}
+\usepackage{placeins}
+\usepackage{longtable}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{epstopdf}
+\usepackage{subfigure}
+\usepackage{courier}
+\usepackage{amsfonts}
+\usepackage{morefloats}
+\usepackage{lipsum}
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+%  \hyphenchar\font=`\-% allowing hyphenation
+}
+
+% appendix
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                             %%
+%%  If you wish to display your graphics for   %%
+%%  your own use using includegraphic or       %%
+%%  includegraphics, then comment out the      %%
+%%  following two lines of code.               %%
+%%  NB: These line *must* be included when     %%
+%%  submitting to BMC.                         %%
+%%  All figure files must be submitted as      %%
+%%  separate graphics through the BMC          %%
+%%  submission process, not included in the    %%
+%%  submitted article.                         %%
+%%                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\def\includegraphic{}
+%\def\includegraphics{}
+
+% Algorithmic modifications
+\makeatletter
+\newcommand{\ALOOP}[1]{\ALC@it\algorithmicloop\ #1%
+  \begin{ALC@loop}}
+\newcommand{\ENDALOOP}{\end{ALC@loop}\ALC@it\algorithmicendloop}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\algorithmicbreak}{\textbf{break}}
+\newcommand{\BREAK}{\STATE \algorithmicbreak}
+\makeatother
+
+%%% Put your definitions there:
+\startlocaldefs
+\endlocaldefs
+
+%%% Begin ...
+\begin{document}
+
+
+%%% Start of article front matter
+\begin{frontmatter}
+
+\begin{fmbox}
+\dochead{Research}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter the title of your article here     %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Greatest Eigenvalue Time Vector Approach for Blind Detection of Denial of Service Attacks and Port Scanning}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter the authors here                   %%
+%%                                          %%
+%% Specify information, if available,       %%
+%% in the form:                             %%
+%%   <key>={<id1>,<id2>}                    %%
+%%   <key>=                                 %%
+%% Comment or delete the keys which are     %%
+%% not used. Repeat \author command as much %%
+%% as required.                             %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author[
+   addressref={address1},                   % id's of addresses, e.g. {aff1,aff2}
+   corref={address1},                       % id of corresponding address, if any	
+%   noteref={n1},                        	% id's of article notes, if any
+   email={???????????????}   				% email address
+]{\inits{DFT}\fnm{Danilo F} \snm{Tenório}}
+
+\author[
+   addressref={address1},
+   email={???????????????}
+]{\inits{JPCLC}\fnm{João PCL} \snm{da Costa}}
+
+\author[
+   addressref={address1,address2},
+   email={???????????????}
+]{\inits{EPF}\fnm{Edison P} \snm{de Freitas}}
+
+\author[
+   addressref={address1},
+   email={???????????????}
+]{\inits{TPBV}\fnm{Thiago PB} \snm{Vieira}}
+
+\author[
+   addressref={address1},
+   email={???????????????}
+]{\inits{RTSJ}\fnm{Rafael T} \snm{de Sousa Júnior}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter the authors' addresses here        %%
+%%                                          %%
+%% Repeat \address commands as much as      %%
+%% required.                                %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\address[id=address1]{%                           								% unique id
+  \orgname{Department of Electrical Engineering, University of Brasilia (UnB)}, % university, etc
+  \street{},                     												%
+  \postcode{70910-900}                                							% post or zip code
+  \city{Brasília-DF},                              								% city
+  \cny{Brazil}                                    									% country  
+}
+\address[id=address2]{%
+  \orgname{ Electrical Engineering Department, Federal University of Rio Grande do Sul (UFRGS)},
+  \street{},
+  \postcode{98400-000}
+  \city{Frederico Westphalen-RS},
+  \cny{Brazil}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter short notes here                   %%
+%%                                          %%
+%% Short notes will be after addresses      %%
+%% on first page.                           %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{artnotes}
+%\note{Sample of title note}     	% note to the article
+\note[id=n1]{Equal contributor} 	% note, connected to author
+\end{artnotes}
+
+
+\end{fmbox}							% comment this for two column layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The Abstract begins here                 %%
+%%                                          %%
+%% Please refer to the Instructions for     %%
+%% authors on http://www.biomedcentral.com  %%
+%% and include the section headings         %%
+%% accordingly for your article type.       %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstractbox}
+
+\begin{abstract} % abstract
+
+The development of techniques for malicious traffic detection is crucial to allow quick decisions regarding the implementation of safety countermeasures and to protect network devices, including end-user computers.
+
+This work proposes an innovative signal processing technique for automatic blind detection of malicious traffic, by taking into account anomalies in monitored network traffic. We model network traffic as a superposition of three traffic types: legitimate traffic related to user applications, noise traffic not associated with user applications, and malicious traffic. Those three traffics are mixed, and it is hard to analyze them separately. Considering this traffic modelling, we propose the Greatest Eigenvalue Time Vector (GETV) approach, which successfully and blindly detects only the malicious traffic from the superposition of legitimate, noise and malicious traffic. 
+
+Since our scheme is blind, no training is necessary. Moreover, no human intervention is required. We validate our proposed approach by detecting denial of service (synflood and fraggle) attacks and scan of communication ports (port scan), using a real computer network.
+
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The keywords begin here                  %%
+%%                                          %%
+%% Put each keyword in separate \kwd{}.     %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{keyword}
+\kwd{Network Attack Detection}
+\kwd{Eigenvalue}
+\kwd{Principal Component Analysis}
+\kwd{Model Order Selection}
+\end{keyword}
+
+% MSC classifications codes, if any
+%\begin{keyword}[class=AMS]
+%\kwd[Primary ]{}
+%\kwd{}
+%\kwd[; secondary ]{}
+%\end{keyword}
+
+\end{abstractbox}
+%
+%\end{fmbox}% uncomment this for twcolumn layout
+
+\end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The Main Body begins here                %%
+%%                                          %%
+%% Please refer to the instructions for     %%
+%% authors on:                              %%
+%% http://www.biomedcentral.com/info/authors%%
+%% and include the section headings         %%
+%% accordingly for your article type.       %%
+%%                                          %%
+%% See the Results and Discussion section   %%
+%% for details on how to create sub-sections%%
+%%                                          %%
+%% use \cite{...} to cite references        %%
+%%  \cite{koon} and                         %%
+%%  \cite{oreg,khar,zvai,xjon,schn,pond}    %%
+%%  \nocite{smith,marg,hunn,advi,koha,mouse}%%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% start of article main body
+% <put your article body there>
+
+%%%%%%%%%%%%%%%%
+%% Background %%
+%%
+\section{Introduction}
+\label{sec:introduction}
+
+Some methods of cyber defense used by organizations can be effective against certain types of attacks, but can fail against new or modified malicious techniques \cite{gues2002segurancca}. In order to be able to detect and avoid well known attacks and its variations, it is necessary the development or improvement of techniques to achieve efficiency on resource consumption, processing capacity and response time, also it is necessary to obtain high accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes are being applied to detection of malicious traffic in computer networks \cite{david2011blind,da2012improved,tenorio2013greatest}\footnote{The results of this paper have been partially published in \citep{tenorio2013greatest} and received the best paper award.}, showing advances on network traffic analysis for detection of malicious activities.
+
+In the terms of security, there are both technical and procedural aspects. The former includes equipment and security systems, while the latter corresponds to security polices and staff awareness campaigns. Intrusion detection and intrusion prevention systems are security systems used respectively to detect (passively) and prevent (proactively) threats to computer systems and computer networks. Such systems use several ways of working, such as: signature-based, anomaly-based or hybrid \cite{mudzingwa2012study}.
+
+In the context of anomaly-based schemes, this work proposes an automatic blind malicious traffic detection technique for computer networks. The term ``automatic'' means that human intervention is not necessary to assess whether or not there was an attack. The term ``blind'' refers that it is not necessary prior information for attack detection, such as previous knowledge of attack signatures or learning techniques.
+
+Inspired by \cite{david2011blind,da2012improved}, this work models the network traffic using a signal processing formulation as a composition of three components: legitimate traffic, malicious traffic and noise, taking into account the incoming and outgoing traffic in certain types of ports (TCP or UDP). Our proposed technique is based on eigenvalue decomposition, model order selection and principal component analysis, however, in contrast with \cite{david2011blind,da2012improved}, we evaluate the variation of the eigenvalues on time frames. To the best of our knowledge, the time variation of the eigenvalues was not applied before in the literature.
+
+We show, through experiments applying our greatest eigenvalue variation scheme, that synflood, fraggle and port scan attacks can be detected in automatic and blind fashion. The main contributions of this work are: general network traffic modeling by applying signal processing concepts, development of the greatest eigenvalue time vector (GETV) technique, and its validation for detecting synflood, fraggle and port scan attacks.
+
+In this paper the scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively.
+
+This paper is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model used during our experiments. Section \ref{sec:getv} describes our proposed scheme, known as Greatest Eigenvalue Time Vector (GETV), for blind and automatic detection of malicious traffic. Section \ref{sec:experimentalresults} discuss the experimental validation and presents the corresponding experimental results. In Section \ref{sec:conclusionandfutureworks} are presented the final remarks and suggestions for future works. The appendices \ref{sec:pca} and \ref{sec:mos} present mathematical concepts and the concepts of eigenvalues and eigenvectors, principal component analysis (PCA), and model order selection (MOS), including the main MOS schemes and their differences.
+
+
+\section{Related Works}
+\label{sec:relatedworks}
+
+Several methods have been proposed for identification and characterization of malicious activity in computer networks. Classical methods typically employ data mining \cite{he2008applying,ghourabi2010data} and regular file analysis \cite{raynal2004honeypot} to detect patterns that indicate the presence of specific attacks in traffic analysis.
+
+Data mining is often used to describe the process of extracting useful information from large databases. Multiple methods of data mining are used in \cite{he2008applying} to analyze data flow in a network, with the aim of identifying characteristics of malicious traffic in large scale environments. Researchers have applied data mining techniques in log analysis \cite{ghourabi2010data} to improve the intrusion detection performance. However, data mining techniques requires the prior collection of large data sets, what is a weakness of several schemes for online or low latency analysis.
+
+Regular file analysis \cite{raynal2004honeypot} consists in using traffic analysis for detecting known patterns that indicate the presence of specific attacks, applying statistical analysis on the the study of collected traffic. An essential feature of this method is that it depends on prior knowledge about details of the attacks to be identified, and also depends on the previous collection of logs for applying traffic analysis and reducing false positives.
+
+PCA is a statistical technique commonly used for dimensionality reduction, it uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components has the largest variance. PCA can be used in attack detection \cite{almotairi2009technique}, however, if PCA is used without combination with any other technique, such as model order selection (MOS), it is necessary the subjectiveness of the human intervention, making it prone to errors, such as false positive cases, and inefficient for automatic detection systems.
+
+Blind automatic detection of malicious traffic techniques has been developed to honeypots in \cite{david2011blind,da2012improved}. However, traffic on honeypot is simpler than real traffic, because there are no legitimate applications running. A honeypot emulates behavior of a host within a network to deceive and lure attackers \cite{zakaria2012review}.
+
+The data collected in honeypot systems, such as captured traffic and operating system logs, are analyzed to obtain information about attack techniques, general trends of threats and exploits. Since honeypots do not generate legitimate traffic, the amount of data captured in honeypots is significantly lower in comparison to a network IDS, which captures and analyzes the largest possible amount of network traffic \cite{david2011blind}.
+
+The use of model order selection for blind detection in network traffic, to identify malicious activities in honeypots, was proposed by us in \cite{david2011blind}. Criteria for selecting the model order are usually evaluated through simulations and comparing the order of the resulting model with the true model order \cite{da2007enhanced}.
+
+Our approach treats a more complex network traffic, which is composed of legitimate, noise and attack signals. In contrast with \cite{he2008applying,ghourabi2010data, raynal2004honeypot}, our approach does not require either significant amount of logs to detect attacks, nor the prior data collection, in order to make comparisons and evaluate the existence of malicious traffic. Moreover, in contrast with \cite{almotairi2009technique}, the proposed attack detection approach is automatic and require no human intervention.
+
+
+\section{Data Model}
+\label{sec:datamodel}
+
+
+\subsection{Data Collection}
+
+The network traffic log, of a computer connected to a network, is formed by timestamp, protocol, source IP address, source port, destination IP address, destination port and additional information, according to the type of transport protocol used. 
+
+In order to exemplify the collected data, the following TCP traffic log can be considered:
+\newline
+\newline
+\texttt{\justify21:00:34.099289 IP 192.168.1.102.34712 > 200.221.2.45.80: Flags [S], seq 2424058224, win 14600, options [mss 1460, sackOK,TS val 244136 ecr 0,nop,wscale 7], length 0}
+\newline
+
+and the following UDP traffic log: 
+\newline
+\newline
+\texttt{\justify21:24:42.484858 IP 192.168.1.102.68 > 192.168.1.1.67: BOOTP/DHCP, Request from 00:26:9e:b7:82:be, length 300}
+\newline 
+
+In this paper, it is considered only the following information from the log data: timestamp, port type and port number.
+
+\subsection{Modeling Data}
+
+The network traffic (\textbf{X}) can be characterized as a superposition of three components: legitimate traffic (\textbf{S}), noise (\textbf{N}) and malicious traffic (\textbf{A}), according to the following expression:
+\begin{equation}\label{eq:eq5}
+\boldsymbol{X}^{(q)} = \boldsymbol{S}^{(q)} + \boldsymbol{N}^{(q)} + \boldsymbol{A}^{(q)},
+\end{equation}
+
+where q represents the q-th period of time.
+
+According to Figure \ref{fig:fig2}, the data collected were divided into q periods of \emph{N} samples, where each sample is collected at a given time, according to a sampling period.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=6cm, width=7cm]{figures/fig02.png}
+     \caption{\csentence{Traffic Matrix.} Obtaining the traffic matrix $\boldsymbol{X}^{(q)}$.}
+     \label{fig:fig2}
+\end{figure}
+
+The matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{mxn}$ consists of \emph{M} rows and \emph{N} columns, where each row is represented by a variable, in this case a communication port (TCP port or UDP port), and each column a second time. Each element $x_{m,n}^{(q)}$ represents the number of times that the port $m$ appears in the $n$-th instant, in the $q$-th time period.
+
+The legitimate traffic $\boldsymbol{S}^{(q)}$ is characterized by traffic associated directly to the operations performed by the user. When a user accesses a web page, for example, there is the corresponding TCP/IP traffic to request the page as well as to the traffic due to name resolution (DNS). Figure \ref{fig:fig3} presents the legitimate traffic obtained during experiments.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=5cm, width=9cm]{figures/fig03.png}
+     \caption{\csentence{Legitimate Traffic.} The legitimate traffic.}
+     \label{fig:fig3}
+\end{figure}
+
+All traffic that is not directly associated with operations performed by the user, but it is not a malicious traffic, is considered as noise $\boldsymbol{N}^{(q)}$. The automatic acquisition service of logical IP network address (DHCP) is an example of noise. Independently of any user operation, the machine will receive an IP address, since it is configured to perform a DHCP address request. Figure \ref{fig:fig4} shows the noise during simulations.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=5cm, width=9cm]{figures/fig04.png}
+     \caption{\csentence{Noise Traffic.} The noise traffic.}
+     \label{fig:fig4}
+\end{figure}
+
+The traffic coming from a malicious activity, such as a synflood or fraggle attack, is represented by the matrix $\boldsymbol{A}^{(q)}$. For this work ee only consider the traffic from port scanning and flood attacks, which aims to cause denial of service (DoS). We defined that if the obtained rank $\{\boldsymbol{A}^{(q)}\} ≠ 0$, then there is malicious traffic, on the other hand, if the rank $\{\boldsymbol{A}^{(q)}\} = 0$, then there is no malicious traffic. This paper shows how to detect the rank $\{\boldsymbol{A}^{(q)}\}$, given only the matrix $\boldsymbol{X}^{(q)}$, in order to identify malicious network traffic.
+
+\subsection{Synflood, Fraggle and Port scan}
+
+The kind of network attacks focused by this work are: synflood, fraggle and port scan. The first two attacks can be qualified as denial of service attacks, while the last one is a port scanning attack.
+
+The TCP protocol is a connection-oriented protocol, then a virtual connection must be established between two computers for a end-to-end TCP communication. This virtual connection requires a ``handshake'', that occurs in three steps, known as three-way handshake. If a computer needs to communicate with another computer, the requester sends a packet communication synchronization (SYN) to a specific destination port, which is in listening state. If the destination is active, running and accepting requests, it responds to the requester with a SYN/ACK confirmation message. After receiving this message, the requester sends an ACK message to the destination and then the connection is established.
+
+On synflood attacks, the attacker sends a large quantity and concurrent successive SYN requests to a target, in order to consume resources and cause a denial of service. Figure \ref{fig:fig5} represents the synflood attack carried out during our simulations. In a interval of ten minutes, were sent more than 210,000 packets as a synflood attack. This network traffic behavior can be considered an unusual data traffic on a network, especially because it is concentrated in a short period of time and due to the similarity of the outstanding traffic.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=5cm, width=10cm]{figures/fig05.png}
+     \caption{\csentence{Synflood Traffic.} The traffic characterized by synflood.}
+     \label{fig:fig5}
+\end{figure}
+
+In the fraggle attack, large packets with ``UDP echo'' segments are sent to the broadcast address of a network, with every sent packet previously modified to have the source address of the victim, this source address modification is a spoofing technique. Thus, each host receives a huge amount of requests ``UDP echo'' and all of them replies to the IP address of the victim, in order to cause a denial of service. This attack can affect the entire network, because all hosts receive many requests ``UDP echo'' and respond with the ICMP protocol, then each host acts as an ``amplifier'' of the attack. Thus, the victim that has the fake IP address receives packages from all these hosts, being unable to perform their normal activities and suffering a denial of service. This last part of the fraggle attack will not be taken into account in this work, because the victim receives ICMP (network layer) packets originated from the hosts that were attacked with flooding packet ``UDP echo''. This occurs due to the UDP be not able to know if the segment sent has reached its destination, i.e. as UDP is connectionless, no confirmation is sent back.
+
+Figure \ref{fig:fig6} depicts the fraggle attack carried out during the experiments. More than 6,000,000 malicious packets can be counted in an interval of ten minutes, which can be considered an unusual network traffic, especially due to the concentrated traffic in a short period of time and the similarity of the outstanding traffic.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=5cm, width=9cm]{figures/fig06.png}
+     \caption{\csentence{Fraggle Traffic.} The traffic characterized by fraggle.}
+     \label{fig:fig6}
+\end{figure}
+
+Port scan is the process of connecting to TCP and UDP ports of targets to identify what services are running, or which are in the state of listening. Identifying listening ports is crucial to determine the type of the victim's operating system and running applications. There are several available port scanning techniques, including: TCP SYN scan, TCP ACK scan, UDP scan, etc. This work makes use of TCP SYN scan and UDP scan.
+
+The TCP SYN scan technique is called half-open scanning, because there is no full TCP connection. In this scan, a SYN packet is sent to the destination port and two types of response may occur: SYN/ACK is received or RST/ACK packet is received. In the first case, the destination port is in listening state, in the second case, the destination port is not listening. Then, a RST/ACK packet is sent by the system that is performing the port scan, at the end of each port scanning. Thus, a full connection or a complete three-way handshake is never established. This approach makes more difficult the detection of the attack sender, since it is not registered on the target system.
+
+The technique of UDP scan sends UDP packets to the destination port, if the port responds with a message ``ICMP port unreachable'' indicates that the scanned port is closed. If a message is not received, then the port can be considered as open. UDP is a connectionless protocol and the efficacy of this technique is dependent on many factors related to network and system resources configurations. This type of scanning is also very slow and can produce uncertain results.
+
+Figure \ref{fig:fig7} depicts the port scan attack that was experimented. It is possible to observe that the traffic is composed of two packets for each TCP port and a UDP packet to each port. These practical results are aligned with what was explained about this attack. It is important to observe the high correlation of TCP and UDP traffic, separately, since the traffic related to the TCP ports are similar and the traffic related to the UDP ports are also similar. The mentioned similarity of the traffics refers to the amount of incoming and outgoing packets for each port.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=6cm, width=10cm]{figures/fig07.png}
+     \caption{\csentence{Port scan Traffic.} The traffic characterized by port scan.}
+     \label{fig:fig7}
+\end{figure}
+
+
+\section{Greatest Eigenvalue Time Vector (GETV)}
+\label{sec:getv}
+
+In this section, we present the GETV technique to detect synflood, fraggle and port scan attacks in any computer. The Table \ref{tab:tab1} shows a comparison between the discussed related works and the presented approach \cite{tenorio2013greatest}, showing the proposed new technique (GETV), which is detailed throughout this work.
+
+\begin{table}[h!]
+  \centering
+  \footnotesize
+  \caption{Comparison between malicious traffic detection schemes}
+  \label{tab:tab1}
+  \begin{tabular}{ c c c c c c }
+	\toprule
+	\multirow{2}{*}{\textbf{Related Works}} &\multicolumn{5}{c }{\textbf{Techniques}}\\ 
+		&\textbf{Data Mining}	 &\textbf{Regular analysis of files}	 &\textbf{PCA}	 &\textbf{MOS}	 &\textbf{GETV}\\
+	\midrule
+	(He et al, 2008)		&x	&-	&-	&-	&- \\
+	(Raynal et al, 2004) 	&-	&x	&-	&-	&- \\
+	(Almotairi et al, 2009)	&-	&-	&x	&-	&- \\
+	(da Costa et al, 2012) 	&-	&-	&x	&x	&- \\
+	(Proposed) 				& -	& -	&x	&x	&x \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The Table \ref{tab:tab1} shows the techniques used by related works and our proposed approach in order to malicious traffic detection. The techniques were classified according to the adopted approaches, as data mining, regular file analysis, PCA, and MOS. Additionally, a column with the GETV technique was added, showing that our proposed approach is the unique work that combines PCA, MOS and the Greatest Eigenvalue Time Vector approach.
+
+The GETV attack detection technique can be described as a algorithm for malicious traffic detection, that receives as input a data set containing network traffic log, applies a pre-processing and different initial steps for detecting DoS or port scan attacks, and then executes common tasks for attack detection of these kind of malicious traffic.
+
+The attack detection algorithm starts by the data pre-processing, that receives a traffic log of network connections, providing information above protocols, IP, ports and timestamp of senders and receivers, and then performs a data classification and grouping, where the network connections are classified and counted according to the origin and destination ports, and grouped by $q$ periods of time.
+
+With the data grouped into $q$ periods, it is possible start an iteration at $q = 1$ over the $q$ values until $q = Q$, in order to obtaining the network traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{MxN}$ and to perform the algorithm for detecting the desired type of attack.
+
+According to the behavior of denial of service and port scan attacks, it is possible to characterize denial of services attacks as a covariance aware attack \citep{jin2004covariance} and port scan attacks as correlation aware attack \citep{lakhina2005mining}. These characteristics are substantiated by the results obtained through the principal component analysis described below, which shows that the main components of DoS attacks are dominated by the variables with more variance and that the traffic associated with port scan attack does not generate many logs, however port scan attack presents a highly correlated traffic.
+
+Thus, in our approach for detection of denial of service attacks, specifically synflood and fraggle attacks, it is necessary to calculate the covariance matrix $\boldsymbol{S}_{xx}^{(q)}$. To obtain the covariance matrix $\boldsymbol{S}_{xx}^{(q)}$ it is necessary, for each variable (we adopted network ports as our variables), to calculate the deviations of the respective elements in relation to the average, which is done by the equation \ref{eq:eq6}. 
+
+\begin{equation}\label{eq:eq6}
+\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}
+\end{equation}
+
+The set of obtained vectors $\boldsymbol{y}_{m}^{(q)}$ composes the matrix $\boldsymbol{Y}^{(q)}$, then the covariance matrix $\boldsymbol{S}_{xx}^{(q)}$ can be calculated through the equation \ref{eq:eq7}.
+
+\begin{equation}\label{eq:eq7}
+\boldsymbol{S}_{xx}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^T}
+\end{equation}
+
+For the port scan attack detection, it is necessary to calculate the correlation matrix $\boldsymbol{R}_{xx}^{(q)}$, instead of the covariance matrix $\boldsymbol{S}_{xx}^{(q)}$ used for DoS detection, since the main components are not dominated by the variables with large variance. The traffic associated with port scan attack does not generate many logs, however port scan attack presents a highly correlated traffic. To obtain the correlation matrix $\boldsymbol{R}_{xx}^{(q)}$ it is required, for each variable, to calculate the deviations of the respective elements in relation to the average, divided by the standard deviation, this calculation is done by the equation \ref{eq:eq8}. 
+
+\begin{equation}\label{eq:eq8}
+\boldsymbol{y}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}
+\end{equation}
+
+The set of vectors $\boldsymbol{y}_{m}^{(q)}$ composes the matrix $\boldsymbol{Y}^{(q)}$, then the correlation matrix $\boldsymbol{R}_{xx}^{(q)}$ can be calculated through the equation \ref{eq:eq9}.
+
+\begin{equation}\label{eq:eq9}
+\boldsymbol{R}_{xx}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^T}
+\end{equation}
+
+Once the $\boldsymbol{S}_{xx}^{(q)}$ and $\boldsymbol{R}_{xx}^{(q)}$ has been obtained for DoS and port scan attack detection, respectively, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated through the equation \ref{eq:eq10} in order to obtain the vector of eigenvalues $\boldsymbol{E}_{m}^{(q)}$ associated with each matrix.
+
+\begin{equation}\label{eq:eq10}
+\boldsymbol{E}_{m}^{(q)} = \boldsymbol{E}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{E}^{(q)^T}
+\end{equation}
+
+The obtained vector of eigenvalues $\boldsymbol{E}_{m}^{(q)}$ is composed by $\lambda_{m}^{(1)},\lambda_{m}^{(2)},\lambda_{m}^{(3)}, ..., \lambda_{m}^{(q)}$. The obtained eigenvalues should be sorted in descending order, as defined by $\lambda_{m}^{(1)} > \lambda_{m}^{(2)} > \lambda_{m}^{(3)} > ... > \lambda_{m}^{(q)}$, to make possible the selection of the first eigenvalue in the obtained sequence, represented by $\lambda_{m}^{(1)}$, which is the greatest eigenvalue of the period of time evaluated for attack detection.
+
+The matrix of eigenvalues of $\boldsymbol{S}_{xx}^{(q)}$ or $\boldsymbol{R}_{xx}^{(q)}$ can be represented as the matrix $\boldsymbol{K} \in \mathbb{R}^{MxQ}$, as shown in equation \ref{eq:eq10}.
+
+\begin{equation}\label{eq:eq10}
+\boldsymbol{K} =
+\begin{bmatrix}
+  \lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
+  \lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
+  \lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  \lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
+\end{bmatrix},
+\end{equation}
+
+The process of obtaining the $\boldsymbol{X}^{(q)} \in \mathbb{R}^{MxN}$, $q = 1, 2, 3, ...$, Q and the matrices $\boldsymbol{S}_{xx}^{(q)}$ or $\boldsymbol{R}_{xx}^{(q)}$, finding the greatest eigenvalue for each $q$-th time period, repeats the specified tasks until $q = Q$. From this process came the term ``Greatest Eigenvalue Time Vector'', as defined in the title of this paper, which it is related to the greatest eigenvalue for each $q$-th period of time.
+
+Since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, the first line of the matrix \textbf{K} contains the Greatest Eigenvalue Time Vector (GETV) of the time evaluated for attack detection, which is $\lambda_1^{(1)}, \lambda_1^{(2)}, \lambda_1^{(3)}, \cdots, \lambda_1^{(q)}$.
+
+Obtaining the vector GETV, it is possible to apply the schemes of MOS in order to estimate the model order $\hat{d}$, until the tested MOS scheme presents the estimated model ($\hat{d}$) equal to the true model order (d). Thus, if $\hat{d} = d$ then it was discovered which MOS scheme applies to the problem, if the tested MOS scheme do not presents the estimated model, i.e. $\hat{d} \neq d$, it is necessary a new iteration to apply the schemes of MOS to estimate the model and to evaluate the obtained result, this iteration should be done until the estimated model ($\hat{d}$) be equal to the true model order (d).
+
+It is possible to find more than one scheme that applies to the problem, not necessarily only one, according to the selected schemes to be evaluated and according to characteristics of the evaluated data set.  With our approach, the algorithm of attack detection ends when the first model that satisfies the condition $\hat{d} = d$ is found, representing the discovery of what MOS scheme applies to the evaluated problem.
+
+The GETV attack detection algorithm can be understood analyzing the algorithm \ref{alg:alg01}, that represents all tasks of the described technique.
+
+\begin{algorithm}
+  \caption{GETV Attack Detection}
+  \label{alg:alg01}
+  \begin{algorithmic}[1]
+  \show\LOOP
+    \REQUIRE Network Traffic Log
+    \ENSURE GETV
+    \STATE $\textbf{X}$ = matrix of ports and its occurrences per time \emph{\COMMENT{Data Pre-Processing}}
+    \STATE $Q$ = number of periods
+    \ALOOP {$q=1$ util $q=Q$} 
+        \STATE $\boldsymbol{X}^{(q)} \in \mathbb{R}^{MxN}$
+        \IF {$isDosAttack$}
+            \STATE $\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}$
+            \STATE $\boldsymbol{S}_{xx}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^T}$
+        \ENDIF
+        \IF {$isPortscanAttack$}
+			\STATE $\boldsymbol{y}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}$
+			\STATE $\boldsymbol{R}_{xx}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^T}$
+		\ENDIF
+		\STATE $\boldsymbol{E}^{(q)} = \boldsymbol{E}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{E}^{(q)^T}$
+        \STATE $[\lambda_{m}^{(1)},\lambda_{m}^{(2)},\lambda_{m}^{(3)}, ..., \lambda_{m}^{(q)}] = \boldsymbol{E}_{m}^{(q)}$                        
+        \STATE $\lambda_{m}^{(1)} > \lambda_{m}^{(2)} > \lambda_{m}^{(3)} > ... > \lambda_{m}^{(q)}$
+    \ENDALOOP
+	\STATE $\boldsymbol{K} =
+		\begin{bmatrix}
+			\lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
+			\lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
+			\lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
+			\vdots & \vdots & \ddots & \vdots  \\
+			\lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
+		\end{bmatrix}$
+	\STATE $\boldsymbol{K}_{1}^{q} = \lambda_1^{(1)}, \lambda_1^{(2)}, \lambda_1^{(3)}, \cdots, \lambda_1^{(q)}$
+	\STATE $\boldsymbol{GETV} = \boldsymbol{K}_{1}^{q}$
+  \end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Results}
+\label{sec:experimentalresults}
+
+In this section, it is presented the analyzed scenario and all obtained results, that can be grouped by eigenvalues, GETV, principal component (PC), and MOS scheme.
+
+\subsection{Analyzed Scenario}
+
+The environment of the analyzed scenario is composed by two computers and a router with access to Internet and to an internal network (LAN). One of the computers has the role of attacker, while the other is the victim, according to Figure \ref{fig:fig9}.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=6cm, width=8cm]{figures/fig09.png}
+     \caption{\csentence{Scenario.} Analyzed Scenario.}
+     \label{fig:fig9}
+\end{figure}
+
+During the evaluation, the victim performs legitimate activities, that can be characterized mainly by web access. In many organizations this type of access is done frequently and is the predominant traffic, since most of corporate services are web-based, such as: access to the webmail services, access to documents and access to intranet or internet pages.
+
+It is possible to cite the traffic of a DHCP service as an example of noise associated with the transport layer of the OSI model. Our malicious traffic is composed by the traffic associated with three types of attacks: synflood, fraggle and port scan. The attacks were simulated using well known professionals security tools. Nmap was used to port scan, Metaspoit was used to synflood attack and Hping was used to lead the fraggle attack.
+
+The total experiment time was one hundred twenty minutes, separated into six periods, with each time period corresponding to twenty minutes. Therefore, as the time of each sampling period is one minute, then $N = 20$.
+
+For each time period $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17x20}$ was obtained, as well as a covariance $\boldsymbol{S}_{xx}^{(q)} \in \mathbb{R}^{17x17}$ and a correlation matrix $\boldsymbol{R}_{xx}^{(q)} \in \mathbb{R}^{17x17}$, assuming that in this paper $q = 1, 2, 3, 4, 5$ and $6$. The simulation started at 21:00h, the first period was from 21:00h until 21:20h ($q = 1$), the second was from 21:20h until 21:40h ($q = 2$), the third was from 21:40h to 22:00h ($q = 3$), the fourth was from 22:00h until 22:20h ($q = 4$), the fifth was from 22:20h until 22:40h ($q = 5$), and finally, the sixth was from 22:40h until 23.00h ($q = 6$).
+
+During the simulation, the victim made legitimate access, and the attacker, at certain times, executed the following attacks: at 21:54h ($q = 3$) was performed a port scan, at the interval ranging from 22:10h to 22:20h ($q = 4$) a synflood attack was simulated, and at the interval from 22:30h to 22:40h ($q = 5$) a fraggle attack was performed.
+
+\subsection{Eigenvalues}
+
+Figure \ref{fig:fig10} graphically represents the eigenvalues of the matrix used for the detection of synflood. In this figure its possible to see that the greatest eigenvalue, which is related to this attack, stands out from the others.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=9cm]{figures/Esynflood.eps}
+     \caption{\csentence{Synflood Eigenvalues.} Eigenvalues of the covariance matrix (synflood).}
+     \label{fig:fig10}
+\end{figure}
+
+Figure \ref{fig:fig11} graphically represents the eigenvalues of the matrix used for the detection of fraggle. In this figure it is possible to see that the greatest eigenvalue, which is related to this attack, stands out from the others, as shown in Figure \ref{fig:fig10} for the synflood attack.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=9cm]{figures/Efraggle.eps}
+     \caption{\csentence{Fraggle Eigenvalues.} Eigenvalues of the covariance matrix (fraggle).}
+     \label{fig:fig11}
+\end{figure}
+
+Figure \ref{fig:fig12} graphically represents the eigenvalues of the matrix used for the detection of port scan. The same way as analyzed for the synflood and fraggle attacks, it is possible to observe the greatest eigenvalue, related to this attack, standings out from the others.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=9cm]{figures/Eportscan.eps}
+     \caption{\csentence{Port scan Eigenvalues.} Eigenvalues of the covariance matrix (port scan).}
+     \label{fig:fig12}
+\end{figure}
+
+\subsection{GETV}
+
+Table \ref{tab:tab3} presents the vectors formed by the greatest eigenvalue time vector. These vectors were used as parameters for model order selection (MOS) and thus to the detection of the proposed attacks.
+
+In Table \ref{tab:tab3} it is possible to observe the differences of the eigenvalues associated with attacks, in comparison to the others. At $q = 4$, where the synflood attack occurred, the maximum eigenvalue obtained, was approximately 21 times larger than the second one. At $q = 5$, where the fraggle attack occurred, the maximum eigenvalue obtained was about 29,000 times larger than the second one. At $q = 3$, where the port scan attack occurred, the maximum eigenvalue obtained was approximately 4 times larger than the second one. In the last case, although the greatest eigenvalue was not too high, compared to synflood or fraggle attacks, it was entirely sufficient to detect the port scan, as it clearly deviates from the rest of the values.
+
+\begin{table}[h!]
+  \centering
+  \footnotesize
+  \caption{Greatest Eigenvalue related to attacks detection}
+  \label{tab:tab3}
+  \begin{tabular}{ c c c c c }
+	\toprule
+	\multirow{3}{*}{\textbf{Time Period} $q$} &\multicolumn{4}{c }{\textbf{Vectors GETV}}\\ 
+			\hhline{~----}
+		&\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}\\
+		&\textbf{\emph{synflood/fraggle}}	 &\textbf{\emph{synflood}}	 &\textbf{\emph{fraggle}}	 &\textbf{\emph{port scan}}\\
+	\midrule
+	1 &1887545 &1887545 &1887545 &2,0734 \\
+	2 &2341327 &2341327 &2341327 &2,1451 \\
+	3 &3213867 &3213867 &3213867 &10,0718 \\
+	4 &133238294 &133238294 &731229 &2,1620 \\
+	5 &92384021611 &6367983 &92384021611 &2,4253 \\
+	6 &708335 &708335 &708335 &1,7948 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Principal Components}
+
+As presented before, the principal component analysis is mainly used to reduce the data set size, through the use of uncorrelated variables, called principal components (PC). This data transformation occurs with the least possible loss of information, eliminating only some unique variables that have less information.
+
+The principal components are a linear combination of the original variables, they are orthogonal and ordered to the first principal component that has the greatest variance, related to the original data. Although the resulting number of principal components can be equal to the original number of variables, most of the variation in the original data set can be retained by the first principal component, thereby reducing the problem size.
+
+According to the evaluated scenario, the variables are communication ports: tcp 80, tcp 443, udp 53, tcp 21, tcp 22, tcp 23, tcp 25, tcp 110, tcp 143, tcp 161, udp 69 , udp 123, udp 445, tcp 600, udp 19, udp 67 and udp 68. Thus, the main components are formed by linear combinations of these variables.
+
+As there are 17 variables, then the data set is 17-dimensional. With PC technique, the data set can be reduced, for example, to two dimensions, presented by the first two principal components. With this, it is possible to reduce the size of the data set without loss of relevant information.
+
+The principal components are obtained from the eigenvectors of the covariance or correlation matrix. As we selected only the first two principal components, it is necessary to select the two eigenvectors related to the two largest eigenvalues of covariance or correlation matrix.
+
+In order to show that attacks present different and dominant behavior, in comparison to other kind of network traffic, it was selected the periods related to these attacks: $q = 3$ for port scan attack, $q = 4$ for synflood attack and $q = 5$ for the fraggle attack.
+
+Synflood attack presented in Figure \ref{fig:fig13} shows that the variance of PC1 (first PC) is totally dominated by attack components. Attack components are responsible for high value of the eigenvalue associated with this principal component, and consequently for the values of the period $q = 4$. Furthermore, the variance of PC1 is equals to the largest eigenvalue of the matrix $\boldsymbol{S}_{xx}^{(4)}$.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=9cm]{figures/PCsynflood.eps}
+     \caption{\csentence{Synflood Components.} The two first principal components (synflood).}
+     \label{fig:fig13}
+\end{figure}
+
+For the fraggle attack represented in Figure \ref{fig:fig14}, the variance of PC1 (first PC) is totally dominated by the components of the attack. These components are responsible for the high value of the eigenvalue associated with this principal component, and consequently to the set of values of the period $q = 5$. Furthermore, the variance of PC1 is equals to the largest eigenvalue of the matrix $\boldsymbol{S}_{xx}^{(5)}$.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=9cm]{figures/PCfraggle.eps}
+     \caption{\csentence{Fraggle Components.} The two first principal components (fraggle).}
+     \label{fig:fig14}
+\end{figure}
+
+For the port scan attack in Figure \ref{fig:fig15}, the variance of PC1 (first PC) is totally dominated by the components of the attack. These components are responsible for the high value of the eigenvalue associated with this principal component, consequently to the set of values ​​of the period $q = 3$. As already discussed, the variance of PC1 is equals to the largest eigenvalue of the matrix $\boldsymbol{R}_{xx}^{(3)}$.
+
+\begin{figure}[h!]	
+     \centering 
+     \includegraphics[height=9cm]{figures/PCportscan.eps}
+     \caption{\csentence{Port scan Components.} The two first principal components (port scan).}
+     \label{fig:fig15}
+\end{figure}
+
+\subsection{Model Order Selection Schemes}
+
+It is relevant to apply MOS schemes to automate the process, taking into account the profile of the evaluated eigenvalues.
+
+According to Figure \ref{fig:fig8}, once obtained the GETV vector, it is possible to apply the MOS schemes to estimate the model order. Table \ref{tab:tab4} presents the results obtained from the use of the following MOS schemes: AIC, MDL, EDC, RADOI, EFT and SURE.
+
+\begin{table}[h!]
+  \centering
+  \footnotesize
+  \caption{MOS schemes applied to the GETV}
+  \label{tab:tab4}
+  \begin{tabular}{ c c c c c c c c }
+	\toprule
+	\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} &{\textbf{Real value (d)}}\\ 
+			\hhline{~------~}
+		&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
+	\midrule
+	Detection of synflood \\(presence of attack) &2 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
+	Detection of synflood \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+	\midrule
+	Detection of fraggle \\(presence of attack) &1 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
+	Detection of fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+	\midrule
+	Detection of port scan \\(presence of attack) &1 &1 &\textbf{1} &1 &\textbf{1} &9 &\textbf{1} \\
+	Detection of port scan \\(absence of attack) &0 &0 &\textbf{0} &1 &\textbf{0} &1 &\textbf{0} \\
+	\midrule
+	Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{2} &5 &\textbf{2} &5 &\textbf{2} \\
+	Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+With the results shown, it is possible to observe that two schemes stand out from the others. Efficient Detection Criterion (EDC) and Exponential Fitting Test (EFT) are the most effective schemes, returning values greater than or equal value to 1 (one), and indicating that there was an attack. Values equal to 0 (zero) indicating the absence of attacks.
+
+The AIC and MDL schemes are satisfactory only for detecting the port scan. The SURE and RADOI schemes did not show effective results for either case.
+
+It was expected the value 1 as the model order value when there was an attack. Due to the presence of the principal component, the component that stands out from the others is used as the reference to detect attacks.
+
+Values greater than 1, returned by the scheme, indicates that there was more than one attack. An example of this could be seen when the eigenvalues related to the synflood and fraggle attacks are grouped in a same GETV vector, showing the presence of the two attacks, as indicated in the second column of Table \ref{tab:tab3}. This vector carries information from two denial of service attacks. The EDC and EFT schemes returned values equal to 2, indicating the presence of two attacks. According to the modelling adopted, this problem can be interpreted as a single denial of service attack that spanned over a period of time.
+
+\section{Conclusion and Future Works}
+\label{sec:conclusionandfutureworks}
+
+This paper proposed the Greatest Eigenvalue Time Vector Approach (GETV) approach for detecting port scan, synflood and fraggle attacks, showing that GETV can be applied to attacks involving port scanning, and denial of service. For these types of attack, the technique proved to be quite effective.
+
+In order to make automated detection, schemes for selecting the model order were evaluated. Through some experiments, it was concluded that the GETV combined with EFT and EDC schemes presented favorable results for the analyzed problem. Moreover, our scheme is blind, which means that no training is required.
+
+As a future work, GETV technique can be tested in other layers of the OSI network model, since this work only evaluated protocols of the transport layer. Furthermore, the GETV can be combined with other techniques, such as data mining and regular files analysis, to detect attacks that slightly escape from the behavior shown in this work. We highlight that the GETV technique can be also applied to scientific areas, since it is a general concept about eigenvalues variation.
+
+\appendix
+
+\section{Principal Component Analysis (PCA)}
+\label{sec:pca}
+In the context of malicious traffic detection, the superpositions of matrices can represent the different types of traffics associated with each communication port. Eigenvalues and eigenvectors, which are usually used in linear algebra, can reveal important information about matrix data structure, and can be used for noise reducing or spectral decomposition.
+
+Principal Components Analysis is a multivariate analysis technique that uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables. PCA has been widely used in different research areas, such as: dimensionality reduction, Internet traffic analysis, economy, image processing, and genetics. PCA is mainly used to reduce the data set size, using uncorrelated variables for this, which are called the principal components (PC). This transformation of variables into a reduced set of variables, occurs with low information loss or even reduces variables that represent noise signals \cite{jolliffe2005principal}.
+
+The principal components, generated through PCA, are a linear combination of the original variables, which are orthogonal and ordered by variance. Thus, the first principal component has the greatest variance of the original data. Although the resulting number of principal components can result on no feature reduction, preserving the original number of variables, most of the variation in the original data set can be retained by the first principal component, what can reduce the size of the problem \cite{cichocki2009nonnegative} to principal components.
+
+\section{Model Order Selection (MOS)}
+\label{sec:mos}
+The model order selection is a key point in many digital signal processing applications, including radar, sonar, communications, channel modeling, medical imaging, among others. MOS allows analysis of reduced data set, through separating noise components of the main components, for example. Moreover, the model order is crucial for many parameter estimation techniques \cite{da2009comparison}, since the amount of parameters to be estimated depends on the model order.
+
+The model selection procedure chooses the ``best'' model of a finite set of models, according to some criterias \cite{rajan1997model}. Therefore, given some data set, it is chosen a model which was evaluated as the best model to describe the specified data set.
+
+The state of the art regarding estimation techniques of model order based on eigenvalues includes: Akaike's Information Theoretic Criterion - AIC \cite{akaike1974new,wax1985detection}; Minimum Description Length - MDL \cite{barron1998minimum,wax1985detection}; Efficient Detection Criterion - EDC \cite{zhao1986detection}; Stein's Unbiased Risk Estimator - SURE \cite{ulfarsson2008rank}; RADOI \cite{radoi2004new} and Exponential Fitting Test - EFT \cite{grouffaud1996some,quinlan2006model,david2011blind}.
+
+In AIC, MDL and EDC techniques, the information criterion is a function of the geometric mean \emph{g(k)} and the arithmetic mean \emph{a(k)} relating to smaller \emph{k} eigenvalues, where \emph{k} is a candidate value for the model order \emph{d} \cite{da2009comparison}.
+
+Basically, the difference between the AIC, MDL and EDC schemes is the penalty function \emph{p(k, N, α)}, so these techniques can be written in general as \cite{da2009comparison}:
+\begin{equation}\label{eq:eq1}
+\hat{d} = \argmin\limits_k \hspace{1 mm} J(k), 
+\end{equation}
+
+where
+\begin{equation}\label{eq:eq2}
+J(k) = -N(\alpha - k) \hspace{1 mm} {\rm log} \hspace{1 mm} (g(k)/a(k)) + p(k,N,\alpha),
+\end{equation}
+
+where $\hat{d}$ is an estimate \emph{d} of the model order, \emph{N} is the number of samples, \emph{α = M} and means the number of variables of the problem, and 0 ≤ \emph{k} ≤ min[\emph{M}, \emph{N}]. Penalty functions for AIC, MDL and EDC are given by the Table \ref{tab:tab2}.
+%% ???
+
+\begin{table}[h!]
+  \centering
+  \caption{Penalty functions for the schemes AIC, MDL and EDC}
+  \label{tab:tab2}
+  \begin{tabular}{*2c}
+	\toprule
+	\textbf{Scheme} &  \textbf{Penalty function} \\
+	\textbf{} &  $p(k,N,\alpha)$ \\
+	\midrule
+    AIC	& $k(2\alpha - k)$ \\
+    MDL	& $0.5k(2\alpha - k) \hspace{1 mm} {\rm log} (N)$ \\
+    EDC	& $0.5k(2\alpha - k)\sqrt{N\hspace{1 mm}ln(lnN)}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The Exponential Fitting Test (EFT) can effectively be used in cases where the number of samples \emph{N} is small. This technique is based on observations of data contaminated only with white noise, where the profile of eigenvalues can be approximated by a exponential decaying \cite{grouffaud1996some}.
+
+Given $\lambda_i$ be the i-th eigenvalue, the exponential model can be expressed by:
+\begin{equation}\label{eq:eq3}
+E\{\lambda_i\} = E\{\lambda_1\} \cdot q(\alpha,\beta)^{i-1},
+\end{equation}
+
+where $E\{\cdot\} $ is the expectation operator, and it is considered that the eigenvalues are ordered in the that $\lambda_1$ represents the largest eigenvalue. The term \emph{q(α, β)} is defined as:
+\begin{equation}\label{eq:eq4}
+q(\alpha,\beta) = \exp\left\{-\sqrt{\frac{30}{\alpha^2 + 2} - \sqrt{\frac{900}{(\alpha^2 + 2)^2} - \frac{720\alpha}{\beta(\alpha^4 + \alpha^2 - 2)}}} \right\},
+\end{equation}
+
+where $0 < q(\alpha,\beta) < 1$. According to \cite{quinlan2006model}, if $M \leq N$, then $\beta = N$.
+
+Figure \ref{fig:fig1} shows a typical profile of eigenvalues​​. The last P – 1 eigenvalues are used to estimate the (M - P)-th eigenvalue, denoted by the yellow rectangle. The EFT method considers the discrepancy between the actual value and the estimated value obtained \cite{da2007enhanced}.
+
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=5cm, width=6cm]{figures/fig01.png}
+     \caption{\csentence{EFT Example.} Example of application of EFT \cite{da2007enhanced}.}
+     \label{fig:fig1}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Backmatter begins here                   %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{backmatter}
+
+\section*{Competing interests}
+  The authors declare that they have no competing interests.
+
+%\section*{Author's contributions}
+%    Text for this section \ldots
+
+\section*{Acknowledgements}
+The authors thank the Brazilian Ministry of Planning, Budget and Management for the support during the development of this work.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  The Bibliography                       %%
+%%                                                         %%
+%%  Bmc_mathpys.bst  will be used to                       %%
+%%  create a .BBL file for submission.                     %%
+%%  After submission of the .TEX file,                     %%
+%%  you will be prompted to submit your .BBL file.         %%
+%%                                                         %%
+%%                                                         %%
+%%  Note that the displayed Bibliography will not          %%
+%%  necessarily be rendered by Latex exactly as specified  %%
+%%  in the online Instructions for Authors.                %%
+%%                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if your bibliography is in bibtex format, use those commands:
+\bibliographystyle{references} 		% Style BST file
+\bibliography{references}	      	% Bibliography file (usually '*.bib' )
+
+% or include bibliography directly:
+% \begin{thebibliography}
+% \bibitem{b1}
+% \end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Figures                       %%
+%%                               %%
+%% NB: this is for captions and  %%
+%% Titles. All graphics must be  %%
+%% submitted separately and NOT  %%
+%% included in the Tex document  %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% Do not use \listoffigures as most will included as separate files
+
+%\section*{Figures}
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig01.png}
+%     \caption{\csentence{EFT Example.} Example of application of EFT \cite{da2007enhanced}.}
+%     \label{fig:fig1}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig02.png}
+%     \caption{\csentence{Traffic Matrix.} Obtaining the traffic matrix $\boldsymbol{X}^{(q)}$.}
+%     \label{fig:fig2}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig03.png}
+%     \caption{\csentence{Legitimate Traffic.} The legitimate traffic.}
+%     \label{fig:fig3}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig04.png}
+%     \caption{\csentence{Noise Traffic.} The noise traffic.}
+%     \label{fig:fig4}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig05.png}
+%     \caption{\csentence{Synflood Traffic.} The traffic characterized by synflood.}
+%     \label{fig:fig5}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig06.png}
+%     \caption{\csentence{Fraggle Traffic.} The traffic characterized by fraggle.}
+%     \label{fig:fig6}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig07.png}
+%     \caption{\csentence{Port scan Traffic.} The traffic characterized by port scan.}
+%     \label{fig:fig7}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig08.png}
+%     \caption{\csentence{GETV.} Proposed GETV attack detection approach.}
+%     \label{fig:fig8}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig09.png}
+%     \caption{\csentence{Scenario.} Analyzed Scenario.}
+%     \label{fig:fig9}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig10.png}
+%     \caption{\csentence{Synflood Eigenvalues.} Eigenvalues of the covariance matrix (synflood).}
+%     \label{fig:fig10}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig11.png}
+%     \caption{\csentence{Fraggle Eigenvalues.} Eigenvalues of the covariance matrix (fraggle).}
+%     \label{fig:fig11}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig12.png}
+%     \caption{\csentence{Port scan Eigenvalues.} Eigenvalues of the covariance matrix (port scan).}
+%     \label{fig:fig12}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig13.png}
+%     \caption{\csentence{Synflood Components.} The two first principal components (synflood).}
+%     \label{fig:fig13}
+%\end{figure}
+
+%\begin{figure}[h!]
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig14.png}
+%     \caption{\csentence{Fraggle Components.} The two first principal components (fraggle).}
+%     \label{fig:fig14}
+%\end{figure}
+
+%\begin{figure}[h!]	
+%     \centering 
+%     \includegraphics[height=10cm, width=10cm]{figures/fig15.png}
+%     \caption{\csentence{Port scan Components.} The two first principal components (port scan).}
+%     \label{fig:fig15}
+%\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Tables                        %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Use of \listoftables is discouraged.
+%%
+%\section*{Tables}
+%\begin{table}[h!]
+%  \centering
+%  \footnotesize
+%  \caption{Comparison between malicious traffic detection schemes of related works and of this paper}
+%  \label{tab:tab1}
+%  \begin{tabular}{ c c c c c c }
+%	\toprule
+%	\multirow{2}{*}{\textbf{Related Works}} &\multicolumn{5}{c }{\textbf{Techniques}}\\ 
+%		&\textbf{Data Mining}	 &\textbf{Regular analysis of files}	 &\textbf{PCA}	 &\textbf{MOS}	 &\textbf{GETV}\\
+%	\midrule
+%	(He et al, 2008)		&x	&-	&-	&-	&- \\
+%	(Raynal et al, 2004) 	&-	&x	&-	&-	&- \\
+%	(Almotairi et al, 2009)	&-	&-	&x	&-	&- \\
+%	(da Costa et al, 2012) 	&-	&-	&x	&x	&- \\
+%	(Proposed) 				& -	& -	&x	&x	&x \\
+%   \bottomrule
+%  \end{tabular}
+%\end{table}
+%\begin{table}[h!]
+%  \centering
+%  \caption{Penalty functions for the schemes AIC, MDL and EDC}
+%  \label{tab:tab2}
+%  \begin{tabular}{*2c}
+%	\toprule
+%	\textbf{Scheme} &  \textbf{Penalty function} \\
+%	\textbf{} &  $p(k,N,\alpha)$ \\
+%	\midrule
+%    AIC	& $k(2\alpha - k)$ \\
+%    MDL	& $0.5k(2\alpha - k) \hspace{1 mm} log(N)$ \\
+%    EDC	& $0.5k(2\alpha - k)\sqrt{N\hspace{1 mm}ln(lnN)}$ \\
+%    \bottomrule
+%  \end{tabular}
+%\end{table}
+%\begin{table}[h!]
+%  \centering
+%  \footnotesize
+%  \caption{Greatest Eigenvalue related to attacks detection}
+%  \label{tab:tab3}
+%  \begin{tabular}{ c c c c c }
+%	\toprule
+%	\multirow{3}{*}{\textbf{Time Period} $q$} &\multicolumn{4}{c }{\textbf{Vectors GETV}}\\ 
+%			\hhline{~----}
+%		&\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}\\
+%		&\textbf{\emph{synflood/fraggle}}	 &\textbf{\emph{synflood}}	 &\textbf{\emph{fraggle}}	 &\textbf{\emph{port scan}}\\
+%	\midrule
+%	1 &1887545 &1887545 &1887545 &2,0734 \\
+%	2 &2341327 &2341327 &2341327 &2,1451 \\
+%	3 &3213867 &3213867 &3213867 &10,0718 \\
+%	4 &133238294 &133238294 &731229 &2,1620 \\
+%	5 &92384021611 &6367983 &92384021611 &2,4253 \\
+%	6 &708335 &708335 &708335 &1,7948 \\
+%    \bottomrule
+%  \end{tabular}
+%\end{table}
+%\begin{table}[h!]
+%  \centering
+%  \footnotesize
+%  \caption{MOS schemes applied to the GETV}
+%  \label{tab:tab4}
+%  \begin{tabular}{ c c c c c c c c }
+%	\toprule
+%	\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} %&{\textbf{Real value (d)}}\\ 
+%			\hhline{~------~}
+%		&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
+%	\midrule
+%	Detection of synflood \\(presence of attack) &2 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
+%	Detection of synflood \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+%	\midrule
+%	Detection of fraggle \\(presence of attack) &1 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
+%	Detection of fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+%	\midrule
+%	Detection of port scan \\(presence of attack) &1 &1 &\textbf{1} &1 &\textbf{1} &9 &\textbf{1} \\
+%	Detection of port scan \\(absence of attack) &0 &0 &\textbf{0} &1 &\textbf{0} &1 &\textbf{0} \\
+%	\midrule
+%	Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{2} &5 &\textbf{2} &5 &\textbf{2} \\
+%	Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+%    \bottomrule
+%  \end{tabular}
+%\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Additional Files              %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section*{Additional Files}
+%  \subsection*{Additional file 1 --- Sample additional file title}
+%    Additional file descriptions text (including details of how to view the file, if it is in a non-standard format or the file extension). This might refer to a multi-page table or a figure.
+
+%  \subsection*{Additional file 2 --- Sample additional file title}
+%    Additional file descriptions text.
+
+\end{backmatter}
+\end{document}

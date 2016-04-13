@@ -1,0 +1,318 @@
+@book{cichocki2009nonnegative,
+  title={Nonnegative matrix and tensor factorizations: applications to exploratory multi-way data analysis and blind source separation},
+  author={Cichocki, Andrzej and Zdunek, Rafal and Phan, Anh Huy and Amari, Shun-ichi},
+  year={2009},
+  publisher={John Wiley \& Sons}
+}
+@book{jolliffe2005principal,
+  title={Principal component analysis},
+  author={Jolliffe, Ian},
+  year={2005},
+  publisher={Wiley Online Library}
+}
+@article{akaike1974new,
+  title={A new look at the statistical model identification},
+  author={Akaike, Hirotugu},
+  journal={Automatic Control, IEEE Transactions on},
+  volume={19},
+  number={6},
+  pages={716--723},
+  year={1974},
+  publisher={Ieee}
+}
+@inproceedings{almotairi2009technique,
+  title={A technique for detecting new attacks in low-interaction honeypot traffic},
+  author={Almotairi, Saleh and Clark, Andrew and Mohay, George and Zimmermann, Jacob},
+  booktitle={Internet Monitoring and Protection, 2009. ICIMP'09. Fourth International Conference on},
+  pages={7--13},
+  year={2009},
+  organization={IEEE}
+}
+@inproceedings{da2012improved,
+  title={Improved blind automatic malicious activity detection in honeypot data},
+  author={da Costa, Jo{\~a}o Paulo Carvalo Lustosa and de Freitas, Edison Pignaton and David, Bernardo Machado and Serrano, AM Rubio and Amaral, Dino and de Sousa Jr, Rafael Timoteo},
+  booktitle={The International Conference on Forensic Computer Science (ICoFCS)},
+  year={2012}
+}
+@inproceedings{da2009comparison,
+  title={Comparison of model order selection techniques for high-resolution parameter estimation algorithms},
+  author={da Costa, Jo{\~a}o Paulo Carvalo Lustosa and Thakre, Arpita and Roemer, Florian and Haardt, Martin},
+  booktitle={Proc. 54th International Scientific Colloquium (IWK’09), Ilmenau, Germany},
+  year={2009}
+}
+@inproceedings{da2007enhanced,
+  title={Enhanced model order estimation using higher-order arrays},
+  author={da Costa, Jo{\~a}o Paulo Carvalo Lustosa and Haardt, Martin and Romer, F and Del Galdo, Giovanni},
+  booktitle={Signals, Systems and Computers, 2007. ACSSC 2007. Conference Record of the Forty-First Asilomar Conference on},
+  pages={412--416},
+  year={2007},
+  organization={IEEE}
+}
+@inproceedings{xiao2009evaluation,
+  title={Evaluation of AR model order selection approaches},
+  author={Xiao-dan, Du and Yu-Ming, Du and Tao, Yan and Rong, Liu},
+  booktitle={Information Technology and Applications, 2009. IFITA'09. International Forum on},
+  volume={1},
+  pages={704--707},
+  year={2009},
+  organization={IEEE}
+}
+@inproceedings{david2011blind,
+  title={Blind automatic malicious activity detection in honeypot data},
+  author={David, Bernardo Machado and da Costa, Jo{\~a}o Paulo Carvalo Lustosa and Nascimento, Anderson CA and Amaral, D and Holtz, MD and de Sousa Jr, Rafael Timoteo},
+  booktitle={The International Conference on Forensic Computer Science (ICoFCS)},
+  year={2011}
+}
+@inproceedings{ghourabi2010data,
+  title={Data analyzer based on data mining for honeypot router},
+  author={Ghourabi, Abdallah and Abbes, Tarek and Bouhoula, Adel},
+  booktitle={Computer Systems and Applications (AICCSA), 2010 IEEE/ACS International Conference on},
+  pages={1--6},
+  year={2010},
+  organization={IEEE}
+}
+@inproceedings{grouffaud1996some,
+  title={Some properties of ordered eigenvalues of a Wishart matrix: application in detection test and model order selection},
+  author={Grouffaud, J and Larzabal, P and Clergeot, H},
+  booktitle={Acoustics, Speech, and Signal Processing, 1996. ICASSP-96. Conference Proceedings., 1996 IEEE International Conference on},
+  volume={5},
+  pages={2463--2466},
+  year={1996},
+  organization={IEEE}
+}
+@inproceedings{he2008applying,
+  title={Applying multiple time series data mining to large-scale network traffic analysis},
+  author={He, Weisong and Hu, Guangmin and Yao, Xingmiao and Kan, Guangyuan and Wang, Hong and Xiang, Hongmei},
+  booktitle={2008 IEEE Conference on Cybernetics and Intelligent Systems},
+  pages={394--399},
+  year={2008}
+}
+@inproceedings{mudzingwa2012study,
+  title={A study of Methodologies used in Intrusion Detection and Prevention Systems (IDPS)},
+  author={Mudzingwa, David and Agrawal, Rajeev},
+  booktitle={Southeastcon, 2012 Proceedings of IEEE},
+  pages={1--6},
+  year={2012},
+  organization={IEEE}
+}
+@article{gues2002segurancca,
+  title={Seguran{\c{c}}a de Redes em ambientes cooperativos},
+  author={GUES, Paulo and NAKAMURA, Emilio},
+  journal={BERKELEY BRASIL},
+  year={2002}
+}
+@inproceedings{puttini2006anomaly,
+  title={On the anomaly intrusion-detection in mobile Ad Hoc network environments},
+  author={Puttini, Ricardo and Hanashiro, Ma{\'\i}ra and Miziara, F{\'a}bio and de Sousa, Rafael and Garc{\'\i}a-Villalba, L Javier and Barenco, Cl{\'a}udia Jacy},
+  booktitle={Personal Wireless Communications},
+  pages={182--193},
+  year={2006},
+  organization={Springer}
+}
+@article{quinlan2006model,
+  title={Model order selection for short data: An exponential fitting test (EFT)},
+  author={Quinlan, Angela and Barbot, Jean-Pierre and Larzabal, Pascal and Haardt, Martin},
+  journal={EURASIP Journal on Advances in Signal Processing},
+  volume={2007},
+  year={2006},
+  publisher={Hindawi Publishing Corporation}
+}
+@article{radoi2004new,
+  title={A new method for estimating the number of harmonic components in noise with application in high resolution radar},
+  author={Radoi, Emanuel and Quinquis, Andr{\'e}},
+  journal={EURASIP Journal on Applied Signal Processing},
+  volume={2004},
+  pages={1177--1188},
+  year={2004},
+  publisher={Hindawi Publishing Corp.}
+}
+@article{rajan1997model,
+  title={Model order selection for the singular value decomposition and the discrete Karhunen--Loeve transform using a Bayesian approach},
+  author={Rajan, JJ and Rayner, PJW},
+  journal={IEE Proceedings-Vision, Image and Signal Processing},
+  volume={144},
+  number={2},
+  pages={116--123},
+  year={1997},
+  publisher={IET}
+}
+@inproceedings{raynal2004honeypot,
+  title={Honeypot forensics},
+  author={Raynal, Frederic and Berthier, Yann and Biondi, Philippe and Kaminsky, Danielle},
+  booktitle={Information Assurance Workshop, 2004. Proceedings from the Fifth Annual IEEE SMC},
+  pages={22--29},
+  year={2004},
+  organization={IEEE}
+}
+@book{rencher2012methods,
+  title={Methods of multivariate analysis},
+  author={Rencher, Alvin C and Christensen, William F},
+  volume={709},
+  year={2012},
+  publisher={John Wiley \& Sons}
+}
+@article{salah2012performance,
+  title={Performance modeling and analysis of network firewalls},
+  author={Salah, Khaled and Elbadawi, Khalid and Boutaba, Raouf},
+  journal={Network and Service Management, IEEE Transactions on},
+  volume={9},
+  number={1},
+  pages={12--21},
+  year={2012},
+  publisher={IEEE}
+}
+@article{wax1985detection,
+  title={Detection of signals by information theoretic criteria},
+  author={Wax, Mati and Kailath, Thomas},
+  journal={Acoustics, Speech and Signal Processing, IEEE Transactions on},
+  volume={33},
+  number={2},
+  pages={387--392},
+  year={1985},
+  publisher={IEEE}
+}
+@inproceedings{zakaria2012review,
+  title={A review on artificial intelligence techniques for developing intelligent honeypot},
+  author={Zakaria, Wira Zanoramy Ansiry and Kiah, Miss Laiha Mat},
+  booktitle={Proceeding of: 8th International Conference on Computing Technology and Information Management, At Seoul, Korea},
+  year={2012}
+}
+@article{zhao1986detection,
+  title={On detection of the number of signals in presence of white noise},
+  author={Zhao, LC and Krishnaiah, PR and Bai, ZD},
+  journal={Journal of Multivariate Analysis},
+  volume={20},
+  number={1},
+  pages={1--25},
+  year={1986},
+  publisher={Elsevier}
+}
+@inproceedings{ulfarsson2008rank,
+  title={Rank selection in noist PCA with SURE and random matrix theory},
+  author={Ulfarsson, Magnus O and Solo, Victor},
+  booktitle={Acoustics, Speech and Signal Processing, 2008. ICASSP 2008. IEEE International Conference on},
+  pages={3317--3320},
+  year={2008},
+  organization={IEEE}
+}
+@article{barron1998minimum,
+  title={The minimum description length principle in coding and modeling},
+  author={Barron, Andrew and Rissanen, Jorma and Yu, Bin},
+  journal={Information Theory, IEEE Transactions on},
+  volume={44},
+  number={6},
+  pages={2743--2760},
+  year={1998},
+  publisher={IEEE}
+}
+@inproceedings{tenorio2013greatest,
+  title={Greatest Eigenvalue Time Vector Approach for Blind Detection of Malicious Traffic},
+  author={Ten{\'o}rio, Danilo Fernandes and da Costa, Jo{\~a}o Paulo Carvalo Lustosa and de Sousa Jr, Rafael Timoteo},
+  booktitle={The International Conference on Forensic Computer Science (ICoFCS)},
+  year={2013}
+}
+@inproceedings{jin2004covariance,
+  title={A covariance analysis model for DDoS attack detection},
+  author={Jin, Shuyuan and Yeung, Daniel S},
+  booktitle={Communications, 2004 IEEE International Conference on},
+  volume={4},
+  pages={1882--1886},
+  year={2004},
+  organization={IEEE}
+}
+@inproceedings{lakhina2005mining,
+  title={Mining anomalies using traffic feature distributions},
+  author={Lakhina, Anukool and Crovella, Mark and Diot, Christophe},
+  booktitle={ACM SIGCOMM Computer Communication Review},
+  volume={35},
+  number={4},
+  pages={217--228},
+  year={2005},
+  organization={ACM}
+}
+@article{Lu2009,
+ author = {Lu, Wei and Ghorbani, Ali A.},
+ title = {Network Anomaly Detection Based on Wavelet Analysis},
+ journal = {EURASIP J. Adv. Signal Process},
+ issue_date = {January 2009},
+ volume = {2009},
+ month = jan,
+ year = {2009},
+ issn = {1110-8657},
+ pages = {4:1--4:16},
+ articleno = {4},
+ numpages = {16},
+ url = {http://dx.doi.org/10.1155/2009/837601},
+ doi = {10.1155/2009/837601},
+ acmid = {1513555},
+ publisher = {Hindawi Publishing Corp.},
+ address = {New York, NY, United States},
+} 
+@article{Huang2009,
+ author = {Huang, Chin-Tser and Chang, Rocky K. C. and Huang, Polly},
+ title = {Editorial: Signal Processing Applications in Network Intrusion Detection Systems},
+ journal = {EURASIP J. Adv. Signal Process},
+ issue_date = {January 2009},
+ volume = {2009},
+ month = jan,
+ year = {2009},
+ issn = {1110-8657},
+ pages = {9:1--9:2},
+ articleno = {9},
+ numpages = {2},
+ url = {http://dx.doi.org/10.1155/2009/527689},
+ doi = {10.1155/2009/527689},
+ acmid = {1644474},
+ publisher = {Hindawi Publishing Corp.},
+ address = {New York, NY, United States},
+} 
+@article{Lai2009,
+ author = {Lai, Liang-Bin and Chang, Ray-I and Kouh, Jen-Shiang},
+ title = {Detecting Network Intrusions Using Signal Processing with Query-based Sampling Filter},
+ journal = {EURASIP J. Adv. Signal Process},
+ issue_date = {January 2009},
+ volume = {2009},
+ month = jan,
+ year = {2009},
+ issn = {1110-8657},
+ pages = {1:1--1:8},
+ articleno = {1},
+ numpages = {8},
+ url = {http://dx.doi.org/10.1155/2009/735283},
+ doi = {10.1155/2009/735283},
+ acmid = {1513552},
+ publisher = {Hindawi Publishing Corp.},
+ address = {New York, NY, United States},
+} 
+@article{Zonglin2009,
+ author = {Zonglin, Li and Guangmin, Hu and Xingmiao, Yao and Dan, Yang},
+ title = {Detecting Distributed Network Traffic Anomaly with Network-wide Correlation Analysis},
+ journal = {EURASIP J. Adv. Signal Process},
+ issue_date = {January 2009},
+ volume = {2009},
+ month = jan,
+ year = {2009},
+ issn = {1110-8657},
+ pages = {2:1--2:11},
+ articleno = {2},
+ numpages = {11},
+ url = {http://dx.doi.org/10.1155/2009/752818},
+ doi = {10.1155/2009/752818},
+ acmid = {1513553},
+ publisher = {Hindawi Publishing Corp.},
+ address = {New York, NY, United States},
+} 
+@ARTICLE{Lee2013, 
+	author={Lee, Yuh-Jye and Yeh, Yi-Ren and Wang, Yu-Chiang Frank}, 
+	journal={Knowledge and Data Engineering, IEEE Transactions on}, 
+	title={Anomaly Detection via Online Oversampling Principal Component Analysis}, 
+	year={2013}, 
+	month={July}, 
+	volume={25}, 
+	number={7}, 
+	pages={1460-1470}, 
+	keywords={Algorithm design and analysis;Covariance matrix;Data mining;Data models;Eigenvalues and eigenfunctions;Memory management;Principal component analysis;Anomaly detection;least squares;online updating;oversampling;principal component analysis}, 
+	doi={10.1109/TKDE.2012.99}, 
+	ISSN={1041-4347},
+}
+

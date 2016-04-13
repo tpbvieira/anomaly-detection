@@ -1,0 +1,6 @@
+cat traffic | grep -vP 'ARP|ICMP|224.0.0.251' > dump
+cat dump | grep –vP 'Flags|\.53|\.445|\.69|\.123|\.19' > noise
+cat dump | grep -P '\.600:|\.600 >' > attack_synflood
+cat dump | grep '\.19:' > attack_fraggle
+cat dump | grep -vP '\.600:|\.600 >' | grep -P '\.21: |\.21 >|\.22: |\.22 >|\.23: |\.23 >|\.25:|\.25 >|\.110: |\.110 >|\.143: |\.143 >|\.161:|\.161 >|\.445: |\.69: |\.123: ' > attack_portscan
+cat dump | grep -P '\.80: |\.80 >|\.53: |\.53>|\.443: |\.443 >' > signal

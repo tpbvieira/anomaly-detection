@@ -1,0 +1,57 @@
+ports 
+	portscan	= 10
+	fraggle		= 1
+	synflood	= 1
+
+	portscan	period =	3 
+	ans =     10			ok 
+	ans =      9			nok 
+	ans =     10			ok 
+	ans =     10			ok 
+	ans =     11			nok 
+	ans =     10			ok 
+
+	synflood	period =	4 
+	ans =      7			nok
+	ans =      7			nok
+	ans =      7			nok
+	ans =      7			nok
+	ans =     10			nok
+	ans =     10			nok
+
+	fraggle		period =	5 
+	ans =     10			nok
+	ans =     10			nok
+	ans =     10			nok
+	ans =     10			nok
+	ans =     10			nok
+	ans =     10			nok
+
+times
+	portscan	= 1
+	fraggle		= 10
+	synflood	= 10
+
+	portscan	period =	3 			
+	ans =      1			ok
+	ans =      1			ok
+	ans =      1			ok
+	ans =      1			ok
+	ans =      1			ok
+	ans =      1			ok
+
+	synflood	period =	4
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      1 			nok
+	ans =      4 			nok
+
+	fraggle		period =	5 
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok
+	ans =      4 			nok

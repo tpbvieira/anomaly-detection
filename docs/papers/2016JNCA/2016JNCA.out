@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Works}{}% 2
+\BOOKMARK [1][-]{section.3}{Data Model}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Analyzed Scenario and Data Collection}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Modeling Data}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Synflood, Fraggle and Port scan}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Proposed Framework for Detection and Identification of Network Attacks}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Largest Eigenvalue by Time Frames}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{MOS Schemes}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Eigenvalue Analysis}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Eigen Similarity Analysis}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Time Similarity Analysis}{subsection.4.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Port Similarity Analysis}{subsection.4.4}% 13
+\BOOKMARK [1][-]{section.5}{Experiments and Results}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Analyzed Scenario}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Largest Eigenvalues Analysis}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{MOS Schemes Evaluation}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.4}{Eigenvalue Analysis}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.5}{Eigen Similarity Analysis}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Time Analysis}{subsection.5.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Port Analysis}{subsection.5.5}% 21
+\BOOKMARK [1][-]{section.6}{Conclusion and Future Works}{}% 22
+\BOOKMARK [1][-]{appendix.A}{Model Order Selection \(MOS\)}{}% 23
