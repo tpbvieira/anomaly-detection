@@ -103,6 +103,7 @@
 \author[unbaddress]{Danilo F. Tenório}
 \author[unbaddress,Ilmenauaddress,Fraunhoferaddress]{João Paulo C. L. da Costa}
 \author[ufrgsaddress]{\\Edison P. de Freitas}
+\author[Ilmenauaddress,Fraunhoferaddress]{Giovanni Del Galdo}
 \author[unbaddress]{Rafael T. de Sousa Júnior}
 
 \address[unbaddress]{Department of Electrical Engineering, University of Brasilia (UnB), 70910-900, Brasília-DF, Brazil}
@@ -267,7 +268,14 @@ Figure \ref{fig:fig7} depicts an example of the port scan attack in a real compu
 \section{Proposed Framework for Detection and Identification of Network Attacks}
 \label{sec:prop_getv}
 
-This section describes the proposed technique to detect synflood, fraggle and port scan. In Subsection \ref{sec:prop_LargestEigenvaluebyTimeFrames} we present the steps for extraction of the largest eigenvelue for each $q$-th time frame. Next, in Subsection \ref{sec:prop_MOSSchemes}, we show how to apply the eiganvalues on the MOS scheme in order to detect the attack. In Subsection \ref{sec:prop_EigenvalueAnalysis}, we present the eigenvalue analysis to identify the time frames detected as under attack, and the Subsection \ref{sec:prop_EigenSimilarityAnalysis} describes the similarity analysis evaluated for detailed attack identification.
+This section describes the proposed technique to detect synflood, fraggle and port scan, according to Figure \ref{fig:fig80}, which represents the overview of the proposed framework for detection and identification of network attacks. In Subsection \ref{sec:prop_LargestEigenvaluebyTimeFrames} we present the steps for extraction of the largest eigenvelue for each $q$-th time frame. Next, in Subsection \ref{sec:prop_MOSSchemes}, we show how to apply the eiganvalues on the MOS scheme in order to detect the attack. In Subsection \ref{sec:prop_EigenvalueAnalysis}, we present the eigenvalue analysis to identify the time frames detected as under attack, and the Subsection \ref{sec:prop_EigenSimilarityAnalysis} describes the similarity analysis evaluated for detailed attack identification.
+
+\begin{figure}[h!]
+	\centering
+     \includegraphics[height=11cm, width=9cm]{mos_eigen_similarity.eps}
+     \caption{Overview of The Framework for Detection and Identification of Network Attacks.}
+     \label{fig:fig80}
+\end{figure}
 
 \subsection{Largest Eigenvalue by Time Frames}
 \label{sec:prop_LargestEigenvaluebyTimeFrames}
@@ -847,9 +855,11 @@ According to the shown significant lack of similarity between legitimate and mal
 \section{Conclusion and Future Works}
 \label{sec:conclusionandfutureworks}
 
-This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and DoS attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
+This paper models the network traffic as a signal processing formulation for applying to our framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
 
-The proposed scheme is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and  blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack.
+The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and  blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack.
+
+This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and DoS attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
 
 The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analyis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
