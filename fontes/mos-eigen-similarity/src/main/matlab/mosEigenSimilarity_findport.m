@@ -1,4 +1,4 @@
-function P = findport(X0,Xt,isCorr,threshold)
+function P = mosEigenSimilarity_findport(X0,Xt,isCorr,threshold)
     P = [];
     numPorts = 0;
     T0 = X0(:,size(X0,2));        % last column of X0

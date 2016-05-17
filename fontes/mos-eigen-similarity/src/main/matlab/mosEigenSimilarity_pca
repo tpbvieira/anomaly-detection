@@ -1,0 +1,64 @@
+%% PCA
+% analysis of the two principal compoponents
+% for matrix = 4:numberOfMatrices 
+%     pcs_q = NaN;
+%     switch matrix
+% 		case 4 %portscan 
+% 			q = 3;
+% 			method = 'r';
+% 			titlePCA = 'PCA - Portscan';
+%             getv = [2.0734 2.1451 10.0718 2.1620 2.4253 1.7948];            
+% 		case 5 %synflood 
+% 			q = 4;
+% 			method = 's';
+% 			titlePCA = 'PCA - Synflood';
+%             getv = [1887545 2341327 3213867 133238294 6367983 708335];
+% 		case 6 %fraggle 
+% 			q = 5;
+% 			method = 's';
+% 			titlePCA = 'PCA - Fraggle';
+%             getv = [1887545 2341327 3213867 731229 92384021611 708335];
+%     end
+% 
+%     % get the two largest eigenvalues and their correspondent eigenvectors
+%     E = struct2cell(load([dataPath matrices{matrix} '/E' method 'qxx']));
+%     E = diag(E{1}{q});
+%     numpca(E)
+%     E_sorted = sort(E,'descend');
+%     cl1 = find(E == E_sorted(1));
+%     cl2 = find(E == E_sorted(2));
+% 	V = struct2cell(load([dataPath matrices{matrix} '/V' method 'qxx']));
+% 	V1 = matrixround4(V{1}{q}(:,cl1));
+% 	V2 = matrixround4(V{1}{q}(:,cl2));
+% 
+%     % calculates values of the two principal components
+% 	X = dlmread([dataPath matrices{matrix} '/traffic/' num2str(q) '.txt'], '\t'); 
+% 	PC = zeros(periodsSize, 2);
+%     v_size = size(V1,1);
+% 	for t = 1:periodsSize
+%         pc1 = 0;
+% 		pc2 = 0;
+% 		for p = 1:v_size
+% 			pc1 = pc1 + (V1(p) * X(p,t));
+% 			pc2 = pc2 + (V2(p) * X(p,t));
+%         end
+% 		PC(t,1) = pc1;
+% 		PC(t,2) = pc2;
+%     end
+%    	
+%     % plotting configuration
+%     plot(PC(:,1), PC(:,2),'+');
+%     labels = cellstr( num2str([1:periodsSize]') );
+%     text(PC(:,1), PC(:,2), labels, 'VerticalAlignment','bottom','HorizontalAlignment','right');
+% 	xlabel('1st PC');
+% 	ylabel('2nd PC');
+% 	title(titlePCA);	
+%     switch matrix
+% 		case 4 %portscan 
+% 			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/PCA_portscan.eps';
+% 		case 5 %synflood 
+% 			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/PCA_synflood.eps';
+% 		case 6 %fraggle 
+% 			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/PCA_fraggle.eps';
+%     end
+% end

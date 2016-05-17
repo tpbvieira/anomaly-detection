@@ -3,7 +3,9 @@ clear all;
 close all;
 
 addpath('eigen_analysis/');
-addpath('/home/thiago/Dropbox/dev/matlab/mos/');
+addpath('/home/thiago/Dropbox/dev/projects/anomaly-detector/fontes/mos-api/src/main/matlab/');
+
+dataPath = '/media/thiago/shared/backup/doutorado/data/';
 
 matrices = {'all';'signal';'noise';'portscan';'synflood';'fraggle'};
 numberOfMatrices = size(matrices,1); %6 matrices
@@ -30,13 +32,13 @@ for matrix = 4:numberOfMatrices
    		case 6 %fraggle 
 			q = 5;
     end    
-    X0 = dlmread(['/media/thiago/shared/backup/doutorado/data/all/traffic/' num2str(2) '.txt'], '\t');
+    X0 = dlmread([dataPath 'all/traffic/' num2str(2) '.txt'], '\t');
     if (q == 3)
         [S0,E0,Vr0,Mr0] = eigencorrelation(X0);
     else
         [S0,E0,Vr0,Mr0] = eigencovariance(X0);
     end
-    X = dlmread(['/media/thiago/shared/backup/doutorado/data/all/traffic/' num2str(q) '.txt'], '\t');
+    X = dlmread([dataPath 'all/traffic/' num2str(q) '.txt'], '\t');
     t_attacks = {};
     for t = 1:periodsSize
         Xc = cat(2,X0,X(:,1:t));
@@ -50,7 +52,7 @@ for matrix = 4:numberOfMatrices
         warning('Matrix = %s, Period(q) = %s, Time(t) = %s, cosTheta= %s',matrices{matrix},num2str(q),num2str(t),cosTheta(t));
         if(cosTheta(t) < threshold)
             X0 = cat(2,X0,X(:,1:t-1));
-            ports = findport(X0,X(:,t),q == 3,threshold);
+            ports = mosEigenSimilarity_findport(X0,X(:,t),q == 3,threshold);
             %warning('Matrix = %s, Period(q) = %s, Time(t) = %s, Ports= %s',matrices{matrix},num2str(q),num2str(t),mat2str(ports));
             t = t + 1;                
             for a = t:periodsSize
@@ -63,7 +65,7 @@ for matrix = 4:numberOfMatrices
                 cosTheta(a)  = abs(cosTheta(a));
                 warning('Matrix = %s, Period(q) = %s, Time(t) = %s, cosTheta= %s',matrices{matrix},num2str(q),num2str(a),cosTheta(t));
                 if(cosTheta(a) < threshold)
-                    ports = findport(X0,X(:,a),q == 3,threshold);
+                    ports = mosEigenSimilarity_findport(X0,X(:,a),q == 3,threshold);
                     %warning('Matrix = %s, Period(q) = %s, Time(t) = %s, Ports= %s',matrices{matrix},num2str(q),num2str(a),mat2str(ports));
                 end
             end
@@ -89,13 +91,13 @@ end
 %    		case 6 %fraggle 
 % 			q = 5;
 %     end    
-%     X0 = dlmread(['../data/all/traffic/' num2str(2) '.txt'], '\t');
+%     X0 = dlmread([mosAPIPath 'all/traffic/' num2str(2) '.txt'], '\t');
 %     if (q == 3)
 %         [S0,E0,Vr0,Mr0] = eigencorrelation(X0);
 %     else
 %         [S0,E0,Vr0,Mr0] = eigencovariance(X0);
 %     end
-%     X = dlmread(['../data/all/traffic/' num2str(q) '.txt'], '\t');
+%     X = dlmread([mosAPIPath' '/all/traffic/' num2str(q) '.txt'], '\t');
 %     t_attacks = {};
 %     for t = 1:periodsSize
 %         Xc = cat(2,X0,X(:,1:t));
@@ -127,13 +129,13 @@ end
 %    		case 6 %fraggle 
 % 			q = 5;
 %     end    
-%     X0 = dlmread(['../data/all/traffic/' num2str(2) '.txt'], '\t');
+%     X0 = dlmread([mosAPIPath' 'all/traffic/' num2str(2) '.txt'], '\t');
 %     if (q == 3)
 %         [S0,E0,Vr0,Mr0] = eigencorrelation(X0);
 %     else
 %         [S0,E0,Vr0,Mr0] = eigencovariance(X0);
 %     end
-%     X = dlmread(['../data/all/traffic/' num2str(q) '.txt'], '\t');
+%     X = dlmread([mosAPIPath' '/all/traffic/' num2str(q) '.txt'], '\t');
 %     t_attacks = {};
 %     for t = 1:periodsSize
 %         Xc = cat(2,X0,X(:,t));  % only the target column
