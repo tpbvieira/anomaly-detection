@@ -22,7 +22,7 @@ eig_values = sort(eig_values,'descend');
 for pp = 1:(numb_eig-1)
     if (flag_noise == 1)
         pp_aux = pp + 1;
-         sum_eig = sum(eig_values((numb_eig-pp):numb_eig));                
+        sum_eig = sum(eig_values((numb_eig-pp):numb_eig));                
         comp_q = eig_values(numb_eig-pp)/sum_eig;
         comp_q_tot = comp_q/J_final(pp_aux) - 1;
         if  (eft_coeff(pp) >= comp_q_tot )

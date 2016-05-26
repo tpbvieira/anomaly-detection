@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  14 APR 2016 10:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  26 MAY 2016 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,7 +720,7 @@ lied to net-work anomaly
 [4] (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-3.def
 File: uni-3.def 2013/05/13 UCS: Unicode data U+0300..U+03FF
 ) [5]
-<results/figures/fig09.png, id=189, 426.84468pt x 307.1475pt>
+<results/figures/fig09.png, id=193, 426.84468pt x 307.1475pt>
 File: results/figures/fig09.png Graphic file (type png)
 
 <use results/figures/fig09.png>
@@ -770,14 +770,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--193
 
  []
 
-[7] <results/figures/fig03.png, id=212, 752.8125pt x 409.53pt>
+[7] <results/figures/fig03.png, id=216, 752.8125pt x 409.53pt>
 File: results/figures/fig03.png Graphic file (type png)
 
 <use results/figures/fig03.png>
 Package pdftex.def Info: results/figures/fig03.png used on input line 210.
 (pdftex.def)             Requested size: 256.07921pt x 128.0403pt.
 
-<results/figures/fig04.png, id=215, 602.25pt x 335.00156pt>
+<results/figures/fig04.png, id=219, 602.25pt x 335.00156pt>
 File: results/figures/fig04.png Graphic file (type png)
 
 <use results/figures/fig04.png>
@@ -796,7 +796,7 @@ File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
                                                   \fi \fi 
 l.227 
        <./results/figures/fig03.png>]
-<results/figures/fig05.png, id=226, 602.25pt x 243.91125pt>
+<results/figures/fig05.png, id=230, 602.25pt x 243.91125pt>
 File: results/figures/fig05.png Graphic file (type png)
 
 <use results/figures/fig05.png>
@@ -813,7 +813,7 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.243 
        <./results/figures/fig04.png>]
-<results/figures/fig06.png, id=234, 602.25pt x 265.74281pt>
+<results/figures/fig06.png, id=238, 602.25pt x 265.74281pt>
 File: results/figures/fig06.png Graphic file (type png)
 
 <use results/figures/fig06.png>
@@ -835,7 +835,7 @@ l.255
                                                   \fi \fi 
 l.255 
        <./results/figures/fig05.png> <./results/figures/fig06.png>]
-<results/figures/fig07.png, id=242, 602.25pt x 355.3275pt>
+<results/figures/fig07.png, id=246, 602.25pt x 355.3275pt>
 File: results/figures/fig07.png Graphic file (type png)
 
 <use results/figures/fig07.png>
@@ -861,7 +861,7 @@ onverted-to.pdf mos_eigen_similarity.eps>
 (epstopdf)             \includegraphics on input line 275.
 Package epstopdf Info: Output file is already uptodate.
 
-<mos_eigen_similarity-eps-converted-to.pdf, id=255, 621.32124pt x 654.445pt>
+<mos_eigen_similarity-eps-converted-to.pdf, id=259, 621.32124pt x 654.445pt>
 File: mos_eigen_similarity-eps-converted-to.pdf Graphic file (type pdf)
 
 <use mos_eigen_similarity-eps-converted-to.pdf>
@@ -897,7 +897,7 @@ l-eps-converted-to.pdf results/figures/incremental.eps>
 (epstopdf)             \includegraphics on input line 417.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental-eps-converted-to.pdf, id=368, 586.19pt x 159.59625
+<results/figures/incremental-eps-converted-to.pdf, id=372, 586.19pt x 159.59625
 pt>
 File: results/figures/incremental-eps-converted-to.pdf Graphic file (type pdf)
  <use results/figures/incremental-eps-converted-to.pdf>
@@ -925,7 +925,7 @@ ized-eps-converted-to.pdf results/figures/individualized.eps>
 (epstopdf)             \includegraphics on input line 439.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/individualized-eps-converted-to.pdf, id=378, 565.11125pt x 158
+<results/figures/individualized-eps-converted-to.pdf, id=382, 565.11125pt x 158
 .5925pt>
 File: results/figures/individualized-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -955,7 +955,7 @@ d.eps>
 (epstopdf)             \includegraphics on input line 447.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental_individualized-eps-converted-to.pdf, id=380, 565.1
+<results/figures/incremental_individualized-eps-converted-to.pdf, id=384, 565.1
 1125pt x 159.59625pt>
 File: results/figures/incremental_individualized-eps-converted-to.pdf Graphic f
 ile (type pdf)
@@ -994,18 +994,18 @@ l.460
        <./results/figures/individualized-eps-converted-to.pdf> <./results/figur
 es/incremental_individualized-eps-converted-to.pdf>] [21] [22]
 Package epstopdf Info: Source file: <results/figures/eigenvalues_synflood.eps>
-(epstopdf)                    date: 2015-11-08 23:42:03
-(epstopdf)                    size: 86131 bytes
+(epstopdf)                    date: 2016-05-17 20:22:05
+(epstopdf)                    size: 86200 bytes
 (epstopdf)             Output file: <results/figures/eigenvalues_synflood-eps-c
 onverted-to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:30
-(epstopdf)                    size: 7891 bytes
+(epstopdf)                    date: 2016-05-23 21:01:34
+(epstopdf)                    size: 8031 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_synflood-eps-converted-to.pdf results/figures/eigenvalues_synflood.eps>
 (epstopdf)             \includegraphics on input line 500.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=442, 501.875pt x
+<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=447, 501.875pt x
  419.5675pt>
 File: results/figures/eigenvalues_synflood-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -1014,18 +1014,18 @@ Package pdftex.def Info: results/figures/eigenvalues_synflood-eps-converted-to.
 pdf used on input line 500.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 Package epstopdf Info: Source file: <results/figures/eigenvalues_fraggle.eps>
-(epstopdf)                    date: 2015-11-08 23:42:04
-(epstopdf)                    size: 86571 bytes
+(epstopdf)                    date: 2016-05-17 20:22:05
+(epstopdf)                    size: 86640 bytes
 (epstopdf)             Output file: <results/figures/eigenvalues_fraggle-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:31
-(epstopdf)                    size: 7822 bytes
+(epstopdf)                    date: 2016-05-23 21:01:36
+(epstopdf)                    size: 7960 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_fraggle-eps-converted-to.pdf results/figures/eigenvalues_fraggle.eps>
 (epstopdf)             \includegraphics on input line 511.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=448, 501.875pt x 
+<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=453, 501.875pt x 
 419.5675pt>
 File: results/figures/eigenvalues_fraggle-eps-converted-to.pdf Graphic file (ty
 pe pdf)
@@ -1049,7 +1049,7 @@ s_portscan-eps-converted-to.pdf results/figures/eigenvalues_portscan.eps>
 (epstopdf)             \includegraphics on input line 520.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=450, 501.875pt x
+<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=455, 501.875pt x
  406.51875pt>
 File: results/figures/eigenvalues_portscan-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -1162,35 +1162,35 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.852 
+l.854 
       ] [34pdfTeX warning (ext4): destination with the same identifier (name{ta
 ble.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.861 
-      ] [35] [36pdfTeX warning (ext4): destination with the same identifier (na
-me{table.9}) has been already used, duplicate ignored
+l.863 
+      ] [35] [36] [37pdfTeX warning (ext4): destination with the same identifie
+r (name{table.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.914 
-      ] (./2016JNCA.bbl [37] [38] [39])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 932.
- [40]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 932.
+l.927 
+      ] (./2016JNCA.bbl [38] [39] [40])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 945.
+ [41]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 945.
  (./2016JNCA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 932.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 932.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 945.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 945.
 Package rerunfilecheck Info: File `2016JNCA.out' has not changed.
-(rerunfilecheck)             Checksum: E26EB4B0827652E2361DF1B3B89C9575;1622.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 932.
+(rerunfilecheck)             Checksum: 5653FBC4A1F708544BBA3C935642B19C;1691.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 945.
  ) 
 Here is how much of TeX's memory you used:
- 14500 strings out of 493304
- 216206 string characters out of 6139871
- 421126 words of memory out of 5000000
- 17549 multiletter control sequences out of 15000+600000
+ 14507 strings out of 493304
+ 216317 string characters out of 6139871
+ 420126 words of memory out of 5000000
+ 17554 multiletter control sequences out of 15000+600000
  15412 words of font info for 56 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  34i,13n,32p,1157b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1227,10 +1227,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on 2016JNCA.pdf (40 pages, 1309023 bytes).
+Output written on 2016JNCA.pdf (41 pages, 1313181 bytes).
 PDF statistics:
- 760 PDF objects out of 1000 (max. 8388607)
- 648 compressed objects within 7 object streams
- 147 named destinations out of 1000 (max. 500000)
- 250 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 777 PDF objects out of 1000 (max. 8388607)
+ 664 compressed objects within 7 object streams
+ 149 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 

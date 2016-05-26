@@ -181,6 +181,7 @@ for matrix = 1:numberOfMatrices
     %% for each period under attack, gets the times t and ports with attack
     q_attacks = {};
     for pc = 1:numPCs
+        
         X0 = dlmread([dataPath matrices{matrix} '/traffic/' num2str(pcs_q(pc)-1) '.txt'], '\t');  % the reference traffic withtou attack
         if (pcs_q(pc) == 3)
             [S0,E0,Vr0,Mr0] = eigencorrelation(X0);
@@ -189,7 +190,9 @@ for matrix = 1:numberOfMatrices
         end
         X = dlmread([dataPath matrices{matrix} '/traffic/' num2str(pcs_q(pc)) '.txt'], '\t');     % traffi of the period q under attack
         t_attacks = {};
+        
         for t = 1:periodsSize
+            
             Xc = cat(2,X0,X(:,1:t));
             if (pcs_q(pc) == 3)
                 [Sc,Ec,Vrc,Mrc] = eigencorrelation(Xc);
@@ -197,7 +200,7 @@ for matrix = 1:numberOfMatrices
                 [Sc,Ec,Vrc,Mrc] = eigencovariance(Xc);
             end
             
-            cosTheta = dot(Vr0(:,Mr0(2)),Vrc(:,Mrc(2)))/(norm(Vr0(:,Mr0(2)))*norm(Vrc(:,Mrc(2))));            
+            cosTheta = dot(Vr0(:,Mr0(2)),Vrc(:,Mrc(2))) / (norm(Vr0(:,Mr0(2))) * norm(Vrc(:,Mrc(2))));            
             cosTheta  = abs(cosTheta);
             %warning('Matrix = %s, Period(q) = %s, Time(t) = %s, cosTheta= %s',matrices{matrix},num2str(pcs_q(pc)),num2str(t),cosTheta);
             if(cosTheta < threshold)

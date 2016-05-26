@@ -28,7 +28,7 @@ function [usernumber] = edc_short2(eigenvalues,N)
 		% ii starts with 1 and ends in M
 		% wich means M-1 until 0
 		mm = max_size - kk
-		EDC_values(ii) = -2*N * ( max_size - mm ) * log(gii/aii) + mm * (2*max_size - mm) * c_N
+		EDC_values(ii) = -2 * N * ( max_size - mm ) * log(gii/aii) + mm * ( 2 * max_size - mm) * c_N
     end
     
 	[EDC_min,position] = min( EDC_values (1:max_size) )
