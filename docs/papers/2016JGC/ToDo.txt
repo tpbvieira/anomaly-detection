@@ -1,0 +1,240 @@
+[1] Cloud Security Alliance. Official page. Available via https://cloudsecurityalliance.org/. Cited 15 Jan 2016
+@article{csa2016,
+	title={Cloud Security Alliance},
+	url = {https://cloudsecurityalliance.org/},
+}
+
+[2] Higashi M. (2015) Cloud Data Security and EU Data Privacy Rules Compliance with Encryption and Tokenization In: Cloud Security, Compliance. Available via http://www.ciphercloud.com/blog/cloud-data-security-and-eu-data-privacy-rules-compliance-with-encryption-and-tokenization/. Cited 15 Jan 2016
+
+[3] Gartner, Inc. (2015) Key Challenges in Cloud Computing In: Cloud Computing. Available via http://www.gartner.com/technology/topics/cloud-computing.jsp. Cited 15 Jan 2016 
+
+[4] Skyhigh research and reports (2015) What is Cloud Access Security Broker. In: Skyhigh Cloud University. Available via https://www.skyhighnetworks.com/cloud-university/what-is-cloud-access-security-broker/. Cited 01 Feb 2016.
+
+[5] Lawson C.,  MacDonald N.,  Lowans B. (2015) Market Guide for Cloud Access Security Brokers. In Gartner research. Available via http://www.gartner.com/technology/reprints.do?id=1-2RUEH70&ct=151110&st=sb. Cited 01 Feb 2016.
+
+[6] Campbell M. (2015) Cloud Data Encryption is Easy. In Cloud Cyphercloud blog. Available via http://www.ciphercloud.com/blog/cloud-data-encryption-easy/.Cited 01 Feb 2016.
+
+[7] Yovel Y. (2014) 4 Essential Ways to Protect My Mobile Apps. In Security Intelligence e-magazine. Available via https://securityintelligence.com/how-to-protect-mobile-apps-essentials/. 02 Feb 2016 
+
+[8]
+@article{khan2015cloud,
+  title={A Cloud-Manager-Based Re-Encryption Scheme for Mobile Users in Cloud Environment: a Hybrid Approach},
+  author={Khan, Abdul Nasir and Kiah, ML Mat and Ali, Mazhar and Shamshirband, Shahaboddin and others},
+  journal={Journal of Grid Computing},
+  volume={13},
+  number={4},
+  pages={651--675},
+  year={2015},
+  publisher={Springer}
+}
+
+[9]
+@article{khan2014bss,
+  title={BSS: block-based sharing scheme for secure data storage services in mobile cloud environment},
+  author={Khan, Abdul Nasir and Kiah, ML Mat and Ali, Mazhar and Madani, Sajjad A and Shamshirband, Shahaboddin and others},
+  journal={The Journal of Supercomputing},
+  volume={70},
+  number={2},
+  pages={946--976},
+  year={2014},
+  publisher={Springer}
+}
+
+[10] Galibus, T., Matveev, G. Generalized Mignotte Sequences in Polynomial Rings. ENTCS. 186, 39-45 (2007).
+
+[11]
+@inproceedings{goyal2006attribute,
+  title={Attribute-based encryption for fine-grained access control of encrypted data},
+  author={Goyal, Vipul and Pandey, Omkant and Sahai, Amit and Waters, Brent},
+  booktitle={Proceedings of the 13th ACM conference on Computer and communications security},
+  pages={89--98},
+  year={2006},
+  organization={Acm}
+}
+
+[12]@article{tenorio2013greatest,
+  title={Greatest Eigenvalue Time Vector Approach for Blind Detection of Malicious Traffic},
+  author={Ten{\'o}rio, Danilo Fernandes and da Costa, Jo{\~a}o Paulo CL and de Souza J{\'u}nior, Rafael Tim{\'o}teo},
+  journal={ICoFCS 2013},
+  pages={46}
+}
+
+[13]
+@article{khan2014survey,
+  title={A survey of mobile cloud computing application models},
+  author={Khan, Ab Rouf and Othman, Marini and Madani, Sajjad Ahmad and Khan, Samee U},
+  journal={Communications Surveys \& Tutorials, IEEE},
+  volume={16},
+  number={1},
+  pages={393--413},
+  year={2014},
+  publisher={ieee}
+}
+
+[14]
+@article{khan2013towards,
+  title={Towards secure mobile cloud computing: A survey},
+  author={Khan, Abdul Nasir and Kiah, ML Mat and Khan, Samee U and Madani, Sajjad A},
+  journal={Future Generation Computer Systems},
+  volume={29},
+  number={5},
+  pages={1278--1299},
+  year={2013},
+  publisher={Elsevier}
+}
+
+[15]
+@inproceedings{zhao2010trusted,
+  title={Trusted data sharing over untrusted cloud storage providers},
+  author={Zhao, Gansen and Rong, Chunming and Li, Jin and Zhang, Feng and Tang, Yong},
+  booktitle={Cloud Computing Technology and Science (CloudCom), 2010 IEEE Second International Conference on},
+  pages={97--103},
+  year={2010},
+  organization={IEEE}
+}
+
+[16]
+@article{yang2011provable,
+  title={Provable data possession of resource-constrained mobile devices in cloud computing},
+  author={Yang, Jian and Wang, Haihang and Wang, Jian and Tan, Chengxiang and Yu, Dingguo},
+  journal={Journal of networks},
+  volume={6},
+  number={7},
+  pages={1033--1040},
+  year={2011}
+}
+
+[17]
+@inproceedings{itani2010energy,
+  title={Energy-efficient incremental integrity for securing storage in mobile cloud computing},
+  author={Itani, Wassim and Kayssi, Ayman and Chehab, Ali},
+  booktitle={Energy Aware Computing (ICEAC), 2010 International Conference on},
+  pages={1--2},
+  year={2010},
+  organization={IEEE}
+}
+
+[18]
+@article{ren2011lightweight,
+  title={Lightweight and compromise resilient storage outsourcing with distributed secure accessibility in mobile cloud computing},
+  author={Ren, Wei and Yu, Linchen and Gao, Ren and Xiong, Feng},
+  journal={Tsinghua Science \& Technology},
+  volume={16},
+  number={5},
+  pages={520--528},
+  year={2011},
+  publisher={Elsevier}
+}
+
+[19] Van Lelyveld, A. (2013) SAP Mobile Platform Secure Mobile with Mocana. In SMP Enterprise Grade Mobility – Webinar Series. Available via: http://www.sdn.sap.com/irj/scn/go/portal/prtroot/docs/library/uuid/8063ed15-0713-3110-c584-e75ac0395b20?QuickLink=index&overridelayout=true&58725087881424. Cited 15 Feb 2016.
+
+[20]
+@incollection{hao2010j,
+  title={J-PAKE: authenticated key exchange without PKI},
+  author={Hao, Feng and Ryan, Peter},
+  booktitle={Transactions on computational science XI},
+  pages={192--206},
+  year={2010},
+  publisher={Springer}
+}
+
+[21]
+@book{hao2008password,
+  title={Password authenticated key exchange by juggling},
+  author={Hao, Feng and Ryan, Peter YA},
+  year={2008},
+  publisher={Springer}
+}
+
+[22]
+@inproceedings{bogos2013primeless,
+  title={Primeless factoring-based cryptography},
+  author={Bogos, Sonia and Boureanu, Ioana and Vaudenay, Serge},
+  booktitle={Applied Cryptography and Network Security},
+  pages={552--569},
+  year={2013},
+  organization={Springer}
+}
+
+[23]
+@inproceedings{bellovin1992encrypted,
+  title={Encrypted key exchange: Password-based protocols secure against dictionary attacks},
+  author={Bellovin, Steven M and Merritt, Michael},
+  booktitle={Research in Security and Privacy, 1992. Proceedings., 1992 IEEE Computer Society Symposium on},
+  pages={72--84},
+  year={1992},
+  organization={IEEE}
+}
+
+[24]
+@inproceedings{toorani2014security,
+  title={Security analysis of J-PAKE},
+  author={Toorani, Mohsen},
+  booktitle={Computers and Communication (ISCC), 2014 IEEE Symposium on},
+  pages={1--6},
+  year={2014},
+  organization={IEEE}
+}
+
+[25]
+@article{lu2009network,
+  title={Network anomaly detection based on wavelet analysis},
+  author={Lu, Wei and Ghorbani, Ali A},
+  journal={EURASIP Journal on Advances in Signal Processing},
+  volume={2009},
+  pages={4},
+  year={2009},
+  publisher={Hindawi Publishing Corp.}
+}
+
+[26]
+@article{huang2009signal,
+  title={Signal Processing Applications in Network Intrusion Detection Systems},
+  author={Huang, Chin-Tser and Chang, Rocky KC and Huang, Polly},
+  journal={EURASIP Journal on Advances in signal Processing},
+  volume={2009},
+  number={1},
+  pages={1--2},
+  year={2009},
+  publisher={Springer}
+}
+
+[27] NIST (2000) Report on the Development of the Advanced Encryption Standard (AES). Available via PDF: http://csrc.nist.gov/archive/aes/round2/r2report.pdf
+
+[28]
+@inproceedings{galibus2015cloud,
+  title={Cloud storage security},
+  author={Galibus, T and Vissia, HERM},
+  booktitle={Network Security and Communication Engineering: Proceedings of the 2014 International Conference on Network Security and Communication Engineering (NSCE 2014), Hong Kong, December 25--26, 2014},
+  pages={123},
+  year={2015},
+  organization={CRC Press}
+}
+
+[29] Galibus, T. Access control for the cloud storage. Proceeding of the 3rd Belarus-Korea Forum Science “Innovation, Production”, Minsk, 16-17 Oct. 2014. 72-73 (2014).
+
+[30] Galibus, T., Gafurov, S., Kaganovich, D., Vissia, H. Mobile security based on the secret sharing. The journal of Brest state technical university. 5, 33-36 (2015) (In Russian).
+
+[31] 
+@inproceedings{galibus2008some,
+  title={Some structural and security properties of the modular secret sharing},
+  author={Galibus, Tatsiana and Matveev, Gennadii and Shenets, Nikolay},
+  booktitle={Symbolic and Numeric Algorithms for Scientific Computing, 2008. SYNASC'08. 10th International Symposium on},
+  pages={197--200},
+  year={2008},
+  organization={IEEE}
+}
+
+[32]
+@inproceedings{da2009comparison,
+  title={Comparison of model order selection techniques for high-resolution parameter estimation algorithms},
+  author={Da Costa, JPCL and Thakre, Arpita and Roemer, Florian and Haardt, Martin},
+  booktitle={Proc. 54th International Scientific Colloquium (IWK’09), Ilmenau, Germany},
+  year={2009}
+}
+
+[33] McAfee Labs Threats Report. McAfee. Part of Intel Security. August 2015. Available: http://www.mcafee.com/us/resources/reports/rp-quarterly-threats-aug-2015.pdf
+
+[34] Mobile Cyber Threats. Kaspersky Lab & INTERPOL Joint Report. October, 2014. Available: http://media.kaspersky.com/pdf/Kaspersky-Lab-KSN-Report-mobile-cyberthreats-web.pdf
+
+[35] Storgrid protected cloud storage security whitepaper. Available: http://www.storgrid.com

@@ -855,7 +855,7 @@ According to the shown significant lack of similarity between legitimate and mal
 \subsection{Complexity Analysis}
 \label{sec:Complexity}
 
-This subsection discuss the computational complexity of the proposed framework, focusing on the main steps, which are the eigenvalues decomposition (EVD), largest eigenvalues analysis, application of MOS scheme and eigen similarity analysis, according to Figure \ref{fig:fig80} and equations presented in Section \ref{sec:prop_getv}.
+This subsection discusses the computational complexity of the proposed framework, focusing on the main steps, which are the eigenvalues decomposition (EVD), largest eigenvalues analysis, application of MOS scheme and eigen similarity analysis, according to Figure \ref{fig:fig80} and equations presented in Section \ref{sec:prop_getv}.
 
 The EVD, calculated according to (\ref{eq:eq06}), requires the previous calculation of covariance matrix, according to Equations \ref{eq:eq02}, \ref{eq:eq03}, \ref{eq:eq04} and \ref{eq:eq05}. The covariance matrix calculation is $O(M^2N)$ and the EVD is $O(N^3)$, where $M$ denotes the number of network ports and $N$ denotes the period time. Therefore, the computational complexity for all steps for EVD can be represented as $O(M^2N + N^3)$ and yields an $O(N^3)$ upper bound on the worst-case running time for EVD.
 
