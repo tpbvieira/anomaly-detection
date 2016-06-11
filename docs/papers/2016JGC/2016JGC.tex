@@ -21,7 +21,12 @@
 
 \smartqed  % flush right qed marks, e.g. at end of proof
 
+% text
 \usepackage[utf8x]{inputenc}
+
+% figure
+\usepackage{graphicx}
+\usepackage{epstopdf}
 
 % reference and bib issues
 \usepackage[numbers]{natbib}
@@ -74,7 +79,7 @@
 Preventing data leakage on the mobile device is a crucial security problem. Therefore, additional control and protection measures should be taken for the confidential data on the mobile devices that leave the boundaries of the organization. In this scenario, such devices can be used on the offline mode for the convenience and traffic reduce or even for a particular characteristic of the app or of the business. This paper presents a novel approach to the security of the corporate mobile devices, in particular the offline mode. The important part of the presented approach is the conceptualization and the definition of the core methodology to solve the problem of offline mobile security, i.e. the protection of the confidential data in use when the mobile client is not connected to the corporate cloud. The protection of the sensitive data is provided by the combination of the cryptographic methods, such as AES file encryption, ABE authorization based both on user and share attributes, user key secret sharing (SS) based protection between the device and the user as well as MOS-based analytics methods to prevent the malicious user behavior. The proposed security architecture supports the basic mobile device protection principles: minimized traffic load and reduced communication with the cloud; usage of the light-weighted operations and an optimized combination of the security methods.
 \end{abstract}
 
-\keywords{ mobile security \and offline mode ABE \and MOS \and user behavior analysis \and secret sharing \and protected cloud }
+\keywords{ mobile security \and offline mode ABE \and Model Order Selection (MOS) \and user behavior analysis \and secret sharing \and protected cloud }
 
 \section{Introduction}
 \label{sec_intro}
@@ -103,81 +108,141 @@ Therefore, according to \cite{khan2015cloud, tenorio2013greatest, khan2013toward
 
 \section{The client security architecture}
 \label{sec_the_client_security_architecture}
-The approach proposed in this work describes and implements the complete lifecycle of the mobile app security infrastructure. The security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The client app then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. The core set of functions and protocols can be divided into three sets of operations as shown in Figure 3.1.
+The approach proposed in this work describes and implements the complete lifecycle of the mobile app security infrastructure. The security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The client app then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:1}.
 
-Figure 3.1. Block diagram of the core set of functions and protocols of the mobile app security infrastructure
-These operations function based on the mobile client architecture. This architecture consists of the modules of cryptographic functions, threat intelligence infrastructure, communication with server and storage. 
-The cryptographic functions include the decryption (for AES and ABE) key restoration for SSS and EKE token generation procedure. While the AES-ABE hybrid encryption scheme functions both in the online and offline modes, the SSS is used only in the offline mode and the EKE generation and executions is used in the online mode. These operations are described in Sections 5.1-5.4 and are part of the Figure 3.1 related to online and offline mode operations.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=4cm]{figures/coresetoffunctionsandprotocols.eps}
+	\caption{Block diagram of the core set of functions and protocols of the mobile app security infrastructure}
+	\label{fig:1}
+\end{figure}
 
-The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and more elaborate MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this block as well. These functions are described in Section 5.5.
+These operations function based on the mobile client architecture, which is depicted in Figure \ref{fig:2}. This architecture consists of the modules of cryptographic functions, threat intelligence infrastructure, communication with server and storage.
 
-The communication with server includes the separate sender and receiver to check the user credentials and receiver new keys which acts based on the EKE protocol. The remaining data like access list and files can be sent via unprotected channels. Section 3.1 briefly discusses the communication with the server, but it is also an intention to make it a subject of our next work.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.7cm]{figures/mobileclientarchitecture.eps}
+	\caption{The Mobile Client Architecture}
+	\label{fig:2}
+\end{figure}
+
+The cryptographic functions include the decryption (for AES and ABE) key restoration for SSS and EKE token generation procedure. While the AES-ABE hybrid encryption scheme functions both in the online and offline modes, the SSS is used only in the offline mode and the EKE generation and executions is used in the online mode. These operations are described in Subsections \ref{sec_aes}-\ref{sec_secret} and are part of the Figure \ref{fig:1}, related to online and offline mode operations.
+
+The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and more elaborate MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this block as well. These functions are described in Subsection \ref{sec_mos}.
+
+The communication with server includes the separate sender and receiver to check the user credentials and receiver new keys which acts based on the EKE protocol. The remaining data like access list and files can be sent via unprotected channels. Subsection \ref{sec_online_mode} briefly discusses the communication with the server, but it is also an intention to make it a subject of our next work.
 
 The storage is divided in two parts – temporary and permanent. While the files and file keys are stored permanently in order to reduce unnecessary traffic and the resource usage on client, the ABE keys and the key storage protection data are temporary. The unprotected files stored in the mobile client app memory are not the subject of the security architecture.
 
-Figure 3.2 illustrates the client security architecture:
-
-Figure 3.2: Mobile security infrastructure
-
 \subsection{Online mode}
 \label{sec_online_mode}
-This section briefly outlines the main processes and functions in the online mode. The connection to the network allows verifying the user credentials with the help of the protected cloud server. The communication with the cloud is secured by means of the encrypted key exchange protocol \cite{hao2010j, hao2008password} and serves to receive the new set of keys, files and send the collected log information. The client app operations in the online mode are as represented in Figure 3.3.
-Figure 3.3: Online mode operations
+This subsection briefly outlines the main processes and functions in the online mode. The connection to the network allows verifying the user credentials with the help of the protected cloud server. The communication with the cloud is secured by means of the encrypted key exchange protocol \cite{hao2010j, hao2008password} and serves to receive the new set of keys, files and send the collected log information. The client app operations in the online mode are as represented in Figure 3.3.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.8cm]{figures/onlinemodeoperationss.eps}
+	\caption{Online Mode Operations}
+	\label{fig:3}
+\end{figure}
+
 The communication with server is necessary once the key is expired. This allows optimizing the load on the network once the traffic is reduced to the discrete sessions. In such environment it is important to keep track of the time synchronization both on server and on client in parallel in order to avoid malicious user behavior messing up with time attacks.
-As depicted in Figure 3.4, the operation of the online mode starts from the client app sending a token to server by means of EKE: DEV\_PASS+TIME+PASS+PIN in order to validate his identity and the identity of the user to the server. This value serves as a proof that the device and the user are the ones with which server communicated previously. After performing the verification the server sends the new calculated DEV\_PASS and TIME to the mobile app by means of established EKE session. Afterwards the server sends the new encrypted key set and encrypted files to the client app in the clear.
-Figure 3.4: Online authorization workflow diagram.
+
+As depicted in Figure \ref{fig:4}, the operation of the online mode starts from the client app sending a token to server by means of EKE: DEV\_PASS + TIME + PASS + PIN in order to validate his identity and the identity of the user to the server. This value serves as a proof that the device and the user are the ones with which server communicated previously. After performing the verification the server sends the new calculated DEV\_PASS and TIME to the mobile app by means of established EKE session. Afterwards the server sends the new encrypted key set and encrypted files to the client app in the clear.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.7cm]{figures/OnlineAuthorizationWorkflow.eps}
+	\caption{Online Authorization Workflow}
+	\label{fig:4}
+\end{figure}
+
 This model proposes to use light-weighted EKE for the fast communication with server communication like J-PAKE \cite{hao2010j, hao2008password} or SIS-based EKE \cite{bogos2013primeless}. SIS is a public key encryption that avoids generating the big primes, thus it can be used for the secure key exchange \cite{bogos2013primeless,bellovin1992encrypted}. EKE is performed as soon as the key is expired and the client asks the user to synchronize with the server. Note that the EKE is not required to send the encrypted files or statistics. The current implementation of mobile app uses J-PAKE protocol. We refer to \cite{hao2010j, hao2008password, toorani2014security} for a complete description and analysis of the J-PAKE protocol.
 
 \section{Offline mode: our proposed model and solution}
 \label{sec_offline_mode}
 This section proposes an open model of mechanisms for the mobile device protection in which the security is supported both in online and offline modes. Currently and to the best of our knowledge, the systems of mobile device protection follow a model where the protected mobile client can operate only when it is connected to the cloud, which is not always convenient for the end-user. The basic principles of the mobile device protection herein proposed are: 
-Optimized communication with the cloud when the device does not need to be constantly connected to the server due to the resource constraint and necessity to secure this communication;
-Optimized combination of the security mechanisms so that the mobile client does not need to perform complex computation like encryption and key generation due to its resource constraint;
-Behavioral analysis of user's operations on mobile client, which can indicate anomalous or automated activities performed by attackers.
+
+\begin{enumerate}
+	\item Optimized communication with the cloud when the device does not need to be constantly connected to the server due to the resource constraint and necessity to secure this communication;
+	\item Optimized combination of the security mechanisms so that the mobile client does not need to perform complex computation like encryption and key generation due to its resource constraint;
+	\item Behavioral analysis of user's operations on mobile client, which can indicate anomalous or automated activities performed by attackers.
+\end{enumerate}
+
 The most important security issues in the proposed model arise when the device goes to the offline mode and the user is still allowed to get the access to the protected SME documents. In this case, the server can neither monitor the user activity nor provide the protection methods. The security should be performed at the mobile client. Additionally, the maximum protection should be provided at the minimum resource cost. 
+
 In the online mode the mobile device uses the secure communication with the server in order to verify the validity of user’s credentials. On the contrary, the offline protection model should be approached independently. Thus, the proposal is that the authentication/authorization mechanisms in the offline mode should utilize the derived proof of the user identity. The requirements for the proof are as follows:
-The proof is derived from the previous session, in order to verify that the user is still authorized;
-The proof should not give access to user password, i.e. it should not be stored on the device.
-The proof should be temporary and have an expiration period;
-It should not be directly used in communication with the server, in order to prevent the malicious user from mimicking;
-It should be resilient to offline dictionary attacks;
-It has to stay effective both in the scenarios of the malicious outsider and leakage of information when the formerly authorized user leaves the group.
+
+\begin{enumerate}
+	\item The proof is derived from the previous session, in order to verify that the user is still authorized;
+	\item The proof should not give access to user password, i.e. it should not be stored on the device;
+	\item The proof should be temporary and have an expiration period;
+	\item It should not be directly used in communication with the server, in order to prevent the malicious user from mimicking;
+	\item It should be resilient to offline dictionary attacks;
+	\item It has to stay effective both in the scenarios of the malicious outsider and leakage of information when the formerly authorized user leaves the group.
+\end{enumerate}
+
 Such proof cannot be stored on the client device, as it is not possible to guarantee its protection in the offline mode. Therefore, the most effective way to secure the proof on the offline mode without performing complex computation is to share this proof between the client and the user in a protected manner. In this case, there is no need to store the function of the user password. The additional argument against the traditional password verification is the necessity to check the PIN, which is very small, so the construction of valid one-way function resilient to the offline dictionary attacks is a difficult task.
-The proposed offline mode architecture is represented in Figure 4.1.
 
-Figure 4.1: Offline security architecture
+The proposed offline mode architecture is represented in Figure \ref{fig:5}.
 
-The infrastructure in Figure 4.1 includes:
-The protected storage: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files. The outline of the hybrid encryption scheme is presented in the Section 5.
-Threat Intelligence Manager (TIM): most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior according to the scenarios in Section 6. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones.
-Key Management center: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.7cm]{figures/offlinesecurityarchitecture.eps}
+	\caption{Online Authorization Workflow}
+	\label{fig:5}
+\end{figure}
+
+The infrastructure in Figure \ref{fig:5} includes:
+
+\begin{enumerate}
+	\item \textbf{The protected storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files. The outline of the hybrid encryption scheme is presented in the Section \ref{sec_algorithms}.
+	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior according to the scenarios in Section \ref{sec_results}. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones.
+	\item \textbf{Key Management center}: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
+\end{enumerate}
 
 \subsection{Offline mode workflow}
 \label{sec_offline_mode_workflow}
+
 The user performs the following operations in the offline mode:
 
-1. Enters the PASS and the 4-digit PIN;
-2. Views the list of authorized files kept on the mobile storage;
-3. Open the protected encrypted files;
-4. Modify the protected files and save them in an unprotected storage.
+\begin{enumerate}
+	\item Enters the PASS and the 4-digit PIN;
+	\item Views the list of authorized files kept on the mobile storage;
+	\item Open the protected encrypted files;
+	\item Modify the protected files and save them in an unprotected storage.
+\end{enumerate}
 
-The client app performs all the cryptographic calculations in the shadow. These calculations include the key storage, key restoring, decryption and showing the decrypted files in the client area. Note that the client app does not check the password or PIN validity as it does not hold the verification proof for the above. Also, the app keeps track of the user activities and the key expiry. The complete list of the app activities is presented in the Figure 4.2.
+The client app performs all the cryptographic calculations in the shadow. These calculations include the key storage, key restoring, decryption and showing the decrypted files in the client area. Note that the client app does not check the password or PIN validity as it does not hold the verification proof for the above. Also, the app keeps track of the user activities and the key expiry. The complete list of the app activities is presented in the Figure \ref{fig:6}.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.8cm]{figures/offlinemodeoperationss.eps}
+	\caption{Offline Mode Operations}
+	\label{fig:6}
+\end{figure}
 
-Figure 4.2: Offline mode operations chart
+To finalize the description of the offline mode, Figure \ref{fig:7} shows the complete workflow of the proposed mobile application in the offline-mode.
 
-To finalize the description of the offline mode, Figure 4.3 shows the complete workflow of the proposed mobile application in the offline-mode.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.7cm]{figures/OfflineAuthorizationWorkflow.eps}
+	\caption{Offline mode authorization workflow}
+	\label{fig:7}
+\end{figure}
 
-Figure 4.3: Offline mode authorization workflow
-
-The core cryptographic module of the implemented solution is based on the combination of AES-ABE-SSS methods, described in the Section 5. The key feature of the offline security is that the client app does not actually store any part of the user password to be verified. The client app combines its own key with the user share (PIN and password-derived) in order to restore the initial KEY\_SET\_KEY. If the user provides the wrong share the client will not be able to recognize it, but will decrypt the files incorrectly. Additionally, the password entering is tracked and too many tries in a short time are considered a threat.
+The core cryptographic module of the implemented solution is based on the combination of AES-ABE-SSS methods, described in the Section \ref{sec_algorithms}. The key feature of the offline security is that the client app does not actually store any part of the user password to be verified. The client app combines its own key with the user share (PIN and password-derived) in order to restore the initial KEY\_SET\_KEY. If the user provides the wrong share the client will not be able to recognize it, but will decrypt the files incorrectly. Additionally, the password entering is tracked and too many tries in a short time are considered a threat.
 
 \subsection{Offline Behavioral Analysis}
 \label{sec_offline_behavioral_analysis}
-The Log Analysis Center (LAC) is responsible for the behavioral analysis done by the mobile client, in order to identify malicious behaviors through MOS schemes applied to selected features, that shall be incrementally logged by TIM. Therefore, the selected features are modeled as matrices, composed of the number of occurrences of the selected feature by its location and by the occurrence time. Subsequently, the matrices are submitted to the MOS algorithm for threat intelligence, which is detailed in Subsection 5.4. 
-The Figure 4.4 depicts the TIM and LAC for offline behavioral analysis. 
+The Log Analysis Center (LAC) is responsible for the behavioral analysis done by the mobile client, in order to identify malicious behaviors through MOS schemes applied to selected features, that shall be incrementally logged by TIM. Therefore, the selected features are modeled as matrices, composed of the number of occurrences of the selected feature by its location and by the occurrence time. Subsequently, the matrices are submitted to the MOS algorithm for threat intelligence, which is detailed in Subsection \ref{sec_mos}. 
+The Figure \ref{fig:8} depicts the TIM and LAC for offline behavioral analysis. 
 
-Figure 4.4: TIM and LAC workflow for offline behavioral analysis
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.7cm]{figures/mosworkflow.eps}
+	\caption{TIM and LAC workflow for offline behavioral analysis}
+	\label{fig:8}
+\end{figure}
 
 \section{The algorithms, key usage and data protection methods}
 \label{sec_algorithms}
@@ -193,7 +258,7 @@ AES provides a fast encryption of the data files;
 ABE permits to support the authorization policy on the encryption level;
 3)  SSS allows protecting the key storage by avoiding the necessity to store the key proof.
 
-In Subsections 5.1.-5.3, a detailed description of the building blocks of the hybrid encryption is provided.
+In Subsections \ref{sec_aes}-\ref{sec_secret}, a detailed description of the building blocks of the hybrid encryption is provided.
 
 \subsection{AES file encryption }
 \label{sec_aes}
@@ -247,7 +312,7 @@ According to the CRT:
 
 Thus calculated DEV\_PASS is written to the permanent device memory. The user share is not saved. Otherwise, it would allow an attacker to locally validate the restored private key.
 
-\section{MOS for Threat Intelligence}
+\subsection{MOS for Threat Intelligence}
 \label{sec_mos}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as Principal Component Analysis and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic identification of attacks or malicious behaviors. 
 
@@ -286,7 +351,7 @@ Once obtained the largest eigenvalues of each q-th time frame, it is possible to
 Note that some MOS schemes may also require the amount of time that compose a time frame, such as . For more information about MOS schemes, interested readers are referred to \cite{da2009comparison}.
 
 \section{Results and analysis}
-\label{sec_mos}
+\label{sec_results}
 
 ... add some text
 
