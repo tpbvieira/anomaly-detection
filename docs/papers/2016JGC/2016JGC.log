@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  11 JUN 2016 17:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  12 JUN 2016 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -382,11 +382,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package epstopdf Info: Source file: <figures/coresetoffunctionsandprotocols.eps
 >
-(epstopdf)                    date: 2016-06-11 12:31:10
-(epstopdf)                    size: 239247 bytes
+(epstopdf)                    date: 2016-06-12 10:15:31
+(epstopdf)                    size: 239245 bytes
 (epstopdf)             Output file: <figures/coresetoffunctionsandprotocols-eps
 -converted-to.pdf>
-(epstopdf)                    date: 2016-06-11 12:31:15
+(epstopdf)                    date: 2016-06-12 10:29:28
 (epstopdf)                    size: 67129 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/coresetoffunctions
 andprotocols-eps-converted-to.pdf figures/coresetoffunctionsandprotocols.eps>
@@ -401,13 +401,13 @@ File: figures/coresetoffunctionsandprotocols-eps-converted-to.pdf Graphic file
 <use figures/coresetoffunctionsandprotocols-eps-converted-to.pdf>
 Package pdftex.def Info: figures/coresetoffunctionsandprotocols-eps-converted-t
 o.pdf used on input line 115.
-(pdftex.def)             Requested size: 113.81102pt x 189.8202pt.
+(pdftex.def)             Requested size: 170.71652pt x 284.73738pt.
 Package epstopdf Info: Source file: <figures/mobileclientarchitecture.eps>
-(epstopdf)                    date: 2016-06-11 13:38:08
-(epstopdf)                    size: 325180 bytes
+(epstopdf)                    date: 2016-06-12 10:15:44
+(epstopdf)                    size: 325179 bytes
 (epstopdf)             Output file: <figures/mobileclientarchitecture-eps-conve
 rted-to.pdf>
-(epstopdf)                    date: 2016-06-11 13:38:52
+(epstopdf)                    date: 2016-06-12 10:29:30
 (epstopdf)                    size: 92982 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mobileclientarchit
 ecture-eps-converted-to.pdf figures/mobileclientarchitecture.eps>
@@ -421,9 +421,9 @@ pdf)
  <use figures/mobileclientarchitecture-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mobileclientarchitecture-eps-converted-to.pdf 
 used on input line 124.
-(pdftex.def)             Requested size: 247.53888pt x 189.82338pt.
+(pdftex.def)             Requested size: 250.38434pt x 192.00926pt.
 
-Overfull \hbox (8.5747pt too wide) in paragraph at lines 124--125
+Overfull \hbox (11.42017pt too wide) in paragraph at lines 124--125
  [][] 
  []
 
@@ -434,294 +434,351 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-Package epstopdf Info: Source file: <figures/onlinemodeoperationss.eps>
-(epstopdf)                    date: 2016-06-11 14:27:02
-(epstopdf)                    size: 433300 bytes
-(epstopdf)             Output file: <figures/onlinemodeoperationss-eps-converte
-d-to.pdf>
-(epstopdf)                    date: 2016-06-11 14:27:07
-(epstopdf)                    size: 115847 bytes
+Package epstopdf Info: Source file: <figures/onlinemodeoperations.eps>
+(epstopdf)                    date: 2016-06-12 10:32:04
+(epstopdf)                    size: 431632 bytes
+(epstopdf)             Output file: <figures/onlinemodeoperations-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2016-06-12 10:32:11
+(epstopdf)                    size: 120359 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/onlinemodeoperatio
-nss-eps-converted-to.pdf figures/onlinemodeoperationss.eps>
-(epstopdf)             \includegraphics on input line 143.
+ns-eps-converted-to.pdf figures/onlinemodeoperations.eps>
+(epstopdf)             \includegraphics on input line 142.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/onlinemodeoperationss-eps-converted-to.pdf, id=129, 751.80875pt x 397.
-485pt>
-File: figures/onlinemodeoperationss-eps-converted-to.pdf Graphic file (type pdf
-)
- <use figures/onlinemodeoperationss-eps-converted-to.pdf>
-Package pdftex.def Info: figures/onlinemodeoperationss-eps-converted-to.pdf use
-d on input line 143.
-(pdftex.def)             Requested size: 250.38434pt x 132.37741pt.
+<figures/onlinemodeoperations-eps-converted-to.pdf, id=127, 512.91624pt x 475.7
+775pt>
+File: figures/onlinemodeoperations-eps-converted-to.pdf Graphic file (type pdf)
 
-Overfull \hbox (11.42017pt too wide) in paragraph at lines 143--144
+ <use figures/onlinemodeoperations-eps-converted-to.pdf>
+Package pdftex.def Info: figures/onlinemodeoperations-eps-converted-to.pdf used
+ on input line 142.
+(pdftex.def)             Requested size: 244.69386pt x 226.97672pt.
+
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 142--143
+[][] 
+ []
+
+Package epstopdf Info: Source file: <figures/onlineauthorizationworkflow.eps>
+(epstopdf)                    date: 2016-06-12 10:14:57
+(epstopdf)                    size: 174682 bytes
+(epstopdf)             Output file: <figures/onlineauthorizationworkflow-eps-co
+nverted-to.pdf>
+(epstopdf)                    date: 2016-06-12 10:30:32
+(epstopdf)                    size: 46019 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/onlineauthorizatio
+nworkflow-eps-converted-to.pdf figures/onlineauthorizationworkflow.eps>
+(epstopdf)             \includegraphics on input line 153.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/onlineauthorizationworkflow-eps-converted-to.pdf, id=129, 456.70625pt 
+x 312.16624pt>
+File: figures/onlineauthorizationworkflow-eps-converted-to.pdf Graphic file (ty
+pe pdf)
+ <use figures/onlineauthorizationworkflow-eps-converted-to.pdf>
+Package pdftex.def Info: figures/onlineauthorizationworkflow-eps-converted-to.p
+df used on input line 153.
+(pdftex.def)             Requested size: 244.69386pt x 167.2526pt.
+
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 153--154
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package epstopdf Info: Source file: <figures/OnlineAuthorizationWorkflow.eps>
-(epstopdf)                    date: 2016-06-11 15:41:01
-(epstopdf)                    size: 174683 bytes
-(epstopdf)             Output file: <figures/OnlineAuthorizationWorkflow-eps-co
-nverted-to.pdf>
-(epstopdf)                    date: 2016-06-11 15:41:07
-(epstopdf)                    size: 46019 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/OnlineAuthorizatio
-nWorkflow-eps-converted-to.pdf figures/OnlineAuthorizationWorkflow.eps>
-(epstopdf)             \includegraphics on input line 154.
-Package epstopdf Info: Output file is already uptodate.
-
-<figures/OnlineAuthorizationWorkflow-eps-converted-to.pdf, id=131, 456.70625pt 
-x 312.16624pt>
-File: figures/OnlineAuthorizationWorkflow-eps-converted-to.pdf Graphic file (ty
-pe pdf)
- <use figures/OnlineAuthorizationWorkflow-eps-converted-to.pdf>
-Package pdftex.def Info: figures/OnlineAuthorizationWorkflow-eps-converted-to.p
-df used on input line 154.
-(pdftex.def)             Requested size: 247.53888pt x 169.19601pt.
-
-Overfull \hbox (8.5747pt too wide) in paragraph at lines 154--155
- [][] 
- []
-
 [4 <./figures/mobileclientarchitecture-eps-converted-to.pdf> <./figures/onlinem
-odeoperationss-eps-converted-to.pdf> <./figures/OnlineAuthorizationWorkflow-eps
--converted-to.pdf>]
-Overfull \hbox (4.11949pt too wide) in paragraph at lines 186--187
+odeoperations-eps-converted-to.pdf>]
+Overfull \hbox (4.11949pt too wide) in paragraph at lines 185--186
 []\OT1/cmr/m/n/10 The pro-posed of-fline mode ar-chi-tec-ture is rep-re-sented
  []
 
 Package epstopdf Info: Source file: <figures/offlinesecurityarchitecture.eps>
-(epstopdf)                    date: 2016-06-11 16:36:32
-(epstopdf)                    size: 203440 bytes
+(epstopdf)                    date: 2016-06-12 11:58:39
+(epstopdf)                    size: 201583 bytes
 (epstopdf)             Output file: <figures/offlinesecurityarchitecture-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2016-06-11 16:37:26
-(epstopdf)                    size: 55566 bytes
+(epstopdf)                    date: 2016-06-12 14:19:13
+(epstopdf)                    size: 55041 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/offlinesecurityarc
 hitecture-eps-converted-to.pdf figures/offlinesecurityarchitecture.eps>
-(epstopdf)             \includegraphics on input line 190.
+(epstopdf)             \includegraphics on input line 189.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/offlinesecurityarchitecture-eps-converted-to.pdf, id=217, 656.4525pt x
+<figures/offlinesecurityarchitecture-eps-converted-to.pdf, id=189, 656.4525pt x
  209.78375pt>
 File: figures/offlinesecurityarchitecture-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use figures/offlinesecurityarchitecture-eps-converted-to.pdf>
 Package pdftex.def Info: figures/offlinesecurityarchitecture-eps-converted-to.p
-df used on input line 190.
-(pdftex.def)             Requested size: 247.53888pt x 79.10724pt.
+df used on input line 189.
+(pdftex.def)             Requested size: 244.69386pt x 78.19815pt.
 
-Overfull \hbox (8.5747pt too wide) in paragraph at lines 190--191
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 189--190
  [][] 
  []
 
-
-Overfull \hbox (2.06401pt too wide) in paragraph at lines 199--200
+[5 <./figures/onlineauthorizationworkflow-eps-converted-to.pdf> <./figures/offl
+inesecurityarchitecture-eps-converted-to.pdf>]
+Overfull \hbox (2.06401pt too wide) in paragraph at lines 198--199
 \OT1/cmr/m/n/10 mon-i-tor-ing the sys-tem in the case of the of-fline mode.
  []
 
 
-Overfull \hbox (3.6195pt too wide) in paragraph at lines 199--200
+Overfull \hbox (3.6195pt too wide) in paragraph at lines 198--199
 \OT1/cmr/m/n/10 ap-pli-ca-tion on resource-constrained sce-nar-ios. There-
  []
 
 
-Overfull \hbox (1.34177pt too wide) in paragraph at lines 199--200
+Overfull \hbox (1.34177pt too wide) in paragraph at lines 198--199
 \OT1/cmr/m/n/10 bile client se-cu-rity, for eval-u-at-ing anoma-lies on user's
  []
 
-[5 <./figures/offlinesecurityarchitecture-eps-converted-to.pdf>]
-Overfull \hbox (3.11963pt too wide) in paragraph at lines 200--201
+
+Overfull \hbox (3.11963pt too wide) in paragraph at lines 199--200
 \OT1/cmr/m/n/10 tions for main-tain-ing the key ex-piry pe-riod and delet-
  []
 
-Package epstopdf Info: Source file: <figures/offlinemodeoperationss.eps>
-(epstopdf)                    date: 2016-06-11 16:54:02
-(epstopdf)                    size: 314560 bytes
-(epstopdf)             Output file: <figures/offlinemodeoperationss-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2016-06-11 16:55:08
-(epstopdf)                    size: 83326 bytes
+Package epstopdf Info: Source file: <figures/offlinemodeoperations.eps>
+(epstopdf)                    date: 2016-06-12 10:35:58
+(epstopdf)                    size: 312860 bytes
+(epstopdf)             Output file: <figures/offlinemodeoperations-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2016-06-12 10:36:04
+(epstopdf)                    size: 85126 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/offlinemodeoperati
-onss-eps-converted-to.pdf figures/offlinemodeoperationss.eps>
-(epstopdf)             \includegraphics on input line 219.
+ons-eps-converted-to.pdf figures/offlinemodeoperations.eps>
+(epstopdf)             \includegraphics on input line 218.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/offlinemodeoperationss-eps-converted-to.pdf, id=246, 745.78625pt x 397
-.485pt>
-File: figures/offlinemodeoperationss-eps-converted-to.pdf Graphic file (type pd
-f)
- <use figures/offlinemodeoperationss-eps-converted-to.pdf>
-Package pdftex.def Info: figures/offlinemodeoperationss-eps-converted-to.pdf us
-ed on input line 219.
-(pdftex.def)             Requested size: 250.38434pt x 133.44487pt.
+<figures/offlinemodeoperations-eps-converted-to.pdf, id=243, 463.7325pt x 475.7
+775pt>
+File: figures/offlinemodeoperations-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/offlinemodeoperations-eps-converted-to.pdf>
+Package pdftex.def Info: figures/offlinemodeoperations-eps-converted-to.pdf use
+d on input line 218.
+(pdftex.def)             Requested size: 244.69386pt x 251.05011pt.
 
-Overfull \hbox (11.42017pt too wide) in paragraph at lines 219--220
- [][] 
- []
-
-Package epstopdf Info: Source file: <figures/OfflineAuthorizationWorkflow.eps>
-(epstopdf)                    date: 2016-06-11 17:15:46
-(epstopdf)                    size: 265778 bytes
-(epstopdf)             Output file: <figures/OfflineAuthorizationWorkflow-eps-c
-onverted-to.pdf>
-(epstopdf)                    date: 2016-06-11 17:17:20
-(epstopdf)                    size: 67651 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/OfflineAuthorizati
-onWorkflow-eps-converted-to.pdf figures/OfflineAuthorizationWorkflow.eps>
-(epstopdf)             \includegraphics on input line 228.
-Package epstopdf Info: Output file is already uptodate.
-
-<figures/OfflineAuthorizationWorkflow-eps-converted-to.pdf, id=248, 492.84125pt
- x 465.74pt>
-File: figures/OfflineAuthorizationWorkflow-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use figures/OfflineAuthorizationWorkflow-eps-converted-to.pdf>
-Package pdftex.def Info: figures/OfflineAuthorizationWorkflow-eps-converted-to.
-pdf used on input line 228.
-(pdftex.def)             Requested size: 247.53888pt x 233.92831pt.
-
-Overfull \hbox (8.5747pt too wide) in paragraph at lines 228--229
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 218--219
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+Package epstopdf Info: Source file: <figures/offlineauthorizationworkflow.eps>
+(epstopdf)                    date: 2016-06-12 10:15:11
+(epstopdf)                    size: 265777 bytes
+(epstopdf)             Output file: <figures/offlineauthorizationworkflow-eps-c
+onverted-to.pdf>
+(epstopdf)                    date: 2016-06-12 10:30:36
+(epstopdf)                    size: 67651 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/offlineauthorizati
+onworkflow-eps-converted-to.pdf figures/offlineauthorizationworkflow.eps>
+(epstopdf)             \includegraphics on input line 227.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/offlineauthorizationworkflow-eps-converted-to.pdf, id=245, 492.84125pt
+ x 465.74pt>
+File: figures/offlineauthorizationworkflow-eps-converted-to.pdf Graphic file (t
+ype pdf)
+ <use figures/offlineauthorizationworkflow-eps-converted-to.pdf>
+Package pdftex.def Info: figures/offlineauthorizationworkflow-eps-converted-to.
+pdf used on input line 227.
+(pdftex.def)             Requested size: 244.69386pt x 231.242pt.
+
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 227--228
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./figures/offlinemodeoperations-eps-converted-to.pdf> <./figures/offlineau
+thorizationworkflow-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/mosworkflow.eps>
-(epstopdf)                    date: 2016-06-11 17:51:49
-(epstopdf)                    size: 186244 bytes
+(epstopdf)                    date: 2016-06-12 14:30:31
+(epstopdf)                    size: 204899 bytes
 (epstopdf)             Output file: <figures/mosworkflow-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-06-11 17:53:44
-(epstopdf)                    size: 47722 bytes
+(epstopdf)                    date: 2016-06-12 14:33:00
+(epstopdf)                    size: 51873 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mosworkflow-eps-co
 nverted-to.pdf figures/mosworkflow.eps>
-(epstopdf)             \includegraphics on input line 242.
+(epstopdf)             \includegraphics on input line 241.
 Package epstopdf Info: Output file is already uptodate.
-<figures/mosworkflow-eps-converted-to.pdf, id=252, 433.62pt x 379.4175pt>
+
+<figures/mosworkflow-eps-converted-to.pdf, id=317, 388.45125pt x 371.3875pt>
 File: figures/mosworkflow-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mosworkflow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mosworkflow-eps-converted-to.pdf used on input
- line 242.
-(pdftex.def)             Requested size: 247.53888pt x 216.6002pt.
+ line 241.
+(pdftex.def)             Requested size: 244.69386pt x 233.95268pt.
 
-Overfull \hbox (8.5747pt too wide) in paragraph at lines 242--243
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 241--242
  [][] 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (8.45294pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 hav-ior de-tec-tion, through the Log Anal-y-sis Cen-ter (LAC).
+ []
 
-[6 <./figures/offlinemodeoperationss-eps-converted-to.pdf> <./figures/OfflineAu
-thorizationWorkflow-eps-converted-to.pdf>]
-Overfull \hbox (11.02403pt too wide) in paragraph at lines 272--274
+Package epstopdf Info: Source file: <figures/encryptionworkflow.eps>
+(epstopdf)                    date: 2016-06-12 15:45:01
+(epstopdf)                    size: 103158 bytes
+(epstopdf)             Output file: <figures/encryptionworkflow-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2016-06-12 15:45:06
+(epstopdf)                    size: 26350 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/encryptionworkflow
+-eps-converted-to.pdf figures/encryptionworkflow.eps>
+(epstopdf)             \includegraphics on input line 258.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/encryptionworkflow-eps-converted-to.pdf, id=320, 536.0025pt x 296.1062
+5pt>
+File: figures/encryptionworkflow-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/encryptionworkflow-eps-converted-to.pdf>
+Package pdftex.def Info: figures/encryptionworkflow-eps-converted-to.pdf used o
+n input line 258.
+(pdftex.def)             Requested size: 244.69386pt x 135.17584pt.
+
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 258--259
+ [][] 
+ []
+
+Package epstopdf Info: Source file: <figures/encryptionkeyhierarchy.eps>
+(epstopdf)                    date: 2016-06-12 16:04:23
+(epstopdf)                    size: 120750 bytes
+(epstopdf)             Output file: <figures/encryptionkeyhierarchy-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2016-06-12 16:04:27
+(epstopdf)                    size: 29816 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/encryptionkeyhiera
+rchy-eps-converted-to.pdf figures/encryptionkeyhierarchy.eps>
+(epstopdf)             \includegraphics on input line 267.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/encryptionkeyhierarchy-eps-converted-to.pdf, id=324, 422.57875pt x 315
+.1775pt>
+File: figures/encryptionkeyhierarchy-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/encryptionkeyhierarchy-eps-converted-to.pdf>
+Package pdftex.def Info: figures/encryptionkeyhierarchy-eps-converted-to.pdf us
+ed on input line 267.
+(pdftex.def)             Requested size: 227.62204pt x 169.7749pt.
+ [7 <./figures/mosworkflow-eps-converted-to.pdf> <./figures/encryptionworkflow-
+eps-converted-to.pdf> <./figures/encryptionkeyhierarchy-eps-converted-to.pdf>]
+Overfull \hbox (11.02403pt too wide) in paragraph at lines 290--292
 \OT1/cmr/m/n/10 With each user ses-sion, the per-ma-nent FILE[]KEY (unique
  []
 
 
-Overfull \hbox (2.45296pt too wide) in paragraph at lines 275--278
+Overfull \hbox (2.45296pt too wide) in paragraph at lines 293--296
 \OT1/cmr/m/n/10 ac-ces-si-ble only for the do-main ad-min-is-tra-tor and is giv
 en
  []
 
 
-Overfull \hbox (3.56407pt too wide) in paragraph at lines 275--278
+Overfull \hbox (3.56407pt too wide) in paragraph at lines 293--296
 \OT1/cmr/m/n/10 pri-vate keys cor-re-spond-ing to the group at-tributes. Note,
  []
 
-[7 <./figures/mosworkflow-eps-converted-to.pdf>]
-Overfull \hbox (56.28647pt too wide) in paragraph at lines 294--296
+
+Overfull \hbox (56.28647pt too wide) in paragraph at lines 312--314
 \OT1/cmr/m/n/10 to the at-tribute ti : Ys=e(g,g)ys=e(Ei,Di)=e(gywti,gtis/w)=e(g
 ,g)ys 
  []
 
 
-Overfull \hbox (4.75189pt too wide) in paragraph at lines 304--305
+Overfull \hbox (4.75189pt too wide) in paragraph at lines 322--323
 []\OT1/cmr/m/n/10 KEY[]SET[]KEY = PASS+PIN+TIME+DEV[]PASS. 
  []
 
-
-Overfull \hbox (36.84752pt too wide) in paragraph at lines 306--307
+[8]
+Overfull \hbox (36.84752pt too wide) in paragraph at lines 324--325
 \OT1/cmr/m/n/10 the ad-ver-sary can-not get any in-for-ma-tion of the KEY[]SET[
 ]KEY
  []
 
 
-Overfull \hbox (0.953pt too wide) in paragraph at lines 308--310
+Overfull \hbox (0.953pt too wide) in paragraph at lines 326--328
 \OT1/cmr/m/n/10 the share. Let s(x)=d and s1(x)=f(PIN+PASS+TIME),
  []
 
 
-Overfull \hbox (4.36958pt too wide) in paragraph at lines 317--318
+Overfull \hbox (4.36958pt too wide) in paragraph at lines 335--336
 \OT1/cmr/m/n/10 Com-po-nent Anal-y-sis and Model Or-der Se-lec-tion schemes
  []
 
-[8]
-Overfull \hbox (1.81398pt too wide) in paragraph at lines 360--361
+
+Overfull \hbox (1.81398pt too wide) in paragraph at lines 374--375
 \OT1/cmr/m/n/10 y-sis. Two com-mon at-tack sce-nar-ios were an-a-lyzed. First,
  []
 
-
-Overfull \hbox (4.78629pt too wide) in paragraph at lines 373--381
+[9]
+Overfull \hbox (4.78629pt too wide) in paragraph at lines 387--395
 \OT1/cmr/m/n/10 de-crypt it with of-fline dic-tio-nary at-tacks. Still, the hac
 ker
  []
 
-
-Underfull \vbox (badness 1297) has occurred while \output is active []
-
- [9]
 [10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-Overfull \hbox (54.47531pt too wide) in paragraph at lines 498--508
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12]
+Overfull \hbox (54.47531pt too wide) in paragraph at lines 512--522
 []\OT1/cmr/m/n/10 Combine the PASS+PIN+TIME+DEV[]PASS=KEY[]SET[]KEY
  []
 
 
-Overfull \hbox (35.76302pt too wide) in paragraph at lines 498--508
+Overfull \hbox (35.76302pt too wide) in paragraph at lines 512--522
 \OT1/cmr/m/n/10 > no cal-cu-la-tion; De-crypt the FILE[]KEY with the SHARE[]KEY
 
  []
 
 
-Overfull \hbox (1.49626pt too wide) in paragraph at lines 498--508
+Overfull \hbox (1.49626pt too wide) in paragraph at lines 512--522
 \OT1/cmr/m/n/10 -> ABE de-cryp-tion; De-crypt the file with the FILE[]KEY
  []
 
 
-Overfull \hbox (5.34628pt too wide) in paragraph at lines 498--508
+Overfull \hbox (5.34628pt too wide) in paragraph at lines 512--522
 \OT1/cmr/m/n/10 TIME ->count; Mod-ify or delete PUB-LIC[]SHARE[]KEY-
  []
 
 
-Overfull \hbox (0.18776pt too wide) in paragraph at lines 511--515
+Overfull \hbox (0.18776pt too wide) in paragraph at lines 525--529
 []\OT1/cmr/m/n/10 Generates keys for J-PAKE -> this can be a resource-
  []
 
-[12]
-Overfull \hbox (1.53635pt too wide) in paragraph at lines 528--531
+
+Overfull \hbox (1.53635pt too wide) in paragraph at lines 542--545
 \OT1/cmr/m/n/10 anomaly de-tec-tion from log anal-y-sis, mea-sur-ing the data
  []
 
-
-Overfull \hbox (14.03403pt too wide) in paragraph at lines 536--537
+[13]
+Overfull \hbox (14.03403pt too wide) in paragraph at lines 550--551
 []\OT1/cmr/m/n/10 Table 5. EDC MOS scheme pro-cess-ing time for anomaly
  []
 
 
-Overfull \hbox (2.86948pt too wide) in paragraph at lines 542--544
+Overfull \hbox (2.86948pt too wide) in paragraph at lines 556--558
 \OT1/cmr/m/n/10 use cloud-based sys-tems is how to pro-vide se-cu-rity mech-
  []
 
 
-Overfull \hbox (1.06404pt too wide) in paragraph at lines 542--544
+Overfull \hbox (1.06404pt too wide) in paragraph at lines 556--558
 \OT1/cmr/m/n/10 a-nisms to sup-port of-fline cor-po-rate mo-bile de-vices. Once
 
  []
@@ -736,12 +793,12 @@ Underfull \hbox (badness 4391) in paragraph at lines 29--32
 \OT1/cmr/m/n/10 ciphercloud . com / blog / cloud -[] data -[] encryption -[]
  []
 
-[13]
+
 Underfull \hbox (badness 6461) in paragraph at lines 54--58
 \OT1/cmr/m/n/10 u-lar se-cret shar-ing. In: Sym-bolic and Nu-
  []
 
-
+[14]
 Underfull \hbox (badness 4673) in paragraph at lines 84--88
 []\OT1/cmr/m/n/10 Higashi M (2015) Cloud data se-cu-rity and
  []
@@ -753,13 +810,13 @@ Underfull \hbox (badness 3417) in paragraph at lines 84--88
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Underfull \hbox (badness 1708) in paragraph at lines 107--110
 \OT1/cmr/m/n/10 Report -[] mobile -[] cyberthreats -[] web . pdf$[], ac-cessed:
 
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \hbox (badness 4608) in paragraph at lines 148--151
@@ -772,9 +829,6 @@ Underfull \hbox (badness 1701) in paragraph at lines 148--151
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
 Underfull \hbox (badness 1253) in paragraph at lines 163--165
 []\OT1/cmr/m/n/10 Toorani M (2014) Se-cu-rity anal-y-sis of j-pake.
  []
@@ -785,27 +839,25 @@ Underfull \hbox (badness 2253) in paragraph at lines 167--171
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 556.
- [15
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 556.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 570.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 570.
  (./2016JGC.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 556.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 556.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 570.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 570.
 Package rerunfilecheck Info: File `2016JGC.out' has not changed.
 (rerunfilecheck)             Checksum: 066379691ED7A457F18C20D3FE58A1E1;447.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 556.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 570.
  ) 
 Here is how much of TeX's memory you used:
- 7335 strings out of 493304
- 110104 string characters out of 6139871
- 203547 words of memory out of 5000000
- 10609 multiletter control sequences out of 15000+600000
+ 7352 strings out of 493304
+ 110625 string characters out of 6139871
+ 205609 words of memory out of 5000000
+ 10619 multiletter control sequences out of 15000+600000
  10347 words of font info for 36 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  42i,8n,33p,1415b,582s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -819,10 +871,10 @@ s/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmti10.pfb>
-Output written on 2016JGC.pdf (15 pages, 753888 bytes).
+Output written on 2016JGC.pdf (15 pages, 815710 bytes).
 PDF statistics:
- 519 PDF objects out of 1000 (max. 8388607)
- 456 compressed objects within 5 object streams
- 98 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 555 PDF objects out of 1000 (max. 8388607)
+ 487 compressed objects within 5 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 107 words of extra memory for PDF output out of 10000 (max. 10000000)
 

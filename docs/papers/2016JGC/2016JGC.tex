@@ -112,8 +112,8 @@ The approach proposed in this work describes and implements the complete lifecyc
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=4cm]{figures/coresetoffunctionsandprotocols.eps}
-	\caption{Block diagram of the core set of functions and protocols of the mobile app security infrastructure}
+	\includegraphics[width=6cm]{figures/coresetoffunctionsandprotocols.eps}
+	\caption{The core set of functions and protocols of the mobile app security infrastructure}
 	\label{fig:1}
 \end{figure}
 
@@ -121,7 +121,7 @@ These operations function based on the mobile client architecture, which is depi
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.7cm]{figures/mobileclientarchitecture.eps}
+	\includegraphics[width=8.8cm]{figures/mobileclientarchitecture.eps}
 	\caption{The Mobile Client Architecture}
 	\label{fig:2}
 \end{figure}
@@ -139,8 +139,7 @@ The storage is divided in two parts – temporary and permanent. While the files
 This subsection briefly outlines the main processes and functions in the online mode. The connection to the network allows verifying the user credentials with the help of the protected cloud server. The communication with the cloud is secured by means of the encrypted key exchange protocol \cite{hao2010j, hao2008password} and serves to receive the new set of keys, files and send the collected log information. The client app operations in the online mode are as represented in Figure 3.3.
 
 \begin{figure}[h!]
-	\centering
-	\includegraphics[width=8.8cm]{figures/onlinemodeoperationss.eps}
+	\includegraphics[width=8.6cm]{figures/onlinemodeoperations.eps}
 	\caption{Online Mode Operations}
 	\label{fig:3}
 \end{figure}
@@ -151,7 +150,7 @@ As depicted in Figure \ref{fig:4}, the operation of the online mode starts from 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.7cm]{figures/OnlineAuthorizationWorkflow.eps}
+	\includegraphics[width=8.6cm]{figures/onlineauthorizationworkflow.eps}
 	\caption{Online Authorization Workflow}
 	\label{fig:4}
 \end{figure}
@@ -187,7 +186,7 @@ The proposed offline mode architecture is represented in Figure \ref{fig:5}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.7cm]{figures/offlinesecurityarchitecture.eps}
+	\includegraphics[width=8.6cm]{figures/offlinesecurityarchitecture.eps}
 	\caption{Online Authorization Workflow}
 	\label{fig:5}
 \end{figure}
@@ -216,7 +215,7 @@ The client app performs all the cryptographic calculations in the shadow. These 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.8cm]{figures/offlinemodeoperationss.eps}
+	\includegraphics[width=8.6cm]{figures/offlinemodeoperations.eps}
 	\caption{Offline Mode Operations}
 	\label{fig:6}
 \end{figure}
@@ -225,7 +224,7 @@ To finalize the description of the offline mode, Figure \ref{fig:7} shows the co
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.7cm]{figures/OfflineAuthorizationWorkflow.eps}
+	\includegraphics[width=8.6cm]{figures/offlineauthorizationworkflow.eps}
 	\caption{Offline mode authorization workflow}
 	\label{fig:7}
 \end{figure}
@@ -234,37 +233,62 @@ The core cryptographic module of the implemented solution is based on the combin
 
 \subsection{Offline Behavioral Analysis}
 \label{sec_offline_behavioral_analysis}
-The Log Analysis Center (LAC) is responsible for the behavioral analysis done by the mobile client, in order to identify malicious behaviors through MOS schemes applied to selected features, that shall be incrementally logged by TIM. Therefore, the selected features are modeled as matrices, composed of the number of occurrences of the selected feature by its location and by the occurrence time. Subsequently, the matrices are submitted to the MOS algorithm for threat intelligence, which is detailed in Subsection \ref{sec_mos}. 
-The Figure \ref{fig:8} depicts the TIM and LAC for offline behavioral analysis. 
+
+In the proposed client security architecture, the Threat Intelligence Manager (TIM) is resposibible for receiving logged user operations, feature extraction, data modeling and malicious behavior analysis in order to identify possible threats, in offline mode. The Figure \ref{fig:8} depicts the Threat Intelligence Manager for offline behavioral analysis. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.7cm]{figures/mosworkflow.eps}
-	\caption{TIM and LAC workflow for offline behavioral analysis}
+	\includegraphics[width=8.6cm]{figures/mosworkflow.eps}
+	\caption{The Threat Intelligence Manager Workflow}
 	\label{fig:8}
 \end{figure}
 
+The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations is monitored by the client app, which sends the information of the captured operations to the User Activity Logging (UAL), 
+
+The UAL is responsible for the incremental logging, feature extraction and data modeling for malicious behavior detection, through the Log Analysis Center (LAC). The logged information shall be decomposed into selected features and modeled as matrices, composed of the number of occurrences of the selected features by its location and by the occurrence time. The resultant data is submited to the LAC, for anomaly detection.
+
+The LAC performs the behavioral analysis through eigenvalue analysis and MOS schemes, which identify anomalies on sparse, subtle or abrupt number of user operations. The malicious behavior detection is detail described in \ref{sec_mos}.
+
 \section{The algorithms, key usage and data protection methods}
 \label{sec_algorithms}
-In the proposed approach, the kernel encryption scheme in the mobile device is a combination of several methods of security. The files are encrypted with 128/256-bit AES, while the permanent file keys are encrypted with the attribute-based encryption. The set of expiring ABE keys corresponding to the set of files accessible by user in encrypted with a single expiring AES key (KEY\_SET\_KEY). This key is expiring and is splited by the server into 4 parts (2 are stored on the device and 2 belong to the user) by the method of secure secret sharing. The encryption workflow is outlined in the Figure 5.1.
+In the proposed approach, the kernel encryption scheme in the mobile device is a combination of several methods of security. The files are encrypted with 128/256-bit AES, while the permanent file keys are encrypted with the attribute-based encryption. The set of expiring ABE keys corresponding to the set of files accessible by user in encrypted with a single expiring AES key (KEY\_SET\_KEY). This key is expiring and is splited by the server into 4 parts (2 are stored on the device and 2 belong to the user) by the method of secure secret sharing. The encryption workflow is outlined in the Figure \ref{fig:9}.
 
-Figure 5.1: Encryption workflow
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.6cm]{figures/encryptionworkflow.eps}
+	\caption{Encryption workflow}
+	\label{fig:9}
+\end{figure}
 
-The key hierarchy can be explained by Figure 5.2 where the key represented in Figure 5.1 serves for decrypting the key for each level represented in Figure 5.2.
+The key hierarchy can be explained by Figure \ref{fig:10} where the key represented in Figure \ref{fig:9} serves for decrypting the key for each level represented in Figure \ref{fig:10}.
 
-Figure 5.2: Encryption key hierarchy
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8cm]{figures/encryptionkeyhierarchy.eps}
+	\caption{Encryption key hierarchy}
+	\label{fig:10}
+\end{figure}
+
 This proposed encryption scheme is called as a hybrid encryption since it uses a combination of different encryption methods in order to support all requirements to the encryption scheme used in the proposed infrastructure. Then it has:
-AES provides a fast encryption of the data files;
-ABE permits to support the authorization policy on the encryption level;
-3)  SSS allows protecting the key storage by avoiding the necessity to store the key proof.
+\begin{enumerate}
+	\item AES provides a fast encryption of the data files;
+	\item ABE permits to support the authorization policy on the encryption level;
+	\item SSS allows protecting the key storage by avoiding the necessity to store the key proof.
+\end{enumerate}
 
-In Subsections \ref{sec_aes}-\ref{sec_secret}, a detailed description of the building blocks of the hybrid encryption is provided.
+In Subsections \ref{sec_aes}-\ref{sec_secret}, a detailed description of the building blocks of the hybrid encryption is provided, and the proposed malicious behavior detection scheme is detail described in \ref{sec_mos}.
 
 \subsection{AES file encryption }
 \label{sec_aes}
-The protected files are encrypted on the server side with the secure 128/256 bit AES encryption, which is currently an industrial standard. Nevertheless, domain administrator can choose to encrypt the file storage with Blowfish or Serpent which also provide a high level of safety \cite{nist2000}. The symmetric encryption on a server side is performed in two steps. First there is a single AES key for preserving the server storage. Second, when the encrypted file is sent from the server to the mobile app or desktop device another unique AES key is generated. This key serves for the encryption on the client side. In other words, along with the encrypted file the user gets his own unique AES key for decrypting the files received. This key is protected by attribute-based public key encryption (ABE). The scheme of the server-side AES encryption is represented in Figure 5.3.
+The protected files are encrypted on the server side with the secure 128/256 bit AES encryption, which is currently an industrial standard. Nevertheless, domain administrator can choose to encrypt the file storage with Blowfish or Serpent which also provide a high level of safety \cite{nist2000}. The symmetric encryption on a server side is performed in two steps. First there is a single AES key for preserving the server storage. Second, when the encrypted file is sent from the server to the mobile app or desktop device another unique AES key is generated. This key serves for the encryption on the client side. In other words, along with the encrypted file the user gets his own unique AES key for decrypting the files received. This key is protected by attribute-based public key encryption (ABE). The scheme of the server-side AES encryption is represented in Figure \ref{fig:11}.
 
-Figure 5.3: Server-side encryption
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8cm]{figures/server-sideencryption.eps}
+	\caption{Server-side encryption}
+	\label{fig:11}
+\end{figure}
+
 Usually, The AES encryption key is used as a session key. In our setting, it is not desirable to re-encrypt the files stored in the device unless there is a certain specific condition (for example, the user leaves the domain or a specific group in the domain (the group of users in the domain contains the users with the equal access rights, i.e. the same set of accessible file shares) and the file should not be accessible for this user anymore). This is why AES key in the presented notation is permanent and defined as FILE\_KEY. The randomly generated FILE\_KEY is unique for each file or set of files stored on a client. 
 
 \subsection{ABE encryption to protect the FILE\_KEY }
@@ -322,15 +346,11 @@ The MOS schemes can rely on correlation or covariance analysis, where the correl
 
 Classical approaches to model order selection require the computation of the sample covariance matrix Vxx and of its eigenvalues, obtained from the measurement matrix X of the zero mean samples given by
 
-
-
 The set of obtained vectors zm composes the zero mean matrix Z, then the covariance matrix Vxx can be calculated as follows 
 
 Vxx =1NZZT
 
 For MOS based on correlation analysis, instead of calculate the zero mean samples, to obtain the correlation matrix Rxx , it is required, for each variable, to make the standard deviation unitary as follows
-
-
 
 The set of vectors sm composes the matrix S, then the correlation matrix Rxx can be calculated via 
 . Once the Vxx or Rxx have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to Vxx and Rxx as a matrix C. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to , in order to obtain the vector of eigenvalues e, as following:
