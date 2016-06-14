@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  12 JUN 2016 16:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  13 JUN 2016 22:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -674,111 +674,120 @@ ed on input line 267.
 (pdftex.def)             Requested size: 227.62204pt x 169.7749pt.
  [7 <./figures/mosworkflow-eps-converted-to.pdf> <./figures/encryptionworkflow-
 eps-converted-to.pdf> <./figures/encryptionkeyhierarchy-eps-converted-to.pdf>]
-Overfull \hbox (11.02403pt too wide) in paragraph at lines 290--292
-\OT1/cmr/m/n/10 With each user ses-sion, the per-ma-nent FILE[]KEY (unique
+Package epstopdf Info: Source file: <figures/server-sideencryption.eps>
+(epstopdf)                    date: 2016-06-13 00:29:40
+(epstopdf)                    size: 178580 bytes
+(epstopdf)             Output file: <figures/server-sideencryption-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2016-06-13 00:29:57
+(epstopdf)                    size: 49586 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/server-sideencrypt
+ion-eps-converted-to.pdf figures/server-sideencryption.eps>
+(epstopdf)             \includegraphics on input line 288.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/server-sideencryption-eps-converted-to.pdf, id=393, 562.1pt x 165.6187
+4pt>
+File: figures/server-sideencryption-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/server-sideencryption-eps-converted-to.pdf>
+Package pdftex.def Info: figures/server-sideencryption-eps-converted-to.pdf use
+d on input line 288.
+(pdftex.def)             Requested size: 244.69386pt x 72.09663pt.
+
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 288--289
+ [][] 
  []
 
 
-Overfull \hbox (2.45296pt too wide) in paragraph at lines 293--296
-\OT1/cmr/m/n/10 ac-ces-si-ble only for the do-main ad-min-is-tra-tor and is giv
-en
+Overfull \hbox (3.00728pt too wide) in paragraph at lines 299--300
+[]\OT1/cmr/m/n/10 The model sup-ports the sim-ple se-lec-tive ABE scheme
  []
 
 
-Overfull \hbox (3.56407pt too wide) in paragraph at lines 293--296
-\OT1/cmr/m/n/10 pri-vate keys cor-re-spond-ing to the group at-tributes. Note,
+Overfull \hbox (7.14983pt too wide) in paragraph at lines 308--309
+[]\OT1/cmr/m/n/10 Encrypted text $\OML/cmm/m/it/10 M$\OT1/cmr/m/n/10 , in our c
+on-text, $\OML/cmm/m/it/10 M \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 FILE[]KEY$\OT1/
+cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (56.28647pt too wide) in paragraph at lines 312--314
-\OT1/cmr/m/n/10 to the at-tribute ti : Ys=e(g,g)ys=e(Ei,Di)=e(gywti,gtis/w)=e(g
-,g)ys 
+Overfull \hbox (6.36366pt too wide) in paragraph at lines 317--318
+[]$\OML/cmm/m/it/10 Y[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\O
+ML/cmm/m/it/10 g; g\OT1/cmr/m/n/10 )[] = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\OM
+L/cmm/m/it/10 E[]; D[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\O
+ML/cmm/m/it/10 g[]; g[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\
+OML/cmm/m/it/10 g; g\OT1/cmr/m/n/10 )[]$. 
  []
 
-
-Overfull \hbox (4.75189pt too wide) in paragraph at lines 322--323
-[]\OT1/cmr/m/n/10 KEY[]SET[]KEY = PASS+PIN+TIME+DEV[]PASS. 
- []
-
-[8]
-Overfull \hbox (36.84752pt too wide) in paragraph at lines 324--325
+[8 <./figures/server-sideencryption-eps-converted-to.pdf>]
+Overfull \hbox (36.84752pt too wide) in paragraph at lines 326--327
 \OT1/cmr/m/n/10 the ad-ver-sary can-not get any in-for-ma-tion of the KEY[]SET[
 ]KEY
  []
 
 
-Overfull \hbox (0.953pt too wide) in paragraph at lines 326--328
-\OT1/cmr/m/n/10 the share. Let s(x)=d and s1(x)=f(PIN+PASS+TIME),
- []
-
-
-Overfull \hbox (4.36958pt too wide) in paragraph at lines 335--336
+Overfull \hbox (4.36958pt too wide) in paragraph at lines 348--349
 \OT1/cmr/m/n/10 Com-po-nent Anal-y-sis and Model Or-der Se-lec-tion schemes
  []
 
-
-Overfull \hbox (1.81398pt too wide) in paragraph at lines 374--375
+[9]
+Overfull \hbox (1.81398pt too wide) in paragraph at lines 387--388
 \OT1/cmr/m/n/10 y-sis. Two com-mon at-tack sce-nar-ios were an-a-lyzed. First,
  []
 
-[9]
-Overfull \hbox (4.78629pt too wide) in paragraph at lines 387--395
+
+Overfull \hbox (4.78629pt too wide) in paragraph at lines 400--408
 \OT1/cmr/m/n/10 de-crypt it with of-fline dic-tio-nary at-tacks. Still, the hac
 ker
  []
 
-[10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+[10] [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
-Overfull \hbox (54.47531pt too wide) in paragraph at lines 512--522
+Overfull \hbox (54.47531pt too wide) in paragraph at lines 525--535
 []\OT1/cmr/m/n/10 Combine the PASS+PIN+TIME+DEV[]PASS=KEY[]SET[]KEY
  []
 
 
-Overfull \hbox (35.76302pt too wide) in paragraph at lines 512--522
+Overfull \hbox (35.76302pt too wide) in paragraph at lines 525--535
 \OT1/cmr/m/n/10 > no cal-cu-la-tion; De-crypt the FILE[]KEY with the SHARE[]KEY
 
  []
 
 
-Overfull \hbox (1.49626pt too wide) in paragraph at lines 512--522
+Overfull \hbox (1.49626pt too wide) in paragraph at lines 525--535
 \OT1/cmr/m/n/10 -> ABE de-cryp-tion; De-crypt the file with the FILE[]KEY
  []
 
 
-Overfull \hbox (5.34628pt too wide) in paragraph at lines 512--522
+Overfull \hbox (5.34628pt too wide) in paragraph at lines 525--535
 \OT1/cmr/m/n/10 TIME ->count; Mod-ify or delete PUB-LIC[]SHARE[]KEY-
  []
 
 
-Overfull \hbox (0.18776pt too wide) in paragraph at lines 525--529
+Overfull \hbox (0.18776pt too wide) in paragraph at lines 538--542
 []\OT1/cmr/m/n/10 Generates keys for J-PAKE -> this can be a resource-
  []
 
 
-Overfull \hbox (1.53635pt too wide) in paragraph at lines 542--545
+Overfull \hbox (1.53635pt too wide) in paragraph at lines 555--558
 \OT1/cmr/m/n/10 anomaly de-tec-tion from log anal-y-sis, mea-sur-ing the data
  []
 
 [13]
-Overfull \hbox (14.03403pt too wide) in paragraph at lines 550--551
+Overfull \hbox (14.03403pt too wide) in paragraph at lines 563--564
 []\OT1/cmr/m/n/10 Table 5. EDC MOS scheme pro-cess-ing time for anomaly
  []
 
 
-Overfull \hbox (2.86948pt too wide) in paragraph at lines 556--558
+Overfull \hbox (2.86948pt too wide) in paragraph at lines 569--571
 \OT1/cmr/m/n/10 use cloud-based sys-tems is how to pro-vide se-cu-rity mech-
  []
 
 
-Overfull \hbox (1.06404pt too wide) in paragraph at lines 556--558
+Overfull \hbox (1.06404pt too wide) in paragraph at lines 569--571
 \OT1/cmr/m/n/10 a-nisms to sup-port of-fline cor-po-rate mo-bile de-vices. Once
 
  []
@@ -793,12 +802,12 @@ Underfull \hbox (badness 4391) in paragraph at lines 29--32
 \OT1/cmr/m/n/10 ciphercloud . com / blog / cloud -[] data -[] encryption -[]
  []
 
-
+[14]
 Underfull \hbox (badness 6461) in paragraph at lines 54--58
 \OT1/cmr/m/n/10 u-lar se-cret shar-ing. In: Sym-bolic and Nu-
  []
 
-[14]
+
 Underfull \hbox (badness 4673) in paragraph at lines 84--88
 []\OT1/cmr/m/n/10 Higashi M (2015) Cloud data se-cu-rity and
  []
@@ -810,13 +819,13 @@ Underfull \hbox (badness 3417) in paragraph at lines 84--88
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Underfull \hbox (badness 1708) in paragraph at lines 107--110
 \OT1/cmr/m/n/10 Report -[] mobile -[] cyberthreats -[] web . pdf$[], ac-cessed:
 
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \hbox (badness 4608) in paragraph at lines 148--151
@@ -834,47 +843,57 @@ Underfull \hbox (badness 1253) in paragraph at lines 163--165
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15]
 Underfull \hbox (badness 2253) in paragraph at lines 167--171
 \OT1/cmr/m/n/10 overridelayout = true & 58725087881424$[], ac-cessed:
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 570.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 570.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 583.
+ [16
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 583.
  (./2016JGC.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 570.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 570.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 583.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 583.
 Package rerunfilecheck Info: File `2016JGC.out' has not changed.
 (rerunfilecheck)             Checksum: 066379691ED7A457F18C20D3FE58A1E1;447.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 570.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 583.
  ) 
 Here is how much of TeX's memory you used:
- 7352 strings out of 493304
- 110625 string characters out of 6139871
- 205609 words of memory out of 5000000
- 10619 multiletter control sequences out of 15000+600000
+ 7369 strings out of 493304
+ 110968 string characters out of 6139871
+ 203730 words of memory out of 5000000
+ 10626 multiletter control sequences out of 15000+600000
  10347 words of font info for 36 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,8n,33p,1415b,582s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,10n,33p,1415b,582s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmti10.pfb>
-Output written on 2016JGC.pdf (15 pages, 815710 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on 2016JGC.pdf (16 pages, 919386 bytes).
 PDF statistics:
- 555 PDF objects out of 1000 (max. 8388607)
- 487 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 107 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 616 PDF objects out of 1000 (max. 8388607)
+ 533 compressed objects within 6 object streams
+ 112 named destinations out of 1000 (max. 500000)
+ 112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

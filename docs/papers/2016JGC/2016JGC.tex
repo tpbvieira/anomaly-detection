@@ -270,6 +270,7 @@ The key hierarchy can be explained by Figure \ref{fig:10} where the key represen
 \end{figure}
 
 This proposed encryption scheme is called as a hybrid encryption since it uses a combination of different encryption methods in order to support all requirements to the encryption scheme used in the proposed infrastructure. Then it has:
+
 \begin{enumerate}
 	\item AES provides a fast encryption of the data files;
 	\item ABE permits to support the authorization policy on the encryption level;
@@ -284,55 +285,61 @@ The protected files are encrypted on the server side with the secure 128/256 bit
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/server-sideencryption.eps}
+	\includegraphics[width=8.6cm]{figures/server-sideencryption.eps}
 	\caption{Server-side encryption}
 	\label{fig:11}
 \end{figure}
 
-Usually, The AES encryption key is used as a session key. In our setting, it is not desirable to re-encrypt the files stored in the device unless there is a certain specific condition (for example, the user leaves the domain or a specific group in the domain (the group of users in the domain contains the users with the equal access rights, i.e. the same set of accessible file shares) and the file should not be accessible for this user anymore). This is why AES key in the presented notation is permanent and defined as FILE\_KEY. The randomly generated FILE\_KEY is unique for each file or set of files stored on a client. 
+Usually, the AES encryption key is used as a session key. In our setting, it is not desirable to re-encrypt the files stored in the device unless there is a certain specific condition (for example, the user leaves the domain or a specific group in the domain (the group of users in the domain contains the users with the equal access rights, i.e. the same set of accessible file shares) and the file should not be accessible for this user anymore). This is why AES key in the presented notation is permanent and defined as FILE\_KEY. The randomly generated FILE\_KEY is unique for each file or set of files stored on a client. 
 
 \subsection{ABE encryption to protect the FILE\_KEY }
 \label{sec_abe}
-With each user session, the permanent FILE\_KEY (unique AES key) is re-encrypted. The set of FILE\_KEYs is protected with the corresponding ABE keys. The unique ABE model that we propose supports the attribute policy based on user groups and on file shares, i.e. the key attributes correspond both to the groups and the file shares.
-The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibus2014}. The selective scheme for attribute-based encryption is as follows: if at least one attribute in the set{ti}U is equal to the attribute in the set{ti}M, the corresponding user U can decrypt the text M. In other words, as soon as the user and share have one attribute in common – the user can get access to the share. The components of the ABE encryption are:
+With each user session, the permanent FILE\_KEY (uni\-que AES key) is re-encrypted. The set of FILE\_KEYs is protected with the corresponding ABE keys. The unique ABE model that we propose supports the attribute policy based on user groups and on file shares, i.e. the key attributes correspond both to the groups and the file shares. 
 
-Master-key (MK) which is kept safely on server and accessible only for the domain administrator and is given by
-MK = (t1, t2,...,tn, y),
-where the values ti are randomly selected from the huge group Zp. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
+The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibus2014}. The selective scheme for attribute-based encryption is as follows: if at least one attribute in the set $\{t_i\}_M$ is equal to the attribute in the set{ti}M, the corresponding user U can decrypt the text M. In other words, as soon as the user and share have one attribute in common – the user can get access to the share. The components of the ABE encryption are:
 
-Public key (PK) depends on the master key values and is kept in the clear allowing users to access the information:
+\begin{enumerate}
+	\item \textbf{Master-key (MK)} which is kept safely on server and accessible only for the domain administrator and is given by $MK = (t_1, t_2,...,t_n, y)$, where the values $t_i$ are randomly selected from the huge group $Zp$. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
+	\item \textbf{Public key (PK)} depends on the master key values and is kept in the clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}",...,g^{t_n}, e(g,g)^y)$, Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve.
+	\item Secret user \textbf{KEY\_SET} depends on his attribute set. Here each $D_i$ (\textbf{GROUP\_KEY}) serves for decryption of the data of a single group of users, for example, related to some project: 
+	
+	$\{t_i\}_U \rightarrow D = \{D_i = g^{\frac{yw}{t_i}}\}$.
+	
+	\item Encrypted text $M$, in our context, $M = FILE\_KEY$, or the permanent AES symmetric key, which allows to avoid the file re-encryption. Encryption procedure is multiplication. The set of the public keys $E_i$ (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text $E$: 
 
-PK = (gt1, gt2,...,gtn, e(g,g)y),
-Here e(g,g) is the bilinear pairing function corresponding to an elliptic curve.
+	$E=Me(g,g)^{ys}, \{E_i = g^{\frac{t_is}{w}}\}, \forall i \in \{t_i\}_M$.
+	
+	\item Decryption is division: $M = \frac{E}{Y^s}$. 
+\end{enumerate}
 
-Secret user KEY\_SET depends on his attribute set. Here each Di (GROUP\_KEY) serves for decryption of the data of a single group of users, for example, related to some project:
-{ti}UD={Di=gywti}
+In order to perform this operation the user needs the pair of private key $D_i$ and public key $E_i$ corresponding to the attribute $t_i$: 
 
-Encrypted text M, in our context, M = FILE\_KEY, or the permanent AES symmetric key, which allows to avoid the file re-encryption. Encryption procedure is multiplication. The set of the public keys Ei (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text E:
-
-E=Me(g,g)ys,{ Ei =gtis/w }, i{ti}M
-
-Decryption is division:
-M=E/Ys
-
-In order to perform this operation the user needs the pair of private key Di and public key Ei corresponding to the attribute ti :
-Ys=e(g,g)ys=e(Ei,Di)=e(gywti,gtis/w)=e(g,g)ys
+$Y^s = e(g,g)^{ys} = e(E_i,D_i) = e(g^{\frac{yw}{t_i}},g^{\frac{t_is}{w}})=e(g,g)^{ys}$.
 
 The result of decryption is the FILE\_KEY - the symmetric AES key that permits to decrypt the contents of protected file. 
 
 \subsection{Secret sharing scheme to protect the key storage }
 \label{sec_secret}
 
-The attribute-based private keys Di should be protected while being stored in the device memory. Therefore, server encrypts the set of Di with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares:
-
-KEY\_SET\_KEY = PASS+PIN+TIME+DEV\_PASS. 
+The attribute-based private keys $D_i$ should be protected while being stored in the device memory. Therefore, server encrypts the set of $Di$ with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares: KEY\_SET\_KEY = PASS + PIN + TIME + DEV\_PASS. 
 
 Since the underlying sharing scheme is perfect \cite{galibus2008some}, the adversary cannot get any information of the KEY\_SET\_KEY unless he possessing all 4 key parts. Here the values PASS and PIN are predefined similar to the construction in \cite{galibus2015mobile}.
 
-The proposed authentication system is based on the shared storing of the user key. Also, the device acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share s1(x) is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let s(x)=d and s1(x)=f(PIN+PASS+TIME), 
-Where f is a one-way function that transforms the data into the string of the desired length: 
+The proposed authentication system is based on the shared storing of the user key. Also, the device acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share $s_1(x)$ is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let $s(x) = d$ and $s_1(x) = f(PIN + PASS + TIME)$, where $f$ is a one-way function that transforms the data into the string of the desired length: 
+
+\begin{equation}\label{eq:eq1}
+  \left\{
+  \begin{array}{@{}ll@{}}
+    S = s \textrm{ mod } p_0
+    \\
+    S = s_1 \textrm{ mod } p_1
+  \end{array}\right.
+\end{equation}
 
 According to the CRT:
+\begin{equation}\label{eq:eq2}
+S \equiv {s_{1}p_{0}{p_0}^{-1}}_{p1} + {s_{1}p_{1}{p_1}^{-1}}_{p0} + \textrm{ mod } p_0p_1
+\end{equation}
 
 Thus calculated DEV\_PASS is written to the permanent device memory. The user share is not saved. Otherwise, it would allow an attacker to locally validate the restored private key.
 
@@ -340,7 +347,7 @@ Thus calculated DEV\_PASS is written to the permanent device memory. The user sh
 \label{sec_mos}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as Principal Component Analysis and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic identification of attacks or malicious behaviors. 
 
-Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time. For example, one element can represent the number of file readings on folder m during the minute n.
+Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time. For example, one element can represent the number of file readings on folder $m$ during the minute $n$.
 
 The MOS schemes can rely on correlation or covariance analysis, where the correlation analysis identifies anomalies on sparse or subtle number of file operations, while the MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period.
 

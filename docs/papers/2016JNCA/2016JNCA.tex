@@ -472,6 +472,7 @@ This approach for detection of ports under attack via similarity analysis is giv
     s_{m,\hat{n}} = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(m,\hat{n})}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(m,\hat{n})}}},
   \end{array}\right.
 \end{equation}
+
 where $x^{(\hat{q})}_{(m,\hat{n})}$ denotes the $m$-th port of the selected $n$-th minute identified as under attack and $x_{(m,n)}$ denotes the $m$-th port of the last $n$-th minute of $\boldsymbol{X}_n$, which is used to calculate the $\boldsymbol{v}_{(m,\hat{n})}$ most significant eigenvectors that contains the traffic of the $m$-th port of the $\hat{n}$-th minute identified as under attack.
 
 Once $\boldsymbol{v}^{(q)}$ and $\boldsymbol{v}_{(m,\hat{n})}$ are obtained, then the $s_{m,\hat{n}}$ similarity degree can be calculated in order to identify if the traffic replacement highlights the adition of anomalous traffic by the evaluated $m$-th port during the $\hat{n}$-th minute previously identified as under attack. 
