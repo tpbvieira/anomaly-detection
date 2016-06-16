@@ -16,19 +16,25 @@
 %
 %\documentclass{svjour3}                     % onecolumn (standard format)
 %\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
-\documentclass[twocolumn]{svjour3}          % twocolumn
+%\documentclass[smallextended]{svjour3}      % onecolumn (second format)
+\documentclass[twocolumn]{svjour3}          	% twocolumn
 
 \smartqed  % flush right qed marks, e.g. at end of proof
 
 % text
 \usepackage[utf8x]{inputenc}
+\usepackage{enumitem}
+\newtheorem{thm}{Scenario}
+
+% math
+\usepackage{amsfonts}
+\usepackage{amsmath}
 
 % figure
 \usepackage{graphicx}
 \usepackage{epstopdf}
 
-% reference and bib issues
+% reference and bib
 \usepackage[numbers]{natbib}
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
@@ -84,10 +90,14 @@ Preventing data leakage on the mobile device is a crucial security problem. Ther
 \section{Introduction}
 \label{sec_intro}
 Cloud computing is a new rapidly evolving paradigm in the world of distributed networking and computation. The basic features of the cloud environment is providing the elastic, on-demand and secure services for the end-users. While the first two requirements are rather well conceptualized and supported by the majority of the cloud platforms in use, security is a serious concern of the cloud providers and governmental organizations as well as academia and research community \cite{csa2016,higashi2015,gartner2015}. Although for the small and medium-sized enterprises (SME) the cloud environment is often the most cost-effective and easily scalable solution, the security and privacy of the sensitive data in cloud platforms are also not fully conceptualized leading to obscure and incomplete security paradigms and solutions.
+
 A common practice to provide a cloud solution with stable security is to use a specific type of cloud service, such as Cloud Access Security Broker (CASB) or Cloud Access Control (CAC). These services are specifically designed to bring security at a single access point and provide the coordination of the most important security measures. It is estimated by Gartner \cite{skyhigh2015} that such systems will be used by 85\%  of companies by 2020. Obviously, the reason for this is that the organization of security measures at a single control point allows to control and to monitor the level of cloud protection much more effectively. The basic features of the CASB are: discovery of cloud services, encryption along with tokenization for better search properties, access control, Data Loss Prevention (DLP) services, authentication, and auditing and alerting services \cite{lawson2015}. The protection of the confidential data, according to the standards of CASB deployment should be provided elsewhere, i.e. in transit and at the end-user, i.e. end-client, side \cite{campbell2015}.
+
 Additional security issues and requirements have to be considered when mobile devices are actively used in corporate cloud environment \cite{yovel2014}. Today more and more organizations and enterprises are functioning in the Bring-Your-Own-Device (BYOD) paradigm. The uncontrolled usage of the mobile devices represents a serious risk to the development of secure SME cloud platforms being the bottleneck of the corporate information security system (ISS). While the enterprise cloud infrastructure based on the web interface can be protected by powerful third-party services, such as CASB and CAC, the corporate mobile app is usually light-weighted and generally less protected. The protection scheme used on a mobile device should be both computationally secure as well as resource-constrained due to battery power limitations \cite{khan2015cloud}. Therefore, encrypting files and generating keys on a mobile device is not considered a good solution. On the other hand, the protection schemes with good computational qualities lack the security analysis in many cases \cite{khan2014bss}. The common practice is the shadow user activities monitoring \cite{yovel2014}. However, the mobile device usage stays unprotected in all the proposed scenarios while in offline mode.
+
 Suppose that a SME uses CASB in order to protect data at rest, i.e. while stored on the server-side, in transit, communicating with server, and, in use, while the client is connected to the network. In this case, when the mobile client goes offline with the sensitive corporate data on board all powerful cloud-based tools cannot help and the mobile app has to secure itself with its own limited resources. Moreover, due to the resources constraint, there is a crucial difference in strategy of online and offline mode protection. For example, offline mode does not allow performing the extensive computation and encryption on the mobile device.
 Observing the above described landscape, this paper outlines the concept of the offline mobile client security. This paper proposes a novel approach based on powerful cryptographic preventive methods, such as secret sharing \cite{galibus2007} and ABE encryption \cite{goyal2006attribute}. Moreover, our proposed approach proposal includes the usage of the user behavior analysis based on Model Order Selection (MOS) \cite{tenorio2013greatest}, in order to highlight possible threats, and to reduce the risks and the harm of the most common threats, which are the expired user misusing password and the intruder attack. The key expiration period is safely incorporated into the proposed system solution in order to enhance security. Additionally, the behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors. The main target of our proposed solution is to provide a maximum defense at the minimal resource cost.
+
 The paper is structured as follows. Section 2 analyzes the most common security problems in the mobile cloud environment and the proposed solutions for them related to the offline protection in the BYOD world. Section 3 outlines the basic processes and the module security infrastructure of the proposed solution as well as the outline of online mode security. Section 4 presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section 5 provides the schemes of the main security blocks including encryption and key usage hierarchies as well as explanations of the core security methods: SSS, ABE and MOS. Section 6 discusses the security proofs including the outline of adversary model, common threat scenarios and the proposed analytics to discover abnormal usage. Still in Section 6, complexity analysis and practical implementation results are included. Section 7 concludes the paper.
 
 \section{Related works}
@@ -299,8 +309,8 @@ With each user session, the permanent FILE\_KEY (uni\-que AES key) is re-encrypt
 The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibus2014}. The selective scheme for attribute-based encryption is as follows: if at least one attribute in the set $\{t_i\}_M$ is equal to the attribute in the set{ti}M, the corresponding user U can decrypt the text M. In other words, as soon as the user and share have one attribute in common – the user can get access to the share. The components of the ABE encryption are:
 
 \begin{enumerate}
-	\item \textbf{Master-key (MK)} which is kept safely on server and accessible only for the domain administrator and is given by $MK = (t_1, t_2,...,t_n, y)$, where the values $t_i$ are randomly selected from the huge group $Zp$. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
-	\item \textbf{Public key (PK)} depends on the master key values and is kept in the clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}",...,g^{t_n}, e(g,g)^y)$, Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve.
+	\item \textbf{Master-key (MK)} which is kept safely on server and accessible only for the domain administrator and is given by $MK = (t_1, t_2, \cdots ,t_n, y)$, where the values $t_i$ are randomly selected from the huge group $Zp$. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
+	\item \textbf{Public key (PK)} depends on the master key values and is kept in the clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}", \cdots ,g^{t_n}, e(g,g)^y)$, Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve.
 	\item Secret user \textbf{KEY\_SET} depends on his attribute set. Here each $D_i$ (\textbf{GROUP\_KEY}) serves for decryption of the data of a single group of users, for example, related to some project: 
 	
 	$\{t_i\}_U \rightarrow D = \{D_i = g^{\frac{yw}{t_i}}\}$.
@@ -323,11 +333,11 @@ The result of decryption is the FILE\_KEY - the symmetric AES key that permits t
 
 The attribute-based private keys $D_i$ should be protected while being stored in the device memory. Therefore, server encrypts the set of $Di$ with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares: KEY\_SET\_KEY = PASS + PIN + TIME + DEV\_PASS. 
 
-Since the underlying sharing scheme is perfect \cite{galibus2008some}, the adversary cannot get any information of the KEY\_SET\_KEY unless he possessing all 4 key parts. Here the values PASS and PIN are predefined similar to the construction in \cite{galibus2015mobile}.
+Since the underlying sharing scheme is perfect \cite{galibus2008some}, hence the adversary cannot get any information of the KEY\_SET\_KEY unless he possessing all 4 key parts. Here the values PASS and PIN are predefined similar to the construction in \cite{galibus2015mobile}.
 
 The proposed authentication system is based on the shared storing of the user key. Also, the device acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share $s_1(x)$ is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let $s(x) = d$ and $s_1(x) = f(PIN + PASS + TIME)$, where $f$ is a one-way function that transforms the data into the string of the desired length: 
 
-\begin{equation}\label{eq:eq1}
+\begin{equation}\label{eq:eq01}
   \left\{
   \begin{array}{@{}ll@{}}
     S = s \textrm{ mod } p_0
@@ -337,7 +347,7 @@ The proposed authentication system is based on the shared storing of the user ke
 \end{equation}
 
 According to the CRT:
-\begin{equation}\label{eq:eq2}
+\begin{equation}\label{eq:eq02}
 S \equiv {s_{1}p_{0}{p_0}^{-1}}_{p1} + {s_{1}p_{1}{p_1}^{-1}}_{p0} + \textrm{ mod } p_0p_1
 \end{equation}
 
@@ -347,40 +357,73 @@ Thus calculated DEV\_PASS is written to the permanent device memory. The user sh
 \label{sec_mos}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as Principal Component Analysis and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic identification of attacks or malicious behaviors. 
 
-Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time. For example, one element can represent the number of file readings on folder $m$ during the minute $n$.
+Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time, and grouped into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\mathbf{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the client app.
 
-The MOS schemes can rely on correlation or covariance analysis, where the correlation analysis identifies anomalies on sparse or subtle number of file operations, while the MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period.
+The MOS schemes can rely on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
 
-Classical approaches to model order selection require the computation of the sample covariance matrix Vxx and of its eigenvalues, obtained from the measurement matrix X of the zero mean samples given by
+Classical approaches to model order selection require the computation of the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\mathbf{X}$ of the zero mean samples given by
 
-The set of obtained vectors zm composes the zero mean matrix Z, then the covariance matrix Vxx can be calculated as follows 
+\begin{equation}\label{eq:eq03}
+\mathbf{y}_{m}^{(q)} = \mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}.
+\end{equation}
 
-Vxx =1NZZT
+The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
 
-For MOS based on correlation analysis, instead of calculate the zero mean samples, to obtain the correlation matrix Rxx , it is required, for each variable, to make the standard deviation unitary as follows
+\begin{equation}\label{eq:eq04}
+\mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}}.
+\end{equation}
 
-The set of vectors sm composes the matrix S, then the correlation matrix Rxx can be calculated via 
-. Once the Vxx or Rxx have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to Vxx and Rxx as a matrix C. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to , in order to obtain the vector of eigenvalues e, as following:
+For MOS based on sample covariance of zero mean and unitary standard deviation, it is required, for each variable, to make the standard deviation unitary as follows
 
+\begin{equation}\label{eq:eq05}
+\mathbf{z}_{m}^{(q)} = \frac{\mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}}{\mathbf{\sigma}_{m}^{(q)}}.
+\end{equation}
 
+The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$, then the sample covariance matrix $\mathbf{\hat{R}}_{zz}^{(q)}$ can be calculated via 
 
-The eigenvalues should be sorted in descending order, as defined by , to make possible the selection of the first eigenvalue in the obtained sequence, represented by, which is the largest eigenvalue of the data evaluated for attack detection.
+\begin{equation}\label{eq:eq06}
+\mathbf{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\mathbf{Z}^{(q)}\mathbf{Z}^{(q)^{\rm T}}.
+\end{equation}
 
-The process of obtaining the and the matrix C(t), finding the largest eigenvalue for each t-th time frame, should be repeated until t = T, in order to obtain the largest eigenvalue of all time frames, as presented by 
+Once the $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ as a matrix $\mathbf{C}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\mathbf{C}^{(q)} = \mathbf{V}^{(q)}\mathbf{\Lambda}^{(q)}\mathbf{V}^{(q)^{\rm T}},$, in order to obtain the vector of eigenvalues $e$, as following:
 
-E =                                                                                             
+\begin{equation}\label{eq:eq07}
+\mathbf{e}^{(q)} = \rm diag(\mathbf{\Lambda}^{(q)}),
+\end{equation}
 
-Since   , then the first line of the matrix E contains the largest eigenvalues of each t-th time frame, which is the expected input for MOS schemes and can be expressed as 
-emax=E{:,1}
+The eigenvalues should be sorted in descending order, as defined by $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > \cdots > \lambda_{m}^{(q)}$, to make possible the selection of the first eigenvalue in the obtained sequence, represented by $\lambda_{1}^{(q)}$, which is the largest eigenvalue of the data evaluated for attack detection.
 
-Once obtained the largest eigenvalues of each q-th time frame, it is possible to apply a selected MOS scheme to estimate the model order $\hat{d}$, which is the estimated number of time frames with malicious behavior. Therefore, emax is used as input parameter for MOS schemes, according to the equation.
+The process of obtaining the $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and the matrix $\mathbf{C}^{(q)}$, finding the largest eigenvalue for each $q$-th time frame, should be repeated until $q = Q$, in order to obtain the largest eigenvalue of all time frames, as presented by 
 
-Note that some MOS schemes may also require the amount of time that compose a time frame, such as . For more information about MOS schemes, interested readers are referred to \cite{da2009comparison}.
+\begin{equation}\label{eq:eq08}
+\mathbf{E} =
+\begin{bmatrix}
+  \lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
+  \lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
+  \lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  \lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
+\end{bmatrix}.
+\end{equation}
+
+Since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\mathbf{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the expected input for MOS schemes and can be expressed as 
+
+\begin{equation}\label{eq:eq09}
+\boldsymbol{e}_{\rm max} = \boldsymbol{E}\{:,1\} = [ \lambda_1^{(1)}, \lambda_1^{(2)} \cdots \lambda_1^{(Q)}]
+\end{equation}
+
+Once obtained the largest eigenvalues of each $q$-th time frame, it is possible to apply a selected MOS scheme to estimate the model order $\hat{d}$, which is the estimated number of time frames with malicious behavior. Therefore, $\boldsymbol{e}_{\rm max}$ is used as input parameter for MOS schemes, according to the equation
+
+\begin{equation}\label{eq:eq09}
+\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max})
+\end{equation}
+
+Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to \cite{da2009comparison}.
 
 \section{Results and analysis}
 \label{sec_results}
 
-... add some text
+This section provides the detailed analysis of the results the proposed approach regarding security and complexity analysis.
 
 \subsection{Security analysis}
 \label{sec_sec_analysis}
@@ -390,78 +433,118 @@ The security analysis of the proposed model was performed both from the point of
 \label{sec_adversary_model}
 The proposal is to use a restricted adversary model. In other words, the actions of the adversary are predicted within the outlines model and scenarios. For example, it is not possible to guarantee the security of the decrypted document once the user copies its content to another file. In the analyzed scenarios, it is assumed that the adversary can:
 
-Steal the user keys one-by-one while the app performs decryption, if he is outsider;
-Use expired key to decrypt the files, if he is insider;
-Does not have possibility to perform offline dictionary attack and cryptanalysis, i.e. does not have the possibility to verify user credentials apart from entering them in the client app;
-Steal the encrypted files but not the decrypted ones.
+\begin{enumerate}
+	\item Steal the user keys one-by-one while the app performs decryption, if he is outsider;
+	\item Use expired key to decrypt the files, if he is insider;
+	\item Does not have possibility to perform offline dictionary attack and cryptanalysis, i.e. does not have the possibility to verify user credentials apart from entering them in the client app;
+	\item Steal the encrypted files but not the decrypted ones.
+\end{enumerate}
 
 \subsubsection{Security analysis}
 \label{sec_sec_analysis}
-Offline mode
-In the offline mode the client does not store the user password (see section 3 for details), i.e. no information about the password leaks, and therefore there is no possibility for the malicious user to check if the password he is trying to enter is correct or not. The only possible scenario for the information leakage in the case of the malicious outsider is if:
-The hacker steals all the parts of KEY\_SET\_KEY;
-The hacker steals the KEY\_SET;
-The hacker try the brute force offline dictionary attack on all the previous values, they have to belong to ONE TIME SESSION (the values of ”a” and ”b” belong to one period of time i.e. TIME, DEV\_PASS, KEY\_SET);
-Steal the permanent FILE\_KEY (this is protected by the KEY\_SET);
-Steal the file and try to decrypt it with offline dictionary attacks.
-        Still, the hacker has to get 4 values: TIME, DEV\_PASS, KEY\_SET, FILE\_KEY - from one session. At the same time he should try the offline dictionary attack on PIN+PASS. Moreover, the 4 values provide access only to 1 single file. So practically, it is very difficult to perform such attack due to the key expiration period. In accordance with the conditions 1) and 3) of our adversary model, the above actions are not possible for such adversary in the conditions presented.
+
+\textbf{Offline Mode}\\
+
+In the offline mode the client does not store the user password (see Section \ref{sec_offline_mode_workflow} for details), i.e. no information about the password leaks, and therefore there is no possibility for the malicious user to check if the password he is trying to enter is correct or not. The only possible scenario for the information leakage in the case of the malicious outsider is if:
+
+\begin{enumerate}[label=(\alph*)]
+	\item The hacker steals all the parts of KEY\_SET\_KEY;
+	\item The hacker steals the KEY\_SET;
+	\item The hacker try the brute force offline dictionary attack on all the previous values, they have to belong to ONE TIME SESSION (the values of ”a” and ”b” belong to one period of time i.e. TIME, DEV\_PASS, KEY\_SET);
+	\item Steal the permanent FILE\_KEY (this is protected by the KEY\_SET);
+	\item Steal the file and try to decrypt it with offline dictionary attacks.
+\end{enumerate}
+
+Still, the hacker has to get 4 values from one session: TIME, DEV\_PASS, KEY\_SET, FILE\_KEY. At the same time he should try the offline dictionary attack on PIN+PASS. Moreover, the 4 values provide access only to 1 single file. So practically, it is very difficult to perform such attack due to the key expiration period. In accordance with the conditions 1 and 3 of our adversary model, the above actions are not possible for such adversary in the conditions presented.
 
 The temporary nature of all parameters obliges the user to connect to server when necessary and prevents the malicious actions from the user side. The only possible scenario when malicious or expired user wishes to prolong his old credentials is:
-He has to steal the DEV\_PASS and TIME synchronized with his credentials;
-He has to be able to combine;
-He has to steal the KEY\_SET synchronized with his credentials;
-He has to steal the protected FILE\_KEY (also synchronized) and encrypted file;
-He has to do everything without the client (because the client checks the TIME and renews the PUBLIC\_SHARE\_KEY).
+
+\begin{enumerate}[label=(\alph*)]
+	\item Steal the file and try to decrypt it with offline dictionary attacks.
+	\item He has to be able to combine;
+	\item He has to steal the KEY\_SET synchronized with his credentials;
+	\item He has to steal the protected FILE\_KEY (also synchronized) and encrypted file;
+	\item He has to do everything without the client (because the client checks the TIME and renews the PUBLIC\_SHARE\_KEY).
+\end{enumerate}
+
 Basically, for a malicious user there is practically no way to use the client with the old keys. The fact that the client does not contain any data to be checked or validated does not prevent the user from seeing the contents of decrypted files, but with the wrong password the decrypted files will be different from the original ones.
 
-The client still has to count the tries (to prevent the hacker to perform brute force attack) within one session. In accordance with the conditions 2) and 4) of the adversary model, the above actions are not possible for such adversary.
-Online mode
+The client still has to count the tries (to prevent the hacker to perform brute force attack) within one session. In accordance with the conditions 2 and 4 of the adversary model, the above actions are not possible for such adversary.
+\\
+\\
+\textbf{Online mode}\\
+
 In the online mode the protection of the mobile system is backed up by the communication with server. The key expiry period and the usage of J-PAKE \cite{hao2010j,hao2008password} guarantees that the sensitive data sent over the network cannot leak. The detailed security analysis of J-PAKE is presented in \cite{toorani2014security}. The data sent in the clear i.e. encrypted files and the public keys of ABE does not need to be protected additionally as the AES and ABE guarantee its security.
 
 \subsubsection{Common threat scenarios}
 \label{sec_common}
 This section provides the detailed description of the common scenarios in which the log and behavioral analysis is provided. The behavioral analysis can help to keep the user or administrator informed of the threat and take actions, as well as it can be useful in order to implement threat preventions or reactive actions to avoid threat propagation.
 
-\subsubsection{An attacker uses a valid password to perform operations on a bulk of files}
-\label{sec_attacker_valid}
-The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware \cite{kaspersky2014}.
-MOS schemes based on covariance analysis are effective to reveal abrupt changing of behaviors over time \cite{tenorio2013greatest}, making possible to identify intense malicious behaviors on offline mode of mobile clients, such in case of ransomware attack or bulk access to sensitive data.
-The large number of operations over time is a well-known pattern of some attacks, due to the efforts on security measures to make the attacks infeasible over time. In this context, the operations can also be evaluated in contrast to the estimated required time for operations done by legitimate behaviors, such as the evaluation of the mean time between operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities.
-Sparse or subtle file operations, with low number of operations distributed over different files or directories, during short period of time can indicate anomalies in contrast to the required time for legitimate directory navigation. MOS and correlation analysis can be suitable if applied to evaluate the time and location of operations, in order to identify unreachable navigation, if compared to legitimate navigation
-The MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on the correlation matrix highlights massive or concentrated operations over time or folder location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
-This threat scenario, where an attacker uses a valid password and session to perform operations on a bulk of files, can have its steps described as:
-The hacker has access to the mobile client and is able to perform operations;
-The session time is valid;
-The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
-The client incrementally append each operation attempt time into the logging;
-The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities;
-The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time;
+\begin{thm}
+An attacker uses a valid password to perform operations on a bulk of files.
+\end{thm}
 
-\subsubsection{Usage of expired password to perform unauthorized operations }
-\label{sec_attacker_expired}
+The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware \cite{kaspersky2014}.
+
+MOS schemes based on covariance analysis are effective to reveal abrupt changing of behaviors over time \cite{tenorio2013greatest}, making possible to identify intense malicious behaviors on offline mode of mobile clients, such in case of ransomware attack or bulk access to sensitive data.
+
+The large number of operations over time is a well-known pattern of some attacks, due to the efforts on security measures to make the attacks infeasible over time. In this context, the operations can also be evaluated in contrast to the estimated required time for operations done by legitimate behaviors, such as the evaluation of the mean time between operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities.
+
+Sparse or subtle file operations, with low number of operations distributed over different files or directories, during short period of time can indicate anomalies in contrast to the required time for legitimate directory navigation. MOS and correlation analysis can be suitable if applied to evaluate the time and location of operations, in order to identify unreachable navigation, if compared to legitimate navigation
+
+The MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on the correlation matrix highlights massive or concentrated operations over time or folder location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
+
+This threat scenario, where an attacker uses a valid password and session to perform operations on a bulk of files, can have its steps described as:
+
+\begin{enumerate}[label=(\alph*)]
+	\item The hacker has access to the mobile client and is able to perform operations;
+	\item The session time is valid;
+	\item The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
+	\item The client incrementally append each operation attempt time into the logging;
+	\item The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities;
+	\item The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time.
+\end{enumerate}
+
+\begin{thm}
+Usage of expired password to perform unauthorized operations.
+\end{thm}
+
 In the offline mode, the session time is used to restrict the operations during a specified period, although it is possible to manipulate the current time in mobile clients, to emulate a period in which the session was valid. The log analysis by MOS can deal with this kind of threat, through the incremental logging of the time when each operation was performed, followed by the behavioral evaluation of operations over time. 
+
 The incremental logging assumes that new logged operations shall have equal or bigger time than the last logged operation, the violation of this rule means that the system is out of sync and indicates a malicious behavior. Additionally, a large amount or sparse operation performed at the same time, or during a short period, can indicate the use of backtrack techniques to maintain a valid session during necessary time to perform an attack. Massive, subtle or sparse malicious operation performed during a valid session time can be identified by MOS schemes based on covariance and correlation analysis.
+
 Applying MOS to the analysis of the time between user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. The MOS based on correlation analysis identifies anomalies on sparse or subtle number of file operations, since the eigenvalue analysis based on the correlation matrix highlights the unexpected number of sparse (such as file operations on diverse folders) or subtle operations. Consequently, the result of the eigenvalue analysis is applied to MOS schemes, in order to identify the occurrence of malicious behaviors during the valid session.
+
 The MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on correlation matrix highlights massive or concentrated operations over time or location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
+
 This threat scenario, where the attacker uses expired password to perform unauthorized operations, can have its steps described as:
-The hacker steals the operating system;
-The hacker modifies the time of the operating system to a period when the session was valid;
-The hacker has access to the mobile client and is able to perform operations;
-The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
-The client incrementally append each operation attempt time into the logging;
-The client verifies if one logged time is older than the last operation time. If it is true, the MOS module classifies the evaluated operation as malicious;
-The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations;
-The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time;
+
+\begin{enumerate}[label=(\alph*)]
+	\item The hacker steals the operating system;
+	\item The hacker modifies the time of the operating system to a period when the session was valid;
+	\item The hacker has access to the mobile client and is able to perform operations;
+	\item The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
+	\item The client incrementally append each operation attempt time into the logging;
+	\item The client verifies if one logged time is older than the last operation time. If it is true, the MOS module classifies the evaluated operation as malicious;
+	\item The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations;
+	\item The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time;
+\end{enumerate}
 
 \subsubsection{Data Modeling for Behavioral Analysis }
 \label{sec_data}
- MOS schemes are used in order to identify anomalous behavior that can indicate an attack and be used to prevent or avoid attack propagation. Therefore, it is necessary to analyze the data that can be collected from user operations on mobile client, to identify features that can be modeled and submitted to MOS schemes, according to described in Section 5.4.
-The selected features shall be modeled as matrices which represents a signal superposition containing noise, legitimate and malicious behavior \cite{tenorio2013greatest}, grouped into time frames , where M defines the decomposition of a selected feature, N defines the time decomposition and represents the number of occurrences of the feature m during the time n.
+
+MOS schemes are used in order to identify anomalous behavior that can indicate an attack and be used to prevent or avoid attack propagation. Therefore, it is necessary to analyze the data that can be collected from user operations on mobile client, to identify features that can be modeled and submitted to MOS schemes, according to described in Section \ref{sec_mos}.
+
+The selected features shall be modeled as matrices which represents a signal superposition containing noise, legitimate and malicious behavior \cite{tenorio2013greatest}, grouped into time frames $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
+
 In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the mobile client, in order to be evaluated to identify malicious behaviors. This work proposes to evaluate the following features:
+
 File Access (Time and File System Location), i.e. data access to selected files in offline mode, accessing the data stored on the mobile client. The file access feature can be decomposed into:
+
 file decryption, 
 decrypted file reading 
 decrypted file execution, 
+
 Therefore, it is necessary to generate three matrices for malicious behaviors analysis, such as: 
 massive file access, which can reveal data leakage and be identified by MOS schemes based on covariance analysis; 
 low file access into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. 
