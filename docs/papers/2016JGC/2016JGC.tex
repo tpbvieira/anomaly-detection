@@ -537,106 +537,186 @@ MOS schemes are used in order to identify anomalous behavior that can indicate a
 
 The selected features shall be modeled as matrices which represents a signal superposition containing noise, legitimate and malicious behavior \cite{tenorio2013greatest}, grouped into time frames $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
 
-In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the mobile client, in order to be evaluated to identify malicious behaviors. This work proposes to evaluate the following features:
+In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the mobile client, in order to be evaluated to identify malicious behaviors. This work proposes to evaluate the following features.
 
-File Access (Time and File System Location), i.e. data access to selected files in offline mode, accessing the data stored on the mobile client. The file access feature can be decomposed into:
+\paragraph{\textbf{File Access (Time and File System Location)},}i.e. data access to selected files in offline mode, accessing the data stored on the mobile client. The file access feature can be decomposed into more detailed features, which are:
 
-file decryption, 
-decrypted file reading 
-decrypted file execution, 
+\begin{enumerate}
+	\item file decryption; 
+	\item decrypted file reading;
+	\item decrypted file execution. 
+\end{enumerate}
 
 Therefore, it is necessary to generate three matrices for malicious behaviors analysis, such as: 
-massive file access, which can reveal data leakage and be identified by MOS schemes based on covariance analysis; 
-low file access into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. 
-Malicious sparse file accesses can be identified by MOS schemes base correlation analysis.
-File Update (Time and File System Location), i.e. writing operations into selected files in offline mode, writing the data stored on the mobile client. The update feature can be decomposed into:
- file encryption 
-decrypted file writing, 
-Therefore, it is necessary to generate two matrices for malicious behaviors analysis, such as: 
-massive file update, which can reveal ransomware or similar attacks and be identified by MOS schemes based on covariance analysis; 
-low number of file update into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. Malicious sparse file accesses can be identified by MOS schemes base correlation analysis.
-File Download (Start Time, End Time and File System Location), i.e download requests in online mode, evaluated by the mobile client. The file download feature shall be modeled as the matrix of number downloads by file location over time, in order to perform malicious behaviors analysis, such as:
-massive data leakage or similar attacks, which can be identified by MOS schemes based on covariance analysis; 
-low number of file download from several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file download in order to avoid the massive file download characterization. Malicious sparse file download can be identified by MOS schemes base correlation analysis.
-File Upload (Start Time, End Time and File System Location), i.e upload requests in online mode, evaluated by the mobile client. The file upload feature can reveal attempts of ransomware or similar attacks and be identified by MOS schemes based on covariance analysis. Therefore, it is necessary model the matrix of number uploads by file location over time, in order to perform malicious behaviors analysis, such as:
-massive file upload, similar to ransomware attack, which can be identified by MOS schemes based on covariance analysis; 
-low number of file upload to several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file upload in order to avoid the massive file upload characterization. Malicious sparse file upload can be identified by MOS schemes base correlation analysis.
 
-These features provide the necessary information to apply MOS schemes for evaluating malicious behaviors according to the following scenarios and steps:
-The hacker accesses the mobile client during a valid session and read/write few files at several folders:
-The hacker steals the device;
-The hacker changes the device to offline mode;
-The hacker accesses the mobile client;
-The current session is valid;
-The hacker read/writes few files at several folders;
-MOS based on correlation analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
-MOS indicates the number of time frames with anomalous behavior;
-The hacker accesses the mobile client during a valid session and read/write several files at few folders:
-The hacker steals the device;
-The hacker changes the device to offline mode;
-The hacker accesses the mobile client;
-The current session is valid;
-The hacker read/writes several files at few folders
-MOS based on covariance analysis is applied to the matrix of number of file operations, grouped by the file system location over time
-MOS indicates the number of time frames with anomalous behavior;
-The hacker emulates a valid session and read/write few files at several folders: 
-The hacker steals the device;
-The hacker changes the device to offline mode;
-The current session is expired;
-The hacker changes the device time to a valid period for the current session;
-The hacker accesses the mobile client;
-The current session is valid;
-The hacker perform sparse operations during the valid period;
-MOS based on correlation analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
-MOS indicates the number of time frames with anomalous behavior;
-The hacker emulates a valid session and read/write several files at few folders: 
-The hacker steals the device;
-The hacker changes the device to offline mode;
-The current session is expired;
-The hacker changes the device time to a valid period for the current session;
-The hacker accesses the mobile client;
-The current session is valid;
-The hacker perform bulk operations during the valid session;
-MOS based on covariance analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
-MOS indicates the number of time frames with anomalous behavior;
+\begin{enumerate}[label=(\alph*)]
+	\item massive file access, which can reveal data leakage and be identified by MOS schemes based on covariance analysis; 
+	\item low file access into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization;
+	\item Malicious sparse file accesses can be identified by MOS schemes base correlation analysis. 
+\end{enumerate}
+
+\paragraph{\textbf{File Update (Time and File System Location)},}i.e. writing operations into selected files in offline mode, writing the data stored on the mobile client. The update feature can be decomposed into:
+
+\begin{enumerate}
+	\item file encryption;
+	\item decrypted file writing.
+\end{enumerate}
+
+Therefore, it is necessary to generate two matrices for malicious behaviors analysis, such as: 
+
+\begin{enumerate}[label=(\alph*)]
+	\item massive file update, which can reveal ransomware or similar attacks and be identified by MOS schemes based on covariance analysis; 
+	\item low number of file update into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. Malicious sparse file accesses can be identified by MOS schemes base correlation analysis.
+\end{enumerate}
+
+\paragraph{\textbf{File Download (Start Time, End Time and File System Location)},}i.e. download requests in online mode, evaluated by the mobile client. The file download feature shall be modeled as the matrix of number downloads by file location over time, in order to perform malicious behaviors analysis, such as:
+
+\begin{enumerate}
+	\item massive data leakage or similar attacks, which can be identified by MOS schemes based on covariance analysis;
+	\item low number of file download from several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file download in order to avoid the massive file download characterization. Malicious sparse file download can be identified by MOS schemes base correlation analysis.
+\end{enumerate}
+
+\paragraph{\textbf{File Upload (Start Time, End Time and File System Location)},}i.e. upload requests in online mode, evaluated by the mobile client. The file upload feature can reveal attempts of ransomware or similar attacks and be identified by MOS schemes based on covariance analysis. Therefore, it is necessary model the matrix of number uploads by file location over time, in order to perform malicious behaviors analysis, such as:
+
+\begin{enumerate}
+	\item massive file upload, similar to ransomware attack, which can be identified by MOS schemes based on covariance analysis; 
+	\item low number of file upload to several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file upload in order to avoid the massive file upload characterization. Malicious sparse file upload can be identified by MOS schemes base correlation analysis.
+\end{enumerate}
+
+%These features provide the necessary information to apply MOS schemes for evaluating malicious behaviors according to the following scenarios and steps:
+%
+%\begin{enumerate}
+%	\item The hacker accesses the mobile client during a valid session and read/write few files at several folders:
+%	\begin{enumerate}
+%		\item The hacker steals the device;
+%		\item The hacker changes the device to offline mode;
+%		\item The hacker accesses the mobile client;
+%		\item The current session is valid;
+%		\item The hacker read/writes few files at several folders;
+%		\item MOS based on correlation analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
+%		\item MOS indicates the number of time frames with anomalous behavior;
+%	\end{enumerate}
+%	\item The hacker accesses the mobile client during a valid session and read/write several files at few folders:
+%	\begin{enumerate}
+%		\item The hacker steals the device;
+%		\item The hacker changes the device to offline mode;
+%		\item The hacker accesses the mobile client;
+%		\item The current session is valid;
+%		\item The hacker read/writes several files at few folders
+%		\item MOS based on covariance analysis is applied to the matrix of number of file operations, grouped by the file system location over time
+%		\item MOS indicates the number of time frames with anomalous behavior;
+%	\end{enumerate}
+%	\item The hacker emulates a valid session and read/write few files at several folders: 
+%	\begin{enumerate}
+%		\item The hacker steals the device;
+%		\item The hacker changes the device to offline mode;
+%		\item The current session is expired;
+%		\item The hacker changes the device time to a valid period for the current session;
+%		\item The hacker accesses the mobile client;
+%		\item The current session is valid;
+%		\item The hacker perform sparse operations during the valid period;
+%		\item MOS based on correlation analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
+%		\item MOS indicates the number of time frames with anomalous behavior;
+%	\end{enumerate}
+%	\item The hacker emulates a valid session and read/write several files at few folders: 
+%	\begin{enumerate}
+%		\item The hacker steals the device;
+%		\item The hacker changes the device to offline mode;
+%		\item The current session is expired;
+%		\item The hacker changes the device time to a valid period for the current session;
+%		\item The hacker accesses the mobile client;
+%		\item The current session is valid;
+%		\item The hacker perform bulk operations during the valid session;
+%		\item MOS based on covariance analysis is applied to the matrix of number of file operations, grouped by the file system location over time;
+%		\item MOS indicates the number of time frames with anomalous behavior;
+%	\end{enumerate}
+%\end{enumerate}
 
 \subsection{Complexity analysis }
 \label{sec_complex}
 
 The complexity analysis depends on the operation that the user and the mobile app perform in order to keep the device protected. In the offline mode the client app performs the following actions:
 
-Combine the PASS+PIN+TIME+DEV\_PASS=KEY\_SET\_KEY   ->  SSS secret restoring;
-Decrypt the KEY\_SET with the KEY\_SET\_KEY -> symmetric 128/256 AES decryption;
-Select the SHARE\_KEY from the KEY\_SET -> no calculation;
-Decrypt the FILE\_KEY with the SHARE\_KEY  -> ABE decryption;
-Decrypt the file with the FILE\_KEY ->symmetric 128/256 AES d -> ecryption;
-Modify the TIME periodically -> timer;
-Count the tries within the TIME ->count;
-Modify or delete PUBLIC\_SHARE\_KEY-> no calculation;
-Malicious behavior detection -> eigenvalues calculation.
+\begin{enumerate}
+	\item Combine the PASS + PIN + TIME + DEV\_PASS = KEY\_SET\_KEY $\rightarrow$ SSS secret restoring;
+	\item Decrypt the KEY\_SET with the KEY\_SET\_KEY $\rightarrow$ symmetric 128/256 AES decryption;
+	\item Select the SHARE\_KEY from the KEY\_SET $\rightarrow$ no calculation;
+	\item Decrypt the FILE\_KEY with the SHARE\_KEY $\rightarrow$ ABE decryption;
+	\item Decrypt the file with the FILE\_KEY ->symmetric 128/256 AES $\rightarrow$ decryption;
+	\item Modify the TIME periodically $\rightarrow$ timer;
+	\item Count the tries within the TIME $\rightarrow$ count;
+	\item Modify or delete PUBLIC\_SHARE\_KEY $\rightarrow$ no calculation;
+	\item Malicious behavior detection $\rightarrow$ eigenvalues calculation.
+\end{enumerate}
+
 It is easy to check that in the offline mode the client app does not perform complex calculations and does not use the resources extensively due to the fact that the initial key is shared and the client app only performs decryption, which is not a time-consuming operation. Thus, the proposal supports the concept of the light-weighted client, i.e. the most consuming operations are ABE and AES decryption. 
 
 Similarly, in the online mode the client app does not perform resource-consuming operations apart from J-PAKE construction which is used to renew the user/app master key (DEV\_PASS):
 
-Generates keys for J-PAKE -> this can be a resource-consuming operation. In the future we suggest to replace J-PAKE with SIS-based PKE \cite{bogos2013primeless,bellovin1992encrypted};
-Sends and receives data in the clear;
-Performs operations 1)-7);
-Performs the operation 8) and sends the log data for server side analysis.
+\begin{enumerate}
+	\item Generates keys for J-PAKE -> this can be a resource-consuming operation. In the future we suggest to replace J-PAKE with SIS-based PKE \cite{bogos2013primeless,bellovin1992encrypted};
+	\item Sends and receives data in the clear;
+	\item Performs operations 1)-7);
+	\item Performs the operation 8) and sends the log data for server side analysis.
+\end{enumerate}
 
-The proposed concept of mobile client security has been implemented in the Storgrid protected cloud environment \cite{storgrid2016}. Therefore, the approach is correlated with the practical usability requirements:  the corporate user continues to use the mobile storage app in offline and does not need to reload the files every time the key is renewed. This methodology can be used in other mobile apps. The common advantage is that the mobile client performs the operations both in the offline and online mode and uses the key expiry and ABE to protect the privacy of the corporate data. The table below presents the results of mobile app security workflow testing. Table 1 demonstrates that the device decrypts the data with the acceptable speed. One can compare the speed of ABE/AES decryption (keys and actual data) and the speed of the whole decryption process.
+The proposed concept of mobile client security has been implemented in the Storgrid protected cloud environment \cite{storgrid2016}. Therefore, the approach is correlated with the practical usability requirements:  the corporate user continues to use the mobile storage app in offline and does not need to reload the files every time the key is renewed. This methodology can be used in other mobile apps. The common advantage is that the mobile client performs the operations both in the offline and online mode and uses the key expiry and ABE to protect the privacy of the corporate data. The Table \ref{tab:01} presents the results of mobile app security workflow testing. Table \ref{tab:01} demonstrates that the device decrypts the data with the acceptable speed. One can compare the speed of ABE/AES decryption (keys and actual data) and the speed of the whole decryption process.
 
-Table 1. Speed of decryption on a client device.
+\begin{table}
+	\caption{Speed of decryption on a client device}
+	\label{tab:01}
+	\centering
+	\begin{tabular}{l|l|l|l|l|l}
+		Device Model	& File set size	& Mean time of getting decrypted stream (ABE)	& Mean time of decrypting content (AES)	& Mean time of copying file without decrypt	& Mean time of decryption (the whole file)  \\
+		\noalign{\smallskip}\hline\noalign{\smallskip}
+		Samsung SM-T320 Galaxy Tab Pro 8.4	& 10 mb	& 1041 ms	& 4230 ms	& 298 ms		& 5271 ms	\\
+		Samsung SM-T320 Galaxy Tab Pro 8.4	& 1 mb	& 811 ms		& 319 ms		& 23 ms		& 1130 ms	\\
+		Samsung SM-T320 Galaxy Tab Pro 8.4	& 1 kb	& 1078 ms	& 1 ms		& 0 ms		& 1080 ms	\\
+		Samsung GT-I9190 Galaxy S4 Mini		& 1 b	& 1167ms		& 2 ms		& 0 ms		& 1169 ms	\\
+		Samsung GT-I9190 Galaxy S4 Mini		& 1 kb	& 1141ms		& 2 ms		& 0 ms		& 1144 ms	\\
+		Samsung GT-I9190 Galaxy S4 Mini		& 1 mb	& 1138 ms	& 368 ms		& 35 ms		& 1506 ms	\\
+		Samsung GT-I9190 Galaxy S4 Mini		& 10 mb	& 1131 ms	& 3618 ms	& 324 ms		& 4750 ms	\\
+		\noalign{\smallskip}\hline
+	\end{tabular}
+\end{table}
 
-Table 2 demonstrates the results of testing the speed of the mobile device for receiving and displaying the list of files. The app was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads.
+Table \ref{tab:02} demonstrates the results of testing the speed of the mobile device for receiving and displaying the list of files. The app was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads.
 
-Table 2. Speed of receiving the list of files
+\begin{table}
+	\caption{Speed of receiving the list of files}
+	\label{tab:02}
+	\centering
+	\begin{tabular}{l|l|l|l|l|l|l|l|l|l}
+		Files quantity 	& \# Samples 	& Average (ms) 	& Min (ms) 	& Max (ms) 	& Std. Dev. 	& Error (\%)		& Throughput 	& KB/sec 	& Avg. Bytes \\
+		\noalign{\smallskip}\hline\noalign{\smallskip}
+		1		& 1000	& 131	& 29		& 321	& 31.56		& 0.00\%		& 74		& 161.32		& 2233	\\
+		10		& 1000	& 154	& 37		& 269	& 32.24		& 0.00\%		& 63.4	& 659.79		& 10656	\\
+		100		& 1000	& 396	& 68	 	& 1055	& 87.56		& 0.00\%		& 25		& 2323.2		& 95308	\\
+		1000		& 1000	& 2879	& 475	& 4634	& 496.02		& 0.00\%		& 3.4	& 3178		& 946311	\\
+		\noalign{\smallskip}\hline
+	\end{tabular}
+\end{table}
 
-The device receives and displays the list of files depending on the user attributes with acceptable average speed and the proposed protection scheme is usable. Table3 demonstrates the results of performance testing of the keys generation procedure on server:
+The device receives and displays the list of files depending on the user attributes with acceptable average speed and the proposed protection scheme is usable. Table \ref{tab:03} demonstrates the results of performance testing of the keys generation procedure on server:
 
-Table 3. Speed of generating the user keys.
+\begin{table}
+	\caption{Speed of generating the user keys}
+	\label{tab:03}
+	\centering
+	\begin{tabular}{l|l|l|l|l|l|l|l|l}
+		Label	& \# Samples	& Average (ms)	& Min (ms)	& Max (ms)	& Std. Dev.	& Throughput		& KB/sec		& Avg. Bytes \\
+		\noalign{\smallskip}\hline\noalign{\smallskip}
+		Login 5 shares available		& 1000	& 982	& 225	& 1990	& 271.88		& 20.1	& 146.36		& 7459	\\
+		Login 10 shares available	& 1000	& 1140	& 340	& 4176	& 459.3		& 17.3	& 223.88		& 13218	\\
+		Login 25 shares available	& 1000	& 1267	& 887	& 2303	& 192.75		& 15.5	& 294.55		& 19466 \\
+		\noalign{\smallskip}\hline
+	\end{tabular}
+\end{table}
 
 It is easy to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. We may conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
+
 The log analysis of the Log Analysis Center has been implemented and evaluated for offline anomaly detection in mobile clients, making it possible to apply anomaly detection techniques in a lightweight fashion, considering low processing requirements for deal with the resource constraints of mobile clients. The evaluation considered the required processing time for anomaly detection from log analysis, measuring the data modelling time, eigenvalue decomposition time and the required time for the EDC MOS scheme execution. The experiments were performed in two mobile devices, with variations of log size and window size. 
+
 Table 4 presents the data modelling time and the processing time of eigenvalues decomposition and MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. The results show that the lower window size leads to the larger eigenvalue decomposition time, but the largest eigenvalue decomposition time, which was 421 milliseconds, highlights an acceptable speed even for the worst evaluated scenario.
 
 Table 4. Data Modelling and Eigenvalue (Correlation and Covariance) Decomposition Time 
