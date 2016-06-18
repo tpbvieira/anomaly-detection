@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  16 JUN 2016 23:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  18 JUN 2016 16:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -112,9 +112,42 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 )
 \c@thm=\count107
 
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count108
+))
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen116
+\extrarowheight=\dimen117
+\NC@list=\toks23
+\extratabsurround=\skip44
+\backup@length=\skip45
+)
+\everycr=\toks24
+\minrowclearance=\skip46
+)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks23
+\@emptytoks=\toks25
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
@@ -122,7 +155,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip44
+\@mathmargin=\skip47
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -130,55 +163,55 @@ Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks24
-\ex@=\dimen116
+\@emptytoks=\toks26
+\ex@=\dimen118
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen117
+\pmbraise@=\dimen119
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count108
+\inf@bad=\count109
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count109
-\leftroot@=\count110
+\uproot@=\count110
+\leftroot@=\count111
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count111
-\DOTSCASE@=\count112
+\classnum@=\count112
+\DOTSCASE@=\count113
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box30
 \strutbox@=\box31
-\big@size=\dimen118
+\big@size=\dimen120
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 
 
 Package amsmath Warning: Unable to redefine math accent \vec.
 
-\macc@depth=\count113
-\c@MaxMatrixCols=\count114
+\macc@depth=\count114
+\c@MaxMatrixCols=\count115
 \dotsspace@=\muskip10
-\c@parentequation=\count115
-\dspbrk@lvl=\count116
-\tag@help=\toks25
-\row@=\count117
-\column@=\count118
-\maxfields@=\count119
-\andhelp@=\toks26
-\eqnshift@=\dimen119
-\alignsep@=\dimen120
-\tagshift@=\dimen121
-\tagwidth@=\dimen122
-\totwidth@=\dimen123
-\lineht@=\dimen124
-\@envbody=\toks27
-\multlinegap=\skip45
-\multlinetaggap=\skip46
-\mathdisplay@stack=\toks28
+\c@parentequation=\count116
+\dspbrk@lvl=\count117
+\tag@help=\toks27
+\row@=\count118
+\column@=\count119
+\maxfields@=\count120
+\andhelp@=\toks28
+\eqnshift@=\dimen121
+\alignsep@=\dimen122
+\tagshift@=\dimen123
+\tagwidth@=\dimen124
+\totwidth@=\dimen125
+\lineht@=\dimen126
+\@envbody=\toks29
+\multlinegap=\skip48
+\multlinetaggap=\skip49
+\mathdisplay@stack=\toks30
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -186,7 +219,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks29
+\KV@toks@=\toks31
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -198,20 +231,9 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
-
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count120
-))
-\Gin@req@height=\dimen125
-\Gin@req@width=\dimen126
+\Gin@req@height=\dimen127
+\Gin@req@width=\dimen128
 )
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
@@ -267,8 +289,8 @@ e
 )))
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip47
-\bibsep=\skip48
+\bibhang=\skip50
+\bibsep=\skip51
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count121
 )
@@ -319,7 +341,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen127
+\@linkdim=\dimen129
 \Hy@linkcounter=\count122
 \Hy@pagecounter=\count123
 
@@ -340,10 +362,10 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count125
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen128
+\XeTeXLinkMargin=\dimen130
 \Fld@menulength=\count126
-\Field@Width=\dimen129
-\Fld@charsize=\dimen130
+\Field@Width=\dimen131
+\Fld@charsize=\dimen132
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -370,9 +392,9 @@ Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip49
+\Hy@SectionHShift=\skip52
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 41.
+Package hyperref Info: Option `breaklinks' set `true' on input line 45.
 
 (./2016JGC.aux
 
@@ -384,22 +406,22 @@ LaTeX Warning: Label `sec_sec_analysis' multiply defined.
 )
 \openout1 = `2016JGC.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 Unknown journal: specify \journalname{<name of your journal>} in preambel
 
@@ -409,19 +431,19 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count132
-\scratchdimen=\dimen131
+\scratchdimen=\dimen133
 \scratchbox=\box32
 \nofMPsegments=\count133
 \nofMParguments=\count134
-\everyMPshowfont=\toks30
+\everyMPshowfont=\toks32
 \MPscratchCnt=\count135
-\MPscratchDim=\dimen132
+\MPscratchDim=\dimen134
 \MPnumerator=\count136
 \makeMPintoPDFobject=\count137
-\everyMPtoPDFconversion=\toks31
+\everyMPtoPDFconversion=\toks33
 )
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 49.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -430,9 +452,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count138
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
 
 (./2016JGC.out) (./2016JGC.out)
 \@outlinefile=\write3
@@ -443,17 +465,17 @@ SVJour3 warning: Missing \journalname
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 83.
+LaTeX Font Info:    Try loading font information for U+msa on input line 87.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 83.
+LaTeX Font Info:    Try loading font information for U+msb on input line 87.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 83.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 87.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -473,7 +495,7 @@ Package epstopdf Info: Source file: <figures/coresetoffunctionsandprotocols.eps
 (epstopdf)                    size: 67129 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/coresetoffunctions
 andprotocols-eps-converted-to.pdf figures/coresetoffunctionsandprotocols.eps>
-(epstopdf)             \includegraphics on input line 125.
+(epstopdf)             \includegraphics on input line 129.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/coresetoffunctionsandprotocols-eps-converted-to.pdf, id=103, 278.03876
@@ -483,7 +505,7 @@ File: figures/coresetoffunctionsandprotocols-eps-converted-to.pdf Graphic file
 
 <use figures/coresetoffunctionsandprotocols-eps-converted-to.pdf>
 Package pdftex.def Info: figures/coresetoffunctionsandprotocols-eps-converted-t
-o.pdf used on input line 125.
+o.pdf used on input line 129.
 (pdftex.def)             Requested size: 170.71652pt x 284.73738pt.
 Package epstopdf Info: Source file: <figures/mobileclientarchitecture.eps>
 (epstopdf)                    date: 2016-06-12 10:15:44
@@ -494,7 +516,7 @@ rted-to.pdf>
 (epstopdf)                    size: 92982 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mobileclientarchit
 ecture-eps-converted-to.pdf figures/mobileclientarchitecture.eps>
-(epstopdf)             \includegraphics on input line 134.
+(epstopdf)             \includegraphics on input line 138.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mobileclientarchitecture-eps-converted-to.pdf, id=105, 551.05875pt x 4
@@ -503,10 +525,10 @@ File: figures/mobileclientarchitecture-eps-converted-to.pdf Graphic file (type
 pdf)
  <use figures/mobileclientarchitecture-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mobileclientarchitecture-eps-converted-to.pdf 
-used on input line 134.
+used on input line 138.
 (pdftex.def)             Requested size: 250.38434pt x 192.00926pt.
 
-Overfull \hbox (11.42017pt too wide) in paragraph at lines 134--135
+Overfull \hbox (11.42017pt too wide) in paragraph at lines 138--139
  [][] 
  []
 
@@ -526,7 +548,7 @@ Package epstopdf Info: Source file: <figures/onlinemodeoperations.eps>
 (epstopdf)                    size: 120359 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/onlinemodeoperatio
 ns-eps-converted-to.pdf figures/onlinemodeoperations.eps>
-(epstopdf)             \includegraphics on input line 152.
+(epstopdf)             \includegraphics on input line 156.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/onlinemodeoperations-eps-converted-to.pdf, id=127, 512.91624pt x 475.7
@@ -535,10 +557,10 @@ File: figures/onlinemodeoperations-eps-converted-to.pdf Graphic file (type pdf)
 
  <use figures/onlinemodeoperations-eps-converted-to.pdf>
 Package pdftex.def Info: figures/onlinemodeoperations-eps-converted-to.pdf used
- on input line 152.
+ on input line 156.
 (pdftex.def)             Requested size: 244.69386pt x 226.97672pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 152--153
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 156--157
 [][] 
  []
 
@@ -551,7 +573,7 @@ nverted-to.pdf>
 (epstopdf)                    size: 46019 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/onlineauthorizatio
 nworkflow-eps-converted-to.pdf figures/onlineauthorizationworkflow.eps>
-(epstopdf)             \includegraphics on input line 163.
+(epstopdf)             \includegraphics on input line 167.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/onlineauthorizationworkflow-eps-converted-to.pdf, id=129, 456.70625pt 
@@ -560,10 +582,10 @@ File: figures/onlineauthorizationworkflow-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use figures/onlineauthorizationworkflow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/onlineauthorizationworkflow-eps-converted-to.p
-df used on input line 163.
+df used on input line 167.
 (pdftex.def)             Requested size: 244.69386pt x 167.2526pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 163--164
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 167--168
  [][] 
  []
 
@@ -572,7 +594,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./figures/mobileclientarchitecture-eps-converted-to.pdf> <./figures/onlinem
 odeoperations-eps-converted-to.pdf>]
-Overfull \hbox (4.11949pt too wide) in paragraph at lines 195--196
+Overfull \hbox (4.11949pt too wide) in paragraph at lines 199--200
 []\OT1/cmr/m/n/10 The pro-posed of-fline mode ar-chi-tec-ture is rep-re-sented
  []
 
@@ -585,7 +607,7 @@ nverted-to.pdf>
 (epstopdf)                    size: 55041 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/offlinesecurityarc
 hitecture-eps-converted-to.pdf figures/offlinesecurityarchitecture.eps>
-(epstopdf)             \includegraphics on input line 199.
+(epstopdf)             \includegraphics on input line 203.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/offlinesecurityarchitecture-eps-converted-to.pdf, id=189, 656.4525pt x
@@ -594,31 +616,31 @@ File: figures/offlinesecurityarchitecture-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use figures/offlinesecurityarchitecture-eps-converted-to.pdf>
 Package pdftex.def Info: figures/offlinesecurityarchitecture-eps-converted-to.p
-df used on input line 199.
+df used on input line 203.
 (pdftex.def)             Requested size: 244.69386pt x 78.19815pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 199--200
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 203--204
  [][] 
  []
 
 [5 <./figures/onlineauthorizationworkflow-eps-converted-to.pdf> <./figures/offl
 inesecurityarchitecture-eps-converted-to.pdf>]
-Overfull \hbox (2.06401pt too wide) in paragraph at lines 208--209
+Overfull \hbox (2.06401pt too wide) in paragraph at lines 212--213
 \OT1/cmr/m/n/10 mon-i-tor-ing the sys-tem in the case of the of-fline mode.
  []
 
 
-Overfull \hbox (3.6195pt too wide) in paragraph at lines 208--209
+Overfull \hbox (3.6195pt too wide) in paragraph at lines 212--213
 \OT1/cmr/m/n/10 ap-pli-ca-tion on resource-constrained sce-nar-ios. There-
  []
 
 
-Overfull \hbox (1.34177pt too wide) in paragraph at lines 208--209
+Overfull \hbox (1.34177pt too wide) in paragraph at lines 212--213
 \OT1/cmr/m/n/10 bile client se-cu-rity, for eval-u-at-ing anoma-lies on user's
  []
 
 
-Overfull \hbox (3.11963pt too wide) in paragraph at lines 209--210
+Overfull \hbox (3.11963pt too wide) in paragraph at lines 213--214
 \OT1/cmr/m/n/10 tions for main-tain-ing the key ex-piry pe-riod and delet-
  []
 
@@ -631,7 +653,7 @@ d-to.pdf>
 (epstopdf)                    size: 85126 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/offlinemodeoperati
 ons-eps-converted-to.pdf figures/offlinemodeoperations.eps>
-(epstopdf)             \includegraphics on input line 228.
+(epstopdf)             \includegraphics on input line 232.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/offlinemodeoperations-eps-converted-to.pdf, id=243, 463.7325pt x 475.7
@@ -640,10 +662,10 @@ File: figures/offlinemodeoperations-eps-converted-to.pdf Graphic file (type pdf
 )
  <use figures/offlinemodeoperations-eps-converted-to.pdf>
 Package pdftex.def Info: figures/offlinemodeoperations-eps-converted-to.pdf use
-d on input line 228.
+d on input line 232.
 (pdftex.def)             Requested size: 244.69386pt x 251.05011pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 228--229
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 232--233
  [][] 
  []
 
@@ -659,7 +681,7 @@ onverted-to.pdf>
 (epstopdf)                    size: 67651 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/offlineauthorizati
 onworkflow-eps-converted-to.pdf figures/offlineauthorizationworkflow.eps>
-(epstopdf)             \includegraphics on input line 237.
+(epstopdf)             \includegraphics on input line 241.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/offlineauthorizationworkflow-eps-converted-to.pdf, id=245, 492.84125pt
@@ -668,10 +690,10 @@ File: figures/offlineauthorizationworkflow-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use figures/offlineauthorizationworkflow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/offlineauthorizationworkflow-eps-converted-to.
-pdf used on input line 237.
+pdf used on input line 241.
 (pdftex.def)             Requested size: 244.69386pt x 231.242pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 237--238
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 241--242
  [][] 
  []
 
@@ -691,7 +713,7 @@ Package epstopdf Info: Source file: <figures/mosworkflow.eps>
 (epstopdf)                    size: 51873 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/mosworkflow-eps-co
 nverted-to.pdf figures/mosworkflow.eps>
-(epstopdf)             \includegraphics on input line 251.
+(epstopdf)             \includegraphics on input line 255.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/mosworkflow-eps-converted-to.pdf, id=317, 388.45125pt x 371.3875pt>
@@ -699,15 +721,15 @@ File: figures/mosworkflow-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/mosworkflow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/mosworkflow-eps-converted-to.pdf used on input
- line 251.
+ line 255.
 (pdftex.def)             Requested size: 244.69386pt x 233.95268pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 251--252
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 255--256
  [][] 
  []
 
 
-Overfull \hbox (8.45294pt too wide) in paragraph at lines 258--259
+Overfull \hbox (8.45294pt too wide) in paragraph at lines 262--263
 \OT1/cmr/m/n/10 hav-ior de-tec-tion, through the Log Anal-y-sis Cen-ter (LAC).
  []
 
@@ -720,7 +742,7 @@ o.pdf>
 (epstopdf)                    size: 26350 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/encryptionworkflow
 -eps-converted-to.pdf figures/encryptionworkflow.eps>
-(epstopdf)             \includegraphics on input line 268.
+(epstopdf)             \includegraphics on input line 272.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/encryptionworkflow-eps-converted-to.pdf, id=320, 536.0025pt x 296.1062
@@ -728,10 +750,10 @@ Package epstopdf Info: Output file is already uptodate.
 File: figures/encryptionworkflow-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/encryptionworkflow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/encryptionworkflow-eps-converted-to.pdf used o
-n input line 268.
+n input line 272.
 (pdftex.def)             Requested size: 244.69386pt x 135.17584pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 268--269
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 272--273
  [][] 
  []
 
@@ -744,7 +766,7 @@ ed-to.pdf>
 (epstopdf)                    size: 29816 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/encryptionkeyhiera
 rchy-eps-converted-to.pdf figures/encryptionkeyhierarchy.eps>
-(epstopdf)             \includegraphics on input line 277.
+(epstopdf)             \includegraphics on input line 281.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/encryptionkeyhierarchy-eps-converted-to.pdf, id=324, 422.57875pt x 315
@@ -753,7 +775,7 @@ File: figures/encryptionkeyhierarchy-eps-converted-to.pdf Graphic file (type pd
 f)
  <use figures/encryptionkeyhierarchy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/encryptionkeyhierarchy-eps-converted-to.pdf us
-ed on input line 277.
+ed on input line 281.
 (pdftex.def)             Requested size: 227.62204pt x 169.7749pt.
  [7 <./figures/mosworkflow-eps-converted-to.pdf> <./figures/encryptionworkflow-
 eps-converted-to.pdf> <./figures/encryptionkeyhierarchy-eps-converted-to.pdf>]
@@ -766,7 +788,7 @@ d-to.pdf>
 (epstopdf)                    size: 49586 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/server-sideencrypt
 ion-eps-converted-to.pdf figures/server-sideencryption.eps>
-(epstopdf)             \includegraphics on input line 298.
+(epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 
 <figures/server-sideencryption-eps-converted-to.pdf, id=393, 562.1pt x 165.6187
@@ -775,27 +797,27 @@ File: figures/server-sideencryption-eps-converted-to.pdf Graphic file (type pdf
 )
  <use figures/server-sideencryption-eps-converted-to.pdf>
 Package pdftex.def Info: figures/server-sideencryption-eps-converted-to.pdf use
-d on input line 298.
+d on input line 302.
 (pdftex.def)             Requested size: 244.69386pt x 72.09663pt.
 
-Overfull \hbox (5.72969pt too wide) in paragraph at lines 298--299
+Overfull \hbox (5.72969pt too wide) in paragraph at lines 302--303
  [][] 
  []
 
 
-Overfull \hbox (3.00728pt too wide) in paragraph at lines 309--310
+Overfull \hbox (3.00728pt too wide) in paragraph at lines 313--314
 []\OT1/cmr/m/n/10 The model sup-ports the sim-ple se-lec-tive ABE scheme
  []
 
 
-Overfull \hbox (7.14983pt too wide) in paragraph at lines 318--319
+Overfull \hbox (7.14983pt too wide) in paragraph at lines 322--323
 []\OT1/cmr/m/n/10 Encrypted text $\OML/cmm/m/it/10 M$\OT1/cmr/m/n/10 , in our c
 on-text, $\OML/cmm/m/it/10 M \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 FILE[]KEY$\OT1/
 cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (6.36366pt too wide) in paragraph at lines 327--328
+Overfull \hbox (6.36366pt too wide) in paragraph at lines 331--332
 []$\OML/cmm/m/it/10 Y[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\O
 ML/cmm/m/it/10 g; g\OT1/cmr/m/n/10 )[] = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\OM
 L/cmm/m/it/10 E[]; D[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\O
@@ -804,87 +826,76 @@ OML/cmm/m/it/10 g; g\OT1/cmr/m/n/10 )[]$.
  []
 
 [8 <./figures/server-sideencryption-eps-converted-to.pdf>]
-Overfull \hbox (4.36958pt too wide) in paragraph at lines 358--359
+Overfull \hbox (4.36958pt too wide) in paragraph at lines 362--363
 \OT1/cmr/m/n/10 Com-po-nent Anal-y-sis and Model Or-der Se-lec-tion schemes
  []
 
 [9]
-Overfull \hbox (1.81398pt too wide) in paragraph at lines 430--431
+Overfull \hbox (1.81398pt too wide) in paragraph at lines 434--435
 \OT1/cmr/m/n/10 y-sis. Two com-mon at-tack sce-nar-ios were an-a-lyzed. First,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 446--447
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 472--476
+Underfull \hbox (badness 10000) in paragraph at lines 476--480
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 472--476
+Underfull \hbox (badness 10000) in paragraph at lines 476--480
 
  []
 
 [11]
-Overfull \hbox (3.64265pt too wide) in paragraph at lines 509--510
+Overfull \hbox (3.64265pt too wide) in paragraph at lines 513--514
 []\OT1/cmr/m/it/10 Usage of ex-pired pass-word to per-form unau-
  []
 
 
-Overfull \hbox (0.25851pt too wide) in paragraph at lines 520--521
+Overfull \hbox (0.25851pt too wide) in paragraph at lines 524--525
 \OT1/cmr/m/n/10 pired pass-word to per-form unau-tho-rized op-er-a-tions, can
  []
 
 [12]
-Overfull \hbox (4.16017pt too wide) in paragraph at lines 579--580
+Overfull \hbox (4.16017pt too wide) in paragraph at lines 583--584
 \OT1/cmr/bx/it/10 Sys-tem Lo-ca-tion)\OT1/cmr/m/it/10 , [] \OT1/cmr/m/n/10 i.e.
  up-load re-quests in on-line mode,
  []
 
 [13]
-Overfull \hbox (0.18776pt too wide) in paragraph at lines 657--658
+Overfull \hbox (0.18776pt too wide) in paragraph at lines 678--679
 []\OT1/cmr/m/n/10 Generates keys for J-PAKE -> this can be a resource-
  []
 
 
-Overfull \hbox (703.90619pt too wide) in paragraph at lines 669--681
- [][] 
- []
-
-
-Overfull \hbox (303.95041pt too wide) in paragraph at lines 689--698
- [][] 
- []
-
-
-Overfull \hbox (297.13315pt too wide) in paragraph at lines 706--714
- [][] 
- []
-
-
-Overfull \hbox (1.53635pt too wide) in paragraph at lines 718--719
+Overfull \hbox (1.53635pt too wide) in paragraph at lines 717--718
 \OT1/cmr/m/n/10 anomaly de-tec-tion from log anal-y-sis, mea-sur-ing the data
  []
 
 [14]
-Overfull \hbox (14.03403pt too wide) in paragraph at lines 726--727
+Overfull \hbox (14.03403pt too wide) in paragraph at lines 725--726
 []\OT1/cmr/m/n/10 Table 5. EDC MOS scheme pro-cess-ing time for anomaly
  []
 
 
-Overfull \hbox (2.86948pt too wide) in paragraph at lines 732--734
+Overfull \hbox (2.86948pt too wide) in paragraph at lines 731--733
 \OT1/cmr/m/n/10 use cloud-based sys-tems is how to pro-vide se-cu-rity mech-
  []
 
 
-Overfull \hbox (1.06404pt too wide) in paragraph at lines 732--734
+Overfull \hbox (1.06404pt too wide) in paragraph at lines 731--733
 \OT1/cmr/m/n/10 a-nisms to sup-port of-fline cor-po-rate mo-bile de-vices. Once
 
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15]
 (./2016JGC.bbl
 Underfull \hbox (badness 1496) in paragraph at lines 12--14
 []\OT1/cmr/m/n/10 (2016) Cloud se-cu-rity al-liance. URL []$https : / /
@@ -900,7 +911,7 @@ Underfull \hbox (badness 6461) in paragraph at lines 54--58
 \OT1/cmr/m/n/10 u-lar se-cret shar-ing. In: Sym-bolic and Nu-
  []
 
-[15]
+
 Underfull \hbox (badness 4673) in paragraph at lines 84--88
 []\OT1/cmr/m/n/10 Higashi M (2015) Cloud data se-cu-rity and
  []
@@ -920,7 +931,7 @@ Underfull \hbox (badness 1708) in paragraph at lines 107--110
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ [16]
 Underfull \hbox (badness 4608) in paragraph at lines 148--151
 \OT1/cmr/m/n/10 and com-pro-mise re-silient stor-age out-sourc-ing
  []
@@ -941,28 +952,30 @@ Underfull \hbox (badness 2253) in paragraph at lines 167--171
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 746.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 746.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 745.
+ [17
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 745.
  (./2016JGC.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 746.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 746.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 745.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 745.
 Package rerunfilecheck Info: File `2016JGC.out' has not changed.
 (rerunfilecheck)             Checksum: 066379691ED7A457F18C20D3FE58A1E1;447.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 746.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 745.
  ) 
 Here is how much of TeX's memory you used:
- 8398 strings out of 493304
- 124048 string characters out of 6139871
- 221991 words of memory out of 5000000
- 11546 multiletter control sequences out of 15000+600000
+ 8543 strings out of 493304
+ 125998 string characters out of 6139871
+ 227316 words of memory out of 5000000
+ 11678 multiletter control sequences out of 15000+600000
  14946 words of font info for 56 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,11n,33p,1415b,586s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,16n,33p,1415b,595s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
@@ -981,10 +994,10 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2016JGC.pdf (16 pages, 955897 bytes).
+Output written on 2016JGC.pdf (17 pages, 957700 bytes).
 PDF statistics:
- 719 PDF objects out of 1000 (max. 8388607)
- 632 compressed objects within 7 object streams
- 182 named destinations out of 1000 (max. 500000)
+ 723 PDF objects out of 1000 (max. 8388607)
+ 635 compressed objects within 7 object streams
+ 183 named destinations out of 1000 (max. 500000)
  112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

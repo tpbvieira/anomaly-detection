@@ -26,6 +26,10 @@
 \usepackage{enumitem}
 \newtheorem{thm}{Scenario}
 
+% table
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+
 % math
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -632,6 +636,23 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 %	\end{enumerate}
 %\end{enumerate}
 
+\begin{table*}[!t]
+	\caption{Speed of decryption on a client device}
+	\label{tab:01}
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline \rowcolor{Gray} Device Model	& File set size	& \begin{tabular}[x]{@{}l@{}}Mean time of\\getting decrypted\\stream (ABE)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\decrypting \\content (AES)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\copying file\\without decrypt\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\decryption\\(the whole file)\end{tabular}	\\ \hline
+
+		\begin{tabular}[x]{@{}l@{}}Samsung SM-T320 Galaxy\\Tab Pro 8.4\end{tabular}	& 10 mb	& 1041 ms	& 4230 ms	& 298 ms		& 5271 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung SM-T320 Galaxy\\Tab Pro 8.4\end{tabular}	& 1 mb	& 811 ms		& 319 ms		& 23 ms		& 1130 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung SM-T320 Galaxy\\Tab Pro 8.4\end{tabular}	& 1 kb	& 1078 ms	& 1 ms		& 0 ms		& 1080 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung GT-I9190 Galaxy\\S4 Mini\end{tabular}		& 1 b	& 1167ms		& 2 ms		& 0 ms		& 1169 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung GT-I9190 Galaxy\\S4 Mini\end{tabular}		& 1 kb	& 1141ms		& 2 ms		& 0 ms		& 1144 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung GT-I9190 Galaxy\\S4 Mini\end{tabular}		& 1 mb	& 1138 ms	& 368 ms		& 35 ms		& 1506 ms	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Samsung GT-I9190 Galaxy\\S4 Mini\end{tabular}		& 10 mb	& 1131 ms	& 3618 ms	& 324 ms		& 4750 ms	\\ \hline
+	\end{tabular}
+\end{table*}
+
 \subsection{Complexity analysis }
 \label{sec_complex}
 
@@ -662,56 +683,34 @@ Similarly, in the online mode the client app does not perform resource-consuming
 
 The proposed concept of mobile client security has been implemented in the Storgrid protected cloud environment \cite{storgrid2016}. Therefore, the approach is correlated with the practical usability requirements:  the corporate user continues to use the mobile storage app in offline and does not need to reload the files every time the key is renewed. This methodology can be used in other mobile apps. The common advantage is that the mobile client performs the operations both in the offline and online mode and uses the key expiry and ABE to protect the privacy of the corporate data. The Table \ref{tab:01} presents the results of mobile app security workflow testing. Table \ref{tab:01} demonstrates that the device decrypts the data with the acceptable speed. One can compare the speed of ABE/AES decryption (keys and actual data) and the speed of the whole decryption process.
 
-\begin{table}
-	\caption{Speed of decryption on a client device}
-	\label{tab:01}
-	\centering
-	\begin{tabular}{l|l|l|l|l|l}
-		Device Model	& File set size	& Mean time of getting decrypted stream (ABE)	& Mean time of decrypting content (AES)	& Mean time of copying file without decrypt	& Mean time of decryption (the whole file)  \\
-		\noalign{\smallskip}\hline\noalign{\smallskip}
-		Samsung SM-T320 Galaxy Tab Pro 8.4	& 10 mb	& 1041 ms	& 4230 ms	& 298 ms		& 5271 ms	\\
-		Samsung SM-T320 Galaxy Tab Pro 8.4	& 1 mb	& 811 ms		& 319 ms		& 23 ms		& 1130 ms	\\
-		Samsung SM-T320 Galaxy Tab Pro 8.4	& 1 kb	& 1078 ms	& 1 ms		& 0 ms		& 1080 ms	\\
-		Samsung GT-I9190 Galaxy S4 Mini		& 1 b	& 1167ms		& 2 ms		& 0 ms		& 1169 ms	\\
-		Samsung GT-I9190 Galaxy S4 Mini		& 1 kb	& 1141ms		& 2 ms		& 0 ms		& 1144 ms	\\
-		Samsung GT-I9190 Galaxy S4 Mini		& 1 mb	& 1138 ms	& 368 ms		& 35 ms		& 1506 ms	\\
-		Samsung GT-I9190 Galaxy S4 Mini		& 10 mb	& 1131 ms	& 3618 ms	& 324 ms		& 4750 ms	\\
-		\noalign{\smallskip}\hline
-	\end{tabular}
-\end{table}
-
-Table \ref{tab:02} demonstrates the results of testing the speed of the mobile device for receiving and displaying the list of files. The app was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads.
-
-\begin{table}
+\begin{table*}[!t]
 	\caption{Speed of receiving the list of files}
 	\label{tab:02}
 	\centering
-	\begin{tabular}{l|l|l|l|l|l|l|l|l|l}
-		Files quantity 	& \# Samples 	& Average (ms) 	& Min (ms) 	& Max (ms) 	& Std. Dev. 	& Error (\%)		& Throughput 	& KB/sec 	& Avg. Bytes \\
-		\noalign{\smallskip}\hline\noalign{\smallskip}
-		1		& 1000	& 131	& 29		& 321	& 31.56		& 0.00\%		& 74		& 161.32		& 2233	\\
-		10		& 1000	& 154	& 37		& 269	& 32.24		& 0.00\%		& 63.4	& 659.79		& 10656	\\
-		100		& 1000	& 396	& 68	 	& 1055	& 87.56		& 0.00\%		& 25		& 2323.2		& 95308	\\
-		1000		& 1000	& 2879	& 475	& 4634	& 496.02		& 0.00\%		& 3.4	& 3178		& 946311	\\
-		\noalign{\smallskip}\hline
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Files\\quantity\end{tabular}	 	& Samples 	& \begin{tabular}[x]{@{}l@{}}Average\\(ms)\end{tabular}	 	& Min (ms) 	& Max (ms) 	& Std. Dev. 	& Error (\%)		& Throughput 	& KB/sec 	& Avg. Bytes \\ \hline
+		1		& 1000	& 131	& 29		& 321	& 31.56		& 0.00\%		& 74		& 161.32		& 2233	\\ \hline		
+		10		& 1000	& 154	& 37		& 269	& 32.24		& 0.00\%		& 63.4	& 659.79		& 10656	\\ \hline
+		100		& 1000	& 396	& 68	 	& 1055	& 87.56		& 0.00\%		& 25		& 2323.2		& 95308	\\ \hline
+		1000		& 1000	& 2879	& 475	& 4634	& 496.02		& 0.00\%		& 3.4	& 3178		& 946311	\\ \hline
 	\end{tabular}
-\end{table}
+\end{table*}
 
-The device receives and displays the list of files depending on the user attributes with acceptable average speed and the proposed protection scheme is usable. Table \ref{tab:03} demonstrates the results of performance testing of the keys generation procedure on server:
-
-\begin{table}
+\begin{table*}
 	\caption{Speed of generating the user keys}
 	\label{tab:03}
 	\centering
-	\begin{tabular}{l|l|l|l|l|l|l|l|l}
-		Label	& \# Samples	& Average (ms)	& Min (ms)	& Max (ms)	& Std. Dev.	& Throughput		& KB/sec		& Avg. Bytes \\
-		\noalign{\smallskip}\hline\noalign{\smallskip}
-		Login 5 shares available		& 1000	& 982	& 225	& 1990	& 271.88		& 20.1	& 146.36		& 7459	\\
-		Login 10 shares available	& 1000	& 1140	& 340	& 4176	& 459.3		& 17.3	& 223.88		& 13218	\\
-		Login 25 shares available	& 1000	& 1267	& 887	& 2303	& 192.75		& 15.5	& 294.55		& 19466 \\
-		\noalign{\smallskip}\hline
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+		\hline \rowcolor{Gray} Label	& Samples	& \begin{tabular}[x]{@{}l@{}}Average\\(ms)\end{tabular}	& Min (ms)	& Max (ms)	& Std. Dev.	& Throughput		& KB/sec		& Avg. Bytes \\ \hline
+		\begin{tabular}[x]{@{}l@{}}Login 5\\shares\\available\end{tabular}		& 1000	& 982	& 225	& 1990	& 271.88		& 20.1	& 146.36		& 7459	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Login 10\\shares\\available\end{tabular}	& 1000	& 1140	& 340	& 4176	& 459.3		& 17.3	& 223.88		& 13218	\\ \hline
+		\begin{tabular}[x]{@{}l@{}}Login 25\\shares\\available\end{tabular}	& 1000	& 1267	& 887	& 2303	& 192.75		& 15.5	& 294.55		& 19466 \\ \hline
 	\end{tabular}
-\end{table}
+\end{table*}
+
+Table \ref{tab:02} demonstrates the results of testing the speed of the mobile device for receiving and displaying the list of files. The app was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads.
+
+The device receives and displays the list of files depending on the user attributes with acceptable average speed and the proposed protection scheme is usable. Table \ref{tab:03} demonstrates the results of performance testing of the keys generation procedure on server:
 
 It is easy to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. We may conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
 
