@@ -126,7 +126,7 @@ The approach proposed in this work describes and implements the complete lifecyc
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=6cm]{figures/coresetoffunctionsandprotocols.eps}
+	\includegraphics[width=7cm]{figures/coresetoffunctionsandprotocols.eps}
 	\caption{The core set of functions and protocols of the mobile app security infrastructure}
 	\label{fig:1}
 \end{figure}
@@ -248,7 +248,7 @@ The core cryptographic module of the implemented solution is based on the combin
 \subsection{Offline Behavioral Analysis}
 \label{sec_offline_behavioral_analysis}
 
-In the proposed client security architecture, the Threat Intelligence Manager (TIM) is resposibible for receiving logged user operations, feature extraction, data modeling and malicious behavior analysis in order to identify possible threats, in offline mode. The Figure \ref{fig:8} depicts the Threat Intelligence Manager for offline behavioral analysis. 
+In the proposed client security architecture, the Threat Intelligence Manager (TIM) is responsible for receiving logged user operations, feature extraction, data modeling and malicious behavior analysis in order to identify possible threats, in offline mode. Figure \ref{fig:8} depicts the Threat Intelligence Manager for offline behavioral analysis. 
 
 \begin{figure}[h!]
 	\centering
@@ -257,7 +257,7 @@ In the proposed client security architecture, the Threat Intelligence Manager (T
 	\label{fig:8}
 \end{figure}
 
-The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations is monitored by the client app, which sends the information of the captured operations to the User Activity Logging (UAL), 
+As depicted in Figure \ref{fig:8}, users request operations are logged so that the main features can be monitored in the client app. The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations are monitored by the client app, which sends the information of the captured operations to the User Activity Logging (UAL). 
 
 The UAL is responsible for the incremental logging, feature extraction and data modeling for malicious behavior detection, through the Log Analysis Center (LAC). The logged information shall be decomposed into selected features and modeled as matrices, composed of the number of occurrences of the selected features by its location and by the occurrence time. The resultant data is submited to the LAC, for anomaly detection.
 
@@ -278,7 +278,7 @@ The key hierarchy can be explained by Figure \ref{fig:10} where the key represen
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/encryptionkeyhierarchy.eps}
+	\includegraphics[width=8.6cm]{figures/encryptionkeyhierarchy.eps}
 	\caption{Encryption key hierarchy}
 	\label{fig:10}
 \end{figure}
@@ -295,7 +295,11 @@ In Subsections \ref{sec_aes}-\ref{sec_secret}, a detailed description of the bui
 
 \subsection{AES file encryption }
 \label{sec_aes}
-The protected files are encrypted on the server side with the secure 128/256 bit AES encryption, which is currently an industrial standard. Nevertheless, domain administrator can choose to encrypt the file storage with Blowfish or Serpent which also provide a high level of safety \cite{nist2000}. The symmetric encryption on a server side is performed in two steps. First there is a single AES key for preserving the server storage. Second, when the encrypted file is sent from the server to the mobile app or desktop device another unique AES key is generated. This key serves for the encryption on the client side. In other words, along with the encrypted file the user gets his own unique AES key for decrypting the files received. This key is protected by attribute-based public key encryption (ABE). The scheme of the server-side AES encryption is represented in Figure \ref{fig:11}.
+The protected files are encrypted on the server side with the secure 128/256 bit AES encryption, which is currently an industrial standard. Nevertheless, domain administrator can choose to encrypt the file storage with Blowfish or Serpent which also provide a high level of safety \cite{nist2000}. 
+
+The symmetric encryption on a server side is performed in two steps. First there is a single AES key for preserving the server storage. Second, when the encrypted file is sent from the server to the mobile app or desktop device another unique AES key is generated. This key serves for the encryption on the client side. In other words, along with the encrypted file the user gets his own unique AES key for decrypting the files received. This key is protected by attribute-based public key encryption (ABE). 
+
+The scheme of the server-side AES encryption is represented in Figure \ref{fig:11}.
 
 \begin{figure}[h!]
 	\centering
@@ -315,20 +319,16 @@ The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibu
 \begin{enumerate}
 	\item \textbf{Master-key (MK)} which is kept safely on server and accessible only for the domain administrator and is given by $MK = (t_1, t_2, \cdots ,t_n, y)$, where the values $t_i$ are randomly selected from the huge group $Zp$. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
 	\item \textbf{Public key (PK)} depends on the master key values and is kept in the clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}", \cdots ,g^{t_n}, e(g,g)^y)$, Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve.
-	\item Secret user \textbf{KEY\_SET} depends on his attribute set. Here each $D_i$ (\textbf{GROUP\_KEY}) serves for decryption of the data of a single group of users, for example, related to some project: 
-	
-	$\{t_i\}_U \rightarrow D = \{D_i = g^{\frac{yw}{t_i}}\}$.
-	
-	\item Encrypted text $M$, in our context, $M = FILE\_KEY$, or the permanent AES symmetric key, which allows to avoid the file re-encryption. Encryption procedure is multiplication. The set of the public keys $E_i$ (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text $E$: 
-
-	$E=Me(g,g)^{ys}, \{E_i = g^{\frac{t_is}{w}}\}, \forall i \in \{t_i\}_M$.
-	
+	\item Secret user \textbf{KEY\_SET} depends on his attribute set. Here each $D_i$ (\textbf{GROUP\_KEY}) serves for decryption of the data of a single group of users, for example, related to some project: 	$\{t_i\}_U \rightarrow D = \{D_i = g^{\frac{yw}{t_i}}\}$.
+	\item Encrypted text $M$, in our context, $M = FILE\_KEY$, or the permanent AES symmetric key, which allows to avoid the file re-encryption. Encryption procedure is multiplication. The set of the public keys $E_i$ (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text $E$: $E=Me(g,g)^{ys}, \{E_i = g^{\frac{t_is}{w}}\}, \forall i \in \{t_i\}_M$.
 	\item Decryption is division: $M = \frac{E}{Y^s}$. 
 \end{enumerate}
 
 In order to perform this operation the user needs the pair of private key $D_i$ and public key $E_i$ corresponding to the attribute $t_i$: 
 
-$Y^s = e(g,g)^{ys} = e(E_i,D_i) = e(g^{\frac{yw}{t_i}},g^{\frac{t_is}{w}})=e(g,g)^{ys}$.
+\begin{equation}\label{eq:eq00}
+Y^s = e(g,g)^{ys} = e(E_i,D_i) = e(g^{\frac{yw}{t_i}},g^{\frac{t_is}{w}})=e(g,g)^{ys}.
+\end{equation}
 
 The result of decryption is the FILE\_KEY - the symmetric AES key that permits to decrypt the contents of protected file. 
 
@@ -361,9 +361,11 @@ Thus calculated DEV\_PASS is written to the permanent device memory. The user sh
 \label{sec_mos}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as Principal Component Analysis and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic identification of attacks or malicious behaviors. 
 
-Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time, and grouped into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\mathbf{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the client app.
+Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. 
 
-The MOS schemes can rely on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
+MOS for threat intelligence requires that the target features, which can be user operations, are modeled as a matrix composed by the number of occurrences by location and time, and grouped into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\mathbf{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the client app.
+
+The MOS schemes can rely on sample covariance of zero mean variables (called as zero mean covariance for the sake of simplicity) and sample covariance of zero mean and unitary standard deviation (called as zero mean and standardized covariance for the sake of simplicity) variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
 
 Classical approaches to model order selection require the computation of the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\mathbf{X}$ of the zero mean samples given by
 
@@ -371,19 +373,19 @@ Classical approaches to model order selection require the computation of the sam
 \mathbf{y}_{m}^{(q)} = \mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}.
 \end{equation}
 
-The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
+The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the zero mean covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
 
 \begin{equation}\label{eq:eq04}
 \mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}}.
 \end{equation}
 
-For MOS based on sample covariance of zero mean and unitary standard deviation, it is required, for each variable, to make the standard deviation unitary as follows
+For MOS based on sample covariance of zero mean and unitary standard deviation, in order to identify anomalies with sparse or subtle behavior, it is required, for each variable, to make the standard deviation unitary as follows
 
 \begin{equation}\label{eq:eq05}
 \mathbf{z}_{m}^{(q)} = \frac{\mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}}{\mathbf{\sigma}_{m}^{(q)}}.
 \end{equation}
 
-The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$, then the sample covariance matrix $\mathbf{\hat{R}}_{zz}^{(q)}$ can be calculated via 
+The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$, then the zero mean and standardized covariance matrix $\mathbf{\hat{R}}_{zz}^{(q)}$ can be calculated via 
 
 \begin{equation}\label{eq:eq06}
 \mathbf{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\mathbf{Z}^{(q)}\mathbf{Z}^{(q)^{\rm T}}.
@@ -490,13 +492,13 @@ An attacker uses a valid password to perform operations on a bulk of files.
 
 The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware \cite{kaspersky2014}.
 
-MOS schemes based on covariance analysis are effective to reveal abrupt changing of behaviors over time \cite{tenorio2013greatest}, making possible to identify intense malicious behaviors on offline mode of mobile clients, such in case of ransomware attack or bulk access to sensitive data.
+MOS schemes based on zero mean covariance analysis are effective to reveal abrupt changing of behaviors over time \cite{tenorio2013greatest}, making possible to identify intense malicious behaviors on offline mode of mobile clients, such in case of ransomware attack or bulk access to sensitive data.
 
 The large number of operations over time is a well-known pattern of some attacks, due to the efforts on security measures to make the attacks infeasible over time. In this context, the operations can also be evaluated in contrast to the estimated required time for operations done by legitimate behaviors, such as the evaluation of the mean time between operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities.
 
-Sparse or subtle file operations, with low number of operations distributed over different files or directories, during short period of time can indicate anomalies in contrast to the required time for legitimate directory navigation. MOS and correlation analysis can be suitable if applied to evaluate the time and location of operations, in order to identify unreachable navigation, if compared to legitimate navigation
+Sparse or subtle file operations, with low number of operations distributed over different files or directories, during short period of time can indicate anomalies in contrast to the required time for legitimate directory navigation. MOS and zero mean and standardized covariance analysis can be suitable if applied to evaluate the time and location of operations, in order to identify unreachable navigation, if compared to legitimate navigation
 
-The MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on the correlation matrix highlights massive or concentrated operations over time or folder location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
+The MOS based on zero mean covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on the zero mean and standardized covariance highlights massive or concentrated operations over time or folder location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
 
 This threat scenario, where an attacker uses a valid password and session to perform operations on a bulk of files, can have its steps described as:
 
@@ -505,8 +507,8 @@ This threat scenario, where an attacker uses a valid password and session to per
 	\item The session time is valid;
 	\item The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
 	\item The client incrementally append each operation attempt time into the logging;
-	\item The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities;
-	\item The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time.
+	\item The MOS module evaluates the logging of legitimate operations, applying zero mean and standardized covariance analysis to identify anomalies on sparse or subtle number of file operations, highlighting the occurrence of infeasible behaviors in comparison to legitimate user activities;
+	\item The MOS module evaluates the logging of legitimate operations, applying zero mean covariance analysis to identify abnormalities caused by massive operations during the session time.
 \end{enumerate}
 
 \begin{thm}
@@ -515,11 +517,11 @@ Usage of expired password to perform unauthorized operations.
 
 In the offline mode, the session time is used to restrict the operations during a specified period, although it is possible to manipulate the current time in mobile clients, to emulate a period in which the session was valid. The log analysis by MOS can deal with this kind of threat, through the incremental logging of the time when each operation was performed, followed by the behavioral evaluation of operations over time. 
 
-The incremental logging assumes that new logged operations shall have equal or bigger time than the last logged operation, the violation of this rule means that the system is out of sync and indicates a malicious behavior. Additionally, a large amount or sparse operation performed at the same time, or during a short period, can indicate the use of backtrack techniques to maintain a valid session during necessary time to perform an attack. Massive, subtle or sparse malicious operation performed during a valid session time can be identified by MOS schemes based on covariance and correlation analysis.
+The incremental logging assumes that new logged operations shall have equal or bigger time than the last logged operation, the violation of this rule means that the system is out of sync and indicates a malicious behavior. Additionally, a large amount or sparse operation performed at the same time, or during a short period, can indicate the use of backtrack techniques to maintain a valid session during necessary time to perform an attack. Massive, subtle or sparse malicious operation performed during a valid session time can be identified by MOS schemes based on covariance analysis.
 
-Applying MOS to the analysis of the time between user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. The MOS based on correlation analysis identifies anomalies on sparse or subtle number of file operations, since the eigenvalue analysis based on the correlation matrix highlights the unexpected number of sparse (such as file operations on diverse folders) or subtle operations. Consequently, the result of the eigenvalue analysis is applied to MOS schemes, in order to identify the occurrence of malicious behaviors during the valid session.
+Applying MOS to the analysis of the time between user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. The MOS based on zero mean and standardized covariance analysis identifies anomalies on sparse or subtle variation in the number of file operations, since the this eigenvalue analysis highlights the unexpected number of sparse (such as file operations on diverse folders) or subtle operations. Consequently, the result of the eigenvalue analysis is applied to MOS schemes, in order to identify the occurrence of malicious behaviors during the valid session.
 
-The MOS based on covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on correlation matrix highlights massive or concentrated operations over time or location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
+The MOS based on zero mean covariance analysis indicates abnormalities caused by large amounts of operations during a period. The eigenvalue analysis based on the zero mean covariance matrix highlights massive or concentrated operations over time or location, which is evaluated by MOS schemes in order to identify the number of malicious behaviors during the evaluated time.
 
 This threat scenario, where the attacker uses expired password to perform unauthorized operations, can have its steps described as:
 
@@ -530,8 +532,8 @@ This threat scenario, where the attacker uses expired password to perform unauth
 	\item The hacker tries to perform legitimate operations, such as file decryption, encryption, reading, writing or directory navigations;
 	\item The client incrementally append each operation attempt time into the logging;
 	\item The client verifies if one logged time is older than the last operation time. If it is true, the MOS module classifies the evaluated operation as malicious;
-	\item The MOS module evaluates the logging of legitimate operations, applying correlation analysis to identify anomalies on sparse or subtle number of file operations;
-	\item The MOS module evaluates the logging of legitimate operations, applying covariance analysis to identify abnormalities caused by massive operations during the session time;
+	\item The MOS module evaluates the logging of legitimate operations, applying zero mean and standardized covariance analysis to identify anomalies on sparse or subtle number of file operations;
+	\item The MOS module evaluates the logging of legitimate operations, applying zero mean covariance analysis to identify abnormalities caused by massive operations during the session time;
 \end{enumerate}
 
 \subsubsection{Data Modeling for Behavioral Analysis }
@@ -554,9 +556,9 @@ In offline mode, the user is still allowed to get access to operations that do n
 Therefore, it is necessary to generate three matrices for malicious behaviors analysis, such as: 
 
 \begin{enumerate}[label=(\alph*)]
-	\item massive file access, which can reveal data leakage and be identified by MOS schemes based on covariance analysis; 
+	\item massive file access, which can reveal data leakage and be identified by MOS schemes based on zero mean covariance analysis; 
 	\item low file access into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization;
-	\item Malicious sparse file accesses can be identified by MOS schemes base correlation analysis. 
+	\item Malicious sparse file accesses can be identified by MOS schemes based on zero mean and standardized covariance analysis. 
 \end{enumerate}
 
 \paragraph{\textbf{File Update (Time and File System Location)},}i.e. writing operations into selected files in offline mode, writing the data stored on the mobile client. The update feature can be decomposed into:
@@ -569,22 +571,22 @@ Therefore, it is necessary to generate three matrices for malicious behaviors an
 Therefore, it is necessary to generate two matrices for malicious behaviors analysis, such as: 
 
 \begin{enumerate}[label=(\alph*)]
-	\item massive file update, which can reveal ransomware or similar attacks and be identified by MOS schemes based on covariance analysis; 
-	\item low number of file update into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. Malicious sparse file accesses can be identified by MOS schemes base correlation analysis.
+	\item massive file update, which can reveal ransomware or similar attacks and be identified by MOS schemes based on zero mean covariance analysis; 
+	\item low number of file update into several folders, characterized by sparse operations that can reveal unreachable navigation performed by automated file accesses in order to avoid the massive file access characterization. Malicious sparse file accesses can be identified by MOS schemes based on zero mean and standardized covariance analysis.
 \end{enumerate}
 
 \paragraph{\textbf{File Download (Start Time, End Time and File System Location)},}i.e. download requests in online mode, evaluated by the mobile client. The file download feature shall be modeled as the matrix of number downloads by file location over time, in order to perform malicious behaviors analysis, such as:
 
 \begin{enumerate}
-	\item massive data leakage or similar attacks, which can be identified by MOS schemes based on covariance analysis;
-	\item low number of file download from several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file download in order to avoid the massive file download characterization. Malicious sparse file download can be identified by MOS schemes base correlation analysis.
+	\item massive data leakage or similar attacks, which can be identified by MOS schemes based on zero mean covariance analysis;
+	\item low number of file download from several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file download in order to avoid the massive file download characterization. Malicious sparse file download can be identified by MOS schemes based on zero mean and standardized covariance analysis.
 \end{enumerate}
 
 \paragraph{\textbf{File Upload (Start Time, End Time and File System Location)},}i.e. upload requests in online mode, evaluated by the mobile client. The file upload feature can reveal attempts of ransomware or similar attacks and be identified by MOS schemes based on covariance analysis. Therefore, it is necessary model the matrix of number uploads by file location over time, in order to perform malicious behaviors analysis, such as:
 
 \begin{enumerate}
-	\item massive file upload, similar to ransomware attack, which can be identified by MOS schemes based on covariance analysis; 
-	\item low number of file upload to several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file upload in order to avoid the massive file upload characterization. Malicious sparse file upload can be identified by MOS schemes base correlation analysis.
+	\item massive file upload, similar to ransomware attack, which can be identified by MOS schemes based on zero mean covariance analysis; 
+	\item low number of file upload to several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file upload in order to avoid the massive file upload characterization. Malicious sparse file upload can be identified by MOS schemes based on zero mean and standardized covariance analysis.
 \end{enumerate}
 
 %These features provide the necessary information to apply MOS schemes for evaluating malicious behaviors according to the following scenarios and steps:
@@ -712,26 +714,91 @@ Table \ref{tab:02} demonstrates the results of testing the speed of the mobile d
 
 The device receives and displays the list of files depending on the user attributes with acceptable average speed and the proposed protection scheme is usable. Table \ref{tab:03} demonstrates the results of performance testing of the keys generation procedure on server:
 
-It is easy to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. We may conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
+It is easy to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. It is possible to conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
 
-The log analysis of the Log Analysis Center has been implemented and evaluated for offline anomaly detection in mobile clients, making it possible to apply anomaly detection techniques in a lightweight fashion, considering low processing requirements for deal with the resource constraints of mobile clients. The evaluation considered the required processing time for anomaly detection from log analysis, measuring the data modelling time, eigenvalue decomposition time and the required time for the EDC MOS scheme execution. The experiments were performed in two mobile devices, with variations of log size and window size. 
+The log analysis of the Log Analysis Center (LAC) has been implemented and evaluated for offline anomaly detection in mobile clients, making it possible to apply anomaly detection techniques in a lightweight fashion, considering low processing requirements for deal with the resource constraints of mobile clients. The evaluation considered the required processing time for anomaly detection from log analysis, measuring the data modeling time through the UAL, the eigenvalue decomposition time and the required time for the EDC MOS scheme execution, which is the scheme that requires less processing capacity and provides more anomaly identification accuracy \cite{da2009comparison,tenorio2013greatest}. The experiments were performed in two mobile devices, Galaxy GT-I9300 and Galaxy Tab SM-T800, with variations of log size and window size. The Galaxy GT-I9300 has Quad-core 1.4 GHz Cortex-A9 processor and 1 GB RAM, while the Galaxy Tab SM-T800 has its processing capacity composed by Quad-core 1.9 GHz Cortex-A15 and quad-core 1.3 GHz Cortex-A7, and 3 GB RAM.
 
-Table 4 presents the data modelling time and the processing time of eigenvalues decomposition and MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. The results show that the lower window size leads to the larger eigenvalue decomposition time, but the largest eigenvalue decomposition time, which was 421 milliseconds, highlights an acceptable speed even for the worst evaluated scenario.
+Table \ref{tab:04} presents the data modeling time and the processing time of eigenvalues decomposition calculations to be applied to anomaly detection from user operation logs of Storgrid mobile client. The information presented by column are the device model, the log size in megabytes, the window size in minutes, the data modeling time in milliseconds, the average of eigenvalue decomposition time in milliseconds, the standard deviation of eigenvalue decomposition time in milliseconds, the minimum of eigenvalue decomposition time in milliseconds and the maximum of eigenvalue decomposition time in milliseconds.
 
-Table 4. Data Modelling and Eigenvalue (Correlation and Covariance) Decomposition Time 
+The results show that the lower window size leads to the larger eigenvalue decomposition time, but the largest eigenvalue decomposition time, which was the maximum of 421 milliseconds with average of 347.42 milliseconds. This result highlights an acceptable speed even for the worst evaluated scenario, which is the Galaxy GT-I9300 processing 6MB with window size of 10 minutes.
 
-Table 5 presents the processing time of EDC MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. It is possible to observe that the processing time increases with the window size decreasing, similar to the results for eigenvalue decomposition time. 
+\begin{table*}
+	\caption{Data Modeling and Eigenvalue Decomposition Time }
+	\label{tab:04}
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Modeling\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Min.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Max.\\(ms)\end{tabular}	\\ \hline
+		Galaxy GT-I9300	& 6	& 60	& 107	& 209.52	& 18.58	& 183	& 276	\\ \hline
+		Galaxy GT-I9300	& 6	& 40	& 115	& 227.26	& 18.13	& 191	& 289	\\ \hline
+		Galaxy GT-I9300	& 6	& 20	& 89	& 268.14	& 21.94	& 229	& 315	\\ \hline
+		Galaxy GT-I9300	& 6	& 10	& 90	& 347.42	& 24.11	& 304	& 421	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 60	& 20	& 60.90	& 15.19	& 37	& 106	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 40	& 20	& 68.72	& 15.71	& 43	& 114	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 20	& 34	& 89.04	& 16.78	& 54	& 133	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 10	& 21	& 117.24	& 14.36	& 96	& 171	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 60	& 10	& 159.82	& 15.82	& 125	& 197	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 40	& 10	& 168.06	& 15.90	& 139	& 220	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 20	& 11	& 204.4	& 20.46	& 176	& 269	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 10	& 13	& 259.00	& 21.34	& 220	& 315	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 60	& 7	& 59.30	& 6.55	& 54	& 74	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 40	& 8	& 62.56	& 7.05	& 56	& 80	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 20	& 10	& 73.28	& 8.59	& 65	& 95	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 10	& 8	& 93.48	& 9.13	& 83	& 130	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 60	& 11	& 18.64	& 4.51	& 16	& 38	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 40	& 11	& 19.64	& 5.12	& 17	& 38	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 20	& 12	& 25.12	& 5.55	& 21	& 46	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 10	& 12	& 32.32	& 7.29	& 27	& 55	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 60	& 4	& 49.08	& 6.01	& 42	& 62	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 40	& 5	& 51.42	& 7.36	& 44	& 74	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 20	& 5	& 51.12	& 7.80	& 54	& 91	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 10	& 7	& 75.24	& 7.71	& 65	& 90	\\ \hline
+	\end{tabular}
+\end{table*}
 
-Table 5. EDC MOS scheme processing time for anomaly detection 
+Table \ref{tab:05} presents the processing time of EDC MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. Table \ref{tab:05} respectively presents the device model, the log size in megabytes, the window size in minutes, the average of EDC calculation time in milliseconds, the standard deviation of EDC calculation time in milliseconds, the minimum of EDC calculation time in milliseconds and the maximum of EDC calculation time in milliseconds.
 
-The longest processing time measured is lower than 200 milliseconds, even considering window size of 10 minutes or processing 6 MB of user operation log, what represents a acceptable processing time for anomaly detection in mobile devices.
+\begin{table*}
+	\caption{EDC MOS scheme processing time for anomaly detection}
+	\label{tab:05}
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}
+		\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Min. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Max. EDC.\\(ms)\end{tabular}	\\ \hline
+		Galaxy GT-I9300	& 6	& 60	& 5.27	& 4.04	& 3	& 20	\\ \hline
+		Galaxy GT-I9300	& 6	& 40	& 10.78	& 6.37	& 6	& 34	\\ \hline
+		Galaxy GT-I9300	& 6	& 20	& 32.62	& 12.44	& 21	& 88	\\ \hline
+		Galaxy GT-I9300	& 6	& 10	& 115.08	& 17.45	& 88	& 158	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 60	& 5.68	& 4.18	& 3	& 23	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 40	& 10.76	& 5.31	& 7	& 27	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 20	& 37.58	& 10.30	& 23	& 61	\\ \hline
+		Galaxy GT-I9300	& 4.1	& 10	& 125.98	& 18.56	& 101	& 191	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 60	& 4.92	& 3.49	& 3	& 17	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 40	& 9.00	& 4.23	& 6	& 25	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 20	& 30.14	& 9.21	& 19	& 62	\\ \hline
+		Galaxy GT-I9300	& 1.4	& 10	& 100.62	& 15.83	& 69	& 163	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 60	& 1.84	& 0.65	& 1	& 3	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 40	& 3.26	& 1.24	& 2	& 7	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 20	& 10.90	& 2.40	& 9	& 21	\\ \hline
+		Galaxy Tab SM-T800	& 6	& 10	& 41.86	& 7.33	& 34	& 60	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 60	& 1.85	& 0.60	& 1	& 3	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 40	& 3.62	& 1.10	& 2	& 8	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 20	& 12.04	& 2.79	& 9	& 22	\\ \hline
+		Galaxy Tab SM-T800	& 4.1	& 10	& 40.16	& 6.48	& 35	& 60	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 60	& 1.98	& 0.89	& 1	& 6	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 40	& 3.30	& 1.16	& 2	& 7	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 20	& 10.48	& 2.90	& 8	& 21	\\ \hline
+		Galaxy Tab SM-T800	& 1.4	& 10	& 34.52	& 4.08	& 30	& 45	\\ \hline
+	\end{tabular}
+\end{table*}
+
+It is possible to observe that the processing time increases with the window size decreasing, similar to the results for eigenvalue decomposition time. The longest processing time measured is lower than 200 milliseconds, even considering window size of 10 minutes or processing 6 MB of user operation log. This result represents an acceptable processing time for anomaly detection in mobile devices.
 
 \section{Conclusion and future work }
 \label{sec_conclusion}
-An important security issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile devices. Once a mobile device releases the connection with the corporate cloud, no security measure implemented in the cloud infrastructure assures the protection of sensitive data stored in the mobile device. Aware of this problem and its importance, this work presented a proposal to address the offline mobile security problem combining a different cryptographic methods. Moreover, this proposed approach also prevents malicious user behavior by applying a MOS-based analytic method. As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. 
-Future works in the area can further explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints.   
+An important security issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile devices. Once a mobile device releases the connection with the corporate cloud, no security measure implemented in the cloud infrastructure assures the protection of sensitive data stored in the mobile device. Aware of this problem and its importance, this work presented a proposal to address the offline mobile security problem combining a different cryptographic methods. Moreover, this proposed approach also prevents malicious user behavior by applying a MOS-based analytic method. 
 
-Our approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile app. WE suggest that it can be used for any type of enterprise. Also, part of concept is sed in the big data apps. We plan to enhance the analytics and implement the effective protocols.
+As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. The proposed approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile app and can be used for any type of enterprise. Also, part of concept is seed for new security solutions for big data apps. 
+
+Future works in the area can further explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints.
 
 \begin{acknowledgements}
 The authors thank the Brazilian research and innovation agencies FAPDF (Research Support Foundation of the Federal District), FINEP (Agreement RENASIC / PROTO 01.12.0555.00), CAPES and CNPq under the FORTE Project - CAPES Forensic Sciences Announcement 25/2014, under the productivity grant number 303905 / 2014-0, under the PVE project number 88881.030392 / 2013-01 for their financial support on this research, and under the project number 207644/2015-2 for the PDE scholarship in the context of the program CSF- Aerospace Technology.\end{acknowledgements}

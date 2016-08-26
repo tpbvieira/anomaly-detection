@@ -1,0 +1,15 @@
+ - temos muitas variáveis mas não sabemos quais são importantes, precisamos de algo que monitore tudo e forneça indicativos do que devo monitorar (dashboards de anomalias)
+ - seasonality detection
+ - seasonality extraction
+ - outros filtros podem ser utilizados para a identificação da melhor opção para detecção de anomalias
+	- normalization
+	- standardization
+	- smoothing filters
+	- outros filtros
+ - algoritmos pode ser alimentados por feedback
+	- relevante ou irrelevante
+	- falso positivo
+	- ok
+ - root cause detection
+
+ - ica e bca??
