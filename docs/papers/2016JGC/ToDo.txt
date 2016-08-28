@@ -238,3 +238,8 @@
 [34] Mobile Cyber Threats. Kaspersky Lab & INTERPOL Joint Report. October, 2014. Available: http://media.kaspersky.com/pdf/Kaspersky-Lab-KSN-Report-mobile-cyberthreats-web.pdf
 
 [35] Storgrid protected cloud storage security whitepaper. Available: http://www.storgrid.com
+
+
+
+
+Section 3 outlines the basic processes and the module security infrastructure of the proposed solution as well as the outline of online mode security

@@ -20,7 +20,7 @@
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="99.0" width="246.673828125" x="177.326171875" y="2.0"/>
+              <y:Geometry height="99.0" width="246.673828125" x="177.326171875" y="11.812500000000114"/>
               <y:Fill color="#CCCCCC" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#808080" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.4609375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="246.673828125" x="0.0" y="0.0">Online Mode Operations</y:NodeLabel>
@@ -48,7 +48,7 @@
     <node id="n1">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="59.0" width="181.0" x="210.1630859375" y="32.0"/>
+          <y:Geometry height="59.0" width="181.0" x="210.1630859375" y="41.812500000000114"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" modelName="custom" textColor="#000000" visible="true" width="185.8515625" x="-2.42578125" y="-0.4375">1. Checking User Credentials; 
@@ -71,7 +71,7 @@
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="111.3359375" width="246.673828125" x="177.326171875" y="156.10156249999977"/>
+              <y:Geometry height="111.3359375" width="246.673828125" x="177.326171875" y="162.8515624999999"/>
               <y:Fill color="#CCCCCC" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#808080" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.4609375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="246.673828125" x="0.0" y="0.0">Threat Intelligence Operations</y:NodeLabel>
@@ -97,7 +97,7 @@
         <node id="n2::n0">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="59.0" width="181.0" x="210.1630859375" y="192.99999999999977"/>
+              <y:Geometry height="59.0" width="181.0" x="210.1630859375" y="199.7499999999999"/>
               <y:Fill hasColor="false" transparent="false"/>
               <y:BorderStyle hasColor="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" modelName="custom" textColor="#000000" visible="true" width="182.34765625" x="-0.673828125" y="-0.4375">1. Gathering log information; 
@@ -122,7 +122,7 @@
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="110.4609375" width="243.248046875" x="179.751953125" y="322.97656249999955"/>
+              <y:Geometry height="110.4609375" width="243.248046875" x="179.751953125" y="310.72656249999966"/>
               <y:Fill color="#CCCCCC" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#808080" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.4609375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="243.248046875" x="0.0" y="0.0">Offline Mode Operations</y:NodeLabel>
@@ -148,7 +148,7 @@
         <node id="n3::n0">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="59.0" width="181.0" x="210.0" y="359.43749999999955"/>
+              <y:Geometry height="59.0" width="181.0" x="210.0" y="347.18749999999966"/>
               <y:Fill hasColor="false" transparent="false"/>
               <y:BorderStyle hasColor="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" modelName="custom" textColor="#000000" visible="true" width="174.53125" x="3.234375" y="6.546875">1. Restoring the shared key;
@@ -165,6 +165,42 @@
           </data>
         </node>
       </graph>
+    </node>
+    <node id="n4">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="130.0" width="271.0" x="165.1630859375" y="-3.6874999999998863"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle color="#000000" type="dotted" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="43.3515625" x="223.6484375" y="114.68229166666643">Server<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.35246376811595526" nodeRatioX="0.5" nodeRatioY="0.5" offsetX="-4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="288.66666666666663" width="271.0" x="165.1630859375" y="146.5"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle color="#000000" type="dotted" width="2.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="81.91796875" x="185.08203125" y="-1.3177083333335702">Mobile Client<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="-0.4266666666666535" nodeRatioX="0.5" nodeRatioY="-0.5" offsetX="-4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
     </node>
     <edge id="e0" source="n2" target="n0">
       <data key="d10">
