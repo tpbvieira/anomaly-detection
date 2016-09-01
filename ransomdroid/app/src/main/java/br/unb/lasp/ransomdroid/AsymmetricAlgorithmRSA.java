@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 
@@ -69,6 +70,16 @@ public class AsymmetricAlgorithmRSA extends Activity {
         decodedTextView = (TextView)findViewById(R.id.decoded);
         decodedTextView.setText("[DECODED]:\n" + new String(decodedBytes) + "\n");
 
+    }
+
+    public String createPassword(int length) {
+        String seed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*!=&?&/";
+        StringBuilder stringBuilder = new StringBuilder();
+        Random rnd = new Random();
+        while (0 < length--){
+            stringBuilder.append(seed.charAt(rnd.nextInt(seed.length())));
+        }
+        return stringBuilder.toString();
     }
 
 }

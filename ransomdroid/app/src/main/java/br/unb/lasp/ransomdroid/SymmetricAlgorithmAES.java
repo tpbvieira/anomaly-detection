@@ -1,4 +1,4 @@
-package br.unb.lasp.ransomdroid.droid;
+package br.unb.lasp.ransomdroid;
 
 import android.app.Activity;
 import android.os.Bundle;
