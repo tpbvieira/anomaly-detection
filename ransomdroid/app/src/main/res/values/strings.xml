@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">MOS Evaluation</string>
-    <string name="prompt_email">File Path</string>
-    <string name="window_size">Window Size in Minutes</string>
-    <string name="evaluate">Evaluate</string>
+    <string name="empty"></string>
+    <string name="app_name">Ransomware Evaluation</string>
+    <string name="password">password</string>
+    <string name="decrypt">decrypt</string>
+    <string name="encrypted">encrypted</string>
+    <string name="error">error</string>
+    <string name="loading">loading...</string>
+    <string name="prompt_encrypted_files">Encrypted Files: </string>
 </resources>
