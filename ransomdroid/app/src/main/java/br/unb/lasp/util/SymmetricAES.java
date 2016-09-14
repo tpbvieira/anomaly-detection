@@ -78,7 +78,7 @@ public class SymmetricAES {
         return encodedBytes;
     }
 
-    public byte[] decrypt(byte[] origin, SecretKeySpec keySpec) {
+    public static byte[] decrypt(byte[] origin, SecretKeySpec keySpec) {
 
         byte[] decodedBytes = null;
         try {
