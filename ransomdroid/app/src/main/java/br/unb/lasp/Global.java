@@ -6,6 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Global {
 
+    public static AsyncTask.Status STATUS = null;
     public static int numFiles = 0;
     public static String pass = null;
     public static String uid = null;

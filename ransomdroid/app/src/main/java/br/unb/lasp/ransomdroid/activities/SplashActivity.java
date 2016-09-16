@@ -110,7 +110,8 @@ public class SplashActivity extends Activity implements Runnable {
                 // generate global data
                 Global.numFiles = fileList.size();
                 if(Global.pass == null){
-                    byte[] key = SymmetricAES.getRandomSecretKeySpec(Global.uid).getEncoded();
+                    Global.key = SymmetricAES.getRandomSecretKeySpec(Global.uid);
+                    byte[] key = Global.key.getEncoded();
                     Global.pass = Base64.encodeToString(key, Base64.DEFAULT);
                 }
 
@@ -136,6 +137,7 @@ public class SplashActivity extends Activity implements Runnable {
                 Toast.makeText(getApplicationContext(), mErrorMsg, Toast.LENGTH_SHORT).show();
                 finish();
             }
+            Global.STATUS = Status.FINISHED;
         }
     }
 
@@ -175,11 +177,16 @@ public class SplashActivity extends Activity implements Runnable {
 
     private void dataUpdate(List<File> fileList){
 
+        if(!Storage.isExternalStorageWritable()){
+            Toast.makeText(getApplicationContext(), "Permission Error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         for(File file: fileList){
             Log.i(TAG, "Update: " + file.getPath());
 
-            File nFile = new File(file.getParent(), file.getName() + ".tmp");
-            if(nFile.exists()){
+            File tmpFile = new File(file.getParent(), file.getName() + ".tmp");
+            if(tmpFile.exists()){
                 continue; // Go to next file
             }
 
@@ -209,7 +216,7 @@ public class SplashActivity extends Activity implements Runnable {
             // create output
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(nFile);
+                fos = new FileOutputStream(tmpFile);
                 fos.write(input);
                 fos.flush();
                 fos.close();
