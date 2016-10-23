@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+# vim: set tabstop=4 shiftwidth=4 textwidth=79 cc=72,79:
+"""
+    python_fire: Executable script for python-fire.
+
+    Can be ran in training mode, or testing mode. Must use a dataset
+    compatible with the NSL-KDD datasets, in ARFF format.
+
+    In training mode, this script finds membership functions for all of
+    the attributes. As the training examples are labelled, it also
+    generates fuzzy rules for classifying examples as anomalous or
+    normal.
+
+    In testing mode, this script takes the generated membership functions
+    and rule sets and applies them to the given data. It outputs in CSV
+    format.
+
+    Original Author: Owain Jones [github.com/erinaceous] [odj@aber.ac.uk]
+"""
+
+from __future__ import print_function
+from sklearn.feature_extraction import DictVectorizer
+import sklearn.tree
+import fire.fuzzy
+import fire.data
+import argparse
+import pickle
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('-e', '--existing-files', action='store_true',
+                        default=False,
+                        help='Use existing fuzzy_cmeans.pickle file')
+    parser.add_argument('mode',
+                        help='Can be "training" or "testing"')
+    parser.add_argument('input',
+                        help='In training mode: path to input ARFF file. In ' +
+                             'testing mode: path to JSON parameters file. ' +
+                             'In live mode: stdin or path to raw tcpdump file')
+    return parser.parse_args()
+
+
+def training(args):
+    train = fire.data.ARFFReader(args.input)
+    print('Loading data from', args.input)
+    train.load()
+    if args.existing_files:
+        print('Loading fuzzy_cmeans.pickle')
+        fuzzy = pickle.load(open('fuzzy_cmeans.pickle', 'rb'))
+    else:
+        print('Initializing fuzzy sets for', len(train.data.dtype.names),
+              'attributes')
+        fuzzy = fire.fuzzy.build_attributes(train.data, train.attributes,
+                                            ignore=['class'])
+        pickle.dump(fuzzy, open('fuzzy.pickle', 'w+b'))
+        print('Adjusting fuzzy sets with C-Means')
+        fuzzy = fire.fuzzy.cmeans(train.data, train.attributes, fuzzy)
+        pickle.dump(fuzzy, open('fuzzy_cmeans.pickle', 'w+b'))
+    print('Generating fuzzy data for decision tree')
+    samples = []
+    labels = []
+    classes = {
+        'normal': 0,
+        'anomaly': 1
+    }
+    vec = DictVectorizer()
+    for example in train.data:
+        example_fuzzy = fire.fuzzy.classify_example(
+            example, train.attributes, fuzzy
+        )
+        example_vec = vec.fit_transform(example_fuzzy).toarray()
+        samples.append(example_vec)
+        labels.append(classes[example['class'].decode()])
+    print('Generating decision tree')
+    tree = sklearn.tree.DecisionTreeClassifier()
+    tree = tree.fit(samples, labels)
+    pickle.dump(tree, open('tree.pickle', 'w+b'))
+
+
+def testing(args):
+    test = fire.data.ARFFReader(args.input)
+    test.load()
+    fuzzy = pickle.load(open('fuzzy_cmeans.pickle', 'rb'))
+    tree = pickle.load(open('tree.pickle', 'rb'))
+    vec = DictVectorizer()
+    samples = []
+    for example in test.data:
+        example_fuzzy = fire.fuzzy.classify_example(
+            example, test.attributes, fuzzy
+        )
+        example_vec = vec.fit_transform(example_fuzzy).toarray()
+        print(tree.predict(example_vec))
+
+
+modes = {
+    "training": training,
+    "testing": testing,
+}
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    if args.mode not in modes.keys():
+        raise Exception('Program mode not one of %s' % ', '.join(modes.keys()))
+    modes[args.mode](args)

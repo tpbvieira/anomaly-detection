@@ -1,0 +1,8 @@
+KDD-99
+ - possui tráfego malicioso e legítimo
+ - dos and probing
+ - probing = connection records were sorted by destination host, and features were constructed using a window of 100 connections to the same host instead of a time window -> host-based traffic features.
+ - o dado é agrupado em "connections", que seria semelhante a um "flow". Entretanto, nosso experimento faz uma análise de pacotes, desconsiderando a formação de flows, que é uma tarefa complicada
+ - o dado não tem timestamp, enquanto nossa abordagem depende de timestamp dos pacotes, assim como outras técnicas de detecção de anomalias baseado em comportamento
+ - o dado não tem ip (origem ou destino), mas nossa abordagem é agrupada por IP de destino
+ - a porta de origem e destino não são fornecidas, mas as portas de destino podem ser estimadas de acordo com o serviço declarado (http -> 80, por exemplo)
