@@ -78,6 +78,7 @@ public class EigenAnalysis{
 	}
 
 	public static void main( String[] args ){    	
+		
 		try {
 			System.out.println("###EigenAnalysisTest###");
 			Matrix matrix = MatrixUtil.readMatrixFromFile("//media//thiago//shared//backup//doutorado//data//all//traffic//1.txt");
@@ -85,18 +86,19 @@ public class EigenAnalysis{
 			Matrix eigVal = eig.getD();
 			Matrix eigVec = eig.getV();
 			System.out.println("eigencorrelation.LargestEigenvalue=" + MatrixUtil.max(eigVal));		
-			MatrixUtil.printMatrix(eigVal, "Eigenvalues: ", 4);
-			MatrixUtil.printMatrix(eigVec, "Eigenvectors: ", 4);
+			MatrixUtil.printMatrix(eigVal, "Eigenvalues: ");
+			MatrixUtil.printMatrix(eigVec, "Eigenvectors: ");
 
 			eig = eigencovariance(matrix);
 			eigVal = eig.getD();
 			eigVec = eig.getV();
 			System.out.println("eigencovariance.LargestEigenvalue=" + MatrixUtil.max(eigVal));		
-			MatrixUtil.printMatrix(eigVal, "Eigenvalues: ", 4);
-			MatrixUtil.printMatrix(eigVec, "Eigenvectors: ", 4);
+			MatrixUtil.printMatrix(eigVal, "Eigenvalues: ");
+			MatrixUtil.printMatrix(eigVec, "Eigenvectors: ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

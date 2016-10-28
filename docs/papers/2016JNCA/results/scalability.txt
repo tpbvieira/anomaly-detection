@@ -1,0 +1,5 @@
+week04/06_friday/outside.tcpdump	79,9
+week03/06_friday/outside.tcpdump	172,2
+week05/03_tuesday/outside.tcpdump	336,3
+week04/03_tuesday/outside.tcpdump	508,5
+week05/05_thursday/outside.tcpdump	2,1

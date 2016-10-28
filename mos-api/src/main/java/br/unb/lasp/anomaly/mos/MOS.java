@@ -22,15 +22,15 @@ public class MOS{
 		
 		int maxSize = Math.max(matrix.getRowDimension(), matrix.getColumnDimension());
 		
-//		MatrixUtil.printMatrix(br.unb.lasp.matrix, "Matrix: ", 4);
+//		MatrixUtil.printMatrix(matrix, "Matrix: ");
 		
 //		System.out.println("PeriodSize: " + N);
-//		System.out.println("RowSize: " + br.unb.lasp.matrix.getRowDimension());
-//		System.out.println("ColumnSize: " + br.unb.lasp.matrix.getColumnDimension());
+//		System.out.println("RowSize: " + matrix.getRowDimension());
+//		System.out.println("ColumnSize: " + matrix.getColumnDimension());
 //		System.out.println("MaxSize: " + maxSize);
 		
 		matrix = matrix.transpose();
-//		MatrixUtil.printMatrix(br.unb.lasp.matrix, "Matrix_transposed: ", 4);
+//		MatrixUtil.printMatrix(matrix, "Matrix_transposed: ");
 		
 
 		// sorts into ascending order, by columns and individually
@@ -42,7 +42,7 @@ public class MOS{
 			realMatrix.setColumn(j,column);
         }
 		matrix = new Matrix(realMatrix.getData());
-//		MatrixUtil.printMatrix(br.unb.lasp.matrix, "Matrix_serted: ", 4);
+//		MatrixUtil.printMatrix(matrix, "Matrix_serted: ");
 		
 		// ??
 		double c_n = Math.sqrt(N * Math.log(Math.log(N)));
@@ -54,11 +54,11 @@ public class MOS{
 			int windowSize = maxSize - i;
 //			System.out.println("WindowSize: " + windowSize);
 			double[][] window = Arrays.copyOfRange(matrix.getArray(), 0, windowSize);			
-//			MatrixUtil.printMatrix(new Matrix(window), "Matrix_window: ", 4);
+//			MatrixUtil.printMatrix(new Matrix(window), "Matrix_window: ");
 			Matrix windowGeomean = MatrixUtil.geomean(new Matrix(window));			
-//			MatrixUtil.printMatrix(windowGeomean, "Window_geomean: ", 4);			
+//			MatrixUtil.printMatrix(windowGeomean, "Window_geomean: ");			
 			Matrix windowMean = MatrixUtil.mean(new Matrix(window));			
-//			MatrixUtil.printMatrix(windowMean, "Window_mean: ", 4);
+//			MatrixUtil.printMatrix(windowMean, "Window_mean: ");
 			
 			// mm must vary from 0 to M - 1. ii starts with 1 and ends in M, wich means M-1 until 0
 			int mm = maxSize - windowSize;
@@ -78,16 +78,5 @@ public class MOS{
 		
         return minIndex;
 	}
-	
-    public static void main( String[] args ){
-    	
-    	double[][] covLargEig = {{1887545D, 2341327D, 3213867D, 133238294D, 92384021611D, 708335D}};
-        Matrix covLargEigMat = new Matrix(covLargEig);
-        edcJAMA(covLargEigMat,(short)20);
-        
-        double[][] corLargEig = {{2.0734D, 2.1451D, 10.0718D, 2.1620D, 2.4253D, 1.7948D}};
-        Matrix corLargEigMat = new Matrix(corLargEig);
-        edcJAMA(corLargEigMat,(short)20);        
-        
-    }
+    
 }

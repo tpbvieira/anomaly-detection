@@ -1,0 +1,29 @@
+DOS
+	neptune
+		3	Thurs	neptune	16:10:26	10.20.30.40	pascal			-	tcp	all ports,1hr					ok = Cor
+		5	Thurs	neptune	11:05:00	10.20.30.40	pascal			-	tcp	all port`s 1 hr					ok = Cor
+		5	Fri	neptune	18:27:07	230.1.10.20	pascal			-	tcp	port 1-1024 every 5 min for 1 hr		ok = Cor
+		6	Wed	neptune	11:41:42	135.13.216.191	zeno			-	tcp	all ports for an hour				ok = Cor and Cov
+		6	Thurs	neptune	12:32:23	230.1.10.20	pascal			-	tcp							ok = mis
+		6	Thurs	neptune	14:31:08	10.20.30.40	pascal			-	tcp							ok = mis
+
+probe
+	portsweep
+		4	Wed	portsweep 21:00:29	194.27.251.21	marx			-	tcp	fast,0-300 -- scantcp 0				ok = cor
+		5	Thurs	portsweep 12:25:11	196.227.33.189	zeno			-	tcp	1 ACK every 20 sec				ok = Cor
+
+
+Computadores
+============
+pascal = 172.16.112.50
+zeno = 172.16.113.50
+marx = 172.16.114.50
+
+tcp.port eq 19468 and ip.src==202.72.1.77 or ip.dst==172.16.112.50
+
+ - falar que o nosso método é aplicado para flooding attacks and probe, mas o darpa dataset aplica DOS com pouca quantidade de pacotes, como casos em que um synflood é feito com 15 ou 20 pacotes
+ - ademais, o tráfego legítimo tem comportamentos semelhantes a casos de ataques de flooding, que são several packets de uma mesma origem para um mesmo destino
+ - outros ataques synflood fazem um envio de pacotes em todas as portas de uma determinada máquina, incrementando unitariamente o valor das portas. este comportamento difere do comportamento que avaliamos incialmente para synflood, mas o envio de pacotes para várias portas é semelhante a um portscan, sendo portanto efetivamente detectado pela nossa técnica de portscan.
+
+
+=IF(AND(A1=0;B1=0);"TN";IF(AND(A1=1;B1=1);"TP";IF(AND(A1=0;B1=1);"FN";IF(AND(A1=1;B1=0);"FP"

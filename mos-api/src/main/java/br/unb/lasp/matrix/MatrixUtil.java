@@ -251,15 +251,12 @@ public class MatrixUtil{
 		long diffTime = endTime.getTime() - startTime.getTime();
 		int diffMinutes = (int) (long) (diffTime/(1000 * 60));
 		float rest = diffMinutes%frameSize;
-		System.out.println("Rest="+rest);
+		
 		if(rest > 0){
 			numFrames = (diffMinutes/frameSize) + 1;
 			numMinutes = numFrames * frameSize;
 			endTime.setTime(startTime.getTime() + TimeUnit.MINUTES.toMillis(numMinutes));
 		}
-		System.out.println("Start="+Parser.sdf.format(startTime));
-		System.out.println("End="+Parser.sdf.format(endTime));
-		
 		
 		// creates timeIndeces according to possible times between start and end time
 		timeIndeces.clear();
@@ -284,8 +281,7 @@ public class MatrixUtil{
 						arrayMatrix[portIndices.get(port)][timeIndex] = portCounters.get(port);				
 					}	
 				}
-			}
-			System.out.println(timeStr + ":" + timeIndex);
+			}			
 			timeIndex++;
 		}
 
@@ -299,6 +295,10 @@ public class MatrixUtil{
 			startColumn = startColumn + frameSize;
 			endColumn = endColumn + frameSize;
 		}
+		
+		System.out.println("Start="+Parser.sdf.format(startTime));
+		System.out.println("End="+Parser.sdf.format(endTime));
+		System.out.println("Frames="+numFrames);
 		
 		return matrices;
 	}

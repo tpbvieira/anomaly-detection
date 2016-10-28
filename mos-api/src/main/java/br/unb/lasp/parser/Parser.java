@@ -34,7 +34,7 @@ public class Parser {
 	public static int countedPackets = 0;
 	
 	public static void main(String[] args) { 
-		printPcapStatistics("/media/thiago/ubuntu/datasets/darpa/1998/03_Training Data/week01/04_wednesday/outside.tcpdump");	
+		printPcapStatistics("/media/thiago/ubuntu/datasets/darpa/1998/03_Training Data/week05/05_thursday/outside.tcpdump", "172.16.112.50", true);	
 	}
 
 	public static void pcapToPortTimeCountMap(final String filePath, final String targetIp, final Set<Integer> targetPorts, 
@@ -117,7 +117,76 @@ public class Parser {
 		pcap.close();
 	}
 
-	public static void printPcapStatistics(final String filePath) {
+	public static void pcapToPortTimeCountMapDst(final String filePath, final String targetIp, final Set<Integer> targetPorts, 
+			final Map<String, Map<Integer, Integer>> timeCounters) {
+
+		final StringBuilder errbuf = new StringBuilder();
+		final Pcap pcap = Pcap.openOffline(filePath, errbuf);
+
+		pcap.loop(Pcap.LOOP_INFINITE, new JPacketHandler<StringBuilder>() {					
+
+			Ip4 ip = new Ip4();
+			Tcp tcp = new Tcp();
+			Udp udp = new Udp();
+
+			public void nextPacket(JPacket packet, StringBuilder errbuf) {
+				numPackets++;
+				if(packet.hasHeader(Ip4.ID)){
+
+					// Source
+					String dstIp = FormatUtils.ip(packet.getHeader(ip).destination());
+
+					if(dstIp.equals(targetIp)){
+
+						Integer port = null;
+
+						if(packet.hasHeader(Tcp.ID)){
+							// Is a target port?
+							Integer tmpPort = packet.getHeader(tcp).destination();
+							if(targetPorts.contains(tmpPort)){
+								port = packet.getHeader(tcp).destination();
+							}
+						}else if(packet.hasHeader(Udp.ID)){
+							// Is a target port?
+							Integer tmpPort = packet.getHeader(udp).destination();
+							if(targetPorts.contains(tmpPort)){
+								port = packet.getHeader(udp).destination();
+							}
+						}
+
+						if(port != null){							
+							String time = sdf.format(new Date(packet.getCaptureHeader().timestampInMillis()));
+							
+							Map<Integer, Integer> portCounters;							
+							if(timeCounters.containsKey(time)){
+								portCounters = timeCounters.get(time);	
+							}else{
+								portCounters = new HashMap<>();
+							}
+							
+							Integer count = 1;
+							if(portCounters.containsKey(port)){
+								count = portCounters.get(port) + 1;	
+							}
+							
+							portCounters.put(port, count);
+							timeCounters.put(time, portCounters);
+							
+							countedPackets++;
+						}
+
+					}
+
+				}
+
+			}
+
+		}, errbuf);
+		
+		pcap.close();
+	}
+	
+	public static void printPcapStatistics(final String filePath, final String ipTarget, final boolean onlyDst) {
 
 		final StringBuilder errbuf = new StringBuilder();
 		final Pcap pcap = Pcap.openOffline(filePath, errbuf);
@@ -136,52 +205,74 @@ public class Parser {
 
 				if(packet.hasHeader(Ip4.ID)){
 
-					// Source
-					String srcIp = FormatUtils.ip(packet.getHeader(ip).source());
-					Integer count = 1;
-					if(ipCount.containsKey(srcIp)){
-						count = ipCount.get(srcIp) + 1;
+					if(ipTarget != null){
+						
+						if(onlyDst){
+							//Destination
+							String dstIp = FormatUtils.ip(packet.getHeader(ip).destination());
+							if(!dstIp.startsWith(ipTarget)){
+								return;
+							}
+							Integer count = 1;
+							if(ipCount.containsKey(dstIp)){
+								count = ipCount.get(dstIp) + 1;
+							}
+							ipCount.put(dstIp, count);
+						}else{
+							String srcIp = FormatUtils.ip(packet.getHeader(ip).source());
+							String dstIp = FormatUtils.ip(packet.getHeader(ip).destination());
+							if(!srcIp.startsWith(ipTarget) && !dstIp.startsWith(ipTarget)){
+								return;
+							}
+							
+							Integer count = 1;
+							if(ipCount.containsKey(srcIp)){
+								count = ipCount.get(srcIp) + 1;
+							}
+							ipCount.put(srcIp, count);
+							count = 1;
+							if(ipCount.containsKey(dstIp)){
+								count = ipCount.get(dstIp) + 1;
+							}
+							ipCount.put(dstIp, count);							
+						}
+						
 					}
-					ipCount.put(srcIp, count);
-
-					//Destination
-					String dstIp = FormatUtils.ip(packet.getHeader(ip).destination());
-					count = 1;
-					if(ipCount.containsKey(dstIp)){
-						count = ipCount.get(dstIp) + 1;
-					}
-					ipCount.put(dstIp, count);
 
 					if(packet.hasHeader(Tcp.ID)){
-						Integer srcPort = packet.getHeader(tcp).source();
-						count = 1;
-						if(tcpPortCount.containsKey(srcPort)){
-							count = tcpPortCount.get(srcPort) + 1;
+						if(!onlyDst){
+							Integer srcPort = packet.getHeader(tcp).source();
+							Integer count = 1;
+							if(tcpPortCount.containsKey(srcPort)){
+								count = tcpPortCount.get(srcPort) + 1;
+							}
+							tcpPortCount.put(srcPort, count);	
 						}
-						tcpPortCount.put(srcPort, count);
 
 						Integer dstPort = packet.getHeader(tcp).destination();
-						count = 1;
+						Integer count = 1;
 						if(tcpPortCount.containsKey(dstPort)){
 							count = tcpPortCount.get(dstPort) + 1;
 						}
 						tcpPortCount.put(dstPort, count);					
 					}else 
 						if(packet.hasHeader(Udp.ID)){
-							Integer srcPort = packet.getHeader(udp).source();
-							count = 1;
-							if(udpPortCount.containsKey(srcPort)){
-								count = udpPortCount.get(srcPort) + 1;
-							}
-							udpPortCount.put(srcPort, count);
+							if(!onlyDst){
+								Integer srcPort = packet.getHeader(udp).source();
+								Integer count = 1;
+								if(udpPortCount.containsKey(srcPort)){
+									count = udpPortCount.get(srcPort) + 1;
+								}
+								udpPortCount.put(srcPort, count);	
+							}							
 
 							Integer dstPort = packet.getHeader(udp).destination();
-							count = 1;
+							Integer count = 1;
 							if(udpPortCount.containsKey(dstPort)){
 								count = udpPortCount.get(dstPort) + 1;
 							}
 							udpPortCount.put(dstPort, count);					
-						}					
+						}
 
 				}
 

@@ -19,9 +19,9 @@ public class PcapToPortTimeCountMapTest extends TestCase {
 	@Test
 	public void test() {
 		
-		final String filePath = "/media/thiago/ubuntu/datasets/darpa/1998/01_sample_data/sample_data01.tcpdump";
-		String targetIp = "192.168.1.30";
-		Set<Integer> targetPorts = new HashSet<>(Arrays.asList(20,21,22,23,25,53,79,80,109,110,111,113,512,513,514,515,1021));		
+		String targetIp = "172.16.112.50";
+		Set<Integer> targetPorts = new HashSet<>(Arrays.asList(20,21,22,23,25,53,79,80,81,113,123,984,1024,1025,1026,1027,1028));		
+		final String filePath = "/media/thiago/ubuntu/datasets/darpa/1998/03_Training Data/week01/04_wednesday/outside.tcpdump";		
 		Map<String, Map<Integer, Integer>> timeCounters = new HashMap<String, Map<Integer, Integer>>();
 
 		long t0,t1;
