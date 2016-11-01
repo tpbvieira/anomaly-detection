@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.22)  7 JUN 2016 22:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  1 NOV 2016 01:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,8 +6,8 @@ entering extended mode
 (./2016JNCA.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/elsarticle/elsarticle.cls
-Document Class: elsarticle 2009/09/17, 1.2.0: Elsevier Ltd
+(./elsarticle.cls
+Document Class: elsarticle 2009/09/17, 1.20b: Elsevier Ltd
 \@bls=\dimen102
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
@@ -98,22 +98,23 @@ LaTeX Info: Redefining \cite on input line 694.
 \splwrite=\write3
 \openout3 = `2016JNCA.spl'.
 
+\appnamewidth=\dimen109
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count95
 \output=\toks17
 \linenoprevgraf=\count96
-\linenumbersep=\dimen109
-\linenumberwidth=\dimen110
+\linenumbersep=\dimen110
+\linenumberwidth=\dimen111
 \c@linenumber=\count97
 \c@pagewiselinenumber=\count98
 \c@LN@truepage=\count99
 \c@internallinenumber=\count100
 \c@internallinenumbers=\count101
-\quotelinenumbersep=\dimen111
-\bframerule=\dimen112
-\bframesep=\dimen113
+\quotelinenumbersep=\dimen112
+\bframerule=\dimen113
+\bframesep=\dimen114
 \bframebox=\box30
 LaTeX Info: Redefining \\ on input line 3056.
 )
@@ -174,7 +175,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen114
+\@linkdim=\dimen115
 \Hy@linkcounter=\count102
 \Hy@pagecounter=\count103
 
@@ -200,10 +201,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen115
+\XeTeXLinkMargin=\dimen116
 \Fld@menulength=\count106
-\Field@Width=\dimen116
-\Fld@charsize=\dimen117
+\Field@Width=\dimen117
+\Fld@charsize=\dimen118
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -281,20 +282,20 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 (/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
 \c@tracingst=\count119
-\ST@wd=\dimen118
+\ST@wd=\dimen119
 \ST@rightskip=\skip50
 \ST@leftskip=\skip51
 \ST@parfillskip=\skip52
-\ST@pageleft=\dimen119
-\ST@headht=\dimen120
-\ST@tailht=\dimen121
-\ST@pagesofar=\dimen122
-\ST@pboxht=\dimen123
-\ST@lineht=\dimen124
-\ST@stretchht=\dimen125
-\ST@prevht=\dimen126
-\ST@toadd=\dimen127
-\ST@dimen=\dimen128
+\ST@pageleft=\dimen120
+\ST@headht=\dimen121
+\ST@tailht=\dimen122
+\ST@pagesofar=\dimen123
+\ST@pboxht=\dimen124
+\ST@lineht=\dimen125
+\ST@stretchht=\dimen126
+\ST@prevht=\dimen127
+\ST@toadd=\dimen128
+\ST@dimen=\dimen129
 \ST@pbox=\box33
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
@@ -302,7 +303,7 @@ Package: fancybox 2010/05/15 1.4
 
 Style option: `fancybox' v1.4 <2010/05/15> (tvz)
 \@fancybox=\box34
-\shadowsize=\dimen129
+\shadowsize=\dimen130
 \@Sbox=\box35
 \do@VerbBox=\toks26
 \the@fancyput=\toks27
@@ -328,31 +329,31 @@ Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen130
-\extrarowheight=\dimen131
+\col@sep=\dimen131
+\extrarowheight=\dimen132
 \NC@list=\toks31
 \extratabsurround=\skip53
 \backup@length=\skip54
 )
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen132
-\lightrulewidth=\dimen133
-\cmidrulewidth=\dimen134
-\belowrulesep=\dimen135
-\belowbottomsep=\dimen136
-\aboverulesep=\dimen137
-\abovetopsep=\dimen138
-\cmidrulesep=\dimen139
-\cmidrulekern=\dimen140
-\defaultaddspace=\dimen141
+\heavyrulewidth=\dimen133
+\lightrulewidth=\dimen134
+\cmidrulewidth=\dimen135
+\belowrulesep=\dimen136
+\belowbottomsep=\dimen137
+\aboverulesep=\dimen138
+\abovetopsep=\dimen139
+\cmidrulesep=\dimen140
+\cmidrulekern=\dimen141
+\defaultaddspace=\dimen142
 \@cmidla=\count122
 \@cmidlb=\count123
-\@aboverulesep=\dimen142
-\@belowrulesep=\dimen143
+\@aboverulesep=\dimen143
+\@belowrulesep=\dimen144
 \@thisruleclass=\count124
 \@lastruleclass=\count125
-\@thisrulewidth=\dimen144
+\@thisrulewidth=\dimen145
 )
 (/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
@@ -364,11 +365,11 @@ Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
-\TX@col@width=\dimen145
-\TX@old@table=\dimen146
-\TX@old@col=\dimen147
-\TX@target=\dimen148
-\TX@delta=\dimen149
+\TX@col@width=\dimen146
+\TX@old@table=\dimen147
+\TX@old@col=\dimen148
+\TX@target=\dimen149
+\TX@delta=\dimen150
 \TX@cols=\count127
 \TX@ftn=\toks33
 )
@@ -387,7 +388,7 @@ Package color Info: Driver file: pdftex.def on input line 130.
 \minrowclearance=\skip57
 )
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
-\bigstrutjot=\dimen150
+\bigstrutjot=\dimen151
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 1994/05/23 v2.03 Table rule package (DPC)
@@ -405,7 +406,7 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTpre=\skip60
 \LTpost=\skip61
 \LTchunksize=\count128
-\LTcapwidth=\dimen151
+\LTcapwidth=\dimen152
 \LT@head=\box37
 \LT@firsthead=\box38
 \LT@foot=\box39
@@ -423,8 +424,8 @@ Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count133
 \calc@Bcount=\count134
-\calc@Adimen=\dimen152
-\calc@Bdimen=\dimen153
+\calc@Adimen=\dimen153
+\calc@Bdimen=\dimen154
 \calc@Askip=\skip62
 \calc@Bskip=\skip63
 LaTeX Info: Redefining \setlength on input line 76.
@@ -446,11 +447,11 @@ Package: amstext 2000/06/29 v2.01
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks36
-\ex@=\dimen154
+\ex@=\dimen155
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen155
+\pmbraise@=\dimen156
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
@@ -467,7 +468,7 @@ LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box41
 \strutbox@=\box42
-\big@size=\dimen156
+\big@size=\dimen157
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \macc@depth=\count141
@@ -480,12 +481,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \column@=\count146
 \maxfields@=\count147
 \andhelp@=\toks38
-\eqnshift@=\dimen157
-\alignsep@=\dimen158
-\tagshift@=\dimen159
-\tagwidth@=\dimen160
-\totwidth@=\dimen161
-\lineht@=\dimen162
+\eqnshift@=\dimen158
+\alignsep@=\dimen159
+\tagshift@=\dimen160
+\tagwidth@=\dimen161
+\totwidth@=\dimen162
+\lineht@=\dimen163
 \@envbody=\toks39
 \multlinegap=\skip66
 \multlinetaggap=\skip67
@@ -496,28 +497,28 @@ LaTeX Info: Redefining \] on input line 2666.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count148
-\l_MT_multwidth_dim=\dimen163
+\l_MT_multwidth_dim=\dimen164
 \origjot=\skip68
-\l_MT_shortvdotswithinadjustabove_dim=\dimen164
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen165
-\l_MT_above_intertext_sep=\dimen166
-\l_MT_below_intertext_sep=\dimen167
-\l_MT_above_shortintertext_sep=\dimen168
-\l_MT_below_shortintertext_sep=\dimen169
+\l_MT_shortvdotswithinadjustabove_dim=\dimen165
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen166
+\l_MT_above_intertext_sep=\dimen167
+\l_MT_below_intertext_sep=\dimen168
+\l_MT_above_shortintertext_sep=\dimen169
+\l_MT_below_shortintertext_sep=\dimen170
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count149
 \lst@gtempboxa=\box43
 \lst@token=\toks41
 \lst@length=\count150
-\lst@currlwidth=\dimen170
+\lst@currlwidth=\dimen171
 \lst@column=\count151
 \lst@pos=\count152
-\lst@lostspace=\dimen171
-\lst@width=\dimen172
+\lst@lostspace=\dimen172
+\lst@width=\dimen173
 \lst@newlines=\count153
 \lst@lineno=\count154
-\lst@maxwidth=\dimen173
+\lst@maxwidth=\dimen174
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
@@ -552,9 +553,9 @@ e
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip69
 \subfigcapskip=\skip70
-\subfigcaptopadj=\dimen174
+\subfigcaptopadj=\dimen175
 \subfigbottomskip=\skip71
-\subfigcapmargin=\dimen175
+\subfigcapmargin=\dimen176
 \subfiglabelskip=\skip72
 \c@subfigure=\count157
 \c@lofdepth=\count158
@@ -662,13 +663,13 @@ LaTeX Font Info:    ... okay on input line 95.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count165
-\scratchdimen=\dimen176
+\scratchdimen=\dimen177
 \scratchbox=\box45
 \nofMPsegments=\count166
 \nofMParguments=\count167
 \everyMPshowfont=\toks48
 \MPscratchCnt=\count168
-\MPscratchDim=\dimen177
+\MPscratchDim=\dimen178
 \MPnumerator=\count169
 \makeMPintoPDFobject=\count170
 \everyMPtoPDFconversion=\toks49
@@ -849,63 +850,65 @@ Package pdftex.def Info: results/figures/fig07.png used on input line 260.
 l.268 ...on and Identification of Network Attacks}
                                                    <./results/figures/fig07.png
 >]
-Package epstopdf Info: Source file: <mos_eigen_similarity.eps>
-(epstopdf)                    date: 2016-04-13 22:36:08
+Package epstopdf Info: Source file: <results/figures/mos_eigen_similarity.eps>
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 362641 bytes
-(epstopdf)             Output file: <mos_eigen_similarity-eps-converted-to.pdf>
-
-(epstopdf)                    date: 2016-04-13 22:36:14
+(epstopdf)             Output file: <results/figures/mos_eigen_similarity-eps-c
+onverted-to.pdf>
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 106161 bytes
-(epstopdf)             Command: <repstopdf --outfile=mos_eigen_similarity-eps-c
-onverted-to.pdf mos_eigen_similarity.eps>
+(epstopdf)             Command: <repstopdf --outfile=results/figures/mos_eigen_
+similarity-eps-converted-to.pdf results/figures/mos_eigen_similarity.eps>
 (epstopdf)             \includegraphics on input line 275.
 Package epstopdf Info: Output file is already uptodate.
 
-<mos_eigen_similarity-eps-converted-to.pdf, id=259, 621.32124pt x 654.445pt>
-File: mos_eigen_similarity-eps-converted-to.pdf Graphic file (type pdf)
-
-<use mos_eigen_similarity-eps-converted-to.pdf>
-Package pdftex.def Info: mos_eigen_similarity-eps-converted-to.pdf used on inpu
-t line 275.
+<results/figures/mos_eigen_similarity-eps-converted-to.pdf, id=259, 621.32124pt
+ x 654.445pt>
+File: results/figures/mos_eigen_similarity-eps-converted-to.pdf Graphic file (t
+ype pdf)
+ <use results/figures/mos_eigen_similarity-eps-converted-to.pdf>
+Package pdftex.def Info: results/figures/mos_eigen_similarity-eps-converted-to.
+pdf used on input line 275.
 (pdftex.def)             Requested size: 256.07063pt x 312.98164pt.
- [12pdfTeX warning (ext4): destination with the same identifier (name{figure.7}
-) has been already used, duplicate ignored
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.280 \subsection
-                 {Largest Eigenvalue by Time Frames} <./mos_eigen_similarity-ep
-s-converted-to.pdf>] [13] [14] [15]
+                 {Largest Eigenvalue by Time Frames} <./results/figures/mos_eig
+en_similarity-eps-converted-to.pdf>] [13] [14] [15]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 363.
+put line 364.
 
 > \LOOP=macro:
 ->\@protected@testopt \LOOP \\LOOP {default}.
-l.366 		\show\LOOP
+l.367 		\show\LOOP
                   
 
 [16] [17]
 Package epstopdf Info: Source file: <results/figures/incremental.eps>
-(epstopdf)                    date: 2015-11-15 16:21:24
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 292953 bytes
 (epstopdf)             Output file: <results/figures/incremental-eps-converted-
 to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:27
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 10803 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
 l-eps-converted-to.pdf results/figures/incremental.eps>
-(epstopdf)             \includegraphics on input line 417.
+(epstopdf)             \includegraphics on input line 418.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental-eps-converted-to.pdf, id=372, 586.19pt x 159.59625
+<results/figures/incremental-eps-converted-to.pdf, id=374, 586.19pt x 159.59625
 pt>
 File: results/figures/incremental-eps-converted-to.pdf Graphic file (type pdf)
  <use results/figures/incremental-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/incremental-eps-converted-to.pdf used 
-on input line 417.
+on input line 418.
 (pdftex.def)             Requested size: 352.80794pt x 113.8109pt.
 
-Overfull \hbox (7.80794pt too wide) in paragraph at lines 417--418
+Overfull \hbox (7.80794pt too wide) in paragraph at lines 418--419
 [][]
  []
 
@@ -914,27 +917,27 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18]
 Package epstopdf Info: Source file: <results/figures/individualized.eps>
-(epstopdf)                    date: 2015-11-15 16:26:06
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 283342 bytes
 (epstopdf)             Output file: <results/figures/individualized-eps-convert
 ed-to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:27
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 10730 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/individual
 ized-eps-converted-to.pdf results/figures/individualized.eps>
-(epstopdf)             \includegraphics on input line 439.
+(epstopdf)             \includegraphics on input line 440.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/individualized-eps-converted-to.pdf, id=382, 565.11125pt x 158
+<results/figures/individualized-eps-converted-to.pdf, id=384, 565.11125pt x 158
 .5925pt>
 File: results/figures/individualized-eps-converted-to.pdf Graphic file (type pd
 f)
  <use results/figures/individualized-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/individualized-eps-converted-to.pdf us
-ed on input line 439.
+ed on input line 440.
 (pdftex.def)             Requested size: 352.82288pt x 113.81383pt.
 
-Overfull \hbox (7.82288pt too wide) in paragraph at lines 439--440
+Overfull \hbox (7.82288pt too wide) in paragraph at lines 440--441
 [][]
  []
 
@@ -943,29 +946,29 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <results/figures/incremental_individualized
 .eps>
-(epstopdf)                    date: 2015-11-15 16:19:22
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 291807 bytes
 (epstopdf)             Output file: <results/figures/incremental_individualized
 -eps-converted-to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:28
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 12125 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
 l_individualized-eps-converted-to.pdf results/figures/incremental_individualize
 d.eps>
-(epstopdf)             \includegraphics on input line 447.
+(epstopdf)             \includegraphics on input line 448.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental_individualized-eps-converted-to.pdf, id=384, 565.1
+<results/figures/incremental_individualized-eps-converted-to.pdf, id=386, 565.1
 1125pt x 159.59625pt>
 File: results/figures/incremental_individualized-eps-converted-to.pdf Graphic f
 ile (type pdf)
 
 <use results/figures/incremental_individualized-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/incremental_individualized-eps-convert
-ed-to.pdf used on input line 447.
+ed-to.pdf used on input line 448.
 (pdftex.def)             Requested size: 352.82288pt x 113.8109pt.
 
-Overfull \hbox (7.82288pt too wide) in paragraph at lines 447--448
+Overfull \hbox (7.82288pt too wide) in paragraph at lines 448--449
 [][]
  []
 
@@ -977,85 +980,85 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.453 
+l.454 
        <./results/figures/incremental-eps-converted-to.pdf>] [20pdfTeX warning 
 (ext4): destination with the same identifier (name{figure.9}) has been already 
 used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.460 
+l.461 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.460 
+l.461 
        <./results/figures/individualized-eps-converted-to.pdf> <./results/figur
 es/incremental_individualized-eps-converted-to.pdf>] [21] [22]
 Package epstopdf Info: Source file: <results/figures/eigenvalues_synflood.eps>
-(epstopdf)                    date: 2016-05-17 20:22:05
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 86200 bytes
 (epstopdf)             Output file: <results/figures/eigenvalues_synflood-eps-c
 onverted-to.pdf>
-(epstopdf)                    date: 2016-05-23 21:01:34
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 8031 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_synflood-eps-converted-to.pdf results/figures/eigenvalues_synflood.eps>
-(epstopdf)             \includegraphics on input line 500.
+(epstopdf)             \includegraphics on input line 502.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=447, 501.875pt x
+<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=449, 501.875pt x
  419.5675pt>
 File: results/figures/eigenvalues_synflood-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use results/figures/eigenvalues_synflood-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_synflood-eps-converted-to.
-pdf used on input line 500.
+pdf used on input line 502.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 Package epstopdf Info: Source file: <results/figures/eigenvalues_fraggle.eps>
-(epstopdf)                    date: 2016-05-17 20:22:05
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 86640 bytes
 (epstopdf)             Output file: <results/figures/eigenvalues_fraggle-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2016-05-23 21:01:36
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 7960 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_fraggle-eps-converted-to.pdf results/figures/eigenvalues_fraggle.eps>
-(epstopdf)             \includegraphics on input line 511.
+(epstopdf)             \includegraphics on input line 513.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=453, 501.875pt x 
+<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=455, 501.875pt x 
 419.5675pt>
 File: results/figures/eigenvalues_fraggle-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use results/figures/eigenvalues_fraggle-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_fraggle-eps-converted-to.p
-df used on input line 511.
+df used on input line 513.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <results/figures/eigenvalues_portscan.eps>
-(epstopdf)                    date: 2015-11-08 23:42:02
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 23579 bytes
 (epstopdf)             Output file: <results/figures/eigenvalues_portscan-eps-c
 onverted-to.pdf>
-(epstopdf)                    date: 2015-11-16 22:32:32
+(epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 7069 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_portscan-eps-converted-to.pdf results/figures/eigenvalues_portscan.eps>
-(epstopdf)             \includegraphics on input line 520.
+(epstopdf)             \includegraphics on input line 522.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=455, 501.875pt x
+<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=457, 501.875pt x
  406.51875pt>
 File: results/figures/eigenvalues_portscan-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use results/figures/eigenvalues_portscan-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_portscan-eps-converted-to.
-pdf used on input line 520.
+pdf used on input line 522.
 (pdftex.def)             Requested size: 227.62596pt x 170.71188pt.
 
 
@@ -1066,7 +1069,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.526 
+l.528 
        <./results/figures/eigenvalues_synflood-eps-converted-to.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1076,13 +1079,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.552 
+l.554 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.552 
+l.554 
        <./results/figures/eigenvalues_fraggle-eps-converted-to.pdf> <./results/
 figures/eigenvalues_portscan-eps-converted-to.pdf>]
 
@@ -1093,15 +1096,15 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.587 
+l.589 
       ] [26pdfTeX warning (ext4): destination with the same identifier (name{ta
 ble.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.593 
+l.595 
       ] [27]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 618--646
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 620--648
  [][] 
  []
 
@@ -1110,9 +1113,9 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.651 
+l.653 
       ]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 659--687
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 661--689
  [][] 
  []
 
@@ -1121,9 +1124,9 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.690 
+l.692 
       ]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 700--728
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 702--730
  [][] 
  []
 
@@ -1132,13 +1135,13 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.731 
+l.733 
       ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (8.88953pt too wide) in paragraph at lines 775--776
+Overfull \hbox (8.88953pt too wide) in paragraph at lines 777--778
 []\OT1/cmr/m/n/10 The in-cre-men-tal in-di-vid-u-al-ized ap-proach pre-sented m
 ore sen-si-bil-ity to anomaly
  []
@@ -1152,7 +1155,7 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.814 
+l.816 
       ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1162,35 +1165,35 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.854 
+l.856 
       ] [34pdfTeX warning (ext4): destination with the same identifier (name{ta
 ble.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.863 
+l.865 
       ] [35] [36] [37pdfTeX warning (ext4): destination with the same identifie
 r (name{table.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.927 
+l.929 
       ] (./2016JNCA.bbl [38] [39] [40])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 945.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 947.
  [41]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 945.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 947.
  (./2016JNCA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 945.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 945.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 947.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 947.
 Package rerunfilecheck Info: File `2016JNCA.out' has not changed.
 (rerunfilecheck)             Checksum: 5653FBC4A1F708544BBA3C935642B19C;1691.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 945.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 947.
  ) 
 Here is how much of TeX's memory you used:
- 14507 strings out of 493304
- 216317 string characters out of 6139871
- 420126 words of memory out of 5000000
- 17554 multiletter control sequences out of 15000+600000
+ 14509 strings out of 493304
+ 216268 string characters out of 6139871
+ 420233 words of memory out of 5000000
+ 17556 multiletter control sequences out of 15000+600000
  15412 words of font info for 56 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  34i,13n,32p,1157b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1227,10 +1230,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on 2016JNCA.pdf (41 pages, 1312905 bytes).
+Output written on 2016JNCA.pdf (41 pages, 1313161 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 664 compressed objects within 7 object streams
- 149 named destinations out of 1000 (max. 500000)
+ 780 PDF objects out of 1000 (max. 8388607)
+ 667 compressed objects within 7 object streams
+ 150 named destinations out of 1000 (max. 500000)
  258 words of extra memory for PDF output out of 10000 (max. 10000000)
 
