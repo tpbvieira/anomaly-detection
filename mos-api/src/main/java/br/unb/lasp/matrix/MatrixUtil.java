@@ -298,7 +298,7 @@ public class MatrixUtil{
 		
 		System.out.println("Start="+Parser.sdf.format(startTime));
 		System.out.println("End="+Parser.sdf.format(endTime));
-		System.out.println("Frames="+numFrames);
+//		System.out.println("Frames="+numFrames);
 		
 		return matrices;
 	}

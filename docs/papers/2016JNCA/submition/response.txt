@@ -33,6 +33,64 @@ The result for FP and misclassification analysis is poor due to the legitimate t
 The analysis based on covariance of zero mean and unitary standard deviation variables was evaluated for port scan attacks, including probe attacks and DoS attacks that send few packets for several ports in order to exploit some vulnerability. The results show rates of 76.9\% for TP detection and 23\% for FP detection from 94 time frames. The observed misclassification rate for this scenario was 32.7\%. We observed that all FN cases are probe attacks with a time delay between scanning one port and start scanning the next port, what can be called as sparse probe attacks. Cases with a delay of one minute or more were not detected by the proposed approach.
 The performance of detection rate of flooding attacks is compared with the method proposed by Callegari \emph{et al} \cite{Zonglin2009}. This work is a statistical method, based on PCA, without training or learning methods, even though it relies on visual analysis for principal components selection. The best detection rate of \cite{Zonglin2009} was 82\% for detection of synthetically added flood attacks, while our proposal obtains 100\% of detection rate for detection of flood attacks of DARPA dataset.
 Due to the lack of statistical techniques without training or learning methods for detection of probe attacks, we compare our approach with Lu and Ghorbani's \cite{Lu2009} proposal, which is a network anomaly detection model based on signal processing techniques that uses DARPA dataset for evaluation. The results of \cite{Lu2009} show the best detection rate of 94.67\% in terms of general attack instance detection, but shows a case case with 50\% of attack instance detection for the portsweep attack. The proposed approach presents 76.9\% of detection rate measured specifically for probe attacks, without the requirement of learning or training methods, in contrast to Lu and Ghorbani's \cite{Lu2009} work.
+ - replaced: This section discusses the computational complexity and the performance evaluation of the proposed framework, focusing on the main steps, which are the eigenvalues decomposition (EVD), largest eigenvalues analysis, application of MOS scheme and eigen similarity analysis, according to Figure \ref{fig:fig80} and equations presented in Section \ref{sec:prop_getv}.
+ - added: For better understanding the scalability and impact of configurations of $N$, $M$ and $Q$, we evaluated the processing time requited for different scenarios of parameter configurations and dataset, measuring the processing time of: 
+
+\begin{enumerate}
+	\item Eigen analysis based on sample covariance of zero mean;
+	\item Eigen analysis based on sample covariance of zero mean and unitary standard deviation;
+	\item EDC MOS scheme;
+\end{enumerate}
+
+The performance evaluation focus on the main steps, which were previously discussed regarding the complexity analysis. The data modeling is also a time consuming step, however its processing can be optimized trough distributed processing techniques, such as MapReduce, achieving high throughput for packet counting or even for deep packet inspection \cite{Vieira2013}.
+
+The experiments were performed in a desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM, considering: variations on the network traffic time; the frame size denoted as $N$; the number of network ports denoted as $M$; the mean processing time for eigen analysis based on sample covariance of zero mean, denoted as 1-time; the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation, denoted as 2-time; and the mean processing time for EDC MOS scheme, denoted as 3-time. The mean time calculations was obtained from 200 measurement repetitions, in order to obtain reliable values.
+
+Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. It is possible to observe the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
+
+\begin{table*}[!t]
+	\caption{Processing time of the main steps for anomaly detection}
+	\label{tab:11}
+	\centering
+	\begin{tabular}{|r|r|r|r|r|r|r|}
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Traffic Time\\(hour)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Frame Size\\(min)\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Num. Ports\end{tabular}	& \begin{tabular}[x]{@{}l@{}}1-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}2-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}3-time\\(ms)\end{tabular}	\\ \hline
+16	& 10	& 17	& 0.7900	& 0.8100	& 0.0650\\ \hline
+16	& 20	& 17	& 0.5250	& 0.5950	& 0.0100\\ \hline
+16	& 60	& 17	& 0.9700	& 1.1400	& 0.0250\\ \hline
+16	& 120	& 17	& 0.6050	& 0.6100	& 0.0050\\ \hline
+16	& 60	& 34	& 1.2750	& 1.2200	& 0.0050\\ \hline
+16	& 120	& 34	& 1.1200	& 1.1700	& 0.0050\\ \hline
+20	& 10	& 17	& 2.7950	& 2.8950	& 1.1000\\ \hline
+20	& 20	& 17	& 2.0700	& 2.0200	& 0.3500\\ \hline
+20	& 60	& 17	& 1.0250	& 1.0450	& 0.0650\\ \hline
+20	& 120	& 17	& 1.0000	& 1.0700	& 0.0350\\ \hline
+20	& 60	& 34	& 2.9650	& 3.2100	& 0.0400\\ \hline
+20	& 120	& 34	& 2.9950	& 3.1150	& 0.0200\\ \hline
+22	& 10	& 17	& 4.7250	& 4.0850	& 1.4600\\ \hline
+22	& 20	& 17	& 2.3200	& 2.6800	& 0.2450\\ \hline
+22	& 60	& 17	& 1.0700	& 1.1200	& 0.0300\\ \hline
+22	& 120	& 17	& 0.9900	& 1.0500	& 0.0250\\ \hline
+22	& 60	& 34	& 3.0850	& 3.1250	& 0.0650\\ \hline
+22	& 120	& 34	& 2.8100	& 2.9600	& 0.0250\\ \hline
+	\end{tabular}
+\end{table*}
+
+It is possible to observe that the processing time increases with the frame size $N$ decreasing, therefore it is possible to evaluate the frame size that produces better identification rates and acceptable processing time. The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations, since the significant increase of processing time observed between scenarios considering 17 or 34 ports, with growth between 7\% and 199\%.
+
+ - added: , as well as presenting acceptable complexity and performance regarding the processing time
+
+ - replaced: Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks. Additionally, future research can evaluate the application of the proposed approach to different domains, considering cases that are aware to behavioral analysis.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -34,7 +34,7 @@ public class Parser {
 	public static int countedPackets = 0;
 	
 	public static void main(String[] args) { 
-		printPcapStatistics("/media/thiago/ubuntu/datasets/darpa/1998/03_Training Data/week05/05_thursday/outside.tcpdump", "172.16.112.50", true);	
+		printPcapStatistics("/media/thiago/ubuntu/datasets/darpa/1998/03_Training Data/week04/06_friday/outside.tcpdump", "172.16.112.50", true);	
 	}
 
 	public static void pcapToPortTimeCountMap(final String filePath, final String targetIp, final Set<Integer> targetPorts, 

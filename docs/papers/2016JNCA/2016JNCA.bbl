@@ -131,6 +131,16 @@ J.~P. C.~L. da~Costa, A.~Thakre, F.~Roemer, M.~Haardt, Comparison of model
   algorithms, in: Proc. 54th International Scientific Colloquium (IWK’09),
   Ilmenau, Germany, 2009.
 
+\bibitem{Vieira2013}
+T.~P. d.~B. Vieira, S.~F. d.~L. Fernandes, V.~C. Garcia,
+  \href{http://doi.acm.org/10.1145/2465839.2465846}{Evaluating mapreduce for
+  profiling application traffic}, in: Proceedings of the First Edition Workshop
+  on High Performance and Programmable Networking, HPPN '13, ACM, New York, NY,
+  USA, 2013, pp. 45--52.
+\newblock \href {http://dx.doi.org/10.1145/2465839.2465846}
+  {\path{doi:10.1145/2465839.2465846}}.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/2465839.2465846}
+
 \bibitem{rajan1997model}
 J.~Rajan, P.~Rayner, Model order selection for the singular value decomposition
   and the discrete karhunen--loeve transform using a bayesian approach, IEE
