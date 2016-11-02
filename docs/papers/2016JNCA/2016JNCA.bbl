@@ -57,6 +57,20 @@ D.~Mudzingwa, R.~Agrawal, A study of methodologies used in intrusion detection
   and prevention systems (idps), in: Southeastcon, 2012 Proceedings of IEEE,
   IEEE, 2012, pp. 1--6.
 
+\bibitem{bhuyan2014network}
+M.~H. Bhuyan, D.~K. Bhattacharyya, J.~K. Kalita, Network anomaly detection:
+  methods, systems and tools, IEEE Communications Surveys \& Tutorials 16~(1)
+  (2014) 303--336.
+
+\bibitem{ahmed2016survey}
+M.~Ahmed, A.~N. Mahmood, J.~Hu, A survey of network anomaly detection
+  techniques, Journal of Network and Computer Applications 60 (2016) 19--31.
+
+\bibitem{osanaiye2016distributed}
+O.~Osanaiye, K.-K.~R. Choo, M.~Dlodlo, Distributed denial of service (ddos)
+  resilience in cloud: review and conceptual cloud ddos mitigation framework,
+  Journal of Network and Computer Applications 67 (2016) 147--165.
+
 \bibitem{he2008applying}
 W.~He, G.~Hu, X.~Yao, G.~Kan, H.~Wang, H.~Xiang, Applying multiple time series
   data mining to large-scale network traffic analysis, in: 2008 IEEE Conference
@@ -78,18 +92,33 @@ S.~Almotairi, A.~Clark, G.~Mohay, J.~Zimmermann, A technique for detecting new
   Protection, 2009. ICIMP'09. Fourth International Conference on, IEEE, 2009,
   pp. 7--13.
 
-\bibitem{zakaria2012review}
-W.~Z.~A. Zakaria, M.~L.~M. Kiah, A review on artificial intelligence techniques
-  for developing intelligent honeypot, in: Proceeding of: 8th International
-  Conference on Computing Technology and Information Management, At Seoul,
-  Korea, 2012.
-
 \bibitem{Lee2013}
 Y.-J. Lee, Y.-R. Yeh, Y.-C.~F. Wang, Anomaly detection via online oversampling
   principal component analysis, Knowledge and Data Engineering, IEEE
   Transactions on 25~(7) (2013) 1460--1470.
 \newblock \href {http://dx.doi.org/10.1109/TKDE.2012.99}
   {\path{doi:10.1109/TKDE.2012.99}}.
+
+\bibitem{zakaria2012review}
+W.~Z.~A. Zakaria, M.~L.~M. Kiah, A review on artificial intelligence techniques
+  for developing intelligent honeypot, in: Proceeding of: 8th International
+  Conference on Computing Technology and Information Management, At Seoul,
+  Korea, 2012.
+
+\bibitem{ji2016multi}
+S.-Y. Ji, B.-K. Jeong, S.~Choi, D.~H. Jeong, A multi-level intrusion detection
+  method for abnormal network behaviors, Journal of Network and Computer
+  Applications 62 (2016) 9--17.
+
+\bibitem{tavallaee2009detailed}
+M.~Tavallaee, E.~Bagheri, W.~Lu, A.-A. Ghorbani, A detailed analysis of the kdd
+  cup 99 data set, in: Proceedings of the Second IEEE Symposium on
+  Computational Intelligence for Security and Defence Applications 2009, 2009.
+
+\bibitem{callegari2011novel}
+C.~Callegari, L.~Gazzarrini, S.~Giordano, M.~Pagano, T.~Pepe, A novel pca-based
+  network anomaly detection, in: 2011 IEEE International Conference on
+  Communications (ICC), IEEE, 2011, pp. 1--5.
 
 \bibitem{jin2004covariance}
 S.~Jin, D.~S. Yeung, A covariance analysis model for ddos attack detection, in:

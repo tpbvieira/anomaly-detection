@@ -8,46 +8,47 @@ Warning--empty pages in david2011blind
 Warning--empty pages in da2012improved
 Warning--empty pages in tenorio2013greatest
 Warning--empty pages in zakaria2012review
+Warning--empty pages in tavallaee2009detailed
 Warning--empty pages in da2009comparison
-You've used 25 entries,
+You've used 31 entries,
             2937 wiz_defined-function locations,
-            827 strings with 10687 characters,
-and the built_in function-call counts, 8893 in all, are:
-= -- 838
-> -- 262
-< -- 12
-+ -- 104
-- -- 79
-* -- 604
-:= -- 1133
-add.period$ -- 29
-call.type$ -- 25
-change.case$ -- 25
+            860 strings with 11898 characters,
+and the built_in function-call counts, 10747 in all, are:
+= -- 1009
+> -- 334
+< -- 13
++ -- 132
+- -- 101
+* -- 734
+:= -- 1385
+add.period$ -- 35
+call.type$ -- 31
+change.case$ -- 31
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 318
-empty$ -- 1055
-format.name$ -- 103
-if$ -- 2344
+cite$ -- 38
+duplicate$ -- 377
+empty$ -- 1265
+format.name$ -- 131
+if$ -- 2821
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 25
-newline$ -- 90
-num.names$ -- 25
-pop$ -- 202
+int.to.str$ -- 31
+missing$ -- 31
+newline$ -- 108
+num.names$ -- 31
+pop$ -- 244
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 599
+skip$ -- 716
 stack$ -- 0
-substring$ -- 520
-swap$ -- 98
-text.length$ -- 12
+substring$ -- 621
+swap$ -- 107
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 6
-while$ -- 71
-width$ -- 27
-write$ -- 230
-(There were 6 warnings)
+warning$ -- 7
+while$ -- 88
+width$ -- 33
+write$ -- 279
+(There were 7 warnings)

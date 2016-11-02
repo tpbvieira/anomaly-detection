@@ -1,3 +1,21 @@
+the changes
+ - replaced: probing for probe
+ - replaced: for "we consider network traffic datasets"
+ - added: and in a well known public dataset
+ - added: Additionally, anomaly detection techniques can be categorized in classification, statistical, Information theory and clustering based \cite{bhuyan2014network,ahmed2016survey,osanaiye2016distributed}.
+ - replaced: In addition, we also evaluate the accuracy and performance of the proposed framework applied to a simulated scenario and to the DARPA 1998 Dataset \citep{osanaiye2016distributed}
+ - added: Callegari \emph{et al} \cite{Zonglin2009} proposed a method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focused in flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. 
+ - added: DoS attempts to block access to system or network resources, it is implemented by either forcing targets to be unavailable through the exploiting of system vulnerabilities, or consuming resources through large amount of network traffic, characterizing flood attacks. Probe attacks scan the networks to to collect information about host, such as IP addresses, ports and services.
+ - added: Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. Since the proposed approach relies on a packet level analysis and the KDD 99 and NSL-KDD datasets adopt a traffic aggregation by connections, we consider the use of a simulated scenario on a real network and the DARPA 1998 dataset, which is the source for the creation of the KDD 99 and NSL-KDD datasets. It is important to note that the proposed approach is not based on learning or classification techniques, which are more susceptible to biased results caused by the issues in the DARPA/KDD datasets.
+ - replaced "legitimate traffic (S)" por "legitimate traffic (U)"
+ - added: and the selected cases of the DARPA dataset, 
+ - added: Subsection \ref{sec:DarpaDataset} discuss the use of the DARPA dataset for evaluation of the proposed approach.
+ - added: The DARPA 1998 dataset\footnote{https://www.ll.mit.edu/ideval/data/} includes 7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks. The attacks in this dataset can be grouped into: denial-of-service (DoS); remote to local (R2L), which is characterized by unauthorized access from a remote machine; user to root (U2R), which is characterized by unauthorized access to local super-user privileges; and probe attack. Since the proposed approach focus on flood and probe attack, we analyze the attacks that present behaviors similar to flood or probe attack. We observe that the most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack. One example is the occurrence of a neptune attack which sends 20 only SYN packets, what is a behavior that differs of the expected flood attack behavior. Therefore, we select the cases that simulates several network traffic or numerous connection requests, also known as flooding attack \cite{ahmed2016survey,osanaiye2016distributed}, and the cases that scan ports sending just a few packets. From the simulated probe attacks, we select the cases that rely on TCP or UDP connections. The data modeling follows the method described by the Subsection \ref{sec:ModelingData}, with time frames of 20 minutes, packet counting aggregation by minute and considering the traffic to the following ports: 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389, 443.
+
+
+
+
+
 KDD-99
  - possui tráfego malicioso e legítimo
  - dos and probing
@@ -14,5 +32,15 @@ KDD-99
  - algumas reclamações do kdd é a repetição de tráfego que pode influenciar algoritmos baseados em aprendizado, mas a nossa abordagem não sofre deste tipo de influência. entretanto, a repetição de tráfego em larga escala, com mesmas portas, ip de origem e destino, pode reproduzir comportamentos de flooding attacks que poderiam ser detectados por nossa técnica, o que torna nossa técnica sucetível a falso positivos
  - casos de probe attacks com baixa concentração de tempo, com intervalo entre portas superiores a 20 segundos, não são detectados por nossa técnica baseada em correlação, sendo um ponto a ser melhorado
 
-A multi-level intrusion detection method for abnormal network behaviors - jnca - 2016
-	comparar resultados com este artigo
+citar:
+	A survey of network anomaly detection techniques - jnca - 2016
+	Denial of Service Attack Detection using Multivariate Correlation Analysis - 2016
+	A multi-level intrusion detection method for abnormal network behaviors - jnca - 2016
+	Distributed denial of service (DDoS) resilience in cloud: Review and conceptual cloud DDoS mitigation framework - jnca - 2016
+	An empirical evaluation of information metrics for low-rate and high-rate DDoS attack detection - 2015
+	Network Anomaly Detection: Methods, Systems and Tools - 2014
+	Discriminating DDoS Attacks from Flash Crowds Using Flow Correlation Coefficient - transaction - 2012
+	Monitoring the Application-Layer DDoS Attacks for Popular Websites - transaction - 2009
+
+comparar:
+	A novel PCA-based Network Anomaly Detection - icc - 2011
