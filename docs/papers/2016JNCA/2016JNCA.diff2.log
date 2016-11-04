@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  3 NOV 2016 22:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  3 NOV 2016 23:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**2016JNCA.tex
-(./2016JNCA.tex
+**2016JNCA.diff2.tex
+(./2016JNCA.diff2.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./elsarticle.cls
@@ -87,8 +87,8 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \@enLab=\toks16
 \@sep=\skip43
 \@@sep=\skip44
- (./2016JNCA.spl)
-(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+ (./2016JNCA.diff2.spl) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.
+sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip45
 \bibsep=\skip46
@@ -96,7 +96,7 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count94
 )
 \splwrite=\write3
-\openout3 = `2016JNCA.spl'.
+\openout3 = `2016JNCA.diff2.spl'.
 
 \appnamewidth=\dimen109
 )
@@ -643,66 +643,78 @@ LaTeX Info: Redefining \labelcref on input line 2230.
 LaTeX Info: Redefining \labelcpageref on input line 2230.
 Package cleveref Info: `amsthm' support loaded on input line 2858.
 Package cleveref Info: `listings' support loaded on input line 2950.
-) (./2016JNCA.aux)
-\openout1 = `2016JNCA.aux'.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box45
+\UL@hyphenbox=\box46
+\UL@skip=\skip78
+\UL@hook=\toks48
+\UL@height=\dimen177
+\UL@pe=\count165
+\UL@pixel=\dimen178
+\ULC@box=\box47
+Package: ulem 2012/05/18
+\ULdepth=\dimen179
+) (./2016JNCA.diff2.aux)
+\openout1 = `2016JNCA.diff2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
-LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count165
-\scratchdimen=\dimen177
-\scratchbox=\box45
-\nofMPsegments=\count166
-\nofMParguments=\count167
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count168
-\MPscratchDim=\dimen178
-\MPnumerator=\count169
-\makeMPintoPDFobject=\count170
-\everyMPtoPDFconversion=\toks49
+\scratchcounter=\count166
+\scratchdimen=\dimen180
+\scratchbox=\box48
+\nofMPsegments=\count167
+\nofMParguments=\count168
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count169
+\MPscratchDim=\dimen181
+\MPnumerator=\count170
+\makeMPintoPDFobject=\count171
+\everyMPtoPDFconversion=\toks50
 )
-\AtBeginShipoutBox=\box46
-Package hyperref Info: Link coloring OFF on input line 100.
+\AtBeginShipoutBox=\box49
+Package hyperref Info: Link coloring OFF on input line 127.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count171
+\c@section@level=\count172
 )
-LaTeX Info: Redefining \ref on input line 100.
-LaTeX Info: Redefining \pageref on input line 100.
-LaTeX Info: Redefining \nameref on input line 100.
+LaTeX Info: Redefining \ref on input line 127.
+LaTeX Info: Redefining \pageref on input line 127.
+LaTeX Info: Redefining \nameref on input line 127.
 
-(./2016JNCA.out) (./2016JNCA.out)
+(./2016JNCA.diff2.out) (./2016JNCA.diff2.out)
 \@outlinefile=\write6
-\openout6 = `2016JNCA.out'.
+\openout6 = `2016JNCA.diff2.out'.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-\c@lstlisting=\count172
-LaTeX Font Info:    Try loading font information for U+msa on input line 128.
+\c@lstlisting=\count173
+LaTeX Font Info:    Try loading font information for U+msa on input line 155.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 128.
+LaTeX Font Info:    Try loading font information for U+msb on input line 155.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -713,7 +725,7 @@ File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (9.55615pt too wide) in paragraph at lines 163--164
+Overfull \hbox (9.55615pt too wide) in paragraph at lines 190--191
 []\OT1/cmr/m/n/10 Signal pro-cess-ing tech-niques have been suc-cess-fully ap-p
 lied to net-work anomaly
  []
@@ -721,80 +733,76 @@ lied to net-work anomaly
 [5] (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-3.def
 File: uni-3.def 2013/05/13 UCS: Unicode data U+0300..U+03FF
 ) [6]
-<results/figures/fig09.png, id=238, 426.84468pt x 307.1475pt>
+<results/figures/fig09.png, id=237, 426.84468pt x 307.1475pt>
 File: results/figures/fig09.png Graphic file (type png)
 
 <use results/figures/fig09.png>
-Package pdftex.def Info: results/figures/fig09.png used on input line 186.
+Package pdftex.def Info: results/figures/fig09.png used on input line 215.
 (pdftex.def)             Requested size: 256.08925pt x 170.71727pt.
  [7pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.192 
+l.221 
        <./results/figures/fig09.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 196.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 225.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 193--198
+Underfull \hbox (badness 10000) in paragraph at lines 222--227
 
  []
 
 
-Overfull \hbox (19.49849pt too wide) in paragraph at lines 193--198
+Overfull \hbox (19.49849pt too wide) in paragraph at lines 222--227
 \OT1/pcr/m/n/10 21:00:34.099289 IP 192.168.1.102.34712 > 200.221.2.45.80: Flags
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--198
+Underfull \hbox (badness 10000) in paragraph at lines 222--227
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--204
+Underfull \hbox (badness 10000) in paragraph at lines 228--233
 
  []
 
 
-Overfull \hbox (31.49849pt too wide) in paragraph at lines 199--204
+Overfull \hbox (31.49849pt too wide) in paragraph at lines 228--233
 \OT1/pcr/m/n/10 21:24:42.484858 IP 192.168.1.102.68 > 192.168.1.1.67: BOOTP/DHC
 P,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--204
+Underfull \hbox (badness 10000) in paragraph at lines 228--233
 
  []
 
-[8] <results/figures/fig03.png, id=259, 752.8125pt x 409.53pt>
+[8] <results/figures/fig03.png, id=258, 752.8125pt x 409.53pt>
 File: results/figures/fig03.png Graphic file (type png)
 
 <use results/figures/fig03.png>
-Package pdftex.def Info: results/figures/fig03.png used on input line 221.
+Package pdftex.def Info: results/figures/fig03.png used on input line 250.
 (pdftex.def)             Requested size: 256.07921pt x 128.0403pt.
-
-<results/figures/fig04.png, id=262, 602.25pt x 335.00156pt>
-File: results/figures/fig04.png Graphic file (type png)
-
-<use results/figures/fig04.png>
-Package pdftex.def Info: results/figures/fig04.png used on input line 230.
-(pdftex.def)             Requested size: 256.0861pt x 128.03288pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.236 
+l.256 
        <./results/figures/fig03.png>]
+<results/figures/fig04.png, id=271, 602.25pt x 335.00156pt>
+File: results/figures/fig04.png Graphic file (type png)
+
+<use results/figures/fig04.png>
+Package pdftex.def Info: results/figures/fig04.png used on input line 259.
+(pdftex.def)             Requested size: 256.0861pt x 128.03288pt.
+
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-34.def
 File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
 ) [10pdfTeX warning (ext4): destination with the same identifier (name{figure.3
@@ -802,20 +810,20 @@ File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.246 
+l.275 
        <./results/figures/fig04.png>]
-<results/figures/fig05.png, id=281, 602.25pt x 243.91125pt>
+<results/figures/fig05.png, id=279, 602.25pt x 243.91125pt>
 File: results/figures/fig05.png Graphic file (type png)
 
 <use results/figures/fig05.png>
-Package pdftex.def Info: results/figures/fig05.png used on input line 249.
+Package pdftex.def Info: results/figures/fig05.png used on input line 278.
 (pdftex.def)             Requested size: 256.0861pt x 128.0367pt.
 
-<results/figures/fig06.png, id=283, 602.25pt x 265.74281pt>
+<results/figures/fig06.png, id=281, 602.25pt x 265.74281pt>
 File: results/figures/fig06.png Graphic file (type png)
 
 <use results/figures/fig06.png>
-Package pdftex.def Info: results/figures/fig06.png used on input line 258.
+Package pdftex.def Info: results/figures/fig06.png used on input line 287.
 (pdftex.def)             Requested size: 256.0861pt x 128.03763pt.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
@@ -829,13 +837,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.266 
+l.293 
        <./results/figures/fig05.png>]
-<results/figures/fig07.png, id=290, 602.25pt x 355.3275pt>
+<results/figures/fig07.png, id=289, 602.25pt x 355.3275pt>
 File: results/figures/fig07.png Graphic file (type png)
 
 <use results/figures/fig07.png>
-Package pdftex.def Info: results/figures/fig07.png used on input line 271.
+Package pdftex.def Info: results/figures/fig07.png used on input line 300.
 (pdftex.def)             Requested size: 256.0861pt x 142.26402pt.
 
 
@@ -846,14 +854,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.285 
-       <./results/figures/fig06.png>] [13pdfTeX warning (ext4): destination wit
-h the same identifier (name{figure.6}) has been already used, duplicate ignored
-
+l.307 \subsection{The DARPA Dataset}
+                                     <./results/figures/fig06.png>] [13pdfTeX w
+arning (ext4): destination with the same identifier (name{figure.6}) has been a
+lready used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.287 
+l.316 
        <./results/figures/fig07.png>]
 Package epstopdf Info: Source file: <results/figures/mos_eigen_similarity.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
@@ -864,16 +872,16 @@ onverted-to.pdf>
 (epstopdf)                    size: 106161 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/mos_eigen_
 similarity-eps-converted-to.pdf results/figures/mos_eigen_similarity.eps>
-(epstopdf)             \includegraphics on input line 296.
+(epstopdf)             \includegraphics on input line 325.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/mos_eigen_similarity-eps-converted-to.pdf, id=314, 621.32124pt
+<results/figures/mos_eigen_similarity-eps-converted-to.pdf, id=313, 621.32124pt
  x 654.445pt>
 File: results/figures/mos_eigen_similarity-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use results/figures/mos_eigen_similarity-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/mos_eigen_similarity-eps-converted-to.
-pdf used on input line 296.
+pdf used on input line 325.
 (pdftex.def)             Requested size: 256.07063pt x 312.98164pt.
 
 
@@ -884,15 +892,15 @@ e.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.320 \end{equation}
+l.349 \end{equation}
                      <./results/figures/mos_eigen_similarity-eps-converted-to.p
 df>] [16] [17]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 385.
+put line 414.
 
 > \LOOP=macro:
 ->\@protected@testopt \LOOP \\LOOP {default}.
-l.388 		\show\LOOP
+l.417 		\show\LOOP
                   
 
 [18] [19]
@@ -905,18 +913,18 @@ to.pdf>
 (epstopdf)                    size: 10803 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
 l-eps-converted-to.pdf results/figures/incremental.eps>
-(epstopdf)             \includegraphics on input line 439.
+(epstopdf)             \includegraphics on input line 468.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental-eps-converted-to.pdf, id=429, 586.19pt x 159.59625
+<results/figures/incremental-eps-converted-to.pdf, id=428, 586.19pt x 159.59625
 pt>
 File: results/figures/incremental-eps-converted-to.pdf Graphic file (type pdf)
  <use results/figures/incremental-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/incremental-eps-converted-to.pdf used 
-on input line 439.
+on input line 468.
 (pdftex.def)             Requested size: 352.80794pt x 113.8109pt.
 
-Overfull \hbox (7.80794pt too wide) in paragraph at lines 439--440
+Overfull \hbox (7.80794pt too wide) in paragraph at lines 468--469
 [][]
  []
 
@@ -933,19 +941,19 @@ ed-to.pdf>
 (epstopdf)                    size: 10730 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/individual
 ized-eps-converted-to.pdf results/figures/individualized.eps>
-(epstopdf)             \includegraphics on input line 461.
+(epstopdf)             \includegraphics on input line 490.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/individualized-eps-converted-to.pdf, id=439, 565.11125pt x 158
+<results/figures/individualized-eps-converted-to.pdf, id=438, 565.11125pt x 158
 .5925pt>
 File: results/figures/individualized-eps-converted-to.pdf Graphic file (type pd
 f)
  <use results/figures/individualized-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/individualized-eps-converted-to.pdf us
-ed on input line 461.
+ed on input line 490.
 (pdftex.def)             Requested size: 352.82288pt x 113.81383pt.
 
-Overfull \hbox (7.82288pt too wide) in paragraph at lines 461--462
+Overfull \hbox (7.82288pt too wide) in paragraph at lines 490--491
 [][]
  []
 
@@ -957,7 +965,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.467 
+l.496 
        <./results/figures/incremental-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <results/figures/incremental_individualized
 .eps>
@@ -970,20 +978,20 @@ Package epstopdf Info: Source file: <results/figures/incremental_individualized
 (epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
 l_individualized-eps-converted-to.pdf results/figures/incremental_individualize
 d.eps>
-(epstopdf)             \includegraphics on input line 469.
+(epstopdf)             \includegraphics on input line 498.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental_individualized-eps-converted-to.pdf, id=458, 565.1
+<results/figures/incremental_individualized-eps-converted-to.pdf, id=457, 565.1
 1125pt x 159.59625pt>
 File: results/figures/incremental_individualized-eps-converted-to.pdf Graphic f
 ile (type pdf)
 
 <use results/figures/incremental_individualized-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/incremental_individualized-eps-convert
-ed-to.pdf used on input line 469.
+ed-to.pdf used on input line 498.
 (pdftex.def)             Requested size: 352.82288pt x 113.8109pt.
 
-Overfull \hbox (7.82288pt too wide) in paragraph at lines 469--470
+Overfull \hbox (7.82288pt too wide) in paragraph at lines 498--499
 [][]
  []
 
@@ -992,13 +1000,13 @@ Overfull \hbox (7.82288pt too wide) in paragraph at lines 469--470
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.480 
+l.509 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.480 
+l.509 
        <./results/figures/individualized-eps-converted-to.pdf> <./results/figur
 es/incremental_individualized-eps-converted-to.pdf>] [23] [24]
 Package epstopdf Info: Source file: <results/figures/eigenvalues_synflood.eps>
@@ -1010,16 +1018,16 @@ onverted-to.pdf>
 (epstopdf)                    size: 8031 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_synflood-eps-converted-to.pdf results/figures/eigenvalues_synflood.eps>
-(epstopdf)             \includegraphics on input line 523.
+(epstopdf)             \includegraphics on input line 552.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=503, 501.875pt x
+<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=502, 501.875pt x
  419.5675pt>
 File: results/figures/eigenvalues_synflood-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use results/figures/eigenvalues_synflood-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_synflood-eps-converted-to.
-pdf used on input line 523.
+pdf used on input line 552.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 Package epstopdf Info: Source file: <results/figures/eigenvalues_fraggle.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
@@ -1030,16 +1038,16 @@ nverted-to.pdf>
 (epstopdf)                    size: 7960 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_fraggle-eps-converted-to.pdf results/figures/eigenvalues_fraggle.eps>
-(epstopdf)             \includegraphics on input line 534.
+(epstopdf)             \includegraphics on input line 563.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=509, 501.875pt x 
+<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=508, 501.875pt x 
 419.5675pt>
 File: results/figures/eigenvalues_fraggle-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use results/figures/eigenvalues_fraggle-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_fraggle-eps-converted-to.p
-df used on input line 534.
+df used on input line 563.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 
 
@@ -1050,7 +1058,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.540 
+l.569 
        <./results/figures/eigenvalues_synflood-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <results/figures/eigenvalues_portscan.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
@@ -1061,16 +1069,16 @@ onverted-to.pdf>
 (epstopdf)                    size: 7069 bytes
 (epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
 s_portscan-eps-converted-to.pdf results/figures/eigenvalues_portscan.eps>
-(epstopdf)             \includegraphics on input line 543.
+(epstopdf)             \includegraphics on input line 572.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=527, 501.875pt x
+<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=526, 501.875pt x
  406.51875pt>
 File: results/figures/eigenvalues_portscan-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use results/figures/eigenvalues_portscan-eps-converted-to.pdf>
 Package pdftex.def Info: results/figures/eigenvalues_portscan-eps-converted-to.
-pdf used on input line 543.
+pdf used on input line 572.
 (pdftex.def)             Requested size: 227.62596pt x 170.71188pt.
 
 [26pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
@@ -1078,13 +1086,13 @@ pdf used on input line 543.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.551 
+l.580 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.551 
+l.580 
        <./results/figures/eigenvalues_fraggle-eps-converted-to.pdf> <./results/
 figures/eigenvalues_portscan-eps-converted-to.pdf>] [27pdfTeX warning (ext4): d
 estination with the same identifier (name{table.1}) has been already used, dupl
@@ -1092,15 +1100,15 @@ icate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.582 
+l.611 
       ] [28pdfTeX warning (ext4): destination with the same identifier (name{ta
 ble.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.614 
+l.643 
       ] [29]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 641--669
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 670--698
  [][] 
  []
 
@@ -1109,9 +1117,9 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.672 
+l.701 
       ]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 682--710
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 711--739
  [][] 
  []
 
@@ -1119,7 +1127,7 @@ Overfull \hbox (59.39757pt too wide) in paragraph at lines 682--710
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [31]
-Overfull \hbox (59.39757pt too wide) in paragraph at lines 723--751
+Overfull \hbox (59.39757pt too wide) in paragraph at lines 752--780
  [][] 
  []
 
@@ -1128,15 +1136,15 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.754 
+l.783 
       pdfTeX warning (ext4): destination with the same identifier (name{table.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.754 
+l.783 
       ] [33]
-Overfull \hbox (8.88953pt too wide) in paragraph at lines 798--799
+Overfull \hbox (8.88953pt too wide) in paragraph at lines 827--828
 []\OT1/cmr/m/n/10 The in-cre-men-tal in-di-vid-u-al-ized ap-proach pre-sented m
 ore sen-si-bil-ity to anomaly
  []
@@ -1146,7 +1154,7 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.803 
+l.832 
       ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1156,52 +1164,60 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.875 
+l.904 
       ] [36pdfTeX warning (ext4): destination with the same identifier (name{ta
 ble.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.884 
+l.913 
       ] [37] [38pdfTeX warning (ext4): destination with the same identifier (na
 me{table.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.928 
-      ] [39] [40] [41] [42pdfTeX warning (ext4): destination with the same iden
-tifier (name{table.10}) has been already used, duplicate ignored
+l.984 
+      ] [39]
+Overfull \hbox (80.47673pt too wide) in paragraph at lines 1000--1001
+[]\OT1/cmr/m/n/10 Therefore, the pro-posed frame-work is []|   []   [][]|   []
+ []
+
+[40] [41] [42pdfTeX warning (ext4): destination with the same identifier (name{
+table.10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.999 
-      ] [43] [44pdfTeX warning (ext4): destination with the same identifier (na
-me{table.11}) has been already used, duplicate ignored
+l.1053 
+       ] [43]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[44] (./2016JNCA.diff2.bbl [45pdfTeX warning (ext4): destination with the same 
+identifier (name{table.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1054 \end{equation}
-                     ] (./2016JNCA.bbl [45] [46] [47] [48])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1068.
+l.29 
+     ] [46] [47] [48])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1124.
  [49]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1068.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1124.
+ (./2016JNCA.diff2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1124.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1124.
 
-(./2016JNCA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1068.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1068.
-
-Package rerunfilecheck Info: File `2016JNCA.out' has not changed.
+Package rerunfilecheck Info: File `2016JNCA.diff2.out' has not changed.
 (rerunfilecheck)             Checksum: 18415668CF25AE8630EE212D2F06C05D;1958.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1068.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1124.
  ) 
 Here is how much of TeX's memory you used:
- 14593 strings out of 493304
- 217703 string characters out of 6139871
- 425246 words of memory out of 5000000
- 17607 multiletter control sequences out of 15000+600000
- 15412 words of font info for 56 fonts, out of 8000000 for 9000
+ 14690 strings out of 493304
+ 218745 string characters out of 6139871
+ 438252 words of memory out of 5000000
+ 17699 multiletter control sequences out of 15000+600000
+ 15518 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,16n,32p,1378b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,18n,32p,1550b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1236,12 +1252,13 @@ s/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on 2016JNCA.pdf (49 pages, 1335218 bytes).
+/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on 2016JNCA.diff2.pdf (49 pages, 1347008 bytes).
 PDF statistics:
- 915 PDF objects out of 1000 (max. 8388607)
- 793 compressed objects within 8 object streams
+ 921 PDF objects out of 1000 (max. 8388607)
+ 798 compressed objects within 8 object streams
  183 named destinations out of 1000 (max. 500000)
  290 words of extra memory for PDF output out of 10000 (max. 10000000)
 

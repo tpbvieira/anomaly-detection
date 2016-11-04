@@ -1,0 +1,190 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{lakhina2005mining}
+A.~Lakhina, M.~Crovella, C.~Diot, Mining anomalies using traffic feature
+  distributions, in: ACM SIGCOMM Computer Communication Review, Vol.~35, ACM,
+  2005, pp. 217--228.
+
+\bibitem{Lu2009}
+W.~Lu, A.~A. Ghorbani, \href{http://dx.doi.org/10.1155/2009/837601}{Network
+  anomaly detection based on wavelet analysis}, EURASIP J. Adv. Signal Process
+  2009 (2009) 4:1--4:16.
+\newblock \href {http://dx.doi.org/10.1155/2009/837601}
+  {\path{doi:10.1155/2009/837601}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1155/2009/837601}
+
+\bibitem{Huang2009}
+C.-T. Huang, R.~K.~C. Chang, P.~Huang,
+  \href{http://dx.doi.org/10.1155/2009/527689}{Editorial: Signal processing
+  applications in network intrusion detection systems}, EURASIP J. Adv. Signal
+  Process 2009 (2009) 9:1--9:2.
+\newblock \href {http://dx.doi.org/10.1155/2009/527689}
+  {\path{doi:10.1155/2009/527689}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1155/2009/527689}
+
+\bibitem{Zonglin2009}
+L.~Zonglin, H.~Guangmin, Y.~Xingmiao, Y.~Dan,
+  \href{http://dx.doi.org/10.1155/2009/752818}{Detecting distributed network
+  traffic anomaly with network-wide correlation analysis}, EURASIP J. Adv.
+  Signal Process 2009 (2009) 2:1--2:11.
+\newblock \href {http://dx.doi.org/10.1155/2009/752818}
+  {\path{doi:10.1155/2009/752818}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1155/2009/752818}
+
+\bibitem{david2011blind}
+B.~M. David, J.~P. C.~L. da~Costa, A.~C. Nascimento, D.~Amaral, M.~Holtz, R.~T.
+  de~Sousa~Jr, Blind automatic malicious activity detection in honeypot data,
+  in: The International Conference on Forensic Computer Science (ICoFCS), 2011.
+
+\bibitem{da2012improved}
+J.~P. C.~L. da~Costa, E.~P. de~Freitas, B.~M. David, A.~M.~R. Serrano,
+  D.~Amaral, R.~T. de~Sousa~Jr, Improved blind automatic malicious activity
+  detection in honeypot data, in: The International Conference on Forensic
+  Computer Science (ICoFCS), 2012.
+
+\bibitem{tenorio2013greatest}
+D.~F. Ten{\'o}rio, J.~P. C.~L. da~Costa, R.~T. de~Sousa~Jr, Greatest eigenvalue
+  time vector approach for blind detection of malicious traffic, in: The
+  International Conference on Forensic Computer Science (ICoFCS), 2013.
+
+\bibitem{mudzingwa2012study}
+D.~Mudzingwa, R.~Agrawal, A study of methodologies used in intrusion detection
+  and prevention systems (idps), in: Southeastcon, 2012 Proceedings of IEEE,
+  IEEE, 2012, pp. 1--6.
+
+\bibitem{bhuyan2014network}
+M.~H. Bhuyan, D.~K. Bhattacharyya, J.~K. Kalita, Network anomaly detection:
+  methods, systems and tools, IEEE Communications Surveys \& Tutorials 16~(1)
+  (2014) 303--336.
+
+\bibitem{ahmed2016survey}
+M.~Ahmed, A.~N. Mahmood, J.~Hu, A survey of network anomaly detection
+  techniques, Journal of Network and Computer Applications 60 (2016) 19--31.
+
+\bibitem{osanaiye2016distributed}
+O.~Osanaiye, K.-K.~R. Choo, M.~Dlodlo, Distributed denial of service (ddos)
+  resilience in cloud: review and conceptual cloud ddos mitigation framework,
+  Journal of Network and Computer Applications 67 (2016) 147--165.
+
+\bibitem{he2008applying}
+W.~He, G.~Hu, X.~Yao, G.~Kan, H.~Wang, H.~Xiang, Applying multiple time series
+  data mining to large-scale network traffic analysis, in: 2008 IEEE Conference
+  on Cybernetics and Intelligent Systems, 2008, pp. 394--399.
+
+\bibitem{ghourabi2010data}
+A.~Ghourabi, T.~Abbes, A.~Bouhoula, Data analyzer based on data mining for
+  honeypot router, in: Computer Systems and Applications (AICCSA), 2010
+  IEEE/ACS International Conference on, IEEE, 2010, pp. 1--6.
+
+\bibitem{raynal2004honeypot}
+F.~Raynal, Y.~Berthier, P.~Biondi, D.~Kaminsky, Honeypot forensics, in:
+  Information Assurance Workshop, 2004. Proceedings from the Fifth Annual IEEE
+  SMC, IEEE, 2004, pp. 22--29.
+
+\bibitem{almotairi2009technique}
+S.~Almotairi, A.~Clark, G.~Mohay, J.~Zimmermann, A technique for detecting new
+  attacks in low-interaction honeypot traffic, in: Internet Monitoring and
+  Protection, 2009. ICIMP'09. Fourth International Conference on, IEEE, 2009,
+  pp. 7--13.
+
+\bibitem{Lee2013}
+Y.-J. Lee, Y.-R. Yeh, Y.-C.~F. Wang, Anomaly detection via online oversampling
+  principal component analysis, Knowledge and Data Engineering, IEEE
+  Transactions on 25~(7) (2013) 1460--1470.
+\newblock \href {http://dx.doi.org/10.1109/TKDE.2012.99}
+  {\path{doi:10.1109/TKDE.2012.99}}.
+
+\bibitem{zakaria2012review}
+W.~Z.~A. Zakaria, M.~L.~M. Kiah, A review on artificial intelligence techniques
+  for developing intelligent honeypot, in: Proceeding of: 8th International
+  Conference on Computing Technology and Information Management, At Seoul,
+  Korea, 2012.
+
+\bibitem{ji2016multi}
+S.-Y. Ji, B.-K. Jeong, S.~Choi, D.~H. Jeong, A multi-level intrusion detection
+  method for abnormal network behaviors, Journal of Network and Computer
+  Applications 62 (2016) 9--17.
+
+\bibitem{tavallaee2009detailed}
+M.~Tavallaee, E.~Bagheri, W.~Lu, A.-A. Ghorbani, A detailed analysis of the kdd
+  cup 99 data set, in: Proceedings of the Second IEEE Symposium on
+  Computational Intelligence for Security and Defence Applications 2009, 2009.
+
+\bibitem{callegari2011novel}
+C.~Callegari, L.~Gazzarrini, S.~Giordano, M.~Pagano, T.~Pepe, A novel pca-based
+  network anomaly detection, in: 2011 IEEE International Conference on
+  Communications (ICC), IEEE, 2011, pp. 1--5.
+
+\bibitem{jin2004covariance}
+S.~Jin, D.~S. Yeung, A covariance analysis model for ddos attack detection, in:
+  Communications, 2004 IEEE International Conference on, Vol.~4, IEEE, 2004,
+  pp. 1882--1886.
+
+\bibitem{da2009comparison}
+J.~P. C.~L. da~Costa, A.~Thakre, F.~Roemer, M.~Haardt, Comparison of model
+  order selection techniques for high-resolution parameter estimation
+  algorithms, in: Proc. 54th International Scientific Colloquium (IWK’09),
+  Ilmenau, Germany, 2009.
+
+\bibitem{Vieira2013}
+T.~P. d.~B. Vieira, S.~F. d.~L. Fernandes, V.~C. Garcia,
+  \href{http://doi.acm.org/10.1145/2465839.2465846}{Evaluating mapreduce for
+  profiling application traffic}, in: Proceedings of the First Edition Workshop
+  on High Performance and Programmable Networking, HPPN '13, ACM, New York, NY,
+  USA, 2013, pp. 45--52.
+\newblock \href {http://dx.doi.org/10.1145/2465839.2465846}
+  {\path{doi:10.1145/2465839.2465846}}.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/2465839.2465846}
+
+\bibitem{rajan1997model}
+J.~Rajan, P.~Rayner, Model order selection for the singular value decomposition
+  and the discrete karhunen--loeve transform using a bayesian approach, IEE
+  Proceedings-Vision, Image and Signal Processing 144~(2) (1997) 116--123.
+
+\bibitem{akaike1974new}
+H.~Akaike, A new look at the statistical model identification, Automatic
+  Control, IEEE Transactions on 19~(6) (1974) 716--723.
+
+\bibitem{wax1985detection}
+M.~Wax, T.~Kailath, Detection of signals by information theoretic criteria,
+  Acoustics, Speech and Signal Processing, IEEE Transactions on 33~(2) (1985)
+  387--392.
+
+\bibitem{barron1998minimum}
+A.~Barron, J.~Rissanen, B.~Yu, The minimum description length principle in
+  coding and modeling, Information Theory, IEEE Transactions on 44~(6) (1998)
+  2743--2760.
+
+\bibitem{zhao1986detection}
+L.~Zhao, P.~Krishnaiah, Z.~Bai, On detection of the number of signals in
+  presence of white noise, Journal of Multivariate Analysis 20~(1) (1986)
+  1--25.
+
+\bibitem{ulfarsson2008rank}
+M.~O. Ulfarsson, V.~Solo, Rank selection in noist pca with sure and random
+  matrix theory, in: Acoustics, Speech and Signal Processing, 2008. ICASSP
+  2008. IEEE International Conference on, IEEE, 2008, pp. 3317--3320.
+
+\bibitem{radoi2004new}
+E.~Radoi, A.~Quinquis, A new method for estimating the number of harmonic
+  components in noise with application in high resolution radar, EURASIP
+  Journal on Applied Signal Processing 2004 (2004) 1177--1188.
+
+\bibitem{grouffaud1996some}
+J.~Grouffaud, P.~Larzabal, H.~Clergeot, Some properties of ordered eigenvalues
+  of a wishart matrix: application in detection test and model order selection,
+  in: Acoustics, Speech, and Signal Processing, 1996. ICASSP-96. Conference
+  Proceedings., 1996 IEEE International Conference on, Vol.~5, IEEE, 1996, pp.
+  2463--2466.
+
+\bibitem{quinlan2006model}
+A.~Quinlan, J.-P. Barbot, P.~Larzabal, M.~Haardt, Model order selection for
+  short data: An exponential fitting test (eft), EURASIP Journal on Advances in
+  Signal Processing 2007.
+
+\end{thebibliography}

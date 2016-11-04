@@ -1,4 +1,9 @@
-
+%DIF 1a1
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL 2016JNCA.baseline.tex   Wed Nov  2 21:06:45 2016
+%DIF ADD 2016JNCA.tex            Thu Nov  3 22:59:45 2016
+ %DIF > 
+%DIF -------
 \documentclass[review]{elsarticle}
 
 \usepackage{lineno,hyperref}
@@ -40,10 +45,12 @@
 	\fontdimen7\font=0.1em% extra space
 	%\hyphenchar\font=`\-% allowing hyphenation
 }
-
-% table
-\usepackage{color, colortbl}
-\definecolor{Gray}{gray}{0.9}
+%DIF 42a43-46
+ %DIF > 
+% table %DIF > 
+\usepackage{color, colortbl} %DIF > 
+\definecolor{Gray}{gray}{0.9} %DIF > 
+%DIF -------
 
 % Algorithmic modifications
 \makeatletter
@@ -96,6 +103,30 @@
 %% `Elsevier LaTeX' style
 \bibliographystyle{elsarticle-num}
 %%%%%%%%%%%%%%%%%%%%%%%
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -118,7 +149,7 @@
 
 
 \begin{abstract}
-Novel schemes for attack detection are crucial to identify adaptive malicious traffic coming from sources that are quickly mobilized by attackers in high throughput communication networks. In this context, signal processing techniques have been applied to attack detection due to their capability to detect anomalies that are previously unknown, i.e. blind detection. This paper proposes a signal processing framework for the detection and identification of network attacks using concepts of model order selection (MOS), eigenvalues and similarity analysis. In order to validate the proposed framework, we consider network traffic datasets that contain malicious activity such as flood and port probing attacks. We propose to model the network traffic as a superposition of components, namely, user's operations (legitimate traffic), network service operation not related to the user (noise) and the malicious activity. The experiments performed in a real network and also using the DARPA 1998 public dataset show that the proposed blind detection approach achieves satisfactory levels of accuracy in terms of timely detection and identification of TCP/UDP ports under attack.
+Novel schemes for attack detection are crucial to identify adaptive malicious traffic coming from sources that are quickly mobilized by attackers in high throughput communication networks. In this context, signal processing techniques have been applied to attack detection due to their capability to detect anomalies that are previously unknown, i.e. blind detection. This paper proposes a signal processing framework for the detection and identification of network attacks using concepts of model order selection (MOS), eigenvalues and similarity analysis. In order to validate the proposed framework, we consider \DIFdelbegin \DIFdel{a network traffic sample that contains }\DIFdelend \DIFaddbegin \DIFadd{network traffic datasets that contain }\DIFaddend malicious activity such as \DIFdelbegin \DIFdel{denial of service (DoS) }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port probing \DIFaddbegin \DIFadd{attacks}\DIFaddend . We propose to model the network traffic as a superposition of components, namely, user's operations (legitimate traffic), network service operation not related to the user (noise) and the malicious activity. The experiments performed in a real network \DIFaddbegin \DIFadd{and also using the DARPA 1998 public dataset }\DIFaddend show that the proposed blind detection approach achieves satisfactory levels of accuracy in terms of timely detection and identification of TCP/UDP ports under attack.
 \end{abstract}
 
 \begin{keyword}
@@ -134,63 +165,116 @@ Network Attack Detection \sep Model Order Selection \sep Eigen Analysis \sep Sim
 
 Traditionally, cyber defense methods can be effective against ordinary and conventional types of attacks, yet may fail against innovative malicious techniques \cite{lakhina2005mining}. In order to be able to detect and avoid novel attacks and their variations, it is necessary to develop or improve techniques to achieve efficiency on resource consumption, processing capacity and response time. Moreover, it is crucial to obtain high detection accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes have being applied to the detection of malicious traffic in computer networks \cite{Lu2009,Huang2009,Zonglin2009,david2011blind,da2012improved,tenorio2013greatest}, showing advances in network traffic analysis.
 
-Information security may consist of both technical and procedural aspects. The former includes equipment and security systems, while the latter corresponds to security rules and recommendations. Intrusion detection and intrusion prevention systems are security systems used, respectively, to detect (passively) and prevent (proactively) threats to computer systems and computer networks. Such systems can work in the following fashions: signature-based, anomaly-based or hybrid \cite{Huang2009,mudzingwa2012study}. Additionally, anomaly detection techniques can be categorized in classification, statistical, information theory and clustering based, according to \cite{bhuyan2014network,ahmed2016survey,osanaiye2016distributed}.
+Information security may consist of both technical and procedural aspects. The former includes equipment and security systems, while the latter corresponds to security rules and recommendations. Intrusion detection and intrusion prevention systems are security systems used, respectively, to detect (passively) and prevent (proactively) threats to computer systems and computer networks. Such systems can work in the following fashions: signature-based, anomaly-based or hybrid \cite{Huang2009,mudzingwa2012study}. \DIFaddbegin \DIFadd{Additionally, anomaly detection techniques can be categorized in classification, statistical, information theory and clustering based, according to \mbox{%DIFAUXCMD
+\cite{bhuyan2014network,ahmed2016survey,osanaiye2016distributed}
+}%DIFAUXCMD
+.
+}\DIFaddend 
 
-In the context of anomaly-based schemes, this work proposes a statistical approach based on signal processing techniques for the detection of malicious traffic in computer networks. Inspired by \cite{david2011blind,da2012improved}, this work models the network traffic using a signal processing formulation as a composition of three components: legitimate traffic, malicious traffic and noise, taking into account the incoming and outgoing traffic in certain types of network ports (TCP or UDP). To the best of our knowledge there is no similar model in the literature. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis. In contrast to \cite{david2011blind,da2012improved,tenorio2013greatest}, MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we also evaluate the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 dataset \citep{osanaiye2016distributed}, which is a well known network traffic dataset. Furthermore, this proposed approach has its accuracy evaluation based on eigen similarity analysis for extracting detailed information about accurate time and network ports under attack. 
+In the context of anomaly-based schemes, this work proposes \DIFdelbegin \DIFdel{an approach }\DIFdelend \DIFaddbegin \DIFadd{a statistical approach based on signal processing techniques }\DIFaddend for the detection of malicious traffic in computer networks. Inspired by \cite{david2011blind,da2012improved}, this work models the network traffic using a signal processing formulation as a composition of three components: legitimate traffic, malicious traffic and noise, taking into account the incoming and outgoing traffic in certain types of network ports (TCP or UDP). To the best of our knowledge there is no similar model in the literature. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis. In contrast to \cite{david2011blind,da2012improved,tenorio2013greatest}, MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we also evaluate the accuracy \DIFaddbegin \DIFadd{and performance }\DIFaddend of the proposed framework \DIFdelbegin \DIFdel{. Additionally}\DIFdelend \DIFaddbegin \DIFadd{applied to a experimental scenario and to the DARPA 1998 dataset \mbox{%DIFAUXCMD
+\citep{osanaiye2016distributed}
+}%DIFAUXCMD
+, which is a well known network traffic dataset. Furthermore}\DIFaddend , this proposed approach has its accuracy evaluation based on eigen similarity analysis for extracting detailed information about accurate time and network ports under attack. 
 
 The performed experiments show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of the proposed framework are the capability to blindly detect time frames under network attack via MOS and eigen analysis, and the detailed identification of the network attack via eigen similarity analysis.
 
-This paper is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model and the evaluated datasets. Section \ref{sec:prop_getv} describes the proposed framework for blind and automatic detection of flood and probe attacks. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:Complexity} discusses the computational complexity of the proposed framework and evaluates the required processing time for tested scenarios. Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work. The \ref{sec:mos} presents mathematical concepts of examples of state-of-the-art MOS schemes.
+This paper is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model \DIFaddbegin \DIFadd{and the evaluated datasets}\DIFaddend . Section \ref{sec:prop_getv} describes the proposed framework for blind and automatic detection of \DIFdelbegin \DIFdel{malicious traffic}\DIFdelend \DIFaddbegin \DIFadd{flood and probe attacks}\DIFaddend . Section \ref{sec:experimentalresults} discusses the experimental validation and presents the \DIFdelbegin \DIFdel{experimental results}\DIFdelend \DIFaddbegin \DIFadd{results, and Section \ref{sec:Complexity} discusses the computational complexity of the proposed framework and evaluates the required processing time for tested scenarios}\DIFaddend . Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work. The \ref{sec:mos} presents mathematical concepts of examples of state-of-the-art MOS schemes.
 
 
 \section{Related Works}
 \label{sec:relatedworks}
 
-Several methods have been proposed for the identification and characterization of malicious activity in computer networks. Classical methods typically employ data mining \cite{he2008applying,ghourabi2010data,osanaiye2016distributed} and regular file analysis \cite{raynal2004honeypot} to detect patterns that indicate the presence of specific attacks in network traffic.
+Several methods have been proposed for the identification and characterization of malicious activity in computer networks. Classical methods typically employ data mining \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{he2008applying,ghourabi2010data}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{he2008applying,ghourabi2010data,osanaiye2016distributed}
+}%DIFAUXCMD
+}\DIFaddend and regular file analysis \cite{raynal2004honeypot} to detect patterns that indicate the presence of specific attacks in network traffic.
 
-Data mining is often used to describe the process of extracting useful information from large databases. Multiple methods of data mining are used in \cite{he2008applying,osanaiye2016distributed} to analyze data flow in a network with the aim of identifying characteristics of malicious traffic in large scale environments. Researchers have applied data mining techniques in log analysis \cite{ghourabi2010data} to improve intrusion detection performance. However, data mining techniques used so far in network analysis require prior collection of large data sets, which is a limitation of several schemes for online analysis \cite{Huang2009}.
+Data mining is often used to describe the process of extracting useful information from large databases. Multiple methods of data mining are used in \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{he2008applying}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{he2008applying,osanaiye2016distributed}
+}%DIFAUXCMD
+}\DIFaddend to analyze data flow in a network with the aim of identifying characteristics of malicious traffic in large scale environments. Researchers have applied data mining techniques in log analysis \cite{ghourabi2010data} to improve intrusion detection performance. However, data mining techniques used so far in network analysis require prior collection of large data sets, which is a limitation of several schemes for online analysis \cite{Huang2009}.
 
 Regular file analysis \cite{raynal2004honeypot} consists of traffic analysis for detecting known patterns that indicate the presence of attacks, applying statistical analysis to the study of collected traffic. An essential feature of this method is that it depends on prior knowledge of the details of the attacks to be identified, and also depends on previous log collection for traffic analysis and false positives reduction.
 
 Principal Component Analysis (PCA) is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA has been used in attack detection \cite{almotairi2009technique}. However, PCA requires human intervention in order to identify abnormalities based on the eigenvalues profiles, if used without complementary techniques.
+\DIFaddbegin 
 
-Callegari \emph{et al} \cite{Zonglin2009} propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. 
+\DIFadd{Callegari }\emph{\DIFadd{et al}} \DIFadd{\mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari }\emph{\DIFadd{et al}} \DIFadd{focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. 
+}
 
-Lee \emph{et al.} \cite{Lee2013} propose OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. In contrast to Lee \emph{et al.}, the framework applies MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack. Additionally, Lee \emph{et al.} only evaluate their proposed scheme for covariance analysis, while we adopt an analysis based on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, for flood and probe attacks, respectively. 
+\DIFadd{Lee }\emph{\DIFadd{et al.}} \DIFadd{\mbox{%DIFAUXCMD
+\cite{Lee2013}
+}%DIFAUXCMD
+propose OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. In contrast to Lee }\emph{\DIFadd{et al.}}\DIFadd{, the framework applies MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack. Additionally, Lee }\emph{\DIFadd{et al.}} \DIFadd{only evaluate their proposed scheme for covariance analysis, while we adopt an analysis based on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, for flood and probe attacks, respectively. 
+}
 
-Besides being prone to higher errors and false positives, such human intervention makes PCA not useful for real time applications. Therefore, in order to automate the analysis of eigenvalues profile, model order selection (MOS) schemes should be incorporated.
+\DIFaddend Besides being prone to higher errors and false positives, such human intervention makes PCA not useful for real time applications. Therefore, in order to automate the analysis of eigenvalues profile, model order selection (MOS) schemes should be incorporated.
 
-Signal processing techniques have been successfully applied to network anomaly detection \cite{Lu2009}. Lu and Ghorbani \cite{Lu2009} proposed a network anomaly detection model based on network flow, wavelet approximation, and system identification theory. However, their work requires a training method to produce a prediction model for normal daily traffic and presents limitations on identification of behaviors without significant outliers, such as port scan attacks. Zonglin \emph{et al} \cite{Zonglin2009} proposed a method to detect traffic anomaly with correlation analysis, where the correlation between traffic signals and the predicted traffic signals are used to reveal anomalies. Zonglin \emph{et al.} \cite{Zonglin2009} evaluated the correlation analysis for anomaly detection, but the work is not applied to probe and flood attack detection, simultaneously. 
+Signal processing techniques have been successfully applied to network anomaly detection \cite{Lu2009}. Lu and Ghorbani \cite{Lu2009} proposed a network anomaly detection model based on network flow, wavelet approximation, and system identification theory. However, their work \DIFdelbegin \DIFdel{did not address problems }\DIFdelend \DIFaddbegin \DIFadd{requires a training method to produce a prediction model for normal daily traffic and presents limitations on identification of behaviors }\DIFaddend without significant outliers, such as port scan attacks. Zonglin \emph{et al} \cite{Zonglin2009} proposed a method to detect traffic anomaly with correlation analysis, where the correlation between traffic signals and the predicted traffic signals are used to reveal anomalies. Zonglin \emph{et al.} \cite{Zonglin2009} evaluated the correlation analysis for anomaly detection, but the work \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend not applied to \DIFdelbegin \DIFdel{probing and denial of service (DoS) }\DIFdelend \DIFaddbegin \DIFadd{probe and flood }\DIFaddend attack detection, simultaneously. 
 
 The data collected from honeypot systems, such as captured traffic and operating system logs, can be analyzed to obtain information about attack techniques, general trends of threats and exploits. Blind automatic detection of malicious traffic techniques have been developed for honeypots in \cite{david2011blind,da2012improved}. However, traffic on honeypot is simpler than real network traffic, because there are no running legitimate applications, due to the fact that honeypots emulate behavior of a host within a network to deceive and lure attackers \cite{zakaria2012review}. Since honeypots do not generate legitimate traffic, the amount of data captured in honeypots is significantly lower in comparison to a Network Intrusion Detection System (NIDS), which captures and analyzes the largest possible amount of network traffic \cite{david2011blind}. MOS for blind identification of malicious activities in honeypots was proposed by us in \cite{david2011blind}, which evaluated criteria for selecting the model order, through simulations and comparing the order of the resulting model with the true model order.
 
-The proposed framework does not require either a significant amount of logs to detect attacks, nor prior data collection, in order to make comparisons and evaluate the existence of malicious traffic. The proposed solution is automatic and blind for detection of time frames under probe and flood attacks through MOS and eigen analysis. Moreover, we apply eigen similarity analysis to identify details of time and ports under network attacks.
+\DIFdelbegin \DIFdel{Lee }\emph{\DIFdel{et al.}} %DIFAUXCMD
+\DIFdel{\mbox{%DIFAUXCMD
+\cite{Lee2013}
+}%DIFAUXCMD
+proposed OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. In contrast to Lee }\emph{\DIFdel{et al.}}%DIFAUXCMD
+\DIFdel{, the framework applies MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack. Additionally, Lee }\emph{\DIFdel{et al.}} %DIFAUXCMD
+\DIFdel{only evaluated their proposed scheme for covariance analysis, while we adopted an analysis based on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, for DoS and probing attacks, respectively.
+}%DIFDELCMD < 
 
-Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. Since the proposed approach relies on a packet level analysis and the KDD 99 and NSL-KDD datasets adopt a traffic aggregation by connections, we consider the use of a experimental scenario on a real network and the DARPA 1998 dataset, which is the source for the creation of the KDD 99 and NSL-KDD datasets. Note that the proposed approach is not based on learning or classification techniques, which are more susceptible to biased results caused by the issues in the DARPA/KDD datasets.
+%DIFDELCMD < %%%
+\DIFdelend The proposed framework does not require either a significant amount of logs to detect attacks, nor prior data collection, in order to make comparisons and evaluate the existence of malicious traffic. The proposed solution is automatic and blind for detection of time frames under \DIFdelbegin \DIFdel{probing and DoS }\DIFdelend \DIFaddbegin \DIFadd{probe and flood }\DIFaddend attacks through MOS and eigen analysis. Moreover, we apply eigen similarity analysis to identify details of time and ports under network attacks.
+
+\DIFaddbegin \DIFadd{Several approaches for network attack detections uses the KDD 99 \mbox{%DIFAUXCMD
+\cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network}
+}%DIFAUXCMD
+datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \mbox{%DIFAUXCMD
+\cite{osanaiye2016distributed,bhuyan2014network}
+}%DIFAUXCMD
+. NSL-KDD \mbox{%DIFAUXCMD
+\cite{tavallaee2009detailed}
+}%DIFAUXCMD
+dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \mbox{%DIFAUXCMD
+\cite{callegari2011novel}
+}%DIFAUXCMD
+scenarios or non-public datasets their evaluations. Since the proposed approach relies on a packet level analysis and the KDD 99 and NSL-KDD datasets adopt a traffic aggregation by connections, we consider the use of a experimental scenario on a real network and the DARPA 1998 dataset, which is the source for the creation of the KDD 99 and NSL-KDD datasets. Note that the proposed approach is not based on learning or classification techniques, which are more susceptible to biased results caused by the issues in the DARPA/KDD datasets.
+}
 
 
-\section{Data Model}
+\DIFaddend \section{Data Model}
 \label{sec:datamodel}
 
 In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. We define the operator $\rm diag(\cdot)$ that returns the vector of the main diagonal of a given matrix, the operator $\rightarrow$, which denotes the deletion of a given element from a set and the operator $\#$, that returns the rank of a matriz, and the operator $\sim$ that sorts the elements of a vector in ascending order.
 
-This section presents details of the experimental scenario and the selected cases of the DARPA dataset, along with a description of the dataset model as a signal superposition of legitimate traffic, noise and malicious traffic. Subsection \ref{sec:DataCollection} describes the environment and scenario adopted in order to reproduce flood and probe attacks. Subsection \ref{sec:ModelingData} presents how network traffic can be modeled as signal superposition. Subsection \ref{sec:SynfloodFraggleandPortscan} details the traffic of synflood, fraggle and port scan attacks, and Subsection \ref{sec:DarpaDataset} discusses the use of the DARPA dataset for evaluation of the proposed approach.
+This section presents details of the \DIFdelbegin \DIFdel{simulated scenario }\DIFdelend \DIFaddbegin \DIFadd{experimental scenario and the selected cases of the DARPA dataset, }\DIFaddend along with a description of the dataset model as a signal superposition of legitimate traffic, noise and malicious traffic. Subsection \ref{sec:DataCollection} describes the environment and scenario adopted in order to reproduce \DIFdelbegin \DIFdel{DoS and probing }\DIFdelend \DIFaddbegin \DIFadd{flood and probe }\DIFaddend attacks. Subsection \ref{sec:ModelingData} presents how network traffic can be modeled as signal superposition\DIFdelbegin \DIFdel{, and Subsection \ref{sec:AnalyzedScenario} }\DIFdelend \DIFaddbegin \DIFadd{. Subsection \ref{sec:SynfloodFraggleandPortscan} }\DIFaddend details the traffic of synflood, fraggle and port scan attacks\DIFaddbegin \DIFadd{, and Subsection \ref{sec:DarpaDataset} discusses the use of the DARPA dataset for evaluation of the proposed approach}\DIFaddend .
 
 \subsection{Analyzed Scenario and Data Collection}
 \label{sec:DataCollection}
 
-The environment of the analyzed scenario is composed of two computers and one router with access to the Internet and to an internal network, where the simulation of legitimate traffic, noise, flood and port scan attacks are performed. During the traffic generation, one computer assumes the role of the attacker, while the other is the victim, according to scenario represented by Figure \ref{fig:fig1}.
+The environment of the analyzed scenario is composed of two computers and one router with access to the Internet and to an internal network, where the simulation of legitimate traffic, noise, \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan attacks are performed. During the traffic generation, one computer assumes the role of the attacker, while the other is the victim, according to scenario represented by Figure \ref{fig:fig1}.
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=6cm, width=9cm]{results/figures/fig09.png}
-     \caption{Scenario to reproduce legitimate traffic, noise, flood and port scan.}
+     \DIFdelbeginFL %DIFDELCMD < \includegraphics[height=5cm, width=7cm]{results/figures/fig09.png}
+%DIFDELCMD <      %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[height=6cm, width=9cm]{results/figures/fig09.png}
+     \DIFaddendFL \caption{Scenario to reproduce legitimate traffic, noise, \DIFdelbeginFL \DIFdelFL{DoS }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{flood }\DIFaddendFL and port scan.}
      \label{fig:fig1}
 \end{figure}
 
 Note that the set of network traffic is modeled as legitimate, noise and malicious traffic, where the victim performs legitimate activities, that can be characterized by web access. In many organizations this type of traffic is predominant, since most of corporate services are web-based, such as: web pages, customized web-based systems and cloud services. It is possible to characterize the traffic of a DHCP service as an example of noise associated with the transport layer. For malicious traffic, three types of networks attacks are evaluated: synflood, fraggle and port scan. These attacks are reproduced using well-known security tools, such as Nmap\footnote{http://nmap.org} to port scan, Metasploit\footnote{http://www.metasploit.com} to synflood and Hping\footnote{http://hping.org} to lead the fraggle attack.
 
-A network traffic log is commonly formed by timestamp, protocol, source IP address, source port, destination IP address, destination port and additional information, according to the type of the used transport protocol. The following TCP traffic log is presented in order to exemplify the collected data:
+A network traffic log is commonly formed by timestamp, protocol, source IP address, source port, destination IP address, destination port and additional information, according to the type of \DIFdelbegin \DIFdel{transport protocol used}\DIFdelend \DIFaddbegin \DIFadd{the used transport protocol}\DIFaddend . The following TCP traffic log is presented in order to exemplify the collected data:
 \newline
 \newline
 \texttt{\justify21:00:34.099289 IP 192.168.1.102.34712 > 200.221.2.45.80: Flags [S], seq 2424058224, win 14600, options [mss 1460, sackOK,TS val 244136 ecr 0,nop,wscale 7], length 0}
@@ -207,7 +291,7 @@ In the proposed framework, the goal is to detect the anomalies only taking into 
 \subsection{Modeling Data}
 \label{sec:ModelingData}
 
-By modeling the dataset as a signal superposition, the network traffic (\textbf{X}) can be characterized as a mixture of three components: legitimate traffic (\textbf{U}), noise (\textbf{N}) and malicious traffic (\textbf{A}), according to the following expression:
+By modeling the dataset as a signal superposition, the network traffic (\textbf{X}) can be characterized as a mixture of three components: legitimate traffic (\textbf{\DIFdelbegin \DIFdel{S}\DIFdelend \DIFaddbegin \DIFadd{U}\DIFaddend }), noise (\textbf{N}) and malicious traffic (\textbf{A}), according to the following expression:
 
 \begin{equation}\label{eq:eq01}
 \boldsymbol{X}^{(q)} = \boldsymbol{U}^{(q)} + \boldsymbol{N}^{(q)} + \boldsymbol{A}^{(q)},
@@ -239,7 +323,8 @@ We define that if the obtained $\#\boldsymbol{A}^{(q)} ≠ 0$, then there is mal
 \subsection{Synflood, Fraggle and Port scan}
 \label{sec:SynfloodFraggleandPortscan}
 
-The network attacks evaluated by this work are: synflood, fraggle and port scan. The first two attacks can be qualified as flood or denial of service (DoS) attacks, while the last one can be qualified as probe or port scanning attack. DoS attempts to block access to system or network resources and is implemented by either forcing targets to be unavailable through the exploiting of system vulnerabilities, or consuming resources through large amount of network traffic, characterizing flood attacks. Probe attacks scan the networks to collect information about host, such as IP addresses, ports and services.
+The network attacks evaluated by this work are: synflood, fraggle and port scan. The first two attacks can be qualified as \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood or denial of service (DoS) }\DIFaddend attacks, while the last one can be qualified as \DIFdelbegin \DIFdel{probing }\DIFdelend \DIFaddbegin \DIFadd{probe }\DIFaddend or port scanning attack. \DIFaddbegin \DIFadd{DoS attempts to block access to system or network resources and is implemented by either forcing targets to be unavailable through the exploiting of system vulnerabilities, or consuming resources through large amount of network traffic, characterizing flood attacks. Probe attacks scan the networks to collect information about host, such as IP addresses, ports and services.
+}\DIFaddend 
 
 
 With respect to the synflood attacks, the attacker sends a large quantity and concurrent successive SYN requests to a target, in order to consume resources and cause a DoS. Figure \ref{fig:fig5} depicts an example of a synflood attack carried out in a real computer network. In an interval of ten minutes, more than 210,000 packets are sent as a synflood attack. This network traffic behavior can be considered an abnormal behavior of network traffic, especially since it is concentrated in a short period of time and presents similar outstanding traffic during the time under attack.
@@ -264,7 +349,7 @@ More than 6,000,000 malicious packets can be counted in an interval of ten minut
 
 Port scan is the attempt to establish a connection to TCP and UDP ports to identify what services are running or are in the listening state. There are several available port scanning techniques, including: TCP SYN scan, TCP ACK scan and UDP scan. This work evaluates the use of TCP SYN scan and UDP scan. 
 
-In TCP SYN scan, a SYN packet is sent to the destination and two types of responses may occur: SYN/ACK or RST/ACK. In the first case, the destination port is in the listening state, in the second case, the destination port is not listening. At the end of each port scanning, a RST/ACK packet is sent by the system that is performing the port scan. Therefore, a full connection or a complete three-way handshake is never established, which makes the detection of the attack sender more difficult, and requires approaches able to identify probe attacks without connection stablishment. The UDP scan technique sends UDP packets to the destination port, and if it responds with a \emph{ICMP port unreachable} message, then it indicates that the scanned port is closed. On the other hand, if a message is not received, then the port is considered as open.
+In TCP SYN scan, a SYN packet is sent to the destination and two types of responses may occur: SYN/ACK or RST/ACK. In the first case, the destination port is in the listening state, in the second case, the destination port is not listening. At the end of each port scanning, a RST/ACK packet is sent by the system that is performing the port scan. Therefore, a full connection or a complete three-way handshake is never established, which makes the detection of the attack sender more difficult, and requires approaches able to identify \DIFdelbegin \DIFdel{probing }\DIFdelend \DIFaddbegin \DIFadd{probe }\DIFaddend attacks without connection stablishment. The UDP scan technique sends UDP packets to the destination port, and if it responds with a \emph{ICMP port unreachable} message, then it indicates that the scanned port is closed. On the other hand, if a message is not received, then the port is considered as open.
 
 \begin{figure}[h!]
      \centering 
@@ -275,18 +360,23 @@ In TCP SYN scan, a SYN packet is sent to the destination and two types of respon
 
 Figure \ref{fig:fig7} depicts an example of the port scan attack in a real computer network. Note that the traffic is composed of two packets for each TCP port and one UDP packet to each port. The incoming and outgoing packets analysis, for each port, shows the high correlation and similarity of TCP and UDP traffic during the simulated port scan attack.
 
-\subsection{The DARPA Dataset}
+\DIFaddbegin \subsection{\DIFadd{The DARPA Dataset}}
 \label{sec:DarpaDataset}
 
-The DARPA 1998 dataset\footnote{https://www.ll.mit.edu/ideval/data/} includes 7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks. The attacks in this dataset
+\DIFadd{The DARPA 1998 dataset}\footnote{\DIFadd{https://www.ll.mit.edu/ideval/data/}} \DIFadd{includes 7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks. The attacks in this dataset
 can be grouped into: denial-of-service (DoS); remote to local (R2L), which is characterized by unauthorized access from a
 remote machine; user to root (U2R), which is characterized by unauthorized access to local
-super-user privileges; and probe attack. Since the proposed approach focus on flood and probe attack, the analysis concentrates on the attacks that present behaviors similar to flood or probe attack. We observe that the most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack. One example is the occurrence of a neptune attack which sends 20 only SYN packets, what is a behavior that differs of the expected flood attack behavior. Therefore, there were selected the cases that simulates several network traffic or numerous connection requests, also known as flooding attack \cite{ahmed2016survey,osanaiye2016distributed}, and the cases that scan ports sending just a few packets. From the simulated probe attacks, we select the cases that rely on TCP or UDP connections.
+super-user privileges; and probe attack. Since the proposed approach focus on flood and probe attack, the analysis concentrates on the attacks that present behaviors similar to flood or probe attack. We observe that the most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack. One example is the occurrence of a neptune attack which sends 20 only SYN packets, what is a behavior that differs of the expected flood attack behavior. Therefore, there were selected the cases that simulates several network traffic or numerous connection requests, also known as flooding attack \mbox{%DIFAUXCMD
+\cite{ahmed2016survey,osanaiye2016distributed}
+}%DIFAUXCMD
+, and the cases that scan ports sending just a few packets. From the simulated probe attacks, we select the cases that rely on TCP or UDP connections.
+}
 
-The data modeling follows the method described by the Subsection \ref{sec:ModelingData}, with time frames of 20 minutes, packet counting aggregation by minute and considering the traffic to the following ports: 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389, 443.
+\DIFadd{The data modeling follows the method described by the Subsection \ref{sec:ModelingData}, with time frames of 20 minutes, packet counting aggregation by minute and considering the traffic to the following ports: 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389, 443.
+}
 
 
-\section{Proposed Framework for Detection and Identification of Network Attacks}
+\DIFaddend \section{Proposed Framework for Detection and Identification of Network Attacks}
 \label{sec:prop_getv}
 
 This section describes the proposed technique to detect synflood, fraggle and port scan, according to Figure \ref{fig:fig80}, which represents the overview of the proposed framework for detection and identification of network attacks. In Subsection \ref{sec:prop_LargestEigenvaluebyTimeFrames} we present the steps for extraction of the largest eigenvelue for each $q$-th time frame. Next, in Subsection \ref{sec:prop_MOSSchemes}, we show how to apply the eiganvalues on the MOS scheme in order to detect the attack. In Subsection \ref{sec:prop_EigenvalueAnalysis}, we present the eigenvalue analysis to identify the time frames detected as under attack, and the Subsection \ref{sec:prop_EigenSimilarityAnalysis} describes the similarity analysis evaluated for detailed attack identification.
@@ -305,9 +395,9 @@ The proposed attack detection algorithm starts by the data pre-processing of a n
 
 With the data grouped into $Q$ time frames, the framework considers the time variations of the matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the attack. 
 
-According to flood and port scan attacks' behavior, flood attacks and port scan attacks can be characterized as covariance aware attack \citep{jin2004covariance} and correlation aware attack \citep{lakhina2005mining}, respectively. These characteristics are substantiated by the results obtained through the analysis based on sample covariation of zero mean variables and on covariance of zero mean and unitary standard deviation variables, described in Section \ref{sec:experimentalresults}, which shows that the main components of flood attacks are dominated by the variables with more variance and that the traffic associated with port scan attack does not generate many logs, however, it presents high covariance of zero mean and unitary standard deviation variables.
+According to \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan attacks' behavior, \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend attacks and port scan attacks can be characterized as covariance aware attack \citep{jin2004covariance} and correlation aware attack \citep{lakhina2005mining}, respectively. These characteristics are substantiated by the results obtained through the analysis based on sample covariation of zero mean variables and on covariance of zero mean and unitary standard deviation variables, described in Section \ref{sec:experimentalresults}, which shows that the main components of \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend attacks are dominated by the variables with more variance and that the traffic associated with port scan attack does not generate many logs, however, it presents high covariance of zero mean and unitary standard deviation variables.
 
-Therefore, to detect flood attacks, it is necessary to calculate the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
+Therefore, to detect \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend attacks, it is necessary to calculate the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
 
 \begin{equation}\label{eq:eq02}
 \boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
@@ -331,7 +421,7 @@ The set of vectors $\boldsymbol{z}_{m}^{(q)}$ composes the matrix $\boldsymbol{Z
 \boldsymbol{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\boldsymbol{Z}^{(q)}\boldsymbol{Z}^{(q)^{\rm T}}.
 \end{equation}
 
-Once the $\boldsymbol{\hat{R}}_{yy}^{(q)}$ and $\boldsymbol{\hat{R}}_{zz}^{(q)}$ have been obtained for flood and port scan attack detection, respectively, and since the next steps are the same for both sample covariance matrices, we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$. Therefore, the following step of the algorithm is the eigenvalue decomposition (EVD), calculated according to (\ref{eq:eq06}), in order to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix, according to (\ref{eq:eq060}).
+Once the $\boldsymbol{\hat{R}}_{yy}^{(q)}$ and $\boldsymbol{\hat{R}}_{zz}^{(q)}$ have been obtained for \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan attack detection, respectively, and since the next steps are the same for both sample covariance matrices, we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$. Therefore, the following step of the algorithm is the eigenvalue decomposition (EVD), calculated according to (\ref{eq:eq06}), in order to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix, according to (\ref{eq:eq060}).
 
 \begin{equation}\label{eq:eq06}
 \boldsymbol{C}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
@@ -415,7 +505,7 @@ For eigen similarity analyis, we evaluate the cosine similarity in order to iden
 \begin{equation}\label{eq:eq11}
 s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}}},
 \end{equation}
-where $s_n$ denotes the absolute similarity degree of the $n$-th minute, $\boldsymbol{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack, and $\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of traffic to be performed the flood and port scan attack identification.
+where $s_n$ denotes the absolute similarity degree of the $n$-th minute, $\boldsymbol{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack, and $\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of traffic to be performed the \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan attack identification.
 
 The most significant eigenvector $\boldsymbol{v}^{(q)}$, of a time frame $q$ without attack, can be derivated from (\ref{eq:eq06}) and selected according to the eigenvector of the largest eigenvalue $\lambda_1^{(q)}$, which is the principal component of the evaluated matrix. The same calculation shall be performed in order to obtain the target eigenvectors $\boldsymbol{v}_{(n)}$, calculated from a time frame without attack plus minutes of a time frame estimated as under attack, to evaluate the occurrence of network attacks. 
 
@@ -444,7 +534,7 @@ Figure \ref{fig:fig8} ilustrates the network traffic selection for the increment
 The eigen similarity analysis starts at $\boldsymbol{x}^{(3)}_{(41)}$ and is incrementally performed until $\boldsymbol{x}^{(\hat{3})}_{(60)}$, in order to calculate the $s_n$. We assume that $s_n < l$ means an attack identification, according the anomaly on similiarity of $s_n$ to a defined limiar $l$. Therefore, after obtaining the most significant eigenvector $\boldsymbol{v}^{(q)}$ and the target eigenvectors $\boldsymbol{v}_{(n)}$ for eigen similarity analyis, the $s_n$ is calculated according to~(\ref{eq:eq11}).
 
 If $s_n = 1$, then the two eigenvectors are completely similar and no anomaly is detected. Smaller values of $s_n$ mean less similarity and can indicate an anomaly, according to a defined 
-threshold $l$, assuming that if $s_n < l$, then a network attack is identified during the $n$-th minute. Therefore, the $s_n$ of each $n$-th minute shall be compared with the threshold $l$ to evaluate if a attack is identified, according to
+threshold $l$, assuming that if $s_n < l$, then a network attack is identified during the $n$-th minute. Therefore, the $s_n$ of each $n$-th minute shall be compared with the threshold $l$ to evaluate if a attack \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend identified, according to
 
 \begin{equation}\label{eq:eq14}
   \boldsymbol{\hat{n}_{(n)}}=\left\{
@@ -504,9 +594,9 @@ This procedure should be repeated for each $m$-th target port of $\boldsymbol{\h
 \section{Experiments and Results}
 \label{sec:experimentalresults}
 
-This section presents the performed experiments and the acquired results. First, in Section \ref{sec:AnalyzedScenario}, the experimental scenario adopted in the experiments is summarized. Then, Section \ref{sec:largesteigenvaluesanalysis} shows the results of the largest eigenvalue analysis by time frames for the experimental scenario. In Section \ref{sec:MOSSchemesEvaluation} are described the results of the evaluated MOS schemes for attack detection in the simulated dataset. Section \ref{sec:EigenvalueAnalysis} presents the results of the eigenvalue analysis for identification of time frames under attack, Section \ref{sec:EigenSimilarityAnalysis} shows the results of similarity analysis for detailed flood and port scan identification for the experimental scenario. Section \ref{sec:DarpaEvaluation} presents the results of the largest eigenvalue analysis, model order selection and the eigenvalue analysis for flood and probe attack detection in the DARPA 1998 dataset.
+This section presents the performed experiments and the acquired results. First, in Section \ref{sec:AnalyzedScenario}, the \DIFaddbegin \DIFadd{experimental }\DIFaddend scenario adopted in the experiments is summarized. Then, Section \ref{sec:largesteigenvaluesanalysis} shows the results of the largest eigenvalue analysis by time frames \DIFaddbegin \DIFadd{for the experimental scenario}\DIFaddend . In Section \ref{sec:MOSSchemesEvaluation} are described the results of the evaluated MOS schemes for attack detection \DIFaddbegin \DIFadd{in the simulated dataset}\DIFaddend . Section \ref{sec:EigenvalueAnalysis} presents the results of the eigenvalue analysis for identification of time frames under attack, Section \ref{sec:EigenSimilarityAnalysis} shows the results of similarity analysis for detailed \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan identification \DIFdelbegin \DIFdel{, and Section \ref{sec:Complexity} discuss the computational complexity of the proposed framework}\DIFdelend \DIFaddbegin \DIFadd{for the experimental scenario. Section \ref{sec:DarpaEvaluation} presents the results of the largest eigenvalue analysis, model order selection and the eigenvalue analysis for flood and probe attack detection in the DARPA 1998 dataset}\DIFaddend .
 
-\subsection{Experimental Scenario}
+\subsection{\DIFdelbegin \DIFdel{Analyzed }\DIFdelend \DIFaddbegin \DIFadd{Experimental }\DIFaddend Scenario}
 \label{sec:AnalyzedScenario}
 
 The experiment time is 120 minutes, separated into six time frames, with each time frame corresponding to twenty minutes. Therefore, as the time of each sampling period is one minute, then $N = 20$. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ was obtained, as well as a covariance $\boldsymbol{\hat{R}}_{yy}^{(q)} \in \mathbb{R}^{17 \times 17}$ (calculated via (\ref{eq:eq03})) and a sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)} \in \mathbb{R}^{17x17}$, assuming that $q = 1, 2, 3, 4, 5$ and $6$. 
@@ -516,7 +606,7 @@ The simulation started at 21:00h, the first time frame was from 21:00h until 21:
 \subsection{Largest Eigenvalues Analysis}
 \label{sec:largesteigenvaluesanalysis}
 
-For the evaluation of MOS Schemes accuracy for flood and port scan detection, the framework defines that it is necessary to obtain the largest eigenvalue of each time frame, through eigen decomposition from a covariance of zero mean variables or covariance matrix of zero mean and unitary standard deviation variables, calculated from the evaluated traffic, as described in Section \ref{sec:prop_getv}. Through eigenvalue analysis of traffic with flood or port scan attacks, it is possible to visualize a significant difference between the largest eigenvalues and the remain eigenvalues, which can indicate a relationship between an outlier and time frames under attack.
+For the evaluation of MOS Schemes \DIFdelbegin \DIFdel{acuracy for DoS }\DIFdelend \DIFaddbegin \DIFadd{accuracy for flood }\DIFaddend and port scan detection, the framework defines that it is necessary to obtain the largest eigenvalue of each time frame, through eigen decomposition from a covariance of zero mean variables or covariance matrix of zero mean and unitary standard deviation variables, calculated from the evaluated traffic, as described in Section \ref{sec:prop_getv}. Through eigenvalue analysis of traffic with \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend or port scan attacks, it is possible to visualize a significant difference between the largest eigenvalues and the remain eigenvalues, which can indicate a relationship between an outlier and time frames under attack.
 
 \begin{figure}[h!]
 	\centering
@@ -573,7 +663,7 @@ Table \ref{tab:tab3} presents the values of the largest eigenvalues of each time
 
 In Table \ref{tab:tab3}, note the significant variation of the eigenvalues associated with attacks, in comparison to the others. At $q = 4$, where the synflood attack occurred, the maximum eigenvalue obtained is approximately 21 times larger than the second one. At $q = 5$, where the fraggle attack occurred, the maximum eigenvalue obtained is about 29,000 times larger than the second one. At $q = 3$, where the port scan attack occurred, the maximum eigenvalue obtained is approximately 4 times larger than the second one. In the last case, for port scan attack detection, although the largest eigenvalue presented no too large variance to the second one, if compared to synflood or fraggle attacks, it clearly deviates from the remaining largest eigenvalues.
 
-These results highlight that all $q$-th time frames where a network attack was simulated, present high significant variance between the largest eigenvalue and the remaining eigenvalues, obtained from sample covariance matrix, for flood detection, or from covariance matrix of zero mean and unitary standard deviation variables, for port scan detection. Therefore, we propose to apply the vector of the largest eigenvalues to MOS schemes in order to evaluate their accuracy for identification of time frames under attack, motivated by the fact that it is relevant to apply MOS schemes to automate the attack detection process, taking into account the characteristics of the evaluated eigenvalues.
+These results highlight that all $q$-th time frames where a network attack was simulated, present high significant variance between the largest eigenvalue and the remaining eigenvalues, obtained from sample covariance matrix, for \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend detection, or from covariance matrix of zero mean and unitary standard deviation variables, for port scan detection. Therefore, we propose to apply the vector of the largest eigenvalues to MOS schemes in order to evaluate their accuracy for identification of time frames under attack, motivated by the fact that it is relevant to apply MOS schemes to automate the attack detection process, taking into account the characteristics of the evaluated eigenvalues.
 
 \subsection{MOS Schemes Evaluation}
 \label{sec:MOSSchemesEvaluation}
@@ -583,7 +673,7 @@ In \cite{tenorio2013greatest}, we evaluate the accuracy of AIC, MDL, EDC, RADOI,
 \begin{table}[h!]
   \centering
   \scriptsize
-  \caption{MOS schemes applied to port scan and flood detection}
+  \caption{MOS schemes applied to port scan and \DIFdelbeginFL \DIFdelFL{DoS }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{flood }\DIFaddendFL detection}
   \label{tab:tab4}
   \begin{tabular}{ c c c c c c c c }
 	\toprule
@@ -608,9 +698,9 @@ In \cite{tenorio2013greatest}, we evaluate the accuracy of AIC, MDL, EDC, RADOI,
 
 Note that $\hat{d} = 1$, if there is attack, while $\hat{d} > 1$ indicates more than one attack. An example of this could be seen for attack detection via EFT for traffic containing synflood and fraggle attacks, showing $\hat{d} = 2$, which indicates the presence of two attacks, as expected by the $d$ real values of Table \ref{tab:tab4}. 
 
-In Table \ref{tab:tab4}, two MOS schemes outperforms from the others, EDC and EFT. Efficient Detection Criterion (EDC) and Exponential Fitting Test (EFT) are the most effective schemes, correctly estimating the number of attacks in comparison to the expected values for effetctive attack detection, as defined by the column of real values in Table \ref{tab:tab4}. The AIC and MDL schemes are satisfactory only for port scan detection, however SURE and RADOI schemes did not show effective results for port scan or flood detection.
+In Table \ref{tab:tab4}, two MOS schemes outperforms from the others, EDC and EFT. Efficient Detection Criterion (EDC) and Exponential Fitting Test (EFT) are the most effective schemes, correctly estimating the number of attacks in comparison to the expected values for effetctive attack detection, as defined by the column of real values in Table \ref{tab:tab4}. The AIC and MDL schemes are satisfactory only for port scan detection, however SURE and RADOI schemes did not show effective results for port scan or \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend detection.
 
-Although EDC and EFT presented the same accuracy on the evaluation, the EDC scheme requires less processing time than EFT, which is an important criteria to select EDC as the MOS scheme for flood and port scan detection on the remain experiments.
+Although EDC and EFT presented the same accuracy on the evaluation, the EDC scheme requires less processing time than EFT, which is an important criteria to select EDC as the MOS scheme for \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan detection on the remain experiments.
 
 According to Table \ref{tab:tab4}, EDC and EFT estimated correctly the number of attacks of a time frame vector, indicating that ocurred $\hat{d}$ network attacks, but not providing additional details, what highlights the necessity of complementary approaches in order to estimate the time and ports under attack. Hence, we propose apply eigen analysis to estimate the $q$-th time frames under attack and eigen similarity analysis to estimate the minutes and ports under attack.
 
@@ -624,12 +714,12 @@ Therefore, we conclude that the $\hat{d}$ largest eigenvalues correspond to the 
 \subsection{Eigen Similarity Analysis}
 \label{sec:EigenSimilarityAnalysis}
 
-This paper proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
+This paper proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
 
 \subsubsection{Time Analysis}
 \label{sec:TimeAnalysis}
 
-Three approaches were evaluated for eigen similarity analysis: incremental, individual and incremental individualized approaches. For the incremental individualized approach, each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ became the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated. For the incremental approach, each $n$-th minute must be incrementally appended into $\boldsymbol{X}^{(q)}$, for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual time similarity analyis. For the individual approach, each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, without incremental append, but doing individual appended into $\boldsymbol{X}^{(q)}$ for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual similarity analyis.
+Three approaches were evaluated for eigen similarity analysis: incremental, individual and incremental individualized approaches. For the incremental individualized approach, each minute \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ became the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated. For the incremental approach, each $n$-th minute must be incrementally appended into $\boldsymbol{X}^{(q)}$, for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual time similarity analyis. For the individual approach, each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, without incremental append, but doing individual appended into $\boldsymbol{X}^{(q)}$ for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual similarity analyis.
 
 Table \ref{tab:tab5} presents the results of the evaluation of three approaches for similarity analysis of eigenvectors for port scan detection.
 
@@ -754,12 +844,12 @@ For fraggle attack detection, the lack of similarity between legitimate and mali
 
 Therefore, considering the evaluation for port scan, synflood and fraggle detection, the incremental approach can produce false positive results, while the individual and incremental individualized approaches produce quite similar results, even though the individual approach be more simple and require less memory and processing time.
 
-These results highlight the capability of change detection based on similarity between legitimate and malicious traffic from flood or port scan attacks, endorsing the effectiveness and safety for adoption of threshold for attack detection through eigen similarity analysis.
+These results highlight the \DIFdelbegin \DIFdel{capabilitiy }\DIFdelend \DIFaddbegin \DIFadd{capability }\DIFaddend of change detection based on similarity between legitimate and malicious traffic from \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend or port scan attacks, endorsing the effectiveness and safety for adoption of threshold for attack detection through eigen similarity analysis.
 
 \subsubsection{Port Analysis}
 \label{sec:PortAnalysis}
 
-Given $\hat{N}$, which is the set of estimated $n$-th minutes under attack, it is possible to apply cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port, during a $n$-th minute. Therefore, the incremental individualized and individual approaches of eigen similarity analysis were evaluated, for detection of ports under flood and port scan attacks, according to results presented in following tables. For this evaluation, the $v$ last most significant eigenvectors without attack was used as reference for similarity analysis against each target port $m$-th.
+Given $\hat{N}$, which is the set of estimated $n$-th minutes under attack, it is possible to apply cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port, during a $n$-th minute. Therefore, the incremental individualized and individual approaches of eigen similarity analysis were evaluated, for detection of ports under \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan attacks, according to results presented in following tables. For this evaluation, the $v$ last most significant eigenvectors without attack was used as reference for similarity analysis against each target port $m$-th.
 
 Table \ref{tab:tab8} presents the results of the evaluation of eigen similarity analysis for detection of ports under port scan attack, showing only the time frame $q=3$ and minute $n=15$, due to the simulated port scan attack occurred only at this time, although the remain time frame has been completely evaluated and presented high similarity to the reference of traffic without network attack.
 
@@ -873,135 +963,198 @@ The results for the avaluation of ports under fraggle attack, shown in Table \re
 
 The incremental individualized approach was able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches presented false positives or low sensibility to eigen similarity analyis for network attack detection. This approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
-According to the shown significant lack of similarity between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
+According to the shown significant lack of similarity between legitimate and malicious traffic, it is possible to adopt safe thresholds for \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan detection through eigen similarity analysis.
 
-\subsection{DARPA Scenario}
-\label{sec:DarpaEvaluation}
+\subsection{\DIFdelbegin \DIFdel{Complexity Analysis}\DIFdelend \DIFaddbegin \DIFadd{DARPA Scenario}\DIFaddend }
+\DIFdelbegin %DIFDELCMD < \label{sec:Complexity}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{sec:DarpaEvaluation}
+\DIFaddend 
 
-This subsection presents a summarized view of results obtained from the application of the proposed framework, focusing on the largest eigenvalue analysis, model order selection and the eigenvalue analysis, for flood and probe attack detection in the DARPA 1998 dataset. Since the proposed framework is detailed in Section \ref{sec:prop_getv} and in Subsections \ref{sec:AnalyzedScenario}, \ref{sec:largesteigenvaluesanalysis}, \ref{sec:MOSSchemesEvaluation}, \ref{sec:EigenvalueAnalysis} and \ref{sec:EigenSimilarityAnalysis}, here the focus is on the parameter selection, dataset evaluation and results for flood and probe attack identification.
+This subsection \DIFaddbegin \DIFadd{presents a summarized view of results obtained from the application of the proposed framework, focusing on the largest eigenvalue analysis, model order selection and the eigenvalue analysis, for flood and probe attack detection in the DARPA 1998 dataset. Since the proposed framework is detailed in Section \ref{sec:prop_getv} and in Subsections \ref{sec:AnalyzedScenario}, \ref{sec:largesteigenvaluesanalysis}, \ref{sec:MOSSchemesEvaluation}, \ref{sec:EigenvalueAnalysis} and \ref{sec:EigenSimilarityAnalysis}, here the focus is on the parameter selection, dataset evaluation and results for flood and probe attack identification.
+}
 
-The DARPA dataset includes 7 weeks of sniffed traffic saved into raw packet data. The traffic and the labeled attacks are grouped by week and day, with information of the number and types of attacks per day, but also providing the start time for each labeled attack. For this evaluation, an evaluation per day was performed, considering the network traffic of 24 hours split into $Q$ time frames of 60 minutes ($N = 60$) and aggregate by minute and by port number. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ is obtained, considering the ports 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389 and 443.
+\DIFadd{The DARPA dataset includes 7 weeks of sniffed traffic saved into raw packet data. The traffic and the labeled attacks are grouped by week and day, with information of the number and types of attacks per day, but also providing the start time for each labeled attack. For this evaluation, an evaluation per day was performed, considering the network traffic of 24 hours split into $Q$ time frames of 60 minutes ($N = 60$) and aggregate by minute and by port number. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ is obtained, considering the ports 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389 and 443.
+}
 
-Since the proposed framework focus on flood and probe attack detection, only the attacks with behavior similar to flood or probe attack were evaluated. Initially all DoS and probe attacks were selected, but it was observed that the most cases of DoS focus on exploit system vulnerabilities instead of flooding attack, and most of probe attacks focus on ICMP intead of port scanning. Therefore, for evaluation of the proposed approach for flood and probe attack detection, it is necessary to select cases that implements flood or port scan behaviors. The following week-day-attack cases  were selected: 
+\DIFadd{Since the proposed framework focus on flood and probe attack detection, only the attacks with behavior similar to flood or probe attack were evaluated. Initially all DoS and probe attacks were selected, but it was observed that the most cases of DoS focus on exploit system vulnerabilities instead of flooding attack, and most of probe attacks focus on ICMP intead of port scanning. Therefore, for evaluation of the proposed approach for flood and probe attack detection, it is necessary to select cases that implements flood or port scan behaviors. The following week-day-attack cases  were selected: 
+}
 
 \begin{enumerate}
-	\item week3-thursday-neptune;
-	\item week4-friday-portsweep;
-	\item week5-thursday-neptune;
-	\item week5-thursday-portsweep;
-	\item week5-friday-portsweep;
-	\item week6-wednesday-neptune;
-	\item week6-thursday-neptune;
-	\item week7-wednesday-portsweep.
-\end{enumerate}
+	\item \DIFadd{week3-thursday-neptune;
+	}\item \DIFadd{week4-friday-portsweep;
+	}\item \DIFadd{week5-thursday-neptune;
+	}\item \DIFadd{week5-thursday-portsweep;
+	}\item \DIFadd{week5-friday-portsweep;
+	}\item \DIFadd{week6-wednesday-neptune;
+	}\item \DIFadd{week6-thursday-neptune;
+	}\item \DIFadd{week7-wednesday-portsweep.
+}\end{enumerate}
 
 \begin{table*}[!t]
-	\caption{Results of the attack detection evaluation}
+	\caption{\DIFaddFL{Results of the attack detection evaluation}}
 	\label{tab:tab12}
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
-		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Solution\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Attack Type\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Metric\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Result\end{tabular} \\ \hline
-	Proposed Work	&Flooding	&True Positive	&100.00 \%\\ \hline
-	Proposed Work	&Flooding	&False Positive	&60.00 \%\\ \hline
-	Proposed Work	&Flooding	&Misclassification	&50.00 \%\\ \hline
-	Proposed Work	&Probe	&True Positive	&76.92 \%\\ \hline
-	Proposed Work	&Probe	&False Positive	&18.52 \%\\ \hline
-	Proposed Work	&Probe	&Misclassification	&32.73 \%\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&True Positive	&82.00 \%\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&False Positive	&-\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&Misclassification	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&True Positive	&94.67 \%\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&False Positive	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&Misclassification	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&True Positive	&50.00 \%\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&False Positive	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&Misclassification	&-\\ \hline
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Solution}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Attack Type}\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Metric}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Result}\end{tabular} \\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Flooding	}&\DIFaddFL{True Positive	}&\DIFaddFL{100.00 }\%\\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Flooding	}&\DIFaddFL{False Positive	}&\DIFaddFL{60.00 }\%\\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Flooding	}&\DIFaddFL{Misclassification	}&\DIFaddFL{50.00 }\%\\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Probe	}&\DIFaddFL{True Positive	}&\DIFaddFL{76.92 }\%\\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Probe	}&\DIFaddFL{False Positive	}&\DIFaddFL{18.52 }\%\\ \hline
+	\DIFaddFL{Proposed Work	}&\DIFaddFL{Probe	}&\DIFaddFL{Misclassification	}&\DIFaddFL{32.73 }\%\\ \hline
+	\DIFaddFL{Callegari }\emph{\DIFaddFL{et al}} \DIFaddFL{\mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Flooding	}&\DIFaddFL{True Positive	}&\DIFaddFL{82.00 }\%\\ \hline
+	\DIFaddFL{Callegari }\emph{\DIFaddFL{et al}} \DIFaddFL{\mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Flooding	}&\DIFaddFL{False Positive	}&\DIFaddFL{-}\\ \hline
+	\DIFaddFL{Callegari }\emph{\DIFaddFL{et al}} \DIFaddFL{\mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Flooding	}&\DIFaddFL{Misclassification	}&\DIFaddFL{-}\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Overall	}&\DIFaddFL{True Positive	}&\DIFaddFL{94.67 }\%\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Overall	}&\DIFaddFL{False Positive	}&\DIFaddFL{-}\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Overall	}&\DIFaddFL{Misclassification	}&\DIFaddFL{-}\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Portsweep	}&\DIFaddFL{True Positive	}&\DIFaddFL{50.00 }\%\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Portsweep	}&\DIFaddFL{False Positive	}&\DIFaddFL{-}\\ \hline
+	\DIFaddFL{Lu and Ghorbani \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+}&\DIFaddFL{Portsweep	}&\DIFaddFL{Misclassification	}&\DIFaddFL{-}\\ \hline
 	\end{tabular}
 \end{table*}
 
-Table \ref{tab:tab12} presents the evaluated results for attack detection. The analysis based on sample covariation of zero mean variables is evaluated for flooding behavior of netpune attacks, obtaining rates of 100.00 \% for true positive (TP) detection and 60.00 \% for false positive (FP) detection from 30 time frames. The results also show 50.00 \% of misclassification rate \cite{bhuyan2014network}, which attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed. 
+\DIFadd{Table \ref{tab:tab12} presents the evaluated results for attack detection. The analysis based on sample covariation of zero mean variables is evaluated for flooding behavior of netpune attacks, obtaining rates of 100.00 }\% \DIFadd{for true positive (TP) detection and 60.00 }\% \DIFadd{for false positive (FP) detection from 30 time frames. The results also show 50.00 }\% \DIFadd{of misclassification rate \mbox{%DIFAUXCMD
+\cite{bhuyan2014network}
+}%DIFAUXCMD
+, which attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed. 
 The result for FP and misclassification analysis is poor due to the legitimate traffic of DARPA dataset presents high number of packets per time  from one source to one target, with no variation on IP source or target port. This observation corroborates with previous evaluations of the DARPA dataset that highlight issues regarding traffic redundancy. 
+}
 
-The analysis based on covariance of zero mean and unitary standard deviation variables was evaluated for port scan attacks, including probe attacks and DoS attacks that send few packets for several ports in order to exploit some vulnerability. The results show rates of 76.92 \% for TP detection and 18.52 \% for FP detection from 94 time frames. The observed misclassification rate for this scenario is 32.73 \%. It was observed that all FN cases are probe attacks with a time delay between scanning one port and start scanning the next port, what can be called as sparse probe attacks. Cases with a delay of one minute or more were not detected by the proposed approach.
+\DIFadd{The analysis based on covariance of zero mean and unitary standard deviation variables was evaluated for port scan attacks, including probe attacks and DoS attacks that send few packets for several ports in order to exploit some vulnerability. The results show rates of 76.92 }\% \DIFadd{for TP detection and 18.52 }\% \DIFadd{for FP detection from 94 time frames. The observed misclassification rate for this scenario is 32.73 }\%\DIFadd{. It was observed that all FN cases are probe attacks with a time delay between scanning one port and start scanning the next port, what can be called as sparse probe attacks. Cases with a delay of one minute or more were not detected by the proposed approach.
+}
 
-The performance of detection rate of flooding attacks is compared with the method proposed by Callegari \emph{et al} \cite{Zonglin2009}. This work is a statistical method, based on PCA, without training or learning methods, even though it relies on visual analysis for principal components selection. The best detection rate of \cite{Zonglin2009} was 82.00 \% for detection of synthetically added flood attacks, while this current proposal obtains 100.00 \% of detection rate for detection of flood attacks of DARPA dataset.
+\DIFadd{The performance of detection rate of flooding attacks is compared with the method proposed by Callegari }\emph{\DIFadd{et al}} \DIFadd{\mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+. This work is a statistical method, based on PCA, without training or learning methods, even though it relies on visual analysis for principal components selection. The best detection rate of \mbox{%DIFAUXCMD
+\cite{Zonglin2009}
+}%DIFAUXCMD
+was 82.00 }\% \DIFadd{for detection of synthetically added flood attacks, while this current proposal obtains 100.00 }\% \DIFadd{of detection rate for detection of flood attacks of DARPA dataset.
+}
 
-Due to the lack of statistical techniques without training or learning methods for detection of probe attacks, this proposed approach is compared to the Lu and Ghorbani's \cite{Lu2009} proposal, which is a network anomaly detection model based on signal processing techniques that uses DARPA dataset for evaluation. The results of \cite{Lu2009} show the best detection rate of 94.67 \% in terms of general attack instance detection, but shows a case case with 50.00 \% of attack instance detection for the portsweep attack. The proposed approach presents 76.92 \% of detection rate measured specifically for probe attacks, without the requirement of learning or training methods, in contrast to Lu and Ghorbani's \cite{Lu2009} work.
+\DIFadd{Due to the lack of statistical techniques without training or learning methods for detection of probe attacks, this proposed approach is compared to the Lu and Ghorbani's \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+proposal, which is a network anomaly detection model based on signal processing techniques that uses DARPA dataset for evaluation. The results of \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+show the best detection rate of 94.67 }\% \DIFadd{in terms of general attack instance detection, but shows a case case with 50.00 }\% \DIFadd{of attack instance detection for the portsweep attack. The proposed approach presents 76.92 }\% \DIFadd{of detection rate measured specifically for probe attacks, without the requirement of learning or training methods, in contrast to Lu and Ghorbani's \mbox{%DIFAUXCMD
+\cite{Lu2009}
+}%DIFAUXCMD
+work.
+}
 
-\section{Performance Evaluation}
+\section{\DIFadd{Performance Evaluation}}
 \label{sec:Complexity}
 
-This section discusses the computational complexity and the performance evaluation of the proposed framework, focusing on the main steps, which are the eigenvalues decomposition (EVD), largest eigenvalues analysis, application of MOS scheme and eigen similarity analysis, according to Figure \ref{fig:fig80} and equations presented in Section \ref{sec:prop_getv}.
+\DIFadd{This section }\DIFaddend discusses the computational complexity \DIFaddbegin \DIFadd{and the performance evaluation }\DIFaddend of the proposed framework, focusing on the main steps, which are the eigenvalues decomposition (EVD), largest eigenvalues analysis, application of MOS scheme and eigen similarity analysis, according to Figure \ref{fig:fig80} and equations presented in Section \ref{sec:prop_getv}.
 
-\subsection{Complexity Analysis}
+\DIFaddbegin \subsection{\DIFadd{Complexity Analysis}}
 \label{sec:ComplexityAnalysis}
-The EVD, calculated according to (\ref{eq:eq06}), requires the previous calculation of covariance matrix, according to Equations (\ref{eq:eq02}), (\ref{eq:eq03}), (\ref{eq:eq04}) and (\ref{eq:eq05}). The covariance matrix calculation is $O(M^2N)$ and the EVD is $O(N^3)$, where $M$ denotes the number of network ports and $N$ denotes the period time. Therefore, the computational complexity for all steps for EVD can be represented as $O(M^2N + N^3)$ and yields an $O(N^3)$ upper bound on the worst-case running time for EVD.
+\DIFaddend The EVD, calculated according to (\ref{eq:eq06}), requires the previous calculation of covariance matrix, according to Equations \DIFdelbegin \DIFdel{\ref{eq:eq02}, \ref{eq:eq03}, \ref{eq:eq04} and \ref{eq:eq05}}\DIFdelend \DIFaddbegin \DIFadd{(\ref{eq:eq02}), (\ref{eq:eq03}), (\ref{eq:eq04}) and (\ref{eq:eq05})}\DIFaddend . The covariance matrix calculation is $O(M^2N)$ and the EVD is $O(N^3)$, where $M$ denotes the number of network ports and $N$ denotes the period time. Therefore, the computational complexity for all steps for EVD can be represented as $O(M^2N + N^3)$ and yields an $O(N^3)$ upper bound on the worst-case running time for EVD.
 
-EDC and EFT are the MOS schemes that presented accuracy on the evaluation for the network attack detection. The computational complexity evaluation for MOS focuses on EDC scheme, since EDC requires less processing time than EFT but presents the same accuracy for the evaluated scenario. EDC scheme is $O(Q \log Q + Q + Q \log Q)$ and its worst-case running time can be represented as $O(Q \log Q)$, where $Q$ denotes the number of time frames.
+EDC and EFT are the MOS schemes that presented accuracy on the evaluation for the network attack detection. The computational complexity evaluation for MOS focuses on EDC scheme, since EDC requires less processing time than EFT but presents the same accuracy for the evaluated scenario. EDC scheme is \DIFdelbegin \DIFdel{$O(Q log Q + Q + Q log Q)$ }\DIFdelend \DIFaddbegin \DIFadd{$O(Q \log Q + Q + Q \log Q)$ }\DIFaddend and its worst-case running time can be represented as \DIFdelbegin \DIFdel{$O(Q log Q)$}\DIFdelend \DIFaddbegin \DIFadd{$O(Q \log Q)$}\DIFaddend , where $Q$ denotes the number of time frames.
 
 The largest eigenvalue analysis is $O(\hat{d}Q)$, where $\hat{d}$ denotes the number of time frame under attack, according to Algorithm \ref{alg:alg01}. Subsequently, the eigen similarity analysis relies on EVD and cosine similarity analysis, which is $O(N^2)$, for $\hat{d}$ time frames, therefore the eigen similarity analysis is which is $O(\hat{d}(M^2N + N^3 + N^2))$ and yields an $O(N^3)$ upper bound on the worst-case running time for eigen similarity analysis.
 
-Therefore, the proposed framework is $O(N^3 + Q \log Q + \hat{d}Q + N^3)$ and its worst-case running time is $O(N^3)$. The computational complexity of EVD is predominant in the framework, but the approach splits the data into time frames with period time $N$, which makes possible to limitate the growth of $N$ even for evaluations of cases with total time larger than $N$, reducing the impact caused by the computational complexity of EVD. 
+Therefore, the proposed framework is \DIFdelbegin \DIFdel{$O(N^3 + Q log Q + \hat{d}Q + N^3)$ }\DIFdelend \DIFaddbegin \DIFadd{$O(N^3 + Q \log Q + \hat{d}Q + N^3)$ }\DIFaddend and its worst-case running time is $O(N^3)$. The computational complexity of EVD is predominant in the framework, but the approach splits the data into time frames with period time $N$, which makes possible to limitate the growth of $N$ even for evaluations of cases with total time larger than $N$, reducing the impact caused by the computational complexity of EVD. 
 
-\subsection{Processing Time Analysis}
+\DIFaddbegin \subsection{\DIFadd{Processing Time Analysis}}
 \label{sec:ProcessingAnalysis}
-For better understanding the scalability and impact of configurations of $N$, $M$ and $Q$, the processing time required for different scenarios of parameter configurations and dataset were evaluated, measuring the processing time of: 
+\DIFadd{For better understanding the scalability and impact of configurations of $N$, $M$ and $Q$, the processing time required for different scenarios of parameter configurations and dataset were evaluated, measuring the processing time of: 
+}
 
 \begin{enumerate}
-	\item Eigen analysis based on sample covariance of zero mean;
-	\item Eigen analysis based on sample covariance of zero mean and unitary standard deviation;
-	\item EDC MOS scheme;
-\end{enumerate}
+	\item \DIFadd{Eigen analysis based on sample covariance of zero mean;
+	}\item \DIFadd{Eigen analysis based on sample covariance of zero mean and unitary standard deviation;
+	}\item \DIFadd{EDC MOS scheme;
+}\end{enumerate}
 
-The performance evaluation focus on the main steps, which are discussed in subsection \ref{sec:ComplexityAnalysis} regarding the complexity analysis. The data modeling is also a time consuming step, however its processing can be optimized through distributed processing techniques, such as MapReduce, achieving high throughput for packet counting or even for deep packet inspection \cite{Vieira2013}.
+\DIFadd{The performance evaluation focus on the main steps, which are discussed in subsection \ref{sec:ComplexityAnalysis} regarding the complexity analysis. The data modeling is also a time consuming step, however its processing can be optimized through distributed processing techniques, such as MapReduce, achieving high throughput for packet counting or even for deep packet inspection \mbox{%DIFAUXCMD
+\cite{Vieira2013}
+}%DIFAUXCMD
+.
+}
 
-The experiments were performed in a desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM, considering: variations on the network traffic time; the frame size denoted as $N$; the number of network ports denoted as $M$; the mean processing time for eigen analysis based on sample covariance of zero mean, denoted as 1-time; the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation, denoted as 2-time; and the mean processing time for EDC MOS scheme, denoted as 3-time. The mean time calculations was obtained from 200 measurement repetitions, in order to obtain reliable values.
+\DIFadd{The experiments were performed in a desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM, considering: variations on the network traffic time; the frame size denoted as $N$; the number of network ports denoted as $M$; the mean processing time for eigen analysis based on sample covariance of zero mean, denoted as 1-time; the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation, denoted as 2-time; and the mean processing time for EDC MOS scheme, denoted as 3-time. The mean time calculations was obtained from 200 measurement repetitions, in order to obtain reliable values.
+}
 
-Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. Note that the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
+\DIFadd{Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. Note that the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
+}
 
 \begin{table*}[!t]
-	\caption{Processing time of the main steps for anomaly detection}
+	\caption{\DIFaddFL{Processing time of the main steps for anomaly detection}}
 	\label{tab:11}
 	\centering
 	\begin{tabular}{|r|r|r|r|r|r|r|}
-		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Traffic Time\\(hour)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Frame Size\\(min)\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Num. Ports\end{tabular}	& \begin{tabular}[x]{@{}l@{}}1-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}2-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}3-time\\(ms)\end{tabular}	\\ \hline
-16	& 10	& 17	& 0.7900	& 0.8100	& 0.0650\\ \hline
-16	& 20	& 17	& 0.5250	& 0.5950	& 0.0100\\ \hline
-16	& 60	& 17	& 0.9700	& 1.1400	& 0.0250\\ \hline
-16	& 120	& 17	& 0.6050	& 0.6100	& 0.0050\\ \hline
-16	& 60	& 34	& 1.2750	& 1.2200	& 0.0050\\ \hline
-16	& 120	& 34	& 1.1200	& 1.1700	& 0.0050\\ \hline
-20	& 10	& 17	& 2.7950	& 2.8950	& 1.1000\\ \hline
-20	& 20	& 17	& 2.0700	& 2.0200	& 0.3500\\ \hline
-20	& 60	& 17	& 1.0250	& 1.0450	& 0.0650\\ \hline
-20	& 120	& 17	& 1.0000	& 1.0700	& 0.0350\\ \hline
-20	& 60	& 34	& 2.9650	& 3.2100	& 0.0400\\ \hline
-20	& 120	& 34	& 2.9950	& 3.1150	& 0.0200\\ \hline
-22	& 10	& 17	& 4.7250	& 4.0850	& 1.4600\\ \hline
-22	& 20	& 17	& 2.3200	& 2.6800	& 0.2450\\ \hline
-22	& 60	& 17	& 1.0700	& 1.1200	& 0.0300\\ \hline
-22	& 120	& 17	& 0.9900	& 1.0500	& 0.0250\\ \hline
-22	& 60	& 34	& 3.0850	& 3.1250	& 0.0650\\ \hline
-22	& 120	& 34	& 2.8100	& 2.9600	& 0.0250\\ \hline
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Traffic Time}\\\DIFaddFL{(hour)}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Frame Size}\\\DIFaddFL{(min)}\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}\DIFaddFL{Num. Ports}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{1-time}\\\DIFaddFL{(ms)}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{2-time}\\\DIFaddFL{(ms)}\end{tabular}	& \begin{tabular}[x]{@{}l@{}}\DIFaddFL{3-time}\\\DIFaddFL{(ms)}\end{tabular}	\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{10	}& \DIFaddFL{17	}& \DIFaddFL{0.7900	}& \DIFaddFL{0.8100	}& \DIFaddFL{0.0650}\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{20	}& \DIFaddFL{17	}& \DIFaddFL{0.5250	}& \DIFaddFL{0.5950	}& \DIFaddFL{0.0100}\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{60	}& \DIFaddFL{17	}& \DIFaddFL{0.9700	}& \DIFaddFL{1.1400	}& \DIFaddFL{0.0250}\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{120	}& \DIFaddFL{17	}& \DIFaddFL{0.6050	}& \DIFaddFL{0.6100	}& \DIFaddFL{0.0050}\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{60	}& \DIFaddFL{34	}& \DIFaddFL{1.2750	}& \DIFaddFL{1.2200	}& \DIFaddFL{0.0050}\\ \hline
+\DIFaddFL{16	}& \DIFaddFL{120	}& \DIFaddFL{34	}& \DIFaddFL{1.1200	}& \DIFaddFL{1.1700	}& \DIFaddFL{0.0050}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{10	}& \DIFaddFL{17	}& \DIFaddFL{2.7950	}& \DIFaddFL{2.8950	}& \DIFaddFL{1.1000}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{20	}& \DIFaddFL{17	}& \DIFaddFL{2.0700	}& \DIFaddFL{2.0200	}& \DIFaddFL{0.3500}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{60	}& \DIFaddFL{17	}& \DIFaddFL{1.0250	}& \DIFaddFL{1.0450	}& \DIFaddFL{0.0650}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{120	}& \DIFaddFL{17	}& \DIFaddFL{1.0000	}& \DIFaddFL{1.0700	}& \DIFaddFL{0.0350}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{60	}& \DIFaddFL{34	}& \DIFaddFL{2.9650	}& \DIFaddFL{3.2100	}& \DIFaddFL{0.0400}\\ \hline
+\DIFaddFL{20	}& \DIFaddFL{120	}& \DIFaddFL{34	}& \DIFaddFL{2.9950	}& \DIFaddFL{3.1150	}& \DIFaddFL{0.0200}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{10	}& \DIFaddFL{17	}& \DIFaddFL{4.7250	}& \DIFaddFL{4.0850	}& \DIFaddFL{1.4600}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{20	}& \DIFaddFL{17	}& \DIFaddFL{2.3200	}& \DIFaddFL{2.6800	}& \DIFaddFL{0.2450}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{60	}& \DIFaddFL{17	}& \DIFaddFL{1.0700	}& \DIFaddFL{1.1200	}& \DIFaddFL{0.0300}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{120	}& \DIFaddFL{17	}& \DIFaddFL{0.9900	}& \DIFaddFL{1.0500	}& \DIFaddFL{0.0250}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{60	}& \DIFaddFL{34	}& \DIFaddFL{3.0850	}& \DIFaddFL{3.1250	}& \DIFaddFL{0.0650}\\ \hline
+\DIFaddFL{22	}& \DIFaddFL{120	}& \DIFaddFL{34	}& \DIFaddFL{2.8100	}& \DIFaddFL{2.9600	}& \DIFaddFL{0.0250}\\ \hline
 	\end{tabular}
 \end{table*}
 
-According to Table \ref{tab:11}, the processing time increases with the frame size $N$ decreasing, therefore it is possible to evaluate the frame size that produces better identification rates and acceptable processing time. The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations, since the significant increase of processing time observed between scenarios considering 17 or 34 ports, with growth between 7 \% and 199 \%.
+\DIFadd{According to Table \ref{tab:11}, the processing time increases with the frame size $N$ decreasing, therefore it is possible to evaluate the frame size that produces better identification rates and acceptable processing time. The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations, since the significant increase of processing time observed between scenarios considering 17 or 34 ports, with growth between 7 }\% \DIFadd{and 199 }\%\DIFadd{.
+}
 
-\section{Conclusion and Future Works}
+\DIFaddend \section{Conclusion and Future Works}
 \label{sec:conclusionandfutureworks}
 
 This paper models the network traffic as a signal processing formulation for applying to the framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
 
-The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack, as well as presenting acceptable complexity and performance regarding the processing time.
+The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack\DIFaddbegin \DIFadd{, as well as presenting acceptable complexity and performance regarding the processing time}\DIFaddend .
 
-This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
+This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
 
 The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analyis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
-According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
+According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for \DIFdelbegin \DIFdel{DoS }\DIFdelend \DIFaddbegin \DIFadd{flood }\DIFaddend and port scan detection through eigen similarity analysis.
 
-Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks, considering the evaluation of novel datasets. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
+Future research is directed to \DIFdelbegin \DIFdel{the fully automated blind attack detection, extending the evaluation to performance and accuracy analyis of the approach to well-known datasets of network attack detection, and analysing the performance according to parameter configuration in order to better understand the impact of $N, M$ and $Q$ and identify their best configuration for obtaining gains into processing time and acuracy}\DIFdelend \DIFaddbegin \DIFadd{improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks, considering the evaluation of novel datasets. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis}\DIFaddend .
 
 \appendix
 
