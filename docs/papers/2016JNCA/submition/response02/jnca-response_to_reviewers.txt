@@ -1,0 +1,51 @@
+Response to the Handling Editor and Reviewers
+
+Submission No.: JNCA-D-16-00617R1
+Title: Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks
+Journal of Network and Computer Applications (JNCA)
+Research Paper
+
+Dear Mohammed Atiquzzaman, Ph.D., Editor-in-Chief, and reviewers,
+The authors would like to thank the Associate Editor-in-Chief and the Reviewers for volunteering their time in reviewing our manuscript and providing us with valuable comments which allowed us to significantly improve the paper. We have carefully revised the manuscript based on the reviewer’s comments and suggestions. All changes in the paper have been marked with a color. The following is our point-by-point responses to the raised comments.
+
+Kind regards,
+
+The authors.
+
+
+1. EDITOR
+1.1. COMMENT: The referees have suggested that certain aspects of the paper should be re-examined, before it can be considered further for publication.
+1.1.1. REPLY: We thank the Editor for the time, work, and positive evaluation of our paper.
+
+
+2. REVIEWER #3
+2.1. COMMENT: The reviewer appreciates the efforts that the authors have made to revise this paper. The revised version has improved a lot compared to the previous version. Most of the questions raised from the reviewers have been clarified. The reviewer has three additional comments regarding the revised version.
+2.1.1. REPLY: Obrigado pela revisão positiva de maneira geral. Esperamos poder responder os comentários adicionais da maneira esperada.
+2.2. COMMENT: The mentioned dataset used for additional evaluation is almost twenty years ago, and it might be able to reflect the current state of arts of modern attacks.
+2.2.1. REPLY: Entendemos esta limitação e até inclimos comentários sobre isto durante a revisão da literatura. Mesmo este dataset sendo velho e podendo nao refletir ataques modernos, este dataset ainda vem sendo utilizado por lacunas em datasets novos e públicos, conforme surveys recentes.
+2.3 COMMENT: The authors have provided complexity and running time evaluation in the revision. However, given that the EVD complexity in O(M^2*N+N^3), it looks like the proposed approach might be DoS'ed if an attacker attempts to flood using randomized port numbers, e.g., (M=) 64K network ports. This is because performing bandwidth consumption flooding attacks does not need to work with a dedicated (or a monitored) port number.
+2.3.1. REPLY: A proposta é a aplicação da técnica em portas selecionadas de acordo com seu interese e seu uso em uma eventual rede interna. Nossos cenários consideraram ataques provinientes de de uma rede interna e também de uma rede externa para uma rede interna. "performing bandwidth consumption flooding attacks" não são algo da nossa análise, mas nossa técnica foi capaz de detectar flood atack em casos que utilizam diveras portas , utilizando análise de correlação, como nos casos avaliados para DARPA 98 nas seções X e Y
+2.4 COMMENT: The authors have revised the paper to focus exactly on probe and scanning attacks. This may greatly limited the contribution of the proposed work, as we already have a number of commercial solutions to deal with the problem. 
+2.4.1. REPLY: Nosso trabalho foca em flooding, probe and scannnig, buscando desenvolver uma nova tecnica sem dependência de conhecimento prévio, análise de comportamentos conhecidos, dicionários, e etc. Nosso objetivo é utilizar uma téction unsupervisioned e blind
+
+
+3. REVIEWER #4
+3.1. COMMENT: The authors have satisfactorily addressed the queries raised by the reviewers. However, only DARPA 1998 dataset has been considered to conduct the experiments. The authors can also conduct the experiments on other publicly available datasets such as CAIDA (https://www.caida.org/data/) and UNB-ISCX (http://www.unb.ca/research/iscx/dataset/iscx-IDS-dataset.html). Such datasets contain more recent attack vectors and types. Conducting experiments on such datasets and discussion of analysis on such datasets can provide in depth understanding of the proposed work.
+3.1.1. REPLY: Obrigado pela construtuva comentário... Estes datasets foram considerados e citados em X e Y, entretanto os ataques monitorados por estes casos não consideram probe attack e flooding em portas tcp/udp, como também são baseados em fluxo enquanto nossa técnica é baseada em pacotes. Por fim, mas nao menos importante, estes datasets não dispõem de uma classificação prévia (label) dos ataques. Como UNB-ISCX 
+
+
+4 REVIEWER #5
+4.1. COMMENT: Since only one user (computer) was used, the amount of traffic noise (DHCP) would be very limited.
+4.1.1. REPLY: Como forma de adicionar cenários mais abrangentes e realistas e bem conhecidos, adicionamos a análise da nossa tecnica aplicada ao DARPA 98
+4.2. COMMENT: There is no description of the systems used, because attacks such as the fraggle attack are easily eliminated by both systems and routers. Plus, the network is very limited with the number of devices used and type of traffic observed.
+4.3.1. REPLY: Para o fraggle utilizamos a ferramenta X, uma descrição sobre isto foi adicionada no em Z
+4.4. COMMENT: The authors stated """The UDP scan technique sends UDP packets to the destination port, and if it responds with a ICMP port 230 unreachable message, then it indicates that the scanned port is closed. On the other hand, if a message is not received, then the port is considered as open."""* lots of systems today disable this by default, that is why it is unclear which systems were used for testing.
+4.4.1. REPLY: Esta descrição se refere a uma forma de portscan avaliada em nosso cenário sintético, mas os cenários de portscan avaliados no dataset darpa incluem casos em que não há resposta para o envio de pacotes
+4.5. COMMENT: What if the port scan was not sent in a sequence fashion and sent with time frames higher than the samples selected for evaluation and checking? The information considered in the proposed framework will not help.
+4.5.1. REPLY: Casos como este foram avaliados e não foram identificados, conforme descritos em XX
+4.6. COMMENT: Why didn't the authors use flow analysis or even compare to such related work. Flow analysis has been used a lot for such detection, especially when you're looking at time and ports.
+4.6.1. REPLY: Flow analysis implica em custo adicional para a identificação e montagem de fluxos para uma eventual análise. Entretanto, iremos considerar uma análise baseada em fluxo como trabalhos futuros.
+4.7. COMMENT: How can such module detect new novel attacks, when the only experiments tested were SYN(flood), fraggle (rare today), and two port scanning techniques? ex: traffic like DHCP are considered noise, so how would this framework detect an ARP Scan? O framework proposto foca em flood e probe attacks na camada de transporte, entretanto a nossa técnica pode highlight ataques inesperados que tenham comportamentos semelhantes ao que selecionados, sendo então possível selecionar executar análises mais detalhadas nestes casos específicos. Dado que ARP scan foca em uma camada abaixo da camada de transporte, este não seria detectado por nossa proposta
+4.7.1. REPLY: 
+4.8. COMMENT: The Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack shows that port 80, 443, and 53 were not an attack, even though all of these traffic are currently used for exfiltration or covert communication. So, how will the proposed framework detect such attacks? Detecting such attacks could be considered novel if they could achieve such detection.
+4.8.1. REPLY: No cenário considerado o tráfego nas portas 80, 443, and 53 foi modelado como legítimo, representando tráfego de usuários aos serviços HTTP, HTTPS e DNS para demonstrar a capacidade de detecção de ataques mixed into legitimate traffic. Nosso framework não é capaz de detectar exfiltration, covert communication ou exploiting, como demonstrado ao analisarmos nossa solução para o dataset DARPA. Podemos considerar iste ponto como um foco para nosso trabalho de doutorado, com uma análise de correlação para identificar casos de exfiltration or covert communication

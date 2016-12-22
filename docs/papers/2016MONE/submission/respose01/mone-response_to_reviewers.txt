@@ -1,0 +1,42 @@
+Response to the Handling Editor and Reviewers
+
+Submission No.: MONE-D-16-00333
+Title: Offline Mode for Corporate Mobile Client Security Architecture
+SM 188 – Sustainable Computing Techniques for Mobile Networks
+Mobile Networks and Applications
+
+Dear Editor-in-Chief and reviewers,
+The authors would like to thank the Associate Editor-in-Chief and the Reviewers for volunteering their time in reviewing our manuscript and providing us with valuable comments which allowed us to significantly improve the paper. We have carefully revised the manuscript based on the comments and suggestions. All changes in the paper have been marked with a color. The following is our point-by-point responses to the raised comments.
+
+Kind regards,
+
+The authors.
+
+
+1. REVIEWER #1
+1.1. COMMENT: The paper presents a reasonable approach to offline mode for reading secure documents on mobile clients without consuming much of the device resources under a restricted adversary model.
+1.1.1. REPLY: Agradecer
+1.2. COMMENT: The adversary model seems not complete. (1) The adversary model mentioned in Subsection 6.1 is not clear because affirmative statements are mixed with negative statements. (2) May the adversary disable the TIM?
+1.2.1. REPLY: Aguardando resposta de Tanya
+1.3. COMMENT: In Subsection 5.2, the description of ABE components is unclear: (1) typo of redundant double prime('') in PK, (2) no description of basic properties of bilinear paring function, (3) no description of the meanings of the notations w and s. (4) bad-form notation "for all i in {t_i}_M" (because "i" cannot belong to the set).
+1.3.1. REPLY: Aguardando resposta de Tanya
+1.4. COMMENT: In Subsection 5.3, the description of SSS (modular secret sharing) is unclear: (1) Di is a typo, (2) the notation based on Chinese Remainder Theory (CRT) is not well presented, (3) the meanings of d, S, p_0, and p_1 are not clear, (4) What are the reasons for S being equivalent to s and s_1 in modulo p_0 and p_1, respectively?
+1.4.1. REPLY: Aguardando resposta de Tanya
+1.5. COMMENT: In Subsection 6.2, it may be better to change "operations 1)-7)" to "actions 1)-7) (as mentioned in the offline mode)".
+1.5.1. REPLY: Aguardando resposta de Tanya
+1.6. COMMENT: There is little description about how to retrieve the logs from the Galaxy mobile devices and the correctness of anomaly detection in the experiments.
+1.6.1. REPLY: Interagir com anton. Correctness vai ser tratado em trabalhos futuros
+
+
+2. REVIEWER #3
+2.1. COMMENT: In the related work, these following references need to be considered to enhance the completeness of the work. Heydari, Mohammad, et al. "An efficient password-based authenticated key exchange protocol with provable security for mobile client-client networks." Wireless Personal Communications 88.2 (2016). Mayrhofer, René. "An architecture for secure mobile devices." Security and Communication Networks 8.10 (2015): 1958-1970. Shila, Devu Manikantan, et al. "AMCloud: Towards a Secure Autonomic Mobile Ad Hoc Cloud Computing System." IEEE Wireless Communications(2016). Chang, Hyunseok, et al. "Design and Architecture of a Software Defined Proximity Cloud." Advances in Mobile Cloud Computing Systems (2015): 123. Xia, Yubin, et al. "TinMan: eliminating confidential mobile data exposure with security oriented offloading." Proceedings of the Tenth European Conference on Computer Systems. ACM, 2015. Kulkarni, Pallavi, and Rajashri Khanai. "Addressing mobile Cloud Computing security issues: a survey." Communications and Signal Processing (ICCSP), 2015 International Conference on. IEEE, 2015.
+2.1.1. REPLY: Fazer
+2.2. COMMENT: More discussions on the figure 1 and 2 should be added. The current version is not easy to understand.
+2.2.1. REPLY: Tanya
+2.3. COMMENT: The figure 8 should be explained more in detail.
+2.3.1. REPLY: Tanya
+2.4. COMMENT: The formula 5 should be discussed more, the related sentence should be introduced with more theoretical support. The set of obtained vectors y(q)m composes the zero mean matrix Y(q), then the zero mean covariance ma-trix ^R(q)=yy can be calculated as follows.
+2.4.1. REPLY: Fazer
+
+
+*** Definir data de retorno que seja suficiente para podermos fazer por conta própria se Tanya não responder, considerando o deadline de 11/01

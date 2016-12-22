@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  3 NOV 2016 23:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  4 NOV 2016 16:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1197,20 +1197,20 @@ Overfull \hbox (6.16737pt too wide) in paragraph at lines 974--976
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1051 
+l.1054 
        ]
-Overfull \hbox (2.00064pt too wide) in paragraph at lines 1052--1054
+Overfull \hbox (2.00064pt too wide) in paragraph at lines 1055--1057
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]   |   []   |   []   |   []
  []
 
 [39]
-Overfull \hbox (80.47673pt too wide) in paragraph at lines 1089--1090
+Overfull \hbox (80.47673pt too wide) in paragraph at lines 1092--1093
 []\OT1/cmr/m/n/10 Therefore, the pro-posed frame-work is []|   []   [][]|   []
  []
 
 [40]
-Overfull \hbox (5.72285pt too wide) in paragraph at lines 1106--1107
+Overfull \hbox (5.72285pt too wide) in paragraph at lines 1109--1110
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
@@ -1219,9 +1219,9 @@ Overfull \hbox (5.72285pt too wide) in paragraph at lines 1106--1107
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1148 
+l.1151 
        ]
-Overfull \hbox (6.01921pt too wide) in paragraph at lines 1157--1158
+Overfull \hbox (6.01921pt too wide) in paragraph at lines 1160--1161
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
@@ -1231,30 +1231,26 @@ table.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1216 
+l.1219 
        ] (./2016JNCA.baseline.diff.bbl [46] [47] [48] [49])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1221.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1224.
  [50]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1221.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1224.
 
 (./2016JNCA.baseline.diff.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1221.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1221.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1224.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1224.
 
 Package rerunfilecheck Info: File `2016JNCA.baseline.diff.out' has not changed.
 
 (rerunfilecheck)             Checksum: 18415668CF25AE8630EE212D2F06C05D;1958.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1221.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1224.
  ) 
 Here is how much of TeX's memory you used:
- 14691 strings out of 493304
- 218888 string characters out of 6139871
- 454260 words of memory out of 5000000
- 17699 multiletter control sequences out of 15000+600000
+ 14695 strings out of 493304
+ 219001 string characters out of 6139871
+ 469260 words of memory out of 5000000
+ 17702 multiletter control sequences out of 15000+600000
  15518 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  34i,18n,32p,1478b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1295,10 +1291,10 @@ r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy6.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on 2016JNCA.baseline.diff.pdf (50 pages, 1369692 bytes).
+Output written on 2016JNCA.baseline.diff.pdf (50 pages, 1371452 bytes).
 PDF statistics:
- 932 PDF objects out of 1000 (max. 8388607)
- 807 compressed objects within 9 object streams
- 184 named destinations out of 1000 (max. 500000)
+ 934 PDF objects out of 1000 (max. 8388607)
+ 809 compressed objects within 9 object streams
+ 185 named destinations out of 1000 (max. 500000)
  290 words of extra memory for PDF output out of 10000 (max. 10000000)
 

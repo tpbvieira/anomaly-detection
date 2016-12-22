@@ -1,7 +1,7 @@
 %DIF 1a1
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL 2016JNCA.baseline.tex   Wed Nov  2 21:06:45 2016
-%DIF ADD 2016JNCA.tex            Thu Nov  3 22:59:45 2016
+%DIF ADD 2016JNCA.tex            Fri Nov  4 16:08:25 2016
  %DIF > 
 %DIF -------
 \documentclass[review]{elsarticle}
@@ -1042,10 +1042,13 @@ This subsection \DIFaddbegin \DIFadd{presents a summarized view of results obtai
 	\end{tabular}
 \end{table*}
 
-\DIFadd{Table \ref{tab:tab12} presents the evaluated results for attack detection. The analysis based on sample covariation of zero mean variables is evaluated for flooding behavior of netpune attacks, obtaining rates of 100.00 }\% \DIFadd{for true positive (TP) detection and 60.00 }\% \DIFadd{for false positive (FP) detection from 30 time frames. The results also show 50.00 }\% \DIFadd{of misclassification rate \mbox{%DIFAUXCMD
+\DIFadd{Table \ref{tab:tab12} presents the evaluated results for attack detection, considering rates of TP, FP \mbox{%DIFAUXCMD
+\cite{fleiss2013statistical}
+}%DIFAUXCMD
+and misclassification, which is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$ \mbox{%DIFAUXCMD
 \cite{bhuyan2014network}
 }%DIFAUXCMD
-, which attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed. 
+. The analysis based on sample covariation of zero mean variables is evaluated for flooding behavior of netpune attacks, obtaining rates of 100.00 }\% \DIFadd{for true positive (TP) detection and 60.00 }\% \DIFadd{for false positive (FP) detection from 30 time frames. The results also show 50.00 }\% \DIFadd{of misclassification rate , which attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed. 
 The result for FP and misclassification analysis is poor due to the legitimate traffic of DARPA dataset presents high number of packets per time  from one source to one target, with no variation on IP source or target port. This observation corroborates with previous evaluations of the DARPA dataset that highlight issues regarding traffic redundancy. 
 }
 
@@ -1108,9 +1111,6 @@ Therefore, the proposed framework is \DIFdelbegin \DIFdel{$O(N^3 + Q log Q + \ha
 \DIFadd{The experiments were performed in a desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM, considering: variations on the network traffic time; the frame size denoted as $N$; the number of network ports denoted as $M$; the mean processing time for eigen analysis based on sample covariance of zero mean, denoted as 1-time; the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation, denoted as 2-time; and the mean processing time for EDC MOS scheme, denoted as 3-time. The mean time calculations was obtained from 200 measurement repetitions, in order to obtain reliable values.
 }
 
-\DIFadd{Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. Note that the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
-}
-
 \begin{table*}[!t]
 	\caption{\DIFaddFL{Processing time of the main steps for anomaly detection}}
 	\label{tab:11}
@@ -1137,6 +1137,9 @@ Therefore, the proposed framework is \DIFdelbegin \DIFdel{$O(N^3 + Q log Q + \ha
 \DIFaddFL{22	}& \DIFaddFL{120	}& \DIFaddFL{34	}& \DIFaddFL{2.8100	}& \DIFaddFL{2.9600	}& \DIFaddFL{0.0250}\\ \hline
 	\end{tabular}
 \end{table*}
+
+\DIFadd{Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. Note that the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
+}
 
 \DIFadd{According to Table \ref{tab:11}, the processing time increases with the frame size $N$ decreasing, therefore it is possible to evaluate the frame size that produces better identification rates and acceptable processing time. The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations, since the significant increase of processing time observed between scenarios considering 17 or 34 ports, with growth between 7 }\% \DIFadd{and 199 }\%\DIFadd{.
 }

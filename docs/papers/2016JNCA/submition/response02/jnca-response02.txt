@@ -1,0 +1,76 @@
+Ms. Ref. No.:  JNCA-D-16-00617R1
+Title: Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks
+Journal of Network and Computer Applications
+Research Paper
+
+Dear Mr. Thiago Pereira de Brito Vieira,
+
+I have now received the referees' comments on your paper, submitted for possible publication in Journal of Networking and Computer Applications (JNCA).
+
+The referees have suggested that certain aspects of the paper should be re-examined, before it can be considered further for publication. The suggested revisions that need further consideration are listed at the end of this email or as an attachment.
+
+If you decide to revise the work, please submit a list of changes or a rebuttal against each point which is being raised when you submit the revised manuscript.
+
+To submit a revision, please go to http://ees.elsevier.com/jnca/ and login as an Author.
+Your username is: tpbvieira@gmail.com
+If you need to retrieve password details, please go to:
+http://ees.elsevier.com/jnca/automail_query.asp
+
+NOTE: Upon submitting your revised manuscript, please upload the source files for your article. For additional details regarding acceptable file formats, please refer to the Guide for Authors at: http://www.elsevier.com/journals/journal-of-network-and-computer-applications/1084-8045/guide-for-authors
+
+When submitting your revised paper, we ask that you include the following items:
+
+Manuscript and Figure Source Files (mandatory)
+
+We cannot accommodate PDF manuscript files for production purposes. We also ask that when submitting your revision you follow the journal formatting guidelines.  Figures and tables may be embedded within the source file for the submission as long as they are of sufficient resolution for Production. For any figure that cannot be embedded within the source file (such as *.PSD Photoshop files), the original figure needs to be uploaded separately. Refer to the Guide for Authors for additional information.
+http://www.elsevier.com/journals/journal-of-network-and-computer-applications/1084-8045/guide-for-authors
+
+Highlights (optional)
+Highlights consist of a short collection of bullet points that convey the core findings of the article and should be submitted in a separate file in the online submission system. Please use 'Highlights' in the file name and include 3 to 5 bullet points (maximum 85 characters, including spaces, per bullet point). See the following website for more information
+http://www.elsevier.com/highlights
+
+Graphical Abstract (optional)
+Graphical Abstracts should summarize the contents of the article in a concise, pictorial form designed to capture the attention of a wide readership online. Refer to the following website for more information: http://www.elsevier.com/graphicalabstracts
+
+On your Main Menu page is a folder entitled "Submissions Needing Revision". You will find your submission record there.
+
+The due date for submission of your revised version is Jan 04, 2017
+
+Should you have any queries, please do not hesitate to contact me. I look forward to receiving your revised paper.
+
+Please note that this journal offers a new, free service called AudioSlides: brief, webcast-style presentations that are shown next to published articles on ScienceDirect (see also http://www.elsevier.com/audioslides). If your paper is accepted for publication, you will automatically receive an invitation to create an AudioSlides presentation.
+
+Journal of Network and Computer Applications features the Interactive Plot Viewer, see: http://www.elsevier.com/interactiveplots. Interactive Plots provide easy access to the data behind plots. To include one with your article, please prepare a .csv file with your plot data and test it online at http://authortools.elsevier.com/interactiveplots/verification before submission as supplementary material.
+
+Best wishes
+
+Mohammed Atiquzzaman, Ph.D.
+Editor-in-Chief, Journal of Network and Computer Applications,
+Edith Kinney Gaylord Presidential Professor,
+School of Computer Science,
+University of Oklahoma, Norman, OK 73019-6151.
+Tel: (405) 325 8077, Fax: (405) 325 4044
+Email: atiq@ou.edu, atiq@ieee.org
+Web: www.cs.ou.edu/~atiq
+
+Note: While submitting the revised manuscript, please double check the author names provided in the submission so that authorship related changes are made in the revision stage. If your manuscript is accepted, any authorship change will involve approval from co-authors and respective editor handling the submission and this may cause a significant delay in publishing your manuscript.
+
+Reviewers' comments:
+
+The referees made the following points about this paper.
+
+Reviewer #3: The reviewer appreciates the efforts that the authors have made to revise this paper. The revised version has improved a lot compared to the previous version. Most of the questions raised from the reviewers have been clarified. The reviewer has three additional comments regarding the revised version.
+1 - The mentioned dataset used for additional evaluation is almost twenty years ago, and it might be able to reflect the current state of arts of modern attacks.
+2 - The authors have provided complexity and running time evaluation in the revision. However, given that the EVD complexity in O(M^2*N+N^3), it looks like the proposed approach might be DoS'ed if an attacker attempts to flood using randomized port numbers, e.g., (M=) 64K network ports. This is because performing bandwidth consumption flooding attacks does not need to work with a dedicated (or a monitored) port number.
+3 - The authors have revised the paper to focus exactly on probe and scanning attacks. This may greatly limited the contribution of the proposed work, as we already have a number of commercial solutions to deal with the problem.
+
+Reviewer #4: The authors have satisfactorily addressed the queries raised by the reviewers. However, only DARPA 1998 dataset has been considered to conduct the experiments. The authors can also conduct the experiments on other publicly available datasets such as CAIDA (https://www.caida.org/data/) and UNB-ISCX (http://www.unb.ca/research/iscx/dataset/iscx-IDS-dataset.html). Such datasets contain more recent attack vectors and types. Conducting experiments on such datasets and discussion of analysis on such datasets can provide in depth understanding of the proposed work.
+
+Reviewer #5:
+1. Since only one user (computer) was used, the amount of traffic noise (DHCP) would be very limited.
+2. There is no description of the systems used, because attacks such as the fraggle attack are easily eliminated by both systems and routers. Plus, the network is very limited with the number of devices used and type of traffic observed.
+3. The authors stated """The UDP scan technique sends UDP packets to the destination port, and if it responds with a ICMP port 230 unreachable message, then it indicates that the scanned port is closed. On the other hand, if a message is not received, then the port is considered as open."""* lots of systems today disable this by default, that is why it is unclear which systems were used for testing.
+4. What if the port scan was not sent in a sequence fashion and sent with time frames higher than the samples selected for evaluation and checking? The information considered in the proposed framework will not help.
+5. Why didn't the authors use flow analysis or even compare to such related work. Flow analysis has been used a lot for such detection, especially when you're looking at time and ports.
+6. How can such module detect new novel attacks, when the only experiments tested were SYN(flood), fraggle (rare today), and two port scanning techniques? ex: traffic like DHCP are considered noise, so how would this framework detect an ARP Scan? 
+7. The Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack shows that port 80, 443, and 53 were not an attack, even though all of these traffic are currently used for exfiltration or covert communication. So, how will the proposed framework detect such attacks? Detecting such attacks could be considered novel if they could achieve such detection.
