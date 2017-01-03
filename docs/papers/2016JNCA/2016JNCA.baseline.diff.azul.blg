@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: sem_marcas.aux
+The top-level auxiliary file: 2016JNCA.baseline.diff.azul.aux
 The style file: elsarticle-num.bst
 Database file #1: references.bib
 Warning--can't use both volume and number fields in lakhina2005mining
@@ -12,7 +12,7 @@ Warning--empty pages in tavallaee2009detailed
 Warning--empty pages in da2009comparison
 You've used 33 entries,
             2937 wiz_defined-function locations,
-            874 strings with 12401 characters,
+            874 strings with 12435 characters,
 and the built_in function-call counts, 11468 in all, are:
 = -- 1075
 > -- 354

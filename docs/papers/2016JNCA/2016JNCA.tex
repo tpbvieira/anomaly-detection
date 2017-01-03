@@ -370,7 +370,7 @@ Vector (GETV) \cite{tenorio2013greatest}, denoted as
 
 Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$. However, the goal here is to detect the variations of the eigenvalues for different values of $q$. Therefore, instead of using a certain $q$, the proposed approach applies MOS schemes for a vector of the largest eigenvalues of each $q$-th time frame, in order to identify variations and estimate the model order $\hat{d}$, which is the estimated number of time frames under attack. Therefore, $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$. Note that some MOS schemes may also require the number of minutes that compose a time frame, as $\hat{d} = \rm{MOS}(\boldsymbol{e}_{\rm max},\emph{Q})$. For more information about MOS, we refer to \ref{sec:mos}.
 
-In our previous work \cite{tenorio2013greatest}, the accuracy of AIC, MDL, EDC, RADOI, EFT and SURE schemes are evaluated for synflood and port scan attack detection, showing that EDC and EFT are effective for detecting this kind of attacks. The present work extends that evaluation to also analyse the effectiveness of the listed MOS schemes for fraggle attack detection, as shown in Section \ref{sec:experimentalresults}.
+In our previous work \cite{tenorio2013greatest}, the accuracy of AIC, MDL, EDC, RADOI, EFT and SURE schemes are evaluated for synflood and port scan attack detection, showing that EDC and EFT are effective for detecting this kind of attacks. The present work extends that evaluation to also analyze the effectiveness of the listed MOS schemes for fraggle attack detection, as shown in Section \ref{sec:experimentalresults}.
 
 \subsection{Eigenvalue Analysis}
 \label{sec:prop_EigenvalueAnalysis}
@@ -403,7 +403,7 @@ After the estimation of the $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames un
 \subsection{Eigen Similarity Analysis}
 \label{sec:prop_EigenSimilarityAnalysis}
 
-Cosine similarity calculates the cosine of the angle between two vectors, which represents the similarity of values between the selected vectors. Therefore, cosine similarity can be used to evaluate the variation of the most significant eigenvectors of $\boldsymbol{V}^{(q)}$ against the the most significant eigenvectors of time frame detected as under attack, to analyse similarity changes into the most significant eigenvectors caused by the insertion of anomalous traffic \cite{Lee2013}. 
+Cosine similarity calculates the cosine of the angle between two vectors, which represents the similarity of values between the selected vectors. Therefore, cosine similarity can be used to evaluate the variation of the most significant eigenvectors of $\boldsymbol{V}^{(q)}$ against the the most significant eigenvectors of time frame detected as under attack, to analyze similarity changes into the most significant eigenvectors caused by the insertion of anomalous traffic \cite{Lee2013}. 
 
 This subsection describes the proposed eigen similarity analysis for detailed attack identification, in complement to the attack estimation carried out through MOS schemes and eigenvalue analysis. In Subsection \ref{sec:prop_TimeSimilarityAnalysis} we present the eigen similarity analysis for identification of time under attack. Next, in Subsection \ref{sec:prop_PortSimilarityAnalysis}, we show how to apply the eigen similarity analysis in order to identify network ports under attack.
 
@@ -1001,7 +1001,7 @@ The incremental individualized approach of eigen similarity analysis, is able to
 
 According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
 
-Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks, considering the evaluation of novel datasets. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
+Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets. Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high thoughput network traffic. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
 
 \appendix
 
