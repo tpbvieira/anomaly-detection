@@ -1,0 +1,177 @@
+\begin{thebibliography}{32}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{(2016{\natexlab{a}})}]{csa2016}
+ (2016{\natexlab{a}}) Cloud security alliance.
+  \urlprefix\url{https://cloudsecurityalliance.org/}, accessed: 2016-01-15
+
+\bibitem[{(2016{\natexlab{b}})}]{storgrid2016}
+ (2016{\natexlab{b}}) Storgrid protected cloud storage security whitepaper.
+  \urlprefix\url{http://www.storgrid.com}, accessed: 2016-01-15
+
+\bibitem[{Bellovin and Merritt(1992)}]{bellovin1992encrypted}
+Bellovin SM, Merritt M (1992) Encrypted key exchange: Password-based protocols
+  secure against dictionary attacks. In: Research in Security and Privacy,
+  1992. Proceedings., 1992 IEEE Computer Society Symposium on, IEEE, pp 72--84
+
+\bibitem[{Bogos et~al(2013)Bogos, Boureanu, and Vaudenay}]{bogos2013primeless}
+Bogos S, Boureanu I, Vaudenay S (2013) Primeless factoring-based cryptography.
+  In: Applied Cryptography and Network Security, Springer, pp 552--569
+
+\bibitem[{{Campbell, M}(2015)}]{campbell2015}
+{Campbell, M} (2015) Cloud data encryption is easy. Cloud Cyphercloud blog
+  \urlprefix\url{http://www.ciphercloud.com/blog/cloud-data-encryption-easy/},
+  accessed: 2016-01-15
+
+\bibitem[{Da~Costa et~al(2009)Da~Costa, Thakre, Roemer, and
+  Haardt}]{da2009comparison}
+Da~Costa J, Thakre A, Roemer F, Haardt M (2009) Comparison of model order
+  selection techniques for high-resolution parameter estimation algorithms. In:
+  Proc. 54th International Scientific Colloquium (IWK’09), Ilmenau, Germany
+
+\bibitem[{Galibus(2014)}]{galibus2014}
+Galibus T (2014) Access control for the cloud storage. In: Proceeding of the
+  3rd Belarus-Korea Forum Science “Innovation, Production”, Minsk
+
+\bibitem[{Galibus and Matveev(2007)}]{galibus2007}
+Galibus T, Matveev G (2007) Generalized mignotte sequences in polynomial rings.
+  ENTCS 186:39--45
+
+\bibitem[{Galibus and Vissia(2015)}]{galibus2015cloud}
+Galibus T, Vissia H (2015) Cloud storage security. In: Network Security and
+  Communication Engineering: Proceedings of the 2014 International Conference
+  on Network Security and Communication Engineering (NSCE 2014), Hong Kong,
+  December 25--26, 2014, CRC Press, p 123
+
+\bibitem[{Galibus et~al(2008)Galibus, Matveev, and Shenets}]{galibus2008some}
+Galibus T, Matveev G, Shenets N (2008) Some structural and security properties
+  of the modular secret sharing. In: Symbolic and Numeric Algorithms for
+  Scientific Computing, 2008. SYNASC'08. 10th International Symposium on, IEEE,
+  pp 197--200
+
+\bibitem[{Galibus et~al(2015)Galibus, Gafurov, Kaganovich, and
+  Vissia}]{galibus2015mobile}
+Galibus T, Gafurov S, Kaganovich D, Vissia H (2015) Mobile security based on
+  the secret sharing. The journal of Brest state technical university 5:33--36,
+  in Russian
+
+\bibitem[{Gartner(2015)}]{gartner2015}
+Gartner (2015) Key challenges in cloud computing. Cloud Computing
+  \urlprefix\url{http://www.gartner.com/technology/topics/cloud-computing.jsp},
+  accessed: 2016-01-15
+
+\bibitem[{Goyal et~al(2006)Goyal, Pandey, Sahai, and
+  Waters}]{goyal2006attribute}
+Goyal V, Pandey O, Sahai A, Waters B (2006) Attribute-based encryption for
+  fine-grained access control of encrypted data. In: Proceedings of the 13th
+  ACM conference on Computer and communications security, Acm, pp 89--98
+
+\bibitem[{Higashi(2015)}]{higashi2015}
+Higashi M (2015) Cloud data security and eu data privacy rules compliance with
+  encryption and tokenization. Cloud Security, Compliance
+  \urlprefix\url{http://www.ciphercloud.com/blog/cloud-data-security-and-eu-data-privacy-rules-compliance-with-encryption-and-tokenization/},
+  accessed: 2016-01-15
+
+\bibitem[{Huang et~al(2009)Huang, Chang, and Huang}]{huang2009signal}
+Huang CT, Chang RK, Huang P (2009) Signal processing applications in network
+  intrusion detection systems. EURASIP Journal on Advances in signal Processing
+  2009(1):1--2
+
+\bibitem[{Itani et~al(2010)Itani, Kayssi, and Chehab}]{itani2010energy}
+Itani W, Kayssi A, Chehab A (2010) Energy-efficient incremental integrity for
+  securing storage in mobile cloud computing. In: Energy Aware Computing
+  (ICEAC), 2010 International Conference on, IEEE, pp 1--2
+
+\bibitem[{James et~al(2000)James, Elaine, Lawrence, William, Morris, James, and
+  Roback}]{nist2000}
+James N, Elaine B, Lawrence B, William B, Morris D, James F, Roback E (2000)
+  Report on the development of the advanced encryption standard (aes). NYST
+  \urlprefix\url{http://csrc.nist.gov/archive/aes/round2/r2report.pdf},
+  accessed: 2016-01-15
+
+\bibitem[{Kaspersky(2014)}]{kaspersky2014}
+Kaspersky (2014) Mobile cyber threats. Kaspersky Lab \& INTERPOL Joint Report
+  \urlprefix\url{http://media.kaspersky.com/pdf/Kaspersky-Lab-KSN-Report-mobile-cyberthreats-web.pdf},
+  accessed: 2016-01-15
+
+\bibitem[{Khan et~al(2013)Khan, Kiah, Khan, and Madani}]{khan2013towards}
+Khan AN, Kiah MM, Khan SU, Madani SA (2013) Towards secure mobile cloud
+  computing: A survey. Future Generation Computer Systems 29(5):1278--1299
+
+\bibitem[{Khan et~al(2014{\natexlab{a}})Khan, Kiah, Ali, Madani, Shamshirband
+  et~al}]{khan2014bss}
+Khan AN, Kiah MM, Ali M, Madani SA, Shamshirband S, et~al (2014{\natexlab{a}})
+  Bss: block-based sharing scheme for secure data storage services in mobile
+  cloud environment. The Journal of Supercomputing 70(2):946--976
+
+\bibitem[{Khan et~al(2015)Khan, Kiah, Ali, Shamshirband et~al}]{khan2015cloud}
+Khan AN, Kiah MM, Ali M, Shamshirband S, et~al (2015) A cloud-manager-based
+  re-encryption scheme for mobile users in cloud environment: a hybrid
+  approach. Journal of Grid Computing 13(4):651--675
+
+\bibitem[{Khan et~al(2014{\natexlab{b}})Khan, Othman, Madani, and
+  Khan}]{khan2014survey}
+Khan AR, Othman M, Madani SA, Khan SU (2014{\natexlab{b}}) A survey of mobile
+  cloud computing application models. Communications Surveys \& Tutorials, IEEE
+  16(1):393--413
+
+\bibitem[{Lawson et~al(2015)Lawson, MacDonald, and Lowans}]{lawson2015}
+Lawson C, MacDonald N, Lowans B (2015) Market guide for cloud access security
+  brokers. Gartner research
+  \urlprefix\url{http://www.gartner.com/technology/reprints.do?id=1-2RUEH70\&ct=151110\&st=sb},
+  accessed: 2016-01-15
+
+\bibitem[{Lu and Ghorbani(2009)}]{lu2009network}
+Lu W, Ghorbani AA (2009) Network anomaly detection based on wavelet analysis.
+  EURASIP Journal on Advances in Signal Processing 2009:4
+
+\bibitem[{McAfee(2015)}]{McAfee2015}
+McAfee (2015) Mcafee labs threats report.
+  \urlprefix\url{http://www.mcafee.com/us/resources/reports/rp-quarterly-threats-aug-2015.pdf},
+  accessed: 2016-01-15
+
+\bibitem[{Ren et~al(2011)Ren, Yu, Gao, and Xiong}]{ren2011lightweight}
+Ren W, Yu L, Gao R, Xiong F (2011) Lightweight and compromise resilient storage
+  outsourcing with distributed secure accessibility in mobile cloud computing.
+  Tsinghua Science \& Technology 16(5):520--528
+
+\bibitem[{Skyhigh(2015)}]{skyhigh2015}
+Skyhigh (2015) What is cloud access security broker. Skyhigh Cloud University
+  \urlprefix\url{https://www.skyhighnetworks.com/cloud-university/what-is-cloud-access-security-broker/},
+  accessed: 2016-01-15
+
+\bibitem[{Tenório et~al(2013)Tenório, da~Costa, and
+  de~Souza~Júnior}]{tenorio2013greatest}
+Tenório DF, da~Costa JPC, de~Souza~Júnior RT (2013) Greatest eigenvalue time
+  vector approach for blind detection of malicious traffic. ICoFCS 2013 p~46
+
+\bibitem[{{Van Lelyveld, A}(2013)}]{Lelyveld2013}
+{Van Lelyveld, A} (2013) Sap mobile platform secure mobile with mocana. SMP
+  Enterprise Grade Mobility
+  \urlprefix\url{http://www.sdn.sap.com/irj/scn/go/portal/prtroot/docs/library/uuid/8063ed15-0713-3110-c584-e75ac0395b20?QuickLink=index\&overridelayout=true\&58725087881424},
+  accessed: 2016-01-15
+
+\bibitem[{Yang et~al(2011)Yang, Wang, Wang, Tan, and Yu}]{yang2011provable}
+Yang J, Wang H, Wang J, Tan C, Yu D (2011) Provable data possession of
+  resource-constrained mobile devices in cloud computing. Journal of networks
+  6(7):1033--1040
+
+\bibitem[{{Yovel, Y}(2014)}]{yovel2014}
+{Yovel, Y} (2014) Essential ways to protect my mobile apps. Security
+  Intelligence e-magazine
+  \urlprefix\url{https://securityintelligence.com/how-to-protect-mobile-apps-essentials/},
+  accessed: 2016-01-15
+
+\bibitem[{Zhao et~al(2010)Zhao, Rong, Li, Zhang, and Tang}]{zhao2010trusted}
+Zhao G, Rong C, Li J, Zhang F, Tang Y (2010) Trusted data sharing over
+  untrusted cloud storage providers. In: Cloud Computing Technology and Science
+  (CloudCom), 2010 IEEE Second International Conference on, IEEE, pp 97--103
+
+\end{thebibliography}
