@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  9 JAN 2017 00:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  9 JAN 2017 13:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -647,11 +647,11 @@ Package pdftex.def Info: fig07-eps-converted-to.pdf used on input line 261.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <fig08.eps>
-(epstopdf)                    date: 2016-09-30 00:53:16
-(epstopdf)                    size: 120750 bytes
+(epstopdf)                    date: 2017-01-09 13:06:57
+(epstopdf)                    size: 116106 bytes
 (epstopdf)             Output file: <fig08-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-09-30 00:53:16
-(epstopdf)                    size: 29816 bytes
+(epstopdf)                    date: 2017-01-09 13:15:17
+(epstopdf)                    size: 28052 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig08-eps-converted-to.pdf
  fig08.eps>
 (epstopdf)             \includegraphics on input line 270.
@@ -849,7 +849,7 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2016MONE.pdf (17 pages, 812074 bytes).
+Output written on 2016MONE.pdf (17 pages, 810323 bytes).
 PDF statistics:
  667 PDF objects out of 1000 (max. 8388607)
  591 compressed objects within 6 object streams
