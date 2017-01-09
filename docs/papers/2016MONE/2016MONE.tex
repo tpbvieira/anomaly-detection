@@ -141,7 +141,9 @@ The approach proposed in this work describes and implements the complete lifecyc
 	\label{fig:01}
 \end{figure}
 
-These operations function based on the mobile client architecture, which is depicted in Figure \ref{fig:02}. 
+Figure \ref{fig:01} describes the mobile client protection both in online and offline mode. In online mode, the client has the possibility to connect to the server and the security of the client is enhanced by the server-backed up mechanisms. On the other hand, in offline mode the client’s security is supported by the standalone mechanisms. Additionally, the mobile client protection is enhanced by the threat intelligence unit providing the constant monitoring and analysis.
+
+Figure \ref{fig:02} depicts the client-side protection mechanisms. The client should support 4 subsystems: i) encryption subsystem that contains the procedures of encryption and decryption; ii) storage subsystem that provides the downloaded shares and key storage protection; iii) threat intelligence unit that provides the constant monitoring, and iv) the communication subsystem. In short, all security procedures are connected to 4 groups of operations: file request and receiving; encryption and decryption; file and key storing; monitoring and analysis.
 
 \begin{figure}[h!]
 	\centering
@@ -188,15 +190,15 @@ The proposed architecture for offline mobile security is represented in Figure \
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=8cm]{fig03.eps}
-	\caption{Proposed Architecture for Offline Mobile Security }
+	\caption{Proposed Architecture for Offline Mobile Security}
 	\label{fig:03}
 \end{figure}
 
-The infrastructure in Figure \ref{fig:03} includes:
+The Figure \ref{fig:03} describes the proposed architecture for offline mobile security, showing the modules responsible for securing the mobile client, which includes:
 
 \begin{enumerate}
 	\item \textbf{Protected Storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files. The outline of the hybrid encryption scheme is presented in the Section \ref{sec_algorithms}.
-	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec_results}. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones.
+	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec_results}. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones. The TIM is an internal module of the mobile client that implements offline anomaly detection through signal processing techniques.
 	\item \textbf{Key Management Center}: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
 \end{enumerate}
 
@@ -246,7 +248,7 @@ In the proposed client security architecture, the Threat Intelligence Manager (T
 
 As depicted in Figure \ref{fig:06}, users request operations are logged so that the main features can be monitored in the mobile client. The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations are monitored by the client app, which sends the information to the User Activity Logging (UAL). 
 
-The UAL is responsible for the incremental logging, feature extraction and data modeling for malicious behavior detection, through the Log Analysis Center (LAC). The logged information shall be decomposed into selected features and modeled as matrices, composed of the number of occurrences of the selected features by its location and by time. The resultant data is submited to the LAC, for anomaly detection.
+The UAL is responsible for the incremental logging of activities of the mobile client, feature extraction and data modeling for malicious behavior detection, through the Log Analysis Center (LAC). As an internal module of the mobile client, the UAL implements monitors of selected events of the application, such as a login attempt or a file decryption, and logs the desired information for further analysis. The logged information shall be decomposed into selected features and modeled as matrices, composed of the number of occurrences of the selected features by its location and by time. The resultant data is submitted to the LAC, for anomaly detection.
 
 The LAC performs the behavioral analysis through eigenvalue analysis and MOS schemes, which identify anomalies on sparse, subtle or abrupt number of user operations. The malicious behavior detection is detail described in \ref{sec_mos}.
 
@@ -261,7 +263,7 @@ In the proposed approach, the kernel encryption scheme in the mobile client is a
 	\label{fig:07}
 \end{figure}
 
-The key hierarchy is explained by Figure \ref{fig:08} where the key represented in Figure \ref{fig:07} serves for decrypting the key for each level represented in Figure \ref{fig:08}.
+The key hierarchy is explained by Figure \ref{fig:08} where the key represented in Figure \ref{fig:07} serves for decrypting the key for each level represented in Figure \ref{fig:08}. As it is possible to be observed in Figure \ref{fig:08}, the master key on the upper level is computed by means of SSS (Subsection \ref{sec_secret}). It serves for decrypting the ABE key storage (section \ref{sec_abe}). The ABE key allows the user finally decrypt the permanent file share keys. Further, the file share can be decrypted by means of AES.
 
 \begin{figure}[h!]
 	\centering
@@ -305,9 +307,9 @@ The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibu
 
 \begin{enumerate}
 	\item \textbf{Master-key (MK)} which is kept safely on server and accessible only for the domain administrator and is given by $MK = (t_1, t_2, \cdots ,t_n, y)$, where the values $t_i$ are randomly selected from the huge group $Zp$. They are the private keys corresponding to the group attributes. Note, that this is different from the usual PK encryption: the private keys are controlled by the admin and not by the users.
-	\item \textbf{Public key (PK)} depends on the master key values and is kept in the clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}", \cdots ,g^{t_n}, e(g,g)^y)$, Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve.
+	\item \textbf{Public key (PK)} depends on the master key values and is kept in clear allowing users to access the information: $PK = (g^{t_1}, g^{t_2}, \cdots ,g^{t_n}, e(g,g)^y)$. Here $e(g,g)$ is the bilinear pairing function corresponding to an elliptic curve. In order to explain the properties of bilinear paring function, let $\mathbb{G}_1$ and $\mathbb{G}_2$ be two multiplicative cyclic groups of prime order $p$. Let $g$ be a generator of $\mathbb{G}_1$ and $e$ be a bilinear map, $e$: $\mathbb{G}_1 X \mathbb{G}_1 \rightarrow \mathbb{G}_2$. The bilinear map $e$ has two properties, the non-degeneracy, which defines that $e(g,g) \neq 1$, and the bilinearity, which defines that for all $u,v \in \mathbb{G}_1$ and $a,b \in \mathbb{Z}_p$, we have $e(u^a, v^b) = e(u,v)^{ab}$ \citep{goyal2006attribute}. Here $w \in \mathbb{Z}$ is the unique security parameter allowing to control the key generation for each user group.
 	\item Secret user \textbf{KEY\_SET} depends on his attribute set. Here each $D_i$ (\textbf{GROUP\_KEY}) serves for decryption of the data of a single group of users, for example, related to some project: 	$\{t_i\}_U \rightarrow D = \{D_i = g^{\frac{yw}{t_i}}\}$.
-	\item Encrypted text $M$, in our context, $M = FILE\_KEY$, or the permanent AES symmetric key, which allows to avoid the file re-encryption. Encryption procedure is multiplication. The set of the public keys $E_i$ (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text $E$: $E=Me(g,g)^{ys}, \{E_i = g^{\frac{t_is}{w}}\}, \forall i \in \{t_i\}_M$.
+	\item Encrypted text $M$, in this context, $M = FILE\_KEY$, or the permanent AES symmetric key, which allows to avoid the file re-encryption. The encryption procedure is performed by a multiplication. The set of the public keys $E_i$ (PUBLIC\_SHARE\_KEY) corresponding to the set of groups able to access the text is kept along with the encrypted text $E$: $E=Me(g,g)^{ys}, \{E_i = g^{\frac{t_is}{w}}\}, \forall i, t_i \in \{t_i\}_U$. Here $s \in \mathbb{Z}$ is the unique security parameter allowing to control the key generation for each file share.
 	\item Decryption is division: $M = \frac{E}{Y^s}$. 
 \end{enumerate}
 
@@ -322,11 +324,15 @@ The result of decryption is the FILE\_KEY - the symmetric AES key that permits t
 \subsection{Secret sharing scheme to protect the key storage }
 \label{sec_secret}
 
-The attribute-based private keys $D_i$ should be protected while being stored in the device memory. Therefore, server encrypts the set of $Di$ with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares: KEY\_SET\_KEY = PASS + PIN + TIME + DEV\_PASS. 
+The attribute-based private keys $D_i$ should be protected while being stored in the device memory. Therefore, server encrypts the set of $D_i$ with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares: KEY\_SET\_KEY = PASS + PIN + TIME + DEV\_PASS. 
 
-The adversary cannot get any information of the KEY\_SET\_KEY unless he possessing all 4 key parts. Here the values PASS and PIN are predefined similar to the construction in \cite{galibus2015mobile}.
+The adversary cannot get any information of the KEY\_SET\_KEY unless he possesses all 4 key parts. Here the values PASS and PIN are predefined similar to the construction in \cite{galibus2015mobile}.
 
-The proposed authentication system is based on the shared storing of the user key. Also, the mobile client acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share $s_1(x)$ is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let $s(x) = d$ and $s_1(x) = f(PIN + PASS + TIME)$, where $f$ is a one-way function that transforms the data into the string of the desired length: 
+The PASS and PIN values are predefined, similar to the key storing construction based on the polynomial secret sharing scheme (SSS) in \cite{galibus2015cloud}.
+
+In this SSS, the following notation is used: $S(x) \in F_2[x]$ denotes the secret polynomial with coefficients from the finite field $F_2$ to be computed by pooling the shares together. $s_1(x)$, $s_2(x) \in F_2[x]$ denote the shares of the SSS, that are used to compute the secret $s(x)$.
+
+The proposed authentication system is based on the shared storing of the user key. Also, the mobile client acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share $s_1(x)$ is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let $s(x) = d$ and $s_1(x) = f(PIN + PASS + TIME)$, where $f$ is a one-way (hash) function that transforms the data into the string of the desired length: 
 
 \begin{equation}\label{eq:eq01}
   \left\{
@@ -341,6 +347,8 @@ According to the CRT:
 \begin{equation}\label{eq:eq02}
 S \equiv {s_{1}p_{0}{p_0}^{-1}}_{p1} + {s_{1}p_{1}{p_1}^{-1}}_{p0} + \textrm{ mod } p_0p_1
 \end{equation}
+
+Here, $p_0$ and $p_1 \in F_2[x]$ denote the public moduli of the polynomial SSS [10, 11]  and $s \in F_2[x]$ denotes the intermediate secret value. The formulae for these moduli, secret and participants’ shares directly follow from the definition of polynomial SSS construction.
 
 Thus calculated DEV\_PASS is written to the permanent device memory. The user share is not saved. Otherwise, it would allow an attacker to locally validate the restored private key.
 
@@ -360,11 +368,13 @@ Classical approaches to model order selection require the computation of the sam
 \mathbf{y}_{m}^{(q)} = \mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}.
 \end{equation}
 
-The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the zero mean covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
+The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the zero mean covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be estimated as follows
 
 \begin{equation}\label{eq:eq04}
-\mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}}.
+\mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}},
 \end{equation}
+where $\mathbf{\hat{R}}_{yy}^{(q)}$ means the estimation of the sample covariance matrix from the measured zero mean matrix $\mathbf{Y}^{(q)}$ over $N$ minutes of the time frame $q$. 
+
 
 For MOS based on sample covariance of zero mean and unitary standard deviation, in order to identify anomalies with sparse or subtle behavior, it is required, for each variable, to make the standard deviation unitary as follows
 
@@ -424,13 +434,21 @@ The security analysis of the proposed model was performed both from the point of
 
 \subsubsection{Adversary model}
 \label{sec_adversary_model}
-The proposal is to use a restricted adversary model. In other words, the actions of the adversary are predicted within the outlines model and scenarios. For example, it is not possible to guarantee the security of the decrypted document once the user copies its content to another file. In the analyzed scenarios, it is assumed that the adversary can:
+The proposal is to use a restricted adversary model. In other words, the actions of the adversary are predicted within the outlines model and scenarios. For example, it is not possible to guarantee the security of the decrypted document once the user copies its content to another file. 
+
+In the analyzed scenarios, it is assumed that the adversary can:
 
 \begin{enumerate}
 	\item Steal the user keys one-by-one while the mobile client performs decryption, if the attacker is outsider;
 	\item Use expired key to decrypt the files, if the attacker is insider;
-	\item Does not have possibility to perform offline dictionary attack and cryptanalysis, i.e. does not have the possibility to verify user credentials apart from entering them in the mobile client;
-	\item Steal the encrypted files but not the decrypted ones.
+	\item Steal the encrypted files.
+\end{enumerate}
+
+It is also assumed that the adversary can not:
+
+\begin{enumerate}
+	\item Perform offline dictionary attack and cryptanalysis, i.e. does not have the possibility to verify user credentials apart from entering them in the mobile client;
+	\item Steal the decrypted files.
 \end{enumerate}
 
 \subsubsection{Security analysis}
@@ -523,7 +541,9 @@ MOS schemes are used in order to identify anomalous behavior that can indicate a
 
 The selected features shall be modeled as matrices which represents a signal superposition containing noise, legitimate and malicious behavior \cite{tenorio2013greatest}, grouped into time frames $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
 
-In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the mobile client, in order to be evaluated to identify malicious behaviors. This work proposes to evaluate the following features.
+In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the UAL of the mobile client, in order to be analyzed by the TIM to identify malicious behaviors. 
+
+This work proposes to evaluate the following features, which represents events of the user operating the mobile client.
 
 \paragraph{\textbf{File Access (Time and File System Location)},}i.e. data access to selected files in offline mode, accessing the data stored on the mobile client. The file access feature can be decomposed into more detailed features, which are:
 
@@ -661,15 +681,15 @@ The complexity analysis depends on the operation that the user and the mobile cl
 	\item Malicious behavior detection $\rightarrow$ eigenvalues calculation.
 \end{enumerate}
 
-It is easy to check that in the offline mode the mobile client does not perform complex calculations and does not use the resources extensively due to the fact that the initial key is shared and the mobile client only performs decryption, which is not a time-consuming operation. Thus, the proposal supports the concept of the light-weighted client, i.e. the most consuming operations are ABE and AES decryption. 
+It is easy to check that in the offline mode the mobile client does not perform complex calculations and does not use the resources extensively due to the fact that the initial key is shared and the mobile client only performs decryption, which is not a time-consuming operation. Thus, the proposal supports the concept of the light-weighted client, i.e. the most consuming actions are ABE and AES decryption. 
 
-Similarly, in the online mode the mobile client does not perform resource-consuming operations apart from J-PAKE construction which is used to renew the user/app master key (DEV\_PASS):
+Similarly, in the online mode the mobile client does not perform resource-consuming actions apart from J-PAKE construction which is used to renew the user/app master key (DEV\_PASS):
 
 \begin{enumerate}
-	\item Generates keys for J-PAKE $\rightarrow$ this can be a resource-consuming operation. In the future we suggest to replace J-PAKE with SIS-based PKE \cite{bogos2013primeless,bellovin1992encrypted};
+	\item Generates keys for J-PAKE $\rightarrow$ this can be a resource-consuming action. In the future we suggest to replace J-PAKE with SIS-based PKE \cite{bogos2013primeless,bellovin1992encrypted};
 	\item Sends and receives data in the clear;
-	\item Performs operations 1)-7);
-	\item Performs the operation 8) and sends the log data for server side analysis.
+	\item Performs actions 1)-7);
+	\item Performs the action 8) and sends the log data for server side analysis.
 \end{enumerate}
 
 The proposed concept of mobile client security has been implemented in the Storgrid protected cloud environment \cite{storgrid2016}. Therefore, the approach is correlated with the practical usability requirements: the corporate user continues to use the mobile storage app in offline and does not need to reload the files every time the key is renewed. This methodology can be used in other mobile clients. The common advantage is that the mobile client performs the operations both in the offline and online mode and uses the key expiry and ABE to protect the privacy of the corporate data. 
