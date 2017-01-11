@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL 2016MONE.baseline.tex   Mon Jan  9 13:34:42 2017
-%DIF ADD 2016MONE.tex            Mon Jan  9 13:15:19 2017
+%DIF ADD 2016MONE.tex            Mon Jan  9 23:17:29 2017
 %
 % This is a general template file for the LaTeX package SVJour3
 % for Springer journals.          Springer Heidelberg 2010/09/16
@@ -80,9 +80,9 @@
 \author{Tatiana Galibus				\and
         Thiago P. de B. Vieira		\and
         	Edison P. de Freitas			\and
-        	Robson O. Albuquerque		\and
+        	Robson \DIFaddbegin \DIFadd{de }\DIFaddend O. Albuquerque		\and
         	João Paulo C. L da Costa		\and
-        	Rafael T. de Souza Júnior	\and
+        	Rafael T. de \DIFdelbegin \DIFdel{Souza }\DIFdelend \DIFaddbegin \DIFadd{Sousa }\DIFaddend Júnior	\and
         Viktor Krasnoproshin			\and
         	Anton Zaleski				\and
         	H.E.R.M. Vissia				\and
@@ -92,17 +92,19 @@
 \institute{Tatiana Galibus \and Viktor Krasnoproshin \at
               Belarusian State University, Minsk, 4, Nezavisimosti, 220030, Belarus
            \and
-           Tatiana Galibus \and Thiago P. B. Vieira \and Robson O. Albuquerque \and João Paulo C. L da Costa \and Rafael T. de Souza Júnior  \at
+           Tatiana Galibus \and Thiago P. \DIFaddbegin \DIFadd{de }\DIFaddend B. Vieira \and Robson \DIFaddbegin \DIFadd{de }\DIFaddend O. Albuquerque \and João Paulo C. L da Costa \and Rafael T. de \DIFdelbegin \DIFdel{Souza }\DIFdelend \DIFaddbegin \DIFadd{Sousa }\DIFaddend Júnior  \at
               University of Brasilia, UnB, FT, ENE, CP: 4386, 70910-900, Brasília, Brazil
            \and
            Edison P. de Freitas \at
 				Federal University of Rio Grande do Sul, UFRGS, INF, CP: 15064, 91501-970, Porto Alegre, Brazil
            \and
            João Paulo C. L da Costa \and Giovanni del Galdo \at
-				Institute for Information Technology, Ilmenau University of Technology, Ilmenau, Germany
-           \and
-           João Paulo C. L da Costa \and Giovanni del Galdo \at
-				Fraunhofer Institute for Integrated Circuits IIS, Erlangen, Germany
+				Institute for Information Technology, Ilmenau University of Technology, Ilmenau, Germany\DIFdelbegin %DIFDELCMD < \and
+%DIFDELCMD <            %%%
+\DIFdel{João Paulo C. L da Costa }%DIFDELCMD < \and %%%
+\DIFdel{Giovanni del Galdo }%DIFDELCMD < \at
+%DIFDELCMD < 				%%%
+\DIFdelend \DIFaddbegin \DIFadd{, and }\DIFaddend Fraunhofer Institute for Integrated Circuits IIS, Erlangen, Germany
            \and
            Anton Zaleski \and H.E.R.M. Vissia \at
 				Byelex Multimedia Products BV Argon 1, 4751 XC Oud Gastel, The Netherlands
@@ -113,10 +115,13 @@
 \maketitle
 
 \begin{abstract}
-Preventing data leakage on the mobile client is a crucial security problem. Therefore, additional control and protection should be taken for the confidential data on the mobile clients that leave the boundaries of the organization. In this scenario, such apps can be used on the offline mode for the convenience and traffic reducing or even for a particular characteristic of the mobile client or of the business. This paper presents a novel approach to the security of the corporate mobile clients, in particular the offline mode. The important part of the presented approach is the conceptualization and the definition of the core methodology to solve the problem of offline mobile security, i.e. the protection of the confidential data in use when the mobile client is not connected to the corporate cloud. The protection of the sensitive data is provided by the combination of the cryptographic and analytics methods to detect malicious user behavior. The proposed security architecture supports the basic mobile client protection principles: minimized traffic load and reduced communication with the cloud; usage of the light-weighted operations and an optimized combination of the security methods.
+Preventing data leakage on the mobile client is a crucial security problem. Therefore, additional control and protection should be taken for the confidential data on the mobile clients that leave the boundaries of the organization. \DIFdelbegin \DIFdel{In this scenario, such apps can be used on the offline mode for the convenience and traffic reducing or even for a particular characteristic of the mobile client or of the business. }\DIFdelend This paper presents a novel approach to the security of the corporate mobile clients, in particular \DIFaddbegin \DIFadd{when they operate in }\DIFaddend the offline mode. The \DIFdelbegin \DIFdel{important part of the presented approach is the }\DIFdelend \DIFaddbegin \DIFadd{presented approach includes the essential }\DIFaddend conceptualization and the definition of the core methodology to solve the problem of offline mobile security, i.e. the protection of the confidential data in use when the mobile client is not connected to the corporate cloud. The protection of the sensitive data is provided by the combination of \DIFdelbegin \DIFdel{the cryptographic }\DIFdelend \DIFaddbegin \DIFadd{cryptographic means }\DIFaddend and analytics methods to detect malicious user behavior. The proposed security architecture supports the basic mobile client protection principles: minimized traffic load and reduced communication with the cloud; usage of \DIFdelbegin \DIFdel{the }\DIFdelend light-weighted operations and an optimized combination of the security methods.
 \end{abstract}
 
-\keywords{ offline mobile cloud security \and offline attribute-based encryption \and model order selection \and user behavior analysis \and secret sharing}
+\DIFdelbegin %DIFDELCMD < \keywords{ offline mobile cloud security \and offline attribute-based encryption \and model order selection \and user behavior analysis \and secret sharing}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \keywords{offline mobile cloud security \and offline attribute-based encryption \and model order selection \and user behavior analysis \and secret sharing}
+\DIFaddend 
 
 \section{Introduction}
 \label{sec_intro}
@@ -124,7 +129,10 @@ Cloud computing is a new rapidly evolving paradigm in the world of distributed n
 
 A common practice to provide a cloud solution with stable security is to use a specific type of cloud service, such as Cloud Access Security Broker (CASB) or Cloud Access Control (CAC). These services are specifically designed to bring security at a single access point and provide the coordination of the most important security measures. Gartner \cite{skyhigh2015} estimates that such systems will be used by 85 \%  of companies by 2020. The reason for this is that the organization of security measures at a single control point allows to control and to monitor the level of cloud protection much more effectively. The basic features of the CASB are: discovery of cloud services, encryption along with tokenization for better search properties, access control, Data Loss Prevention (DLP) services, authentication, and auditing and alerting services \cite{lawson2015}. The protection of the confidential data, according to the standards of CASB deployment should be provided elsewhere, i.e. in transit and at the end-user, i.e. end-client, side \cite{campbell2015}.
 
-Additional security issues and requirements have to be considered when mobile clients are actively used in corporate cloud environment \cite{yovel2014}. Today more and more organizations and enterprises are functioning in the Bring-Your-Own-Device (BYOD) paradigm. The uncontrolled usage of the mobile devices represents a serious risk to the development of secure SME cloud platforms being the bottleneck of the corporate information security system (ISS). While the enterprise cloud infrastructure based on the web interface can be protected by powerful third-party services, such as CASB and CAC, the corporate mobile client is usually light-weighted and generally less protected. The protection scheme used on a mobile device should be both computationally secure as well as resource-constrained due to battery power limitations \cite{khan2015cloud}. Therefore, encrypting files and generating keys on a mobile device is not considered a good solution. On the other hand, the protection schemes with good computational qualities lack the security analysis in many cases \cite{khan2014bss}. The common practice is the shadow user activities monitoring \cite{yovel2014}. However, the mobile device usage stays unprotected in all the proposed scenarios while in offline mode.
+Additional security issues and requirements have to be considered when mobile clients are actively used in corporate cloud environment \cite{yovel2014}. Today more and more organizations and enterprises are functioning in the Bring-Your-Own-Device (BYOD) paradigm. The uncontrolled usage of the mobile devices represents a serious risk to the development of secure SME cloud platforms being the bottleneck of the corporate information security system (ISS). While the enterprise cloud infrastructure based on the web interface can be protected by powerful third-party services, such as CASB and CAC, the corporate mobile client is usually light-weighted and generally less protected. 
+\DIFaddbegin 
+
+\DIFaddend The protection scheme used on a mobile device should be both computationally secure as well as resource-constrained due to battery power limitations \cite{khan2015cloud}. Therefore, encrypting files and generating keys on a mobile device is not considered a good solution. On the other hand, the protection schemes with good computational qualities lack the security analysis in many cases \cite{khan2014bss}. The common practice is the shadow user activities monitoring \cite{yovel2014}. However, the mobile device usage stays unprotected in all the proposed scenarios while in offline mode.
 
 Suppose that a SME uses CASB to protect data at rest, i.e. while stored on the server-side, in transit, communicating with server, and, in use, while the mobile client is connected to the network. In this case, when the mobile client goes offline with the sensitive corporate data on board all powerful cloud-based tools cannot help and the mobile client has to secure itself with its own limited resources. Moreover, due to the resources constraint, there is a crucial difference in strategy of online and offline mode protection. For example, offline mode does not allow performing the extensive computation and encryption on the mobile device.
 Observing the above described landscape, this paper outlines the concept of the offline mobile cloud security. 
@@ -150,16 +158,51 @@ The increasing usage of BYOD demands more sophisticated data protection services
 
 Preventing data leakage on the mobile device is a crucial security problem. Therefore, it is necessary to take additional control and protection measures for the confidential data on the mobile devices that leave the boundaries of the organization. Generally, the most sensitive and confidential data should not be permitted to be transferred to the mobile device. However, what if the SME need to allow their employees to work on such devices and even use them on the offline mode for the convenience and traffic reducing, or even for a particular characteristic of the mobile client or the business itself?
 
-From the theoretical point of view of this problem, there are several surveys, whose common point is the mobile cloud as a rapidly developing paradigm that poses many security and complexity problems \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. An analysis of the new models of mobile cloud computing and new ways of using data storage services is presented in \cite{khan2015cloud, khan2013towards}. Commonly, all the models and protection schemes concentrate on the encryption properties and either perform the computations on their own \cite{zhao2010trusted, yang2011provable} or use the cloud provider to off-load the cryptographic operations \cite{itani2010energy, ren2011lightweight}. Obviously, it is natural the mobile client cannot handle all operations securely without the assistance of a cloud provider, due to resources constraint and battery limitation.
+From the theoretical point of view of this problem, there are several surveys, whose common point is the mobile cloud as a rapidly developing paradigm that poses many security and complexity problems \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}
+}%DIFAUXCMD
+. }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{khan2013towards, yovel2014, khan2014survey, khan2015cloud, mayrhofer2015architecture, chang2015design, xia2015tinman, kulkarni2015addressing, shila2016amcloud, heydari2016efficient}
+}%DIFAUXCMD
+. Kulkarni and Khanai \mbox{%DIFAUXCMD
+\cite{kulkarni2015addressing}
+}%DIFAUXCMD
+discuss the most important threats related to Mobile Cloud Computing and argue that there is a need for a lightweight secure framework that provides security with minimum communication and processing overhead on mobile devices. 
+}
 
-The necessity to use schemes that function without putting load on a provider arises when it is desired to make the mobile client less dependent on the cloud provider, i.e. corporate client continues to provide the secure access to the sensitive data without connection to the network. As discussed in \cite{khan2015cloud}, all the currently known schemes of encryption, performing the computation, either use a cloud provider \cite{zhao2010trusted}, a third party trusted agent \cite{yang2011provable} or a combination of both \cite{itani2010energy}. In some cases, they concentrate on computational complexity without taking care of user privacy and security \cite{ren2011lightweight}.
-Therefore, according to \cite{khan2015cloud, tenorio2013greatest, khan2013towards}, the state-of-the-art mobile cloud security models do not consider the problem of the offline security mode. 
+\DIFaddend An analysis of the new models of mobile cloud computing and new ways of using data storage services is presented in \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{khan2015cloud, khan2013towards}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{khan2015cloud, khan2013towards, mayrhofer2015architecture, chang2015design}
+}%DIFAUXCMD
+}\DIFaddend . Commonly, \DIFdelbegin \DIFdel{all }\DIFdelend the models and protection schemes concentrate on the encryption properties and either perform the computations on their own \cite{zhao2010trusted, yang2011provable} or use the cloud provider to off-load the cryptographic operations \cite{itani2010energy, ren2011lightweight}. Obviously, it is natural the mobile client cannot handle all operations securely without the assistance of a cloud provider, due to resources constraint and battery limitation.
+
+The necessity to use schemes that function without putting load on a provider arises when it is desired to make the mobile client less dependent on the cloud provider, i.e. corporate client continues to provide the secure access to the sensitive data without connection to the network. As discussed in \cite{khan2015cloud}, all the currently known schemes of encryption, performing the computation, either use a cloud provider \cite{zhao2010trusted}, a third party trusted agent \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{yang2011provable}
+}%DIFAUXCMD
+or }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{yang2011provable, heydari2016efficient}
+}%DIFAUXCMD
+, }\DIFaddend a combination of both \cite{itani2010energy} \DIFaddbegin \DIFadd{or ad hoc approaches \mbox{%DIFAUXCMD
+\cite{shila2016amcloud}
+}%DIFAUXCMD
+}\DIFaddend . In some cases, they concentrate on computational complexity without taking care of user privacy and security \cite{ren2011lightweight}. Therefore, according to \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{khan2015cloud, tenorio2013greatest, khan2013towards}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{khan2013towards, khan2015cloud}
+}%DIFAUXCMD
+}\DIFaddend , the state-of-the-art mobile cloud security models do not consider the problem of the offline security mode. 
 
 In many cases the industrial providers of the mobile security API avoid the problem by completely forbidding the offline access to the protected app, i.e. SAP Mocona, which operates as a secure client wrapping layer \cite{Lelyveld2013}. Due to various constraints such as traffic load, travelling and ease of access, the SME business procedure may require such access. To the best of our knowledge, the offline mode security problem has not yet been deployed, neither in academia nor in the industry \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. Therefore, the main concern of this proposal is the protection of the mobile client and its data in offline mode, when the functions of data protection cannot be offloaded to a cloud or a trusted party. 
 
 \section{The mobile security architecture}
 \label{sec_the_client_security_architecture}
-The approach proposed in this work describes and implements the complete lifecycle of the mobile client security infrastructure. The mobile security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The mobile client then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:01}.
+The approach proposed in this work describes and implements the complete lifecycle of the mobile client security infrastructure. The mobile security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The mobile client then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. 
+\DIFaddbegin 
+
+\DIFaddend The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:01}.
 
 \begin{figure}[h!]
 	\centering
@@ -798,7 +841,7 @@ As prove of concept, a fully working mobile application was developed to test th
 Future works in the area can further explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints.
 
 \begin{acknowledgements}
-The authors thank the Brazilian research and innovation agencies FAPDF (Research Support Foundation of the Federal District), FINEP (Agreement RENASIC / PROTO 01.12.0555.00), CAPES and CNPq under the FORTE Project - CAPES Forensic Sciences Announcement 25/2014, under the productivity grant number 303905 / 2014-0, under the PVE project number 88881.030392 / 2013-01 for their financial support on this research, and under the project number 207644/2015-2 for the PDE scholarship in the context of the program CSF - Aerospace Technology.\end{acknowledgements}
+The authors thank the Brazilian research and innovation agencies \DIFaddbegin \DIFadd{CAPES (Grant FORTE }\\\DIFadd{23038.007604/2014-69), }\DIFaddend FAPDF (Research Support Foundation of the Federal District), FINEP (\DIFdelbegin \DIFdel{Agreement RENASIC / }\DIFdelend \DIFaddbegin \DIFadd{Grant RENASIC }\DIFaddend PROTO 01.12.0555.00), \DIFdelbegin \DIFdel{CAPES and CNPq under the FORTE Project - CAPES Forensic Sciences Announcement 25/2014, under the productivity grant number }\DIFdelend \DIFaddbegin \DIFadd{CNPq (Productivity grant }\DIFaddend 303905/2014-0 \DIFdelbegin \DIFdel{, under the PVE project number }\DIFdelend \DIFaddbegin \DIFadd{and PVE Grant }\DIFaddend 88881.030392/2013-01\DIFdelbegin \DIFdel{for their financial support on this research, and under the project number }\DIFdelend \DIFaddbegin \DIFadd{), as well as the European CSF - Aerospace Technology Program (PDE scholarship within project }\DIFaddend 207644/2015-2\DIFdelbegin \DIFdel{for the PDE scholarship in the context of the program CSF - Aerospace Technology}\DIFdelend \DIFaddbegin \DIFadd{), for their support to this research}\DIFaddend .\end{acknowledgements}
 
 % BibTeX users please use one of
 \bibliographystyle{spbasic}      % basic style, author-year citations

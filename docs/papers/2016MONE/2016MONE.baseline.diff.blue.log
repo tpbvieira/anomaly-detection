@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  9 JAN 2017 13:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.1)  9 JAN 2017 23:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -477,26 +477,46 @@ SVJour3 warning: Missing \journalname
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 114.
+LaTeX Font Info:    Try loading font information for U+msa on input line 111.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 114.
+LaTeX Font Info:    Try loading font information for U+msb on input line 111.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 114.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 111.
+
+Underfull \vbox (badness 5519) has occurred while \output is active []
+
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Overfull \hbox (4.14636pt too wide) in paragraph at lines 132--133
+Overfull \hbox (5.67506pt too wide) in paragraph at lines 128--129
+[]\OT1/cmr/m/n/10 The pro-tec-tion scheme used on a mo-bile de-vice should
+ []
+
+
+Overfull \hbox (2.92514pt too wide) in paragraph at lines 128--129
+\OT1/cmr/m/n/10 constrained due to bat-tery power lim-i-ta-tions [[]]. There-
+ []
+
+
+Overfull \hbox (4.14636pt too wide) in paragraph at lines 133--134
 \OT1/cmr/m/n/10 shar-ing (SSS) [[]] and Attribute-based En-cryp-tion (ABE)
  []
 
 [2]
+Overfull \hbox (120.2032pt too wide) in paragraph at lines 154--162
+\OT1/cmr/m/n/10 poses many se-cu-rity and com-plex-ity prob-lems []|   []
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <fig01.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 250487 bytes
@@ -505,37 +525,39 @@ Package epstopdf Info: Source file: <fig01.eps>
 (epstopdf)                    size: 70642 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig01-eps-converted-to.pdf
  fig01.eps>
-(epstopdf)             \includegraphics on input line 166.
+(epstopdf)             \includegraphics on input line 190.
 Package epstopdf Info: Output file is already uptodate.
- <fig01-eps-converted-to.pdf, id=117, 303.1325pt x 471.7625pt>
+
+<fig01-eps-converted-to.pdf, id=128, 303.1325pt x 471.7625pt>
 File: fig01-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig01-eps-converted-to.pdf>
-Package pdftex.def Info: fig01-eps-converted-to.pdf used on input line 166.
+Package pdftex.def Info: fig01-eps-converted-to.pdf used on input line 190.
 (pdftex.def)             Requested size: 142.26378pt x 221.40446pt.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-Overfull \hbox (17.31403pt too wide) in paragraph at lines 171--173
+Overfull \hbox (17.31403pt too wide) in paragraph at lines 195--197
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (10.06396pt too wide) in paragraph at lines 174--175
+Overfull \hbox (10.06396pt too wide) in paragraph at lines 198--199
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (2.98071pt too wide) in paragraph at lines 174--175
+Overfull \hbox (2.98071pt too wide) in paragraph at lines 198--199
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (13.59186pt too wide) in paragraph at lines 174--175
+Overfull \hbox (13.59186pt too wide) in paragraph at lines 198--199
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
+[3 <./fig01-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig02.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 325179 bytes
@@ -544,19 +566,16 @@ Package epstopdf Info: Source file: <fig02.eps>
 (epstopdf)                    size: 92982 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig02-eps-converted-to.pdf
  fig02.eps>
-(epstopdf)             \includegraphics on input line 178.
+(epstopdf)             \includegraphics on input line 202.
 Package epstopdf Info: Output file is already uptodate.
-<fig02-eps-converted-to.pdf, id=120, 551.05875pt x 422.57875pt>
+
+<fig02-eps-converted-to.pdf, id=151, 551.05875pt x 422.57875pt>
 File: fig02-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig02-eps-converted-to.pdf>
-Package pdftex.def Info: fig02-eps-converted-to.pdf used on input line 178.
+Package pdftex.def Info: fig02-eps-converted-to.pdf used on input line 202.
 (pdftex.def)             Requested size: 227.62204pt x 174.55446pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[3 <./fig01-eps-converted-to.pdf>]
+ [4 <./fig02-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig03.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 200440 bytes
@@ -565,37 +584,37 @@ Package epstopdf Info: Source file: <fig03.eps>
 (epstopdf)                    size: 54644 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig03-eps-converted-to.pdf
  fig03.eps>
-(epstopdf)             \includegraphics on input line 220.
+(epstopdf)             \includegraphics on input line 244.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig03-eps-converted-to.pdf, id=141, 656.4525pt x 209.78375pt>
+<fig03-eps-converted-to.pdf, id=176, 656.4525pt x 209.78375pt>
 File: fig03-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig03-eps-converted-to.pdf>
-Package pdftex.def Info: fig03-eps-converted-to.pdf used on input line 220.
+Package pdftex.def Info: fig03-eps-converted-to.pdf used on input line 244.
 (pdftex.def)             Requested size: 227.62204pt x 72.74037pt.
- [4 <./fig02-eps-converted-to.pdf>]
-Overfull \hbox (2.06401pt too wide) in paragraph at lines 229--230
+
+Overfull \hbox (2.06401pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 mon-i-tor-ing the sys-tem in the case of the of-fline mode.
  []
 
 
-Overfull \hbox (3.6195pt too wide) in paragraph at lines 229--230
+Overfull \hbox (3.6195pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 ap-pli-ca-tion on resource-constrained sce-nar-ios. There-
  []
 
 
-Overfull \hbox (1.34177pt too wide) in paragraph at lines 229--230
+Overfull \hbox (1.34177pt too wide) in paragraph at lines 253--254
 \OT1/cmr/m/n/10 bile client se-cu-rity, for eval-u-at-ing anoma-lies on user's
  []
 
 
-Overfull \hbox (16.86963pt too wide) in paragraph at lines 229--230
+Overfull \hbox (16.86963pt too wide) in paragraph at lines 253--254
 |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (3.11963pt too wide) in paragraph at lines 230--231
+Overfull \hbox (3.11963pt too wide) in paragraph at lines 254--255
 \OT1/cmr/m/n/10 tions for main-tain-ing the key ex-piry pe-riod and delet-
  []
 
@@ -607,13 +626,13 @@ Package epstopdf Info: Source file: <fig04.eps>
 (epstopdf)                    size: 85126 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig04-eps-converted-to.pdf
  fig04.eps>
-(epstopdf)             \includegraphics on input line 249.
+(epstopdf)             \includegraphics on input line 273.
 Package epstopdf Info: Output file is already uptodate.
-<fig04-eps-converted-to.pdf, id=168, 463.7325pt x 475.7775pt>
+<fig04-eps-converted-to.pdf, id=184, 463.7325pt x 475.7775pt>
 File: fig04-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig04-eps-converted-to.pdf>
-Package pdftex.def Info: fig04-eps-converted-to.pdf used on input line 249.
+Package pdftex.def Info: fig04-eps-converted-to.pdf used on input line 273.
 (pdftex.def)             Requested size: 227.62204pt x 233.53955pt.
 Package epstopdf Info: Source file: <fig05.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
@@ -623,14 +642,14 @@ Package epstopdf Info: Source file: <fig05.eps>
 (epstopdf)                    size: 67651 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig05-eps-converted-to.pdf
  fig05.eps>
-(epstopdf)             \includegraphics on input line 258.
+(epstopdf)             \includegraphics on input line 282.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig05-eps-converted-to.pdf, id=170, 492.84125pt x 465.74pt>
+<fig05-eps-converted-to.pdf, id=186, 492.84125pt x 465.74pt>
 File: fig05-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig05-eps-converted-to.pdf>
-Package pdftex.def Info: fig05-eps-converted-to.pdf used on input line 258.
+Package pdftex.def Info: fig05-eps-converted-to.pdf used on input line 282.
 (pdftex.def)             Requested size: 227.62204pt x 215.11pt.
 
 
@@ -645,22 +664,26 @@ Package epstopdf Info: Source file: <fig06.eps>
 (epstopdf)                    size: 51873 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig06-eps-converted-to.pdf
  fig06.eps>
-(epstopdf)             \includegraphics on input line 272.
+(epstopdf)             \includegraphics on input line 296.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig06-eps-converted-to.pdf, id=221, 388.45125pt x 371.3875pt>
+<fig06-eps-converted-to.pdf, id=237, 388.45125pt x 371.3875pt>
 File: fig06-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig06-eps-converted-to.pdf>
-Package pdftex.def Info: fig06-eps-converted-to.pdf used on input line 272.
+Package pdftex.def Info: fig06-eps-converted-to.pdf used on input line 296.
 (pdftex.def)             Requested size: 227.62204pt x 217.62631pt.
 
-Overfull \hbox (11.31297pt too wide) in paragraph at lines 279--280
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (11.31297pt too wide) in paragraph at lines 303--304
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (20.14745pt too wide) in paragraph at lines 279--280
+Overfull \hbox (20.14745pt too wide) in paragraph at lines 303--304
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [] 
   |   []
  []
@@ -673,13 +696,13 @@ Package epstopdf Info: Source file: <fig07.eps>
 (epstopdf)                    size: 26350 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig07-eps-converted-to.pdf
  fig07.eps>
-(epstopdf)             \includegraphics on input line 289.
+(epstopdf)             \includegraphics on input line 313.
 Package epstopdf Info: Output file is already uptodate.
-<fig07-eps-converted-to.pdf, id=225, 536.0025pt x 296.10625pt>
+<fig07-eps-converted-to.pdf, id=241, 536.0025pt x 296.10625pt>
 File: fig07-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig07-eps-converted-to.pdf>
-Package pdftex.def Info: fig07-eps-converted-to.pdf used on input line 289.
+Package pdftex.def Info: fig07-eps-converted-to.pdf used on input line 313.
 (pdftex.def)             Requested size: 227.62204pt x 125.74634pt.
 
 
@@ -693,19 +716,15 @@ Package epstopdf Info: Source file: <fig08.eps>
 (epstopdf)                    size: 28052 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig08-eps-converted-to.pdf
  fig08.eps>
-(epstopdf)             \includegraphics on input line 299.
+(epstopdf)             \includegraphics on input line 323.
 Package epstopdf Info: Output file is already uptodate.
-<fig08-eps-converted-to.pdf, id=232, 422.57875pt x 315.1775pt>
+<fig08-eps-converted-to.pdf, id=248, 422.57875pt x 315.1775pt>
 File: fig08-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig08-eps-converted-to.pdf>
-Package pdftex.def Info: fig08-eps-converted-to.pdf used on input line 299.
+Package pdftex.def Info: fig08-eps-converted-to.pdf used on input line 323.
 (pdftex.def)             Requested size: 227.62204pt x 169.7749pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6 <./fig05-eps-converted-to.pdf> <./fig06-eps-converted-to.pdf>]
+ [6 <./fig05-eps-converted-to.pdf> <./fig06-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig09.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 178580 bytes
@@ -714,123 +733,137 @@ Package epstopdf Info: Source file: <fig09.eps>
 (epstopdf)                    size: 49586 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig09-eps-converted-to.pdf
  fig09.eps>
-(epstopdf)             \includegraphics on input line 324.
+(epstopdf)             \includegraphics on input line 348.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig09-eps-converted-to.pdf, id=305, 562.1pt x 165.61874pt>
+<fig09-eps-converted-to.pdf, id=321, 562.1pt x 165.61874pt>
 File: fig09-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig09-eps-converted-to.pdf>
-Package pdftex.def Info: fig09-eps-converted-to.pdf used on input line 324.
+Package pdftex.def Info: fig09-eps-converted-to.pdf used on input line 348.
 (pdftex.def)             Requested size: 227.62204pt x 67.06763pt.
 
-Overfull \hbox (3.00728pt too wide) in paragraph at lines 335--336
+Overfull \hbox (3.00728pt too wide) in paragraph at lines 359--360
 []\OT1/cmr/m/n/10 The model sup-ports the sim-ple se-lec-tive ABE scheme
  []
 
 [7 <./fig07-eps-converted-to.pdf> <./fig08-eps-converted-to.pdf> <./fig09-eps-c
 onverted-to.pdf>]
-Overfull \hbox (0.95287pt too wide) in paragraph at lines 339--343
+Overfull \hbox (0.95287pt too wide) in paragraph at lines 363--367
 \OT1/cmr/m/n/10 to an el-lip-tic curve. []|   []   |   []   |   []   |   []   |
    []   |   []
  []
 
 
-Overfull \hbox (5.91455pt too wide) in paragraph at lines 339--343
+Overfull \hbox (5.91455pt too wide) in paragraph at lines 363--367
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (5.73053pt too wide) in paragraph at lines 339--343
+Overfull \hbox (5.73053pt too wide) in paragraph at lines 363--367
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (5.03456pt too wide) in paragraph at lines 339--343
+Overfull \hbox (5.03456pt too wide) in paragraph at lines 363--367
 |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (8.84427pt too wide) in paragraph at lines 344--345
+Overfull \hbox (8.84427pt too wide) in paragraph at lines 368--369
 []\OT1/cmr/m/n/10 Encrypted text $\OML/cmm/m/it/10 M$\OT1/cmr/m/n/10 , in []|  
  []   []con-text, $\OML/cmm/m/it/10 M \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 FILE[]
 KEY$\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (154.25568pt too wide) in paragraph at lines 344--345
+Overfull \hbox (154.25568pt too wide) in paragraph at lines 368--369
 \OT1/cmr/m/n/10 text is kept along with the en-crypted text $\OML/cmm/m/it/10 E
 $\OT1/cmr/m/n/10 : []|   []
  []
 
 
-Overfull \hbox (11.64719pt too wide) in paragraph at lines 370--371
+Overfull \hbox (11.64719pt too wide) in paragraph at lines 394--395
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 
-Overfull \hbox (4.36958pt too wide) in paragraph at lines 395--396
+Overfull \hbox (4.36958pt too wide) in paragraph at lines 419--420
 \OT1/cmr/m/n/10 Com-po-nent Anal-y-sis and Model Or-der Se-lec-tion schemes
  []
 
 [8]
-Overfull \hbox (7.49417pt too wide) in paragraph at lines 413--416
+Overfull \hbox (7.49417pt too wide) in paragraph at lines 437--440
 []|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [
 ]
  []
 
 [9]
-Overfull \hbox (1.81398pt too wide) in paragraph at lines 472--473
+Overfull \hbox (1.81398pt too wide) in paragraph at lines 496--497
 \OT1/cmr/m/n/10 y-sis. Two com-mon at-tack sce-nar-ios were an-a-lyzed. First,
  []
 
 
-Overfull \hbox (2.28615pt too wide) in paragraph at lines 482--483
+Overfull \hbox (2.28615pt too wide) in paragraph at lines 506--507
 []\OT1/cmr/m/n/10 Steal the user keys one-by-one while the mo-bile client
  []
 
 [10]
-Overfull \hbox (3.64265pt too wide) in paragraph at lines 554--555
+Overfull \hbox (3.64265pt too wide) in paragraph at lines 578--579
 []\OT1/cmr/m/it/10 Usage of ex-pired pass-word to per-form unau-
  []
 
 [11]
-Overfull \hbox (0.25851pt too wide) in paragraph at lines 565--566
+Overfull \hbox (0.25851pt too wide) in paragraph at lines 589--590
 \OT1/cmr/m/n/10 pired pass-word to per-form unau-tho-rized op-er-a-tions, can
  []
 
 [12]
-Overfull \hbox (4.16017pt too wide) in paragraph at lines 627--628
+Overfull \hbox (4.16017pt too wide) in paragraph at lines 651--652
 \OT1/cmr/bx/it/10 Sys-tem Lo-ca-tion)\OT1/cmr/m/it/10 , [] \OT1/cmr/m/n/10 i.e.
  up-load re-quests in on-line mode,
  []
 
 
-Overfull \hbox (2.13222pt too wide) in paragraph at lines 731--732
+Overfull \hbox (2.13222pt too wide) in paragraph at lines 755--756
 []\OT1/cmr/m/n/10 Generates keys for J-PAKE $\OMS/cmsy/m/n/10 !$ \OT1/cmr/m/n/1
 0 this can be a resource-
  []
 
 [13]
-Overfull \hbox (1.53635pt too wide) in paragraph at lines 745--746
+Overfull \hbox (1.53635pt too wide) in paragraph at lines 769--770
 \OT1/cmr/m/n/10 anomaly de-tec-tion from log anal-y-sis, mea-sur-ing the data
  []
 
 
-Overfull \hbox (0.18906pt too wide) in paragraph at lines 747--748
+Overfull \hbox (0.18906pt too wide) in paragraph at lines 771--772
 \OT1/cmr/m/n/10 vices, Galaxy GT-I9300 and Galaxy Tab SM-T800, with
  []
 
-[14]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Overfull \hbox (2.86948pt too wide) in paragraph at lines 817--818
+\OT1/cmr/m/n/10 use cloud-based sys-tems is how to pro-vide se-cu-rity mech-
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 4927) has occurred while \output is active []
 
  [15]
-Overfull \hbox (2.86948pt too wide) in paragraph at lines 793--794
-\OT1/cmr/m/n/10 use cloud-based sys-tems is how to pro-vide se-cu-rity mech-
+Overfull \hbox (6.56013pt too wide) in paragraph at lines 824--824
+\OT1/cmr/m/n/8.5 tion of the Fed-eral Dis-trict), FINEP ([]|   []   |   []   []
+PROTO
+ []
+
+
+Overfull \hbox (5.40617pt too wide) in paragraph at lines 824--824
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 (./2016MONE.baseline.diff.blue.bbl
@@ -844,55 +877,61 @@ Underfull \hbox (badness 4391) in paragraph at lines 29--32
  []
 
 
-Underfull \hbox (badness 6461) in paragraph at lines 54--58
+Underfull \hbox (badness 6461) in paragraph at lines 60--64
 \OT1/cmr/m/n/10 u-lar se-cret shar-ing. In: Sym-bolic and Nu-
- []
-
-
-Underfull \hbox (badness 4673) in paragraph at lines 77--81
-[]\OT1/cmr/m/n/10 Higashi M (2015) Cloud data se-cu-rity and
- []
-
-
-Underfull \hbox (badness 3417) in paragraph at lines 77--81
-\OT1/cmr/m/n/10 compliance -[] with -[] encryption -[] and -[] tokenization/$[]
-,
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
-Underfull \hbox (badness 1708) in paragraph at lines 100--103
+Underfull \hbox (badness 4673) in paragraph at lines 90--94
+[]\OT1/cmr/m/n/10 Higashi M (2015) Cloud data se-cu-rity and
+ []
+
+
+Underfull \hbox (badness 3417) in paragraph at lines 90--94
+\OT1/cmr/m/n/10 compliance -[] with -[] encryption -[] and -[] tokenization/$[]
+,
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 113--116
 \OT1/cmr/m/n/10 Report -[] mobile -[] cyberthreats -[] web . pdf$[], ac-cessed:
 
- []
-
-
-Underfull \hbox (badness 4608) in paragraph at lines 141--144
-\OT1/cmr/m/n/10 and com-pro-mise re-silient stor-age out-sourc-ing
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 141--144
-\OT1/cmr/m/n/10 with dis-tributed se-cure ac-ces-si-bil-ity in mo-bile
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 156--160
+Underfull \hbox (badness 4608) in paragraph at lines 163--166
+\OT1/cmr/m/n/10 and com-pro-mise re-silient stor-age out-sourc-ing
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 163--166
+\OT1/cmr/m/n/10 with dis-tributed se-cure ac-ces-si-bil-ity in mo-bile
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 183--187
 \OT1/cmr/m/n/10 overridelayout = true & 58725087881424$[], ac-cessed:
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 808.
- [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 808.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 832.
+
+[18
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 832.
  (./2016MONE.baseline.diff.blue.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 808.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 808.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 832.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 832.
 Package rerunfilecheck Info: File `2016MONE.baseline.diff.blue.out' has not cha
 nged.
 (rerunfilecheck)             Checksum: 2E45940801D94A855DF328911B5B045C;450.
@@ -900,16 +939,16 @@ nged.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 808.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 832.
  ) 
 Here is how much of TeX's memory you used:
- 8626 strings out of 493304
- 125448 string characters out of 6139871
- 250500 words of memory out of 5000000
- 11753 multiletter control sequences out of 15000+600000
+ 8651 strings out of 493304
+ 126073 string characters out of 6139871
+ 247849 words of memory out of 5000000
+ 11771 multiletter control sequences out of 15000+600000
  15052 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,16n,33p,1327b,595s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,16n,33p,1232b,595s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
@@ -929,10 +968,10 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/latxfont/lasy6.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2016MONE.baseline.diff.blue.pdf (17 pages, 818172 bytes).
+Output written on 2016MONE.baseline.diff.blue.pdf (18 pages, 822467 bytes).
 PDF statistics:
- 671 PDF objects out of 1000 (max. 8388607)
- 594 compressed objects within 6 object streams
- 189 named destinations out of 1000 (max. 500000)
+ 693 PDF objects out of 1000 (max. 8388607)
+ 614 compressed objects within 7 object streams
+ 196 named destinations out of 1000 (max. 500000)
  102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

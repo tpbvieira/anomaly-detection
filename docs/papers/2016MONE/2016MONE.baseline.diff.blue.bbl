@@ -1,4 +1,4 @@
-\begin{thebibliography}{32}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -29,6 +29,12 @@ Bogos S, Boureanu I, Vaudenay S (2013) Primeless factoring-based cryptography.
 {Campbell, M} (2015) Cloud data encryption is easy. Cloud Cyphercloud blog
   \urlprefix\url{http://www.ciphercloud.com/blog/cloud-data-encryption-easy/},
   accessed: 2016-01-15
+
+\bibitem[{Chang et~al(2015)Chang, Hari, Mukherjee, and
+  Lakshman}]{chang2015design}
+Chang H, Hari A, Mukherjee S, Lakshman T (2015) Design and architecture of a
+  software defined proximity cloud. Advances in Mobile Cloud Computing Systems
+  p 123
 
 \bibitem[{Da~Costa et~al(2009)Da~Costa, Thakre, Roemer, and
   Haardt}]{da2009comparison}
@@ -72,6 +78,13 @@ Gartner (2015) Key challenges in cloud computing. Cloud Computing
 Goyal V, Pandey O, Sahai A, Waters B (2006) Attribute-based encryption for
   fine-grained access control of encrypted data. In: Proceedings of the 13th
   ACM conference on Computer and communications security, Acm, pp 89--98
+
+\bibitem[{Heydari et~al(2016)Heydari, Sadough, Farash, Chaudhry, and
+  Mahmood}]{heydari2016efficient}
+Heydari M, Sadough SMS, Farash MS, Chaudhry SA, Mahmood K (2016) An efficient
+  password-based authenticated key exchange protocol with provable security for
+  mobile client--client networks. Wireless Personal Communications
+  88(2):337--356
 
 \bibitem[{Higashi(2015)}]{higashi2015}
 Higashi M (2015) Cloud data security and eu data privacy rules compliance with
@@ -122,6 +135,11 @@ Khan AR, Othman M, Madani SA, Khan SU (2014{\natexlab{b}}) A survey of mobile
   cloud computing application models. Communications Surveys \& Tutorials, IEEE
   16(1):393--413
 
+\bibitem[{Kulkarni and Khanai(2015)}]{kulkarni2015addressing}
+Kulkarni P, Khanai R (2015) Addressing mobile cloud computing security issues:
+  a survey. In: Communications and Signal Processing (ICCSP), 2015
+  International Conference on, IEEE, pp 1463--1467
+
 \bibitem[{Lawson et~al(2015)Lawson, MacDonald, and Lowans}]{lawson2015}
 Lawson C, MacDonald N, Lowans B (2015) Market guide for cloud access security
   brokers. Gartner research
@@ -132,6 +150,10 @@ Lawson C, MacDonald N, Lowans B (2015) Market guide for cloud access security
 Lu W, Ghorbani AA (2009) Network anomaly detection based on wavelet analysis.
   EURASIP Journal on Advances in Signal Processing 2009:4
 
+\bibitem[{Mayrhofer(2015)}]{mayrhofer2015architecture}
+Mayrhofer R (2015) An architecture for secure mobile devices. Security and
+  Communication Networks 8(10):1958--1970
+
 \bibitem[{McAfee(2015)}]{McAfee2015}
 McAfee (2015) Mcafee labs threats report.
   \urlprefix\url{http://www.mcafee.com/us/resources/reports/rp-quarterly-threats-aug-2015.pdf},
@@ -141,6 +163,11 @@ McAfee (2015) Mcafee labs threats report.
 Ren W, Yu L, Gao R, Xiong F (2011) Lightweight and compromise resilient storage
   outsourcing with distributed secure accessibility in mobile cloud computing.
   Tsinghua Science \& Technology 16(5):520--528
+
+\bibitem[{Shila et~al(2016)Shila, Shen, Cheng, Tian, and
+  Shen}]{shila2016amcloud}
+Shila DM, Shen W, Cheng Y, Tian X, Shen XS (2016) Amcloud: Toward a secure
+  autonomic mobile ad hoc cloud computing system. to appear
 
 \bibitem[{Skyhigh(2015)}]{skyhigh2015}
 Skyhigh (2015) What is cloud access security broker. Skyhigh Cloud University
@@ -157,6 +184,12 @@ Tenório DF, da~Costa JPC, de~Souza~Júnior RT (2013) Greatest eigenvalue time
   Enterprise Grade Mobility
   \urlprefix\url{http://www.sdn.sap.com/irj/scn/go/portal/prtroot/docs/library/uuid/8063ed15-0713-3110-c584-e75ac0395b20?QuickLink=index\&overridelayout=true\&58725087881424},
   accessed: 2016-01-15
+
+\bibitem[{Xia et~al(2015)Xia, Liu, Tan, Ma, Guan, Zang, and
+  Chen}]{xia2015tinman}
+Xia Y, Liu Y, Tan C, Ma M, Guan H, Zang B, Chen H (2015) Tinman: eliminating
+  confidential mobile data exposure with security oriented offloading. In:
+  Proceedings of the Tenth European Conference on Computer Systems, ACM, p~27
 
 \bibitem[{Yang et~al(2011)Yang, Wang, Wang, Tan, and Yu}]{yang2011provable}
 Yang J, Wang H, Wang J, Tan C, Yu D (2011) Provable data possession of
