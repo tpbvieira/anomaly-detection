@@ -1,4 +1,4 @@
-function dls = dlfun(dls, X, verbose)
+ifunction dls = dlfun(dls, X, verbose)
 % dlfun           A general Dictionary Learning function which do one
 % complete interation through the set of training vectors, X.
 % The implementation is done entirely in Matlab, except for sparse

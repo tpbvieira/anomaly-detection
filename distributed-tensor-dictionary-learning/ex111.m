@@ -64,7 +64,7 @@ else
     disp([Mfile,': learn ',int2str(N),'x',int2str(K),' dictionaries for training vectors in ',DataFile]);
     disp(['Generate new results for ',int2str(noEX),' trials, each with ',int2str(noIT),' iterations.']);
     res = cell(3,noEX);
-    javaAccess;
+    java_a  ccess;
     timestart = now();
     for exno = 1:noEX
         disp(' ');

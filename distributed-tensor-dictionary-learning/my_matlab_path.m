@@ -22,12 +22,13 @@ mfile = 'my_matlab_path';
 if (nargin < 1)
     name = 'common';
 end
+
 if strcmpi(name,'dle')
     name = 'dlt';
 end
     
 if isunix
-    p0 = '~/matlab/';  % first part of path where most files should be
+    p0 = '/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/';  % first part of path where most files should be
     if strcmpi(name,'dlt')
         p = '~/public_html/dle';
     elseif strcmpi(name,'ict')
@@ -87,8 +88,7 @@ else     % her for PC, Dropbox may be mounted different places
     elseif strcmpi(name,'maxflow') 
         p = [p0,'maxflow-v3.01'];   
     elseif strcmpi(name,'spams') 
-        p = [p0,'spams-matlab'];   
-        
+        p = [p0,'spams-matlab'];           
     else %  data file (local if exist)
         if exist('C:\Users\Karl\Documents\MATLAB\tctdata','dir')
             p = 'C:\Users\Karl\Documents\MATLAB\tctdata\';
