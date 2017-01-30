@@ -1,3 +1,4 @@
+function Dict = khosvd()
 % Dear Thiago,
 % What I can send you is a relatively clean implementation of the KHOSVD 
 % which I extracted from what I had left. The MOD should be easy to 

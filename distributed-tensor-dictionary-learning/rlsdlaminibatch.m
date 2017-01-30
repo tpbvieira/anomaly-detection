@@ -1,4 +1,4 @@
-function Ds = dictlearn_mb(varargin)
+function Ds = rlsdlaminibatch(varargin)
 % dictlearn_mb    Learn a dictionary by a minibatch RLS-DLA variant. 
 %                 i.e. make a model of the input data X which are available
 % through a specified m-file or given as a NxL matrix. 

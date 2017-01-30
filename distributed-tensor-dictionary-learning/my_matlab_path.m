@@ -36,12 +36,11 @@ if isunix
     elseif (strcmpi(name,'common') || strcmpi(name,'comp') || strcmpi(name,'tct') )
         p = [p0,lower(name)];   
     elseif (strcmpi(name,'java') || strcmpi(name,'javaclasses'))
-        p = [p0,'javaclasses'];   
+        p = [p0,'javaclasses'];
     elseif strcmpi(name,'maxflow') 
         p = [p0,'maxflow-v3.01'];   
     elseif strcmpi(name,'spams') 
         p = [p0,'spams-matlab'];   
-        
     else %  data file
         p = '~/matlab/tctdata/';   % where data is stored
         if (strcmpi(name,'tex') || strcmpi(name,'textures') || strcmpi(name,'test'))
@@ -143,5 +142,4 @@ if ~exist(p,'dir')
     p = pwd;
 end
 
-return    
-
+return

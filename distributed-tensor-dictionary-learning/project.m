@@ -1,5 +1,4 @@
 clc;
-clear all;
 % ex211           Show results from ex210 for L=2000 and snr=20 
 
 %----------------------------------------------------------------------
@@ -14,26 +13,30 @@ clear all;
 % Ver. 1.3  12.04.2013  KS: use ex210 (April 2013 version) to generate the data
 %----------------------------------------------------------------------
 
-mfile = 'dtbdl';
+mfile = 'project';
 
 nofTrials = 5;  % at least so many trials should be done
 L = 2000;        % number of training vectors to use
 snr = 20;        % snr for added noise
 s = 5;           % sparseness
-noIt = 200;     % number of iterations in each trial
+noIt = 2;     % number of iterations in each trial
 
 fileNameSufix = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 
 % select the methods to compare with each other and define file names
 dataFiles = [['func_M', fileNameSufix]
+             ['func_K', fileNameSufix]
              ['func_I', fileNameSufix]
-             ['func_K', fileNameSufix] ];
+             %['func_I', fileNameSufix]
+             %['func_L', fileNameSufix] 
+             ];
 
-colChar = 'brgm';
-colName = {'Blue', 'Red', 'Green', 'Magenta'};
+colChar = 'brgmyck';
+colName = {'Blue', 'Red', 'Green', 'Magenta', 'Yellow', 'Cyan', 'Black'};
 betatab = [0.25:0.25:10, 10.5:0.5:25];
-% plot in current figure
-clf; hold on; grid on;
+clf; 
+hold on;
+grid on;
 x = 9.5; y = 4.5; dy = 2.5;     % for text, labels
 
 for i=1:size(dataFiles,1);      % for selected methods for comparison
@@ -53,23 +56,28 @@ for i=1:size(dataFiles,1);      % for selected methods for comparison
     
     if (nofTrials > trialsDone)
         method = dataFiles(i,6);
-        res = execMethod(L, snr, method, s, noIt, nofTrials-trialsDone, 0);
+        res = execDL(L, snr, method, s, noIt, nofTrials-trialsDone, 0);
     end
     
     % plot the data
     yres = zeros(numel(betatab),1);
     for i1=1:numel(betatab);
         yres(i1) = sum(res.beta(:) < betatab(i1));
-    end    
-    plot(betatab,yres/res.nofTrials,[colChar(i),'-']);
-    h = text(x, y,['   noIt=',int2str(res.noIt),' and nofTrials=',int2str(res.nofTrials)]);
-    set(h,'BackgroundColor',[1,1,1]); y = y+dy;
-    I = find(yres > y*res.nofTrials);    i1 = I(1);
+    end
+    
+    plot(betatab, yres/res.nofTrials, [colChar(i), '-']);
+    h = text(x, y,['   noIt=', int2str(res.noIt),' and nofTrials=', int2str(res.nofTrials)]);
+    set(h, 'BackgroundColor', [1,1,1]); 
+    y = y+dy;
+    I = find(yres > y*res.nofTrials);
+    i1 = I(1);
+    
     if ((i1>1) && (yres(i1) > yres(i1-1)))
         xp = betatab(i1-1) + (betatab(i1)-betatab(i1-1))*(y*res.nofTrials - yres(i1-1))/(yres(i1)-yres(i1-1));
     else
         xp = betatab(i1);
     end
+    
     h = text(x, y,[colName{i},': ',res.method,' snr=',num2str(res.snr),' dB, L=',int2str(res.L)]);
     set(h,'BackgroundColor',[1,1,1]);
     plot([xp,x-0.5],[y,y],[colChar(i),'.-']);
