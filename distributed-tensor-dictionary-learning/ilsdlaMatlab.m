@@ -1,4 +1,4 @@
-function Dict = ilsdlaMatlab(noIt, X, Dict, solve, varargin)
+function Dict = ilsdlaMatlab(noIt, X, Dict, solver, varargin)
     % ...
     %
     % This code is a version of Karl Skretting work.
@@ -12,7 +12,7 @@ function Dict = ilsdlaMatlab(noIt, X, Dict, solve, varargin)
     %------------------------------------------------------------------------- 
     
     for it = 1:noIt
-        W = sparseapprox(X, Dict, solve, varargin);
+        W = sparseapprox(X, Dict, solver, varargin);
         Dict = (X*W')/(W*W');
         Dict = Dict ./ repmat(sqrt(sum(Dict.^2)),[size(Dict,1) 1]);
     end

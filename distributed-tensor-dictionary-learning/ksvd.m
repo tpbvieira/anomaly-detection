@@ -6,7 +6,7 @@ function Dict = ksvd(noIt, K, X, Dict, solver, varargin)
     % parameters:
     %   noIt        = number of iterations
     %   K           = number of observations
-    %   X           = data matrix
+    %   X           = data matrix (training data)
     %   Dict        = dictionary
     %   solver      = selected solver, see sparseapprox function
     %   varargin    = additional arguments, see sparseapprox function

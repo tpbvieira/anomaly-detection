@@ -15,11 +15,11 @@ clc;
 
 mfile = 'ex211';
 
-nofTrials = 5;  % at least so many trials should be done
+nofTrials = 50;  % at least so many trials should be done
 L = 2000;        % number of training vectors to use
 snr = 20;        % snr for added noise
 s = 5;           % sparseness
-noIt = 20;      % number of iterations in each trial
+noIt = 200;      % number of iterations in each trial
 
 txt = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 % select the methods you want to compare with each other

@@ -15,19 +15,25 @@ clc;
 
 mfile = 'project';
 
-nofTrials = 5;  % at least so many trials should be done
+nofTrials = 10;  % at least so many trials should be done
 L = 2000;        % number of training vectors to use
 snr = 20;        % snr for added noise
 s = 5;           % sparseness
-noIt = 2;     % number of iterations in each trial
+noIt = 20;     % number of iterations in each trial
+
+% the file where the set of training vectors, X, is stored during design
+N = 20;
+K = 50;
 
 fileNameSufix = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 
 % select the methods to compare with each other and define file names
-dataFiles = [['func_M', fileNameSufix]
+dataFiles = [['func_T', fileNameSufix]
+%             ['func_A', fileNameSufix]
              ['func_K', fileNameSufix]
-             ['func_I', fileNameSufix]
-             %['func_I', fileNameSufix]
+          %   ['func_M', fileNameSufix]
+           %  ['func_I', fileNameSufix]
+            % ['func_B', fileNameSufix]
              %['func_L', fileNameSufix] 
              ];
 
@@ -56,7 +62,7 @@ for i=1:size(dataFiles,1);      % for selected methods for comparison
     
     if (nofTrials > trialsDone)
         method = dataFiles(i,6);
-        res = execDL(L, snr, method, s, noIt, nofTrials-trialsDone, 0);
+        res = execDL(L, N, K, snr, method, s, noIt, nofTrials-trialsDone, 0)
     end
     
     % plot the data

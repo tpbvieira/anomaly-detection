@@ -1,4 +1,4 @@
-function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
+function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
     % executed a selected dictionary learning algorithm to recover a known 
     % dictionary, Random Gaussian dictionary, randomly generated (training)
     % data with added Gaussian noise.
@@ -13,14 +13,17 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
     % parameters:
     %   res         = a struct which is also stored in 'ex210xsyynn.mat'
     %   L           = number of training vectors to use
+    %   N           = number of lines of the file where the set of training vectors, X, is stored during design
+    %   K           = number of columns of the file where the set of training vectors, X, is stored during design
     %   snr         = snr for added noise
     %   methodChar  = the method to use, (x above: K I L Q C H E A M)
     %                   'K' = K-SVD, 
-    %                   'I' = ILS-DLA MOD (java),
-    %                   'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
     %                   'A' = AK-SVD,
-    %                   'M' = ILS-DLA MOD (matlab),
+    %                   'T' = K-HOSVD,
+    %                   'M' = ILS-DLA MOD,
+    %                   'I' = ILS-DLA MOD (java),
     %                   'B' = RLS-DLA miniBatch
+    %                   'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
     %   s           = sparseness, number of non-zero coefficients, default 5 
     %   noIt        = number of iterations to do for each trial, default 200
     %   nofTrials   = number of trials to do, default 1
@@ -44,31 +47,30 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
     if (nargin < 6); nofTrials = 1; end;
     if (nargin < 7); makeFig = 1; end;
 
-    % the file where the set of training vectors, X, is stored during design
-    N = 20;
-    K = 50;
-
-    if (strcmpi(methodChar,'A'))                                                % 'A' = AK-SVD,
+    if (strcmpi(methodChar,'K'))                                                % 'K' = K-SVD,   
+        method = 'K-SVD';
+    elseif (strcmpi(methodChar,'A'))                                            % 'A' = AK-SVD,
         method = 'AK-SVD';    
-    elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch                                 
-        method = 'RLS-MiniBatch';    
-    elseif (strcmpi(methodChar,'K'))                                            % 'K' = K-SVD,   
-        method = 'K-SVD';    
-    elseif (strcmpi(methodChar,'I'))                                            % 'I' = ILS-DLA MOD (java),
-        method = 'ILS-DLA MOD (Java)';
+    elseif (strcmpi(methodChar,'T'))                                            % 'T' = K-HOSVD
+        method = 'K-HOSVD';
     elseif (strcmpi(methodChar,'M'))                                            % 'M' = ILS-DLA MOD,
         method = 'ILS-DLA MOD';
+    elseif (strcmpi(methodChar,'I'))                                            % 'I' = ILS-DLA MOD (java),
+        method = 'ILS-DLA MOD (Java)';
+    elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch                                 
+        method = 'RLS-MiniBatch';
     else                                                                        % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
         method = ['RLS-DLA (Java)',methodChar];
     end
 
-    % misterious parameters
+    % parameters
     metPar = cell(1,1);
     metPar{1} = struct('lamM',methodChar,'lam0',0.99,'a',0.95);
     if (strcmpi(methodChar,'E')); metPar{1}.a = 0.15; end;
     if (strcmpi(methodChar,'H')); metPar{1}.a = 0.10; end;
     betalim = 8.11;                                                             % 1 - d'*dorg < 0.01  ==> |cos(beta)|>0.01
     
+    % java configuration
     javaclasspath('-dynamic')
 
     % outputs
@@ -85,6 +87,7 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
                  'metPar', metPar, ...
                  'method', method);
 
+    % load previous files and verify if the execution can be avoided
     if exist(ResultFile,'file')
         oldFile = dir(ResultFile);
         disp([mfile,': add to results stored in ', ResultFile,', (created ', oldFile.date,').']);
@@ -98,6 +101,7 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
         trialsDone = 0;
     end
 
+    % logging
     disp(' ');
     disp([mfile,': noIt=',int2str(noIt),', nofTrials=',int2str(nofTrials)]);
     
@@ -110,18 +114,21 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
             '. Do trial number ',int2str(trial),' of ',int2str(nofTrials),...
             ', each using ',int2str(noIt),' iterations.']);
 
+        % data generation
         RefDict = dictmake(N, K, 'G');                                          % Generate a dictionary
-        X = datamake(RefDict, L, s, snr, 'G');                                  % Generate a random data set using a given dictionary
-        Dict = dictnormalize( X(:,floor(0.85*L-K)+(1:K)) );                     % Normalize and arrange the vectors of a dictionary 
+        X = datamake(RefDict, L, s, snr, 'G');                                  % Generate a random (learning) data set using a given dictionary
+        EstDict = dictnormalize( X(:,floor(0.85 *L-K)+(1:K)) );                 % Normalize and arrange the vectors of a initial estimated dictionary 
         
         tic;
 
         if strcmpi(methodChar,'M')                                              % ILS-DLA MOD, matlab implementation
-            Dict = ilsdlaMatlab(noIt, X, Dict, 'javaORMP', 'tnz',s);
+            EstDict = ilsdlaMatlab(noIt, X, EstDict, 'javaORMP', 'tnz',s);
         elseif (strcmpi(methodChar,'K'))                                        % K-SVD
-            Dict = ksvd(noIt, K, X, Dict, 'javaORMP', 'tnz',s);
+            EstDict = ksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'A'))                                         % AK-SVD
-            Dict = aksvd(noIt, K, X, Dict, 'javaORMP', 'tnz',s);
+            EstDict = aksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
+        elseif(strcmpi(methodChar,'T'))                                         % K-HOSVD
+            EstDict = khosvd(noIt, X, EstDict, 5, 4, 'javaORMP');
         elseif (strcmpi(methodChar,'B'))                                        % MiniBatch
             mb = [1,25; 1,50; 1,125; 1,300];                                    % building block in minibatch
             v2p = sum( mb(:,1).*mb(:,2) );                                      % vectors to process (500)
@@ -136,17 +143,17 @@ function res = execDL(L, snr, methodChar, s, noIt, nofTrials, makeFig)
                        'verbose',0 );
             res.MBopt = MBopt;
             res.Ds = rlsdlaminibatch('X',X, MBopt);
-            Dict = res.Ds.D;
+            EstDict = res.Ds.D;
         elseif (strcmpi(methodChar,'I'))                                        % ILS (java)            
-            Dict = ilsdlajava(noIt, N, K, X, Dict, s);
+            EstDict = ilsdlajava(noIt, N, K, X, EstDict, s);
         else                                                                    % RLS-DLA (java)
-            Dict = rlsdla(L, noIt, N, K, X, metPar, Dict, s);
+            EstDict = rlsdla(L, noIt, N, K, X, metPar, EstDict, s);
         end
 
         t = toc;
 
         % compare the trained dictionary to the true dictionary
-        beta = dictdiff(Dict, RefDict, 'all-1', 'thabs');
+        beta = dictdiff(EstDict, RefDict, 'all-1', 'thabs');
         beta = beta*180/pi;  % want this in degrees
         disp(['Trial ',int2str(trial),sprintf(': %.2f seconds used.',t), ...
             ' Indentified ',int2str(sum(beta<betalim)),' atoms out of ',int2str(K), ...
