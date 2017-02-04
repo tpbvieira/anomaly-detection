@@ -128,7 +128,7 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
         elseif(strcmpi(methodChar,'A'))                                         % AK-SVD
             EstDict = aksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'T'))                                         % K-HOSVD
-            EstDict = khosvd(noIt, X, EstDict, 5, 4, 'javaORMP');
+            EstDict = khosvd(noIt, X, EstDict, 4, 5, 'javaORMP', 'tnz',s);
         elseif (strcmpi(methodChar,'B'))                                        % MiniBatch
             mb = [1,25; 1,50; 1,125; 1,300];                                    % building block in minibatch
             v2p = sum( mb(:,1).*mb(:,2) );                                      % vectors to process (500)
@@ -154,9 +154,11 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
 
         % compare the trained dictionary to the true dictionary
         beta = dictdiff(EstDict, RefDict, 'all-1', 'thabs');
-        beta = beta*180/pi;  % want this in degrees
-        disp(['Trial ',int2str(trial),sprintf(': %.2f seconds used.',t), ...
-            ' Indentified ',int2str(sum(beta<betalim)),' atoms out of ',int2str(K), ...
+        beta = beta*180/pi;                                                     % degrees
+        disp(['Trial ',int2str(trial), ...
+            sprintf(': %.2f seconds used.',t), ...
+            ' Indentified ',int2str(sum(beta<betalim)), ...
+            ' atoms out of ',int2str(K), ...
             '. Mean angle is ',num2str(mean(beta)),' degrees.']);
 
         res.beta(:,trialsDone + trial) = beta(:);

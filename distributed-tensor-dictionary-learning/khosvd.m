@@ -1,4 +1,4 @@
-function A_hat = khosvd(MaxIT, Y, A_hat, M1, M2, solver)
+function A_hat = khosvd(MaxIT, Y, A_hat, M1, M2, solver, varargin)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% KHOSVD example                                                      %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,14 +27,12 @@ function A_hat = khosvd(MaxIT, Y, A_hat, M1, M2, solver)
     N = size(A_hat,2);
     M = [M1,M2];
 
-    set(0,'RecursionLimit',1000)
-    
     % outer loop over iterations
     for nIt = 1:MaxIT
         % Step 1: solve sparse recovery problem, i.e., find sparse S_hat such
         % that Y \approx A_hat*S_hat. Use your favorite sparse solver here,
         % e.g., OMP/MP or BPDN/Lasso or anything you like.    
-        S_hat = sparseapprox(Y,A_hat, solver);
+        S_hat = sparseapprox(Y, A_hat, solver, varargin);
         
         % Step 2: update of dictionary
         % we loop through the atoms (in a random order)
@@ -43,36 +41,33 @@ function A_hat = khosvd(MaxIT, Y, A_hat, M1, M2, solver)
             % the training samples where it participates (nonzero elements)
             supportCols = find(S_hat(n,:));                                     % to fight rounding errors, consider using a threshold here
             % is it active at all?
-            if ~isempty(supportCols)
+            if ~isempty(supportCols)           
                 % subtract contributions from all the other atoms
-                not_n = [1:n-1,n+1:N];
-                Yn = Y(:,supportCols) - A_hat(:,not_n) * S_hat(not_n,supportCols);
-                % Yn should be rank one. In the K-SVD what follows here is 
-                % a rank-one matrix approximation via the truncated SVD.
-                % We use a rank-one tensor approximation instead:
+                notn = [1:n-1,n+1:N];
+                Yn = Y(:,supportCols) - A_hat(:,notn) * S_hat(notn,supportCols);
+                Kn = size(supportCols, 2);
+                % this matrix should be rank one. In the K-SVD what follows
+                % here is a rank-one matrix approximation via the truncated
+                % SVD. We use a rank-one tensor approximation instead:
 
                 % make it a tensor (inverse 3-mode unfolding of Y^T)
-                Yn = Yn.';
-                Yn = Yn(1:N,:);
-                Yn_tensor = permute(reshape(Yn,[N,M2,M1]),[3,2,1]);
-                
+                Yn_tensor = permute(reshape(Yn.',[Kn,M2,M1]),[3,2,1]);
                 % compute dominant singular vectors
                   % 1-mode unfolding
-                [U1,~] = svd(reshape(Yn_tensor,[M1,M2*N]));                 
+                [U1,~] = svd(reshape(Yn_tensor,[M1,M2*Kn]));                 
                 u11 = U1(:,1);
                   % 2-mode unfolding
-                [U2,~] = svd(reshape(permute(Yn_tensor,[2,1,3]),[M2,M1*N]));
+                [U2,~] = svd(reshape(permute(Yn_tensor,[2,1,3]),[M2,M1*Kn]));
                 u21 = U2(:,1);
                   % 3-mode unfolding 
-                [U3,~] = svd(Yn);
-                u31 = U3(:,1);            
+                [U3,~] = svd(Yn.');u31 = U3(:,1);            
                 % compute top-left-front core value
-                s111 = u31'*Yn*conj(kron(u11,u21));
+                s111 = u31'*Yn.'*conj(kron(u11,u21));
                 % rank-one approximation complete. The factors are u11, u21, s111*u31
 
                 % store results into A and S
-                A_hat(:,n) = kron(u11,u21);                
-                % S_hat(n,supportCols) = (s111*u31.').';
+                A_hat(:,n) = kron(u11,u21);
+                S_hat(n,supportCols) = s111*u31.';
             end
         end     
     end

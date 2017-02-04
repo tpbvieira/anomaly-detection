@@ -15,11 +15,11 @@ clc;
 
 mfile = 'project';
 
-nofTrials = 10;  % at least so many trials should be done
+nofTrials = 1;  % at least so many trials should be done
 L = 2000;        % number of training vectors to use
 snr = 20;        % snr for added noise
 s = 5;           % sparseness
-noIt = 20;     % number of iterations in each trial
+noIt = 200;      % number of iterations in each trial
 
 % the file where the set of training vectors, X, is stored during design
 N = 20;
@@ -28,9 +28,10 @@ K = 50;
 fileNameSufix = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 
 % select the methods to compare with each other and define file names
-dataFiles = [['func_T', fileNameSufix]
-%             ['func_A', fileNameSufix]
-             ['func_K', fileNameSufix]
+dataFiles = [
+             %['func_K', fileNameSufix]
+             ['func_A', fileNameSufix]
+             ['func_T', fileNameSufix]
           %   ['func_M', fileNameSufix]
            %  ['func_I', fileNameSufix]
             % ['func_B', fileNameSufix]
