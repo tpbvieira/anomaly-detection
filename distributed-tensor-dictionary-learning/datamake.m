@@ -53,15 +53,14 @@ function X = datamake(D, L, S, snr, met, wlo, whi, lim)
     % make X
     for i=1:L
         [temp,J] = sort(rand(K,1));
-        X(:,i) = D(:,J(1:S))*W(:,i);
+        X(:,i) = D(:,J(1:S)) * W(:,i);
     end
 
     % add noise
     if (snr < 200)
         stdSignal = std(X(:));
         stdNoise  = stdSignal * power(10,-snr/20);
-        X = X + stdNoise*randn(N,L); % add noise to signal, always Gaussian
-        % disp(['SNR is here ',num2str(20*log10(stdSignal/stdNoise))]);
+        X = X + stdNoise * randn(N,L);                                      % add noise to signal, always Gaussian
     end
 
     return

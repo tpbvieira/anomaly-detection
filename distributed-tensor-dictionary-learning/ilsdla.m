@@ -1,4 +1,4 @@
-function Dict = ilsdlaMatlab(noIt, X, Dict, solver, varargin)
+function Dict = ilsdla(noIt, X, Dict, solver, varargin)
     % ...
     %
     % This code is a version of Karl Skretting work.

@@ -53,11 +53,15 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
         method = 'AK-SVD';    
     elseif (strcmpi(methodChar,'T'))                                            % 'T' = K-HOSVD
         method = 'K-HOSVD';
+    elseif (strcmpi(methodChar,'D'))                                            % 'D' = MOD,
+        method = 'MOD';
     elseif (strcmpi(methodChar,'M'))                                            % 'M' = ILS-DLA MOD,
         method = 'ILS-DLA MOD';
     elseif (strcmpi(methodChar,'I'))                                            % 'I' = ILS-DLA MOD (java),
         method = 'ILS-DLA MOD (Java)';
-    elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch                                 
+    elseif (strcmpi(methodChar,'U'))                                            % 'U' = T-ILS-DLA MOD,
+        method = 'T-ILS-DLA MOD';
+    elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch
         method = 'RLS-MiniBatch';
     else                                                                        % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
         method = ['RLS-DLA (Java)',methodChar];
@@ -121,14 +125,20 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
         
         tic;
 
-        if strcmpi(methodChar,'M')                                              % ILS-DLA MOD, matlab implementation
-            EstDict = ilsdlaMatlab(noIt, X, EstDict, 'javaORMP', 'tnz',s);
-        elseif (strcmpi(methodChar,'K'))                                        % K-SVD
+        if (strcmpi(methodChar,'K'))                                            % K-SVD
             EstDict = ksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'A'))                                         % AK-SVD
             EstDict = aksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'T'))                                         % K-HOSVD
-            EstDict = khosvd(noIt, X, EstDict, 4, 5, 'javaORMP', 'tnz',s);
+            EstDict = khosvd2(noIt, X, EstDict, 5, 4, 'javaORMP', 'tnz',s);
+        elseif strcmpi(methodChar,'D')                                          % MOD
+            EstDict = modDL(noIt, X, EstDict, 'javaORMP', 'tnz',s);
+        elseif strcmpi(methodChar,'M')                                          % ILS-DLA MOD
+            EstDict = ilsdla(noIt, X, EstDict, 'javaORMP', 'tnz',s);
+        elseif (strcmpi(methodChar,'I'))                                        % ILS-DLA MOD (java)           
+            EstDict = ilsdlajava(noIt, N, K, X, EstDict, s);
+        elseif (strcmpi(methodChar,'U'))                                        % T-MOD
+            EstDict = tmod(noIt, N, K, X, EstDict, s);
         elseif (strcmpi(methodChar,'B'))                                        % MiniBatch
             mb = [1,25; 1,50; 1,125; 1,300];                                    % building block in minibatch
             v2p = sum( mb(:,1).*mb(:,2) );                                      % vectors to process (500)
@@ -144,8 +154,6 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
             res.MBopt = MBopt;
             res.Ds = rlsdlaminibatch('X',X, MBopt);
             EstDict = res.Ds.D;
-        elseif (strcmpi(methodChar,'I'))                                        % ILS (java)            
-            EstDict = ilsdlajava(noIt, N, K, X, EstDict, s);
         else                                                                    % RLS-DLA (java)
             EstDict = rlsdla(L, noIt, N, K, X, metPar, EstDict, s);
         end

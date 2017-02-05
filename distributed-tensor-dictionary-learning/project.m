@@ -29,13 +29,15 @@ fileNameSufix = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 
 % select the methods to compare with each other and define file names
 dataFiles = [
-             %['func_K', fileNameSufix]
-             ['func_A', fileNameSufix]
-             ['func_T', fileNameSufix]
-          %   ['func_M', fileNameSufix]
-           %  ['func_I', fileNameSufix]
-            % ['func_B', fileNameSufix]
-             %['func_L', fileNameSufix] 
+             %['func_K', fileNameSufix] % 'K' = K-SVD,   
+             ['func_A', fileNameSufix] % 'A' = AK-SVD,
+             %['func_T', fileNameSufix] % 'T' = K-HOSVD
+             ['func_D', fileNameSufix] % 'D' = MOD,
+             ['func_M', fileNameSufix] % 'M' = ILS-DLA MOD,             
+             %['func_I', fileNameSufix] % 'I' = ILS-DLA MOD (java),
+             %['func_U', fileNameSufix] % 'U' = T-ILS-DLA MOD,
+             %['func_B', fileNameSufix] % 'B' = RLS-DLA miniBatch
+             %['func_L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
              ];
 
 colChar = 'brgmyck';
