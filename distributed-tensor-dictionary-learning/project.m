@@ -14,8 +14,8 @@ clc;
 %----------------------------------------------------------------------
 
 mfile = 'project';
-
-nofTrials = 1;  % at least so many trials should be done
+%
+nofTrials = 10;  % at least so many trials should be done
 L = 2000;        % number of training vectors to use
 snr = 20;        % snr for added noise
 s = 5;           % sparseness
@@ -30,12 +30,12 @@ fileNameSufix = sprintf('%1i%02i%02i.mat',s,floor(L/1000),floor(snr));
 % select the methods to compare with each other and define file names
 dataFiles = [
              %['func_K', fileNameSufix] % 'K' = K-SVD,   
-             ['func_A', fileNameSufix] % 'A' = AK-SVD,
+             %['func_A', fileNameSufix] % 'A' = AK-SVD,
              %['func_T', fileNameSufix] % 'T' = K-HOSVD
-             ['func_D', fileNameSufix] % 'D' = MOD,
-             ['func_M', fileNameSufix] % 'M' = ILS-DLA MOD,             
-             %['func_I', fileNameSufix] % 'I' = ILS-DLA MOD (java),
-             %['func_U', fileNameSufix] % 'U' = T-ILS-DLA MOD,
+             %['func_D', fileNameSufix] % 'D' = MOD,
+             ['func_O', fileNameSufix] % 'O' = T-MOD,
+             %['func_M', fileNameSufix] % 'M' = ILS-DLA MOD,             
+             %['func_I', fileNameSufix] % 'I' = ILS-DLA MOD (java),             
              %['func_B', fileNameSufix] % 'B' = RLS-DLA miniBatch
              %['func_L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
              ];

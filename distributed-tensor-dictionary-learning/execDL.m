@@ -20,6 +20,8 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
     %                   'K' = K-SVD, 
     %                   'A' = AK-SVD,
     %                   'T' = K-HOSVD,
+    %                   'D' = MOD,
+    %                   'O' = T-MOD,
     %                   'M' = ILS-DLA MOD,
     %                   'I' = ILS-DLA MOD (java),
     %                   'B' = RLS-DLA miniBatch
@@ -55,12 +57,12 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
         method = 'K-HOSVD';
     elseif (strcmpi(methodChar,'D'))                                            % 'D' = MOD,
         method = 'MOD';
+    elseif (strcmpi(methodChar,'O'))                                            % 'O' = T-MOD,
+        method = 'T-MOD';
     elseif (strcmpi(methodChar,'M'))                                            % 'M' = ILS-DLA MOD,
         method = 'ILS-DLA MOD';
     elseif (strcmpi(methodChar,'I'))                                            % 'I' = ILS-DLA MOD (java),
-        method = 'ILS-DLA MOD (Java)';
-    elseif (strcmpi(methodChar,'U'))                                            % 'U' = T-ILS-DLA MOD,
-        method = 'T-ILS-DLA MOD';
+        method = 'ILS-DLA MOD (Java)';    
     elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch
         method = 'RLS-MiniBatch';
     else                                                                        % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
@@ -119,26 +121,27 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
             ', each using ',int2str(noIt),' iterations.']);
 
         % data generation
-        RefDict = dictmake(N, K, 'G');                                          % Generate a dictionary
-        X = datamake(RefDict, L, s, snr, 'G');                                  % Generate a random (learning) data set using a given dictionary
-        EstDict = dictnormalize( X(:,floor(0.85 *L-K)+(1:K)) );                 % Normalize and arrange the vectors of a initial estimated dictionary 
-        
+        A = dictmake(N, K, 'G');                                                % Generate a dictionary
+        X = datamake(A, L, s, snr, 'G');                                        % Generate a random (learning) data set using a given dictionary
+        A_hat = dictnormalize( X(:,floor(0.85 * L - K) + (1:K)) );              % Normalize and arrange the vectors of a initial estimated dictionary 
+        [A_hat1, A_hat2] = krondecomp(A_hat, 4, 5, 5, 10);
+    	A_hat = kron(A_hat1, A_hat2);
         tic;
 
         if (strcmpi(methodChar,'K'))                                            % K-SVD
-            EstDict = ksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
+            A_hat = ksvd(noIt, K, X, A_hat, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'A'))                                         % AK-SVD
-            EstDict = aksvd(noIt, K, X, EstDict, 'javaORMP', 'tnz',s);
+            A_hat = aksvd(noIt, K, X, A_hat, 'javaORMP', 'tnz',s);
         elseif(strcmpi(methodChar,'T'))                                         % K-HOSVD
-            EstDict = khosvd2(noIt, X, EstDict, 5, 4, 'javaORMP', 'tnz',s);
+            A_hat = khosvd2(noIt, X, A_hat, 5, 4, 'javaORMP', 'tnz',s);
         elseif strcmpi(methodChar,'D')                                          % MOD
-            EstDict = modDL(noIt, X, EstDict, 'javaORMP', 'tnz',s);
+            A_hat = modDL(noIt, X, A_hat, 'javaORMP', 'tnz',s);
+        elseif (strcmpi(methodChar,'O'))                                        % T-MOD
+            A_hat = tmod(noIt, X, A_hat, A_hat1, A_hat2, 'javaORMP', 'tnz',s);
         elseif strcmpi(methodChar,'M')                                          % ILS-DLA MOD
-            EstDict = ilsdla(noIt, X, EstDict, 'javaORMP', 'tnz',s);
+            A_hat = ilsdla(noIt, X, A_hat, 'javaORMP', 'tnz',s);
         elseif (strcmpi(methodChar,'I'))                                        % ILS-DLA MOD (java)           
-            EstDict = ilsdlajava(noIt, N, K, X, EstDict, s);
-        elseif (strcmpi(methodChar,'U'))                                        % T-MOD
-            EstDict = tmod(noIt, N, K, X, EstDict, s);
+            A_hat = ilsdlajava(noIt, N, K, X, A_hat, s);
         elseif (strcmpi(methodChar,'B'))                                        % MiniBatch
             mb = [1,25; 1,50; 1,125; 1,300];                                    % building block in minibatch
             v2p = sum( mb(:,1).*mb(:,2) );                                      % vectors to process (500)
@@ -153,15 +156,15 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
                        'verbose',0 );
             res.MBopt = MBopt;
             res.Ds = rlsdlaminibatch('X',X, MBopt);
-            EstDict = res.Ds.D;
+            A_hat = res.Ds.D;
         else                                                                    % RLS-DLA (java)
-            EstDict = rlsdla(L, noIt, N, K, X, metPar, EstDict, s);
+            A_hat = rlsdla(L, noIt, N, K, X, metPar, A_hat, s);
         end
 
         t = toc;
 
         % compare the trained dictionary to the true dictionary
-        beta = dictdiff(EstDict, RefDict, 'all-1', 'thabs');
+        beta = dictdiff(A_hat, A, 'all-1', 'thabs');
         beta = beta*180/pi;                                                     % degrees
         disp(['Trial ',int2str(trial), ...
             sprintf(': %.2f seconds used.',t), ...

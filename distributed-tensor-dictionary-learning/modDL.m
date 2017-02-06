@@ -1,4 +1,4 @@
-function Dict = modDL(noIt, X, Dict, solver, varargin)
+function A_hat = modDL(noIt, X, A_hat, solver, varargin)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% tensor-based Method of Optimized Directions (MOD)                   %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,12 +15,10 @@ function Dict = modDL(noIt, X, Dict, solver, varargin)
     %    Dict       = initial guess for the M x N dictionary
     %    solver     = selected solver
     %    varargin	= additional parameters
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     for it = 1:noIt
-        S_hat = sparseapprox(X, Dict, solver, varargin);
-        Dict = X * pinv(S_hat);
-        Dict = dictnormalize(Dict);
-    end
-    
+        S_hat = sparseapprox(X, A_hat, solver, varargin);
+        A_hat = X * pinv(S_hat);
+        A_hat = dictnormalize(A_hat);
+    end    
     return;

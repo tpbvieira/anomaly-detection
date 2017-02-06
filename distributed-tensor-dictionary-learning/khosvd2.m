@@ -1,4 +1,4 @@
-function Dict = khosvd2(noIt, X, Dict, M1, M2, solver, varargin)
+function A_hat = khosvd2(noIt, X, A_hat, M1, M2, solver, varargin)
     % What I suggest is to start from the K-SVD algorithm you have and only 
     % replace the matrix rank-one approximation (SVD-based) by the tensor-based 
     % rank-one approximation (HOSVD-based). If the data is multidimensional, 
@@ -29,18 +29,16 @@ function Dict = khosvd2(noIt, X, Dict, M1, M2, solver, varargin)
     %    M2     = size of A2
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    K = size(Dict,2);
-    
+    K = size(A_hat,2);    
     for it = 1:noIt                                                         % outer loop over iterations        
-        S_hat = sparseapprox(X, Dict, solver, varargin);                    % Step 1: solve sparse recovery problem, i.e., find sparse S_hat such that Y \approx A_hat*S_hat. Use your favorite sparse solver (OMP/MP. BPDN/Lasso etc
-        R = X - Dict * S_hat;                                               % Step 2: update of dictionary                                                                            
+        S_hat = sparseapprox(X, A_hat, solver, varargin);                   % Step 1: solve sparse recovery problem, i.e., find sparse coeficient matrix S_hat such that Y \approx A_hat*S_hat. Use your favorite sparse solver (OMP/MP. BPDN/Lasso etc
+        R = X - A_hat * S_hat;                                              % Step 2: update of dictionary                                                                            
         for k=1:K
-            indexes = find(S_hat(k,:));                                     % for every atom, we find the support, i.e., the training samples where it participates (nonzero elements)
-            if ~isempty(indexes)
-                Ri = R(:,indexes) + Dict(:,k) * S_hat(k,indexes);
-                Kn = size(indexes, 2);
-                
-                % In the K-SVD what follows here is a rank-one matrix approximation via the truncated SVD. We use a rank-one tensor approximation instead:
+            I = find(S_hat(k,:));                                           % for every atom, we find the support, i.e., the training samples where it participates (nonzero elements)
+            if ~isempty(I)
+                Ri = R(:,I) + A_hat(:,k) * S_hat(k,I);
+                % In the K-SVD what follows here is a rank-one MATRIX approximation via the truncated SVD. We use a rank-one TENSOR approximation instead:
+                Kn = size(I, 2);
                 Yn_tensor = permute(reshape(Ri.',[Kn,M2,M1]),[3,2,1]);      % make it a tensor (inverse 3-mode unfolding of Y^T). compute dominant singular vectors:
                 [U1,~] = svd(reshape(Yn_tensor,[M1,M2*Kn]));                % 1-mode unfolding
                 u11 = U1(:,1);                  
@@ -51,9 +49,9 @@ function Dict = khosvd2(noIt, X, Dict, M1, M2, solver, varargin)
                 s111 = u31' * Ri.' * conj(kron(u11,u21));                   % compute top-left-front core value
                                 
                 % rank-one approximation complete. The factors are u11, u21, s111*u31
-                Dict(:,k) = kron(u11,u21);                                  % store results into A and S
-                S_hat(k,indexes) = s111 * u31.';
-                R(:,indexes) = Ri - Dict(:,k) * S_hat(k,indexes);
+                A_hat(:,k) = kron(u11,u21);                                  % store results into A and S
+                S_hat(k,I) = s111 * u31.';
+                R(:,I) = Ri - A_hat(:,k) * S_hat(k,I);
             end
         end
     end

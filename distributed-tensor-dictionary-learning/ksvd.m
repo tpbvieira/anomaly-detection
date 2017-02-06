@@ -1,4 +1,4 @@
-function Dict = ksvd(noIt, X, Dict, solver, varargin)
+function A_hat = ksvd(noIt, X, A_hat, solver, varargin)
     % ...
     %
     % This code is a version of Karl Skretting work.
@@ -11,20 +11,19 @@ function Dict = ksvd(noIt, X, Dict, solver, varargin)
     %   solver      = selected solver, see sparseapprox function
     %   varargin    = additional arguments, see sparseapprox function
     %------------------------------------------------------------------------- 
-    
-    K = size(Dict,2);
-    
+    K = size(A_hat,2);    
     for it = 1:noIt
-        W = sparseapprox(X, Dict, solver, varargin);                        % find weights, using dictionary D
-        R = X - Dict * W; 
+        S_hat = sparseapprox(X, A_hat, solver, varargin);
+        R = X - A_hat * S_hat; 
         for k=1:K
-            I = find(W(k,:));
-            Ri = R(:,I) + Dict(:,k)* W(k,I);
-            [U,S,V] = svds(Ri,1,'L');            
-            Dict(:,k) = U;
-            W(k,I) = S * V';
-            R(:,I) = Ri - Dict(:,k)*W(k,I);
+            I = find(S_hat(k,:));
+            if ~isempty(I)
+                Ri = R(:,I) + A_hat(:,k) * S_hat(k,I);
+                [U,S,V] = svds(Ri,1,'L');
+                A_hat(:,k) = U;
+                S_hat(k,I) = S * V';
+                R(:,I) = Ri - A_hat(:,k) * S_hat(k,I);
+            end
         end
-    end
-    
+    end    
     return
