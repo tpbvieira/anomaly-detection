@@ -1,5 +1,5 @@
 function varargout = dictnormalize(D)
-    % dictnormalize   Normalize and arrange the vectors of a dictionary (frame)
+    % Normalize and arrange the vectors of a dictionary (frame)
     % Note that in addition to set the 2-norm of each column vector to 1
     % the vectors are ordered by 'frequency', i.e. number of zero crossings.
     % If only normalization 

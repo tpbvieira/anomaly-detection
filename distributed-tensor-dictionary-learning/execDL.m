@@ -1,4 +1,4 @@
-function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
+function res = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials, makeFig)
     % executed a selected dictionary learning algorithm to recover a known 
     % dictionary, Random Gaussian dictionary, randomly generated (training)
     % data with added Gaussian noise.
@@ -121,11 +121,12 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
             ', each using ',int2str(noIt),' iterations.']);
 
         % data generation
-        A = dictmake(N, K, 'G');                                                % Generate a dictionary
+        [A, A1, A2] = makedict2(M1, M2, N1, N2, 'G');                           % Generate a seperable dictionary, A = kron(A1,A2)
         X = datamake(A, L, s, snr, 'G');                                        % Generate a random (learning) data set using a given dictionary
-        A_hat = dictnormalize( X(:,floor(0.85 * L - K) + (1:K)) );              % Normalize and arrange the vectors of a initial estimated dictionary 
-        [A_hat1, A_hat2] = krondecomp(A_hat, 4, 5, 5, 10);
+        A_hat = dictnormalize( X(:,floor(0.85 * L - K) + (1:K)) );              % Normalize and arrange the vectors of a initial estimated dictionary        
+        [A_hat1, A_hat2] = krondecomp(A_hat, M1, M2, N1, N2);                   % Make the data separable decomposing the approximation of A_hat and generating new A_hat*
     	A_hat = kron(A_hat1, A_hat2);
+                
         tic;
 
         if (strcmpi(methodChar,'K'))                                            % K-SVD
@@ -137,7 +138,7 @@ function res = execDL(L, N, K, snr, methodChar, s, noIt, nofTrials, makeFig)
         elseif strcmpi(methodChar,'D')                                          % MOD
             A_hat = modDL(noIt, X, A_hat, 'javaORMP', 'tnz',s);
         elseif (strcmpi(methodChar,'O'))                                        % T-MOD
-            A_hat = tmod(noIt, X, A_hat, A_hat1, A_hat2, 'javaORMP', 'tnz',s);
+            A_hat = tmod(noIt, X, A_hat1, A_hat2, 'javaORMP', 'tnz',s);
         elseif strcmpi(methodChar,'M')                                          % ILS-DLA MOD
             A_hat = ilsdla(noIt, X, A_hat, 'javaORMP', 'tnz',s);
         elseif (strcmpi(methodChar,'I'))                                        % ILS-DLA MOD (java)           

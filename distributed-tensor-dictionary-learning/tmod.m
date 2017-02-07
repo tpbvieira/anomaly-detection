@@ -1,4 +1,4 @@
-function A_hat = tmod(noIt, X, A_hat, A_hat1, A_hat2, solver, varargin)
+function A_hat = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% tensor-based Method of Optimized Directions (MOD)                   %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,20 +19,22 @@ function A_hat = tmod(noIt, X, A_hat, A_hat1, A_hat2, solver, varargin)
     [M1,N1] = size(A_hat1);
     [M2,N2] = size(A_hat2);
     [M,T] = size(X);
-    X_t = permute(reshape(X,[T,M2,M1]),[3,2,1]);
-    X_t1 = reshape(X_t,[M1,M2*T]);
-    X_t2 = reshape(permute(X_t,[2,1,3]),[M2,M1*T]);
+    Xt = permute(reshape(X.',[T,M2,M1]),[3,2,1]);    
+    Xt1 = reshape(permute(Xt,[1,3,2]),M1,[]);
+    Xt2 = reshape(permute(Xt,[2,1,3]),M2,[]);
+    I_t = eye(T);
     for it = 1:noIt
         S_hat = sparseapprox(X, kron(A_hat1,A_hat2), solver, varargin);
         
-        S_hat_t = permute(reshape(S_hat,[T,N2,N1]),[3,2,1]);
-        S_hat_t1 = reshape(S_hat_t,[N1,N2*T]);
-        S_hat_t2 = reshape(permute(S_hat_t,[2,1,3]),[N2,N1*T]);
+        St_hat = permute(reshape(S_hat.', [T,N2,N1]), [3,2,1]);
+        St_hat1 = reshape(permute(St_hat,[1,3,2]),N1,[]);
+        St_hat2 = reshape(permute(St_hat,[2,1,3]),N2,[]);
                 
-        A_hat1 = X_t1 * pinv(S_hat_t1 * (kron(A_hat2,noIt)).');
-        A_hat2 = X_t2 * pinv(S_hat_t2 * (kron(noIt,A_hat1)).');
+        A_hat1 = Xt1 * pinv(St_hat1 * (kron(A_hat2,I_t)).');
+        A_hat2 = Xt2 * pinv(St_hat2 * (kron(I_t,A_hat1)).');
         
         A_hat1 = dictnormalize(A_hat1);
         A_hat2 = dictnormalize(A_hat2);
-    end    
+    end
+    A_hat = kron(A_hat1,A_hat2);
     return;
