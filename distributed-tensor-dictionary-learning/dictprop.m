@@ -1,5 +1,5 @@
 function  p = dictprop(D, gap, rad)
-% dictprop        Return properties for a normalized dictionary (frame)
+% Return properties for a normalized dictionary (frame)
 % A struct with some selected properties is returned.
 % betaij is angle between two dictionary columns, d_i and d_j
 %

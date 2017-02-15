@@ -16,16 +16,16 @@ mfile = 'project';
 s = 5;           % sparseness
 snr = 20;        % snr for added noise
 L = 2000;        % number of training vectors to use
-nofTrials = 5;  % at least so many trials should be done
-noIt = 50;      % number of iterations in each trial
+nofTrials = 10;  % at least so many trials should be done
+noIt = 200;      % number of iterations in each trial
 
 % the file where the set of training vectors, X, is stored during design
-N = 20;
-K = 50;
-M1 = 5;
-M2 = 4;
-N1 = 5;
-N2 = 10;
+N = 80;
+K = 200;
+M1 = 10;
+M2 = 8;
+N1 = 20;
+N2 = 5;
 
 fileNameSufix = sprintf('%1i_%li_%li_%li_%li.mat',s,snr,L,nofTrials,noIt);
 
@@ -33,13 +33,13 @@ fileNameSufix = sprintf('%1i_%li_%li_%li_%li.mat',s,snr,L,nofTrials,noIt);
 dataFiles = [
              %['func_K', fileNameSufix] % 'K' = K-SVD,   
              %['func_A', fileNameSufix] % 'A' = AK-SVD,
-             %['func_T', fileNameSufix] % 'T' = K-HOSVD
-             ['func_D', fileNameSufix] % 'D' = MOD,
+             ['func_T', fileNameSufix] % 'T' = K-HOSVD
+             %['func_D', fileNameSufix] % 'D' = MOD,
              ['func_O', fileNameSufix] % 'O' = T-MOD,
              %['func_M', fileNameSufix] % 'M' = ILS-DLA MOD,             
              %['func_I', fileNameSufix] % 'I' = ILS-DLA MOD (java),             
              %['func_B', fileNameSufix] % 'B' = RLS-DLA miniBatch
-             %['func_L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
+             ['func_L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
              ];
          
 colChar = 'brgmyck';
@@ -96,8 +96,8 @@ for i=1:size(dataFiles,1);      % for selected methods for comparison
 end
 
 % plot configuration
-epsName = sprintf('%1i_%li_%li_%li_%li.eps',s,snr,L,nofTrials,noIt);
-pngName = sprintf('%1i_%li_%li_%li_%li.png',s,snr,L,nofTrials,noIt);
+epsName = sprintf('%1i_%li_%li_%li_%li_%li.eps',s,snr,L,nofTrials,noIt, N*K);
+pngName = sprintf('%1i_%li_%li_%li_%li_%li.png',s,snr,L,nofTrials,noIt, N*K);
 h = text(x, y,'Dictionary learning method: ');
 set(h,'BackgroundColor',[1,1,1]);
 title({'Number of dictionary atoms identified, average over the trials.';

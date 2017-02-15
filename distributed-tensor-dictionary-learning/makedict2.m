@@ -35,11 +35,7 @@ function [A, A1, A2] = makedict2(M1, M2, N1, N2, met)
         A1 = randn(M1,N1);
         A2 = randn(M2,N2);
     end
-    
-    % normalize
-    %A1 = A1.*(ones(size(A1,1),1)*(1./sqrt(sum(A1.*A1))));
-    %A2 = A2.*(ones(size(A2,1),1)*(1./sqrt(sum(A2.*A2))));
-    
+   
     A = kron(A1,A2);
     
     return

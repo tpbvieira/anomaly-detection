@@ -1,0 +1,126 @@
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+ 
+execDL: noIt=100, nofTrials=5
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 14.21 seconds used. Indentified 22 atoms out of 50. Mean angle is 24.9057 degrees.
+Estimated finish time is 14-Feb-2017 23:30:01
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 15.30 seconds used. Indentified 25 atoms out of 50. Mean angle is 16.313 degrees.
+Estimated finish time is 14-Feb-2017 23:30:03
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 16.14 seconds used. Indentified 15 atoms out of 50. Mean angle is 23.4161 degrees.
+Estimated finish time is 14-Feb-2017 23:30:06
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 16.58 seconds used. Indentified 10 atoms out of 50. Mean angle is 28.5475 degrees.
+Estimated finish time is 14-Feb-2017 23:30:07
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 14.28 seconds used. Indentified 31 atoms out of 50. Mean angle is 18.8157 degrees.
+Estimated finish time is 14-Feb-2017 23:30:06
+
+res = 
+
+          beta: [50x5 double]
+     nofTrials: 5
+             s: 5
+             N: 20
+             K: 50
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'T'
+        metPar: [1x1 struct]
+        method: 'K-HOSVD'
+
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+ 
+execDL: noIt=100, nofTrials=5
+ 
+execDL: MOD L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 10.04 seconds used. Indentified 1 atoms out of 50. Mean angle is 37.1448 degrees.
+Estimated finish time is 14-Feb-2017 23:30:59
+ 
+execDL: MOD L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 9.48 seconds used. Indentified 8 atoms out of 50. Mean angle is 26.4364 degrees.
+Estimated finish time is 14-Feb-2017 23:30:57
+ 
+execDL: MOD L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 9.02 seconds used. Indentified 1 atoms out of 50. Mean angle is 31.6073 degrees.
+Estimated finish time is 14-Feb-2017 23:30:56
+ 
+execDL: MOD L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 9.67 seconds used. Indentified 6 atoms out of 50. Mean angle is 31.5234 degrees.
+Estimated finish time is 14-Feb-2017 23:30:56
+ 
+execDL: MOD L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 9.66 seconds used. Indentified 0 atoms out of 50. Mean angle is 42.7259 degrees.
+Estimated finish time is 14-Feb-2017 23:30:56
+
+res = 
+
+          beta: [50x5 double]
+     nofTrials: 5
+             s: 5
+             N: 20
+             K: 50
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'D'
+        metPar: [1x1 struct]
+        method: 'MOD'
+
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+ 
+execDL: noIt=100, nofTrials=5
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 138.13 seconds used. Indentified 45 atoms out of 50. Mean angle is 1.8528 degrees.
+Estimated finish time is 14-Feb-2017 23:42:27
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 142.64 seconds used. Indentified 36 atoms out of 50. Mean angle is 12.3009 degrees.
+Estimated finish time is 14-Feb-2017 23:42:38
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 146.26 seconds used. Indentified 22 atoms out of 50. Mean angle is 29.1803 degrees.
+Estimated finish time is 14-Feb-2017 23:42:48
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 144.98 seconds used. Indentified 9 atoms out of 50. Mean angle is 22.2805 degrees.
+Estimated finish time is 14-Feb-2017 23:42:52
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 142.76 seconds used. Indentified 28 atoms out of 50. Mean angle is 23.5909 degrees.
+Estimated finish time is 14-Feb-2017 23:42:51
+
+res = 
+
+          beta: [50x5 double]
+     nofTrials: 5
+             s: 5
+             N: 20
+             K: 50
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'O'
+        metPar: [1x1 struct]
+        method: 'T-MOD'
+
+Printed figure as: .eps
+Printed figure as: .png
+>> 

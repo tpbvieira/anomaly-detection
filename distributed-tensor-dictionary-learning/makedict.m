@@ -1,4 +1,4 @@
-function D = dictmake(N, K, met)
+function D = makedict(N, K, met)
     % Make a random dictionary, iid Gaussian or uniform entries
     % met 'U' (default) should be like Kreutz-Delgado, Engan, et al. in 2003 
     % and Aharon et al. in 2005.

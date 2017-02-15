@@ -1,0 +1,121 @@
+execDL: noIt=100, nofTrials=5
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 23.41 seconds used. Indentified 69 atoms out of 100. Mean angle is 14.9579 degrees.
+Estimated finish time is 14-Feb-2017 23:48:39
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 23.19 seconds used. Indentified 71 atoms out of 100. Mean angle is 15.8867 degrees.
+Estimated finish time is 14-Feb-2017 23:48:39
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 25.04 seconds used. Indentified 66 atoms out of 100. Mean angle is 17.4567 degrees.
+Estimated finish time is 14-Feb-2017 23:48:42
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 24.65 seconds used. Indentified 78 atoms out of 100. Mean angle is 12.093 degrees.
+Estimated finish time is 14-Feb-2017 23:48:42
+ 
+execDL: K-HOSVD L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 25.08 seconds used. Indentified 65 atoms out of 100. Mean angle is 19.2927 degrees.
+Estimated finish time is 14-Feb-2017 23:48:45
+
+res = 
+
+          beta: [100x5 double]
+     nofTrials: 5
+             s: 5
+             N: 40
+             K: 100
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'T'
+        metPar: [1x1 struct]
+        method: 'K-HOSVD'
+
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+ 
+execDL: noIt=100, nofTrials=5
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 330.54 seconds used. Indentified 85 atoms out of 100. Mean angle is 8.0187 degrees.
+Estimated finish time is 15-Feb-2017 00:16:18
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 313.91 seconds used. Indentified 71 atoms out of 100. Mean angle is 22.9095 degrees.
+Estimated finish time is 15-Feb-2017 00:15:41
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 320.45 seconds used. Indentified 95 atoms out of 100. Mean angle is 5.1021 degrees.
+Estimated finish time is 15-Feb-2017 00:15:37
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 312.91 seconds used. Indentified 64 atoms out of 100. Mean angle is 21.8992 degrees.
+Estimated finish time is 15-Feb-2017 00:15:27
+ 
+execDL: T-MOD L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 302.76 seconds used. Indentified 85 atoms out of 100. Mean angle is 7.5053 degrees.
+Estimated finish time is 15-Feb-2017 00:15:10
+
+res = 
+
+          beta: [100x5 double]
+     nofTrials: 5
+             s: 5
+             N: 40
+             K: 100
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'O'
+        metPar: [1x1 struct]
+        method: 'T-MOD'
+
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+ 
+execDL: noIt=100, nofTrials=5
+ 
+execDL: RLS-DLA (Java)L L=2000 snr=20, s=5. Do trial number 1 of 5, each using 100 iterations.
+Trial 1: 13.39 seconds used. Indentified 93 atoms out of 100. Mean angle is 5.9318 degrees.
+Estimated finish time is 15-Feb-2017 00:16:19
+ 
+execDL: RLS-DLA (Java)L L=2000 snr=20, s=5. Do trial number 2 of 5, each using 100 iterations.
+Trial 2: 13.24 seconds used. Indentified 98 atoms out of 100. Mean angle is 4.0857 degrees.
+Estimated finish time is 15-Feb-2017 00:16:18
+ 
+execDL: RLS-DLA (Java)L L=2000 snr=20, s=5. Do trial number 3 of 5, each using 100 iterations.
+Trial 3: 13.09 seconds used. Indentified 94 atoms out of 100. Mean angle is 5.2859 degrees.
+Estimated finish time is 15-Feb-2017 00:16:17
+ 
+execDL: RLS-DLA (Java)L L=2000 snr=20, s=5. Do trial number 4 of 5, each using 100 iterations.
+Trial 4: 12.14 seconds used. Indentified 92 atoms out of 100. Mean angle is 6.4041 degrees.
+Estimated finish time is 15-Feb-2017 00:16:16
+ 
+execDL: RLS-DLA (Java)L L=2000 snr=20, s=5. Do trial number 5 of 5, each using 100 iterations.
+Trial 5: 13.18 seconds used. Indentified 81 atoms out of 100. Mean angle is 9.0094 degrees.
+Estimated finish time is 15-Feb-2017 00:16:16
+
+res = 
+
+          beta: [100x5 double]
+     nofTrials: 5
+             s: 5
+             N: 40
+             K: 100
+          noIt: 100
+             L: 2000
+           snr: 20
+    methodChar: 'L'
+        metPar: [1x1 struct]
+        method: 'RLS-DLA (Java)L'
+
+Printed figure as: .eps
+Printed figure as: .png
+>> 
