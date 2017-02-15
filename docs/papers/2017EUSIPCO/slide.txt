@@ -1,0 +1,25 @@
+Title
+	A Distributed Tensor-based Approach for Multidimensional Dictionary Learning
+
+Problem Formulation
+	Dictionary learning methods have been used to estimate the basis vectors and learn sparse representations of training data [REF]. Likewise, sparse representation in terms of such
+dictionaries has attracted increased interest in solving imaging problems such
+as denoising [14], deblurring [34], and restoration [36], in addition to solving
+tomographic image reconstruction problems [39, 43].
+	dictionary learning is very important. It has been shown that dictionary learning algorithms are able to estimate the basis vectors from a set of training samples. In some applications the dictionary is multidimensional, e.g., when estimating jointly azimuth and elevation in a 2-D direction of arrival (DOA) estimation context. Applications: Denoising, Compression, Classification, Data Decompositio and image processing.
+	There are very good approaches for bidimensional dictionary learning, but these methods does not performs well for multidimensional dictionary learning
+	Methods for multidimensional dictionary learning require more processing time than bidimensional ones and are poor regarding scalability
+	It is necessary to improve the processing time and scalability of Multidimensional Dictionary Learning, in order to be able to apply for big data problems
+	The tensor dictionary learning algorithms are limited by a great amount of computation and convergence difficulties
+Results
+	
+
+
+OBS
+ - Se não for M1 > M2 and N1 > N2, we have better detection hkhosvd não detecta nada
+
+
+References
+	Tensor-based algorithms for learning multidimensional separable dictionaries - ICASSP - 2014
+	Tensor Decompositions and Applications - SIAM review - 2007
+	Distributed Large-Scale Tensor Decomposition - ICASSP - 2014
