@@ -38,11 +38,11 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     % res = ex210('many');                  % special case, see (and edit) code
     %----------------------------------------------------------------------
 
-    mfile = 'execDL';
+    scriptName = 'execDL';
 
     % validate the number of arguments
     if (nargin < 3)
-       error([mfile,': wrong number of arguments, see help.']);
+       error([scriptName,': wrong number of arguments, see help.']);
     end
     if (nargin < 4); s = 5; end;
     if (nargin < 5); noIt = 200; end;
@@ -66,7 +66,7 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     elseif (strcmpi(methodChar,'B'))                                            % 'B' = RLS-DLA miniBatch
         method = 'RLS-MiniBatch';
     else                                                                        % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
-        method = ['RLS-DLA (Java)',methodChar];
+        method = ['RLS-DLA_',methodChar];
     end
 
     % parameters
@@ -82,8 +82,8 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     % outputs
     fileName = [methodChar, sprintf('%1i_%li_%li_%li_%li.mat',s,snr,L,N*K,noIt)];
     results = struct('beta', zeros(K, nofTrials), ...
-                 'times', zeros(nofTrials), ...
-                 'detection', zeros(nofTrials), ...
+                 'times', zeros(nofTrials,1), ...
+                 'detection', zeros(nofTrials,1), ...
                  'nofTrials', nofTrials, ...
                  's',s, ...
                  'N',N, ...
@@ -98,12 +98,14 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     % load previous files and verify if the execution can be avoided
     if exist(fileName,'file')
         oldFile = dir(fileName);
-        disp([mfile,': add to results stored in ', fileName,', (created ', oldFile.date,').']);
+        disp([scriptName,': add to results stored in ', fileName,', (created ', oldFile.date,').']);
         load(fileName);
         trialsDone = results.nofTrials;
         if (nofTrials > 0)
             results.beta = [results.beta, zeros(K, nofTrials)];
-            results.nofTrials = results.nofTrials + nofTrials;
+            results.times = vertcat(results.times, zeros(nofTrials,1));
+            results.detection = vertcat(results.detection, zeros(nofTrials,1));
+            results.nofTrials = trialsDone + nofTrials;
         end
     else
         trialsDone = 0;
@@ -111,13 +113,13 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
 
     % logging
     disp(' ');
-    disp([mfile,': noIt=',int2str(noIt),', nofTrials=',int2str(nofTrials)]);
+    disp([scriptName,': noIt=',int2str(noIt),', nofTrials=',int2str(nofTrials)]);
     
     timestart = now();
     for trial = 1:nofTrials
         % logging
         disp(' ');
-        disp([mfile,': ',method,' L=',int2str(L),' snr=',num2str(snr), ...
+        disp([scriptName,': ',method,' L=',int2str(L),' snr=',num2str(snr), ...
             ', s=',int2str(s), ...
             '. Do trial number ',int2str(trial),' of ',int2str(nofTrials),...
             ', each using ',int2str(noIt),' iterations.']);
@@ -165,12 +167,12 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
         end
 
         execTime = toc;
-        results.times(trial) = execTime;
+        results.times(trialsDone + trial,1) = execTime;
 
         % compare the trained dictionary to the true dictionary
         beta = dictdiff(A_hat, A, 'all-1', 'thabs');
         beta = beta*180/pi;                                                     % degrees
-        results.detection(trial) = sum(beta<betalim);
+        results.detection(trialsDone + trial,1) = sum(beta<betalim);
         disp(['Trial ',int2str(trial), ...
             sprintf(': %.2f seconds used.',execTime), ...
                     ' Indentified ',int2str(results.detection(trial)), ...

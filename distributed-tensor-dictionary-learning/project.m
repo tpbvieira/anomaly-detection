@@ -12,15 +12,17 @@
 % methods
 %----------------------------------------------------------------------
 clc;
+clf;
 clear all;
 set(0,'RecursionLimit',1200)
-mfile = 'project';
-%
+scriptName = 'dictionary_learning';
+
+%% parameters
 s = 5;           % sparseness
 snr = 20;        % snr for added noise
 L = 2000;        % number of training vectors to use
-nofTrials = 5;   % at least so many trials should be done
-noIt = 300;      % number of iterations in each trial
+nofTrials = 34;  % at least so many trials should be done
+noIt = 100;      % number of iterations in each trial
 N = 20;
 K = 50;
 M1 = 5;
@@ -28,13 +30,13 @@ M2 = 4;
 N1 = 10;
 N2 = 5;
 
-% select the methods to compare and define file names
+%% select the methods to compare and define file names
 fileNameInfo = sprintf('%1i_%li_%li_%li_%li',s,snr,L,N*K,noIt);
 fileNameSufix = sprintf('%s.mat',fileNameInfo);
 dataFiles = [
              ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
-             ['T', fileNameSufix] % 'T' = K-HOSVD
-             ['O', fileNameSufix] % 'O' = T-MOD,             
+             %['T', fileNameSufix] % 'T' = K-HOSVD
+             %['O', fileNameSufix] % 'O' = T-MOD,             
              %['K', fileNameSufix] % 'K' = K-SVD,   
              %['D', fileNameSufix] % 'D' = MOD,
              %['A', fileNameSufix] % 'A' = AK-SVD,
@@ -42,74 +44,62 @@ dataFiles = [
              %['I', fileNameSufix] % 'I' = ILS-DLA MOD (java),             
              %['B', fileNameSufix] % 'B' = RLS-DLA miniBatch             
              ];
+numMethods = size(dataFiles,1);
+methodNames = cell(numMethods,1);
 
-% plot configuration
+%% plot configuration
 epsName = sprintf('%1i_%li_%li_%li_%li.eps',s,snr,L,N*K,noIt);
 %pngName = sprintf('%1i_%li_%li_%li_%li.png',s,snr,L,N*K,noIt);
-colChar = 'brgmyck';
-colName = {'Blue', 'Red', 'Green', 'Magenta', 'Yellow', 'Cyan', 'Black'};
+colors = 'brgmyck';                                                         %'Blue', 'Red', 'Green', 'Magenta', 'Yellow', 'Cyan', 'Black'
 degreesRates = [0.25:0.25:10, 10.5:0.5:25];
-clf; 
+confidence = 0.5;                                                           % percentual of trials required to have confidence
 hold on;
 grid on;
-x = 7; y = 2; yPadding = 2;
 
-% for selected methods for comparison
-for i=1:size(dataFiles,1);  
-    
+%% for selected methods for comparison
+for i=1:numMethods;  
     % load or make the data
     if exist(dataFiles(i,:),'file')
         fileName = dir(dataFiles(i,:));
-        disp([mfile,': results of ',dataFiles(i,:),', ',fileName.date,'.']);
-        load(dataFiles(i,:));                                               % load privious results
+        disp([scriptName,': results of ',dataFiles(i,:),' at ',fileName.date,'.']);
+        load(dataFiles(i,:));                                               % try load privious results
         trialsDone = results.nofTrials;
         if results.noIt ~= noIt
-            disp(['  ** OBS : noIt in file is ',int2str(results.noIt),...
-                  ' while wanted (here) noIt is ',int2str(noIt),' **.']);
+            disp(['WARN : Number of iterations in file is ',int2str(results.noIt),...
+                  ' while wanted iterations is ',int2str(noIt),' **.']);
         end
     else
         trialsDone = 0;
-    end
+    end    
+    methodNames{i} = results.method;
     
-    % execute trials for atoms identification
+    % execute remain trials for atoms identification
     if (nofTrials > trialsDone)
-        method = dataFiles(i,1);
-        results = execDL(L, N, K, M1, M2, N1, N2, snr, method, s, noIt, nofTrials-trialsDone, 0);
+        methodChar = dataFiles(i,1);        
+        results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials-trialsDone, 0);
     end
     
-    % prepare data
+    % prepare cumulative atom identificatin per degree rates
     yPos = zeros(size(K,1),1);
     for i1=1:numel(degreesRates);
         yPos(i1) = sum(results.beta(:) < degreesRates(i1));
     end
-    yPos = yPos/results.nofTrials; % simple mean by trials
+    yPos = yPos/results.nofTrials;                                          % simple mean by trials
     
-    % update plot for the current method
-    plot(degreesRates, yPos, [colChar(i), '-']);
-    legend = text(x, y,['   noIt=', int2str(results.noIt),' and nofTrials=', int2str(results.nofTrials)]);
-    set(legend, 'BackgroundColor', [1,1,1]); 
-    y = y+yPadding;
-    I = find(yPos > results.nofTrials);
+    % select identifications that happens in a percentual of trials
+    I = find(yPos > (results.nofTrials * confidence));
     i1 = I(1);
     
-    if ((i1>1) && (yPos(i1) > yPos(i1-1)))
-        xp = degreesRates(i1-1) + (degreesRates(i1)-degreesRates(i1-1))*(y*results.nofTrials - yPos(i1-1))/(yPos(i1)-yPos(i1-1));
-    else
-        xp = degreesRates(i1);
-    end
-    
-    legend = text(x, y,[colName{i},': ',results.method,' snr=',num2str(results.snr),' dB, L=',int2str(results.L)]);
-    set(legend,'BackgroundColor',[1,1,1]);
-    plot([xp,x-0.5], [y,y], [colChar(i),'.-']);
-    y = y+yPadding;
+    % update plot for the current method
+    plot(degreesRates, yPos, colors(i));
 end
 
-% print plot
+%% print plot
 title({'Number of dictionary atoms identified per degrees.'; 'Elements: ';N*K});
 ylabel('Number of identified atoms.');
 xlabel('Required degrees for identification.');
-legend = text(x, y,'Dictionary learning methods: ');
-set(legend,'BackgroundColor',[1,1,1]);
+legend(methodNames, 'Location','SouthEast');
+hold off;
 print( gcf, '-depsc2', epsName );
 disp('Printed figure as: .eps');
 %print( gcf, '-dpng', '-r80', pngName );
