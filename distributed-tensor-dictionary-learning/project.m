@@ -21,24 +21,24 @@ scriptName = 'dictionary_learning';
 s = 5;           % sparseness
 snr = 20;        % snr for added noise
 L = 2000;        % number of training vectors to use
-nofTrials = 34;  % at least so many trials should be done
+nofTrials = 3;  % enought trials to obtain reliable results
 noIt = 100;      % number of iterations in each trial
-N = 20;
-K = 50;
-M1 = 5;
-M2 = 4;
-N1 = 10;
-N2 = 5;
+N = 80;
+K = 200;
+M1 = 10;
+M2 = 8;
+N1 = 20;
+N2 = 10;
 
 %% select the methods to compare and define file names
 fileNameInfo = sprintf('%1i_%li_%li_%li_%li',s,snr,L,N*K,noIt);
 fileNameSufix = sprintf('%s.mat',fileNameInfo);
 dataFiles = [
              ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
-             %['T', fileNameSufix] % 'T' = K-HOSVD
-             %['O', fileNameSufix] % 'O' = T-MOD,             
-             %['K', fileNameSufix] % 'K' = K-SVD,   
-             %['D', fileNameSufix] % 'D' = MOD,
+             ['T', fileNameSufix] % 'T' = K-HOSVD
+             ['O', fileNameSufix] % 'O' = T-MOD,             
+             ['K', fileNameSufix] % 'K' = K-SVD,   
+             ['D', fileNameSufix] % 'D' = MOD,
              %['A', fileNameSufix] % 'A' = AK-SVD,
              %['M', fileNameSufix] % 'M' = ILS-DLA MOD,             
              %['I', fileNameSufix] % 'I' = ILS-DLA MOD (java),             
@@ -52,7 +52,8 @@ epsName = sprintf('%1i_%li_%li_%li_%li.eps',s,snr,L,N*K,noIt);
 %pngName = sprintf('%1i_%li_%li_%li_%li.png',s,snr,L,N*K,noIt);
 colors = 'brgmyck';                                                         %'Blue', 'Red', 'Green', 'Magenta', 'Yellow', 'Cyan', 'Black'
 degreesRates = [0.25:0.25:10, 10.5:0.5:25];
-confidence = 0.5;                                                           % percentual of trials required to have confidence
+confidence = 0.1;                                                           % percentual of trials required to have confidence
+betalim = 8.11;                                                             % Limiar: 1 - d'*dorg < 0.01  ==> |cos(beta)| > 0.01
 hold on;
 grid on;
 
@@ -71,13 +72,13 @@ for i=1:numMethods;
     else
         trialsDone = 0;
     end    
-    methodNames{i} = results.method;
     
     % execute remain trials for atoms identification
     if (nofTrials > trialsDone)
         methodChar = dataFiles(i,1);        
-        results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials-trialsDone, 0);
+        results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials-trialsDone, betalim);
     end
+    methodNames{i} = results.method;
     
     % prepare cumulative atom identificatin per degree rates
     yPos = zeros(size(K,1),1);

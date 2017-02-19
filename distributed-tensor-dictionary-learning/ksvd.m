@@ -2,7 +2,7 @@ function A_hat = ksvd(noIt, X, A_hat, solver, varargin)
     % ...
     %
     % This code is a version of Karl Skretting work.
-    %-------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % parameters:
     %   noIt        = number of iterations
     %   K           = number of observations
@@ -10,7 +10,7 @@ function A_hat = ksvd(noIt, X, A_hat, solver, varargin)
     %   Dict        = dictionary
     %   solver      = selected solver, see sparseapprox function
     %   varargin    = additional arguments, see sparseapprox function
-    %------------------------------------------------------------------------- 
+    %---------------------------------------------------------------------- 
     K = size(A_hat,2);    
     for it = 1:noIt
         S_hat = sparseapprox(X, A_hat, solver, varargin);
