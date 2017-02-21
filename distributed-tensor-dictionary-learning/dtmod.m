@@ -1,4 +1,3 @@
-function A_hat = dtmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% distributed tensor-based Method of Optimized Directions (MOD)   %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,11 +33,31 @@ function A_hat = dtmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     %    solver     = selected solver
     %    varargin	= additional parameters
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    clc;
+    clf;
+    clear all;
+
+    s = 5;
+    snr = 20;
+    L = 500;
+    nofTrials = 1;
+    noIt = 5;
+    I = 8;
+    J = 6;
+    K = 2;
     
-    %% data initialization
-    [M1,N1] = size(A_hat1);
-    [M2,N2] = size(A_hat2);
+    M1 = 4;
+    M2 = 2;
+    N1 = 4;
+    N2 = 3;
+    
+    % data generation
+    [A, A1, A2] = makedict2(M1, M2, N1, N2, 'G');
+    X = datamake(A, L, s, snr, 'G');
+    A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );         % Normalize and arrange the vectors for an initial estimated dictionary        
+    [A_hat1, A_hat2] = krondecomp(A_hat, M1, M2, N1, N2);               % Make the data separable decomposing the approximation of A_hat and generating new A_hat*
     T = size(X,2);
+    
     Xt = permute(reshape(X.',[T,M2,M1]),[3,2,1]);    
     Xt1 = reshape(permute(Xt,[1,3,2]),M1,[]);
     Xt2 = reshape(permute(Xt,[2,1,3]),M2,[]);
@@ -46,7 +65,9 @@ function A_hat = dtmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     
     %% minimize
     for it = 1:noIt
-        S_hat = sparseapprox(X, kron(A_hat1,A_hat2), solver, varargin);
+        A_hat = kron(A_hat1, A_hat2);
+        S_hat = sparseapprox(X, A_hat, 'javaMP', 'tnz',s);
+        size(S_hat)
         
         St_hat = permute(reshape(S_hat.', [T,N2,N1]), [3,2,1]);
         St_hat1 = reshape(permute(St_hat,[1,3,2]),N1,[]);

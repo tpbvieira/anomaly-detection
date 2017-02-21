@@ -20,8 +20,8 @@ scriptName = 'dictionary_learning';
 %% parameters
 s = 5;           % sparseness
 snr = 20;        % snr for added noise
-L = 2000;        % number of training vectors to use
-nofTrials = 3;  % enought trials to obtain reliable results
+L = 500;         % number of training vectors to use
+nofTrials = 3;   % enought trials to obtain reliable results
 noIt = 100;      % number of iterations in each trial
 N = 80;
 K = 200;
