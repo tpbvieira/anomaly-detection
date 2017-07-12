@@ -11,7 +11,6 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     % This code is a version of Karl Skretting work.
     %-------------------------------------------------------------------------
     % parameters:
-    %   res         = a struct which is also stored in 'ex210xsyynn.mat'
     %   L           = number of training vectors to use
     %   N           = number of lines of the file where the set of training vectors, X, is stored during design
     %   K           = number of columns of the file where the set of training vectors, X, is stored during design
@@ -29,6 +28,8 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     %   s           = sparseness, number of non-zero coefficients, default 5 
     %   noIt        = number of iterations to do for each trial, default 200
     %   nofTrials   = number of trials to do, default 1
+	%
+    %   res         = a struct which is also stored in 'ex210xsyynn.mat'
     %-------------------------------------------------------------------------    
     % Exemples:
     % res = ex210(L, snr, methodChar, s, noIt, nofTrials, makeFig);

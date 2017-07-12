@@ -1,4 +1,4 @@
-function A_hat = khosvd2(noIt, X, A_hat, M1, M2, solver, varargin)
+function [A_hat,S_hat] = khosvd(noIt, X, A_hat, M1, M2, solver, varargin)
     % What I suggest is to start from the K-SVD algorithm you have and only 
     % replace the matrix rank-one approximation (SVD-based) by the tensor-based 
     % rank-one approximation (HOSVD-based). If the data is multidimensional, 

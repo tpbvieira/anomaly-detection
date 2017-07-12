@@ -1,4 +1,4 @@
-function A_hat = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
+function [A_hat,S_hat] = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% tensor-based Method of Optimized Directions (MOD)                   %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -37,4 +37,3 @@ function A_hat = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
         A_hat2 = dictnormalize(A_hat2);
     end
     A_hat = kron(A_hat1,A_hat2);
-    return;

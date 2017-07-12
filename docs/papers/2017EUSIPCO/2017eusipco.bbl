@@ -21,6 +21,29 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{tosic2011dictionary}
+I.~Tosic and P.~Frossard, ``Dictionary learning,'' \emph{IEEE Signal Processing
+  Magazine}, vol.~28, no.~2, pp. 27--38, 2011.
+
+\bibitem{zhang2010discriminative}
+Q.~Zhang and B.~Li, ``Discriminative k-svd for dictionary learning in face
+  recognition,'' in \emph{Computer Vision and Pattern Recognition (CVPR), 2010
+  IEEE Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2010, pp.
+  2691--2698.
+
+\bibitem{zhu2016coupled}
+P.~Zhu, Q.~Hu, C.~Zhang, and W.~Zuo, ``Coupled dictionary learning for
+  unsupervised feature selection.'' in \emph{AAAI}, 2016, pp. 2422--2428.
+
+\bibitem{ravishankar2011mr}
+S.~Ravishankar and Y.~Bresler, ``Mr image reconstruction from highly
+  undersampled k-space data by dictionary learning,'' \emph{IEEE transactions
+  on medical imaging}, vol.~30, no.~5, pp. 1028--1041, 2011.
+
+\bibitem{kolda2009tensor}
+T.~G. Kolda and B.~W. Bader, ``Tensor decompositions and applications,''
+  \emph{SIAM review}, vol.~51, no.~3, pp. 455--500, 2009.
+
 \bibitem{roemer2014tensor}
 F.~Roemer, G.~Del~Galdo, and M.~Haardt, ``Tensor-based algorithms for learning
   multidimensional separable dictionaries,'' in \emph{Acoustics, Speech and

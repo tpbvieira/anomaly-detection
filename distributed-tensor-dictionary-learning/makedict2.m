@@ -26,8 +26,8 @@ function [A, A1, A2] = makedict2(M1, M2, N1, N2, met)
 
     % make the generating frame/dictionary
     if met(1)=='U';
-        A1 = 2 * rand(M1,N1) -1;
-        A2 = 2 * rand(M2,N2) -1;
+        A1 = 2 * rand(M1,N1) - 1;
+        A2 = 2 * rand(M2,N2) - 1;
     elseif met(1)=='u';
         A1 = rand(M1,N1);
         A2 = rand(M2,N2);

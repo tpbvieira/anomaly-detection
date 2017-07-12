@@ -1,4 +1,4 @@
-function A_hat = ksvd(noIt, X, A_hat, solver, varargin)
+function [A_hat, S_hat] = ksvd(noIt, X, A_hat, solver, varargin)
     % ...
     %
     % This code is a version of Karl Skretting work.
@@ -25,5 +25,4 @@ function A_hat = ksvd(noIt, X, A_hat, solver, varargin)
                 R(:,I) = Ri - A_hat(:,k) * S_hat(k,I);
             end
         end
-    end    
-    return
+    end

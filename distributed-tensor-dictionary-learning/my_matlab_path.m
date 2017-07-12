@@ -84,7 +84,7 @@ else     % her for PC, Dropbox may be mounted different places
         p = [p0,lower(name)];   
     elseif (strcmpi(name,'java') || strcmpi(name,'javaclasses'))
         p = [p0,'javaclasses'];   
-    elseif strcmpi(name,'maxflow') 
+    elseif strcmpi(name,'maxflow')
         p = [p0,'maxflow-v3.01'];   
     elseif strcmpi(name,'spams') 
         p = [p0,'spams-matlab'];           

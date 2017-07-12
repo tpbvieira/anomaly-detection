@@ -34,15 +34,15 @@ N2 = 10;
 fileNameInfo = sprintf('%1i_%li_%li_%li_%li',s,snr,L,N*K,noIt);
 fileNameSufix = sprintf('%s.mat',fileNameInfo);
 dataFiles = [
-             ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
-             ['T', fileNameSufix] % 'T' = K-HOSVD
-             ['O', fileNameSufix] % 'O' = T-MOD,             
-             ['K', fileNameSufix] % 'K' = K-SVD,   
-             ['D', fileNameSufix] % 'D' = MOD,
-             %['A', fileNameSufix] % 'A' = AK-SVD,
-             %['M', fileNameSufix] % 'M' = ILS-DLA MOD,             
-             %['I', fileNameSufix] % 'I' = ILS-DLA MOD (java),             
-             %['B', fileNameSufix] % 'B' = RLS-DLA miniBatch             
+             ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' =             RLS-DLA (java),
+             ['T', fileNameSufix] % 'T' =                                   K-HOSVD
+             ['O', fileNameSufix] % 'O' =                                   T-MOD,             
+             ['K', fileNameSufix] % 'K' =                                   K-SVD,   
+             ['D', fileNameSufix] % 'D' =                                   MOD,
+             %['A', fileNameSufix] % 'A' =                                  AK-SVD,
+             %['M', fileNameSufix] % 'M' =                                  ILS-DLA MOD,             
+             %['I', fileNameSufix] % 'I' =                                  ILS-DLA MOD (java),             
+             %['B', fileNameSufix] % 'B' =                                  RLS-DLA miniBatch             
              ];
 numMethods = size(dataFiles,1);
 methodNames = cell(numMethods,1);
@@ -63,7 +63,7 @@ for i=1:numMethods;
     if exist(dataFiles(i,:),'file')
         fileName = dir(dataFiles(i,:));
         disp([scriptName,': results of ',dataFiles(i,:),' at ',fileName.date,'.']);
-        load(dataFiles(i,:));                                               % try load privious results
+        load(dataFiles(i,:));                                               % try load previous results
         trialsDone = results.nofTrials;
         if results.noIt ~= noIt
             disp(['WARN : Number of iterations in file is ',int2str(results.noIt),...

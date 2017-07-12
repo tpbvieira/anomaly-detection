@@ -1,7 +1,0 @@
-http://www.springer.com/computer/communication+networks/journal/10723
-http://www.springer.com/computer/communication+networks/journal/10723?detailsPage=pltci_2877866
-
-
-LaTeX macro package When using this package, please activate the format [smallcondensed]. 
-
-The submission should include the original source (including all style files and figures) and a PDF version of the compiled output.
