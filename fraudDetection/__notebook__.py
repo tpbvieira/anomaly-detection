@@ -440,27 +440,31 @@ print("Total of classifications: ", format(len(train_target_unsample)+len(test_t
 
 # ## saving whole data
 print("\n## saving whole data")
-# orig_boxcox
-print("# orig_boxcox")
-data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index=True)
-# boxcox
-print("# boxcox")
-boxcox = data.copy()
-boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index=True)
-# orig
-print("# orig")
-orig = data.copy()
-orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index=True)
-# orig_PCA
-X = PCA().fit_transform(orig.values)
-df = pd.DataFrame(X, index=orig.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index=True)
-# orig_PCA2
-X2 = PCA(n_components=2).fit_transform(orig.values)
-df2 = pd.DataFrame(X2, index=orig.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index=True)
+# origboxcoxData
+print("# origboxcoxData")
+data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origboxcoxData.csv', index=True)
+# boxcoxData
+print("# boxcoxData")
+boxcoxData = data.copy()
+boxcoxData.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
+boxcoxData.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxData.csv', index=True)
+X = PCA().fit_transform(boxcoxData.values)
+df = pd.DataFrame(X, index=boxcoxData.index.values)
+df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataPCA.csv', index=True)
+X2 = PCA(n_components=2).fit_transform(boxcoxData.values)
+df2 = pd.DataFrame(X2, index=boxcoxData.index.values)
+df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataPCA2.csv', index=True)
+# origData
+print("# origData")
+origData = data.copy()
+origData.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
+origData.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origData.csv', index=True)
+X = PCA().fit_transform(origData.values)
+df = pd.DataFrame(X, index=origData.index.values)
+df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataPCA.csv', index=True)
+X2 = PCA(n_components=2).fit_transform(origData.values)
+df2 = pd.DataFrame(X2, index=origData.index.values)
+df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataPCA2.csv', index=True)
 # target
 print("# target")
 target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=True)
@@ -468,27 +472,31 @@ target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=T
 
 # ## saving under sample data
 print("\n## saving under sample data")
-# orig_boxcox_under
-print("# orig_boxcox_under")
-under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox_under.csv', index=True)
-# boxcox_under
-print("# boxcox_under")
-boxcox_under = under_data.copy()
-boxcox_under.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-boxcox_under.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox_under.csv', index=True)
-# orig_under
-print("# orig_under")
-orig_under = under_data.copy()
-orig_under.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-orig_under.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_under.csv', index=True)
-# orig_under_PCA
-X = PCA().fit_transform(orig_under.values)
-df = pd.DataFrame(X, index=orig_under.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_under_PCA.csv', index=True)
-# orig_under_PCA2
-X2 = PCA(n_components=2).fit_transform(orig_under.values)
-df2 = pd.DataFrame(X2, index=orig_under.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_under_PCA2.csv', index=True)
+# origboxcoxDataUnder
+print("# origboxcoxDataUnder")
+under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origboxcoxDataUnder.csv', index=True)
+# boxcoxDataUnder
+print("# boxcoxDataUnder")
+boxcox_under_data = under_data.copy()
+boxcox_under_data.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
+boxcox_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnder.csv', index=True)
+X = PCA().fit_transform(boxcox_under_data.values)
+df = pd.DataFrame(X, index=boxcox_under_data.index.values)
+df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnderPCA.csv', index=True)
+X2 = PCA(n_components=2).fit_transform(boxcox_under_data.values)
+df2 = pd.DataFrame(X2, index=boxcox_under_data.index.values)
+df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnderPCA2.csv', index=True)
+# origDataUnder
+print("# origDataUnder")
+origunder_data = under_data.copy()
+origunder_data.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
+origunder_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnder.csv', index=True)
+X = PCA().fit_transform(origunder_data.values)
+df = pd.DataFrame(X, index=origunder_data.index.values)
+df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnderPCA.csv', index=True)
+X2 = PCA(n_components=2).fit_transform(origunder_data.values)
+df2 = pd.DataFrame(X2, index=origunder_data.index.values)
+df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnderPCA2.csv', index=True)
 # targetUnder
 print("# targetUnder")
 under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/targetUnder.csv', index=True)
