@@ -10,7 +10,9 @@
 # It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
 # For example, here's several helpful packages to load in 
 from __future__ import division
+import os.path
 import warnings
+import time
 import datetime
 import numpy as np  																									# linear algebra
 import pandas as pd  																									# data processing, CSV file I/O (e.g. pd.read_csv)
@@ -23,10 +25,10 @@ from sklearn.decomposition import PCA
 from scipy.stats import skew, boxcox
 from statsmodels.tools import categorical
 from sklearn.model_selection import train_test_split, KFold, cross_val_score, StratifiedKFold, GridSearchCV
-from sklearn.linear_model import LogisticRegression, RandomizedLasso
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLasso
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, \
 	roc_auc_score, roc_curve, classification_report
-
+from sklearn.manifold import TSNE
 from print_feature_ranking import print_feature_ranking
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -398,6 +400,34 @@ print("\n## Whole dataset:")
 data = tmpData.ix[:, tmpData.columns != 'isFraud']
 target = tmpData.ix[:, tmpData.columns == 'isFraud']
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.3, random_state=0)
+
+if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv'):
+	train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv', index=True)
+	train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_target.csv', index=True)
+	fraud_train_indices = train_target[train_target.isFraud == 1].index.values
+	fraud_train_data = train_data.ix[fraud_train_indices, :]
+	fraud_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_data.csv', index=True)
+	fraud_train_target = train_target.ix[fraud_train_indices, :]
+	fraud_train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_target.csv', index=True)
+	normal_train_indices = train_target[train_target.isFraud == 0].index
+	normal_train_data = train_data.ix[normal_train_indices, :]
+	normal_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_data.csv', index=True)
+	normal_train_target = train_target.ix[normal_train_indices, :]
+	normal_train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_target.csv', index=True)
+
+	test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_data.csv', index=True)
+	test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_target.csv', index=True)
+	fraud_test_indices = test_target[test_target.isFraud == 1].index.values
+	fraud_test_data = test_data.ix[fraud_test_indices, :]
+	fraud_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_data.csv', index=True)
+	fraud_test_target = test_target.ix[fraud_test_indices, :]
+	fraud_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_target.csv', index=True)
+	normal_test_indices = test_target[test_target.isFraud == 0].index
+	normal_test_data = test_data.ix[normal_test_indices, :]
+	normal_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_data.csv', index=True)
+	normal_test_target = test_target.ix[normal_test_indices, :]
+	normal_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_target.csv', index=True)
+
 print("Number transactions train dataset: ", format(len(train_data), ',d'))
 print("Number transactions test dataset: ", format(len(test_data), ',d'))
 print("Total number of transactions: ", format(len(train_data)+len(test_data), ',d'))
@@ -417,94 +447,162 @@ random_normal_indices = np.random.choice(normal_indices, number_fraud_records, r
 random_normal_indices = np.array(random_normal_indices)
 # Appending the 2 indices
 under_indices = np.concatenate([fraud_indices, random_normal_indices])
-under_data = tmpData.iloc[under_indices, :]
-under_data = under_data.ix[:, under_data.columns != 'isFraud']											# not isFraud column, only data
-under_target = under_data.ix[:, under_data.columns == 'isFraud']	 									# only isFraud column
+under_sample_data = tmpData.iloc[under_indices, :]
+under_data = under_sample_data.ix[:, under_sample_data.columns != 'isFraud']												# not isFraud column, only data
+under_target = under_sample_data.ix[:, under_sample_data.columns == 'isFraud']	 											# only isFraud column
 # Showing ratio
 print("\n## Fraud Ratio (TRANSFER and CASH_OUT) after **Data under sample**: ")
-print("% of normal transactions: ", len(under_data[under_data.isFraud == 0])/len(under_data))
-print("% of fraud transactions: ", len(under_data[under_data.isFraud == 1])/len(under_data))
-print("Total number of transactions in resampled data: ", len(under_data))
+print("% of normal transactions: ", len(under_sample_data[under_sample_data.isFraud == 0])/len(under_sample_data))
+print("% of fraud transactions: ", len(under_sample_data[under_sample_data.isFraud == 1])/len(under_sample_data))
+print("Total number of transactions in resampled data: ", len(under_sample_data))
 
 
 # Undersampled dataset
 print("\n## Undersampled dataset:")
-train_data_unsample, test_data_unsample, train_target_unsample, test_target_unsample = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
-print("Number transactions train dataset: ", format(len(train_data_unsample), ',d'))
-print("Number transactions test dataset: ", format(len(test_data_unsample), ',d'))
-print("Total number of transactions: ", format(len(train_data_unsample)+len(test_data_unsample), ',d'))
-print("Number transactions train classifications: ", format(len(train_target_unsample), ',d'))
-print("Number transactions test classifications: ", format(len(test_target_unsample), ',d'))
-print("Total of classifications: ", format(len(train_target_unsample)+len(test_target_unsample), ',d'))
+train_under_data, test_under_data, train_under_target, test_under_target = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
+if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv'):
+	train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv', index=True)
+	train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_target.csv', index=True)
+	fraud_train_under_indices = train_under_target[train_under_target.isFraud == 1].index.values
+	fraud_train_under_data = train_under_data.ix[fraud_train_under_indices, :]
+	fraud_train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_under_data.csv', index=True)
+	fraud_train_under_target = train_under_target.ix[fraud_train_under_indices, :]
+	fraud_train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_under_target.csv', index=True)
+	normal_train_under_indices = train_under_target[train_under_target.isFraud == 0].index
+	normal_train_under_data = train_under_data.ix[normal_train_indices, :]
+	normal_train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_under_data.csv', index=True)
+	normal_train_under_target = train_under_target.ix[normal_train_under_indices, :]
+	normal_train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_under_target.csv', index=True)
+
+	test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_data.csv', index=True)
+	test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_target.csv', index=True)
+	fraud_test_under_indices = test_under_target[test_under_target.isFraud == 1].index.values
+	fraud_test_under_data = test_under_data.ix[fraud_test_under_indices, :]
+	fraud_test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_under_data.csv', index=True)
+	fraud_test_under_target = test_under_target.ix[fraud_test_under_indices, :]
+	fraud_test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_under_target.csv', index=True)
+	normal_test_under_indices = test_under_target[test_under_target.isFraud == 0].index
+	normal_test_under_data = test_under_data.ix[normal_test_under_indices, :]
+	normal_test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_under_data.csv', index=True)
+	normal_test_under_target = test_under_target.ix[normal_test_under_indices, :]
+	normal_test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_under_target.csv', index=True)
+
+print("Number transactions train dataset: ", format(len(train_under_data), ',d'))
+print("Number transactions test dataset: ", format(len(test_under_data), ',d'))
+print("Total number of transactions: ", format(len(train_under_data)+len(test_under_data), ',d'))
+print("Number transactions train classifications: ", format(len(train_under_target), ',d'))
+print("Number transactions test classifications: ", format(len(test_under_target), ',d'))
+print("Total of classifications: ", format(len(train_under_target)+len(test_under_target), ',d'))
 
 
-# ## saving whole data
-print("\n## saving whole data")
-# origboxcoxData
-print("# origboxcoxData")
-data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origboxcoxData.csv', index=True)
-# boxcoxData
-print("# boxcoxData")
-boxcoxData = data.copy()
-boxcoxData.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-boxcoxData.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxData.csv', index=True)
-X = PCA().fit_transform(boxcoxData.values)
-df = pd.DataFrame(X, index=boxcoxData.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataPCA.csv', index=True)
-X2 = PCA(n_components=2).fit_transform(boxcoxData.values)
-df2 = pd.DataFrame(X2, index=boxcoxData.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataPCA2.csv', index=True)
-# origData
-print("# origData")
-origData = data.copy()
-origData.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-origData.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origData.csv', index=True)
-X = PCA().fit_transform(origData.values)
-df = pd.DataFrame(X, index=origData.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataPCA.csv', index=True)
-X2 = PCA(n_components=2).fit_transform(origData.values)
-df2 = pd.DataFrame(X2, index=origData.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataPCA2.csv', index=True)
-# target
-print("# target")
-target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=True)
+if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv'):
+	# ## saving whole data
+	print("\n## saving whole data")
+	# orig_boxcox
+	print("# orig_boxcox")
+	data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index=True)
+	# boxcox
+	print("# boxcox")
+	boxcox = data.copy()
+	boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
+	boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index=True)
+	# orig
+	print("# orig")
+	orig = data.copy()
+	orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
+	orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index=True)
+	# target
+	print("# target")
+	target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=True)
+	# orig_PCA
+	X = PCA().fit_transform(orig.values)
+	df = pd.DataFrame(X, index=orig.index.values)
+	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index=True)
+	# orig_PCA2
+	X2 = PCA(n_components=2).fit_transform(orig.values)
+	df2 = pd.DataFrame(X2, index=orig.index.values)
+	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index=True)
+else:
+	data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index_col=0)
+	boxcox = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index_col=0)
+	orig = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index_col=0)
+	target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index_col=0)
+	orig_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index_col=0)
+	orig_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index_col=0)
+# ## orig_tsne
+# randomSeed = 13204
+# X = TSNE(n_components=len(orig.columns), random_state=randomSeed).fit_transform(orig.values)
+# df = pd.DataFrame(X, index=orig.index.values)
+# df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_TSNE.csv', index=True)
+# X2 = TSNE(n_components=2, random_state=randomSeed).fit_transform(orig.values)
+# df2 = pd.DataFrame(X2, index=orig.values)
+# df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_TSNE2.csv', index=True)
 
 
-# ## saving under sample data
-print("\n## saving under sample data")
-# origboxcoxDataUnder
-print("# origboxcoxDataUnder")
-under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origboxcoxDataUnder.csv', index=True)
-# boxcoxDataUnder
-print("# boxcoxDataUnder")
-boxcox_under_data = under_data.copy()
-boxcox_under_data.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-boxcox_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnder.csv', index=True)
-X = PCA().fit_transform(boxcox_under_data.values)
-df = pd.DataFrame(X, index=boxcox_under_data.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnderPCA.csv', index=True)
-X2 = PCA(n_components=2).fit_transform(boxcox_under_data.values)
-df2 = pd.DataFrame(X2, index=boxcox_under_data.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcoxDataUnderPCA2.csv', index=True)
-# origDataUnder
-print("# origDataUnder")
-origunder_data = under_data.copy()
-origunder_data.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-origunder_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnder.csv', index=True)
-X = PCA().fit_transform(origunder_data.values)
-df = pd.DataFrame(X, index=origunder_data.index.values)
-df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnderPCA.csv', index=True)
-X2 = PCA(n_components=2).fit_transform(origunder_data.values)
-df2 = pd.DataFrame(X2, index=origunder_data.index.values)
-df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/origDataUnderPCA2.csv', index=True)
-# targetUnder
-print("# targetUnder")
-under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/targetUnder.csv', index=True)
+if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv'):
+	# ## saving under sample data
+	print("\n## saving under sample data")
+	# ## under_orig_boxcox
+	print("# under_orig_boxcox")
+	under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index=True)
+	# ## under_boxcox
+	print("# under_boxcox")
+	under_boxcox = under_data.copy()
+	under_boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
+	under_boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index=True)
+	# ## under_orig
+	print("# under_orig")
+	under_orig = under_data.copy()
+	under_orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
+	under_orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index=True)
+	# ## under_target
+	print("# under_target")
+	under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index=True)
+	# ## under_orig_PCA
+	X = PCA().fit_transform(under_orig.values)
+	df = pd.DataFrame(X, index=under_orig.index.values)
+	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index=True)
+	# ## under_orig_PCA2
+	X2 = PCA(n_components=2).fit_transform(under_orig.values)
+	df2 = pd.DataFrame(X2, index=under_orig.index.values)
+	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index=True)
+else:
+	# ## loading under sample data
+	print("\n## loading under sample data")
+	under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index_col=0)
+	under_boxcox = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index_col=0)
+	under_orig = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index_col=0)
+	under_target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index_col=0)
+	under_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index_col=0)
+	under_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index_col=0)
+# ## under_tsne
+# randomSeed = 13204
+# X = TSNE(n_components=len(under_orig.columns), random_state=randomSeed).fit_transform(under_orig.values)
+# df = pd.DataFrame(X, index=under_orig.index.values)
+# df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_TSNE.csv', index=True)
+# X2 = TSNE(n_components=2, random_state=randomSeed).fit_transform(under_orig.values)
+# df2 = pd.DataFrame(X2, index=under_orig.values)
+# df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_TSNE2.csv', index=True)
 
 
-# ToDo: t-SNE
-# ToDo: Sparse Coding
-# ToDo: Denoising from dictionar learning
+# # ToDo: Sparse Coding, with tunning of alpha (2 and 5), iterations (100 and 500), dictSize (100 and colmnNum)
+# # ToDo: Denoising from dictionar learning
+# miniBatch = MiniBatchDictionaryLearning(n_components=10, alpha=5, n_iter=100)
+# dictionary = miniBatch.fit(data.values).components_
+# sparseCode = miniBatch.transform(data.values)
+# denoised = np.dot(sparseCode, dictionary)
+# sparseCodedf = pd.DataFrame(sparseCode, index=data.index.values)
+# denoiseddf = pd.DataFrame(denoised, index=data.index.values)
+# sparseCodedf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/sparse_a5_c10_it100.csv', index=True)
+# denoiseddf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/denoised_a5_c10_it100.csv', index=True)
+# miniBatch = MiniBatchDictionaryLearning(n_components=10, alpha=5, n_iter=100)
+# dictionary = miniBatch.fit(under_data.values).components_
+# sparseCode = miniBatch.transform(under_data.values)
+# denoised = np.dot(sparseCode, dictionary)
+# sparseCodedf = pd.DataFrame(sparseCode, index=under_data.index.values)
+# denoiseddf = pd.DataFrame(denoised, index=under_data.index.values)
+# sparseCodedf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/underSparse_a5_c10_it100.csv', index=True)
+# denoiseddf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/underDenoised_a5_c10_it100.csv', index=True)
 
 
 # ## 3. Logistic regression classifier #################################################################################
@@ -516,100 +614,115 @@ under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/targetUnder.cs
 # due to the imbalance of the data, many observations could be predicted as False Negatives. **Recall** captures this.
 #######################################################################################################################
 
-# Performing best parameter estimation
-print("\n## Performing best parameter estimation")
-c_params = np.array([100, 10, 1, 0.1, 0.01, 0.001])
-k_fold = 5
-fold = KFold(len(train_target_unsample), n_folds=5, shuffle=True, random_state=777)
+# Performing parameter estimation [LogisticRegression and GridSearchCV]
+print("\n## Performing parameter estimation [LogisticRegression and GridSearchCV]")
+start_time = time.time()
+fold = KFold(n_splits=5, shuffle=True, random_state=777)
 grid = {
-	'C': np.power(10.0, np.arange(-10, 10))
-	, 'solver': ['newton-cg']
+	'C': np.array([100, 10, 1, 0.1, 0.01, 0.001]),
+	'solver': ['newton-cg']
 }
-clf = LogisticRegression(penalty='l2', random_state=777, max_iter=10000, tol=10)
-gs = GridSearchCV(clf, grid, scoring='roc_auc', cv=fold)
-gs.fit(X, y)
-print ('# gs.best_score_:', gs.best_score_)
+lr = LogisticRegression(penalty='l2', random_state=777, max_iter=10000, tol=10)
+gs = GridSearchCV(lr, grid, scoring='roc_auc', cv=fold)
+gs.fit(train_under_data, train_under_target)
+print ('# exec_time:', time.time() - start_time)
+print ('# best_score_:', gs.best_score_)
+print ('# best_params_:', gs.best_params_)
 
 
+# Performing parameter estimation [LogisticRegressionCV]
+print("\n## Performing parameter estimation [LogisticRegressionCV]")
+start_time = time.time()
+lrcv = LogisticRegressionCV(
+	Cs=list(np.power(10.0, np.arange(-10, 10))),
+	penalty='l2',
+	scoring='roc_auc',
+	cv=fold,
+	random_state=777,
+	max_iter=10000,
+	fit_intercept=True,
+	solver='newton-cg',
+	tol=10
+)
+lrcv.fit(train_under_data, train_under_target)
+print ('# exec_time:', time.time() - start_time)
+print ('# max_auc_roc:', lrcv.scores_[1].mean(axis=0).max())
+print ('# C_:', lrcv.C_)
+best_c = lrcv.C_[0]
+# best_c = 100
 
-
-# best_c = printing_kfold_scores(train_data_unsample, train_target_unsample, k_fold, c_param_range)
-best_c = 1.0
-grid = GridSearchCV(estimator=model, param_grid=dict(alpha=alphas))
-grid.fit(dataset.data, dataset.target)
-print(grid)
-# summarize the results of the grid search
-print(grid.best_score_)
-print(grid.best_estimator_.alpha)
-
-# Perfoming LogisticRegression from undersample/undersample
-print("\n## Perfoming LogisticRegression from train=undersample and predict=undersample")
+# Perfoming LogisticRegression [train=undersample and predict=undersample]
+print("\n## Perfoming LogisticRegression [train=undersample and predict=undersample]")
 lr = LogisticRegression(C=best_c, penalty='l1')
-lr.fit(train_data_unsample, train_target_unsample.values.ravel())
-traintarget_pred_unsample = lr.predict(test_data_unsample.values)
-# Compute confusion matrix
-print("\n## Plot confusion matrix to test isFraud")
-cnf_matrix = confusion_matrix(test_target_unsample, traintarget_pred_unsample)
-print("# Recall metric in the testing dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-# Plot non-normalized confusion matrix
-# print("\n## Plot non-normalized confusion matrix to test isFraud")
-# target_names = [0,1]
+lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
+predicted_unsample = lr.predict(test_under_data.values)
+# confusion matrix
+print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
+cnf_matrix = confusion_matrix(test_under_target, predicted_unsample)
+print("# Recall metric for undersample dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+target_names = [0,1]
 # plt.figure()
-# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion matrix')
+# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 # plt.show()
-
-
-# Perfoming LogisticRegression from undersample/complete
-print("\n## Perfoming LogisticRegression from train=undersample and predict=complete")
-lr = LogisticRegression(C=best_c, penalty='l1')
-lr.fit(train_data_unsample, train_target_unsample.values.ravel())
-traintarget_pred = lr.predict(test_data.values)
-# Compute confusion matrix
-cnf_matrix = confusion_matrix(test_target, traintarget_pred)
-np.set_printoptions(precision=2)
-print("# Recall metric in the testing dataset: ", cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1]))
-# Plot non-normalized confusion matrix
-# target_names = [0,1]
-# plt.figure()
-# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion matrix')
-# plt.show()
-
-
-# # ROC CURVE
-# print("\n## ROC Curve")
-# lr = LogisticRegression(C=best_c, penalty='l1')
-# traintarget_pred_unsample_score = lr.fit(train_data_unsample, train_target_unsample.values.ravel()).
-# decision_function(test_data_unsample.values)
-# fpr, tpr, thresholds = roc_curve(test_target_unsample.values.ravel(), traintarget_pred_unsample_score)
-# roc_auc = auc(fpr,tpr)
-# # Plot ROC
-# plt.title('Receiver Operating Characteristic')
-# plt.plot(fpr, tpr, 'b',label='AUC = %0.2f'% roc_auc)
+# ROC CURVE
+predicted_unsample_score = lr_fit.decision_function(test_under_data.values)
+fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_unsample_score)
+roc_auc = auc(fpr, tpr)
+print("# ROC Curve:", roc_auc)
+# plt.title('ROC Curve [train=undersample and predict=undersample]')
+# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 # plt.legend(loc='lower right')
-# plt.plot([0,1],[0,1],'r--')
-# plt.xlim([-0.1,1.0])
-# plt.ylim([-0.1,1.01])
+# plt.plot([0, 1], [0, 1], 'r--')
+# plt.xlim([-0.1, 1.0])
+# plt.ylim([-0.1, 1.01])
 # plt.ylabel('True Positive Rate')
 # plt.xlabel('False Positive Rate')
 # plt.show()
 
 
-# LogisticRegression results
-print("\n## LogisticRegression results")
-print("# estimator:")
-print(lr)
-print("# intercept:")
-print(lr.intercept_)
-print("# coefficient:")
-print(lr.coef_)
-print("# labels:")
-print(data.columns.tolist())
+# Perfoming LogisticRegression [train=undersample and predict=complete]
+print("\n## Perfoming LogisticRegression [train=undersample and predict=complete]")
+predicted = lr.predict(test_data.values)
+# Compute confusion matrix
+print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
+cnf_matrix = confusion_matrix(test_target, predicted)
+print("# Recall metric for whole dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+target_names = [0, 1]
+# plt.figure()
+# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
+# plt.show()
+# ROC CURVE
+predicted_score = lr_fit.decision_function(test_data.values)
+fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
+roc_auc = auc(fpr, tpr)
+print("# ROC Curve:", roc_auc)
+# plt.title('ROC Curve [train=undersample and predict=complete]')
+# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
+# plt.legend(loc='lower right')
+# plt.plot([0, 1], [0, 1], 'r--')
+# plt.xlim([-0.1, 1.0])
+# plt.ylim([-0.1, 1.01])
+# plt.ylabel('True Positive Rate')
+# plt.xlabel('False Positive Rate')
+# plt.show()
 
 
-# Feature ranking
-# stability selection. In short, features selected more often are considered good features.
-print('\n## Feature Ranking')
-print_feature_ranking(train_data_unsample, train_target_unsample.values.ravel(), data.columns.tolist(), lr, "LogReg")
+# ## LogisticRegression results
+# print("\n## LogisticRegression results:")
+# print("# estimator:")
+# print(lr)
+# print("# intercept:")
+# print(lr.intercept_)
+# print("# coefficient:")
+# print(lr.coef_)
+# print("# labels:")
+# print(data.columns.tolist())
+
+
+# ## Feature ranking
+# print('\n## Feature Ranking')
+# print_feature_ranking(train_under.values, train_under_target.values.ravel(), data.columns.tolist(), lr, "LogReg")
+
 
 ########################################################################################################################
 
