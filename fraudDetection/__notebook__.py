@@ -26,8 +26,7 @@ from scipy.stats import skew, boxcox
 from statsmodels.tools import categorical
 from sklearn.model_selection import train_test_split, KFold, cross_val_score, StratifiedKFold, GridSearchCV
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLasso
-from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, \
-	roc_auc_score, roc_curve, classification_report
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, roc_auc_score, roc_curve, classification_report, average_precision_score
 from sklearn.manifold import TSNE
 from print_feature_ranking import print_feature_ranking
 
@@ -614,61 +613,61 @@ else:
 # due to the imbalance of the data, many observations could be predicted as False Negatives. **Recall** captures this.
 #######################################################################################################################
 
-# Performing parameter estimation [LogisticRegression and GridSearchCV]
-print("\n## Performing parameter estimation [LogisticRegression and GridSearchCV]")
-start_time = time.time()
-fold = KFold(n_splits=5, shuffle=True, random_state=777)
-grid = {
-	'C': np.array([100, 10, 1, 0.1, 0.01, 0.001]),
-	'solver': ['newton-cg']
-}
-lr = LogisticRegression(penalty='l2', random_state=777, max_iter=10000, tol=10)
-gs = GridSearchCV(lr, grid, scoring='roc_auc', cv=fold)
-gs.fit(train_under_data, train_under_target)
-print ('# exec_time:', time.time() - start_time)
-print ('# best_score_:', gs.best_score_)
-print ('# best_params_:', gs.best_params_)
+# # Performing parameter estimation [LogisticRegression and GridSearchCV]
+# print("\n## Performing parameter estimation [LogisticRegression and GridSearchCV]")
+# start_time = time.time()
+# fold = KFold(n_splits=5, shuffle=True, random_state=777)
+# grid = {
+# 	'C': np.array([100, 10, 1, 0.1, 0.01, 0.001]),
+# 	'solver': ['newton-cg']
+# }
+# lr = LogisticRegression(penalty='l2', random_state=777, max_iter=10000, tol=10)
+# gs = GridSearchCV(lr, grid, scoring='roc_auc', cv=fold)
+# gs.fit(train_under_data, train_under_target)
+# print ('# exec_time:', time.time() - start_time)
+# print ('# best_score_:', gs.best_score_)
+# print ('# best_params_:', gs.best_params_)
 
 
-# Performing parameter estimation [LogisticRegressionCV]
-print("\n## Performing parameter estimation [LogisticRegressionCV]")
-start_time = time.time()
-lrcv = LogisticRegressionCV(
-	Cs=list(np.power(10.0, np.arange(-10, 10))),
-	penalty='l2',
-	scoring='roc_auc',
-	cv=fold,
-	random_state=777,
-	max_iter=10000,
-	fit_intercept=True,
-	solver='newton-cg',
-	tol=10
-)
-lrcv.fit(train_under_data, train_under_target)
-print ('# exec_time:', time.time() - start_time)
-print ('# max_auc_roc:', lrcv.scores_[1].mean(axis=0).max())
-print ('# C_:', lrcv.C_)
-best_c = lrcv.C_[0]
-# best_c = 100
+# # Performing parameter estimation [LogisticRegressionCV]
+# print("\n## Performing parameter estimation [LogisticRegressionCV]")
+# start_time = time.time()
+# lrcv = LogisticRegressionCV(
+# 	Cs=list(np.power(10.0, np.arange(-10, 10))),
+# 	penalty='l2',
+# 	scoring='roc_auc',
+# 	cv=fold,
+# 	random_state=777,
+# 	max_iter=10000,
+# 	fit_intercept=True,
+# 	solver='newton-cg',
+# 	tol=10
+# )
+# lrcv.fit(train_under_data, train_under_target)
+# print ('# exec_time:', time.time() - start_time)
+# print ('# max_auc_roc:', lrcv.scores_[1].mean(axis=0).max())
+# print ('# C_:', lrcv.C_)
+# best_c = lrcv.C_[0]
+best_c = 100
 
 # Perfoming LogisticRegression [train=undersample and predict=undersample]
-print("\n## Perfoming LogisticRegression [train=undersample and predict=undersample]")
+print("\n## [train=undersample, predict=undersample]")
 lr = LogisticRegression(C=best_c, penalty='l1')
 lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
-predicted_unsample = lr.predict(test_under_data.values)
+test_under_predicted = lr.predict(test_under_data.values)
 # confusion matrix
-print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
-cnf_matrix = confusion_matrix(test_under_target, predicted_unsample)
-print("# Recall metric for undersample dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-target_names = [0,1]
+#print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
+cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
+print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+# target_names = [0,1]
 # plt.figure()
 # plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 # plt.show()
-# ROC CURVE
+# # ROC CURVE
 predicted_unsample_score = lr_fit.decision_function(test_under_data.values)
 fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_unsample_score)
 roc_auc = auc(fpr, tpr)
-print("# ROC Curve:", roc_auc)
+print("# ROC_AUC: {0:.4f}".format(roc_auc))
 # plt.title('ROC Curve [train=undersample and predict=undersample]')
 # plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 # plt.legend(loc='lower right')
@@ -681,13 +680,13 @@ print("# ROC Curve:", roc_auc)
 
 
 # Perfoming LogisticRegression [train=undersample and predict=complete]
-print("\n## Perfoming LogisticRegression [train=undersample and predict=complete]")
-predicted = lr.predict(test_data.values)
+print("\n## [train=undersample and predict=complete]")
+test_predicted = lr.predict(test_data.values)
 # Compute confusion matrix
-print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
-cnf_matrix = confusion_matrix(test_target, predicted)
-print("# Recall metric for whole dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-target_names = [0, 1]
+# print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
+cnf_matrix = confusion_matrix(test_target, test_predicted)
+print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+# target_names = [0, 1]
 # plt.figure()
 # plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 # plt.show()
@@ -695,7 +694,7 @@ target_names = [0, 1]
 predicted_score = lr_fit.decision_function(test_data.values)
 fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 roc_auc = auc(fpr, tpr)
-print("# ROC Curve:", roc_auc)
+print("# ROC_AUC: {0:.4f}".format(roc_auc))
 # plt.title('ROC Curve [train=undersample and predict=complete]')
 # plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 # plt.legend(loc='lower right')

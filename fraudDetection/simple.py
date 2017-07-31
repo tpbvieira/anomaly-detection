@@ -18,6 +18,7 @@ import matplotlib.cm as cm
 import seaborn as sns
 import itertools
 import time
+from itertools import cycle
 from sklearn import preprocessing
 from scipy.stats import skew, boxcox
 from statsmodels.tools import categorical
@@ -25,8 +26,7 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV, cross_val_score, StratifiedKFold
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLasso
-from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, \
-	roc_auc_score, roc_curve, classification_report
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, roc_auc_score, roc_curve, classification_report, average_precision_score
 from sklearn.decomposition import MiniBatchDictionaryLearning
 from mpl_toolkits.mplot3d import Axes3D
 from print_feature_ranking import print_feature_ranking
@@ -255,23 +255,23 @@ best_c = 100
 
 
 # Perfoming LogisticRegression [train=undersample and predict=undersample]
-print("\n## Perfoming LogisticRegression [train=undersample and predict=undersample]")
+print("\n## [train=undersample, predict=undersample]")
 lr = LogisticRegression(C=best_c, penalty='l1')
 lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
-predicted_unsample = lr.predict(test_under_data.values)
+test_under_predicted = lr.predict(test_under_data.values)
 # confusion matrix
-print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
-cnf_matrix = confusion_matrix(test_under_target, predicted_unsample)
-print("# Recall metric for undersample dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-target_names = [0,1]
+#print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
+cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
+print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+# target_names = [0,1]
 # plt.figure()
 # plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 # plt.show()
-# ROC CURVE
+# # ROC CURVE
 predicted_unsample_score = lr_fit.decision_function(test_under_data.values)
 fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_unsample_score)
 roc_auc = auc(fpr, tpr)
-print("# ROC Curve:", roc_auc)
+print("# ROC_AUC: {0:.4f}".format(roc_auc))
 # plt.title('ROC Curve [train=undersample and predict=undersample]')
 # plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 # plt.legend(loc='lower right')
@@ -282,15 +282,36 @@ print("# ROC Curve:", roc_auc)
 # plt.xlabel('False Positive Rate')
 # plt.show()
 
+# Compute Precision-Recall and plot curve
+colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
+lw = 2
+precision = dict()
+recall = dict()
+average_precision = dict()
+n_classes = test_under_target.shape[1]
+for i in range(n_classes):
+    precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_unsample_score)
+    average_precision[i] = average_precision_score(test_under_target, predicted_unsample_score)
+# Plot Precision-Recall curve
+plt.clf()
+plt.plot(recall[0], precision[0], lw=lw, color='navy', label='Precision-Recall curve')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+plt.ylim([0.0, 1.05])
+plt.xlim([0.0, 1.0])
+plt.title('Precision-Recall example: AUC={0:0.4f}'.format(average_precision[0]))
+plt.legend(loc="lower left")
+plt.show()
+
 
 # Perfoming LogisticRegression [train=undersample and predict=complete]
-print("\n## Perfoming LogisticRegression [train=undersample and predict=complete]")
-predicted = lr.predict(test_data.values)
+print("\n## [train=undersample and predict=complete]")
+test_predicted = lr.predict(test_data.values)
 # Compute confusion matrix
-print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
-cnf_matrix = confusion_matrix(test_target, predicted)
-print("# Recall metric for whole dataset: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-target_names = [0, 1]
+# print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
+cnf_matrix = confusion_matrix(test_target, test_predicted)
+print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+# target_names = [0, 1]
 # plt.figure()
 # plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 # plt.show()
@@ -298,7 +319,7 @@ target_names = [0, 1]
 predicted_score = lr_fit.decision_function(test_data.values)
 fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 roc_auc = auc(fpr, tpr)
-print("# ROC Curve:", roc_auc)
+print("# ROC_AUC: {0:.4f}".format(roc_auc))
 # plt.title('ROC Curve [train=undersample and predict=complete]')
 # plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 # plt.legend(loc='lower right')
@@ -308,7 +329,6 @@ print("# ROC Curve:", roc_auc)
 # plt.ylabel('True Positive Rate')
 # plt.xlabel('False Positive Rate')
 # plt.show()
-
 
 # ## LogisticRegression results
 # print("\n## LogisticRegression results:")
@@ -325,7 +345,6 @@ print("# ROC Curve:", roc_auc)
 # ## Feature ranking
 # print('\n## Feature Ranking')
 # print_feature_ranking(train_under.values, train_under_target.values.ravel(), data.columns.tolist(), lr, "LogReg")
-
 
 ########################################################################################################################
 
