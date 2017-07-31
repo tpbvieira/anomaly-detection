@@ -20,7 +20,7 @@ N = 49; M1 = 7; M2 = 7;                                                     % fe
 noIt = 1;                                                                   % iterações para aprendizado
 solver = 'javaORMP';                                                        % mais rápido que OMP
 sparsity = 2;                                                               % grau de espasidade ( quantidade desejada de valores não-zedo por coluna )
-methodChar = 'H';                                                           % ...
+methodChar = 'H';                                                           % method for RLS-DLA
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
