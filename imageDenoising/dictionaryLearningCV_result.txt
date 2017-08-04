@@ -1,0 +1,173 @@
+## Loading saved data...
+/usr/local/lib/python2.7/dist-packages/numpy/lib/arraysetops.py:463: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  mask |= (ar1 == a)
+Data: (1939286, 7)
+
+MiniBatchDL OMP:
+Fit Time: 4.87s.
+## L=1939286_N=7_tnz=1_K=10_noIt=10
+Transform Time: 75.00s.
+norm: 993311875.4041	MSE: 72682750383.3081s	NRMSE: 0.1034s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 5.76s.
+## L=1939286_N=7_tnz=1_K=10_noIt=50
+Transform Time: 93.24s.
+norm: 1237694626.1855	MSE: 112846243977.5971s	NRMSE: 0.1289s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 6.31s.
+## L=1939286_N=7_tnz=1_K=10_noIt=100
+Transform Time: 85.42s.
+norm: 1584249560.0805	MSE: 184887388496.5448s	NRMSE: 0.1649s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 8.51s.
+## L=1939286_N=7_tnz=1_K=50_noIt=10
+Transform Time: 123.49s.
+norm: 1310256541.6124	MSE: 126465705481.1635s	NRMSE: 0.1364s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 8.40s.
+## L=1939286_N=7_tnz=1_K=50_noIt=50
+Transform Time: 118.42s.
+norm: 1143533639.9523	MSE: 96329207590.7322s	NRMSE: 0.1191s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 9.08s.
+## L=1939286_N=7_tnz=1_K=50_noIt=100
+Transform Time: 116.98s.
+norm: 1191463404.4066	MSE: 104573468500.4231s	NRMSE: 0.1241s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 11.94s.
+## L=1939286_N=7_tnz=1_K=100_noIt=10
+Transform Time: 144.04s.
+norm: 937898450.3957	MSE: 64799511871.4956s	NRMSE: 0.0977s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 12.08s.
+## L=1939286_N=7_tnz=1_K=100_noIt=50
+Transform Time: 146.01s.
+norm: 976930448.2762	MSE: 70305190435.2626s	NRMSE: 0.1017s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 13.94s.
+## L=1939286_N=7_tnz=1_K=100_noIt=100
+Transform Time: 147.17s.
+norm: 1005618044.4132	MSE: 74494843628.7033s	NRMSE: 0.1047s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 19.96s.
+## L=1939286_N=7_tnz=1_K=200_noIt=10
+Transform Time: 161.50s.
+norm: 1238720389.7270	MSE: 113033368534.7051s	NRMSE: 0.1290s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 21.91s.
+## L=1939286_N=7_tnz=1_K=200_noIt=50
+Transform Time: 215.66s.
+norm: 1019021160.3231	MSE: 76493846939.1200s	NRMSE: 0.1061s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 22.58s.
+## L=1939286_N=7_tnz=1_K=200_noIt=100
+Transform Time: 215.35s.
+norm: 977091368.2086	MSE: 70328353677.4227s	NRMSE: 0.1017s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 2853.27s.
+## L=1939286_N=7_tnz=1_K=500_noIt=10
+Transform Time: 3468.92s.
+norm: 1175868326.7750	MSE: 101853857694.6540s	NRMSE: 0.1224s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 5483.81s.
+## L=1939286_N=7_tnz=1_K=500_noIt=50
+Transform Time: 6104.77s.
+norm: 1089238301.3540	MSE: 87398887833.4219s	NRMSE: 0.1134s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 4012.05s.
+## L=1939286_N=7_tnz=1_K=500_noIt=100
+Transform Time: 4662.28s.
+norm: 760476663.4077	MSE: 42602185663.5920s	NRMSE: 0.0792s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 6.01s.
+## L=1939286_N=7_tnz=2_K=10_noIt=10
+Transform Time: 240.70s.
+norm: 1186971516.1858	MSE: 103786458391.4132s	NRMSE: 0.1236s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 6.15s.
+## L=1939286_N=7_tnz=2_K=10_noIt=50
+Transform Time: 240.60s.
+norm: 681894261.8048	MSE: 34252649412.6687s	NRMSE: 0.0710s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 6.40s.
+## L=1939286_N=7_tnz=2_K=10_noIt=100
+Transform Time: 259.72s.
+norm: 815640690.6438	MSE: 49006971507.9177s	NRMSE: 0.0849s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 8.06s.
+## L=1939286_N=7_tnz=2_K=50_noIt=10
+Transform Time: 253.30s.
+norm: 446042493.6953	MSE: 14655902531.8695s	NRMSE: 0.0464s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 8.85s.
+## L=1939286_N=7_tnz=2_K=50_noIt=50
+Transform Time: 257.41s.
+norm: 830932257.0793	MSE: 50861754263.8240s	NRMSE: 0.0865s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 9.37s.
+## L=1939286_N=7_tnz=2_K=50_noIt=100
+Transform Time: 264.70s.
+norm: 471384300.1944	MSE: 16368554381.7823s	NRMSE: 0.0491s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 12.07s.
+## L=1939286_N=7_tnz=2_K=100_noIt=10
+Transform Time: 284.22s.
+norm: 511784692.1093	MSE: 19294551196.1911s	NRMSE: 0.0533s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 12.54s.
+## L=1939286_N=7_tnz=2_K=100_noIt=50
+Transform Time: 276.35s.
+norm: 539770228.2920	MSE: 21462383530.4362s	NRMSE: 0.0562s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 12.95s.
+## L=1939286_N=7_tnz=2_K=100_noIt=100
+Transform Time: 280.79s.
+norm: 469852156.9954	MSE: 16262321687.5586s	NRMSE: 0.0489s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 22.17s.
+## L=1939286_N=7_tnz=2_K=200_noIt=10
+Transform Time: 375.75s.
+norm: 596556248.4075	MSE: 26215786746.4091s	NRMSE: 0.0621s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 24.23s.
+## L=1939286_N=7_tnz=2_K=200_noIt=50
+Transform Time: 378.94s.
+norm: 482762621.3989	MSE: 17168303077.9642s	NRMSE: 0.0503s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 24.74s.
+## L=1939286_N=7_tnz=2_K=200_noIt=100
+Transform Time: 357.35s.
+norm: 434834460.8735	MSE: 13928617348.5035s	NRMSE: 0.0453s	PSNR: 0.0000s
+
+MiniBatchDL OMP:
+Fit Time: 6552.09s.
+## L=1939286_N=7_tnz=2_K=500_noIt=10
+Transform Time: 7306.82s.
+norm: 453830740.0212	MSE: 15172177550.1911s	NRMSE: 0.0473s	PSNR: 0.0000s
+

@@ -1,0 +1,234 @@
+14	=	dictMiniBatch = np.loadtxt('dictMODRefNoisy.csv', delimiter=';')	sparseCode = np.loadtxt('sparseCodeMODRefNoisy.csv', delimiter=';')
+17	=	dictMiniBatch = np.loadtxt('dictMODNoisy.csv', delimiter=';')		sparseCode = np.loadtxt('sparseCodeMODNoisy.csv', delimiter=';')
+24	=	dictMiniBatch = np.loadtxt('dictMODRef.csv', delimiter=';')			sparseCode = np.loadtxt('sparseCodeMODRefNoisy.csv', delimiter=';')
+25	=	dictMiniBatch = np.loadtxt('dictMODNoisy.csv', delimiter=';')		sparseCode = np.loadtxt('sparseCodeMODRefNoisy.csv', delimiter=';')
+26	=	dictMiniBatch = np.loadtxt('dictMODRef.csv', delimiter=';')			sparseCode = np.loadtxt('sparseCodeMODNoisy.csv', delimiter=';')
+31	=	dictMiniBatch = np.loadtxt('dictMODRefNoisy.csv', delimiter=';')	sparseCode = np.loadtxt('sparseCodeMODNoisy.csv', delimiter=';')
+
+
+Noisy/Noisy================================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.4411 
+MSE	0.0011s 
+NRMSE	0.0661s 
+PSNR	29.7440s
+
+RLS-DLA (Sparsity 2) done in 4.88s.
+norm	13.5968 
+MSE	0.0009s 
+NRMSE	0.0622s 
+PSNR	30.2673s
+
+K-SVD (Sparsity 2)...
+norm	13.2314 
+MSE	0.0009s 
+NRMSE	0.0606s 
+PSNR	30.5039s
+
+K-HOSVD (Sparsity 2)...
+norm	14.1296 
+MSE	0.0010s 
+NRMSE	0.0647s 
+PSNR	29.9334s
+
+MOD (Sparsity 2)...
+norm	17.6642 
+MSE	0.0016s 
+NRMSE	0.0808s 
+PSNR	27.9941s
+
+
+Ref/Noisy==================================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.3782 
+MSE	0.0011s 
+NRMSE	0.0658s 
+PSNR	29.7819s
+
+RLS-DLA (Sparsity 2) done in 4.88s.
+norm	88.0803 
+MSE	0.0395s 
+NRMSE	0.4031s 
+PSNR	14.0384s
+
+K-SVD (Sparsity 2)...
+norm	28.3327 
+MSE	0.0041s 
+NRMSE	0.1297s 
+PSNR	23.8902s
+
+K-HOSVD (Sparsity 2)...
+norm	30.3702 
+MSE	0.0047s 
+NRMSE	0.1390s 
+PSNR	23.2871s
+
+MOD (Sparsity 2)...
+norm	25.0718 
+MSE	0.0032s 
+NRMSE	0.1147s 
+PSNR	24.9523s
+
+
+RefNoisy/Noisy=============================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.5789 
+MSE	0.0011s 
+NRMSE	0.0667s 
+PSNR	29.6615s
+
+RLS-DLA (Sparsity 2)...
+norm	78.0427 
+MSE	0.0310s 
+NRMSE	0.3571s 
+PSNR	15.0894s
+
+K-SVD (Sparsity 2)...
+norm	28.3611 
+MSE	0.0041s 
+NRMSE	0.1298s 
+PSNR	23.8816s
+
+K-HOSVD (Sparsity 2)...
+norm	28.9852 
+MSE	0.0043s 
+NRMSE	0.1326s 
+PSNR	23.6925s
+
+MOD (Sparsity 2)...
+norm	27.8460 
+MSE	0.0039s 
+NRMSE	0.1274s 
+PSNR	24.0408s
+
+
+Ref/RefNoisy===============================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.5721 
+MSE	0.0011s 
+NRMSE	0.0667s 
+PSNR	29.6656s
+
+RLS-DLA (Sparsity 2)...
+norm	51.2497 
+MSE	0.0134s 
+NRMSE	0.2345s 
+PSNR	18.7422s
+
+K-SVD (Sparsity 2)...
+norm	16.2728 
+MSE	0.0013s 
+NRMSE	0.0745s 
+PSNR	28.7068s
+
+K-HOSVD (Sparsity 2)...
+norm	17.7981 
+MSE	0.0016s 
+NRMSE	0.0814s 
+PSNR	27.9285s
+
+MOD (Sparsity 2)...
+norm	22.8071 
+MSE	0.0026s 
+NRMSE	0.1044s 
+PSNR	25.7746s
+
+
+RefNoisy/RefNoisy==========================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.4681 
+MSE	0.0011s 
+NRMSE	0.0662s 
+PSNR	29.7278s
+
+RLS-DLA (Sparsity 2)...
+norm	13.6155 
+MSE	0.0009s 
+NRMSE	0.0623s 
+PSNR	30.2553s
+
+K-SVD (Sparsity 2)...
+norm	12.8597 
+MSE	0.0008s 
+NRMSE	0.0588s 
+PSNR	30.7514s
+
+K-HOSVD (Sparsity 2)...
+norm	13.5436 
+MSE	0.0009s 
+NRMSE	0.0620s 
+PSNR	30.3013s
+
+MOD (Sparsity 2)...
+norm	17.3993 
+MSE	0.0015s 
+NRMSE	0.0796s 
+PSNR	28.1254s
+
+
+Noisy/RefNoisy=============================================================================================================================================================================================
+Original and Distorted Face...
+norm	23.4999 
+MSE	0.0028s 
+NRMSE	0.1075s 
+PSNR	25.5147s
+
+Orthogonal Matching Pursuit (Sparsity 2)...
+norm	14.3302 
+MSE	0.0010s 
+NRMSE	0.0656s 
+PSNR	29.8110s
+
+RLS-DLA (Sparsity 2)...
+norm	78.5479 
+MSE	0.0314s 
+NRMSE	0.3595s 
+PSNR	15.0333s
+
+K-SVD (Sparsity 2)...
+norm	21.6035 
+MSE	0.0024s 
+NRMSE	0.0989s 
+PSNR	26.2455s
+
+K-HOSVD (Sparsity 2)...
+norm	21.3934 
+MSE	0.0023s 
+NRMSE	0.0979s 
+PSNR	26.3304s
+
+MOD (Sparsity 2)...
+norm	22.5298 
+MSE	0.0026s 
+NRMSE	0.1031s 
+PSNR	25.8809s
