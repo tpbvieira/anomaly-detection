@@ -1,8 +1,3 @@
-## Loading saved data...
-/usr/local/lib/python2.7/dist-packages/numpy/lib/arraysetops.py:463: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
-  mask |= (ar1 == a)
-Data: (1939286, 7)
-
 MiniBatchDL OMP:
 Fit Time: 4.87s.
 ## L=1939286_N=7_tnz=1_K=10_noIt=10

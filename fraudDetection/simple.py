@@ -319,7 +319,7 @@ for a in alpha_range:
 		plt.xlim([0.0, 1.0])
 		plt.title('Precision-Recall Curve (PRC)')
 		plt.legend(loc="lower left")
-		plt.savefig('denoised_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
+		plt.savefig('results/denoised_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
 		# plt.show()
 
 
@@ -463,7 +463,7 @@ for a in alpha_range:
 		plt.xlim([0.0, 1.0])
 		plt.title('Precision-Recall Curve (PRC)')
 		plt.legend(loc="lower left")
-		plt.savefig('sparse_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
+		plt.savefig('results/sparse_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
 		# plt.show()
 
 
