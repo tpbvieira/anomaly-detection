@@ -1,0 +1,2 @@
+ - pq a primeira execucao de rdla é mais rápida?
+ - é necessário dominar oq o código project.m faz

@@ -225,8 +225,8 @@ for a in alpha_range:
 		average_precision = dict()
 		n_classes = test_target.shape[1]
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-		    average_precision[i] = average_precision_score(test_target, predicted_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+			average_precision[i] = average_precision_score(test_target, predicted_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.clf()
@@ -269,8 +269,8 @@ for a in alpha_range:
 		average_precision = dict()
 		n_classes = test_under_target.shape[1]
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
-		    average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
+			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.clf()
@@ -308,8 +308,8 @@ for a in alpha_range:
 		recall = dict()
 		average_precision = dict()
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-		    average_precision[i] = average_precision_score(test_target, predicted_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+			average_precision[i] = average_precision_score(test_target, predicted_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))
@@ -369,8 +369,8 @@ for a in alpha_range:
 		average_precision = dict()
 		n_classes = test_target.shape[1]
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-		    average_precision[i] = average_precision_score(test_target, predicted_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+			average_precision[i] = average_precision_score(test_target, predicted_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.clf()
@@ -413,14 +413,14 @@ for a in alpha_range:
 		average_precision = dict()
 		n_classes = test_under_target.shape[1]
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
-		    average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
+			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.clf()
 		plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Under'.format(average_precision[0], roc_auc))
 
-
+	
 		# Perfoming LogisticRegression [under/complete]
 		print("\n## [under/complete]")
 		test_predicted = lr.predict(test_data.values)
@@ -452,8 +452,8 @@ for a in alpha_range:
 		recall = dict()
 		average_precision = dict()
 		for i in range(n_classes):
-		    precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-		    average_precision[i] = average_precision_score(test_target, predicted_score)
+			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+			average_precision[i] = average_precision_score(test_target, predicted_score)
 		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
 		plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))

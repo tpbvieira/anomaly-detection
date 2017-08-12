@@ -1,4 +1,4 @@
-function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials, betalim)
+function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials, betalim, destPath)
     % executed a selected dictionary learning algorithm to recover a known 
     % dictionary, Random Gaussian dictionary, randomly generated (training)
     % data with added Gaussian noise.
@@ -69,7 +69,7 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
     javaclasspath('-dynamic')
 
     %% prapare output
-    fileName = [methodChar, sprintf('%1i_%li_%li_%li_%li.mat',s,snr,L,N*K,noIt)];
+    fileName = [methodChar, sprintf('%1i_%li_%li_%li_%li.mat',s ,snr ,L ,N*K, noIt)];
     results = struct('beta', zeros(K, nofTrials), ...
                  'times', zeros(nofTrials,1), ...
                  'detection', zeros(nofTrials,1), ...
@@ -172,7 +172,7 @@ function results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nof
         disp(['Estimated finish time is ',datestr(now()+timeleft)]);
         
         if (trial == nofTrials)
-            save(fileName, 'results' );
+            save(strcat(destPath,fileName), 'results' );
         end
         
     end

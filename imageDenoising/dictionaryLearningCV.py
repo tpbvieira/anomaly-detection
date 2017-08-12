@@ -1,20 +1,15 @@
-from time import time
 
-import os.path
-import sys
 import numpy as np
-import scipy as sp
 import pandas as pd  																									# data processing, CSV file I/O (e.g. pd.read_csv)
-
+import matlab.engine
+from time import time
 from sklearn.decomposition import MiniBatchDictionaryLearning
-from sklearn.utils.testing import SkipTest
-from sklearn.utils.fixes import sp_version
-
-from skimage.measure import (compare_mse, compare_nrmse, compare_psnr)
+from skimage.measure import (compare_mse, compare_nrmse)
 
 
 # settings
 filePath = "/media/thiago/ubuntu/datasets/fraudDetection/"
+matlab = matlab.engine.start_matlab()
 
 
 # Function to plot image difference
@@ -24,14 +19,19 @@ def print_comparison(target, reference):
 	nrmse = compare_nrmse(reference, target)
 	psnr = 0
 	text = 'norm: %(norm).4f\tMSE: %(MSE).4fs\tNRMSE: %(NRMSE).4fs\tPSNR: %(PSNR).4fs' % {'norm': np.sqrt(np.sum(difference ** 2)), 'MSE': mse, 'NRMSE': nrmse, 'PSNR': psnr}
-	print(text)
+	print >> results, text
 
 
-print('\n## Loading saved data...')
+results = open('results/dictionaryLearningCV_fraudDetection.txt', 'w')
+
+
+print >> results, '\n## Loading saved data...'
 # data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv', index_col=0)
 data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv', index_col=0)
-print('Data: ' + str(data.shape))
+print >> results, 'Data: ' + str(data.shape)
 
+matlab.cd(r'/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning', nargout=0)
+matlab.project(nargout=0)
 
 L = data.shape[0]
 N = data.shape[1]
@@ -59,9 +59,9 @@ for tnz in tnz_range:
 				]
 
 			for title, transform_algorithm, kwargs in transform_algorithms:
-				print("\n"+title + ':')
+				print >> results, "\n"+title + ':'
 				t0 = time()
-				dictionary = {};
+				dictionary = {}
 				if title is 'MOD (Sparsity: 2)':
 					dictMiniBatch = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 					sparseCode = np.loadtxt(filePath + 'sparseCodeMODRefNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
@@ -88,16 +88,18 @@ for tnz in tnz_range:
 					miniBatchDict = miniBatch.fit(data.values).components_
 					dictionary = miniBatchDict;
 					dt = time() - t0
-					# print('miniBatchDict: ' + str(miniBatchDict.shape))
-					print('Fit Time: %.2fs.' % dt)
-					print('## L={:d}_N={:d}_tnz={:d}_K={:d}_noIt={:d}'.format(L, N, tnz, K, noIt))
+					# print >> results, 'miniBatchDict: ' + str(miniBatchDict.shape)
+					print >> results, 'Fit Time: %.2fs.' % dt
+					print >> results, '## L={:d}_N={:d}_tnz={:d}_K={:d}_noIt={:d}'.format(L, N, tnz, K, noIt)
 					t0 = time()
 					miniBatch.set_params(transform_algorithm=transform_algorithm, **kwargs)
 					sparseCode = miniBatch.transform(data)
 				reconstruction = np.dot(sparseCode, dictionary)
 				reconstruction = pd.DataFrame(reconstruction, index=data.index.values)
 				dt = time() - t0
-				# print('SparseCode: ' + str(sparseCode.shape))
-				# print('Reconstruction: ' + str(reconstruction.shape))
-				print('Transform Time: %.2fs.' % dt)
+				# print >> results, SparseCode: ' + str(sparseCode.shape)
+				# print >> results, 'Reconstruction: ' + str(reconstruction.shape)
+				print >> results, 'Transform Time: %.2fs.' % dt
 				print_comparison(reconstruction.values, data.values)
+
+results.close()

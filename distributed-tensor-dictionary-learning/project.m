@@ -14,21 +14,19 @@
 clc;
 clf;
 clear all;
-set(0,'RecursionLimit',1200)
-scriptName = 'dictionary_learning';
 
 %% parameters
-s = 5;           % sparseness
-snr = 20;        % snr for added noise
-L = 500;         % number of training vectors to use
-nofTrials = 3;   % enought trials to obtain reliable results
-noIt = 100;      % number of iterations in each trial
-N = 80;
-K = 200;
-M1 = 10;
-M2 = 8;
-N1 = 20;
-N2 = 10;
+set(0,'RecursionLimit',1200)
+scriptName = 'dictionary_learning';
+javaclasspath('-dynamic')                                                   % java configuration
+filePath = 'results/';                                                      % change to save generated data
+nofTrials = 1;                                                              % enought trials to obtain reliable results
+noIt = 10;                                                                 % number of iterations in each trial
+L = 500;                                                                    % number of training vectors to use
+N = 80; M1 = 10; M2 = 8;                                                    % features/variables/components
+snr = 20;                                                                   % snr for added noise
+K = 200; N1 = 20; N2 = 10;                                                  % dictionary's atoms (K << L)
+s = 5;                                                                      % sparseness
 
 %% select the methods to compare and define file names
 fileNameInfo = sprintf('%1i_%li_%li_%li_%li',s,snr,L,N*K,noIt);
@@ -48,7 +46,7 @@ numMethods = size(dataFiles,1);
 methodNames = cell(numMethods,1);
 
 %% plot configuration
-epsName = sprintf('%1i_%li_%li_%li_%li.eps',s,snr,L,N*K,noIt);
+epsName = sprintf('results/%1i_%li_%li_%li_%li.eps',s,snr,L,N*K,noIt);
 %pngName = sprintf('%1i_%li_%li_%li_%li.png',s,snr,L,N*K,noIt);
 colors = 'brgmyck';                                                         %'Blue', 'Red', 'Green', 'Magenta', 'Yellow', 'Cyan', 'Black'
 degreesRates = [0.25:0.25:10, 10.5:0.5:25];
@@ -58,7 +56,7 @@ hold on;
 grid on;
 
 %% for selected methods for comparison
-for i=1:numMethods;  
+for i=1:numMethods;
     % load or make the data
     if exist(dataFiles(i,:),'file')
         fileName = dir(dataFiles(i,:));
@@ -66,8 +64,7 @@ for i=1:numMethods;
         load(dataFiles(i,:));                                               % try load previous results
         trialsDone = results.nofTrials;
         if results.noIt ~= noIt
-            disp(['WARN : Number of iterations in file is ',int2str(results.noIt),...
-                  ' while wanted iterations is ',int2str(noIt),' **.']);
+            disp(['WARN : Number of iterations in file is ',int2str(results.noIt), ' while wanted iterations is ',int2str(noIt),' **.']);
         end
     else
         trialsDone = 0;
@@ -75,8 +72,8 @@ for i=1:numMethods;
     
     % execute remain trials for atoms identification
     if (nofTrials > trialsDone)
-        methodChar = dataFiles(i,1);        
-        results = execDL(L, N, K, M1, M2, N1, N2, snr, methodChar, s, noIt, nofTrials-trialsDone, betalim);
+        dlMethods = dataFiles(i,1);        
+        results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, dlMethods, s, noIt, nofTrials-trialsDone, betalim, filePath);
     end
     methodNames{i} = results.method;
     
@@ -96,7 +93,7 @@ for i=1:numMethods;
 end
 
 %% print plot
-title({'Number of dictionary atoms identified per degrees.'; 'Elements: ';N*K});
+title({'Number of dictionary atoms identified per degrees.'; 'Elements: '; N*K});
 ylabel('Number of identified atoms.');
 xlabel('Required degrees for identification.');
 legend(methodNames, 'Location','SouthEast');
