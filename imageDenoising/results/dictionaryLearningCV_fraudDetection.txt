@@ -1,3 +1,11 @@
 
 ## Loading saved data...
-Data: (1939286, 7)
+Data Shape: (1939286, 7)
+
+MiniBatchDL OMP:
+Fit Time: 6.78s.
+## L=1939286_N=7_tnz=2_K=10_noIt=10
+Transform Time: 296.02s.
+norm: 494892340.1097	MSE: 18041870513.1140s	NRMSE: 0.0515s	PSNR: 0.0000s
+
+MOD:
