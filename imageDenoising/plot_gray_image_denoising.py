@@ -81,7 +81,7 @@ else:
 		from scipy import misc
 		face = misc.face(gray=True)
 	except AttributeError:
-		face = sp.face(gray=True) # Old versions of scipy have face in the top level package
+		face = sp.face(gray=True)  # Old versions of scipy have face in the top level package
 
 	# test face picture
 	# plt.imshow(face, cmap=plt.compare_msecm.gray)
@@ -102,31 +102,21 @@ else:
 
 	# Extract all reference patches from the left half of the image
 	print('\nExtracting reference patches...')
-	t0 = time()
+	# t0 = time()
 	refPatches = extract_patches_2d(distorted[:, :width // 2], patch_size)
 	refPatches = refPatches.reshape(refPatches.shape[0], -1)
 	refPatches -= np.mean(refPatches, axis=0)
 	refPatches /= np.std(refPatches, axis=0)
-	print('Extracting reference patches done in %.2fs.' % (time() - t0))
+	# print('Extracting reference patches done in %.2fs.' % (time() - t0))
 
 	# Save data
+	print('\nSaving data...')
 	np.savetxt(filePath + 'face.csv', face, fmt='%.6f', delimiter=';')
 	np.savetxt(filePath + 'distortedFace.csv', distorted, fmt='%.6f', delimiter=';')
 	np.savetxt(filePath + 'refPatches.csv', refPatches, fmt='%.6f', delimiter=';')
-	print('Face: ' + str(face.shape))
-	print('Distorted: ' + str(distorted.shape))
-	print('RefPatches: ' + str(refPatches.shape))
-
-
-# Plot dictionaries
-# plt.figure(figsize=(4.2, 4))
-# for i, comp in enumerate(dictMiniBatch[:100]):
-# 	plt.subplot(10, 10, i + 1)
-# 	plt.imshow(comp.reshape(patch_size), cmap=plt.cm.gray_r, interpolation='nearest')
-# 	plt.xticks(())
-# 	plt.yticks(())
-# plt.suptitle('MiniBatch Dictionary learned from face patches\n' +  '%d patches' % (len(refPatches)), fontsize=16)
-# plt.subplots_adjust(0.08, 0.02, 0.92, 0.85, 0.08, 0.23)
+	# print('Face: ' + str(face.shape))
+	# print('Distorted: ' + str(distorted.shape))
+	# print('RefPatches: ' + str(refPatches.shape))
 
 
 # Extract noisy patches and reconstruct them using the dictionary
@@ -146,16 +136,27 @@ np.savetxt(filePath + 'noisyPatches.csv', noisyPatches, fmt='%.6f', delimiter=';
 print('\nLearning MiniBatch Dictionary...\n')
 t0 = time()
 miniBatch = MiniBatchDictionaryLearning(n_components=100, alpha=1, n_iter=500)
-dictMiniBatch = miniBatch.fit(noisyPatches).components_
+dictionary = miniBatch.fit(noisyPatches).components_
 dt = time() - t0
-np.savetxt(filePath + 'dictMiniBatch.csv', dictMiniBatch, fmt='%.6f', delimiter=';')
-# print('Dictionary: ' + str(dictMiniBatch.shape))
+np.savetxt(filePath + 'dictMiniBatch.csv', dictionary, fmt='%.6f', delimiter=';')
+# print('Dictionary: ' + str(dictionary.shape))
 # print('Learning MiniBatch Dictionary done in %.2fs.' % dt)
 
 
 # Plot difference between the original and distorted face
 # print('\nDistorted image')
 plot_image_diff(distorted, face, 'Distorted image')
+
+
+# Plot dictionaries
+# plt.figure(figsize=(4.2, 4))
+# for i, comp in enumerate(dictionary[:100]):
+# 	plt.subplot(10, 10, i + 1)
+# 	plt.imshow(comp.reshape(patch_size), cmap=plt.cm.gray_r, interpolation='nearest')
+# 	plt.xticks(())
+# 	plt.yticks(())
+# plt.suptitle('MiniBatch Dictionary learned from face patches\n' +  '%d patches' % (len(refPatches)), fontsize=16)
+# plt.subplots_adjust(0.08, 0.02, 0.92, 0.85, 0.08, 0.23)
 
 
 # compare dictionary learning methods for image reconstruction
@@ -178,35 +179,35 @@ for title, transform_algorithm, kwargs in transform_algorithms:
 	reconstructions[title] = face.copy()
 	t0 = time()
 	if title is 'MOD javaORMP (Sparsity: 2)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	elif title is 'MOD javaORMP (Sparsity: 5)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 	elif title is 'RLS-DLA javaORMP (Sparsity: 2)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	elif title is 'RLS-DLA javaORMP (Sparsity: 5)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 	elif title is 'K-SVD javaORMP (Sparsity: 2)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictK-SVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictK-SVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeK-SVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	elif title is 'T-MOD javaORMP (Sparsity: 2)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictT-MODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictT-MODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeT-MODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	elif title is 'K-HOSVD javaORMP (Sparsity: 2)':
-		dictMiniBatch = np.loadtxt(filePath + 'dictK-HOSVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		dictionary = np.loadtxt(filePath + 'dictK-HOSVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeK-HOSVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	else:
 		miniBatch.set_params(transform_algorithm=transform_algorithm, **kwargs)
 		sparseCode = miniBatch.transform(noisyPatches)
-	recPatches = np.dot(sparseCode, dictMiniBatch)
+	recPatches = np.dot(sparseCode, dictionary)
 	recPatches += noiseMean
 	recPatches = recPatches.reshape(len(noisyPatches), *patch_size)
 	# np.savetxt(title + 'RecPatches.csv', recPatches, fmt='%.6f', delimiter=';')
 	reconstructions[title][:, width // 2:] = reconstruct_from_patches_2d(recPatches, (height, width // 2))
-	dt = time() - t0
+	# dt = time() - t0
 	# print('SparseCode: ' + str(sparseCode.shape))
 	# print('RecPatches: ' + str(recPatches.shape))
 	# print(title + ' done in %.2fs.' % dt)

@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plot_gray_image_denoising.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plot_gray_image_denoising.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot_gray_image_denoising.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="206" column="4" lean-forward="false" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="4" />
+            <state relative-caret-position="858">
+              <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
               <folding>
                 <element signature="e#1207#1221#0" expanded="true" />
               </folding>
@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dictionaryLearningCV.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dictionaryLearningCV.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dictionaryLearningCV.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
-              <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -47,7 +47,6 @@
       <find>thre</find>
       <find>matlab</find>
       <find>data</find>
-      <find>face</find>
       <find>miniBatch.transform</find>
       <find>miniBatch.fit</find>
       <find>noiseMean</find>
@@ -62,6 +61,10 @@
       <find>time:</find>
       <find>MiniBatch OMP (Sparsity: 2)</find>
       <find>threshold</find>
+      <find>distortedFace</find>
+      <find>face</find>
+      <find>refPatches</find>
+      <find>dictMiniBatch</find>
     </findStrings>
     <replaceStrings>
       <replace>' + fileNameSufix</replace>
@@ -74,8 +77,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dictionaryLearningCV.py" />
         <option value="$PROJECT_DIR$/plot_gray_image_denoising.py" />
+        <option value="$PROJECT_DIR$/dictionaryLearningCV.py" />
       </list>
     </option>
   </component>
@@ -224,22 +227,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dictionaryLearningCV.py">
+    <entry file="file://$PROJECT_DIR$/plot_gray_image_denoising.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state relative-caret-position="858">
+          <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#1207#1221#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plot_gray_image_denoising.py">
+    <entry file="file://$PROJECT_DIR$/dictionaryLearningCV.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="206" column="4" lean-forward="false" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="4" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1207#1221#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
