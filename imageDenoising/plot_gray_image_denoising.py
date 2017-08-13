@@ -15,9 +15,6 @@ It can be seen from the plots that the results of :ref:`omp` with two non-zero c
 closer from the ground truth in Frobenius norm.
 
 The result of :ref:`least_angle_regression` is much more strongly biased: the difference is reminiscent of the local intensity value of the original image.
-
-Thresholding is clearly not useful for denoising, but it is here to show that it can produce a suggestive output with very high speed, and thus be useful for other tasks such as object
-classification, where performance is not necessarily related to visualisation.
 """
 
 import os.path
@@ -164,40 +161,41 @@ plot_image_diff(distorted, face, 'Distorted image')
 # compare dictionary learning methods for image reconstruction
 reconstructions = {}
 transform_algorithms = [
+	('MiniBatch lars (Sparsity: 2)', 'lars', {'transform_n_nonzero_coefs': 2}),
+	('MiniBatch lars (Sparsity: 5)', 'lars', {'transform_n_nonzero_coefs': 5}),
 	('MiniBatch OMP (Sparsity: 2)', 'omp', {'transform_n_nonzero_coefs': 2}),
 	('MiniBatch OMP (Sparsity: 5)', 'omp', {'transform_n_nonzero_coefs': 5}),
-	('Least-angle regression (5 atoms)', 'lars', {'transform_n_nonzero_coefs': 5}),
-	('Thresholding (alpha=0.1)', 'threshold', {'transform_alpha': .1}),
-	('RLS-DLA (Sparsity: 2)', '', {}),
-	('RLS-DLA (Sparsity: 5)', '', {}),
-	# ('K-SVD (Sparsity: 2)', '', {}),
-	# ('T-MOD', '', {}),
-	# ('K-HOSVD (Sparsity: 2)', '', {}),
-	('MOD (Sparsity: 5)', '', {}),
-	('MOD (Sparsity: 2)', '', {})]
+	('RLS-DLA javaORMP (Sparsity: 2)', '', {}),
+	('RLS-DLA javaORMP (Sparsity: 5)', '', {}),
+	# ('K-SVD javaORMP (Sparsity: 2)', '', {}),
+	# ('T-MOD javaORMP (Sparsity: 2)', '', {}),
+	# ('K-HOSVD javaORMP (Sparsity: 2)', '', {}),
+	('MOD javaORMP (Sparsity: 2)', '', {}),
+	('MOD javaORMP (Sparsity: 5)', '', {})]
 
 for title, transform_algorithm, kwargs in transform_algorithms:
 	# print("\n"+title + ':')
 	reconstructions[title] = face.copy()
 	t0 = time()
-	if title is 'MOD (Sparsity: 2)':
+	if title is 'MOD javaORMP (Sparsity: 2)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
-	elif title is 'MOD (Sparsity: 5)':
+	elif title is 'MOD javaORMP (Sparsity: 5)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeMODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
-	elif title is 'RLS-DLA (Sparsity: 2)':
+	elif title is 'RLS-DLA javaORMP (Sparsity: 2)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
-	elif title is 'RLS-DLA (Sparsity: 5)':
+	elif title is 'RLS-DLA javaORMP (Sparsity: 5)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeRLS-DLANoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=5.csv', delimiter=';')
-	elif title is 'K-SVD (Sparsity: 2)':
+	elif title is 'K-SVD javaORMP (Sparsity: 2)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictK-SVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeK-SVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
-	elif title is 'T-MOD (Sparsity: 2)':
-		continue
-	elif title is 'K-HOSVD (Sparsity: 2)':
+	elif title is 'T-MOD javaORMP (Sparsity: 2)':
+		dictMiniBatch = np.loadtxt(filePath + 'dictT-MODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+		sparseCode = np.loadtxt(filePath + 'sparseCodeT-MODNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
+	elif title is 'K-HOSVD javaORMP (Sparsity: 2)':
 		dictMiniBatch = np.loadtxt(filePath + 'dictK-HOSVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 		sparseCode = np.loadtxt(filePath + 'sparseCodeK-HOSVDNoisy_L=94500_K=100_noIt=10_solver=javaORMP_tnz=2.csv', delimiter=';')
 	else:
@@ -206,9 +204,6 @@ for title, transform_algorithm, kwargs in transform_algorithms:
 	recPatches = np.dot(sparseCode, dictMiniBatch)
 	recPatches += noiseMean
 	recPatches = recPatches.reshape(len(noisyPatches), *patch_size)
-	if transform_algorithm == 'threshold':
-		recPatches -= recPatches.min()
-		recPatches /= recPatches.max()
 	# np.savetxt(title + 'RecPatches.csv', recPatches, fmt='%.6f', delimiter=';')
 	reconstructions[title][:, width // 2:] = reconstruct_from_patches_2d(recPatches, (height, width // 2))
 	dt = time() - t0

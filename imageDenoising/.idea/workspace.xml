@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15176248-9d57-4490-b804-6671fcb99315" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notes.txt" afterPath="$PROJECT_DIR$/notes.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dictionaryLearningCV.py" afterPath="$PROJECT_DIR$/dictionaryLearningCV.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot_gray_image_denoising.py" afterPath="$PROJECT_DIR$/plot_gray_image_denoising.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,10 +17,10 @@
       <file leaf-file-name="plot_gray_image_denoising.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plot_gray_image_denoising.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="171" column="0" lean-forward="true" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+            <state relative-caret-position="624">
+              <caret line="206" column="4" lean-forward="false" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="4" />
               <folding>
-                <element signature="e#1472#1486#0" expanded="true" />
+                <element signature="e#1207#1221#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -29,8 +29,8 @@
       <file leaf-file-name="dictionaryLearningCV.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dictionaryLearningCV.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="890">
+              <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -59,9 +59,13 @@
       <find>print</find>
       <find>plot_image_diff</find>
       <find>extracting</find>
+      <find>time:</find>
+      <find>MiniBatch OMP (Sparsity: 2)</find>
+      <find>threshold</find>
     </findStrings>
     <replaceStrings>
       <replace>' + fileNameSufix</replace>
+      <replace>Noisy</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -168,7 +172,7 @@
         <state relative-caret-position="1152">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="19" />
           <folding>
-            <element signature="e#1472#1486#0" expanded="true" />
+            <element signature="e#1207#1221#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -188,7 +192,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1472#1486#0" expanded="true" />
+            <element signature="e#1207#1221#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -222,8 +226,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dictionaryLearningCV.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="890">
+          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -232,10 +236,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plot_gray_image_denoising.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="171" column="0" lean-forward="true" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+        <state relative-caret-position="624">
+          <caret line="206" column="4" lean-forward="false" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="4" />
           <folding>
-            <element signature="e#1472#1486#0" expanded="true" />
+            <element signature="e#1207#1221#0" expanded="true" />
           </folding>
         </state>
       </provider>
