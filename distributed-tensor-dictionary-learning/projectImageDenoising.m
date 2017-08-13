@@ -108,7 +108,7 @@ for k=1:size(Ks, 1);
             dictFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictRLS-DLARef', L, K, noIt, solver, sparsity);
             sparseFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeRLS-DLARef', L, K, noIt, solver, sparsity);
             if ~exist(dictFilePath,'file')
-                X = dlmread(ref);
+                X = dlmread(refFilePath);
                 X = X.';
                 A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );
                 
@@ -138,7 +138,7 @@ for k=1:size(Ks, 1);
             dictFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictRLS-DLARefNoisy', L, K, noIt, solver, sparsity);
             sparseFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeRLS-DLARefNoisy', L, K, noIt, solver, sparsity);
             if ~exist(dictFilePath,'file')
-                X = dlmread(noisy);
+                X = dlmread(noisyFilePath);
                 X = X.';
                 A_hat = A_hat.';
 
@@ -173,71 +173,65 @@ for k=1:size(Ks, 1);
             end
             fprintf('\tRLS-DLANoisy-Time: %f', toc);
 
-%             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%             %% K-SVD dictionary learning from estimated dictionary and reference data
-%             tic;
-%             dictFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDRef', L, K, noIt, solver, sparsity);
-%             sparseFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDRef', L, K, noIt, solver, sparsity);
-%             fprintf('%s\n', dictFileName);
-%             fprintf('%s\n', sparseFileName);
-%             if ~exist(dictFileName,'file')
-%                 X = dlmread(ref);
-%                 X = X.';
-%                 A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );
-% 
-%                 % Learning
-%                 [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
-%                 A_hat = A_hat.';
-%                 S_hat = S_hat.';
-% 
-%                 % Saving
-%                 dlmwrite(dictFileName, A_hat, 'delimiter', ';');
-%                 dlmwrite(sparseFileName, S_hat, 'delimiter', ';');
-%             end
-%             fprintf('K-SVD-Time: %f\n\n', toc);
-% 
-%             %% K-SVD dictionary learning from learned dictionary and noisy data
-%             tic;
-%             dictFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDRefNoisy', L, K, noIt, solver, sparsity);
-%             sparseFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDRefNoisy', L, K, noIt, solver, sparsity);
-%             fprintf('%s\n', dictFileName);
-%             fprintf('%s\n', sparseFileName);
-%             if ~exist(dictFileName,'file')
-%                 X = dlmread(noisy);
-%                 X = X.';
-%                 A_hat = A_hat.';
-% 
-%                 % Learning
-%                 [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
-%                 A_hat = A_hat.';
-%                 S_hat = S_hat.';
-% 
-%                 % Saving
-%                 dlmwrite(dictFileName, A_hat, 'delimiter', ';');
-%                 dlmwrite(sparseFileName, S_hat, 'delimiter', ';');
-%             end
-%             fprintf('K-SVD-Time: %f\n\n', toc);
-% 
-%             %% K-SVD dictionary learning from estimated dictionary and noisy data
-%             tic;
-%             dictFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDNoisy', L, K, noIt, solver, sparsity);
-%             sparseFileName = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDNoisy', L, K, noIt, solver, sparsity);
-%             fprintf('%s\n', dictFileName);
-%             fprintf('%s\n', sparseFileName);
-%             if ~exist(dictFileName,'file')
-%                 A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );
-% 
-%                 % Learning
-%                 [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
-%                 A_hat = A_hat.';
-%                 S_hat = S_hat.';
-% 
-%                 % Saving
-%                 dlmwrite(dictFileName, A_hat, 'delimiter', ';');
-%                 dlmwrite(sparseFileName, S_hat, 'delimiter', ';');
-%             end
-%             fprintf('K-SVD-Time: %f\n\n', toc);
-% 
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %% K-SVD dictionary learning from estimated dictionary and reference data
+            tic;
+            dictFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDRef', L, K, noIt, solver, sparsity);
+            sparseFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDRef', L, K, noIt, solver, sparsity);
+            if ~exist(dictFilePath,'file')
+                X = dlmread(refFilePath);
+                X = X.';
+                A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );
+
+                % Learning
+                [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
+                A_hat = A_hat.';
+                S_hat = S_hat.';
+
+                % Saving
+                dlmwrite(dictFilePath, A_hat, 'delimiter', ';');
+                dlmwrite(sparseFilePath, S_hat, 'delimiter', ';');
+            end
+            fprintf('\nK-SVDRef-Time: %f', toc);
+
+            %% K-SVD dictionary learning from learned dictionary and noisy data
+            tic;
+            dictFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDRefNoisy', L, K, noIt, solver, sparsity);
+            sparseFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDRefNoisy', L, K, noIt, solver, sparsity);
+            if ~exist(dictFilePath,'file')
+                X = dlmread(noisyFilePath);
+                X = X.';
+                A_hat = A_hat.';
+
+                % Learning
+                [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
+                A_hat = A_hat.';
+                S_hat = S_hat.';
+
+                % Saving
+                dlmwrite(dictFilePath, A_hat, 'delimiter', ';');
+                dlmwrite(sparseFilePath, S_hat, 'delimiter', ';');
+            end
+            fprintf('\tK-SVDRefNoisy-Time: %f', toc);
+
+            %% K-SVD dictionary learning from estimated dictionary and noisy data
+            tic;
+            dictFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'dictK-SVDNoisy', L, K, noIt, solver, sparsity);
+            sparseFilePath = sprintf('%s%s_L=%i_K=%i_noIt=%i_solver=%s_tnz=%i.csv', filePath, 'sparseCodeK-SVDNoisy', L, K, noIt, solver, sparsity);
+            if ~exist(dictFilePath,'file')
+                A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );
+
+                % Learning
+                [A_hat,S_hat] = ksvd(noIt, X, A_hat, solver, 'tnz', sparsity);
+                A_hat = A_hat.';
+                S_hat = S_hat.';
+
+                % Saving
+                dlmwrite(dictFilePath, A_hat, 'delimiter', ';');
+                dlmwrite(sparseFilePath, S_hat, 'delimiter', ';');
+            end
+            fprintf('\tK-SVDNoisy-Time: %f', toc);
+
 %             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             %% T-MOD dictionary learning from estimated dictionary and reference data
 %             tic;

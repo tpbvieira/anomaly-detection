@@ -2136,3 +2136,84 @@ MODRef-Time: 290.260951	MODRefNoisy-Time: 290.318207	MODNoisy-Time: 287.501234
 RLS-DLARef-Time: 145.635445	RLS-DLARefNoisy-Time: 145.023428	RLS-DLANoisy-Time: 142.960486
 
 ## L=94500_K=50_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 592.244465	MODRefNoisy-Time: 605.178927	MODNoisy-Time: 599.393153
+RLS-DLARef-Time: 295.951579	RLS-DLARefNoisy-Time: 295.114002	RLS-DLANoisy-Time: 302.075360
+
+## L=94500_K=50_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 75.478317	MODRefNoisy-Time: 74.657686	MODNoisy-Time: 71.384849
+RLS-DLARef-Time: 55.548005	RLS-DLARefNoisy-Time: 53.105479	RLS-DLANoisy-Time: 46.755396
+
+## L=94500_K=50_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 340.875700	MODRefNoisy-Time: 335.500433	MODNoisy-Time: 335.738879
+RLS-DLARef-Time: 198.124392	RLS-DLARefNoisy-Time: 196.725174	RLS-DLANoisy-Time: 195.898548
+
+## L=94500_K=50_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 674.316539	MODRefNoisy-Time: 665.430582	MODNoisy-Time: 684.221387
+RLS-DLARef-Time: 390.094621	RLS-DLARefNoisy-Time: 397.148144	RLS-DLANoisy-Time: 387.126605
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 102.753326	MODRefNoisy-Time: 105.282577	MODNoisy-Time: 103.382790
+RLS-DLARef-Time: 96.700892	RLS-DLARefNoisy-Time: 101.957678	RLS-DLANoisy-Time: 88.184026
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 459.084145	MODRefNoisy-Time: 476.244860	MODNoisy-Time: 486.242235
+RLS-DLARef-Time: 395.017799	RLS-DLARefNoisy-Time: 390.404410	RLS-DLANoisy-Time: 384.342245
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 944.957671	MODRefNoisy-Time: 939.110614	MODNoisy-Time: 970.396481
+RLS-DLARef-Time: 784.301517	RLS-DLARefNoisy-Time: 773.627704	RLS-DLANoisy-Time: 777.714234
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 125.544350	MODRefNoisy-Time: 127.307118	MODNoisy-Time: 126.745512
+RLS-DLARef-Time: 118.477013	RLS-DLARefNoisy-Time: 114.127338	RLS-DLANoisy-Time: 105.026676
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 571.394681	MODRefNoisy-Time: 579.640617	MODNoisy-Time: 582.593612
+RLS-DLARef-Time: 462.313040	RLS-DLARefNoisy-Time: 461.942151	RLS-DLANoisy-Time: 475.673855
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 1080.069248	MODRefNoisy-Time: 1092.624759	MODNoisy-Time: 1079.877839
+RLS-DLARef-Time: 916.877573	RLS-DLARefNoisy-Time: 921.625462	RLS-DLANoisy-Time: 903.066948>> 
+
+
+
+
+
+
+		DYNAMIC JAVA PATH
+
+		<empty>
+
+
+## L=94500_K=10_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.001390	MODRefNoisy-Time: 0.001021	MODNoisy-Time: 0.001297
+RLS-DLARef-Time: 0.000724	RLS-DLARefNoisy-Time: 0.001694	RLS-DLANoisy-Time: 0.001058No access to mpv2.DictionaryLearning in static or dynamic Java path.
+Set dynamic Java path (works only if supported by the Matlab-version).
+Java access OK, mpv2.DictionaryLearning is in static or dynamic Java path.
+
+K-SVDRef-Time: 72.078575	K-SVDRefNoisy-Time: 68.058326	K-SVDNoisy-Time: 65.448045
+
+## L=94500_K=10_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.001126	MODRefNoisy-Time: 0.001082	MODNoisy-Time: 0.000798
+RLS-DLARef-Time: 0.001145	RLS-DLARefNoisy-Time: 0.031202	RLS-DLANoisy-Time: 0.025126
+K-SVDRef-Time: 345.964310	K-SVDRefNoisy-Time: 593.241396	K-SVDNoisy-Time: 315.007450
+
+## L=94500_K=10_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.004877	MODRefNoisy-Time: 0.000939	MODNoisy-Time: 0.001183
+RLS-DLARef-Time: 0.001218	RLS-DLARefNoisy-Time: 0.001210	RLS-DLANoisy-Time: 0.001165
+K-SVDRef-Time: 649.409633	K-SVDRefNoisy-Time: 688.999442	K-SVDNoisy-Time: 724.054367
+
+## L=94500_K=10_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.001383	MODRefNoisy-Time: 0.001252	MODNoisy-Time: 0.001206
+RLS-DLARef-Time: 0.001029	RLS-DLARefNoisy-Time: 0.001002	RLS-DLANoisy-Time: 0.000767
+K-SVDRef-Time: 105.872391	K-SVDRefNoisy-Time: 116.817924	K-SVDNoisy-Time: 106.529366
+
+## L=94500_K=10_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.001759	MODRefNoisy-Time: 0.001879	MODNoisy-Time: 0.001506
+RLS-DLARef-Time: 0.001451	RLS-DLARefNoisy-Time: 0.001453	RLS-DLANoisy-Time: 0.001473
+K-SVDRef-Time: 512.428872	K-SVDRefNoisy-Time: 576.287869	K-SVDNoisy-Time: 580.247030
+
+## L=94500_K=10_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000755	MODRefNoisy-Time: 0.000631	MODNoisy-Time: 0.000577
+RLS-DLARef-Time: 0.000585	RLS-DLARefNoisy-Time: 0.000581	RLS-DLANoisy-Time: 0.000610
+K-SVDRef-Time: 1040.261272
