@@ -1,10 +1,7 @@
 function [A_hat,S_hat] = khosvd(noIt, X, A_hat, M1, M2, solver, varargin)
-    % What I suggest is to start from the K-SVD algorithm you have and only 
-    % replace the matrix rank-one approximation (SVD-based) by the tensor-based 
-    % rank-one approximation (HOSVD-based). If the data is multidimensional, 
-    % the HOSVD-based rank-one approximation cannot be worse than the SVD-based 
-    % one. It is either equal or better. This way you make sure that the 
-    % algorithms are actually comparable.
+    % What I suggest is to start from the K-SVD algorithm you have and only replace the matrix rank-one approximation (SVD-based) by the tensor-based rank-one approximation (HOSVD-based).
+    % If the data is multidimensional, the HOSVD-based rank-one approximation cannot be worse than the SVD-based one. It is either equal or better. 
+    % This way you make sure that the algorithms are actually comparable.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% KHOSVD                                                              %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,7 +14,7 @@ function [A_hat,S_hat] = khosvd(noIt, X, A_hat, M1, M2, solver, varargin)
     % This structure is exploited using tensors.
     %
     % For details, please see:
-    % F. R�mer, G. Del Galdo, and M. Haardt, Tensor-based algorithms for
+    % F. Roemer, G. Del Galdo, and M. Haardt, Tensor-based algorithms for
     % learning multidimensional separable dictionaries, in Proc. IEEE Int.
     % Conf. Acoustics, Speech and Sig. Proc. (ICASSP 2014), Florence, Italy,
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

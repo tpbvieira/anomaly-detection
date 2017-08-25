@@ -2180,6 +2180,8 @@ RLS-DLARef-Time: 916.877573	RLS-DLARefNoisy-Time: 921.625462	RLS-DLANoisy-Time: 
 
 
 
+
+
 		DYNAMIC JAVA PATH
 
 		<empty>
@@ -2216,4 +2218,411 @@ K-SVDRef-Time: 512.428872	K-SVDRefNoisy-Time: 576.287869	K-SVDNoisy-Time: 580.24
 ## L=94500_K=10_noIt=100_solver=javaORMP_tnz=5
 MODRef-Time: 0.000755	MODRefNoisy-Time: 0.000631	MODNoisy-Time: 0.000577
 RLS-DLARef-Time: 0.000585	RLS-DLARefNoisy-Time: 0.000581	RLS-DLANoisy-Time: 0.000610
-K-SVDRef-Time: 1040.261272
+K-SVDRef-Time: 1040.261272	K-SVDRefNoisy-Time: 820.631558	K-SVDNoisy-Time: 779.794879
+
+## L=94500_K=50_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.000658	MODRefNoisy-Time: 0.000562	MODNoisy-Time: 0.000395
+RLS-DLARef-Time: 0.000381	RLS-DLARefNoisy-Time: 0.000367	RLS-DLANoisy-Time: 0.000363
+K-SVDRef-Time: 85.654185	K-SVDRefNoisy-Time: 81.654782	K-SVDNoisy-Time: 73.147487
+
+## L=94500_K=50_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.000462	MODRefNoisy-Time: 0.000447	MODNoisy-Time: 0.000399
+RLS-DLARef-Time: 0.000495	RLS-DLARefNoisy-Time: 0.000483	RLS-DLANoisy-Time: 0.000397
+K-SVDRef-Time: 332.500969	K-SVDRefNoisy-Time: 359.965665	K-SVDNoisy-Time: 331.034074
+
+## L=94500_K=50_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.000655	MODRefNoisy-Time: 0.000477	MODNoisy-Time: 0.000442
+RLS-DLARef-Time: 0.000421	RLS-DLARefNoisy-Time: 0.000423	RLS-DLANoisy-Time: 0.000426
+K-SVDRef-Time: 711.248789	K-SVDRefNoisy-Time: 704.303537	K-SVDNoisy-Time: 632.324708
+
+## L=94500_K=50_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.000618	MODRefNoisy-Time: 0.000606	MODNoisy-Time: 0.001030
+RLS-DLARef-Time: 0.000744	RLS-DLARefNoisy-Time: 0.000766	RLS-DLANoisy-Time: 0.000675
+K-SVDRef-Time: 104.259141	K-SVDRefNoisy-Time: 109.134513	K-SVDNoisy-Time: 114.198897
+
+## L=94500_K=50_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.000585	MODRefNoisy-Time: 0.000634	MODNoisy-Time: 0.000558
+RLS-DLARef-Time: 0.000556	RLS-DLARefNoisy-Time: 0.000606	RLS-DLANoisy-Time: 0.000650
+K-SVDRef-Time: 486.511021	K-SVDRefNoisy-Time: 502.639453	K-SVDNoisy-Time: 510.755167
+
+## L=94500_K=50_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000657	MODRefNoisy-Time: 0.000544	MODNoisy-Time: 0.000455
+RLS-DLARef-Time: 0.000443	RLS-DLARefNoisy-Time: 0.000432	RLS-DLANoisy-Time: 0.000429
+K-SVDRef-Time: 964.809397	K-SVDRefNoisy-Time: 1005.295466	K-SVDNoisy-Time: 1026.559661
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.000604	MODRefNoisy-Time: 0.000484	MODNoisy-Time: 0.000534
+RLS-DLARef-Time: 0.000750	RLS-DLARefNoisy-Time: 0.000344	RLS-DLANoisy-Time: 0.000321
+K-SVDRef-Time: 84.735605	K-SVDRefNoisy-Time: 84.881952	K-SVDNoisy-Time: 80.798195
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.000435	MODRefNoisy-Time: 0.000335	MODNoisy-Time: 0.000324
+RLS-DLARef-Time: 0.000310	RLS-DLARefNoisy-Time: 0.000328	RLS-DLANoisy-Time: 0.000326
+K-SVDRef-Time: 368.264322	K-SVDRefNoisy-Time: 396.318603	K-SVDNoisy-Time: 402.154829
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.000568	MODRefNoisy-Time: 0.000508	MODNoisy-Time: 0.000423
+RLS-DLARef-Time: 0.001221	RLS-DLARefNoisy-Time: 0.000470	RLS-DLANoisy-Time: 0.000501
+K-SVDRef-Time: 780.131095	K-SVDRefNoisy-Time: 771.920850	K-SVDNoisy-Time: 734.241233
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.000613	MODRefNoisy-Time: 0.000466	MODNoisy-Time: 0.000539
+RLS-DLARef-Time: 0.000474	RLS-DLARefNoisy-Time: 0.000441	RLS-DLANoisy-Time: 0.000461
+K-SVDRef-Time: 109.481632	K-SVDRefNoisy-Time: 115.253492	K-SVDNoisy-Time: 110.869011
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.000629	MODRefNoisy-Time: 0.000506	MODNoisy-Time: 0.003205
+RLS-DLARef-Time: 0.000473	RLS-DLARefNoisy-Time: 0.000397	RLS-DLANoisy-Time: 0.000444
+K-SVDRef-Time: 504.597652	K-SVDRefNoisy-Time: 543.465326	K-SVDNoisy-Time: 534.130754
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000489	MODRefNoisy-Time: 0.000370	MODNoisy-Time: 0.000331
+RLS-DLARef-Time: 0.000327	RLS-DLARefNoisy-Time: 0.000304	RLS-DLANoisy-Time: 0.000342
+K-SVDRef-Time: 987.146629	K-SVDRefNoisy-Time: 1056.235571	K-SVDNoisy-Time: 1038.222453>> 
+
+
+
+
+
+
+
+		DYNAMIC JAVA PATH
+
+	/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/javaclasses
+
+
+## L=94500_K=10_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.000970	MODRefNoisy-Time: 0.000549	MODNoisy-Time: 0.000731
+RLS-DLARef-Time: 0.000458	RLS-DLARefNoisy-Time: 0.000681	RLS-DLANoisy-Time: 0.000467
+K-SVDRef-Time: 0.000428	K-SVDRefNoisy-Time: 0.000425	K-SVDNoisy-Time: 0.000451
+T-MODRef-Time: 21.211435	T-MODRefNoisy-Time: 19.618345	T-MODNoisy-Time: 16.515040
+
+## L=94500_K=10_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.000785	MODRefNoisy-Time: 0.000743	MODNoisy-Time: 0.000635
+RLS-DLARef-Time: 0.000616	RLS-DLARefNoisy-Time: 0.000640	RLS-DLANoisy-Time: 0.000635
+K-SVDRef-Time: 0.000662	K-SVDRefNoisy-Time: 0.000588	K-SVDNoisy-Time: 0.000595
+T-MODRef-Time: 84.786818	T-MODRefNoisy-Time: 84.868461	T-MODNoisy-Time: 91.758145
+
+## L=94500_K=10_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.001024	MODRefNoisy-Time: 0.000791	MODNoisy-Time: 0.000572
+RLS-DLARef-Time: 0.000591	RLS-DLARefNoisy-Time: 0.000566	RLS-DLANoisy-Time: 0.000563
+K-SVDRef-Time: 0.000557	K-SVDRefNoisy-Time: 0.000583	K-SVDNoisy-Time: 0.000556
+T-MODRef-Time: 174.823298	T-MODRefNoisy-Time: 181.689680	T-MODNoisy-Time: 173.467614
+
+## L=94500_K=10_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.001107	MODRefNoisy-Time: 0.000932	MODNoisy-Time: 0.000809
+RLS-DLARef-Time: 0.000810	RLS-DLARefNoisy-Time: 0.000843	RLS-DLANoisy-Time: 0.000810
+K-SVDRef-Time: 0.000821	K-SVDRefNoisy-Time: 0.000809	K-SVDNoisy-Time: 0.000834
+T-MODRef-Time: 19.144705	T-MODRefNoisy-Time: 19.211063	T-MODNoisy-Time: 16.721833
+
+## L=94500_K=10_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.001527	MODRefNoisy-Time: 0.001349	MODNoisy-Time: 0.001362
+RLS-DLARef-Time: 0.001340	RLS-DLARefNoisy-Time: 0.001357	RLS-DLANoisy-Time: 0.001328
+K-SVDRef-Time: 0.001341	K-SVDRefNoisy-Time: 0.001376	K-SVDNoisy-Time: 0.002228
+T-MODRef-Time: 87.800305	T-MODRefNoisy-Time: 93.037730	T-MODNoisy-Time: 94.039741
+
+## L=94500_K=10_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000622	MODRefNoisy-Time: 0.000490	MODNoisy-Time: 0.000471
+RLS-DLARef-Time: 0.000331	RLS-DLARefNoisy-Time: 0.000310	RLS-DLANoisy-Time: 0.000311
+K-SVDRef-Time: 0.000304	K-SVDRefNoisy-Time: 0.000307	K-SVDNoisy-Time: 0.000307
+T-MODRef-Time: 179.904872	T-MODRefNoisy-Time: 173.804171	T-MODNoisy-Time: 177.184073
+
+## L=94500_K=50_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.000430	MODRefNoisy-Time: 0.000396	MODNoisy-Time: 0.000400
+RLS-DLARef-Time: 0.000368	RLS-DLARefNoisy-Time: 0.000349	RLS-DLANoisy-Time: 0.000327
+K-SVDRef-Time: 0.000319	K-SVDRefNoisy-Time: 0.000318	K-SVDNoisy-Time: 0.000309
+T-MODRef-Time: 38.375058	T-MODRefNoisy-Time: 37.110936	T-MODNoisy-Time: 39.294747
+
+## L=94500_K=50_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.000620	MODRefNoisy-Time: 0.000436	MODNoisy-Time: 0.000378
+RLS-DLARef-Time: 0.000434	RLS-DLARefNoisy-Time: 0.000334	RLS-DLANoisy-Time: 0.000336
+K-SVDRef-Time: 0.000338	K-SVDRefNoisy-Time: 0.000342	K-SVDNoisy-Time: 0.000326
+T-MODRef-Time: 196.801523	T-MODRefNoisy-Time: 210.596314	T-MODNoisy-Time: 202.510910
+
+## L=94500_K=50_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.000529	MODRefNoisy-Time: 0.000452	MODNoisy-Time: 0.000463
+RLS-DLARef-Time: 0.003150	RLS-DLARefNoisy-Time: 0.000309	RLS-DLANoisy-Time: 0.000310
+K-SVDRef-Time: 0.000331	K-SVDRefNoisy-Time: 0.000311	K-SVDNoisy-Time: 0.000323
+T-MODRef-Time: 386.434735	T-MODRefNoisy-Time: 373.638962	T-MODNoisy-Time: 358.845889
+
+## L=94500_K=50_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.000517	MODRefNoisy-Time: 0.000439	MODNoisy-Time: 0.000412
+RLS-DLARef-Time: 0.000414	RLS-DLARefNoisy-Time: 0.000404	RLS-DLANoisy-Time: 0.000396
+K-SVDRef-Time: 0.000401	K-SVDRefNoisy-Time: 0.000398	K-SVDNoisy-Time: 0.000394
+T-MODRef-Time: 37.115064	T-MODRefNoisy-Time: 39.267354	T-MODNoisy-Time: 34.435649
+
+## L=94500_K=50_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.000563	MODRefNoisy-Time: 0.000466	MODNoisy-Time: 0.000445
+RLS-DLARef-Time: 0.000437	RLS-DLARefNoisy-Time: 0.000414	RLS-DLANoisy-Time: 0.000395
+K-SVDRef-Time: 0.000393	K-SVDRefNoisy-Time: 0.000391	K-SVDNoisy-Time: 0.000387
+T-MODRef-Time: 188.343711	T-MODRefNoisy-Time: 173.924895	T-MODNoisy-Time: 182.100767
+
+## L=94500_K=50_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000572	MODRefNoisy-Time: 0.000502	MODNoisy-Time: 0.000512
+RLS-DLARef-Time: 0.000459	RLS-DLARefNoisy-Time: 0.000442	RLS-DLANoisy-Time: 0.000421
+K-SVDRef-Time: 0.000404	K-SVDRefNoisy-Time: 0.000403	K-SVDNoisy-Time: 0.000392
+T-MODRef-Time: 409.646276	T-MODRefNoisy-Time: 364.044323	T-MODNoisy-Time: 374.268933
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=2
+MODRef-Time: 0.000481	MODRefNoisy-Time: 0.000433	MODNoisy-Time: 0.000334
+RLS-DLARef-Time: 0.000399	RLS-DLARefNoisy-Time: 0.000384	RLS-DLANoisy-Time: 0.000371
+K-SVDRef-Time: 0.000365	K-SVDRefNoisy-Time: 0.000362	K-SVDNoisy-Time: 0.000360
+T-MODRef-Time: 89.527582	T-MODRefNoisy-Time: 93.045699	T-MODNoisy-Time: 83.511616
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=2
+MODRef-Time: 0.000421	MODRefNoisy-Time: 0.000486	MODNoisy-Time: 0.000362
+RLS-DLARef-Time: 0.000317	RLS-DLARefNoisy-Time: 0.000307	RLS-DLANoisy-Time: 0.000298
+K-SVDRef-Time: 0.000289	K-SVDRefNoisy-Time: 0.000286	K-SVDNoisy-Time: 0.000320
+T-MODRef-Time: 449.385224	T-MODRefNoisy-Time: 446.482044	T-MODNoisy-Time: 444.658444
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=2
+MODRef-Time: 0.000371	MODRefNoisy-Time: 0.000446	MODNoisy-Time: 0.000310
+RLS-DLARef-Time: 0.000480	RLS-DLARefNoisy-Time: 0.000281	RLS-DLANoisy-Time: 0.000277
+K-SVDRef-Time: 0.000272	K-SVDRefNoisy-Time: 0.000270	K-SVDNoisy-Time: 0.000311
+T-MODRef-Time: 930.832529	T-MODRefNoisy-Time: 940.916941	T-MODNoisy-Time: 893.600942
+
+## L=94500_K=100_noIt=10_solver=javaORMP_tnz=5
+MODRef-Time: 0.000382	MODRefNoisy-Time: 0.000514	MODNoisy-Time: 0.000306
+RLS-DLARef-Time: 0.000295	RLS-DLARefNoisy-Time: 0.000395	RLS-DLANoisy-Time: 0.000284
+K-SVDRef-Time: 0.000276	K-SVDRefNoisy-Time: 0.000276	K-SVDNoisy-Time: 0.000311
+T-MODRef-Time: 90.657171	T-MODRefNoisy-Time: 92.167518	T-MODNoisy-Time: 87.665667
+
+## L=94500_K=100_noIt=50_solver=javaORMP_tnz=5
+MODRef-Time: 0.000396	MODRefNoisy-Time: 0.000409	MODNoisy-Time: 0.000423
+RLS-DLARef-Time: 0.000370	RLS-DLARefNoisy-Time: 0.000300	RLS-DLANoisy-Time: 0.000385
+K-SVDRef-Time: 0.000354	K-SVDRefNoisy-Time: 0.000354	K-SVDNoisy-Time: 0.000391
+T-MODRef-Time: 464.891508	T-MODRefNoisy-Time: 451.143471	T-MODNoisy-Time: 448.590547
+
+## L=94500_K=100_noIt=100_solver=javaORMP_tnz=5
+MODRef-Time: 0.000461	MODRefNoisy-Time: 0.000415	MODNoisy-Time: 0.000331
+RLS-DLARef-Time: 0.000340	RLS-DLARefNoisy-Time: 0.000411	RLS-DLANoisy-Time: 0.000397
+K-SVDRef-Time: 0.000377	K-SVDRefNoisy-Time: 0.000391	K-SVDNoisy-Time: 0.000493
+T-MODRef-Time: 881.414571	T-MODRefNoisy-Time: 939.403499	T-MODNoisy-Time: 908.323772>> 
+
+
+
+		DYNAMIC JAVA PATH
+
+		<empty>
+## Image Denoising based on Dictionary Learning
+
+## L=46500_K=10_noIt=10_solver=javaORMP_tnz=2
+MOD-Time: 0.001842	RLS-DLA-Time: 0.000685	K-SVD-Time: 0.001050	K-HOSVDNoisy-Time: 0.000536
+
+## L=46500_K=10_noIt=50_solver=javaORMP_tnz=2No access to mpv2.DictionaryLearning in static or dynamic Java path.
+Set dynamic Java path (works only if supported by the Matlab-version).
+Java access OK, mpv2.DictionaryLearning is in static or dynamic Java path.
+
+MOD-Time: 136.699060	RLS-DLA-Time: 17.230964	K-SVD-Time: 120.121388	K-HOSVDNoisy-Time: 1801.874516
+
+## L=46500_K=10_noIt=100_solver=javaORMP_tnz=2
+MOD-Time: 219.946058	RLS-DLA-Time: 29.925780	K-SVD-Time: 260.858018	K-HOSVDNoisy-Time: 3787.940860
+
+## L=46500_K=10_noIt=10_solver=javaORMP_tnz=5
+MOD-Time: 24.391834	RLS-DLA-Time: 7.686826	K-SVD-Time: 37.712691	K-HOSVDNoisy-Time: 2207.727657
+
+## L=46500_K=10_noIt=50_solver=javaORMP_tnz=5
+MOD-Time: 114.269472vsOMPorORMP: Values not as expected, here n2x=-0.22819054330739075, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-5.090105761058693, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.1414442195886716, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+	RLS-DLA-Time: 20.896931	K-SVD-Time: 182.238850	K-HOSVDNoisy-Time: 11031.841244
+
+## L=46500_K=10_noIt=100_solver=javaORMP_tnz=5
+MOD-Time: 237.368105vsOMPorORMP: Values not as expected, here n2x=-1.6345979143460077, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-2.6137902149822643, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.8090683327423172, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.2176771935041326, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.19643090028381405, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-2.495900316404594, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.4270826371775351, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.315382273937589, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-5.710987409678057, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-4.056622168279416, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-2.9736263354935866, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.24351714652269418, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.12534007869012198, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.06146669381170744, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.27138984043764625, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.5215334920743464, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.40398199253453626, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.3569580085063895, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.2807150518994863, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.1934648478777805, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.1768692307847255, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.02196618135438566, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.3857126388964427, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.30251975687063304, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.3944744749100151, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.43686874438555723, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.5245104632863038, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.423000011736002, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.5951469998642516, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.7742762251828941, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.0850407672240863, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.0858463562398946, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.6358388385673024, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.48533387621248814, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.2980988135283451, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.12463511680081396, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.004973970437565756, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.5702345736288403, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.24459615375554777, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.3255192089672176, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.580609569201237, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.34350610065705933, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.09834993747022813, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.8812598876362315, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.7105958606364271, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.113428631939274, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.07110023899460272, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.2585574730758625, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.054368133547098796, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.667397891186111, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-11.63593892360533, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-11.310638959016075, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-13.086548082011227, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.757419375595973, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.357303400696342, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.662165938819111, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.861756496906745, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.324864067408644, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-13.31574409328059, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-15.502855234329033, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-14.994588956976168, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.989689211662206, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-11.25665039188231, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-11.644853149818736, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-12.581755629027501, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-14.83300289894846, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-16.16724272072486, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-14.071080185043984, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-11.389533093546156, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-9.39934430155898, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-6.533665883144971, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-4.8427042923941, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-4.939050865476929, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.1286808178368719, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-3.976179305001728, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-6.631078587278187, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-1.2102433281228215, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.04858565480822985, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+vsOMPorORMP: Values not as expected, here n2x=-0.018022529018175804, s=4, normalized = false, do vsBMP instead.
+and checkNormalized returned false.
+	RLS-DLA-Time: 36.585416	K-SVD-Time: 362.048459	K-HOSVDNoisy-Time: 22497.645616
+
+## L=46500_K=50_noIt=10_solver=javaORMP_tnz=2
+MOD-Time: 30.902837	RLS-DLA-Time: 18.453698	K-SVD-Time: 34.215255	K-HOSVDNoisy-Time: 103.592544
+
+## L=46500_K=50_noIt=50_solver=javaORMP_tnz=2
+MOD-Time: 142.650422	RLS-DLA-Time: 69.271504	K-SVD-Time: 160.642506	K-HOSVDNoisy-Time: 489.657108
+
+## L=46500_K=50_noIt=100_solver=javaORMP_tnz=2
+MOD-Time: 282.193319	RLS-DLA-Time: 134.011689	K-SVD-Time: 318.724750	K-HOSVDNoisy-Time: 965.569251
+
+## L=46500_K=50_noIt=10_solver=javaORMP_tnz=5
+MOD-Time: 34.210875	RLS-DLA-Time: 21.839723	K-SVD-Time: 43.902545	K-HOSVDNoisy-Time: 528.398204
+
+## L=46500_K=50_noIt=50_solver=javaORMP_tnz=5
+MOD-Time: 0.000875	RLS-DLA-Time: 0.000532	K-SVD-Time: 211.121583	K-HOSVDNoisy-Time: 2551.461366
+
+## L=46500_K=50_noIt=100_solver=javaORMP_tnz=5
+MOD-Time: 313.510112	RLS-DLA-Time: 163.618093	K-SVD-Time: 419.154657	K-HOSVDNoisy-Time: 4828.229821
+
+## L=46500_K=100_noIt=10_solver=javaORMP_tnz=2
+MOD-Time: 43.074154	RLS-DLA-Time: 37.534780	K-SVD-Time: 41.745954	K-HOSVDNoisy-Time: 80.652230
+
+## L=46500_K=100_noIt=50_solver=javaORMP_tnz=2
+MOD-Time: 195.905431	RLS-DLA-Time: 158.024241	K-SVD-Time: 195.903601	K-HOSVDNoisy-Time: 351.290472
+
+## L=46500_K=100_noIt=100_solver=javaORMP_tnz=2
+MOD-Time: 386.443898	RLS-DLA-Time: 307.910446	K-SVD-Time: 386.999390	K-HOSVDNoisy-Time: 668.441101
+
+## L=46500_K=100_noIt=10_solver=javaORMP_tnz=5
+MOD-Time: 48.195411	RLS-DLA-Time: 44.270306	K-SVD-Time: 54.996411	K-HOSVDNoisy-Time: 337.027258
+
+## L=46500_K=100_noIt=50_solver=javaORMP_tnz=5
+MOD-Time: 0.000856	RLS-DLA-Time: 0.000579	K-SVD-Time: 0.000892	K-HOSVDNoisy-Time: 0.000658
+
+## L=46500_K=100_noIt=100_solver=javaORMP_tnz=5
+MOD-Time: 441.241459	RLS-DLA-Time: 368.747543	K-SVD-Time: 523.166798	K-HOSVDNoisy-Time: 2806.167110>> 

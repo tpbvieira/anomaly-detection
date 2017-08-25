@@ -46,11 +46,14 @@ from skimage.restoration import (denoise_tv_chambolle, denoise_bilateral, denois
 from skimage import data, img_as_float, color
 from skimage.util import random_noise
 
-#plt.imshow(face, cmap=plt.cm.gray)
-#plt.show()
+img_original = img_as_float(data.chelsea())
+plt.imshow(img_original)
+plt.show()
 
 # cut the original image to img_original
 img_original = img_as_float(data.chelsea()[100:250, 50:300])
+plt.imshow(img_original)
+plt.show()
 #print(type(img_original))
 #print(len(img_original))
 #print(img_original.shape)

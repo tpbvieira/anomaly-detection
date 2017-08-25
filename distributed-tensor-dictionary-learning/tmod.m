@@ -22,7 +22,7 @@ function [A_hat,S_hat] = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
     Xt = permute(reshape(X.',[T,M2,M1]),[3,2,1]);    
     Xt1 = reshape(permute(Xt,[1,3,2]),M1,[]);
     Xt2 = reshape(permute(Xt,[2,1,3]),M2,[]);
-    I_t = eye(T);
+    I_t = eye(T, 'single');
     for it = 1:noIt
         S_hat = sparseapprox(X, kron(A_hat1,A_hat2), solver, varargin);
         
@@ -30,8 +30,8 @@ function [A_hat,S_hat] = tmod(noIt, X, A_hat1, A_hat2, solver, varargin)
         St_hat1 = reshape(permute(St_hat,[1,3,2]),N1,[]);
         St_hat2 = reshape(permute(St_hat,[2,1,3]),N2,[]);
                 
-        A_hat1 = Xt1 * pinv(St_hat1 * (kron(A_hat2,I_t)).');
-        A_hat2 = Xt2 * pinv(St_hat2 * (kron(I_t,A_hat1)).');
+        A_hat1 = Xt1 * pinv(St_hat1 * (kron(A_hat2, I_t)).');
+        A_hat2 = Xt2 * pinv(St_hat2 * (kron(I_t, A_hat1)).');
         
         A_hat1 = dictnormalize(A_hat1);
         A_hat2 = dictnormalize(A_hat2);
