@@ -3,49 +3,37 @@
 Denoising a picture
 ====================
 
-In this example, we denoise a noisy version of a picture using the total
-variation, bilateral, and wavelet denoising filters.
+In this example, we denoise a noisy version of a picture using the total variation, bilateral, and wavelet denoising filters. Total variation and bilateral algorithms typically produce "posterized"
+images with flat domains separated by sharp edges. It is possible to change the degree of posterization by controlling the tradeoff between denoising and faithfulnessto the original image.
 
-Total variation and bilateral algorithms typically produce "posterized" images
-with flat domains separated by sharp edges. It is possible to change the degree
-of posterization by controlling the tradeoff between denoising and faithfulness
-to the original image.
 
 Total variation filter
 ----------------------
+The result of this filter is an image that has a minimal total variation norm, while being as close to the initial image as possible. The total variation is the L1 norm of the gradient of the
+image.
 
-The result of this filter is an image that has a minimal total variation norm,
-while being as close to the initial image as possible. The total variation is
-the L1 norm of the gradient of the image.
 
 Bilateral filter
 ----------------
+A bilateral filter is an edge-preserving and noise reducing filter. It averages pixels based on their spatial closeness and radiometric similarity.
 
-A bilateral filter is an edge-preserving and noise reducing filter. It averages
-pixels based on their spatial closeness and radiometric similarity.
 
 Wavelet denoising filter
 ------------------------
+A wavelet denoising filter relies on the wavelet representation of the image. The noise is represented by small values in the wavelet domain which are set to 0.
 
-A wavelet denoising filter relies on the wavelet representation of the image.
-The noise is represented by small values in the wavelet domain which are set to
-0.
-
-In color images, wavelet denoising is typically done in the `YCbCr color
-space`_ as denoising in separate color channels may lead to more apparent
-noise.
-
-.. _`YCbCr color space`: https://en.wikipedia.org/wiki/YCbCr
-
+In color images, wavelet denoising is typically done in the `YCbCr color space`_ as denoising in separate color channels may lead to more apparent
+noise. `YCbCr color space`: https://en.wikipedia.org/wiki/YCbCr
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
-
 from skimage.measure import (compare_mse, compare_nrmse, compare_psnr)
 from skimage.restoration import (denoise_tv_chambolle, denoise_bilateral, denoise_wavelet, estimate_sigma)
 from skimage import data, img_as_float, color
 from skimage.util import random_noise
 
+# load and show the image
 img_original = img_as_float(data.chelsea())
 plt.imshow(img_original)
 plt.show()
@@ -54,11 +42,9 @@ plt.show()
 img_original = img_as_float(data.chelsea()[100:250, 50:300])
 plt.imshow(img_original)
 plt.show()
-#print(type(img_original))
-#print(len(img_original))
-#print(img_original.shape)
+print(img_original.shape)
 
-sigma = 0.155
+sigma = 0.355
 img_noisy = random_noise(img_original, var=sigma**2)
 
 fig, ax = plt.subplots(nrows=2, ncols=4, figsize=(8, 5), sharex=True, sharey=True, subplot_kw={'adjustable': 'box-forced'})
@@ -75,7 +61,7 @@ ax[0, 0].imshow(img_noisy)
 ax[0, 0].axis('off')
 mse = compare_mse(img_original, img_noisy)
 nrmse = compare_nrmse(img_original, img_noisy)
-psnr = compare_psnr(img_original, img_noisy)
+psnr = compare_psnr(img_original, img_noisy)cd
 title = 'Noisy' + '\nMSE: ' + str(mse)[:6] + '\nNRMSE: ' + str(nrmse)[:6] + '\nPSNR: ' + str(psnr)[:6]
 ax[0, 0].set_title(title)
 

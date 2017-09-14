@@ -51,8 +51,7 @@ subplot(3, 4, 4);
 imshow(blueChannel);
 title('Blue Channel', 'FontSize', fontSize);
 
-% Generate a noisy image.  This has salt and pepper noise independently on
-% each color channel so the noise may be colored.
+% Generate a noisy image.  This has salt and pepper noise independently on each color channel so the noise may be colored.
 noisyRGB = imnoise(rgbImage,'salt & pepper', 0.05);
 subplot(3, 4, 5);
 imshow(noisyRGB);
