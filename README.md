@@ -1,1 +1,1 @@
-# Discriminative Sensing based on Signal Processing
+Discriminative Sensing based on Signal Processing
