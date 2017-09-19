@@ -1,0 +1,887 @@
+\chapter{PCA and SVM for Critical Factors Analysis}
+\label{ch:2_pca_svm_cfa}
+
+\begin{quotation}[]{Paulo Freire}
+No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
+\end{quotation}
+
+There is a significant continuous public spending on information technology (IT) by the Brazilian Federal Public Administration. In order to monitor and to diagnose the concerned public institutions IT governance (ITG), the Federal Court of Accounts, in Portuguese Tribunal de Contas da União (TCU), surveys data from these institutions practices as well as best practices for IT in government and business. These surveys started in 2007 with 39 questions and nowadays they contain more than 100 questions impacting on the ITG of Brazilian public institutions. Moreover, these questions encourage public institutions to adopt best practices not only in IT but also in all other management areas. In this paper, we propose the identification and the verification of the critical success factors (CSFs) of the TCU survey variables by means of statistical analysis. The CSFs are defined as the factors that most contributed for the high performance of the institutions and they are measured by using the ITG index created by TCU. Therefore, in order to validate our results, the statistically identified CSFs are compared with those mentioned by the public administration IT executives in interviews. Besides the statistical analysis, we successfully apply the Support Vector Classification (SVC) algorithm to classify public institutions in terms of their ITG index. By comparing the SVC based classification with the CSFs obtained from the interviews, we show that there is a very high level of similarity. Hence, the CSFs identified with SCV provide a very high impact, regarding the public administration ITG.
+
+2.3 Análise de Componentes Principais
+
+Segundo Sabin, Ferrão e Furtado (2004) e Silva et al. (2012), a Análise de Componentes Principais (ACP), do inglês Principal Component Analysis – PCA, é utilizada para compressão de dados para identificação das relações entre características dos dados. Tal compressão é obtida por meio da substituição das variáveis originais por um novo conjunto de variáveis, conhecidas como Componentes Principais (CPs). As CPs são obtidas pela combinação linear das variáveis que apresentam a maior variabilidade na matriz de covariância. Assim, objetivo principal da ACP é identificar as CPs responsáveis pelas maiores variações entre os resultados. Em termos práticos eliminam-se algumas variáveis com pouca informação e determinam-se as variáveis de maior influência na formação de cada CP (Vicini, 2005).
+Segundo Vicini (2005), o conjunto ortogonal de eixos não correlacionados representam as variáveis que mantém ao máximo a variabilidade do conjunto, em outras palavras, a menor perda de informação. 
+Conforme Vicini (2005:29), para o processo de determinação das CPs 
+“é necessário calcular matriz de variância-covariância (∑), ou na matriz de correlação (), encontrar os autovalores e autovetores e, por fim, escrever as combinações lineares, que serão as novas variáveis, denominadas de componentes principais, sendo que cada componente principal é a combinação linear de todas as variáveis originais [...] em ordem de estimação e em termos da variância total, contida nos dados iniciais”. 
+Ressalta-se que não são todos as CPs a serem analisadas, mas apenas as com maior variância, alguns autores (Vicini, 2005) determinam os CPs por meio da porcentagem que representam, geralmente, mais de 70\% da informação. 
+Conforme Silva et al. (2012) para a geração dos CPs, considera-se uma matriz X = (X1, X2, ..., Xp) de dimensões nxp (a Seção 4 mostra as dimensões utilizadas nesta pesquisa) originada a partir de um vetor aleatório. A matriz de variância-covariância  das amostras da matriz X é calculada por meio da seguinte expressão , onde é o operador de transposição de uma matriz. Nota-se que a matriz de variância-covariância é uma matriz quadrada e não negativa. Portanto, pode-se aplica a decomposição em autovalores, do Eigenvalue Decomposition (EVD), da matriz  resultando em um produto de três matrizes.
+,
+onde  é a matriz de autovetores e  é a matriz cuja diagonal principal contém os autovalores. Para cada autovalor λi da matriz  existe um autovetor unitário e ortognal vi.
+vi = 
+A i-nésima coluna da matriz  é o autovetor normalizado  correspondente ao autovalor . Desta forma, define-se i-ésima componente principal (Yi) como sendo
+Yi= λ i vi
+Salienta-se que a ACP é baseada na EVD já que parte dos autovalores e dos autovetores representam as componentes principais (CP). 
+A Figura 1 mostra geometricamente a ACP de duas variáveis X1 e X2. A nuvem de pontos representa o diagrama de espalhamento destas duas variáveis. Conforme explicado, o primeiro passo é o cálculo da matriz de variância-covariância e em seguida se aplica a EVD. Verifica-se que a CP1, denominado CP principal (com a maior variância), é ortogonal à segunda CP (CP2 com a menor variância). Note que as duas variáveis são perpendiculares porque as variáveis obtidas pela ACP são independentes. Logo, após a aplicação da ACP, ao invés de representar os dados por meio de duas variáveis correlacionadas X1 e X2, eles podem ser representados por duas variáveis independentes Y1 e Y2. Dada a elevada correlação entre X1 e X2, verifica-se que as duas variáveis X1 e X2 podem ser aproximadas por uma única variável Y1 na Figura 1.
+
+Figura 1 – Representação e Rotação do Componente Principal
+Fonte: Desenvolvido pelos autores
+
+A Figura 1 reforça a ideia da ACP cujo objetivo inicial é a identificação de planos e linhas que representem um conjunto de pontos em um espaço com um número menor de variáveis tendo em vista as possíveis correlações que podem existir entre as variáveis originais.
+Assim, para o método da estatística multivariada ACP utilizar todas variáveis, separa-se a informação útil da informação redundante (Finkler, 2003). Ressalta-se que a ACP é um dos primeiros passos para outras análises multivariadas, sendo um dos métodos mais comuns empregados na análise de informações (Sabin, Ferrão e Furtado, 2004; Silva et al.,2012).
+
+2.4 Máquinas de Vetores de Suporte (MVS)
+
+Máquina de Vetores de Suporte (MVS), do inglês Support Vector Machine (SVM), é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
+Quando aplicado para classificação, MVS busca a identificação de um hiperplano que separa os dados em classes distintas, por meio de uma margem máxima entre duas classes de dados. Desta forma, um conjunto de dados é linearmente separável se for possível dividir seus dados em duas classes, por meio um hiperplano, conforme na figura a seguir. 
+
+Figura 2 – Separação Linear por Margem Máxima
+
+Dado um conjunto de dados previamente classificados, (xi, yi), xi ∈ Rn, yi ∈ {1, −1}, i = 1, . . . , l, um classificador linear pode ser definido por: wT ⋅ x + b = 0, desta forma o hiperplano ótimo é definido pelos valores ótimos do vetor de pesos wi e do bias bi, de forma que wT ⋅ x + b = 1 e wT ⋅ x + b = -1 representam respectivamente os vetores de suporte positivos e negativos, que são os pontos próximos à margem do hiperplano ideal. A margem máxima, entre os vetores de suporte, é definida por:
+
+As funções de kernel têm o objetivo de projetar os vetores de variáveis de um conjunto de dados em um espaço de maior dimensão, para a classificação de classes originalmente apresentadas em espaços não separáveis linearmente. Com o aumento da dimensão, aumenta a probabilidade desses dados poderem ser linearmente separáveis. 
+Uma função kernel K(xi, xj) = φ(xi) T φ(xj) pode ser usada para treinar a MVS. Uma MVS linear tem φ(x) = x, assim uma função kernel linear pode ser representada por K(xi, xj) = xTi xj.
+Foi adotada a estratégia "um contra um" (Knerr, Personnaz e Dreyfus, 1990), para a utilização de MVS para a classificação de muitas classes. Esta estratégia consiste em construir uma máquina vetor de suporte para cada par de classes. Para um problema com c classes, c(c-1)/2 MVSs são treinados para classificar as classes entre as c classes possíveis.
+
+2 Eliminação Recursiva de Variáveis (ERV)
+
+Dado um algoritmo de classificação, que possa estimar pesos para as variáveis de um conjunto de dados, o objetivo da Eliminação Recursiva de Variáveis (ERV), do inglês Recursive Feature Elimination (RFE) (Guyon, 2002), é selecionar variáveis por meio da redução recursiva da quantidade de variáveis, eliminando recursivamente as variáveis de menor peso para classificação por meio do algoritmo adotado. 
+Primeiramente, um modelo é treinado, utilizando o conjunto de dados inicial e o algoritmo selecionado, durante o treinamento são atribuídos pesos para cada variável, representando a importância de cada variável para a classificação. Em seguida, as variáveis com menor peso são eliminadas do conjunto de dados. Este processo, de treinamento, ordenamento de variáveis e eliminação de variáveis menos importantes, é repetido recursivamente até a obtenção do número desejado de variáveis, ou até a satisfação de alguma condição, como um limiar de taxa de erro de um algoritmo de classificação.
+As variáveis com maiores pesos apresentam maior influência na classificação (Guyon, 2002). Desta forma, se um algoritmo de classificação apresenta boa acurácia, as variáveis com maiores pesos representam as variáveis que apresentam maior influência para a classificação.
+MVS-ERV (Guyon, 2002) é uma aplicação da ERV utilizando os pesos obtidos por meio do treinamento utilizando MVS como algoritmo de classificação, para identificar as variáveis mais importantes para predições de classificação e eliminar recursivamente as variáveis que menos influenciam na classificação.
+
+4.3 Análise das componentes principais
+
+Para a análise eficiente da matriz original  é relevante separar as informações úteis das redundantes. Segundo Johnson e Wichern (1992), há vários instrumentos para essa finalidade, mas a ACP é a que melhor desempenha este papel. 
+Uma vez calculados os autovalores da matriz original, temos um resultado que mostra que aproximadamente 70\% da variabilidade dos dados é explicado por 51 componentes principais. O critério para a escolha desses fatores foi o de identificar os autovalores que possuem variância acumulada em torno de 70\% (Mardia, 1979). Tal valor também será utilizado nesta pesquisa (Quadro 7). 
+
+ Quadro 7 – Autovalores
+Ordem dos autovalores
+Autovalores
+\% da variância explicada
+Autovalores acumulados
+\% da variância explicada acumulada
+1. 
+24,88966
+12,38292
+24,8897
+12,3829
+2. 
+10,33305
+5,14082
+35,2227
+17,5237
+3. 
+7,49873
+3,73071
+42,7214
+21,2545
+4. 
+5,27875
+2,62625
+48,0002
+23,8807
+5. 
+4,78008
+2,37815
+52,7803
+26,2588
+6. 
+4,49112
+2,23439
+57,2714
+28,4932
+7. 
+3,73598
+1,85870
+61,0074
+30,3519
+8. 
+3,59164
+1,78689
+64,5990
+32,1388
+9. 
+3,19618
+1,59014
+67,7952
+33,7290
+10. 
+3,11010
+1,54731
+70,9053
+35,2763
+11. 
+2,66175
+1,32426
+73,5671
+36,6005
+12. 
+2,54482
+1,26608
+76,1119
+37,8666
+13. 
+2,51698
+1,25223
+78,6289
+39,1188
+14. 
+2,40926
+1,19864
+81,0381
+40,3175
+15. 
+2,35614
+1,17221
+83,3943
+41,4897
+16. 
+2,30653
+1,14753
+85,7008
+42,6372
+17. 
+2,25284
+1,12081
+87,9536
+43,7580
+18. 
+2,11772
+1,05359
+90,0714
+44,8116
+19. 
+2,06312
+1,02643
+92,1345
+45,8380
+20. 
+2,01891
+1,00443
+94,1534
+46,8425
+21. 
+1,99258
+0,99133
+96,1460
+47,8338
+22. 
+1,97266
+0,98142
+98,1186
+48,8152
+23. 
+1,95377
+0,97203
+100,0724
+49,7873
+24. 
+1,86320
+0,92696
+101,9356
+50,7142
+25. 
+1,83124
+0,91107
+103,7668
+51,6253
+26. 
+1,80163
+0,89633
+105,5685
+52,5216
+27. 
+1,76688
+0,87905
+107,3354
+53,4007
+28. 
+1,70876
+0,85013
+109,0441
+54,2508
+29. 
+1,69776
+0,84465
+110,7419
+55,0955
+30. 
+1,66091
+0,82633
+112,4028
+55,9218
+31. 
+1,62693
+0,80942
+114,0297
+56,7312
+32. 
+1,60039
+0,79621
+115,6301
+57,5274
+33. 
+1,54662
+0,76946
+117,1767
+58,2969
+34. 
+1,51306
+0,75277
+118,6898
+59,0496
+35. 
+1,51005
+0,75127
+120,1998
+59,8009
+36. 
+1,47437
+0,73352
+121,6742
+60,5344
+37. 
+1,43597
+0,71441
+123,1102
+61,2488
+38. 
+1,42247
+0,70770
+124,5326
+61,9565
+39. 
+1,40464
+0,69882
+125,9373
+62,6554
+40. 
+1,35176
+0,67252
+127,2890
+63,3279
+41. 
+1,33162
+0,66250
+128,6207
+63,9904
+42. 
+1,32118
+0,65731
+129,9418
+64,6477
+43. 
+1,29010
+0,64184
+131,2320
+65,2895
+44. 
+1,26013
+0,62693
+132,4921
+65,9165
+45. 
+1,25589
+0,62482
+133,7480
+66,5413
+46. 
+1,22165
+0,60779
+134,9696
+67,1491
+47. 
+1,20095
+0,59749
+136,1706
+67,7466
+48. 
+1,18070
+0,58741
+137,3513
+68,3340
+49. 
+1,17744
+0,58579
+138,5287
+68,9198
+50. 
+1,16657
+0,58038
+139,6953
+69,5001
+51. 
+1,14340
+0,56886
+140,8387
+70,0690
+Fonte: Dados da Pesquisa
+Depois da extração dos autovalores e percentual da variância explicada, é decidida a quantidade de fatores a serem retirados para análise. Para isso, o Gráfico 1 em que o total de autovalores está no eixo das ordenadas e os autovalores  no eixo das abscissas, auxilia na identificação. Esse gráfico consiste no ranking dos autovalores (eixo x), relacionado com o valor de cada autovalor (eixo y). Verifica-se que uma queda menos acentuada ocorreu entre o quarto e o quinto autovalor e analisando-se os autovalores superiores a 2, observa-se que pode-se considerar até o vigésimo valor já que a partir daí os valores dos autovalores sucessivos são praticamente constantes.
+ 
+Gráfico 1 – Ranking dos autovalores
+Fonte: Dados da pesquisa
+
+Visando encontrar os planos fatoriais realizou-se uma rotação dos eixos, onde as cargas fatoriais mais elevadas são as responsáveis pelas denominações das componentes e são estatisticamente significativas. As rotações de eixos melhor expressam a dispersão de dados. No modelo fatorial final, as variáveis das medidas estão maximizadas e as relações entre dimensões suavizadas (Vicini, 2005).
+Para esta análise buscam-se valores que possuem significância maior que 0,7, mostrando que a correlação entre as variáveis está de moderada a forte (Vicini, 2005). Essa identificação não seria possível sem a rotação dos eixos, possibilitando assim a melhor visualização das variáveis mais significativas em cada componente. Tal rotação mantem os eixos perpendiculares entre si, ou seja, ortogonais e a variabilidade do sistema não é alterada, apenas as coordenadas dos eixos são rotacionadas e a inércia do sistema fica inalterada. 
+A partir dos valores obtidos pela rotação das componentes principais, podem-se obter valores com significância maior que 0,7. Logo, foi possível a identificação das variáveis significantes de cada componente principal.
+Para visualização desses fatores foi utilizado o gráfico de dispersão (Gráfico 2). O Gráfico 2 mostra a caixa de seleção de variáveis e comandos para ACP em que se utilizam os fatores 1 e 2, eixo x e eixo y respectivamente. O objetivo deste gráfico é fazer os planos principais com a nuvem de pontos dos indivíduos, no caso as 349 instituições, destacando o posicionamento das respostas das instituições classificadas pelo iGovTI. Tal gráfico se baseia na rotação dos componentes principais. Para a elaboração do Gráfico 2 apenas os  e  foram utilizados.
+ 
+Gráfico 2 – Relação entre os  e  
+Fonte: Dados da pesquisa
+
+No Gráfico 2, para analisar apenas a , projetam-se os pontos sobre o eixo da e se tem três grupos (V, II e I). O mesmo processo se aplica a analise da . Assim, observam-se três grupos (V, IV e III). Para cada grupo se seleciona apenas uma variável representativa, o restante é desconsiderado, uma vez que cada grupo significa correlação.
+Para o grupo I, tomam-se as variáveis Q16d, Q16e e Q16f que são descorrelacionadas, já no grupo II a questão Q16g é questão selecionada. Ambos os grupos não apresentam FCS. Essas questões denotadas Q16, referem-se a Subdimensão 1.6 (A Alta Administração Utilizou Informações Fornecidas pela Auditoria Interna). Tal subdimensão verifica a participação da auditoria interna das instituições para o preenchimento do questionário. 
+Já no grupo III, que não tem FCS, a variável Q53_Relev é a selecionada; precedidas do grupo IV que também não apresenta FCS. Ressalta-se que ambas as questões apuram a relevância de determinado item. Pela análise ACP, o grupo V mostra as questões que não são representadas pelas  e , é justamente este grupo que contem os FCS.
+Depois, buscou-se por meio da análise das ,  e a identificação de FCS (Gráfico 3). O Gráfico 3 mostra a análise dessas componentes principais que revela a existência de três grupos. 
+
+
+Gráfico 3 – Relação entre os ,  e 
+Fonte: Dados da pesquisa
+
+A análise do Gráfico 3 mostra revela a existência de três grupos (VI, VII e VIII). O grupo I contém a variável Q51l que corresponde a FCS e o grupo II também mostra FCS, a variável Q23b.
+Na identificação das variáveis significativas das primeiras 20 componentes principais, com os autovalores superiores a 1, as questões que mais contribuem são Q16b (para responder às questões do grupo 2. Estratégias e planos), Q16c (para responder às questões do grupo 3. Informação e conhecimento), Q16d (para responder às questões do grupo 4. Pessoas), Q16e (para responder às questões do grupo 5. Processos) e Q16f (para responder às questões do grupo 6. Resultados da gestão), todas da dimensão “Governança corporativa e de TI, a alta administração utilizou informações fornecidas pela auditoria interna (ou instância equivalente)”. Nota-se que as variáveis Q16, citadas anteriormente, fazem parte do grupo I do Gráfico 2. Ao total foram identificadas 29 variáveis dos 20 primeiras componentes principais (autovalores maiores que 1) das variáveis com significância maior que 0,7. O Quadro 8 mostra quais são essas variáveis significativas. 
+
+Quadro 8 – Variáveis com alta significância CP1 a CP20
+CP
+Dimensão
+Var.1
+Sig.
+Var. 2
+Sig.
+FCS
+CP 01
+D1
+Q16b
+0,8108
+Q16c
+0,7496
+não
+CP 01
+D1
+Q16d
+0,7923
+Q16e
+0,8469
+não
+CP 01
+D1
+Q16f
+0,7998
+
+
+não
+CP 02
+D5
+Q51_Relev
+0,8941
+Q53_Relev
+ 
+0,8176
+não
+CP 03
+D2
+Q23a
+-0,8833
+Q23b
+0,9009
+não/sim
+CP 04
+D5
+Q51l
+0,7925
+ Q51l1
+0,8254
+sim/não
+CP 05
+D1
+Q13a
+0,8842
+ 
+ 
+não
+CP 06
+D5
+Q57h
+0,8285
+ 
+ 
+sim
+CP 07
+D1
+Q11f2
+0,8362
+ 
+ 
+não
+CP 08
+D5
+Q53e
+0,8684
+ 
+ 
+sim
+CP 09
+D7
+Q71
+0,9111
+ 
+ 
+não
+CP 10
+D4
+Q45b
+-0,8960
+
+ 
+não
+CP 11
+D1
+Q14c
+-0,8605
+ 
+ 
+não
+CP 12
+D5
+Q510d2
+0,8322
+ 
+ 
+não
+CP 13
+D6
+Q64h
+0,9240
+ 
+ 
+não
+CP 14
+D8
+Q83a
+0,8822
+ 
+ 
+não
+CP 15
+D1
+Q15d
+0,8738
+Q15g 
+-0,7003 
+não
+CP 16
+D3
+Q31b
+0,9098
+Q31e 
+-0,9070 
+não
+CP 17
+D2
+Q23i
+0,9286
+ 
+ 
+não
+CP 18
+D1
+Q11c1
+0,9204
+ 
+ 
+não
+CP 19
+D5
+Q510e1
+0,9362
+ 
+ 
+não
+CP 20
+D4
+Q45j
+0,9536
+ 
+ 
+não
+Total
+29
+4
+Fonte: Dados da pesquisa
+
+No Quadro 8, verificou-se as variáveis que são FCS, de acordo com resultado da pesquisa apresentada na Subseção 4.1. Das 30 questões apenas 5 são FCS, de acordo com classificação obtida por meio de pesquisa qualitativa, quais sejam: Q12c (designou representantes de todas as áreas relevantes para o negócio institucional para compor o Comitê de TI); Q23b (a instituição aprovou e  publicou PDTI interna e externamente); Q51l (gestão de configuração de ativos); Q53e (formalizou a política corporativa de segurança da informação); Q57h (os pagamentos são feitos em função da mensuração objetiva dos resultados entregues e aceitos.
+Ainda no Quadro 8, chama-se atenção as ,  e. Nelas constam variáveis com valor positivo ou negativo. Tal fato significa que quanto maior for a resposta de uma questão menor será a da outra. Frisa-se que isto só vale para questões que estejam em uma mesma variável ACP. Caso as questões tenham sinais diferentes (i.e. os elementos dos autovetores), mas em ACP diferentes o sinal positivo e negativo não importa. 
+A análise das categorias (Quadro 5) relacionadas às variáveis revela: Q53e referente à Categoria Processos de Gestão de Serviços de TI em Desenho do Serviço que mostrou porcentual igual a 53,85\%; Q57h se liga à Categoria Gestão de Contratos que teve porcentual de 38,46\%; Q23b se vincula à Categoria PDTI que teve 38,46\%. A variável Q51l se relaciona à Categoria Processos de Gestão de Serviços de TI em Transição de Serviços com 19,23\%.
+Devido ao baixo percentual de 16,66\% de identificação de FCS do Quadro 8, realizou-se a análise das variáveis que completam as 51 componentes principais, referentes aos 51 autovalores do Quadro 7. Nesta identificação, foram identificadas 33 variáveis, sendo que 8 são FCS, 24,24\% (Quadro 9). Somando os totais obtidos pelo Quadro 8 e pelo se tem, 20,63\% de variáveis que são FCS.
+
+Quadro 9 – Variáveis com alta significância CP 21 a CP 51
+CP
+Dimensão
+Var.1
+Sig.
+Var. 2
+Sig.
+FCS
+CP 21
+D1
+Q12e 
+0,7210
+ Q12e1 
+0,8314
+sim/não
+CP 22
+D5
+ Q55a
+0,8256
+ 
+
+não
+CP 23
+D8
+ Q83b2
+0,8816
+ 
+
+não
+CP 24
+D7
+Q72a3 
+0,9220
+ 
+
+não
+CP 25
+D4
+ Q45g
+-0,9334
+
+
+não
+CP 26
+D5
+Q510b1
+0,8942
+
+
+não
+CP 27
+D1
+Q12e3 
+0,9294
+ 
+
+não
+CP 28
+D1
+Q12b 
+0,8415
+ Q12c
+0,8934
+sim/sim
+CP 29
+D1
+ Q12e2
+0,9621
+ 
+
+não
+CP 30
+D1
+ Q11_Relev
+0,8400
+ 
+
+não
+CP 31
+D2
+ Q24
+0,9425
+ 
+
+sim
+CP 32
+D5
+ Q510b2
+0,9024
+ 
+
+não
+CP 33
+D5
+ Q53a1
+0,8840
+ 
+
+não
+CP 34
+D1
+ Q13e
+0,8986
+ 
+
+não
+CP 35
+D4
+ Q45d
+0,9487
+ 
+
+não
+CP 36
+D1
+Q16_relev 
+0,8364
+ 
+
+não
+CP 37
+D5
+ Q51h
+0,8175
+ 
+
+sim
+CP 38
+D5
+ Q53d
+0,8864
+ 
+
+não
+CP 39
+D1
+ Q11c2
+0,9258
+ 
+
+não
+CP 40
+D1
+Q11a 
+0,8674
+ 
+
+não
+CP 41
+D1
+ Q15f
+0,9201
+ 
+
+não
+CP 42
+D4
+ Q45f
+0,9450
+ 
+
+não
+CP 43
+D5
+ Q53f
+0,7871
+ 
+
+não
+CP 44
+D4
+Q45h 
+-0,9612
+ 
+
+não
+CP 45
+D7
+ Q72a4
+0,9401
+ 
+
+não
+CP 46
+D3
+ Q31d
+0,8714
+ 
+
+sim
+CP 47
+D4
+ Q45i
+0,9462
+ 
+
+não
+CP 48
+D5
+ Q51e
+0,8432
+ 
+
+sim
+CP 49
+D4
+ Q45e
+0,9406
+ 
+
+não
+CP 50
+D1
+ Q12a1
+0,8635
+ 
+
+sim
+CP 51
+D8
+ Q83b5
+0,9237
+ 
+
+não
+Total
+33
+8
+Fonte: Dados da pesquisa
+
+Já o Gráfico 4 mostra a caixa de seleção de variáveis e comandos para ACP em que se utilizam os fatores 1 e 2, eixo x e eixo y respectivamente. O objetivo deste gráfico é fazer os planos principais com a nuvem de pontos dos indivíduos, no caso as 349 instituições.  
+
+
+Gráfico 4 – Dados brutos da pesquisa
+Fonte: Dados da pesquisa
+
+O Gráfico 4 representa a relação entre os 2 principais componentes, que representam as questões ou variáveis com maiores autovalores, assim cada ponto representa a relação entre uma instituição e seus 2 principais componentes obtidos por meio de ACP. Cada ponto deste gráfico representa a classificação da instituição em relação a sua classificação no iGovTI de 2012. A partir do resultado apresentado no gráfico 4 é possível identificar um padrão formado pela localização dos componentes principais das organizações com maior índice, onde as organizações com maior iGovTI tiveram valores relativamente semelhantes para seus 2 componentes principais, entretanto ainda não é possível obter uma separação clara entre os resultados. Fazendo-se um corte no eixo das abcissas, a partir do ponto (-8,8, 0), destacam-se 23 instituições à esquerda desse ponto (Quadro 5). 
+
+Instituição
+Posição
+iGovTI 
+
+33
+5
+0,7954
+
+35
+3
+0,7984
+
+36
+11
+0,7371
+
+39
+2
+0,8226
+
+44
+19
+0,7244
+
+57
+1
+0,88
+
+63
+18
+0,7247
+
+77
+4
+0,7963
+
+80
+12
+0,736
+
+92
+10
+0,7615
+
+122
+8
+0,7723
+
+142
+21
+0,7131
+
+158
+6
+0,7944
+
+186
+7
+0,7913
+
+188
+17
+0,7269
+
+197
+40
+0,6403
+
+201
+13
+0,7356
+
+205
+9
+0,7687
+
+311
+22
+0,7107
+
+346
+75
+0,5644
+
+347
+16
+0,7322
+
+349
+39
+0,6427
+
+351
+28
+0,6817
+Gráfico 5 – Destaque de corte nas instituições 
+Fonte: Dados da pesquisa
+
+Dessas instituições, 22, são consideradas pelo TCU como aprimoradas, ou seja, 95,65\%. Apenas a instituição 346 é avaliada como intermediária.
+Após a análise ACP, verifica-se que a mesma não é útil para a análise da Hipótese 2. Para responder a essa hipótese, é necessária a execução dos algoritmos de classificação da Subseção 4.4 e da Subseção 4.5.
+
+4.4 Máquinas de Vetores de Suporte
+
+Para prever a classificação de uma instituição de acordo com suas respostas para as questões do questionário iGovTI, foram avaliados algoritmos de classificação que pudessem apresentar acurácia para a classificação de organizações de acordo com o iGovTI. Uma vez encontrado um algoritmo capaz desta classificação, é possível utilizar o algoritmo selecionado em conjunto com técnicas de feature selection para identificar as questões mais relevantes para a classificação da instituição de acordo com o iGovTI.
+Assim, para a definição do algoritmo de classificação foram realizados testes em 21 algoritmos, a seguir é apresentada uma listagem dos algoritmos avaliados e a taxa de acerto de classificação obtida: 
+1. KNN: 0.714286
+2. ElasticNet: 0.155336
+3. ElasticNetCV: 0.831531
+4. LassoCV: 0.827440
+5. LassoLarsIC: 0.713763
+6. LinearRegression: 0.360878
+7. LogisticRegression: 0.771429
+8. OrthogonalMatchingPursuit: 0.769630
+9. PassiveAggressiveClassifier: 0.800000
+10. PassiveAggressiveRegressor: 0.852184
+11. Perceptron: 0.800000
+12. Ridge: 0.529922
+13. RidgeClassifier: 0.657143
+14. RidgeClassifierCV: 0.742857
+15. RidgeCV: 0.750149
+16. SGDClassifier: 0.828571
+17. MultinomialNB: 0.742857
+18. lda.LDA: 0.628571
+19. SVM.SVR: 0.826885
+20. SVM.SVC: 0.914286
+21. SVM.LinearSVC: 0.714286
+22. O algoritmo que obteve maior sucesso para classificação foi o SVC, que é uma implementação de Máquina de Vetores de Suporte aplicado para a classificação. SVC apresentou uma taxa de acerto de 91,4\%. Para a avaliação dos algoritmos, utilizamos uma metodologia que divide os dados dos questionários pelo iGovTI entre questões que serão utilizadas para aprendizado do algoritmo e questões que serão utilizadas para comparativo de predições. Para treinar o algoritmo utilizou-se 90\% dos dados e os 10\% restantes foram utilizados para avaliar a eficiência de classificação dos algoritmos, comparando a taxa de acerto entre as predições feitas e os valores reais de classificações de organizações pelo iGovTI. 
+23. Uma vez identificado um algoritmo capaz de efetuar a classificação desejada, o próximo passo é identificar as variáveis mais relevantes para esta classificação. Para isso, será utilizado o algoritmo ERV. 
+24. 
+4.5 Eliminação Recursiva de Variáveis
+25. 
+26. A ERV pode usar vários algoritmos de classificação como critério de seleção das variáveis mais importantes, escolhemos o algoritmo SVC por ele ter apresentado maior acurácia entre os algoritmos de classificação avaliados. Ainda é necessário definir o quantitativo de variáveis mais importantes a serem selecionadas. A partir da pesquisa de identificação por meio de entrevistas na APF, identificou-se 54 variáveis consideradas FCS, este critério foi utilizado para determinar o quantitativo de variáveis mais importantes para a classificação.
+27. Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.

@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% na conclusao, evite apresentar os resultados mais fáceis de concluir. bons revisores olham o casamento do que vc escreve no abstract/intro com a conclusao. mantenha coerente. 
+% em geral, resultados que sao aparentemente obvios, enfraquecem as outras contribuicoes. p.ex, "Os resultados mostraram que o MapReduce apresenta uma boa solução para utilizar computadores comuns para obter alta capacidade de processamento e lidar com a análise massiva de tráfego de rede." pode ser reformulado ou retirado da conclusao.
+\chapter{Conclusion and Future Work}
+\label{ch:conclusionfuturework}
+
+\begin{quotation}[]{Lao Tzu}
+The softest things in the world overcome the hardest things in the world.
+\end{quotation}
+
+Distributed systems has been adopted for building modern Internet services and cloud computing infrastructure. The detection of error causes, diagnose and reproduction of errors of distributed systems are challenges that motivate efforts to develop less intrusive mechanisms for monitoring and debugging distributed applications at runtime. 
+
+Network traffic analysis is one option for distributed systems measurement, although there are limitations on capacity to process large amounts of network traffic in short time, and on scalability to process network traffic where there is variation of resource demand.
+
+In this dissertation we proposed an approach to perform deep inspection in distributed applications network traffic, in order to evaluate distributed systems at a data center through network traffic analysis, using commodity hardware and cloud computing services, in a minimally intrusive way. Thus we developed an approach based on MapReduce, to evaluate the behavior of a JXTA-based distributed system through DPI.
+
+We evaluated the effectiveness of MapReduce to implement a DPI algorithm and its completion time scalability to measure a JXTA-based application, using virtual machines of a cloud computing provider. Also, was deeply evaluated the performance of MapReduce for packet-level analysis and DPI, characterizing the behavior followed by MapReduce phases, its processing capacity scalability and speed-up, over variations of input size, block size and cluster size.
+
+\section{Conclusion}
+\label{sc:conc_conclusion}
+
+With our proposed approach, it is possible to measure the network traffic behavior of distributed applications with intensive network traffic generation, through the offline evaluation of information from the production environment of a distributed system, making it possible to use the information from the evaluated indicators, to diagnose problems and analyse performance of distributed systems.
+
+We showed that MapReduce programming model can express algorithms for DPI, as the Algorithm \ref{alg:JXTAperfmapper}, implemented to extract application indicators from the network traffic of a JXTA-based distributed application. We analysed the completion time scalability achieved for different number of nodes in a Hadoop cluster composed of virtual machines, with different size of network traffic used as input. We showed the processing capacity and the completion time scalability achieved, and also was showed the influence of the number of nodes and the data input size in the processing capacity for DPI using virtual machines of Amazon EC2, for a selected scenario.
+
+We evaluated the performance of MapReduce for packet level analysis and DPI of applications traffic, using commodity hardware, and showed how data input size, block size and cluster size cause relevant impacts into MapReduce phases, job completion time, processing capacity scalability and in the speedup achieved in comparison against the same execution by a non distributed implementation.
+
+The results showed that although MapReduce presents a good processing capacity using cloud services or commodity computers for dealing with massive application traffic analysis, but it is necessary to evaluate the behaviour of MapReduce to process specifics data type, in order to understand its relation with the available resources and the configuration of MapReduce parameters, and to obtain an optimal performance for specific environments.
+
+We showed that MapReduce processing capacity scalability is not proportional to number of allocated nodes, and the relative processing capacity decreases with node addition. We showed that input size, block size and cluster size are important factors to be considered to achieve better job completion time and to explore MapReduce scalability, due to the observed variation in completion time provided by different block size adopted. Also, in some cases, the processing capacity does not scale with node addition into the cluster, what highlights the importance of allocating resources according with the workload and input data, in order to avoid wasting resources.
+
+We verified that packet level analysis and DPI are Map-intensive jobs, due to Map phase consumes more than 70\% of the total job completion time, and shuffle phase is the second predominant phase. We also showed that using whole block as input for Map functions, it was achieved a poor completion time than the approach which splits the block into records.
+
+\section{Contributions}
+\label{sc:conc_contributions}
+
+We attempt to analyse the processing capacity problem of measurement of distributed systems through network traffic analysis, the results of the work presented in this dissertation provide the contributions below:
+
+\begin{enumerate}
+	\item We proposed \textbf{an approach to implements DPI algorithms through MapReduce}, using whole blocks as input for Map functions. It was \textbf{shown the effectiveness of MapReduce for a DPI algorithm} to extract indicators from a distributed application traffic, also it was \textbf{shown the completion time scalability of MapReduce for DPI}, using virtual machines of a cloud provider;
+	\item We developed \textit{JNetPCAP-JXTA} \citep{jnetpcapjxta}, an open source \textbf{parser to extract JXTA messages from network traffic traces};
+	\item We developed \textit{Hadoop-Analyzer} \citep{Hadoopanalyzer}, an open source \textbf{tool to extract indicators from Hadoop logs and generate graphs} of specified metrics.
+	\item We \textbf{characterized the behavior followed by MapReduce phases for packet level analysis and DPI}, showing that this kind of job is intense in Map phase and highlighting points that can be improved;
+	\item We \textbf{described the processing capacity scalability of MapReduce for packet level analysis and DPI}, evaluating the \textbf{impact caused by variations in input size, cluster size and block size};
+	\item We \textbf{showed the speed-up obtained with MapReduce for DPI}, with variations in input size, cluster size and block size;
+	\item We \textbf{published two papers} reporting our results, as follows:
+	\begin{enumerate}
+		\item Vieira, T., Soares, P., Machado, M., Assad, R., and Garcia, V. \textit{Evaluating Performance of Distributed Systems with MapReduce and Network Traffic Analysis}. In ICSEA 2012, The Seventh International Conference on Software Engineering Advances. Xpert Publishing Services.
+		\item Vieira, T., Soares, P., Machado, M., Assad, R., and Garcia, V. \textit{Measuring Distributed Applications Through MapReduce and Traffic Analysis}. In Parallel and Distributed Systems (ICPADS), 2012 IEEE 18th International Conference on, pages 704 - 705.	
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Lessons Learned}
+\label{sc:chaptersummary}
+
+The contributions cited are of scientific and academic scope, with implementations and evaluations little explored in the literature. However, with the development of this work, some important lessons were learned.
+
+During this research, different approaches for evaluating distributed systems of cloud computing providers were studied. In this period, we could see the importance of the performance evaluation in a cloud computing environment, and the recent efforts to diagnose and evaluate system at production environment of a data center. Also, the growth of the Internet and resource utilization make necessary solutions to be able to evaluate large amounts of data in short time, with low performance degradation of the evaluated system.
+
+MapReduce has grown as a general purpose solution for big data processing, but it is not a solution for all kind of problems, and its performance is dependent of several parameters. Some researches has been done in order to improve MapReduce performance, through analytical modelling, simulation and measurement, but the most relevant contributions in this direction was guided by realistic workload evaluations, from large MapReduce clusters. 
+
+We learned that although the facilities provided by the MapReduce for distributed processing, its performance is influenced by the environment, network topology, workload, data type and by several specific parameter configurations. Therefore, an evaluation of the MapReduce behavior using data of a realistic environment will provide more accurate and wide results, while in controlled experiments the results are more restricted and limited to the evaluated metrics and factors.
+
+\section{Future Work}
+\label{sc:conc_futurework}
+
+Because of time constraints imposed on the master degree, this dissertation addresses some problems, but some problems are still open and others are emerging from current results. Thus, the following issues should be investigated as future work:
+
+\begin{itemize}
+	\item \textbf{Evaluating of all components of the proposed approach}. This dissertation evaluated the \textit{JNetPCAP-JXTA}, the \textit{AppAnalyzer} and its implementation to evaluate a JXTA-based distributed application, it is necessary to evaluate the \textit{SnifferServer}, \textit{Manager} and the whole system working together, analysing their impact into the measured distributed system and the scalability achieved;	
+	\item Development of a \textbf{technique for the efficient evaluation of distributed systems through information extracted from network traffic}. This dissertation addressed the problem of processing capacity for measuring distributed systems through network traffic analysis, but it is necessary an efficient approach to diagnose problems of distributed systems, using information of flows, connections, throughput and response time obtained from network traffic analysis;
+	\item Development of a \textbf{analytic model and simulations}, using information of MapReduce behavior for network traffic analysis, measured by this dissertation, to reproduce its characteristics and enable the evaluation and prediction of some cases of MapReduce for network traffic analysis;
+\end{itemize}

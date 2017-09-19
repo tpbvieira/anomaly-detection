@@ -1,0 +1,378 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract: dar uma idéia dos principais resultados encontrados. 
+% Introdução: cenário, motivacao, problema, solucoes atuais, escopo do artigo, lista de contribuicoes, organizacao do resto do artigo. 
+% Trabalhos Relacionados: fazer uma das duas coisas a seguir (ou as duas): 
+%	a) quando citar uma ou um grupo de referencias relacionado an um tema especifico, conclua o paragrafo mostrando a diferenca para a proposta a ser descrita. 
+%	b) no final da secao, compile todas as diferenÃ§as e deixe explicito as contribuicoes novamente.
+% Metodologia: coloque uma figura para ilustrar todo o processo de coleta e analise. coloque numa tabela (ou mais de uma) a descricao das metricas de interesse, alem dos fatores e niveis selecionados em outra tabela. explique o motivo desses fatores influenciarem as metricas de interesse.
+% Conclusão: evite apresentar os resultados mais fáceis de concluir. bons revisores olham o casamento do que vc escreve no abstract/introdução com a conclusao, então mantenha coerente an introdução com a conclusão. Em geral, resultados que sao aparentemente obvios - nao eram até vc mostrar :) - enfraquecem as outras contribuicoes. p.ex, "Os resultados mostraram que o MapReduce apresenta uma boa solução para utilizar computadores comuns para obter alta capacidade de processamento e lidar com an análise massiva de tráfego de rede." pode ser reformulado ou retirado da conclusao. 
+\chapter{Profiling Distributed Applications Through Deep Packet Inspection}
+\label{ch:profiling}
+
+\begin{quotation}[]{Confucius}
+Life is really simple, but we insist on making it complicated.
+\end{quotation}
+
+In this chapter, we first look at the problems in the distributed application monitoring, processing capacity of network traffic, and in the restriction to use MapReduce for profiling application network traffic of distributed applications. 
+
+Network traffic analysis can be used to extract performance indicators from communication protocols, flows, throughput and load distribution of a distributed system. In this context, network traffic analysis can enrich diagnoses and provide a mechanism for measuring distributed systems in a passive way, with low overhead and low dependency on developers. 
+
+However, there are limitations on the capacity to process large amounts of network traffic in short time, and on processing capacity scalability to be able to process network traffic over variations of throughput and resource demands. To address this problem, we present an approach for profiling application network traffic using MapReduce. Experiments show the effectiveness of our approach for profiling a JXTA-based distributed application through DPI, and its completion time scalability through node addition, in a cloud computing environment.
+
+In Section \ref{sc:prof_motivation} we begin this chapter by motivating the need for an approach using MapReduce for DPI, then we describe, in Section \ref{sc:prof_architecture}, the architecture proposed and the DPI algorithm to extract indicators from network traffic of a JXTA-based distributed application. Section \ref{sc:prof_evaluation} presents the adopted evaluation methodology and the experiment setup used to evaluate our proposed approach. The obtained results are presented in Section \ref{sc:prof_results} and discussed in Section \ref{sc:prof_discussion}. Finally, Section \ref{sc:prof_chaptersummary} concludes and summarizes this chapter.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\label{sc:prof_motivation}
+
+Modern Internet services and cloud computing infrastructure are commonly implemented as distributed systems, to provide services with high performance, scalability and reliability. Cloud computing SLAs require a short time to identify, diagnose and solve problems in its infrastructure, in order to avoid negative impacts and problems in the provided quality of service.
+
+Monitoring and performance analysis of distributed systems became more necessary with the growth of cloud computing and the use of distributed systems to provide services and infrastructure \citep{Armbrust09}. In distributed systems development, maintenance and administration, the detection of error causes, and the diagnosing and reproduction of errors are challenges that motivates efforts to develop less intrusive mechanisms for debugging and monitoring distributed applications at runtime \citep{Armbrust2010}. Distributed measurement systems \citep{Massie2004} and log analyzers \citep{Oliner2012} provide relevant information of some aspects of a distributed system. However this information can be complemented by correlating information from network traffic analysis, making them more effective and increasing the information source to ubiquitously evaluate a distributed system.
+
+Low overhead, and transparency and scalability are commons requirements for an efficient solution to the measurement of distributed systems. Many approaches have been proposed in this direction, using instrumentation or logging, which cause overhead and a dependency on developers. It is possible to diagnose and evaluate distributed applications' performance with the evaluation of information from communication protocols, flows, throughput and load distribution \citep{Sambasivan2011, Mi2012}. This information can be collected through network traffic analysis, enriching a diagnosis, and also providing an approach for the measurement of distributed systems in a passive way, with low overhead and low dependency on developers. 
+
+Network traffic analysis is one option to evaluate distributed systems performance \citep{Yu2011}, although there are limitations on the capacity to process large number of network packets in a short time \citep{Loiseau2009, Callado2009} and on scalability to process network traffic over variations of throughput and resource demands. 
+
+To obtain information of the behaviour of distributed systems, from network traffic, it is necessary to use DPI and evaluate information from application states, which requires an additional effort in comparison with traditional approaches of DPI, which usually do not evaluate application states. 
+
+Although much work has been done in order to improve the DPI performance \citep{Fernandes2009, Antonello2012}, the evaluation of application states still decreases the processing capacity of DPI to evaluate large amounts of network traffic. With the growth of links' speed, Internet traffic exchange and the use of distributed systems to provide Internet services \citep{Sigelman2010}, the development of new approaches are needed to be able to deal with the analysis of the growing amount of network traffic, and to permit the efficient evaluation of distributed systems through the network traffic analysis.
+
+MapReduce \citep{Dean2008} becomes an important programming model and distribution platform to process large amount of data, with diverse use cases in academia and industry \citep{Zaharia2008, Guo2012}. MapReduce can be used for packet level analysis: \cite{Lee2011} proposed an approach which evaluates each packet individually to obtain information of network and transport layers. An approach to process large amount of network traffic using MapReduce was proposed by \cite{Lee2011}, which splits network traces into packets to process each one individually and extract indicators from IP, TCP, and UDP. 
+
+However, for profiling distributed applications through network traffic analysis, it is necessary to analyse the content of more than one packet, up to the application layer, to evaluate application messages and its protocols. Due to TCP and message segmentation, the desired application message may be split into several packets. Therefore, it is necessary to evaluate more than one packet per MapReduce iteration to perform a deep packet inspection, in order to be able to reassemble more than one packet and mount application messages, to retrieve information from the application sessions, states and from its protocols.
+
+DPI refers for examining both packet header and complete payload to look for predefined patterns or rules, which can be a signature string or an application message. According to the taxonomy presented by \cite{Risso2008}, deep packet inspection can be classified as message based per flow state (MBFS), which analyses application messages and its flows, and also can be classified as message based per protocol state (MBPS), which analyses application messages and its application protocol states, what makes necessary to evaluate distributed applications through network traffic analysis, to extract application indicators.
+
+MapReduce is a restricted programming model to parallelize user functions automatically and to provide transparent fault-tolerance \citep{Dean2008}, based on functional combinators from functional languages. MapReduce does not efficiently express incremental, dependent or recursive data \citep{Bhatotia2011, Lin2012}, because its approach adopts batch processing and functions executed independently, without shared states. 
+
+Although restrictive, MapReduce provides a good fit for many problems of processing large datasets. Also, its expressiveness limitations may be reduced by problem decomposition into multiple MapReduce iterations, or by combining MapReduce with others  programming models for subproblems \citep{Lammel2007, Lin2012}, but this approach can be not optimal in some cases. DPI algorithms require the evaluation of one or more packets to retrieve information from application messages; this represents a data dependence to mount an application message and is a restriction on the use of MapReduce for DPI.
+
+Because the \cite{Lee2011} approach processes each packet individually, it can not be efficiently used to evaluate more than one packet and reassemble an application message from a network trace, which makes it necessary a new approach for using MapReduce to perform DPI and to evaluate application messages.
+
+To be able to process large amounts of network traffic using commodity hardware, in order to evaluate the behaviour of distributed systems at runtime, and also because there is no evaluation of MapReduce effectiveness and processing capacity for DPI, an approach was developed based on MapReduce, to deeply inspect distributed applications traffic, in order to evaluate the behaviour of distributed systems, using Hadoop, an open source implementation of MapReduce. 
+
+In this Chapter is evaluate the effectiveness of MapReduce to a DPI algorithm and its completion time scalability through node addition, to measure a JXTA-based application, using virtual machines of Amazon EC2\footnote{http://aws.amazon.com/ec2/}, a cloud computing provider. The main contributions of this chapter are:
+\begin{enumerate}
+	\item To provide an approach to implement DPI algorithms using MapReduce;
+	\item To show the effectiveness of MapReduce for DPI;
+	\item To show the completion time scalability of MapReduce for DPI, using virtual machines of cloud computing providers.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% JNetPCAP-JXTA implementation
+% Pipelined process to capture, store locally and transfer to a distributed file system. 
+\section{Architecture}
+\label{sc:prof_architecture}
+
+In this section we present the architecture of the proposed approach to capture and process network traffic of distributed applications. 
+
+To monitor distributed applications through network traffic analysis, specifics points of a data center must be monitored to capture the desired application network traffic. Also, an approach is needed to process a large amount of network traffic in an acceptable time. According to \citep{Sigelman2010}, fresh information enables a faster reaction to production problems, thereby the information must be obtained as soon as possible, although a trace analysis system operating on hours-old data is still valuable for monitoring distributed applications in a data center \citep{Sigelman2010}. 
+
+In this direction, we propose a pipelined process to capture network traffic, store locally, transfer to a distributed file system, and evaluate the network trace to extract application indicators. We use MapReduce, implemented by Apache Hadoop, to process application network traffic, extract application indicators, and provide an efficient and scalable solution for DPI and profiling application network traffic in a production environment, using commodity hardware. 
+
+The architecture for network traffic capturing and processing is composed of four main components: the \textit{SnifferServer} (Shown in Figure \ref{fig:prof_snifferserver}), that captures, splits and stores network packets into the HDFS for batch processing through Hadoop; the \textit{Manager}, that orchestrates the collected data, the job executions and stores the results generated; the \textit{AppParser}, that converts network packets into application messages; and the \textit{AppAnalyzer}, that implements Map and Reduce functions to extract the desired indicators.
+
+\begin{figure}[!htb]
+     \centering 
+     \includegraphics[scale=0.43]{images/SnifferServer.png}
+     \caption{Architecture of the the \textit{SnifferServer} to capture and store network traffic}
+     \label{fig:prof_snifferserver}
+\end{figure}
+
+Figure \ref{fig:prof_snifferserver} shows the architecture of the \textit{SnifferServer} and its placement into monitoring points of a datacenter. \textit{SnifferServer} captures network traffic from specific points and stores it into the HDFS, for batch processing through Hadoop. \textit{Sniffer} executes user-defined monitoring plans guided by specification of places, time, traffic filters and the amount of data to be captured. According to an user-defined monitoring plan, \textit{Sniffer} starts the capture of the desired network traffic through Tcpdump, which saves network traffic in binary files, known as PCAP files. The collected traffic is split into files with predefined size, saved at the local \textit{SnifferServer} file system, and transferred to HDFS only when each file is totally saved into the local file system of the \textit{SnifferServer}. The \textit{SnifferServer} must be connected to the network where the monitoring target nodes are connected, and must be able to establish communication with the others nodes that compose the HDFS cluster. 
+
+During the execution of a monitoring plan, initially the network traffic must be captured, split into even-sized files and stored into HDFS. Through the Tcpdump, a widely used LibPCAP network traffic capture tool, the packets are captured and split into PCAP files with 64MB of size, which is the default block size of the HDFS, although this block size may be configured to different values. 
+
+HDFS is optimized to store large files, but internally each file is split into blocks with a predefined size. Files that are greater than the HDFS block size must be split into blocks with size equal to or smaller than the adopted block size, and must be spread among machines in the cluster.
+
+Because the LibPCAP, used by Tcpdump, stores the network packets in binary PCAP files and due to the complexity of providing to HDFS an algorithm for splitting PCAP files into packets, PCAP files splitting can be avoided through the adoption of files less than the HDFS block size, but also can be provided to Hadoop an algorithm to split PCAP files into packets, in order to be able to store PCAP files into the HDFS. 
+
+We adopted the approach that saves the network trace into PCAP files with the adopted HDFS block size, using the split functionality provided by Tcpdump, because of the PCAP file split into packets demands additional computing time and because of the trace splitting into packets increases the complexity of the system. Thus, the network traffic is captured by Tcpdump, split into even-sized PCAP files and stored into the local file system of the \textit{SnifferServer}, and periodically transferred to HDFS, which is responsible for replicating the files into the cluster.
+
+In the MapReduce framework, the input data is split into blocks, which are split into small pieces, called records, to be used as input for each Map function. We adopt the use of entire blocks, with size defined by the HDFS block size, as input for each Map function, instead of using the block divided into records. With this approach, it is possible to evaluate more than one packet per MapReduce task and to be able to mount an application message from network traffic. Also it is possible to obtain more processing time for the Map function than the approach where each Map function receives only one packet as input. 
+
+Differently from the approach presented by \cite{Lee2011}, which only permits evaluation of a packet individually per Map function, with our approach it is possible to evaluate many packets from a PCAP file per Map function and to reassemble application messages from network traffic, which had the content of its messages divided into many packets to be transferred over TCP.
+
+Figure \ref{fig:prof_appanalyzer} shows the architecture to process distributed application traffic through Map and Reduce functions, implemented by \textit{AppAnalyzer}, which is deployed at Hadoop nodes, and managed by \textit{Manager}, and has the generated results stored into a distributed database. 
+
+\begin{figure}[!htb]
+     \centering 
+     \includegraphics[scale=0.6]{images/Overview.png}
+     \caption{Architecture for network traffic analysis using MapReduce}
+     \label{fig:prof_appanalyzer}
+\end{figure}
+
+The communication between components was characterized as blocking and non-blocking; blocking communication was adopted in cases that require high consistency, and non blocking communication was adopted in cases where it is possible to use eventual consistency to obtain better response time and scalability.
+
+\textit{AppAnalyzer} is composed of Mappers and Reducers for specific application protocols and indicators. \textit{AppAnalyzer} extends \textit{AppParser}, which provides protocol parsers to transform network traffic into programmable objects, providing a high level abstraction to handle application messages from network traffic.
+
+\textit{Manager} provides functionalities for users to create monitoring plans with specification of places, time and amount of data to be captured. The amount of data to be processed and the number of Hadoop nodes available for processing are important factors to obtain an optimal completion time of MapReduce jobs and to generate fresh information for faster reaction to production problems of the monitored distributed system. Thus, after network traffic is captured and the PCAP files are stored into HDFS, \textit{Manager} permits the selection of the number of files to be processed, and then schedules a MapReduce job for this processing. After each MapReduce job execution, \textit{Manager} is also responsible for storing the generated results into a distributed database. 
+
+We adopted a distributed database with eventual consistency and high availability, based on Amazon's Dynamo \citep{DeCandia2007}, and implemented by Apache Cassandra\footnote{http://cassandra.apache.org/}, to store the indicator results generated by the \textit{AppAnalyzer}. With the eventual consistency, we expect gains with fast writes and reads operations, in order to reduce the blocking time of these operations.
+
+\textit{AppAnalyzer} provides Map and Reduce functions to be used for evaluating specific protocols and desired indicators. Each Map function receives as input a path of a PCAP file stored into HDFS; this path is defined by the data locality control of the Hadoop, which tries to delegate each task to nodes that have a local replica of the data or that are near a replica. Then, the file is opened and each network packet is processed, to remount messages and flows, and to extract the desired indicators. 
+
+During the data processing, the indicators are extracted from application messages and saved in a \textit{SortedMapWritable} object, which is ordered by its timestamp.  \textit{SortedMapWritable} is a sorted collection of values which will be used by Reduce functions to summarize each evaluated indicator. In our approach, each evaluated indicator is extracted and saved into an individual result file of Hadoop, which is stored into HDFS.
+
+MapReduce usually splits blocks in records to be used as input for Map functions, but we adopt whole files as input for Map tasks, to be able to perform DPI and reassemble application messages that had their content divided into some TCP packets, due TCP segmentation or due an implementation decision of the evaluated application. If an application message is less than the maximum segment size (MSS), one TCP packet can transport one or more application message, but if an application message is greater than the MSS, the message is split into some TCP packets, according with the TCP segmentation. Thus, it is necessary to evaluate the full content of some TCP segments to recognize application messages and their protocols.
+
+If application messages have its packets spread into two or more blocks, it is possible to generate intermediate data of this unevaluated messages by the Map function, grouping each message by flow and its individual identification, and use the Reduce function to reassembly the message and evaluate it.
+
+To evaluate the effectiveness of our approach, we developed a pilot project to extract application indicators from a JXTA-based distributed application traffic, this JXTA-based distributed application implements a distributed backup system, based on JXTA Socket. To analyse JXTA-based network traffic, the \textit{JNetPCAP-JXTA} \citep{jnetpcapjxta} was developed, which parses network traffic into Java JXTA messages, and the \textit{JXTAPerfMapper} and \textit{JXTAPerfReducer}, which extract application indicators from JXTA Socket communication layer through Map and Reduce functions. 
+
+\textit{JNetPCAP-JXTA} is writen in the Java language and provides methods to convert byte arrays into Java JXTA messages, using an extension of the JXTA default library for Java, known as JXSE\footnote{http://jxse.kenai.com/}. With JNetPCAP-JXTA, we are able to parse all kinds of messages defined by the JXTA specification. \textit{JNetPCAP-JXTA} relies on the JNetPCAP library to support the instantiation and inspection of LibPCAP packets. JNetPCAP was adopted due to its performance to iterate over packets, to the large quantity of functionalities provided to handle packet traces and due to the recent update activities for this library.
+
+The \textit{JXTAPerfMapper} implements a Map function that receives as input a path of a PCAP file stored into the HDFS; then the content of the specified file is processed to extract the number of JXTA connection requests and number of JXTA message arrivals to a server peer, and to evaluate the round-trip time of each piece of content transmitted over a JXTA Socket. If a JXTA message is greater than the TCP PDU size, the message is split into some TCP segments, due to the TCP segmentation. Additionally, in a JXTA network traffic, one TCP packet can transport one or more JXTA message, due to the buffer window size used by the Java JXTA Socket implementation to segment its messages. 
+
+Because of the possibility of transporting more than one JXTA message per packet and the TCP segmentation, it is necessary to reassemble more than one packet and the full content of each TCP segment to recognize all possible JXTA messages, instead of evaluating only a message header or signature of individual packets, as is commonly done in DPI or by widely used traffic analysis tools, such as Wireshark\footnote{http://www.wireshark.org/}, which is unable to recognize all JXTA messages in a captured network traffic, due to its approach in which it does not identify when two or more JXTA messages are transported into the same TCP packet. 
+
+\textit{JXTAPerfMapper} implements a DPI algorithm to recognize, sort and reassemble TCP segments into JXTA messages, which is shown in Algorithm \ref{alg:JXTAperfmapper}. 
+
+\begin{algorithm}[htb]
+	\caption{JXTAPerfMapper}
+	\label{alg:JXTAperfmapper}
+	\begin{algorithmic} 
+		\ForAll{$tcpPacket$} 
+			\If{$isJXTA$ \Or $isWaitingForPendings$}
+				\State $parsePacket(tcpPacket)$
+			\EndIf
+		\EndFor
+		\Statex
+		\Function{parsePacket}{$tcpPacket$}
+		\State $parseMessage$
+		\If{$isMessageParsed$}
+			\State $upddateSavedFlows$
+			\If{$hasRemain$}
+				\State $parsePacket(remainPacket)$
+			\EndIf
+		\Else
+			\State $savePendingMessage$
+			\State $lookForMoreMessages$
+		\EndIf
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+For each TCP packet of the PCAP file, it is verified if it is a JXTA message or if it is part of a JXTA message that was not fully parsed and is waiting for its complement; if one of these conditions is true, then a parse attempt is made, using \textit{JNetPCAP-JXTA} functionalities, up to the full verification of the packet content. As a TCP packet may contain one or more JXTA messages, if a message is fully parsed, then another parse attempt is done with the content not used by the previous parse. If the content is a JXTA message and the parse attempt is not successful, then its TCP content is stored with its TCP flow identification as a key, and all the next TCP packets that match with the flow identification will be sorted and used to attempt to mount a new JXTA message, until the parser is successful. 
+
+With these characteristics, inspection of JXTA messages and extract application indicators requires more effort than other cases of DPI. For this kind of traffic analysis memory requirements become even larger, because it needs to take into account not only the state of the transport session, but also the state of each application layer session. Also processing power is the highest because the protocol conformance analysis requires processing the entire application data \citep{Risso2008}.
+
+As previously shown in Figure \ref{fig:prof_appanalyzer}, the \textit{AppAnalyzer} is composed by Map and Reduce functions, respectively \textit{JXTAPerfMapper} and \textit{JXTAPerfReducer}, to extract performance indicators from JXTA Socket communication layer, which is a JXTA communication mechanism that implements a reliable message exchange and obtains better throughput between the communication layers provided by the Java JXTA implementation. 
+
+The JXTA Socket messages are transported by the TCP protocol, but it also implements its own control for data delivery, retransmission and acknowledgements. Each message of a JXTA Socket is part of a Pipe that represents a connection established between the sender and the receiver. In a JXTA Socket communication, two Pipes are established, one from sender to receiver and the other from receiver to sender, in which are transported content messages and acknowledgement messages, respectively. To evaluate and extract performance indicators from a JXTA Socket, the messages must be sorted, grouped and linked with their respective Pipes of content and acknowledgement. 
+
+The content transmitted into a JXTA Socket is split into byte array blocks and stored in a reliability message that is sent to the destination and it expects to receive an acknowledgement message of its arrival. The time between the message delivery and when the acknowledgement is sent back is called round-trip time (RTT); this may vary according to the system load and may indicate a possible overload of a peer. In a Java JXTA implementation, each block received or to be sent is queued by the JXTA implementation, until the system is ready to process a new block. This waiting time to handle messages can impact the response time of the system, increasing the message RTT. 
+
+The \textit{JXTAPerfMapper} and \textit{JXTAPerfReducer} evaluate the RTT of each content block transmitted over a JXTA Socket, and also extract information about the number of connection requests and message arrivals per time. Each Map function evaluates the packet trace to mount JXTA messages, Pipes and Sockets. The parsed JXTA messages are sorted by their sequence number and grouped by their Pipe identification, to compose the Pipes of a JXTA Socket. As soon as the messages are sorted and grouped, the RTT is obtained, its value is associated with its key and written as an output of the Map function. 
+
+The reduce function defined by \textit{JXTAPerfReducer} receives as input a key and a collection of values, which are the evaluated indicator and its collected values, respectively, and then generates individual files with the results of each indicator evaluated. 
+
+The requirements to improve these Map and Reduce functions to address others application indicators, such as throughput or number of retransmissions, are that each indicator must be represented by an intermediate key, which is used by MapReduce for grouping and sorting, and that collected values must be associated with its key.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Evaluation}
+\label{sc:prof_evaluation}
+
+In this section we perform an experiment to evaluate the effectiveness of MapReduce to express DPI algorithms and its completion time scalability for profiling distributed applications through DPI: then our scope was limited to evaluate the \textit{AppAnalyzer}, \textit{AppParser} and the Hadoop environment, from the architecture presented before. 
+
+\subsection{Evaluation Methodology}
+\label{ssc:prof_evaluation_methodology}
+
+For this experimental evaluation, we adopted a methodology based on aspects of GQM (Goal-Question-Metric) template \citep{Basili1994} and on the systematic approach to performance evaluation defined by \cite{Jain1991}. 
+
+Two questions were defined to achieve our defined goal, and these questions are:
+
+\begin{itemize}
+	\item $Q_1$: Can MapReduce express DPI algorithms and extracts application indicators from network traffic of distributed applications?
+	\item $Q_2$: Is the completion time of MapReduce for DPI proportionally scalable with the addition of worker nodes?
+\end{itemize}
+
+To answer these questions, the metrics described in Table \ref{tab:metrics} were evaluated, which shows the number of indicators extracted from distributed application traffic and the behaviour followed by the completion time scalability obtained per variation of number of worker nodes in a MapReduce cluster. The completion time scalability evaluates how is the decreasing of completion time obtained with node addition into a MapReduce cluster, for processing a defined input dataset.
+
+\begin{table}[htb]
+	\centering
+	\caption{Metrics to evaluate MapReduce effectiveness and completion time scalability for DPI of a JXTA-based network traffic}
+	\label{tab:metrics}
+    \begin{tabular}{|p{5cm}|p{7cm}|c|} \hline
+       	\textbf{Metrics}    		&\textbf{Description}	&\textbf{Question} 	\\ \hline
+       	$M_1$: Number of Indicators   		&Number of application indicators extracted from a distributed application traffic.	&$Q_1$\\ \hline
+       	$M_2$: Proportional Scalability   	&Verify if the completion time decreases proportionally to the number of worker nodes.	&$Q_2$\\ \hline
+   	\end{tabular}
+\end{table}
+
+This experimental evaluation adopts the factors and levels described in Table \ref{tab:factorslevels}, which represents the number of worker nodes of a MapReduce cluster and the input size used in MapReduce jobs. These factors make possible to evaluate the scalability behavior of MapReduce over variations in the selected factors.
+
+\begin{table}[htb]
+	\centering
+	\caption{Factors and levels to evaluate the defined metrics}
+	\label{tab:factorslevels}	
+	\begin{tabular}{|l|l|} \hline
+	    \textbf{Factors}		&\textbf{Levels}									\\ \hline
+	    Number of worker nodes	&3 up to 19											\\ \hline
+   		Input Size				&16GB and 34GB										\\ \hline
+	\end{tabular}
+\end{table}
+
+Our testing hypotheses are defined in Table \ref{tab:hypothesis} and \ref{tab:math_hypothesis}, that describe the null hypothesis and alternative hypothesis for each previously defined question. Table \ref{tab:hypothesis} describes our hypotheses and Table \ref{tab:math_hypothesis} presents the notation used to evaluate our hypotheses.
+
+\begin{table}[htb]
+	\centering
+	\caption{Hypotheses to evaluate the defined metrics}
+	\label{tab:hypothesis}
+    \begin{tabular}{|p{6cm}|p{6cm}|c|} \hline
+        \textbf{Alternative Hypothesis}	&\textbf{Null Hypothesis}	&\textbf{Question} 	\\ \hline
+        $H_{1num.indct}$: It is possible to use MapReduce for extracting application indicators from network traffic.	&$H_{0num.indct}$. It is not possible to use MapReduce for extracting applications indicators from network traffic.	&$Q_1$\\ \hline
+        $H_{1scale.prop}$: The completion time of MapReduce for DPI, does not scale proportionally to node addition.	&$H_{0scale.prop}$. The completion time of MapReduce for DPI, scales proportionally to node addition.	&$Q_2$\\ \hline
+    \end{tabular}
+\end{table}
+
+The hypotheses $H_{1num.indct}$ and $H_{0num.indct}$ were defined to evaluate if MapReduce can be used to extract applications indicators from network traffic, for this evaluation it was analysed the number of indicators extracted from a JXTA-base network traffic, represented by $\mu_{num.indct}$. 
+
+\begin{table}[htb]
+	\centering
+	\caption{Hypothesis notation}
+	\label{tab:math_hypothesis}
+    \begin{tabular}{|c|c|c|} \hline
+        \textbf{Hypothesis}	&\textbf{Notation}	&\textbf{Question} 	\\ \hline
+        $H_{1num.indct}$	&$\mu_{num.indct}$ > 0	&$Q_1$\\ \hline
+        $H_{0num.indct}$	&$\mu_{num.indct}$ <= 0	&$Q_1$\\ \hline
+        $H_{1scale.prop}$	&$\mu_{scale.prop} = \forall n \in N^*, s_n = s \cdot n \Rightarrow t_n \neq \frac{t}{n}$	&$Q_2$\\ \hline
+        $H_{0scale.prop}$	&$\mu_{scale.prop} = \forall n \in N^*, s_n = s \cdot n \Rightarrow t_n = \frac{t}{n}$	&$Q_2$\\ \hline
+    \end{tabular}
+\end{table}
+
+It is common to see statements saying that MapReduce scalability is linear, but achieving linear scalability in distributed systems is a difficult task. Linear scalability happens when a parallel system does not loose performance while scaling \citep{Gunther2006}, then a node addition implies proportional performance gain in completion time or processing capacity. We defined the hypotheses $H_{1scale.prop}$ and $H_{0scale.prop}$ to evaluate the completion time scalability behavior of MapReduce, testing if it provides proportional completion time scalability. In these hypotheses, \textit{t} represents the completion time for executing a Job \textit{j}, \textit{s} represents the cluster size and \textit{n} represents the evaluated multiplication factor, which is the increasing factor for the cluster size evaluated. $H_{0scale.prop}$ states that, evaluating a specific MapReduce Job and input data, for all \textit{n} being natural and bigger than zero, a new cluster size defined by a previous cluster size multiplied by the factor \textit{n}, implies into the reduction of the previous job time \textit{t} according to the division factor \textit{n}, resulting in the time \textit{$t_n$} obtained through the division of the previous time \textit{t} by the factor \textit{n}.
+
+\subsection{Experiment Setup}
+\label{ssc:prof_setup}
+
+To evaluate the MapReduce effectiveness for application traffic analysis and its completion time scalability, we performed two sets of experiments, grouped by the input size analysed, with variation in the number of worker nodes. 
+
+Was used as input for MapReduce jobs, network traffic captured from a JXTA-based distributed backup system, which uses the JXTA Socket communication layer for data transfer between peers. The network traffic was captured from an environment composed of six peers, where one peer server receives datafrom five concurrent client peers, to be stored and replicated to another peers. During the capturing traffic, one server peer creates a JXTA Socket Server to accept JXTA Socket connections and receive data through an established connection. 
+
+For each data backup, one client peer establishes a connection with a server peer and sends messages with the content to be stored; if the content to be stored is bigger than the JXTA message maximum size, its content will be transferred through two or more JXTA messages. For our experiment, we adopted the backup of files with content size randomly defined, with values between 64KB and 256KB.
+
+The network traffic captured was saved into datasets of 16GB and 34GB, split in 35 and 79 files of 64MB, respectively, and stored into HDFS, to be processed as described in Section \ref{sc:prof_architecture}, in order to extract, from the JXTA Socket communication layer, these selected indicators: round-trip time, number of connection requests per time and number of messages received by one peer server per time.
+
+For each experiment set the algorithm \ref{alg:JXTAperfmapper} was executed, implemented by \textit{JXTAPerfMapper} and \textit{JXTAPerfReducer}, and was measured the completion time and processing capacity for profiling a JXTA-based distributed application through DPI, over different number of worker nodes. Each experiment was executed 30 times to obtain reliable values \citep{Yanpei2011}, within confidence interval of 95\% and a maximum error ratio of 5\%. The experiment was performed using virtual machines of the Amazon EC2, with nodes running Linux kernel 3.0.0-16, Hadoop version 0.20.203, block size of 64MB and with the data replicated 3 times over the HDFS. All used virtual machines were composed of 2 virtual cores, 2.5 EC2 Compute Units and 1.7GB of RAM. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{sc:prof_results}
+
+From the JXTA traffic analysed, we extracted three indicators, the number of JXTA connection requests per time, the number of JXTA messages received per time, and the round-trip time of JXTA messages, that is defined by the time between content message arrival from a client peer, and the JXTA acknowledgement sent back from a server peer. The extracted indicators are shown in Figure \ref{fig:prof_indicators}.
+
+\begin{figure}[!htb]
+     \centering 
+     \includegraphics[scale=0.6]{images/indicators.png}
+     \caption{JXTA Socket trace analysis}
+     \label{fig:prof_indicators}
+\end{figure}
+
+Figure \ref{fig:prof_indicators} shows the extracted indicators, exhibiting the measured indicators from the JXTA Socket communication layer and its behaviour for concurrent data transferring, of a server peer receiving JXTA Socket connection request and messages from concurrent client peers of a distributed backup system.
+
+The three indicators extracted from the network traffic of a JXTA-based distributed application, using MapReduce to perform DPI algorithm and extract desired indicators, represents important indicators to evaluate a JXTA-based application \citep{Halepovic2005}. With these extracted indicators it is possible to evaluate a distributed system, providing a better understanding of the behaviour of a JXTA-based distributed application. Through the extracted information it is possible to evaluate important metrics, such as the load distribution, response time and the negative impact caused by the increasing of number of messages received by a peer. 
+
+Using MapReduce to perform a DPI algorithm, was possible to extract the three application indicators from network traffic, then was obtained $\mu_{num.indct}$ = 3, what rejects the null hypothesis $H_{0num.indct}$, that states  $\mu_{num.indct}$ <= 0, and confirms the alternative hypothesis $H_{1num.indct}$, confirming that $\mu_{num.indct}$ > 0.
+
+Figures \ref{fig:prof_completion16} and \ref{fig:prof_completion34} illustrate how the addition of worker nodes into an Hadoop cluster reduces the mean completion time and how the scalability of completion time is for profiling 16 GB and 34 GB of network traffic trace.
+
+\begin{figure}[!htb]
+	\centering
+	\subfigure[Scalability to process 16 GB]{
+		\includegraphics[scale=0.55]{images/completion16.eps}
+		\label{fig:prof_completion16}
+	}
+	\subfigure[Scalability to process 34 GB]{
+		\includegraphics[scale=0.55]{images/completion34.eps}
+		\label{fig:prof_completion34}
+	}
+	\caption[Completion time scalability of MapReduce for DPI]{Completion time scalability of MapReduce for DPI}
+	\label{fig:prof_completiontime}
+\end{figure}
+
+In both graphics, the behaviour of the completion time scalability is similar, not following a linear function and with more significant scalability gains, through node addition, in smaller clusters, and less significant gains with node addition into bigger clusters. 
+
+This scalability behaviour highlights the importance of evaluating the relation between costs and benefits to nodes additions in a MapReduce cluster, due to the non proportional gain with node addition in a MapReduce cluster. 
+
+The Tables \ref{tab:result16} and \ref{tab:result34} present respectively the results of the experiment to deeply inspect 16 GB and 34 GB of network traffic trace, showing the number of Hadoop nodes used for each experiment, the mean completion time in seconds, its margin of error, the processing capacity achieved and the relative processing capacity per node in the cluster.
+
+\begin{table}[!htb]
+	\centering
+	\caption{Completion time to process 16 GB split into 35 files}
+   	\label{tab:result16}	
+    \begin{tabular}{|l|r|r|r|r|r|} \hline
+        \textbf{Nodes} 				& 3       	& 4       	& 6       	& 8       	& 10      \\ \hline
+        \textbf{Time}    			& 322.53	& 246.03	& 173.17	& 151.73	& 127.17  \\ \hline
+        \textbf{Margin of Error}	& 0.54		& 0.67		& 0.56		& 1.55		& 1.11    \\ \hline
+        \textbf{MB/s}           	& 50.80		& 66.59		& 94.61		& 107.98	& 128.84  \\ \hline
+        \textbf{(MB/s)/node}    	& 16.93		& 16.65		& 15.77		& 13.50		& 12.88   \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+	\centering
+	\caption{Completion time to process 34 GB split into 79 files}
+   	\label{tab:result34}
+    \begin{tabular}{|l|r|r|r|r|r|} \hline
+        \textbf{Nodes}    			& 4			& 8       	& 12      	& 16      	& 19      	\\ \hline
+        \textbf{Time}    			& 464.33	& 260.60	& 189.07	& 167.13	& 134.47 	\\ \hline
+        \textbf{Margin of Error}	& 0.32		& 0.76		& 1.18		& 0.81		& 1.53		\\ \hline
+        \textbf{MB/s}           	& 74.98		& 133.60	& 184.14	& 208.32	& 258.91	\\ \hline
+        \textbf{(MB/s)/node}    	& 18.75		& 16.70		& 15.35		& 13.02		& 13.63		\\ \hline
+    \end{tabular}
+\end{table}
+
+In our experiments, we achieved a maximum mean processing capacity of 258.91 MB per second, in a cluster with 19 worker nodes, processing 34 GB. For a cluster with 4 nodes we achieved a mean processing capacity of 66.59 MB/s and 74.98 MB/s to process respectively 16 GB and 34 GB of network traffic trace, which indicates that processing capacity may vary in function of the amount of data processed and the number of files used as input data, and indicates that the input size is an important factor to be analysed by MapReduce performance evaluations.
+
+The results show that for the evaluated scenario and application, the completion time decreases with the increment of number of nodes in the cluster, but not proportionally to node addition and not in a linear function, as can be observed in Figures \ref{fig:prof_completion16} and \ref{fig:prof_completion34}. Observing Figures \ref{fig:prof_completion16} and \ref{fig:prof_completion34} is possible to see that the completion time does not decreases linearly. Also, Tables \ref{tab:result16} and \ref{tab:result34} show values that confirms the non proportional completion time scalability. For example the Table \ref{tab:result16} shows a cluster with 4 nodes processing 16 GB that was scaled out to 8 nodes, then was obtained an increment of 2 times in number of nodes, but we achieved a gain of 1.62 times in completion time. 
+
+To evaluate our stated hypotheses $H_{1scale.prop}$ and $H_{0scale.prop}$ based on this example, we have the measured $s_2 = 8$ and the calculated $s \cdot n = s_n$ defined by $4 \cdot 2 = 8 = s_2$, what confirms $s_n = s \cdot n$. We also have the measured $t_2 = 151.73$ and the calculated $\frac{t}{n}$ defined by $\frac{246.03}{2} = 123.01 = t_2$, what rejects $t_n = \frac{t}{n}$ and confirms $t_n \neq \frac{t}{n}$. Therefore, with the measured results was rejected the null hypothesis $H_{0scale.prop}$ and confirmed the alternative hypothesis $H_{1scale.prop}$, which states that the completion time of MapReduce for DPI, does not scale proportionally to node addition.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sc:prof_discussion}
+
+In this section, we discuss the measured results and evaluate its meaning, restrictions and opportunities. We also discuss possible threats to validity of our experimental results.
+
+\subsection{Results Discussion}
+\label{ssc:prof_resultsdiscussion}
+
+Distributed systems analysis, detection of root causes and error reproduction are challenges that motivates efforts to develop less intrusive mechanisms for profiling and monitoring distributed applications at runtime. Network traffic analysis is one option to evaluate distributed systems, although there are limitations on capacity to process a large amount of network traffic in a short time, and on completion time scalability to process network traffic where there is variation of resource demand. 
+
+According to the evaluated results, using MapReduce for profiling a network traffic from a JXTA-based distributed backup system, through DPI, it is important to analyse the possible gains with node addition into a MapReduce cluster, because the node addition provides different gains according to the cluster size and input size. For example, Table \ref{tab:result34} shows that the addition of 4 nodes into a cluster with 12 nodes, produces a reduction of 11\% in completion time and an improvement of 13\% in processing capacity, while the addition of the same amount of nodes (4 nodes) into a cluster with 4 nodes produces a reduction of 43\% in completion time and an improvement of 78\% in processing capacity.
+
+The scalability behaviour of MapReduce for DPI highlights the importance of evaluating the relation between costs and benefits to node additions into a MapReduce cluster, because the gains obtained with node addition are related to the actual and future cluster size and the input size to be processed.
+
+The growing of the number of nodes in the cluster increases costs due to greater cluster management, data replication, tasks allocation to available nodes and due costs with the management of failures. Also, with the cluster growing, the cost is increased with merging and sorting of the data processed by Map tasks \citep{Jiang2010}, that can be spread into a bigger number of nodes. 
+
+In smaller clusters, the probability of a node having a replica of the input data, is greater than in bigger clusters adopting the same replication factor \citep{Zaharia2010}. In bigger clusters there are more options of nodes for delegate a task execution, but the number of data replication limits the benefits of data locality to the number of nodes that store a replica of the data. This increases the cost to schedule tasks and to distribute tasks in the cluster, and also increases costs with data transfer over the network.
+
+The kind of workload submitted to be processed by MapReduce impacts in the behaviour and performance of MapReduce \citep{Tan2012, Groot2012}, requiring specific configuration to obtain an optimal performance. Although studies have been done in order to understand, analyse and improve workload management decisions in MapReduce \citep{Lu2012, Groot2012}, there is no evaluation to characterize the MapReduce behaviour or to identify its optimal configuration to achieve the best performance for packet level analysis and DPI. Thus, it is necessary deeply understand the behaviour of MapReduce to process network traces and what optimizations can be done to better explore the potential provided by MapReduce for packet level analysis and DPI
+
+\subsection{Possible Threats to Validity}
+\label{ssc:prof_threats}
+
+Due budget and time restrictions, our experiments were performed with small cluster size and small input size, if compared with benchmarks that evaluate the MapReduce performance and its scalability \citep{Dean2008}. However, relevant performance evaluations and reports of real MapReduce production traces shows that the majority of the MapReduce jobs are small and executed into a small number of nodes \citep{Zaharia2008, Guanying2009, Lin2010, Zaharia2010, Kavulya2010, Yanpei2011, Guo2012}.
+
+Although MapReduce has been designed to handle big data, the use of input data in order of gigabytes has been reported by realistic production traces \citep{Yanpei2011}, and this input size has been used in relevant MapReduce performance analysis \citep{Zaharia2008, Guanying2009, Lin2010}. 
+
+Improvements in MapReduce performance and proposed schedulers has focused into problems related to small jobs, for example Facebook's fairness scheduler aims to provide fast response time for small jobs \citep{Zaharia2010, Guo2012}. Fair scheduler attempts to guarantee service levels for production jobs by maintaining job pools composed by a small number of nodes than the total nodes of a data center, to maintain a minimum share and dividing excess capacity among all jobs or pools \citep{Zaharia2010}.  
+
+According to \cite{Zaharia2010}, 78\% of Facebook's MapReduce jobs have up to 60 Map tasks. Our evaluated datasets were composed by 35 and 79 files, what implies into the same and respective numbers of Map tasks, due to our approach evaluates an entire block per Map task.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter Summary}
+\label{sc:prof_chaptersummary}
+
+In this chapter, we presented an approach for profiling application traffic using MapReduce, and evaluated its effectiveness for profiling application through DPI and its completion time scalability in a cloud computing environment.
+
+We proposed a solution based on MapReduce, for deep inspection of distributed applications traffic, in order to evaluate the behaviour of distributed systems at runtime, using commodity hardware, in a low intrusive way, through a scalable and fault tolerant approach based on Hadoop, an open source implementation of MapReduce. 
+
+MapReduce was used to implement a DPI algorithm to extract application indicators from a JXTA-based traffic of a distributed backup system. Was adopted an splitting approach without the block division into records, was used a network trace split into files with maximum size lesser than the HDFS block size, to avoid the cost and complexity of providing to the HDFS a algorithm for splitting the network trace into blocks, and also to use a whole block as input for Map functions, in order to be able to reassemble two or more packets and reassemble JXTA messages from packets of network traces, per Map function.
+
+We evaluated the effectiveness of MapReduce for a DPI algorithm and its completion time scalability, over different sizes of network traffic used as input, and different cluster size. We showed that the MapReduce programming model can express algorithms for DPI and extracts application indicators from application network traffic, using virtual machines of a cloud computing provider, for DPI of large amounts of network traffic. We also evaluated its completion time scalability, showing the scalability behaviour, the processing capacity achieved, and the influence of the number of nodes and the data input size on the capacity processing for DPI. 
+
+It was shown that MapReduce completion time scalability for DPI does not follow a linear function, with more significant scalability gains, through the addition of nodes, in small clusters, and less significant gains in bigger clusters. 
+
+According to the results, input size and cluster size generate significant impact in processing capacity and completion time of MapReduce jobs for DPI. This highlights the importance of evaluating the best input size and cluster size to obtain an optimal performance in MapReduce Jobs, but also indicates the need for more evaluations about the influence of others important factors on MapReduce performance, in order to provide better configuration, selection of input size and machine allocation into a cluster, and to provide valuable information for performance tuning and predictions.
