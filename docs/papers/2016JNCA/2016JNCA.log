@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.6.18)  19 JUN 2017 16:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.14)  19 SEP 2017 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **2016JNCA.tex
 (./2016JNCA.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 4 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./elsarticle.cls
 Document Class: elsarticle 2009/09/17, 1.20b: Elsevier Ltd
 \@bls=\dimen102
@@ -249,8 +249,8 @@ Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks21
 \inpenc@posthook=\toks22
 
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def
-File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
@@ -707,9 +707,80 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 128.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-) [1
+! Missing $ inserted.
+<inserted text> 
+                $
+l.128 \end{frontmatter}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\maththreesuperior ->{^3}
+                         
+l.128 \end{frontmatter}
+                       
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \~ invalid in math mode on input line 128.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.128 \end{frontmatter}
+                       
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.128 \end{frontmatter}
+                       
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.128 \end{frontmatter}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.128 \end{frontmatter}
+                       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.128 \end{frontmatter}
+                       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no ç in font cmex10!
+[1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
@@ -718,10 +789,52 @@ Overfull \hbox (9.55615pt too wide) in paragraph at lines 163--164
 lied to net-work anomaly
  []
 
-[5] (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-3.def
-File: uni-3.def 2013/05/13 UCS: Unicode data U+0300..U+03FF
-) [6]
-<results/figures/fig09.png, id=238, 426.84468pt x 307.1475pt>
+[5]
+
+LaTeX Warning: Command \^ invalid in math mode on input line 175.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.175 ...ic letters (\emph{a, b, A, B, $Î±$, $Î²$}
+                                                  ), vectors by lowercase bo...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.175 ...ic letters (\emph{a, b, A, B, $Î±$, $Î²$}
+                                                  ), vectors by lowercase bo...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+Missing character: There is no ç in font cmex10!
+
+LaTeX Warning: Command \^ invalid in math mode on input line 175.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.175 ...ic letters (\emph{a, b, A, B, $Î±$, $Î²$}
+                                                  ), vectors by lowercase bo...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.175 ...ic letters (\emph{a, b, A, B, $Î±$, $Î²$}
+                                                  ), vectors by lowercase bo...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+Missing character: There is no ç in font cmex10!
+[6] <results/figures/fig09.png, id=238, 426.84468pt x 307.1475pt>
 File: results/figures/fig09.png Graphic file (type png)
 
 <use results/figures/fig09.png>
@@ -795,10 +908,44 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.236 
        <./results/figures/fig03.png>]
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-34.def
-File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
-) [10pdfTeX warning (ext4): destination with the same identifier (name{figure.3
-}) has been already used, duplicate ignored
+
+LaTeX Warning: Command \^ invalid in math mode on input line 237.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.237 ...if the obtained $\#\boldsymbol{A}^{(q)} â
+                                                  ‰  0$, then there is malic...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.237 ...if the obtained $\#\boldsymbol{A}^{(q)} â
+                                                  ‰  0$, then there is malic...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.237 ...f the obtained $\#\boldsymbol{A}^{(q)} â‰
+                                                    0$, then there is malici...
+
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+Missing character: There is no è in font cmex10!
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -818,9 +965,58 @@ File: results/figures/fig06.png Graphic file (type png)
 Package pdftex.def Info: results/figures/fig06.png used on input line 258.
 (pdftex.def)             Requested size: 256.0861pt x 128.03763pt.
 
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
-File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-)
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.259 ...ts and replies, causing packet flooding.}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.259 ...ts and replies, causing packet flooding.}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.259 ...ts and replies, causing packet flooding.}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.259 ...ts and replies, causing packet flooding.}
+                                                  
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -841,11 +1037,232 @@ Package pdftex.def Info: results/figures/fig07.png used on input line 271.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
- has been already used, duplicate ignored
+[12
+! Use of \@xfootnote doesn't match its definition.
+\DeclareInputText #1#2->\def \reserved@a ##
+                                           1 ${}\def \reserved@b {#2}\ifcat ...
+l.285 
+      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.285 
+      
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \csname\endcsname
+l.285 
+      
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Undefined control sequence.
+\hyper@makecurrent ...activestrue \edef \Hy@param 
+                                                  {#1}\ifx \Hy@param \Hy@cha...
+l.285 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\hyper@makecurrent ...hypertexnames \let \@number 
+                                                  \@firstofone \def \@fnsymb...
+l.285 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ##
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   a
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \xdef 
+l.285 
+      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+\hyper@makecurrent ...lobalCurrentHref {\Hy@param 
+                                                  .\expandafter \strip@prefi...
+l.285 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Incomplete \iffalse; all text was ignored after line 285.
+<inserted text> 
+                \fi 
+l.285 
+      
+A forbidden control sequence occurred in skipped text.
+This kind of error happens when you say `\if...' and forget
+the matching `\fi'. I've inserted a `\fi'; this might work.
+
+! Incomplete \iffalse; all text was ignored after line 285.
+<inserted text> 
+                \fi 
+l.285 
+      
+A forbidden control sequence occurred in skipped text.
+This kind of error happens when you say `\if...' and forget
+the matching `\fi'. I've inserted a `\fi'; this might work.
+
+! Incomplete \iffalse; all text was ignored after line 285.
+<inserted text> 
+                \fi 
+l.285 
+      
+A forbidden control sequence occurred in skipped text.
+This kind of error happens when you say `\if...' and forget
+the matching `\fi'. I've inserted a `\fi'; this might work.
+
+! Incomplete \iffalse; all text was ignored after line 285.
+<inserted text> 
+                \fi 
+l.285 
+      
+A forbidden control sequence occurred in skipped text.
+This kind of error happens when you say `\if...' and forget
+the matching `\fi'. I've inserted a `\fi'; this might work.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \ETC.
+! Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.285 
+      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<recently read> \endwrite 
+                          
 l.285 
        <./results/figures/fig06.png>] [13pdfTeX warning (ext4): destination wit
 h the same identifier (name{figure.6}) has been already used, duplicate ignored
@@ -1175,13 +1592,263 @@ r (name{table.10}) has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.988 
-      ] [42] [43] [44pdfTeX warning (ext4): destination with the same identifie
-r (name{table.11}) has been already used, duplicate ignored
+      ] [42] [43]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1018 ... the penalty function \emph{p(k, N, Î±)}
+                                                  , so these techniques can ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.1018 ... the penalty function \emph{p(k, N, Î±)}
+                                                  , so these techniques can ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1019 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1030 ... is the number of samples, \emph{Î± = M}
+                                                   and means the number of v...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.1030 ... is the number of samples, \emph{Î± = M}
+                                                   and means the number of v...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \^ invalid in math mode on input line 1030.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.1030 ...ber of variables of the problem, and 0 â
+                                                  ‰¤ \emph{k} â‰¤ min[\emph{...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.1030 ...ber of variables of the problem, and 0 â
+                                                  ‰¤ \emph{k} â‰¤ min[\emph{...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1030 ...er of variables of the problem, and 0 â‰
+                                                  ¤ \emph{k} â‰¤ min[\emph{M...
+
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+LaTeX Warning: Command \textcurrency invalid in math mode on input line 1030.
+
+
+! LaTeX Error: Command \textcurrency unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1030 ...r of variables of the problem, and 0 â‰¤
+                                                   \emph{k} â‰¤ min[\emph{M}...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Command \^ invalid in math mode on input line 1030.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.1030 ...les of the problem, and 0 â‰¤ \emph{k} â
+                                                  ‰¤ min[\emph{M}, \emph{N}]...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.1030 ...les of the problem, and 0 â‰¤ \emph{k} â
+                                                  ‰¤ min[\emph{M}, \emph{N}]...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1030 ...es of the problem, and 0 â‰¤ \emph{k} â‰
+                                                  ¤ min[\emph{M}, \emph{N}]....
+
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+LaTeX Warning: Command \textcurrency invalid in math mode on input line 1030.
+
+
+! LaTeX Error: Command \textcurrency unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1030 ...s of the problem, and 0 â‰¤ \emph{k} â‰¤
+                                                   min[\emph{M}, \emph{N}]. ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1032 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no è in font cmex10!
+Missing character: There is no è in font cmex10!
+
+Overfull \hbox (283.22688pt too wide) in paragraph at lines 1030--1032
+[]\OT1/cmr/m/n/10 I$\OMS/cmsy/m/n/10 ^^F \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 Man
+dmeansthenumberofvariablesoftheproblem; and\OT1/cmr/m/n/10 0[][][]\OML/cmm/m/it
+/10 min\OT1/cmr/m/n/10 [[]\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 ]\OML/cmm/m/it/1
+0 :PenaltyfunctionsforAIC; MDLandEDCaregivenbytheTable[]A:\OT1/cmr/m/n/10 11[]\
+OML/cmm/m/it/10 :$ 
+ []
+
+[44pdfTeX warning (ext4): destination with the same identifier (name{table.11})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.1050 
-       ] (./2016JNCA.bbl [45] [46] [47] [48])
+       ]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1056 ...st eigenvalue. The term \emph{q(Î±, Î²)}
+                                                   is defined as:
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+LaTeX Warning: Command \^ invalid in math mode on input line 1056.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.1056 ...st eigenvalue. The term \emph{q(Î±, Î²)}
+                                                   is defined as:
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.1056 ...st eigenvalue. The term \emph{q(Î±, Î²)}
+                                                   is defined as:
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.1056 ...st eigenvalue. The term \emph{q(Î±, Î²)}
+                                                   is defined as:
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1057 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ç in font cmex10!
+(./2016JNCA.bbl
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 18.
+ [45] [46] [47]
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.131 ...nternational Scientific Colloquium (IWKâ€
+                                                  ™09),
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.131 ...ternational Scientific Colloquium (IWKâ€™
+                                                  09),
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+[48])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1068.
  [49]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1068.
@@ -1192,17 +1859,23 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1068.
 Package rerunfilecheck Info: File `2016JNCA.out' has not changed.
 (rerunfilecheck)             Checksum: 18415668CF25AE8630EE212D2F06C05D;1958.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1068.
- ) 
+ )
+(\end occurred inside a group at level 3)
+
+### simple group (level 3) entered at line 1056 ({)
+### simple group (level 2) entered at line 1030 ({)
+### simple group (level 1) entered at line 1018 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 14597 strings out of 494985
- 217816 string characters out of 6180356
- 421109 words of memory out of 5000000
- 17368 multiletter control sequences out of 15000+600000
- 15412 words of font info for 56 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
- 34i,16n,32p,1378b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exi
-st, replaced by a fixed one
+ 12776 strings out of 493304
+ 197950 string characters out of 6139871
+ 419306 words of memory out of 5000000
+ 15799 multiletter control sequences out of 15000+600000
+ 16388 words of font info for 59 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 34i,16n,32p,2170b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced bu
+t does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
 , replaced by a fixed one
@@ -1236,11 +1909,12 @@ msy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on 2016JNCA.pdf (49 pages, 1336541 bytes).
+texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/courier/ucrro8a.pfb>
+Output written on 2016JNCA.pdf (49 pages, 1354311 bytes).
 PDF statistics:
- 917 PDF objects out of 1000 (max. 8388607)
- 795 compressed objects within 8 object streams
+ 923 PDF objects out of 1000 (max. 8388607)
+ 800 compressed objects within 8 object streams
  184 named destinations out of 1000 (max. 500000)
  290 words of extra memory for PDF output out of 10000 (max. 10000000)
 

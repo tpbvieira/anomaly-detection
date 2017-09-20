@@ -85,7 +85,7 @@
 \RequirePackage{babel}
 \RequirePackage{calc}
 \RequirePackage{ifthen}
-\RequirePackage[latin1]{inputenc}
+\RequirePackage[utf8x]{inputenc}
 \RequirePackage{textcase}
 \RequirePackage{textcomp}
 \RequirePackage{url}
@@ -404,7 +404,7 @@ requirements for the degree of \@degree\ in \@majorfielden.
   \if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
   \begin{center}
-  \includegraphics[scale=0.65]{departmentlogo} \\
+  \includegraphics[scale=0.35]{departmentlogo} \\
   \vfill
     
   %\begin{minipage}{110mm}

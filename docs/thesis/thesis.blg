@@ -2,50 +2,91 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: chapters/1_introduction/introduction.aux
+A level-1 auxiliary file: chapters/2_pca_svm_cfa/pca_svm_cfa.aux
+A level-1 auxiliary file: chapters/3_eigen_similarity/eigen_similarity.aux
+A level-1 auxiliary file: chapters/4_mobile/mobile.aux
+A level-1 auxiliary file: chapters/5_tensor_dl/tensor_dl.aux
 A level-1 auxiliary file: chapters/6_conclusion_future_work/conclusion.aux
 The style file: natbib.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "csa2016"
+Warning--I didn't find a database entry for "higashi2015"
+Warning--I didn't find a database entry for "gartner2015"
+Warning--I didn't find a database entry for "skyhigh2015"
+Warning--I didn't find a database entry for "lawson2015"
+Warning--I didn't find a database entry for "campbell2015"
+Warning--I didn't find a database entry for "yovel2014"
+Warning--I didn't find a database entry for "khan2015cloud"
+Warning--I didn't find a database entry for "khan2014bss"
+Warning--I didn't find a database entry for "galibus2007"
+Warning--I didn't find a database entry for "goyal2006attribute"
+Warning--I didn't find a database entry for "khan2014survey"
+Warning--I didn't find a database entry for "khan2013towards"
+Warning--I didn't find a database entry for "mayrhofer2015architecture"
+Warning--I didn't find a database entry for "chang2015design"
+Warning--I didn't find a database entry for "xia2015tinman"
+Warning--I didn't find a database entry for "kulkarni2015addressing"
+Warning--I didn't find a database entry for "shila2016amcloud"
+Warning--I didn't find a database entry for "heydari2016efficient"
+Warning--I didn't find a database entry for "zhao2010trusted"
+Warning--I didn't find a database entry for "yang2011provable"
+Warning--I didn't find a database entry for "itani2010energy"
+Warning--I didn't find a database entry for "ren2011lightweight"
+Warning--I didn't find a database entry for "Lelyveld2013"
+Warning--I didn't find a database entry for "lu2009network"
+Warning--I didn't find a database entry for "huang2009signal"
+Warning--I didn't find a database entry for "nist2000"
+Warning--I didn't find a database entry for "galibus2015cloud"
+Warning--I didn't find a database entry for "galibus2014"
+Warning--I didn't find a database entry for "galibus2015mobile"
+Warning--I didn't find a database entry for "galibus2008some"
+Warning--I didn't find a database entry for "McAfee2015"
+Warning--I didn't find a database entry for "kaspersky2014"
+Warning--I didn't find a database entry for "bogos2013primeless"
+Warning--I didn't find a database entry for "bellovin1992encrypted"
+Warning--I didn't find a database entry for "storgrid2016"
 Warning--I didn't find a database entry for "jnetpcapjxta"
 Warning--I didn't find a database entry for "Hadoopanalyzer"
-You've used 0 entries,
+Warning--can't use both volume and number fields in lakhina2005mining
+You've used 24 entries,
             2378 wiz_defined-function locations,
-            530 strings with 4136 characters,
-and the built_in function-call counts, 17 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+            707 strings with 9987 characters,
+and the built_in function-call counts, 13085 in all, are:
+= -- 1280
+> -- 750
+< -- 15
++ -- 234
+- -- 218
+* -- 1144
+:= -- 2183
+add.period$ -- 124
+call.type$ -- 24
+change.case$ -- 147
+chr.to.int$ -- 24
+cite$ -- 25
+duplicate$ -- 579
+empty$ -- 859
+format.name$ -- 250
+if$ -- 2689
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+missing$ -- 25
+newline$ -- 123
+num.names$ -- 96
+pop$ -- 227
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 148
 quote$ -- 0
-skip$ -- 1
+skip$ -- 359
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 760
+swap$ -- 142
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
+type$ -- 213
+warning$ -- 1
+while$ -- 114
 width$ -- 0
-write$ -- 2
-(There were 2 warnings)
+write$ -- 319
+(There were 39 warnings)

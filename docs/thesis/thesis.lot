@@ -1,3 +1,22 @@
 \select@language {english}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Largest Eigenvalue related to attacks detection}}{31}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces MOS schemes applied to port scan and flood detection}}{32}{table.3.2}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Eigen Similarity Analysis for Port Scan Detection}}{34}{table.3.3}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Eigen Similarity Analysis for Synflood Detection}}{36}{table.3.4}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Eigen Similarity Analysis for Fraggle Detection}}{36}{table.3.5}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack (q=3 and n=15)}}{38}{table.3.6}
+\contentsline {table}{\numberline {3.7}{\ignorespaces Eigen Similarity Analysis for Detection of Ports Under Synflood Attack (q=4 and n=11)}}{39}{table.3.7}
+\contentsline {table}{\numberline {3.8}{\ignorespaces Eigen Similarity Analysis for Detection of Ports Under Fraggle Attack (q=5 and t=11)}}{39}{table.3.8}
+\contentsline {table}{\numberline {3.9}{\ignorespaces Results of the attack detection evaluation}}{41}{table.3.9}
+\contentsline {table}{\numberline {3.10}{\ignorespaces Processing time of the main steps for anomaly detection}}{44}{table.3.10}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Speed of decryption on a client device}}{72}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Speed of receiving the list of files}}{72}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Speed of generating the user keys}}{73}{table.4.3}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Data Modeling and Eigenvalue Decomposition Time }}{73}{table.4.4}
+\contentsline {table}{\numberline {4.5}{\ignorespaces EDC MOS scheme processing time for anomaly detection}}{77}{table.4.5}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

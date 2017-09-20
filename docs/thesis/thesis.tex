@@ -1,6 +1,10 @@
+% class
 \documentclass[en, oneside, onehalfspacing]{risethesis}
 
-\usepackage{natbib}
+% packages and configurations
+\usepackage{enumitem}
+\usepackage{lineno, hyperref}
+\usepackage[numbers]{natbib}
 \usepackage{babel}
 \usepackage{supertabular}
 \usepackage{fancybox}
@@ -10,53 +14,93 @@
 \usepackage{graphicx}
 \usepackage{rotating}
 \usepackage{tabularx}
-\usepackage{colortbl}
+\usepackage{color, colortbl}
 \usepackage{multirow}
+\usepackage{hhline}
 \usepackage{setspace}
 \usepackage{placeins}
 \usepackage{longtable}
+\usepackage{amsthm,amsmath}
 \usepackage{mathtools}
-\usepackage{listings}
-\usepackage{algorithm}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
 \usepackage{algpseudocode}
+\usepackage{listings}
 \usepackage{epstopdf}
 \usepackage{subfigure}
-\lstset{numbers=left,
-	stepnumber=1,
-	firstnumber=1,
-	numberstyle=\tiny,
-	extendedchars=true,
+\usepackage{courier}
+\usepackage{amsfonts}
+\usepackage{morefloats}
+\usepackage{lipsum}
+\usepackage{cleveref}
+\usepackage{hyperref}
+
+\newtheorem{thm}{Scenario}
+\hypersetup{breaklinks=true}
+\urlstyle{same}
+\Urlmuskip=0mu plus 1mu\relax
+\lstset{numbers=left, 
+	stepnumber=1, 
+	firstnumber=1, 
+	numberstyle=\tiny, 
+	extendedchars=true, 
 	breaklines=true,
 	frame=tb,
-	basicstyle=\footnotesize,
+	basicstyle=\footnotesize, 
 	stringstyle=\ttfamily,
 	showstringspaces=false
 }
+
+\definecolor{lightgray}{gray}{0.8}
+\definecolor{Gray}{gray}{0.9}
 \renewcommand{\lstlistingname}{Code}
 \renewcommand{\lstlistlistingname}{Lista de Listagens}
-\definecolor{lightgray}{gray}{0.8}
-\usepackage[linkcolor=blue, citecolor=blue, urlcolor=blue, colorlinks, pdfpagelabels, pdftitle={ycc-msc}, pdfauthor={Thiago Pereira de Brito Vieira}]{hyperref}
 
-\address{BRASÕLIA}
 
-\universitypt{Universidade de BrasÌlia}
-\universityen{Universidade de BrasÌlia}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand*\justify{%
+	\fontdimen2\font=0.4em% interword space
+	\fontdimen3\font=0.2em% interword stretch
+	\fontdimen4\font=0.1em% interword shrink
+	\fontdimen7\font=0.1em% extra space
+	%\hyphenchar\font=`\-% allowing hyphenation
+}
 
-\departmentpt{Departamento de Engenharia ElÈtrica - ENE/FT}
-\departmenten{Departamento de Engenharia ElÈtrica - ENE/FT}
+% Algorithmic modifications
+\makeatletter
+\newcommand{\ALOOP}[1]{\ALC@it\algorithmicloop\ #1%
+  \begin{ALC@loop}}
+\newcommand{\ENDALOOP}{\end{ALC@loop}\ALC@it\algorithmicendloop}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\algorithmicbreak}{\textbf{break}}
+\newcommand{\BREAK}{\STATE \algorithmicbreak}
+\makeatother
 
-\programpt{Progama de PÛs-GraduaÁ„o em Engenharia ElÈtrica - PPGEE}
-\programen{Progama de PÛs-GraduaÁ„o em Engenharia ElÈtrica - PPGEE}
 
-\majorfieldpt{Engenharia ElÈtrica}
+% 
+\address{BRAS√çLIA}
+
+\universitypt{Universidade de Bras√≠lia}
+\universityen{Universidade de Bras√≠lia}
+
+\departmentpt{Departamento de Engenharia El√©trica - ENE/FT}
+\departmenten{Departamento de Engenharia El√©trica - ENE/FT}
+
+\programpt{Progama de P√≥s-Gradua√ß√£o em Engenharia El√©trica - PPGEE}
+\programen{Progama de P√≥s-Gradua√ß√£o em Engenharia El√©trica - PPGEE}
+
+\majorfieldpt{Engenharia El√©trica}
 \majorfielden{Electrical Engineering}
 
 \title{Discriminative Sensing Based on Signal Processing}
 \date{June/2018}
 
 \author{Thiago Pereira de Brito Vieira}
-\adviser{Adviser}
-\coadviser{coadviser}
+\adviser{Jo√£o Paulo Carvalho Lustosa da Costa}
+\coadviser{?}
 
 \begin{document}
 
@@ -64,28 +108,28 @@
 \frontpage
 \presentationpage
 
-\begin{dedicatory} Ficha Catalogr·fica\end{dedicatory}
+\begin{dedicatory}Ficha Catalogr√°fica\end{dedicatory}
 
-\begin{dedicatory} Signatures\end{dedicatory}
+\begin{dedicatory}Signatures\end{dedicatory}
 
-\begin{dedicatory} Dedicatory.\end{dedicatory}
+\begin{dedicatory}Dedicatory.\end{dedicatory}
 
 \agradecimentos
 First and foremost, I would like to thank God for giving me the life, strength, knowledge and opportunity to undertake this research study and to ..
 
 (...)
 
-Thank You!!!
+Thank You!!
 
 \begin{epigraph}[]{Confucius}
-Wherever you go, go with all your heart.
+	Wherever you go, go with all your heart.
 \end{epigraph}
 
 \resumo
-\input{resumo}
+\input{chapters/resumo}
 
 \abstract
-\input{abstract}
+\input{chapters/abstract}
 
 \tableofcontents
 
@@ -97,13 +141,14 @@ Wherever you go, go with all your heart.
 \listoffigures
 \listoftables
 
-\input{acronyms}
+\input{chapters/acronyms}
 \mainmatter
 
 \include{chapters/1_introduction/introduction}
-%\include{chapters/2_pca_svm_cfa/pca_svm_cfa}
-%\include{chapters/3_eigen_similarity/eigen_similarity}
-%\include{chapters/4_mobile/mobile}
+\include{chapters/2_pca_svm_cfa/pca_svm_cfa}
+\include{chapters/3_eigen_similarity/eigen_similarity}
+\include{chapters/4_mobile/mobile}
+\include{chapters/5_tensor_dl/tensor_dl}
 \include{chapters/6_conclusion_future_work/conclusion}
 
 \bibliographystyle{natbib}
