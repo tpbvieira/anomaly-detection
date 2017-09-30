@@ -7,7 +7,7 @@ from sklearn.decomposition import MiniBatchDictionaryLearning
 from sklearn.feature_extraction.image import extract_patches_2d, reconstruct_from_patches_2d
 
 
-# Function to plot image difference
+## Function to plot image difference
 def print_comparison(image, reference, method_name):
 	difference = image - reference
 	mse = compare_mse(reference, image)
@@ -18,19 +18,19 @@ def print_comparison(image, reference, method_name):
 	print(text)
 
 
-# settings
+## settings
 filePath = "/media/thiago/ubuntu/datasets/imageDenoising/gray_192_512/"
 results = open('results/print_gray_192_512_image_denoising_DL_CV.txt', 'w')
 # matlab = matlab.engine.start_matlab()
 
 
-# Generating matlab data
+## Generating matlab data
 # print('\n## Generating matlab data...')
 # matlab.cd(r'/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning', nargout=0)
 # matlab.projectImageDenoising(nargout=0)
 
 
-# print >> results, '\n## Loading saved data...'
+## Loading saved data
 print('\n## Loading saved data...')
 face = np.loadtxt(filePath + 'face.csv', delimiter=';')
 distorted = np.loadtxt(filePath + 'distortedFace.csv', delimiter=';')
@@ -39,6 +39,7 @@ refPatches = np.loadtxt(filePath + 'refPatches.csv', delimiter=';')
 # print('Data Shape: ' + str(refPatches.shape))
 
 
+## Parameters
 patch_size = (7, 7)
 L = refPatches.shape[0]
 N = refPatches.shape[1]
@@ -47,10 +48,11 @@ noIt_range = [10, 50, 100]
 tnz_range = [2, 5]
 
 
+## Compare distorted image to original one
 print_comparison(distorted, face, 'Distorted image')
 
 
-# Extract noisy patches and reconstruct them using the dictionary
+## Extract noisy patches
 print('\nExtracting noisy patches... ')
 height, width = face.shape
 noisyPatches = extract_patches_2d(distorted[:, width // 2:], patch_size)
@@ -60,6 +62,7 @@ noisyPatches -= noiseMean
 # print('noisyPatches: ' + str(noisyPatches.shape))
 
 
+## For each DL method: learn the dictionary, obtain the sparse coding and reconstruc the denoised image
 # ToDo: Evaluate differents sparse coding solvers, such as OMP, Lasso, JavaOMP and others
 for K in K_range:
 	for tnz in tnz_range:

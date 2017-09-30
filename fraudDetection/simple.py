@@ -239,7 +239,7 @@ for a in alpha_range:
 		lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
 		test_under_predicted = lr.predict(test_under_data.values)
 		# confusion matrix
-		#print("# Plot non-normalized confusion matrix [under/under]")
+		# print("# Plot non-normalized confusion matrix [under/under]")
 		cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
 		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0,1]
