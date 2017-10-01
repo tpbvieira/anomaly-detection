@@ -90,4 +90,3 @@ names = ["x%s" % n for n in range(1, 15)]
 lr = LinearRegression(normalize=True)
 
 print_feature_ranking(X, Y, names, lr, "LinReg")
-

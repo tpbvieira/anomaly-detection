@@ -1,19 +1,14 @@
 # coding: utf-8
 ########################################################################################################################
-# ## EDA, Parameter Estimatio and Feature Ranking for Fraud detection
-# 
-# The provided data has the financial transaction data as well as the target variable **isFraud**, which is the actual
-# fraud status of the transaction and **isFlaggedFraud** is the indicator which the simulation is used to flag the
-# transaction using some threshold. The goal should be how we can improve and come up with better threshold to capture
-# the fraud transaction.
+# ## EDA, Parameter Estimation and Feature Ranking for Fraud detection
 ########################################################################################################################
 
 from __future__ import division
 import os.path
 import warnings
 import datetime
-import numpy as np  																									# linear algebra
-import pandas as pd  																									# data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np  # linear algebra
+import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import seaborn as sns
@@ -37,13 +32,13 @@ warnings.filterwarnings("ignore")
 sns.set_style("dark")
 
 
-# return string dateTime
+## return string dateTime
 def now_datetime_str():
 	tmp_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	return tmp_time
 
 
-# Read CSV file into a Panda DataFrame and print some information
+## Read CSV file into a Panda DataFrame and print some information
 def read_csv(csv):
 	df = pd.read_csv(csv)
 	print("{}: {} has {} observations and {} columns".format(now_datetime_str(), csv, df.shape[0], df.shape[1]))
@@ -51,7 +46,7 @@ def read_csv(csv):
 	return df
 
 
-# function to read dataframe and find the missing data on the columns and # of missing
+## read dataframe and find the missing data on the columns and # of missing
 def checking_missing(df):
 	try:
 		if isinstance(df, pd.DataFrame):
@@ -65,7 +60,7 @@ def checking_missing(df):
 		print("{}: Something is wrong".format(now_datetime_str()))
 
 
-# Plots a Correlation Heatmap
+## Plots a Correlation Heatmap
 def plot_correlation_heatmap(dataframe, title):
 	fig = plt.figure(figsize=(10, 10))
 	ax1 = fig.add_subplot(111)
@@ -80,14 +75,9 @@ def plot_correlation_heatmap(dataframe, title):
 	plt.show()
 
 
-# In[24]:
-# Defines plot_confusion_matrix function
-# true negatives is C_{0,0}, false negatives is C_{1,0}, true positives is C_{1,1} and false positives is C_{0,1}.
+## Defines plot_confusion_matrix function, where true negatives is C_{0,0}, false negatives is C_{1,0}, true positives is C_{1,1} and false positives is C_{0,1}.
 def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
-	"""
-	This function prints and plots the confusion matrix.
-	Normalization can be applied by setting `normalize=True`.
-	"""
+	"""	This function prints and plots the confusion matrix. Normalization can be applied by setting `normalize=True`.	"""
 	plt.imshow(_cm, interpolation='nearest', cmap=cmap)
 	plt.title(title)
 	plt.colorbar()
@@ -111,14 +101,15 @@ def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix
 	plt.xlabel('Predicted label')
 
 
-# Read CSV file into a Panda DataFrame and print some information
+## Read CSV file into a Panda DataFrame and print some information
 print("\n## Loading data")
+## complete
 data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index_col=0)
 # data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index_col=0)
 # data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index_col=0)
 # data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index_col=0)
 target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index_col=0)
-
+## under
 under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index_col=0)
 # under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index_col=0)
 # under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index_col=0)
@@ -131,16 +122,16 @@ under_target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_t
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.3, random_state=0)
 train_under_data, test_under_data, train_under_target, test_under_target = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
 
-alpha_range = [1, 2, 3, 5, 7, 8, 10, 100]
-n_range = [2, 6, 10, 20, 40, 100, 200]
+alpha_range = [1, 2, 3, 5, 7, 8, 10, 100] # sparsity
+n_range = [2, 6, 10, 20, 40, 100, 200] # dictionary size
 
 for a in alpha_range:
 	for n in n_range:
 		it = 100;
-
+		# calculates and writes if there is no computed data		
 		if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
-			# # ToDo: Sparse Coding, with tunning of alpha (2 and 5), iterations (100 and 500), dictSize (100 and colmnNum)
-			# # ToDo: Denoising from dictionar learning
+			# ToDo: Sparse Coding, with tunning of alpha (2 and 5), iterations (100 and 500), dictSize (100 and colmnNum)
+			# ToDo: Denoising from dictionar learning
 			print('## create a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_data.values).components_
@@ -178,35 +169,30 @@ for a in alpha_range:
 			denoised_df = pd.DataFrame(denoised, index=test_under_data.index.values)
 			denoised_df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-
-		print('## denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+		str_data_type = '## denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 		train_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		test_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		train_under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		test_under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 
+		best_c = 100 # previously calculated through cross validation code
 
-		best_c = 100
-
-
-		# Perfoming LogisticRegression [complete/complete]
-		print("\n## [complete/complete]")
+		## Perfoming LogisticRegression [complete/complete]		
 		lr = LogisticRegression(C=best_c, penalty='l1')
 		lr_fit = lr.fit(train_data, train_target.values.ravel())
 		test_predicted = lr.predict(test_data.values)
-		# confusion matrix
-		#print("# Plot non-normalized confusion matrix [complete/complete]")
-		cnf_matrix = confusion_matrix(test_target, test_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
+		
+		## Confusion Matrix
+		cnf_matrix = confusion_matrix(test_target, test_predicted)		
 		# target_names = [0,1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 		# plt.show()
-		# # ROC CURVE
+
+		## ROC CURVE
 		predicted_score = lr_fit.decision_function(test_data.values)
 		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [complete/complete]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -217,9 +203,9 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
-		colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
-		lw = 2
+		## Compute Precision-Recall AUC
+		# colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
+		# lw = 2
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
@@ -227,30 +213,28 @@ for a in alpha_range:
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
 			average_precision[i] = average_precision_score(test_target, predicted_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
-		# Plot Precision-Recall curve
-		plt.clf()
-		plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of complete/complete'.format(average_precision[0], roc_auc))
+		# Plot Precision-Recall AUC
+		# plt.clf()
+		# plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of complete/complete'.format(average_precision[0], roc_auc))
+		# str_comp_comp =  " [complete/complete]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
-
-		# Perfoming LogisticRegression [under/under]
-		print("\n## [under/under]")
+		## Perfoming LogisticRegression [under/under]
 		lr = LogisticRegression(C=best_c, penalty='l1')
 		lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
 		test_under_predicted = lr.predict(test_under_data.values)
-		# confusion matrix
-		# print("# Plot non-normalized confusion matrix [under/under]")
+		
+		## Confusion Matrix
 		cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0,1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 		# plt.show()
-		# # ROC CURVE
+
+		## ROC CURVE
 		predicted_under_score = lr_fit.decision_function(test_under_data.values)
 		fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [under/under]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -261,9 +245,9 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
-		colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
-		lw = 2
+		# Compute Precision-Recall AUC
+		# colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
+		# lw = 2
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
@@ -271,28 +255,25 @@ for a in alpha_range:
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
 			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
-		plt.clf()
-		plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Under'.format(average_precision[0], roc_auc))
+		# plt.clf()
+		# plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Under'.format(average_precision[0], roc_auc))
+		# str_under_under = " [under/under]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + " PR_AUC:{:.4f}".format(average_precision[0])
+		str_under_under = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + " PR_AUC:{:.4f}".format(average_precision[0])
 
-
-		# Perfoming LogisticRegression [under/complete]
-		print("\n## [under/complete]")
+		## Perfoming LogisticRegression [under/complete]
 		test_predicted = lr.predict(test_data.values)
 		# Compute confusion matrix
-		# print("# Plot non-normalized confusion matrix [under/complete]")
 		cnf_matrix = confusion_matrix(test_target, test_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0, 1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 		# plt.show()
-		# ROC CURVE
+		
+		## ROC CURVE
 		predicted_score = lr_fit.decision_function(test_data.values)
 		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [under/complete]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -303,54 +284,51 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
+		## Compute Precision-Recall AUC
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
 			average_precision[i] = average_precision_score(test_target, predicted_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
-		plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))
-		plt.xlabel('Recall')
-		plt.ylabel('Precision')
-		plt.ylim([0.0, 1.05])
-		plt.xlim([0.0, 1.0])
-		plt.title('Precision-Recall Curve (PRC)')
-		plt.legend(loc="lower left")
-		plt.savefig('results/denoised_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
+		# plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))
+		# plt.xlabel('Recall')
+		# plt.ylabel('Precision')
+		# plt.ylim([0.0, 1.05])
+		# plt.xlim([0.0, 1.0])
+		# plt.title('Precision-Recall Curve (PRC)')
+		# plt.legend(loc="lower left")
+		# plt.savefig('results/denoised_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
 		# plt.show()
+		# str_under_comp = " [under/complete]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		str_under_comp = "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		print(str_data_type + str_comp_comp + str_under_under + str_under_comp)
 
-
-		print('## sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+		str_data_type = '## sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 		train_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		test_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		train_under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 		test_under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 
+		best_c = 100 # previously calculated through cross validation code
 
-		best_c = 100
-
-
-		# Perfoming LogisticRegression [complete/complete]
-		print("\n## [complete/complete]")
+		## Perfoming LogisticRegression [complete/complete]
 		lr = LogisticRegression(C=best_c, penalty='l1')
 		lr_fit = lr.fit(train_data, train_target.values.ravel())
 		test_predicted = lr.predict(test_data.values)
-		# confusion matrix
-		#print("# Plot non-normalized confusion matrix [complete/complete]")
+		
+		## Confusion Matrix
 		cnf_matrix = confusion_matrix(test_target, test_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0,1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 		# plt.show()
-		# # ROC CURVE
+
+		## ROC CURVE
 		predicted_score = lr_fit.decision_function(test_data.values)
 		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [complete/complete]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -361,9 +339,9 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
-		colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
-		lw = 2
+		## Compute Precision-Recall AUC
+		# colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
+		# lw = 2
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
@@ -371,21 +349,19 @@ for a in alpha_range:
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
 			average_precision[i] = average_precision_score(test_target, predicted_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
-		plt.clf()
-		plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of complete/complete'.format(average_precision[0], roc_auc))
+		# plt.clf()
+		# plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of complete/complete'.format(average_precision[0], roc_auc))
+		# str_comp_comp =  " [complete/complete]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
-
-		# Perfoming LogisticRegression [under/under]
-		print("\n## [under/under]")
+		## Perfoming LogisticRegression [under/under]
 		lr = LogisticRegression(C=best_c, penalty='l1')
 		lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
 		test_under_predicted = lr.predict(test_under_data.values)
-		# confusion matrix
-		#print("# Plot non-normalized confusion matrix [under/under]")
+
+		## Confusion Matrix
 		cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0,1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
@@ -394,7 +370,6 @@ for a in alpha_range:
 		predicted_under_score = lr_fit.decision_function(test_under_data.values)
 		fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [under/under]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -405,9 +380,9 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
-		colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
-		lw = 2
+		## Compute Precision-Recall AUC
+		# colors = cycle(['navy', 'turquoise', 'darkorange', 'cornflowerblue', 'teal'])
+		# lw = 2
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
@@ -415,28 +390,27 @@ for a in alpha_range:
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
 			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
-		plt.clf()
-		plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Under'.format(average_precision[0], roc_auc))
+		# plt.clf()
+		# plt.plot(recall[0], precision[0], lw=lw, color='navy', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Under'.format(average_precision[0], roc_auc))
+		# str_under_comp = " [under/under]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		str_under_comp = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
 	
-		# Perfoming LogisticRegression [under/complete]
-		print("\n## [under/complete]")
+		## Perfoming LogisticRegression [under/complete]
 		test_predicted = lr.predict(test_data.values)
-		# Compute confusion matrix
-		# print("# Plot non-normalized confusion matrix [under/complete]")
+		
+		## Compute confusion matrix
 		cnf_matrix = confusion_matrix(test_target, test_predicted)
-		print("# Recall:\t{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
 		# target_names = [0, 1]
 		# plt.figure()
 		# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
 		# plt.show()
-		# ROC CURVE
+		
+		## ROC CURVE
 		predicted_score = lr_fit.decision_function(test_data.values)
 		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
 		roc_auc = auc(fpr, tpr)
-		print("# ROC_AUC:\t{0:.4f}".format(roc_auc))
 		# plt.title('ROC Curve [under/complete]')
 		# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
 		# plt.legend(loc='lower right')
@@ -447,25 +421,26 @@ for a in alpha_range:
 		# plt.xlabel('False Positive Rate')
 		# plt.show()
 
-		# Compute Precision-Recall and plot curve
+		## Compute Precision-Recall AUC
 		precision = dict()
 		recall = dict()
 		average_precision = dict()
 		for i in range(n_classes):
 			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
 			average_precision[i] = average_precision_score(test_target, predicted_score)
-		print("# AP:\t{:.4f}".format(average_precision[0]))
 		# Plot Precision-Recall curve
-		plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))
-		plt.xlabel('Recall')
-		plt.ylabel('Precision')
-		plt.ylim([0.0, 1.05])
-		plt.xlim([0.0, 1.0])
-		plt.title('Precision-Recall Curve (PRC)')
-		plt.legend(loc="lower left")
-		plt.savefig('results/sparse_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
+		# plt.plot(recall[0], precision[0], lw=lw, color='turquoise', label='PRC, AP={:.4f} and AUC={:.4f} of Under/Whole'.format(average_precision[0], roc_auc))
+		# plt.xlabel('Recall')
+		# plt.ylabel('Precision')
+		# plt.ylim([0.0, 1.05])
+		# plt.xlim([0.0, 1.0])
+		# plt.title('Precision-Recall Curve (PRC)')
+		# plt.legend(loc="lower left")
+		# plt.savefig('results/sparse_a{:d}_c{:d}_it{:d}.eps', bbox_inches='tight')
 		# plt.show()
-
+		# str_under_comp =  " [under/complete]\tRecall:{0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])) + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		str_under_comp =  "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		print(str_data_type + str_comp_comp + str_under_under + str_under_comp)
 
 # ## LogisticRegression results
 # print("\n## LogisticRegression results:")
