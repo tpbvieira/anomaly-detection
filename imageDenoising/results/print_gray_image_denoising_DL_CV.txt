@@ -1,4 +1,0 @@
-Distorted image: norm: 16.6980	MSE: 0.0028	NRMSE: 0.1043	PSNR: 25.4724
-
-## L=46500_N=49_tnz=2_K=10_noIt=10
-MiniBatchDL OMP: norm: 15.0263	MSE: 0.0023	NRMSE: 0.0939	PSNR: 26.3887

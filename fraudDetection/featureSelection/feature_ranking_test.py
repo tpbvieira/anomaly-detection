@@ -81,8 +81,7 @@ def print_feature_ranking(_data, _class, _names, _alg, _alg_name):
 np.random.seed(0)
 size = 750
 X = np.random.uniform(0, 1, (size, 14))
-Y = (10 * np.sin(np.pi * X[:, 0] * X[:, 1]) + 20 * (X[:, 2] - .5) ** 2 + 10 * X[:, 3] + 5 * X[:, 4] +
-	 np.random.normal(0, 1))
+Y = (10 * np.sin(np.pi * X[:, 0] * X[:, 1]) + 20 * (X[:, 2] - .5) ** 2 + 10 * X[:, 3] + 5 * X[:, 4] + np.random.normal(0, 1))
 # Add 3 additional correlated variables (correlated with X1-X3)
 X[:, 10:] = X[:, :4] + np.random.normal(0, .025, (size, 4))
 names = ["x%s" % n for n in range(1, 15)]

@@ -1,14 +1,9 @@
 # coding: utf-8
-# ## EDA and Fraud detection
-# 
-# The provided data has the financial transaction data as well as the target variable **isFraud**, which is the actual
-# fraud status of the transaction and **isFlaggedFraud** is the indicator which the simulation is used to flag the
-# transaction using some threshold. The goal should be how we can improve and come up with better threshold to capture
-# the fraud transaction.
-#
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load in 
+########################################################################################################################
+########################################################################################################################
+# ## EDA, Parameter Estimation and Feature extraction for Fraud detection
+########################################################################################################################
+
 from __future__ import division
 import os.path
 import warnings
@@ -35,21 +30,21 @@ warnings.filterwarnings("ignore")
 sns.set_style("dark")
 
 
-# return string dateTime
+## return string dateTime
 def now_datetime_str():
 	tmp_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	return tmp_time
 
 
-# Read CSV file into a Panda DataFrame and print some information
+## Read CSV file into a Panda DataFrame and print some information
 def read_csv(csv):
 	df = pd.read_csv(csv)
-	print("{}: {} has {} observations and {} columns".format(now_datetime_str(), csv, df.shape[0], df.shape[1]))
-	print("{}: Column name checking::: {}".format(now_datetime_str(), df.columns.tolist()))
+	# print("{}: {} has {} observations and {} columns".format(now_datetime_str(), csv, df.shape[0], df.shape[1]))
+	# print("{}: Column name checking::: {}".format(now_datetime_str(), df.columns.tolist()))
 	return df
 
 
-# function to read dataframe and find the missing data on the columns and # of missing
+## function to read dataframe and find the missing data on the columns and # of missing
 def checking_missing(df):
 	try:
 		if isinstance(df, pd.DataFrame):
@@ -63,7 +58,7 @@ def checking_missing(df):
 		print("{}: Something is wrong".format(now_datetime_str()))
 
 
-# Plots a Correlation Heatmap
+## Plots a Correlation Heatmap
 def plot_correlation_heatmap(dataframe, title):
 	fig = plt.figure(figsize=(10, 10))
 	ax1 = fig.add_subplot(111)
@@ -78,7 +73,7 @@ def plot_correlation_heatmap(dataframe, title):
 	plt.show()
 
 
-# Defines plot_confusion_matrix function
+## Defines plot_confusion_matrix function
 def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
 	"""
 	This function prints and plots the confusion matrix.
@@ -107,22 +102,22 @@ def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix
 	plt.xlabel('Predicted label')
 
 
-# Read CSV file into a Panda DataFrame and print some information
-print("\n## Loading data")
+## Read CSV file into a Panda DataFrame and print some information
+# print("\n## Loading data")
 raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Financial_Datasets_For_Fraud_Detection.csv")
 
 
-# ### 1. EDA (exploratory data analysis ) ##############################################################################
+## ### 1. EDA (exploratory data analysis ) ##############################################################################
 # In this section, we will do EDA to understand the data more. From the simulation, there are 5 transaction types as per
 #  illustrated below.
 
 
-# # Check if there's any null values.
+## Check if there's any null values.
 # print("\n## Let's check the dataset if there's any null values.")
 # print(checking_missing(raw_data))
 
 
-# # Look at the dataset sample and other properties.
+## Look at the dataset sample and other properties.
 # print("\n## Head:")
 # print(raw_data.head(5))
 # print("\n## Describe:")
@@ -131,7 +126,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # print(raw_data.info())
 
 
-# # Plot transaction count by transaction type
+## Plot transaction count by transaction type
 # print("\n## Plot transaction count by transaction type:")
 # f, ax = plt.subplots(1, 1, figsize=(8, 8))
 # raw_data.type.value_counts().plot(kind='bar', title="Transaction count by transaction type", ax=ax, figsize=(8,8))
@@ -154,7 +149,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # # Observation: Only TRANSFER and CASH_OUT transactions have fraud
 
 
-# # Plot transactions which are flagged as isFlaggedFraud per transaction type
+## Plot transactions which are flagged as isFlaggedFraud per transaction type
 # print("\n## Plot Flagged Fraud (1) and Legitmate (0) transactions count by transaction type:")
 # ax = raw_data.groupby(['type', 'isFlaggedFraud']).size().plot(kind='bar')
 # ax.set_title("Flagged Fraud (1) and Legitmate (0) transactions count by transaction type")
@@ -166,7 +161,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # # Observation: the system can flag only 16 transfer transactions as fraud.
 
 
-# # Plot fraud *TRANSFER* analysis
+## Plot fraud *TRANSFER* analysis
 # print("\n## Plot fraud *TRANSFER* analysis")
 # fig, axs = plt.subplots(2, 2, figsize=(10, 10))
 # fig.suptitle("Analyse *TRANSFER* flagged as fraud", fontsize="x-large")
@@ -194,17 +189,15 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # plt.show()
 
 
-# ### 2. Modeling ######################################################################################################
-
-
+## 2. Modeling ######################################################################################################
 # focus only on **TRANSFER** and **CASH_OUT** (where there are fraud), data slicing and data transformation
-print("\n## focus only on **TRANSFER** and **CASH_OUT** (where there are fraud)")
+# print("\n## focus only on **TRANSFER** and **CASH_OUT** (where there are fraud)")
 # Keep only interested transaction type ('TRANSFER', 'CASH_OUT')
 tmpData = raw_data.loc[(raw_data['type'].isin(['TRANSFER', 'CASH_OUT'])), :]
 
 
 # Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')
-print("\n## Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')")
+# print("\n## Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')")
 # tmpData.drop(['step', 'nameOrig', 'nameDest', 'isFlaggedFraud'], axis=1, inplace=True)
 tmpData.drop(['nameOrig', 'nameDest', 'isFlaggedFraud'], axis=1, inplace=True)
 tmpData = tmpData.reset_index(drop=True)
@@ -215,14 +208,14 @@ tmpData['type_num'] = b.argmax(1)
 tmpData.drop(['type'], axis=1, inplace=True)
 
 
-# # Plot Correlations of TRANSFER and CASH_OUT transactions and selected features
+## Plot Correlations of TRANSFER and CASH_OUT transactions and selected features
 # print("\n## Plot Correlations of TRANSFER and CASH_OUT transactions and selected features")
 # plotCorrelationHeatmap(tmpData, "TRANSFER and CASH_OUT Correlation")
 # plotCorrelationHeatmap(raw_data.loc[(raw_data.type == 'TRANSFER'), :], "TRANSFER Correlation")
 # plotCorrelationHeatmap(raw_data.loc[(raw_data.type == 'CASH_OUT'), :], "CASH_OUT Correlation")
 
 
-# # Quickly get the count and the target variable count.
+## Quickly get the count and the target variable count.
 # print("\n## Plot Transaction count by type")
 # ax = tmpData.type.value_counts().plot(kind='bar', title="Transaction count by type", figsize=(6,6))
 # for p in ax.patches:
@@ -236,14 +229,13 @@ tmpData.drop(['type'], axis=1, inplace=True)
 # plt.show()
 
 
-# ## 2.1 Feature extraction ############################################################################################
+## 2.1 Feature extraction ############################################################################################
 # Based on the dataset, the numeric variables are quite skew, in this case. I will try to scale it with 2 methods
 # (SQRT and Box-Cox) and compare them on the graph.
 # skewness of the distribution: Normally distributed data has skewness should be about 0. A skewness value > 0 means
 # that there is more weight in the left tail of the distribution
 # Boxcox transformation: makes the data normal
-print("\n## Scale features with SQRT and Box-Cox to compare them on the graph")
-
+# print("\n## Scale features with SQRT and Box-Cox to compare them on the graph")
 # print("\n## Plot Transformations for **amount**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
@@ -251,7 +243,6 @@ print("\n## Scale features with SQRT and Box-Cox to compare them on the graph")
 # plt.hist(tmpData['amount'] ,facecolor='blue',alpha=0.75)
 # plt.xlabel("Transaction amount")
 # plt.text(10,100000,"Skewness: {0:.2f}".format(skew(tmpData['amount'])))
-#
 # figure.add_subplot(132)
 # plt.title("SQRT on amount histogram")
 # plt.hist(np.sqrt(tmpData['amount']), facecolor = 'red', alpha=0.5)
@@ -275,7 +266,6 @@ tmpData['amount_boxcox'] = preprocessing.scale(boxcox(tmpData['amount']+1)[0])
 # plt.hist(tmpData['oldbalanceOrg'] ,facecolor='blue',alpha=0.75)
 # plt.xlabel("old balance originated")
 # plt.text(2,100000,"Skewness: {0:.2f}".format(skew(tmpData['oldbalanceOrg'])))
-#
 # figure.add_subplot(132)
 # plt.title("SQRT on oldbalanceOrg histogram")
 # plt.hist(np.sqrt(tmpData['oldbalanceOrg']), facecolor = 'red', alpha=0.5)
@@ -368,7 +358,7 @@ tmpData['newbalanceDest_boxcox'] = preprocessing.scale(boxcox(tmpData['newbalanc
 # In this notebook, I will quickly use traditional *under*-sampling method (there are several other ways; under and
 # over sampling, SMOTE, etc).
 # Also we will use only the boxcox data transformation for prediction.
-print("\n## Feature Selection: Use only the box-cox data transformation for prediction")
+# print("\n## Feature Selection: Use only the box-cox data transformation for prediction")
 # tmpData.drop(['oldbalanceOrg','newbalanceOrig','oldbalanceDest','newbalanceDest','amount'],axis=1,inplace=True)
 # print(tmpData.head(5))
 # Plot Correlations of TRANSFER and CASH_OUT transactions and box-cox features
@@ -392,14 +382,16 @@ print("\n## Feature Selection: Use only the box-cox data transformation for pred
 # class, with 'x' being the total number of records with the minority class.
 # Number of data points in the minority class
 
-# Preparing data for training
-print("\n## Preparing data for training...")
-# Whole dataset
-print("\n## Whole dataset:")
+## Preparing data for training
+# print("\n## Preparing data for training...")
+
+## Whole dataset
 data = tmpData.ix[:, tmpData.columns != 'isFraud']
 target = tmpData.ix[:, tmpData.columns == 'isFraud']
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.3, random_state=0)
 
+
+## Saves train and test of complete data if they dont exist
 if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv'):
 	train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv', index=True)
 	train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_target.csv', index=True)
@@ -427,16 +419,9 @@ if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.c
 	normal_test_target = test_target.ix[normal_test_indices, :]
 	normal_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_target.csv', index=True)
 
-print("Number transactions train dataset: ", format(len(train_data), ',d'))
-print("Number transactions test dataset: ", format(len(test_data), ',d'))
-print("Total number of transactions: ", format(len(train_data)+len(test_data), ',d'))
-print("Number transactions train classifications: ", format(len(train_target), ',d'))
-print("Number transactions test classifications: ", format(len(test_target), ',d'))
-print("Total number of classifications: ", format(len(train_target)+len(test_target), ',d'))
 
-
-# Perform Under sample of TRANSFER and CASH_OUT
-print("\n## Perform Under sample of TRANSFER and CASH_OUT")
+## Perform Under sample of TRANSFER and CASH_OUT
+# print("\n## Perform Under sample of TRANSFER and CASH_OUT")
 number_fraud_records = len(tmpData[tmpData.isFraud == 1])
 # Picking the indices of the fraud and normal classes
 fraud_indices = tmpData[tmpData.isFraud == 1].index.values
@@ -449,15 +434,9 @@ under_indices = np.concatenate([fraud_indices, random_normal_indices])
 under_sample_data = tmpData.iloc[under_indices, :]
 under_data = under_sample_data.ix[:, under_sample_data.columns != 'isFraud']												# not isFraud column, only data
 under_target = under_sample_data.ix[:, under_sample_data.columns == 'isFraud']	 											# only isFraud column
-# Showing ratio
-print("\n## Fraud Ratio (TRANSFER and CASH_OUT) after **Data under sample**: ")
-print("% of normal transactions: ", len(under_sample_data[under_sample_data.isFraud == 0])/len(under_sample_data))
-print("% of fraud transactions: ", len(under_sample_data[under_sample_data.isFraud == 1])/len(under_sample_data))
-print("Total number of transactions in resampled data: ", len(under_sample_data))
 
 
-# Undersampled dataset
-print("\n## Undersampled dataset:")
+## Extract Undersampled dataset for train and test data. Saves into files if thei dont exists
 train_under_data, test_under_data, train_under_target, test_under_target = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
 if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv'):
 	train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv', index=True)
@@ -486,38 +465,31 @@ if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_under_
 	normal_test_under_target = test_under_target.ix[normal_test_under_indices, :]
 	normal_test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_under_target.csv', index=True)
 
-print("Number transactions train dataset: ", format(len(train_under_data), ',d'))
-print("Number transactions test dataset: ", format(len(test_under_data), ',d'))
-print("Total number of transactions: ", format(len(train_under_data)+len(test_under_data), ',d'))
-print("Number transactions train classifications: ", format(len(train_under_target), ',d'))
-print("Number transactions test classifications: ", format(len(test_under_target), ',d'))
-print("Total of classifications: ", format(len(train_under_target)+len(test_under_target), ',d'))
 
-
+## saves extracted data (orig_boxcox, selected_boxcox, selected_orig, selected_orig_pca, selected_orig_pca_2_components) if it does not exist or load the saved data
 if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv'):
-	# ## saving whole data
-	print("\n## saving whole data")
-	# orig_boxcox
-	print("# orig_boxcox")
+	## orig_boxcox
 	data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index=True)
-	# boxcox
-	print("# boxcox")
+	
+	## boxcox (selected features)
 	boxcox = data.copy()
 	boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
 	boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index=True)
-	# orig
-	print("# orig")
+	
+	## orig (selected features)
 	orig = data.copy()
 	orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
 	orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index=True)
-	# target
-	print("# target")
+	
+	## target
 	target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=True)
-	# orig_PCA
+	
+	## orig_PCA
 	X = PCA().fit_transform(orig.values)
 	df = pd.DataFrame(X, index=orig.index.values)
 	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index=True)
-	# orig_PCA2
+	
+	## orig_PCA2 (PCA with 2 components)
 	X2 = PCA(n_components=2).fit_transform(orig.values)
 	df2 = pd.DataFrame(X2, index=orig.index.values)
 	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index=True)
@@ -528,212 +500,39 @@ else:
 	target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index_col=0)
 	orig_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index_col=0)
 	orig_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index_col=0)
-# ## orig_tsne
-# randomSeed = 13204
-# X = TSNE(n_components=len(orig.columns), random_state=randomSeed).fit_transform(orig.values)
-# df = pd.DataFrame(X, index=orig.index.values)
-# df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_TSNE.csv', index=True)
-# X2 = TSNE(n_components=2, random_state=randomSeed).fit_transform(orig.values)
-# df2 = pd.DataFrame(X2, index=orig.values)
-# df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_TSNE2.csv', index=True)
 
 
+## saves undersampled extracted data (orig_boxcox, selected_boxcox, selected_orig, selected_orig_pca, selected_orig_pca_2_components) if it does not exist or load the saved data
 if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv'):
-	# ## saving under sample data
-	print("\n## saving under sample data")
-	# ## under_orig_boxcox
-	print("# under_orig_boxcox")
+	## under_orig_boxcox
 	under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index=True)
-	# ## under_boxcox
-	print("# under_boxcox")
+	
+	## under_boxcox
 	under_boxcox = under_data.copy()
 	under_boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
 	under_boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index=True)
-	# ## under_orig
-	print("# under_orig")
+	
+	## under_orig
 	under_orig = under_data.copy()
 	under_orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
 	under_orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index=True)
-	# ## under_target
-	print("# under_target")
+	
+	## under_target[]
 	under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index=True)
-	# ## under_orig_PCA
+	
+	## under_orig_PCA
 	X = PCA().fit_transform(under_orig.values)
 	df = pd.DataFrame(X, index=under_orig.index.values)
 	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index=True)
-	# ## under_orig_PCA2
+	
+	## under_orig_PCA2
 	X2 = PCA(n_components=2).fit_transform(under_orig.values)
 	df2 = pd.DataFrame(X2, index=under_orig.index.values)
 	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index=True)
 else:
-	# ## loading under sample data
-	print("\n## loading under sample data")
 	under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index_col=0)
 	under_boxcox = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index_col=0)
 	under_orig = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index_col=0)
 	under_target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index_col=0)
 	under_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index_col=0)
 	under_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index_col=0)
-# ## under_tsne
-# randomSeed = 13204
-# X = TSNE(n_components=len(under_orig.columns), random_state=randomSeed).fit_transform(under_orig.values)
-# df = pd.DataFrame(X, index=under_orig.index.values)
-# df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_TSNE.csv', index=True)
-# X2 = TSNE(n_components=2, random_state=randomSeed).fit_transform(under_orig.values)
-# df2 = pd.DataFrame(X2, index=under_orig.values)
-# df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_TSNE2.csv', index=True)
-
-
-# # ToDo: Sparse Coding, with tunning of alpha (2 and 5), iterations (100 and 500), dictSize (100 and colmnNum)
-# # ToDo: Denoising from dictionar learning
-# miniBatch = MiniBatchDictionaryLearning(n_components=10, alpha=5, n_iter=100)
-# dictionary = miniBatch.fit(data.values).components_
-# sparseCode = miniBatch.transform(data.values)
-# denoised = np.dot(sparseCode, dictionary)
-# sparseCodedf = pd.DataFrame(sparseCode, index=data.index.values)
-# denoiseddf = pd.DataFrame(denoised, index=data.index.values)
-# sparseCodedf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/sparse_a5_c10_it100.csv', index=True)
-# denoiseddf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/denoised_a5_c10_it100.csv', index=True)
-# miniBatch = MiniBatchDictionaryLearning(n_components=10, alpha=5, n_iter=100)
-# dictionary = miniBatch.fit(under_data.values).components_
-# sparseCode = miniBatch.transform(under_data.values)
-# denoised = np.dot(sparseCode, dictionary)
-# sparseCodedf = pd.DataFrame(sparseCode, index=under_data.index.values)
-# denoiseddf = pd.DataFrame(denoised, index=under_data.index.values)
-# sparseCodedf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/underSparse_a5_c10_it100.csv', index=True)
-# denoiseddf.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/underDenoised_a5_c10_it100.csv', index=True)
-
-
-# ## 3. Logistic regression classifier #################################################################################
-# From the model evaluation (or confusion matrix = https://en.wikipedia.org/wiki/Confusion_matrix), we know that:
-#  1. Accuracy = (TP + TN) / Total
-#  2. Presicion = TP / (TP + FP)
-#  3. Recall = TP / (TP + FN)
-# we are interested in the recall score to capture the most fraudulent transactions. 
-# due to the imbalance of the data, many observations could be predicted as False Negatives. **Recall** captures this.
-#######################################################################################################################
-
-# # Performing parameter estimation [LogisticRegression and GridSearchCV]
-# print("\n## Performing parameter estimation [LogisticRegression and GridSearchCV]")
-# start_time = time.time()
-# fold = KFold(n_splits=5, shuffle=True, random_state=777)
-# grid = {
-# 	'C': np.array([100, 10, 1, 0.1, 0.01, 0.001]),
-# 	'solver': ['newton-cg']
-# }
-# lr = LogisticRegression(penalty='l2', random_state=777, max_iter=10000, tol=10)
-# gs = GridSearchCV(lr, grid, scoring='roc_auc', cv=fold)
-# gs.fit(train_under_data, train_under_target)
-# print ('# exec_time:', time.time() - start_time)
-# print ('# best_score_:', gs.best_score_)
-# print ('# best_params_:', gs.best_params_)
-
-
-# # Performing parameter estimation [LogisticRegressionCV]
-# print("\n## Performing parameter estimation [LogisticRegressionCV]")
-# start_time = time.time()
-# lrcv = LogisticRegressionCV(
-# 	Cs=list(np.power(10.0, np.arange(-10, 10))),
-# 	penalty='l2',
-# 	scoring='roc_auc',
-# 	cv=fold,
-# 	random_state=777,
-# 	max_iter=10000,
-# 	fit_intercept=True,
-# 	solver='newton-cg',
-# 	tol=10
-# )
-# lrcv.fit(train_under_data, train_under_target)
-# print ('# exec_time:', time.time() - start_time)
-# print ('# max_auc_roc:', lrcv.scores_[1].mean(axis=0).max())
-# print ('# C_:', lrcv.C_)
-# best_c = lrcv.C_[0]
-best_c = 100
-
-# Perfoming LogisticRegression [train=undersample and predict=undersample]
-print("\n## [train=undersample, predict=undersample]")
-lr = LogisticRegression(C=best_c, penalty='l1')
-lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
-test_under_predicted = lr.predict(test_under_data.values)
-# confusion matrix
-#print("# Plot non-normalized confusion matrix [train=undersample and predict=undersample]")
-cnf_matrix = confusion_matrix(test_under_target, test_under_predicted)
-print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-# target_names = [0,1]
-# plt.figure()
-# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
-# plt.show()
-# # ROC CURVE
-predicted_unsample_score = lr_fit.decision_function(test_under_data.values)
-fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_unsample_score)
-roc_auc = auc(fpr, tpr)
-print("# ROC_AUC: {0:.4f}".format(roc_auc))
-# plt.title('ROC Curve [train=undersample and predict=undersample]')
-# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
-# plt.legend(loc='lower right')
-# plt.plot([0, 1], [0, 1], 'r--')
-# plt.xlim([-0.1, 1.0])
-# plt.ylim([-0.1, 1.01])
-# plt.ylabel('True Positive Rate')
-# plt.xlabel('False Positive Rate')
-# plt.show()
-
-
-# Perfoming LogisticRegression [train=undersample and predict=complete]
-print("\n## [train=undersample and predict=complete]")
-test_predicted = lr.predict(test_data.values)
-# Compute confusion matrix
-# print("# Plot non-normalized confusion matrix [train=undersample and predict=complete]")
-cnf_matrix = confusion_matrix(test_target, test_predicted)
-print("# Recall: {0:.4f}".format(cnf_matrix[1, 1]/(cnf_matrix[1, 0]+cnf_matrix[1, 1])))
-# target_names = [0, 1]
-# plt.figure()
-# plot_confusion_matrix(cnf_matrix, classes=target_names, title='Confusion Matrix')
-# plt.show()
-# ROC CURVE
-predicted_score = lr_fit.decision_function(test_data.values)
-fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
-roc_auc = auc(fpr, tpr)
-print("# ROC_AUC: {0:.4f}".format(roc_auc))
-# plt.title('ROC Curve [train=undersample and predict=complete]')
-# plt.plot(fpr, tpr, 'b', label='AUC = %0.2f'% roc_auc)
-# plt.legend(loc='lower right')
-# plt.plot([0, 1], [0, 1], 'r--')
-# plt.xlim([-0.1, 1.0])
-# plt.ylim([-0.1, 1.01])
-# plt.ylabel('True Positive Rate')
-# plt.xlabel('False Positive Rate')
-# plt.show()
-
-
-# ## LogisticRegression results
-# print("\n## LogisticRegression results:")
-# print("# estimator:")
-# print(lr)
-# print("# intercept:")
-# print(lr.intercept_)
-# print("# coefficient:")
-# print(lr.coef_)
-# print("# labels:")
-# print(data.columns.tolist())
-
-
-# ## Feature ranking
-# print('\n## Feature Ranking')
-# print_feature_ranking(train_under.values, train_under_target.values.ravel(), data.columns.tolist(), lr, "LogReg")
-
-
-########################################################################################################################
-
-# ToDo:
-# rfe e identificar as features mais importantes
-# testar com todos os dados
-# testar com pca
-# testar com t-sne
-# testar com GridSearch
-# What if we use all features (boxcox transformation and original data)
-# Using SVC or other methodologies
-# testar pca
-# testar tsne
-# testar dictionary learning
-# usar os recursos de visualizacao do featureSelectio e de outro sobre fraud que plota duas distributions juntas

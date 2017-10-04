@@ -1,5 +1,5 @@
 Recall: 					also known as sensitivity, means TP/(TN+FN) or TP(Expected True)
-ROC_AUC: 					A ROC curve is plotting True Positive Rate (TPR) against False Positive Rate (FPR).
+ROC_AUC: 					A ROC curve is the True Positive Rate (TPR) against False Positive Rate (FPR).
 AP: 						Average Precision (AP) is the Area under Precision-Recall Curve (AUC of PR-curve)
 undersample/undersample:	learn from undersample and validate against undersample
 undersample/complete: 		learn from undersample and validate against complete
@@ -8,140 +8,107 @@ under/complete: 			learn from complete and validate against complete
 
 ==========================================================================================================================================================================
 
-orig					[undersample/undersample]	Recall:	0.8975	ROC_AUC:	0.9767	AP:	0.9793	[undersample/complete]	Recall:	0.8998	ROC_AUC:	0.9792	AP:	0.5971
-boxcox					[undersample/undersample]	Recall:	0.9594	ROC_AUC:	0.9836	AP:	0.9853	[undersample/complete]	Recall:	0.9635	ROC_AUC:	0.9859	AP:	0.6354
-PCA 					[undersample/undersample]	Recall:	0.8975	ROC_AUC:	0.9767	AP:	0.9793	[undersample/complete]	Recall:	0.9692	ROC_AUC:	0.5635	AP:	0.0051
-PCA2/underPCA2			[undersample/undersample]	Recall:	0.6485	ROC_AUC:	0.8581	AP:	0.8803	[undersample/complete]	Recall:	0.9822	ROC_AUC:	0.7652	AP:	0.0206
+raw							[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC: 0.9952	PR_AUC:0.7331	[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530
+boxcox	 					[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC: 0.9859	PR_AUC:0.6354	[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230
+orig 						[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.9792	PR_AUC:0.5971	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787
+orig_PCA 					[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.5633	PR_AUC:0.0051	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780
+orig_PCA2					[under/under]	ROC_AUC:0.8583	PR_AUC:0.8805	[under/complete]	ROC_AUC: 0.7656	PR_AUC:0.0206	[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893
 
 ==========================================================================================================================================================================
 
-denoised_a1_c2_it100	[undersample/undersample]	Recall:	0.7424	ROC_AUC:	0.7237	AP:	0.7701	[undersample/complete]	Recall:	0.6320	ROC_AUC:	0.3987	AP:	0.0028
-sparse_a1_c2_it100		[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c6_it100	[undersample/undersample]	Recall:	0.6731	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c6_it100		[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c10_it100	[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c10_it100		[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c20_it100	[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c20_it100		[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c40_it100	[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c40_it100		[undersample/undersample]	Recall:	0.6719	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c100_it100	[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c100_it100	[undersample/undersample]	Recall:	0.6727	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c200_it100	[undersample/undersample]	Recall:	0.0062	ROC_AUC:	0.2348	AP:	0.3571	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c200_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a3_c2_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-sparse_a3_c2_it100		[undersample/undersample]	Recall:	0.6907	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6178	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a3_c6_it100	[undersample/undersample]	Recall:	0.6903	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6174	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a3_c6_it100		[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a3_c10_it100	[undersample/undersample]	Recall:	0.1005	ROC_AUC:	0.1660	AP:	0.3391	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a3_c10_it100		[undersample/undersample]	Recall:	0.6903	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a3_c20_it100	[undersample/undersample]	Recall:	0.6903	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a3_c20_it100		[undersample/undersample]	Recall:	0.1686	ROC_AUC:	0.1660	AP:	0.3391	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a3_c40_it100	[undersample/undersample]	Recall:	0.1686	ROC_AUC:	0.1660	AP:	0.3391	[undersample/complete]	Recall:	0.6734	ROC_AUC:	0.5197	AP:	0.0047
-sparse_a3_c40_it100		[undersample/undersample]	Recall:	0.1686	ROC_AUC:	0.1660	AP:	0.3391	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a3_c100_it100	[undersample/undersample]	Recall:	0.1686	ROC_AUC:	0.1660	AP:	0.3391	[undersample/complete]	Recall:	0.7181	ROC_AUC:	0.3904	AP:	0.0026
-sparse_a3_c100_it100	[undersample/undersample]	Recall:	0.1686	ROC_AUC:	0.2004	AP:	0.3186	[undersample/complete]	Recall:	0.6174	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a3_c200_it100	[undersample/undersample]	Recall:	0.1690	ROC_AUC:	0.2005	AP:	0.3477	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6629	AP:	0.0056
-sparse_a3_c200_it100	[undersample/undersample]	Recall:	0.6637	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c2_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a5_c2_it100		[undersample/undersample]	Recall:	0.6628	ROC_AUC:	0.8376	AP:	0.8595	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c6_it100	[undersample/undersample]	Recall:	0.6624	ROC_AUC:	0.8387	AP:	0.8601	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a5_c6_it100		[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a5_c10_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6174	ROC_AUC:	0.6609	AP:	0.0056
-sparse_a5_c10_it100		[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c20_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8389	AP:	0.8666	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a5_c20_it100		[undersample/undersample]	Recall:	0.6628	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c40_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6421	AP:	0.0055
-sparse_a5_c40_it100		[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a5_c100_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6170	ROC_AUC:	0.6606	AP:	0.0056
-sparse_a5_c100_it100	[undersample/undersample]	Recall:	0.6624	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6174	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c200_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6252	ROC_AUC:	0.6059	AP:	0.0053
-sparse_a5_c200_it100	[undersample/undersample]	Recall:	0.6628	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6183	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a7_c2_it100	[undersample/undersample]	Recall:	0.6624	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6178	ROC_AUC:	0.6610	AP:	0.0056
-sparse_a7_c2_it100		[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.3568	AP:	0.0034
-denoised_a7_c6_it100	[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.0016	ROC_AUC:	0.3379	AP:	0.0020
-sparse_a7_c6_it100		[undersample/undersample]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c10_it100	[undersample/undersample]	Recall:	0.5517	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.7217	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a7_c10_it100		[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c20_it100	[undersample/undersample]	Recall:	0.4627	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.3892	AP:	0.0040
-sparse_a7_c20_it100		[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c40_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-sparse_a7_c40_it100		[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a7_c100_it100	[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6657	ROC_AUC:	0.5233	AP:	0.0047
-sparse_a7_c100_it100	[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6114	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a7_c200_it100	[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a7_c200_it100	[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6110	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a10_c2_it100	[undersample/undersample]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6118	ROC_AUC:	0.6609	AP:	0.0056
-sparse_a10_c2_it100		[undersample/undersample]	Recall:	0.6719	ROC_AUC:	0.8362	AP:	0.8586	[undersample/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c6_it100	[undersample/undersample]	Recall:	0.6858	ROC_AUC:	0.8332	AP:	0.8567	[undersample/complete]	Recall:	0.6300	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a10_c6_it100		[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a10_c10_it100	[undersample/undersample]	Recall:	0.3355	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-sparse_a10_c10_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c20_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[undersample/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a10_c20_it100	[undersample/undersample]	Recall:	0.6415	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c40_it100	[undersample/undersample]	Recall:	0.6415	ROC_AUC:	0.8401	AP:	0.8609	[undersample/complete]	Recall:	0.6219	ROC_AUC:	0.6538	AP:	0.0056
-sparse_a10_c40_it100	[undersample/undersample]	Recall:	0.7699	ROC_AUC:	0.2348	AP:	0.3571	[undersample/complete]	Recall:	0.6637	ROC_AUC:	0.2767	AP:	0.0018
-denoised_a10_c100_it100	[undersample/undersample]	Recall:	0.0053	ROC_AUC:	0.2384	AP:	0.3579	[undersample/complete]	Recall:	0.0012	ROC_AUC:	0.2778	AP:	0.0018
-sparse_a10_c100_it100	[undersample/undersample]	Recall:	0.0000	ROC_AUC:	0.2004	AP:	0.3186	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.3073	AP:	0.0017
-denoised_a10_c200_it100	[undersample/undersample]	Recall:	0.0004	ROC_AUC:	0.2004	AP:	0.3186	[undersample/complete]	Recall:	0.0000	ROC_AUC:	0.3073	AP:	0.0017
-sparse_a10_c200_it100	[undersample/undersample]	Recall:	0.6637	ROC_AUC:	0.8340	AP:	0.8589	[undersample/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-
-==========================================================================================================================================================================
-
-denoised_a1_c2_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6385	AP:	0.0145	[under/under]	Recall:	0.7875	ROC_AUC:	0.6889	AP:	0.7360	[under/complete]	Recall:	0.6394	ROC_AUC:	0.3911	AP:	0.0026
-sparse_a1_c2_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c6_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c6_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c10_it100 [complete/complete]	Recall:	0.0609	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c10_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c20_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c20_it100 [complete/complete]		Recall:	0.0012	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c40_it100 [complete/complete]	Recall:	0.0012	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c40_it100 [complete/complete]		Recall:	0.0012	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6735	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a1_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6720	AP:	0.0151	[under/under]	Recall:	0.6727	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a1_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6727	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.5882	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a5_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6170	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a5_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.4591	AP:	0.0064	[under/under]	Recall:	0.6628	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6264	ROC_AUC:	0.6060	AP:	0.0053
-sparse_a5_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.5000	AP:	0.5015	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6170	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a7_c2_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.5000	AP:	0.5015	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6170	ROC_AUC:	0.6610	AP:	0.0056
-sparse_a7_c2_it100 [complete/complete]		Recall:	0.0353	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3568	AP:	0.0034
-denoised_a7_c6_it100 [complete/complete]	Recall:	0.0353	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0016	ROC_AUC:	0.3379	AP:	0.0020
-sparse_a7_c6_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.5647	AP:	0.0118	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c10_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.5653	AP:	0.0118	[under/under]	Recall:	0.2834	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.7647	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a7_c10_it100 [complete/complete]		Recall:	0.0353	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c20_it100 [complete/complete]	Recall:	0.0012	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.4627	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3892	AP:	0.0040
-sparse_a7_c20_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a7_c40_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-sparse_a7_c40_it100 [complete/complete]		Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a7_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6657	ROC_AUC:	0.5233	AP:	0.0047
-sparse_a7_c100_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6609	AP:	0.0056	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a7_c200_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a7_c200_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6609	AP:	0.0056	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6609	AP:	0.0056
-denoised_a10_c2_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6609	AP:	0.0056	[under/under]	Recall:	0.6710	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6609	AP:	0.0056
-sparse_a10_c2_it100 [complete/complete]		Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6719	ROC_AUC:	0.8362	AP:	0.8586	[under/complete]	Recall:	0.6114	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c6_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6854	ROC_AUC:	0.8332	AP:	0.8568	[under/complete]	Recall:	0.6296	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a10_c6_it100 [complete/complete]		Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-denoised_a10_c10_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.3355	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486
-sparse_a10_c10_it100 [complete/complete]	Recall:	0.0487	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c20_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.4426	AP:	0.0057	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a10_c20_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6415	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6219	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a10_c40_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6415	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.6219	ROC_AUC:	0.6609	AP:	0.0056
-sparse_a10_c40_it100 [complete/complete]	Recall:	0.0609	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.6895	ROC_AUC:	0.2348	AP:	0.3571	[under/complete]	Recall:	0.5931	ROC_AUC:	0.2767	AP:	0.0018
-denoised_a10_c100_it100 [complete/complete]	Recall:	0.0609	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.3589	ROC_AUC:	0.4163	AP:	0.4484	[under/complete]	Recall:	0.3018	ROC_AUC:	0.3473	AP:	0.0021
-sparse_a10_c100_it100 [complete/complete]	Recall:	0.0609	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0004	ROC_AUC:	0.2004	AP:	0.3186	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3073	AP:	0.0017
-denoised_a10_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.0000	ROC_AUC:	0.5000	AP:	0.7474	[under/complete]	Recall:	0.0000	ROC_AUC:	0.5000	AP:	0.5015
-sparse_a10_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6637	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a100_c2_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6637	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a100_c2_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.1640	AP:	0.3371	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3530	AP:	0.0033
-denoised_a100_c6_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6621	AP:	0.0056	[under/under]	Recall:	0.0000	ROC_AUC:	0.1648	AP:	0.3374	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3537	AP:	0.0033
-sparse_a100_c6_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6041	AP:	0.0135	[under/under]	Recall:	0.0000	ROC_AUC:	0.7996	AP:	0.8430	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a100_c10_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6362	AP:	0.0145	[under/under]	Recall:	0.0000	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-sparse_a100_c10_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6927	AP:	0.4486	[under/under]	Recall:	0.6608	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6621	AP:	0.0056
-denoised_a100_c20_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.5089	AP:	0.0088	[under/under]	Recall:	0.7592	ROC_AUC:	0.7049	AP:	0.7522	[under/complete]	Recall:	0.7314	ROC_AUC:	0.4922	AP:	0.0044
-sparse_a100_c20_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.3073	AP:	0.0017	[under/under]	Recall:	0.6608	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6515	AP:	0.0055
-denoised_a100_c40_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.3073	AP:	0.0017	[under/under]	Recall:	0.6608	ROC_AUC:	0.8389	AP:	0.8666	[under/complete]	Recall:	0.6527	ROC_AUC:	0.6514	AP:	0.0055
-sparse_a100_c40_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6174	AP:	0.0140	[under/under]	Recall:	0.6608	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.1006	ROC_AUC:	0.3379	AP:	0.0020
-denoised_a100_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.6133	AP:	0.0138	[under/under]	Recall:	0.6608	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0986	ROC_AUC:	0.3379	AP:	0.0020
-sparse_a100_c100_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.3391	AP:	0.0561	[under/under]	Recall:	0.6620	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0000	ROC_AUC:	0.3391	AP:	0.0561
-denoised_a100_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.7233	AP:	0.0157	[under/under]	Recall:	0.6608	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.0065	ROC_AUC:	0.3379	AP:	0.0020
-sparse_a100_c200_it100 [complete/complete]	Recall:	0.0000	ROC_AUC:	0.4844	AP:	0.0986	[under/under]	Recall:	0.6608	ROC_AUC:	0.8340	AP:	0.8589	[under/complete]	Recall:	0.1432	ROC_AUC:	0.4150	AP:	0.0035
+## denoised_a1_c2_it100	[complete/complete]	ROC_AUC:0.6610	PR_AUC:0.0150	[under/under]	ROC_AUC:0.7033 PR_AUC:0.7507	[under/complete]	ROC_AUC:0.3937	PR_AUC:0.0027
+## sparse_a1_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7033 PR_AUC:0.7507	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c6_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c10_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c100_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c2_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a2_c2_it100	[complete/complete]	ROC_AUC:0.6588	PR_AUC:0.0149	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c6_it100	[complete/complete]	ROC_AUC:0.6601	PR_AUC:0.0149	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.5536	PR_AUC:0.0049
+## sparse_a2_c6_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a2_c10_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## sparse_a2_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c40_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c2_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a3_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a3_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1660 PR_AUC:0.3391	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a3_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1660 PR_AUC:0.3391	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a3_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1660 PR_AUC:0.3391	[under/complete]	ROC_AUC:0.5197	PR_AUC:0.0047
+## sparse_a3_c40_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1660 PR_AUC:0.3391	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a3_c100_it100	[complete/complete]	ROC_AUC:0.4565	PR_AUC:0.0038	[under/under]	ROC_AUC:0.4322 PR_AUC:0.4616	[under/complete]	ROC_AUC:0.3075	PR_AUC:0.0019
+## sparse_a3_c100_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.4322 PR_AUC:0.4616	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a5_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a5_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a5_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8387 PR_AUC:0.8601	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a5_c6_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8387 PR_AUC:0.8601	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a5_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## sparse_a5_c10_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a5_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a5_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a5_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6421	PR_AUC:0.0055
+## sparse_a5_c40_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a5_c100_it100	[complete/complete]	ROC_AUC:0.2767	PR_AUC:0.0018	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6606	PR_AUC:0.0056
+## sparse_a5_c100_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a7_c2_it100	[complete/complete]	ROC_AUC:0.3394	PR_AUC:0.0020	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6610	PR_AUC:0.0056
+## sparse_a7_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3569	PR_AUC:0.0034
+## denoised_a7_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3379	PR_AUC:0.0020
+## sparse_a7_c6_it100	[complete/complete]	ROC_AUC:0.5653	PR_AUC:0.0118	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a7_c10_it100	[complete/complete]	ROC_AUC:0.5653	PR_AUC:0.0118	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a7_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a7_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3892	PR_AUC:0.0040
+## sparse_a7_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a7_c40_it100	[complete/complete]	ROC_AUC:0.7233	PR_AUC:0.0157	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a7_c40_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a7_c100_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.5233	PR_AUC:0.0047
+## sparse_a7_c100_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a8_c2_it100	[complete/complete]	ROC_AUC:0.6610	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6605	PR_AUC:0.0056
+## sparse_a8_c2_it100	[complete/complete]	ROC_AUC:0.4759	PR_AUC:0.0042	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6504	PR_AUC:0.0055
+## denoised_a8_c6_it100	[complete/complete]	ROC_AUC:0.4298	PR_AUC:0.0033	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.4618	PR_AUC:0.0039
+## sparse_a8_c6_it100	[complete/complete]	ROC_AUC:0.3073	PR_AUC:0.0017	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.5000	PR_AUC:0.5015
+## denoised_a8_c10_it100	[complete/complete]	ROC_AUC:0.3073	PR_AUC:0.0017	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.5000	PR_AUC:0.5015
+## sparse_a8_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a8_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7321 PR_AUC:0.7779	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a8_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7321 PR_AUC:0.7779	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a8_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7652 PR_AUC:0.7149	[under/complete]	ROC_AUC:0.6932	PR_AUC:0.0154
+## sparse_a8_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7652 PR_AUC:0.7149	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a8_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1611 PR_AUC:0.4077	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a8_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1611 PR_AUC:0.4077	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a10_c2_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## sparse_a10_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a10_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8333 PR_AUC:0.8568	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a10_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8333 PR_AUC:0.8568	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a10_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a10_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a10_c20_it100	[complete/complete]	ROC_AUC:0.7207	PR_AUC:0.0156	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a10_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a10_c40_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a10_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.2767	PR_AUC:0.0018
+## denoised_a10_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.2349 PR_AUC:0.3571	[under/complete]	ROC_AUC:0.2767	PR_AUC:0.0018
+## sparse_a10_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.2349 PR_AUC:0.3571	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## denoised_a100_c2_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a100_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3531	PR_AUC:0.0033
+## denoised_a100_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.1648 PR_AUC:0.3374	[under/complete]	ROC_AUC:0.3536	PR_AUC:0.0033
+## sparse_a100_c6_it100	[complete/complete]	ROC_AUC:0.6040	PR_AUC:0.0135	[under/under]	ROC_AUC:0.1648 PR_AUC:0.3374	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a100_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a100_c10_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a100_c20_it100	[complete/complete]	ROC_AUC:0.3379	PR_AUC:0.0020	[under/under]	ROC_AUC:0.7049 PR_AUC:0.7522	[under/complete]	ROC_AUC:0.4922	PR_AUC:0.0044
+## sparse_a100_c20_it100	[complete/complete]	ROC_AUC:0.3073	PR_AUC:0.0017	[under/under]	ROC_AUC:0.7049 PR_AUC:0.7522	[under/complete]	ROC_AUC:0.6514	PR_AUC:0.0055
+## denoised_a100_c40_it100	[complete/complete]	ROC_AUC:0.3073	PR_AUC:0.0017	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.6514	PR_AUC:0.0055
+## sparse_a100_c40_it100	[complete/complete]	ROC_AUC:0.6174	PR_AUC:0.0140	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.3379	PR_AUC:0.0020
+## denoised_a100_c100_it100	[complete/complete]	ROC_AUC:0.3379	PR_AUC:0.0020	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3379	PR_AUC:0.0020
+## sparse_a100_c100_it100	[complete/complete]	ROC_AUC:0.3391	PR_AUC:0.0561	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3391	PR_AUC:0.0561

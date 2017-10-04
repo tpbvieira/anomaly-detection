@@ -6,8 +6,7 @@ from skimage.measure import (compare_mse, compare_nrmse, compare_psnr)
 from sklearn.decomposition import MiniBatchDictionaryLearning
 from sklearn.feature_extraction.image import extract_patches_2d, reconstruct_from_patches_2d
 
-
-# Function to plot image difference
+## Function to plot image difference
 def plot_image_diff(noisy, reference, plot_title):
 	"""Helper function to display denoising"""
 	difference = noisy - reference
@@ -28,8 +27,7 @@ def plot_image_diff(noisy, reference, plot_title):
 	plt.xticks(())
 	plt.yticks(())
 
-
-# settings
+## settings
 filePath = "/media/thiago/ubuntu/datasets/imageDenoising/gray_192_512/"
 patch_size = (7, 7)
 
