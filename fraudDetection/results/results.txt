@@ -8,11 +8,11 @@ under/complete: 			learn from complete and validate against complete
 
 ==========================================================================================================================================================================
 
-raw							[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC: 0.9952	PR_AUC:0.7331	[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530
-boxcox	 					[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC: 0.9859	PR_AUC:0.6354	[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230
-orig 						[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.9792	PR_AUC:0.5971	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787
-orig_PCA 					[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.5633	PR_AUC:0.0051	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780
-orig_PCA2					[under/under]	ROC_AUC:0.8583	PR_AUC:0.8805	[under/complete]	ROC_AUC: 0.7656	PR_AUC:0.0206	[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893
+raw							[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530	[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC: 0.9952	PR_AUC:0.7331
+boxcox	 					[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230	[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC: 0.9859	PR_AUC:0.6354
+orig 						[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.9792	PR_AUC:0.5971	
+orig_PCA 					[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.5633	PR_AUC:0.0051	
+orig_PCA2					[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893	[under/under]	ROC_AUC:0.8583	PR_AUC:0.8805	[under/complete]	ROC_AUC: 0.7656	PR_AUC:0.0206	
 
 ==========================================================================================================================================================================
 
