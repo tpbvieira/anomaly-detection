@@ -1,6 +1,6 @@
 # coding: utf-8
 ####################################################################################################################################################################
-# ## Cross-Validation for evaluating the reconstruction performance by dictionary learning methods and parameter configurations applied to a fraud detection dataset
+## Cross-Validation for evaluating the reconstruction performance by dictionary learning methods and parameter configurations applied to a fraud detection dataset
 ####################################################################################################################################################################
 
 import numpy as np

@@ -1,3 +1,5 @@
+=================================================================================================================================================================================
+
 Recall: 					also known as sensitivity, means TP/(TN+FN) or TP(Expected True)
 ROC_AUC: 					A ROC curve is the True Positive Rate (TPR) against False Positive Rate (FPR).
 AP: 						Average Precision (AP) is the Area under Precision-Recall Curve (AUC of PR-curve)
@@ -6,7 +8,7 @@ undersample/complete: 		learn from undersample and validate against complete
 complete/complete: 			learn from complete and validate against complete
 under/complete: 			learn from complete and validate against complete
 
-==========================================================================================================================================================================
+=================================================================================================================================================================================
 
 raw							[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530	[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC: 0.9952	PR_AUC:0.7331
 boxcox	 					[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230	[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC: 0.9859	PR_AUC:0.6354
@@ -14,7 +16,7 @@ orig 						[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787	[under/under]	ROC_AU
 orig_PCA 					[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC: 0.5633	PR_AUC:0.0051	
 orig_PCA2					[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893	[under/under]	ROC_AUC:0.8583	PR_AUC:0.8805	[under/complete]	ROC_AUC: 0.7656	PR_AUC:0.0206	
 
-==========================================================================================================================================================================
+=================================================================================================================================================================================
 
 ## denoised_a1_c2_it100	[complete/complete]	ROC_AUC:0.6610	PR_AUC:0.0150	[under/under]	ROC_AUC:0.7033 PR_AUC:0.7507	[under/complete]	ROC_AUC:0.3937	PR_AUC:0.0027
 ## sparse_a1_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7033 PR_AUC:0.7507	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
@@ -112,3 +114,26 @@ orig_PCA2					[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893	[under/under]	ROC
 ## sparse_a100_c40_it100	[complete/complete]	ROC_AUC:0.6174	PR_AUC:0.0140	[under/under]	ROC_AUC:0.8389 PR_AUC:0.8666	[under/complete]	ROC_AUC:0.3379	PR_AUC:0.0020
 ## denoised_a100_c100_it100	[complete/complete]	ROC_AUC:0.3379	PR_AUC:0.0020	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3379	PR_AUC:0.0020
 ## sparse_a100_c100_it100	[complete/complete]	ROC_AUC:0.3391	PR_AUC:0.0561	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.3391	PR_AUC:0.0561
+
+=================================================================================================================================================================================
+
+## Image = 46500x49)
+train_data.csv (1939286x7)
+train_target.csv (1939286x1)
+fraud_train_data.csv (5748x7)
+fraud_train_target.csv (5748x1)
+normal_train_data.csv (1933538x7)				ERROR
+normal_train_target.csv (1933538x1)				ERROR
+test_data.csv (831123x7)
+test_target.csv (831123x1)
+
+train_under_data.csv (11498x7)
+train_under_target.csv (11498x1)
+fraud_train_under_data.csv (5775x7)
+fraud_train_under_target.csv (5775x1)
+normal_train_under_data.csv  (1933538x0)		ERROR
+normal_train_under_target.csv (5723x1)			ERROR
+test_under_data.csv (4928x7)
+test_under_target.csv (4928x1)
+
+=================================================================================================================================================================================

@@ -189,6 +189,8 @@ for a in alpha_range:
 			# ToDo: Sparse Coding, with tunning of alpha (2 and 5), iterations (100 and 500), dictSize (100 and colmnNum)
 			# ToDo: Denoising from dictionar learning
 			print >> results_file, '## create a{:d}_c{:d}_it{:d}'.format(a,n,it)
+
+			## Train data
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_data.values).components_
 			sparseCode = miniBatch.transform(train_data.values)
@@ -197,7 +199,8 @@ for a in alpha_range:
 			sparseCode_df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 			denoised_df = pd.DataFrame(denoised, index=train_data.index.values)
 			denoised_df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
-
+			
+			## Test data
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_data.values).components_
 			sparseCode = miniBatch.transform(test_data.values)
@@ -207,6 +210,7 @@ for a in alpha_range:
 			denoised_df = pd.DataFrame(denoised, index=test_data.index.values)
 			denoised_df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
+			## Train under data
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_under_data.values).components_
 			sparseCode = miniBatch.transform(train_under_data.values)
@@ -216,6 +220,7 @@ for a in alpha_range:
 			denoised_df = pd.DataFrame(denoised, index=train_under_data.index.values)
 			denoised_df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
+			## test under data
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_under_data.values).components_
 			sparseCode = miniBatch.transform(test_under_data.values)

@@ -399,7 +399,7 @@ if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.c
 	fraud_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_data.csv', index=True)
 	fraud_train_target = train_target.ix[fraud_train_indices, :]
 	fraud_train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_target.csv', index=True)
-	normal_train_indices = train_target[train_target.isFraud == 0].index
+	normal_train_indices = train_target[train_target.isFraud == 0].index.values
 	normal_train_data = train_data.ix[normal_train_indices, :]
 	normal_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_data.csv', index=True)
 	normal_train_target = train_target.ix[normal_train_indices, :]
@@ -412,7 +412,7 @@ if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.c
 	fraud_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_data.csv', index=True)
 	fraud_test_target = test_target.ix[fraud_test_indices, :]
 	fraud_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_target.csv', index=True)
-	normal_test_indices = test_target[test_target.isFraud == 0].index
+	normal_test_indices = test_target[test_target.isFraud == 0].index.values
 	normal_test_data = test_data.ix[normal_test_indices, :]
 	normal_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_data.csv', index=True)
 	normal_test_target = test_target.ix[normal_test_indices, :]

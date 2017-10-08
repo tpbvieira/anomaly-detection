@@ -28,7 +28,7 @@ if strcmpi(name,'dle')
 end
     
 if isunix
-    p0 = '/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning/';  % first part of path where most files should be
+    p0 = '/home/thiago/dev/projects/discriminative-sensing/distributed-tensor-dictionary-learning/';  % first part of path where most files should be
     if strcmpi(name,'dlt')
         p = '~/public_html/dle';
     elseif strcmpi(name,'ict')

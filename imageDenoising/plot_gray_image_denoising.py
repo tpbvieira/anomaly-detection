@@ -94,10 +94,8 @@ noisyPatches -= noiseMean
 np.savetxt(filePath + 'noisyPatches.csv', noisyPatches, fmt='%.6f', delimiter=';')
 # print('noisyPatches: ' + str(noisyPatches.shape))
 
-
 # Plot difference between the original and distorted face
 plot_image_diff(distorted, face, 'Distorted image')
-
 
 # compare dictionary learning methods for image reconstruction
 transform_algorithms = [
