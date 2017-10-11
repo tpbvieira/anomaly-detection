@@ -24,14 +24,14 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV, cross
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLasso
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, roc_auc_score, roc_curve, classification_report, average_precision_score
 from sklearn.decomposition import MiniBatchDictionaryLearning
+from sklearn.svm import SVC, LinearSVC
 from mpl_toolkits.mplot3d import Axes3D
-from print_feature_ranking import print_feature_ranking
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore")
 sns.set_style("dark")
 
-results_file = open('results/fraud_detector.txt', 'w')
+results_file = open('results/fraud_detection_cv.txt', 'w')
 
 ## return string dateTime
 def now_datetime_str():
@@ -125,7 +125,63 @@ under_target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_t
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.3, random_state=0)
 train_under_data, test_under_data, train_under_target, test_under_target = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
 
-## Perfoming LogisticRegression [complete/complete]		
+## Perfoming SVM [complete/complete]
+# SVC = LinearSVC()
+SVC = SVC()
+SVC_fit = SVC.fit(train_data, train_target)
+test_predicted = SVC.predict(test_data)
+## ROC_AUC
+predicted_unsample_score = SVC_fit.decision_function(test_data.values)
+fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_unsample_score)
+roc_auc = auc(fpr, tpr)
+## Precision-Recall AUC
+precision = dict()
+recall = dict()
+average_precision = dict()
+n_classes = test_target.shape[1]
+for i in range(n_classes):
+	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_unsample_score)
+	average_precision[i] = average_precision_score(test_target, predicted_unsample_score)
+print("## [complete/complete]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0]))
+
+## Perfoming SVM [under/under]
+# SVC = LinearSVC()
+SVC = SVC()
+SVC_fit = SVC.fit(train_under_data, train_under_target)
+test_predicted = SVC.predict(test_under_data)
+## ROC_AUC
+predicted_unsample_score = SVC_fit.decision_function(test_under_data.values)
+fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_unsample_score)
+roc_auc = auc(fpr, tpr)
+## Precision-Recall AUC
+precision = dict()
+recall = dict()
+average_precision = dict()
+n_classes = test_target.shape[1]
+for i in range(n_classes):
+	precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_unsample_score)
+	average_precision[i] = average_precision_score(test_under_target, predicted_unsample_score)
+print("## [under/under]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0]))
+
+## Perfoming SVM [under/complete]
+test_predicted = SVC.predict(test_data)
+## ROC_AUC
+predicted_unsample_score = SVC_fit.decision_function(test_data.values)
+fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_unsample_score)
+roc_auc = auc(fpr, tpr)
+## Precision-Recall AUC
+precision = dict()
+recall = dict()
+average_precision = dict()
+n_classes = test_target.shape[1]
+for i in range(n_classes):
+	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_unsample_score)
+	average_precision[i] = average_precision_score(test_target, predicted_unsample_score)
+print("## [under/complete]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0]))
+
+
+## Perfoming LogisticRegression [complete/complete]
+best_c = 100
 lr = LogisticRegression(C=best_c, penalty='l1')
 lr_fit = lr.fit(train_data, train_target.values.ravel())
 test_predicted = lr.predict(test_data.values)
@@ -144,7 +200,6 @@ for i in range(n_classes):
 print("## [complete/complete]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0]))
 
 ## Perfoming LogisticRegression [under/under]
-best_c = 100
 lr = LogisticRegression(C=best_c, penalty='l1')
 lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
 test_under_predicted = lr.predict(test_under_data.values)
@@ -177,6 +232,7 @@ for i in range(n_classes):
 	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
 	average_precision[i] = average_precision_score(test_target, predicted_score)
 print("## [under/complete]\tROC_AUC: {0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0]))
+
 
 ## MiniBatch Dictionary Learning cross-validation
 alpha_range = [1, 2, 3, 5, 7, 8, 10, 100] # sparsity
@@ -371,3 +427,5 @@ results_file.close()
 # testar análise com tipos separados
 # usar os recursos de visualizacao do featureSelection e de outro sobre fraud que plota duas distributions juntas
 # testar MOS com entropy
+
+

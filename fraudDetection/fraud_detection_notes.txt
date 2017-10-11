@@ -1,0 +1,12 @@
+Facts:
+	Dataset: 
+		E. A. Lopez-Rojas , A. Elmir, and S. Axelsson. "PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
+		PaySim is a financial simulator that simulates mobile money transactions based on an original dataset
+		we can argue that our technique can be applied into mobile clients, since the light-weight processing required for calculating a sparse cocidng and the comparison
+	Math
+		L = ((np.array(arr.shape) - np.array(patch_shape)) // np.array(extraction_step)) + 1
+
+
+ToDo:
+	Since svm is more adoted for classification, include it for validation
+	
