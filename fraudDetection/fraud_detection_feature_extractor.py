@@ -22,11 +22,12 @@ from sklearn.model_selection import train_test_split, KFold, cross_val_score, St
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, RandomizedLasso
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, precision_recall_curve, auc, roc_auc_score, roc_curve, classification_report, average_precision_score
 from sklearn.manifold import TSNE
-from print_feature_ranking import print_feature_ranking
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore")
 sns.set_style("dark")
+
+dataset_path = '/media/thiago/ubuntu/datasets/fraudDetection/'
 
 
 ## return string dateTime
@@ -72,38 +73,9 @@ def plot_correlation_heatmap(dataframe, title):
 	plt.show()
 
 
-## Defines plot_confusion_matrix function
-def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
-	"""
-	This function prints and plots the confusion matrix.
-	Normalization can be applied by setting `normalize=True`.
-	"""
-	plt.imshow(_cm, interpolation='nearest', cmap=cmap)
-	plt.title(title)
-	plt.colorbar()
-	tick_marks = np.arange(len(classes))
-	plt.xticks(tick_marks, classes, rotation=0)
-	plt.yticks(tick_marks, classes)
-
-	if normalize:
-		_cm = _cm.astype('float') / _cm.sum(axis=1)[:, np.newaxis]
-		print("Normalized confusion matrix")
-	else:
-		print('Confusion matrix, without normalization')
-
-	print(_cm)
-
-	thresh = _cm.max() / 2.
-	for i, j in itertools.product(range(_cm.shape[0]), range(_cm.shape[1])):
-		plt.text(j, i, _cm[i, j], horizontalalignment="center", color="white" if _cm[i, j] > thresh else "black")
-	plt.tight_layout()
-	plt.ylabel('True label')
-	plt.xlabel('Predicted label')
-
-
 ## Read CSV file into a Panda DataFrame and print some information
-# print("\n## Loading data")
-raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Financial_Datasets_For_Fraud_Detection.csv")
+print("## Loading data")
+raw_data = read_csv(dataset_path + 'Synthetic_Financial_Datasets_For_Fraud_Detection.csv')
 
 
 ## ### 1. EDA (exploratory data analysis ) ##############################################################################
@@ -112,21 +84,21 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 
 
 ## Check if there's any null values.
-# print("\n## Let's check the dataset if there's any null values.")
+# print("## Let's check the dataset if there's any null values.")
 # print(checking_missing(raw_data))
 
 
 ## Look at the dataset sample and other properties.
-# print("\n## Head:")
+# print("## Head:")
 # print(raw_data.head(5))
-# print("\n## Describe:")
+# print("## Describe:")
 # print(raw_data.describe())
-# print("\n## Info:")
+# print("## Info:")
 # print(raw_data.info())
 
 
 ## Plot transaction count by transaction type
-# print("\n## Plot transaction count by transaction type:")
+# print("## Plot transaction count by transaction type:")
 # f, ax = plt.subplots(1, 1, figsize=(8, 8))
 # raw_data.type.value_counts().plot(kind='bar', title="Transaction count by transaction type", ax=ax, figsize=(8,8))
 # for p in ax.patches:
@@ -137,7 +109,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # # *isFraud* is the indicator which indicates the actual fraud transactions
 # # *isFlaggedFraud* is what the system prevents the transaction due to some thresholds being triggered.
 # # Plot Fraud (1) and Legitmate (0) transactions count by transaction type
-# print("\n## Plot Fraud (1) and Legitmate (0) transactions count by transaction type:")
+# print("## Plot Fraud (1) and Legitmate (0) transactions count by transaction type:")
 # ax = raw_data.groupby(['type', 'isFraud']).size().plot(kind='bar')
 # ax.set_title("Fraud (1) and Legitmate (0) transactions count by transaction type")
 # ax.set_xlabel("(Type, isFraud)")
@@ -149,7 +121,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 
 
 ## Plot transactions which are flagged as isFlaggedFraud per transaction type
-# print("\n## Plot Flagged Fraud (1) and Legitmate (0) transactions count by transaction type:")
+# print("## Plot Flagged Fraud (1) and Legitmate (0) transactions count by transaction type:")
 # ax = raw_data.groupby(['type', 'isFlaggedFraud']).size().plot(kind='bar')
 # ax.set_title("Flagged Fraud (1) and Legitmate (0) transactions count by transaction type")
 # ax.set_xlabel("(Type, isFlaggedFraud)")
@@ -161,7 +133,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 
 
 ## Plot fraud *TRANSFER* analysis
-# print("\n## Plot fraud *TRANSFER* analysis")
+# print("## Plot fraud *TRANSFER* analysis")
 # fig, axs = plt.subplots(2, 2, figsize=(10, 10))
 # fig.suptitle("Analyse *TRANSFER* flagged as fraud", fontsize="x-large")
 # tmpData = raw_data.loc[(raw_data.type == 'TRANSFER'), :]
@@ -174,7 +146,7 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 # d = sns.regplot(x = 'oldbalanceOrg', y = 'amount', data=tmpData.loc[(tmpData.isFraud==1), :], ax=axs[1][1])
 # plt.show()
 # # Plot fraud *CASH_OUT* analysis
-# print("\n## Plot fraud *CASH_OUT* analysis")
+# print("## Plot fraud *CASH_OUT* analysis")
 # fig, axs = plt.subplots(2, 2, figsize=(10, 10))
 # fig.suptitle("Analyse *CASH_OUT* flagged as fraud", fontsize="x-large")
 # tmpData = raw_data.loc[(raw_data.type == 'CASH_OUT'), :]
@@ -189,14 +161,13 @@ raw_data = read_csv("/media/thiago/ubuntu/datasets/fraudDetection/Synthetic_Fina
 
 
 ## 2. Modeling ######################################################################################################
-# focus only on **TRANSFER** and **CASH_OUT** (where there are fraud), data slicing and data transformation
-# print("\n## focus only on **TRANSFER** and **CASH_OUT** (where there are fraud)")
-# Keep only interested transaction type ('TRANSFER', 'CASH_OUT')
+# focus only on **TRANSFER** and **CASH_OUT** (where there are fraud), data slicing and data transformation. Keep only interested transaction type ('TRANSFER', 'CASH_OUT')
+print("## Focus only on **TRANSFER** and **CASH_OUT** (where there are fraud)")
 tmpData = raw_data.loc[(raw_data['type'].isin(['TRANSFER', 'CASH_OUT'])), :]
 
 
 # Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')
-# print("\n## Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')")
+print("## Data slicing - Drop unnecessary data ('step', 'nameOrig', 'nameDest', 'isFlaggedFraud')")
 # tmpData.drop(['step', 'nameOrig', 'nameDest', 'isFlaggedFraud'], axis=1, inplace=True)
 tmpData.drop(['nameOrig', 'nameDest', 'isFlaggedFraud'], axis=1, inplace=True)
 tmpData = tmpData.reset_index(drop=True)
@@ -208,19 +179,19 @@ tmpData.drop(['type'], axis=1, inplace=True)
 
 
 ## Plot Correlations of TRANSFER and CASH_OUT transactions and selected features
-# print("\n## Plot Correlations of TRANSFER and CASH_OUT transactions and selected features")
+# print("## Plot Correlations of TRANSFER and CASH_OUT transactions and selected features")
 # plotCorrelationHeatmap(tmpData, "TRANSFER and CASH_OUT Correlation")
 # plotCorrelationHeatmap(raw_data.loc[(raw_data.type == 'TRANSFER'), :], "TRANSFER Correlation")
 # plotCorrelationHeatmap(raw_data.loc[(raw_data.type == 'CASH_OUT'), :], "CASH_OUT Correlation")
 
 
 ## Quickly get the count and the target variable count.
-# print("\n## Plot Transaction count by type")
+# print("## Plot Transaction count by type")
 # ax = tmpData.type.value_counts().plot(kind='bar', title="Transaction count by type", figsize=(6,6))
 # for p in ax.patches:
 # 	ax.annotate(str(format(int(p.get_height()), ',d')), (p.get_x(), p.get_height()*1.01))
 # plt.show()
-# print("\n## Plot Fraud (1) and Legitmate (0) transactions count")
+# print("## Plot Fraud (1) and Legitmate (0) transactions count")
 # ax = pd.value_counts(tmpData['isFraud'], sort = True).sort_index().plot(kind='bar', title="Fraud (1) and Legitmate (0)
 #  transactions count")
 # for p in ax.patches:
@@ -234,8 +205,8 @@ tmpData.drop(['type'], axis=1, inplace=True)
 # skewness of the distribution: Normally distributed data has skewness should be about 0. A skewness value > 0 means
 # that there is more weight in the left tail of the distribution
 # Boxcox transformation: makes the data normal
-# print("\n## Scale features with SQRT and Box-Cox to compare them on the graph")
-# print("\n## Plot Transformations for **amount**:")
+print("## Extracting Box-Cox features ")
+# print("## Plot Transformations for **amount**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
 # plt.title("Amount Histogram")
@@ -258,7 +229,7 @@ tmpData['amount_boxcox'] = preprocessing.scale(boxcox(tmpData['amount']+1)[0])
 # High skewness on left side but box-cox reveals normal distribution
 
 
-# print("\n## Plot Transformations for **oldbalanceOrg**:")
+# print("## Plot Transformations for **oldbalanceOrg**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
 # plt.title("oldbalanceOrg Histogram")
@@ -281,7 +252,7 @@ tmpData['oldbalanceOrg_boxcox'] = preprocessing.scale(boxcox(tmpData['oldbalance
 # # High skewness on left side but box-cox reveals an outlier
 
 
-# print("\n## Plot Transformations for **newbalanceOrg**:")
+# print("## Plot Transformations for **newbalanceOrg**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
 # plt.title("newbalanceOrig histogram")
@@ -305,7 +276,7 @@ tmpData['newbalanceOrg_boxcox'] = preprocessing.scale(boxcox(tmpData['newbalance
 # # High skewness on left side, including box-cox reveals an outlier
 
 
-# print("\n## Plot Transformations for **oldbalanceDest**:")
+# print("## Plot Transformations for **oldbalanceDest**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
 # plt.hist(tmpData['oldbalanceDest'] ,facecolor='blue',alpha=0.75)
@@ -329,7 +300,7 @@ tmpData['oldbalanceDest_boxcox'] = preprocessing.scale(boxcox(tmpData['oldbalanc
 # # High skewness on left side but box-cox reveals skewness to right side
 
 
-# print("\n## Plot Transformations for **newbalanceDest**:")
+# print("## Plot Transformations for **newbalanceDest**:")
 # figure = plt.figure(figsize=(16, 5))
 # figure.add_subplot(131)
 # plt.hist(tmpData['newbalanceDest'] ,facecolor='blue',alpha=0.75)
@@ -357,11 +328,11 @@ tmpData['newbalanceDest_boxcox'] = preprocessing.scale(boxcox(tmpData['newbalanc
 # In this notebook, I will quickly use traditional *under*-sampling method (there are several other ways; under and
 # over sampling, SMOTE, etc).
 # Also we will use only the boxcox data transformation for prediction.
-# print("\n## Feature Selection: Use only the box-cox data transformation for prediction")
+# print("## Feature Selection: Use only the box-cox data transformation for prediction")
 # tmpData.drop(['oldbalanceOrg','newbalanceOrig','oldbalanceDest','newbalanceDest','amount'],axis=1,inplace=True)
 # print(tmpData.head(5))
 # Plot Correlations of TRANSFER and CASH_OUT transactions and box-cox features
-# print("\n## Plot Correlations of TRANSFER and CASH_OUT transactions and box-cox features")
+# print("## Plot Correlations of TRANSFER and CASH_OUT transactions and box-cox features")
 # sns.heatmap(tmpData)
 # plt.show()
 # sns.heatmap(tmpData.loc[(tmpData.type_num == 0), :].corr())
@@ -369,7 +340,7 @@ tmpData['newbalanceDest_boxcox'] = preprocessing.scale(boxcox(tmpData['newbalanc
 # sns.heatmap(tmpData.loc[(tmpData.type_num == 1), :].corr())
 # plt.show()
 
-# print("\n## Fraud Ratio
+# print("## Fraud Ratio
 #  (TRANSFER and CASH_OUT):")
 # print("% of normal transactions: ", len(tmpData[tmpData.isFraud == 0])/len(tmpData))
 # print("% of fraud transactions: ", len(tmpData[tmpData.isFraud == 1])/len(tmpData))
@@ -382,45 +353,86 @@ tmpData['newbalanceDest_boxcox'] = preprocessing.scale(boxcox(tmpData['newbalanc
 # Number of data points in the minority class
 
 ## Preparing data for training
-# print("\n## Preparing data for training...")
 
 ## Whole dataset
+print("## Splitting dataset for training...")
 data = tmpData.ix[:, tmpData.columns != 'isFraud']
 target = tmpData.ix[:, tmpData.columns == 'isFraud']
 train_data, test_data, train_target, test_target = train_test_split(data, target, test_size=0.3, random_state=0)
 
 
 ## Saves train and test of complete data if they dont exist
-if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv'):
-	train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_data.csv', index=True)
-	train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'train_data.csv'):
+	train_data.to_csv(dataset_path + 'train_data.csv', index=True)
+	train_target.to_csv(dataset_path + 'train_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'fraud_train_data.csv'):
 	fraud_train_indices = train_target[train_target.isFraud == 1].index.values
 	fraud_train_data = train_data.ix[fraud_train_indices, :]
-	fraud_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_data.csv', index=True)
+	fraud_train_data.to_csv(dataset_path + 'fraud_train_data.csv', index=True)
 	fraud_train_target = train_target.ix[fraud_train_indices, :]
-	fraud_train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_target.csv', index=True)
+	fraud_train_target.to_csv(dataset_path + 'fraud_train_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'normal_train_data.csv'):
 	normal_train_indices = train_target[train_target.isFraud == 0].index.values
 	normal_train_data = train_data.ix[normal_train_indices, :]
-	normal_train_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_data.csv', index=True)
+	normal_train_data.to_csv(dataset_path + 'normal_train_data.csv', index=True)
 	normal_train_target = train_target.ix[normal_train_indices, :]
-	normal_train_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_target.csv', index=True)
-
-	test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_data.csv', index=True)
-	test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_target.csv', index=True)
+	normal_train_target.to_csv(dataset_path + 'normal_train_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'test_data.csv'):
+	test_data.to_csv(dataset_path + 'test_data.csv', index=True)
+	test_target.to_csv(dataset_path + 'test_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'fraud_test_data.csv'):
 	fraud_test_indices = test_target[test_target.isFraud == 1].index.values
 	fraud_test_data = test_data.ix[fraud_test_indices, :]
-	fraud_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_data.csv', index=True)
+	fraud_test_data.to_csv(dataset_path + 'fraud_test_data.csv', index=True)
 	fraud_test_target = test_target.ix[fraud_test_indices, :]
-	fraud_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_target.csv', index=True)
+	fraud_test_target.to_csv(dataset_path + 'fraud_test_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'normal_test_data.csv'):
 	normal_test_indices = test_target[test_target.isFraud == 0].index.values
 	normal_test_data = test_data.ix[normal_test_indices, :]
-	normal_test_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_data.csv', index=True)
+	normal_test_data.to_csv(dataset_path + 'normal_test_data.csv', index=True)
 	normal_test_target = test_target.ix[normal_test_indices, :]
-	normal_test_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_target.csv', index=True)
+	normal_test_target.to_csv(dataset_path + 'normal_test_target.csv', index=True)
+
+
+## Saves extracted feaures if it does not exist or load the saved data
+print("## Saves extracted feaures if it does not exist or load the saved data")
+if not os.path.isfile(dataset_path + 'orig_boxcox.csv'):
+	## orig_boxcox
+	data.to_csv(dataset_path + 'orig_boxcox.csv', index=True)
+	
+	## boxcox (selected features)
+	boxcox = data.copy()
+	boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
+	boxcox.to_csv(dataset_path + 'boxcox.csv', index=True)
+	
+	## orig (selected features)
+	orig = data.copy()
+	orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
+	orig.to_csv(dataset_path + 'orig.csv', index=True)
+	
+	## target
+	target.to_csv(dataset_path + 'target.csv', index=True)
+	
+	## orig_PCA
+	X = PCA().fit_transform(orig.values)
+	df = pd.DataFrame(X, index=orig.index.values)
+	df.to_csv(dataset_path + 'orig_PCA.csv', index=True)
+	
+	## orig_PCA2 (PCA with 2 components)
+	X2 = PCA(n_components=2).fit_transform(orig.values)
+	df2 = pd.DataFrame(X2, index=orig.index.values)
+	df2.to_csv(dataset_path + 'orig_PCA2.csv', index=True)
+else:
+	data = pd.read_csv(dataset_path + 'orig_boxcox.csv', index_col=0)
+	boxcox = pd.read_csv(dataset_path + 'boxcox.csv', index_col=0)
+	orig = pd.read_csv(dataset_path + 'orig.csv', index_col=0)
+	target = pd.read_csv(dataset_path + 'target.csv', index_col=0)
+	orig_PCA = pd.read_csv(dataset_path + 'orig_PCA.csv', index_col=0)
+	orig_PCA2 = pd.read_csv(dataset_path + 'orig_PCA2.csv', index_col=0)
 
 
 ## Perform Under sample of TRANSFER and CASH_OUT
-# print("\n## Perform Under sample of TRANSFER and CASH_OUT")
+print("## Perform Undersample")
 number_fraud_records = len(tmpData[tmpData.isFraud == 1])
 # Picking the indices of the fraud and normal classes
 fraud_indices = tmpData[tmpData.isFraud == 1].index.values
@@ -431,107 +443,77 @@ random_normal_indices = np.array(random_normal_indices)
 # Appending the 2 indices
 under_indices = np.concatenate([fraud_indices, random_normal_indices])
 under_sample_data = tmpData.iloc[under_indices, :]
-under_data = under_sample_data.ix[:, under_sample_data.columns != 'isFraud']												# not isFraud column, only data
-under_target = under_sample_data.ix[:, under_sample_data.columns == 'isFraud']	 											# only isFraud column
+under_data = under_sample_data.ix[:, under_sample_data.columns != 'isFraud'] # not isFraud column, only data
+under_target = under_sample_data.ix[:, under_sample_data.columns == 'isFraud'] # only isFraud column
 
 
 ## Extract Undersampled dataset for train and test data. Saves into files if thei dont exists
+print("## Splitting undersampled dataset for training...")
 train_under_data, test_under_data, train_under_target, test_under_target = train_test_split(under_data, under_target, test_size=0.3, random_state=0)
-if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv'):
-	train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_data.csv', index=True)
-	train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/train_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'train_under_data.csv'):
+	train_under_data.to_csv(dataset_path + 'train_under_data.csv', index=True)
+	train_under_target.to_csv(dataset_path + 'train_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'fraud_train_under_data.csv'):
 	fraud_train_under_indices = train_under_target[train_under_target.isFraud == 1].index.values
 	fraud_train_under_data = train_under_data.ix[fraud_train_under_indices, :]
-	fraud_train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_under_data.csv', index=True)
+	fraud_train_under_data.to_csv(dataset_path + 'fraud_train_under_data.csv', index=True)
 	fraud_train_under_target = train_under_target.ix[fraud_train_under_indices, :]
-	fraud_train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_train_under_target.csv', index=True)
+	fraud_train_under_target.to_csv(dataset_path + 'fraud_train_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'normal_train_under_data.csv'):
 	normal_train_under_indices = train_under_target[train_under_target.isFraud == 0].index
-	normal_train_under_data = train_under_data.ix[normal_train_indices, :]
-	normal_train_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_under_data.csv', index=True)
+	normal_train_under_data = train_under_data.ix[normal_train_under_indices, :]
+	normal_train_under_data.to_csv(dataset_path + 'normal_train_under_data.csv', index=True)
 	normal_train_under_target = train_under_target.ix[normal_train_under_indices, :]
-	normal_train_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_train_under_target.csv', index=True)
-
-	test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_data.csv', index=True)
-	test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/test_under_target.csv', index=True)
+	normal_train_under_target.to_csv(dataset_path + 'normal_train_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'test_under_data.csv'):
+	test_under_data.to_csv(dataset_path + 'test_under_data.csv', index=True)
+	test_under_target.to_csv(dataset_path + 'test_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'fraud_test_under_data.csv'):
 	fraud_test_under_indices = test_under_target[test_under_target.isFraud == 1].index.values
 	fraud_test_under_data = test_under_data.ix[fraud_test_under_indices, :]
-	fraud_test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_under_data.csv', index=True)
+	fraud_test_under_data.to_csv(dataset_path + 'fraud_test_under_data.csv', index=True)
 	fraud_test_under_target = test_under_target.ix[fraud_test_under_indices, :]
-	fraud_test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/fraud_test_under_target.csv', index=True)
+	fraud_test_under_target.to_csv(dataset_path + 'fraud_test_under_target.csv', index=True)
+if not os.path.isfile(dataset_path + 'normal_test_under_data.csv'):
 	normal_test_under_indices = test_under_target[test_under_target.isFraud == 0].index
 	normal_test_under_data = test_under_data.ix[normal_test_under_indices, :]
-	normal_test_under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_under_data.csv', index=True)
+	normal_test_under_data.to_csv(dataset_path + 'normal_test_under_data.csv', index=True)
 	normal_test_under_target = test_under_target.ix[normal_test_under_indices, :]
-	normal_test_under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/normal_test_under_target.csv', index=True)
+	normal_test_under_target.to_csv(dataset_path + 'normal_test_under_target.csv', index=True)
 
 
-## saves extracted data (orig_boxcox, selected_boxcox, selected_orig, selected_orig_pca, selected_orig_pca_2_components) if it does not exist or load the saved data
-if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv'):
-	## orig_boxcox
-	data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index=True)
-	
-	## boxcox (selected features)
-	boxcox = data.copy()
-	boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-	boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index=True)
-	
-	## orig (selected features)
-	orig = data.copy()
-	orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-	orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index=True)
-	
-	## target
-	target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index=True)
-	
-	## orig_PCA
-	X = PCA().fit_transform(orig.values)
-	df = pd.DataFrame(X, index=orig.index.values)
-	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index=True)
-	
-	## orig_PCA2 (PCA with 2 components)
-	X2 = PCA(n_components=2).fit_transform(orig.values)
-	df2 = pd.DataFrame(X2, index=orig.index.values)
-	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index=True)
-else:
-	data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_boxcox.csv', index_col=0)
-	boxcox = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/boxcox.csv', index_col=0)
-	orig = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig.csv', index_col=0)
-	target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/target.csv', index_col=0)
-	orig_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA.csv', index_col=0)
-	orig_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/orig_PCA2.csv', index_col=0)
-
-
-## saves undersampled extracted data (orig_boxcox, selected_boxcox, selected_orig, selected_orig_pca, selected_orig_pca_2_components) if it does not exist or load the saved data
-if not os.path.isfile('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv'):
+## Saves extracted feaures if it does not exist or load the saved data
+print("## Saves extracted feaures if it does not exist or load the saved data")
+if not os.path.isfile(dataset_path + 'under_orig_boxcox.csv'):
 	## under_orig_boxcox
-	under_data.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index=True)
+	under_data.to_csv(dataset_path + 'under_orig_boxcox.csv', index=True)
 	
 	## under_boxcox
 	under_boxcox = under_data.copy()
 	under_boxcox.drop(['step', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'amount'], axis=1, inplace=True)
-	under_boxcox.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index=True)
+	under_boxcox.to_csv(dataset_path + 'under_boxcox.csv', index=True)
 	
 	## under_orig
 	under_orig = under_data.copy()
 	under_orig.drop(['amount_boxcox', 'oldbalanceOrg_boxcox', 'newbalanceOrg_boxcox', 'oldbalanceDest_boxcox', 'newbalanceDest_boxcox'], axis=1, inplace=True)
-	under_orig.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index=True)
+	under_orig.to_csv(dataset_path + 'under_orig.csv', index=True)
 	
 	## under_target[]
-	under_target.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index=True)
+	under_target.to_csv(dataset_path + 'under_target.csv', index=True)
 	
 	## under_orig_PCA
 	X = PCA().fit_transform(under_orig.values)
 	df = pd.DataFrame(X, index=under_orig.index.values)
-	df.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index=True)
+	df.to_csv(dataset_path + 'under_PCA.csv', index=True)
 	
 	## under_orig_PCA2
 	X2 = PCA(n_components=2).fit_transform(under_orig.values)
 	df2 = pd.DataFrame(X2, index=under_orig.index.values)
-	df2.to_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index=True)
+	df2.to_csv(dataset_path + 'under_PCA2.csv', index=True)
 else:
-	under_data = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig_boxcox.csv', index_col=0)
-	under_boxcox = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_boxcox.csv', index_col=0)
-	under_orig = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_orig.csv', index_col=0)
-	under_target = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_target.csv', index_col=0)
-	under_PCA = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA.csv', index_col=0)
-	under_PCA2 = pd.read_csv('/media/thiago/ubuntu/datasets/fraudDetection/under_PCA2.csv', index_col=0)
+	under_data = pd.read_csv(dataset_path + 'under_orig_boxcox.csv', index_col=0)
+	under_boxcox = pd.read_csv(dataset_path + 'under_boxcox.csv', index_col=0)
+	under_orig = pd.read_csv(dataset_path + 'under_orig.csv', index_col=0)
+	under_target = pd.read_csv(dataset_path + 'under_target.csv', index_col=0)
+	under_PCA = pd.read_csv(dataset_path + 'under_PCA.csv', index_col=0)
+	under_PCA2 = pd.read_csv(dataset_path + 'under_PCA2.csv', index_col=0)

@@ -55,13 +55,11 @@ noisyPatches -= noiseMean
 # print('noisyPatches: ' + str(noisyPatches.shape))
 
 ## For each DL method: learn the dictionary, obtain the sparse coding and reconstruc the denoised image
-# ToDo: Evaluate differents sparse coding solvers, such as OMP, Lasso, JavaOMP and others
 for K in K_range:
 	for tnz in tnz_range:
 		for noIt in noIt_range:
-			fileNameSufix = 'L={:d}_K={:d}_noIt={:d}_solver=javaORMP_tnz={:d}.csv'.format(L, K, noIt, tnz)
 			print >> results, '\n## L={:d}_N={:d}_tnz={:d}_K={:d}_noIt={:d}'.format(L, N, tnz, K, noIt)
-			print('\n## L={:d}_N={:d}_tnz={:d}_K={:d}_noIt={:d}'.format(L, N, tnz, K, noIt))
+			fileNameSufix = 'L={:d}_K={:d}_noIt={:d}_solver=javaORMP_tnz={:d}.csv'.format(L, K, noIt, tnz)			
 			reconstructions = {}
 			transform_algorithms = [
 				('MiniBatchDL_OMP', 'omp', {'transform_n_nonzero_coefs': tnz}),
@@ -71,7 +69,6 @@ for K in K_range:
 				('K-HOSVD_javaORMP', 'javaORMP', {'transform_n_nonzero_coefs': tnz}),
 				('MOD_javaORMP', 'javaORMP', {'transform_n_nonzero_coefs': tnz})]
 			for title, transform_algorithm, kwargs in transform_algorithms:
-				# t0 = time()
 				reconstructions[title] = face.copy()
 				dictionary = {}
 				sparseCode = {}
@@ -87,28 +84,20 @@ for K in K_range:
 				elif title is 'T-MOD_javaORMP':
 					dictionary = np.loadtxt(filePath + 'dictT-MODNoisy_' + fileNameSufix, delimiter=';')
 					sparseCode = np.loadtxt(filePath + 'sparseCodeT-MODNoisy_' + fileNameSufix, delimiter=';')
-					print('T-MOD dictionary: ' + str(dictionary.shape))
-					print('T-MOD sparsecode: ' + str(sparseCode.shape))
 				elif title is 'K-HOSVD_javaORMP':
 					dictionary = np.loadtxt(filePath + 'dictK-HOSVDNoisy_' + fileNameSufix, delimiter=';')
 					sparseCode = np.loadtxt(filePath + 'sparseCodeK-HOSVDNoisy_' + fileNameSufix, delimiter=';')
 				elif title is 'MiniBatchDL_OMP':
-					# t0 = time()
 					miniBatch = MiniBatchDictionaryLearning(n_components=K, alpha=1, n_iter=noIt)
 					dictionary = miniBatch.fit(noisyPatches).components_
-					# dt = time() - t0
-					# print >> results, 'Fit Time: %.2fs.' % dt
-					# print('Fit Time: %.2fs.' % dt)
-					# t0 = time()
 					miniBatch.set_params(transform_algorithm=transform_algorithm, **kwargs)
 					sparseCode = miniBatch.transform(noisyPatches)
 				reconstruction = np.dot(sparseCode, dictionary)
 				reconstruction += noiseMean
 				reconstruction = reconstruction.reshape(len(noisyPatches), *patch_size)
 				reconstructions[title][:, width // 2:] = reconstruct_from_patches_2d(reconstruction, (height, width // 2))
-				# dt = time() - t0
-				# print('Reconstruction: ' + str(reconstruction.shape))
-				# print >> results, 'Transform Time: %.2fs.' % dt
-				# print('Transform Time: %.2fs.' % dt)
 				print_comparison(reconstructions[title], face, title)
 results.close()
+
+# ToDo:
+# Evaluate differents sparse coding solvers, such as OMP, Lasso, JavaOMP and others

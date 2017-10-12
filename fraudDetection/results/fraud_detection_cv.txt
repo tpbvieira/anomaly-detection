@@ -1,0 +1,27 @@
+## Loading data
+## denoised_a1_c2_it100	[complete/complete]	ROC_AUC:0.6686	PR_AUC:0.0151	[under/under]	ROC_AUC:0.7016 PR_AUC:0.7490	[under/complete]	ROC_AUC:0.3953	PR_AUC:0.0027
+## sparse_a1_c2_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.7016 PR_AUC:0.7490	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c6_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c6_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c10_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a1_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a1_c100_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c2_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a2_c2_it100	[complete/complete]	ROC_AUC:0.6590	PR_AUC:0.0149	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c6_it100	[complete/complete]	ROC_AUC:0.6601	PR_AUC:0.0149	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.5536	PR_AUC:0.0049
+## sparse_a2_c6_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## denoised_a2_c10_it100	[complete/complete]	ROC_AUC:0.6609	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6609	PR_AUC:0.0056
+## sparse_a2_c10_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c20_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c20_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c40_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c40_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a2_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## sparse_a2_c100_it100	[complete/complete]	ROC_AUC:0.6621	PR_AUC:0.0056	[under/under]	ROC_AUC:0.8340 PR_AUC:0.8589	[under/complete]	ROC_AUC:0.6621	PR_AUC:0.0056
+## denoised_a3_c2_it100	[complete/complete]	ROC_AUC:0.6927	PR_AUC:0.4486	[under/under]	ROC_AUC:0.7996 PR_AUC:0.8430	[under/complete]	ROC_AUC:0.6927	PR_AUC:0.4486
+## sparse_a3_c2_it100	[complete/co

@@ -1,3 +1,36 @@
+=================================================================================================================================================================================
+
+## Image = 46500x49)
+train_data.csv 					(1939286x7)
+train_target.csv 				(1939286x1)
+fraud_train_data.csv 			(5748x7)
+fraud_train_target.csv 			(5748x1)
+normal_train_data.csv 			(1933538x7)
+normal_train_target.csv 		(1933538x1)
+test_data.csv 					(831123x7)
+test_target.csv 				(831123x1)
+
+train_under_data.csv 			(11498x7)
+train_under_target.csv 			(11498x1)
+fraud_train_under_data.csv 		(5775x7)
+fraud_train_under_target.csv 	(5775x1)
+normal_train_under_data.csv  	(5723x7)
+normal_train_under_target.csv 	(5723x1)
+test_under_data.csv 			(4928x7)
+test_under_target.csv 			(4928x1)
+
+=================================================================================================================================================================================
+
+Recall: 					also known as sensitivity, means TP/(TN+FN) or TP(Expected True)
+ROC_AUC: 					A ROC curve is the True Positive Rate (TPR) against False Positive Rate (FPR).
+AP: 						Average Precision (AP) is the Area under Precision-Recall Curve (AUC of PR-curve)
+undersample/undersample:	learn from undersample and validate against undersample
+undersample/complete: 		learn from undersample and validate against complete
+complete/complete: 			learn from complete and validate against complete
+under/complete: 			learn from complete and validate against complete
+
+=================================================================================================================================================================================
+
 Facts:
 	Dataset: 
 		E. A. Lopez-Rojas , A. Elmir, and S. Axelsson. "PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
@@ -8,5 +41,8 @@ Facts:
 
 
 ToDo:
-	Since svm is more adoted for classification, include it for validation
-	
+	verify the classification from DL methods of original data
+	verify how reconstruction works for test data considering different sparse codings and dictionaries (from all, legitimate and fraud separatelly)
+	testar análise com tipos separados
+	usar os recursos de visualizacao do featureSelection e de outro sobre fraud que plota duas distributions juntas
+	testar MOS com entropy
