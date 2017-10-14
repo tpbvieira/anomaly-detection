@@ -7,16 +7,19 @@ import numpy as np
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 # import matlab.engine
 from time import time
+from sklearn import preprocessing
 from sklearn.decomposition import MiniBatchDictionaryLearning
-from skimage.measure import (compare_mse, compare_nrmse, compare_psnr)
+from skimage.measure import (compare_mse, compare_nrmse)
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy.sparse.linalg import svds
 
-## Function to plot image difference
-def print_comparison(image, reference, method_name):
-	difference = image - reference
-	mse = compare_mse(reference, image)
-	nrmse = compare_nrmse(reference, image)
-	psnr = compare_psnr(reference, image)
-	text = method_name + ': norm: %(norm).4f\tMSE: %(MSE).4f\tNRMSE: %(NRMSE).4f\tPSNR: %(PSNR).4f' % {'norm': np.sqrt(np.sum(difference ** 2)), 'MSE': mse, 'NRMSE': nrmse, 'PSNR': psnr}
+## Prints a comparison of matrices
+def print_comparison(X, Y, comparison_name):
+	difference = X - Y
+	mse = compare_mse(X, Y)
+	nrmse = compare_nrmse(X, Y)
+	cos = cosine_similarity(X, Y)
+	text = comparison_name + ': norm: %(NORM).4f\tMSE: %(MSE).4f\tnRMSE: %(NRMSE).4f' % {'NORM': np.sqrt(np.sum(difference ** 2)), 'MSE': mse, 'NRMSE': nrmse}
 	print >> results, text
 
 ## settings
@@ -43,8 +46,9 @@ noIt_range = [10, 50, 100]
 tnz_range = [2, 5]
 
 ## Compare to original one
-np.set_printoptions(suppress=True)
-print_comparison(data.values, data.values, 'Original Data')
+data = pd.DataFrame(preprocessing.scale(data.values), columns=data.columns, index=data.index.values)
+noise = np.random.normal(0,1,N)
+print_comparison(data.values, data.values + noise, 'Original Data')
 
 ## Load previously calculated data and evaluates their reconstruction performance for each parameter configuration
 for K in K_range:
@@ -89,6 +93,3 @@ for K in K_range:
 				print(reconstruction.values)
 				print_comparison(reconstruction.values, data.values)
 results.close()
-
-## ToDo: 
-# Evaluate differents sparse coding solvers, such as OMP, Lasso, JavaOMP and others

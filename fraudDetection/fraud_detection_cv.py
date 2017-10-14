@@ -1,7 +1,9 @@
 # coding: utf-8
-########################################################################################################################
-## PR_AUC and ROC_AUC evaluation of extracted features for fraud detection by logistic regression
-########################################################################################################################
+###########################################################################################################################################
+## Implements:
+##		Feature extraction based on dictionaries and sparse coding via MiniBatchDictionaryLearning
+##		PR_AUC and ROC_AUC evaluation of original data and extracted features for fraud detection by logistic regression, SVM and LinearSVM
+###########################################################################################################################################
 
 from __future__ import division
 import os.path
@@ -181,7 +183,6 @@ train_under_data, test_under_data, train_under_target, test_under_target = train
 # 	average_precision[i] = average_precision_score(test_target, predicted_unsample_score)
 # print >> results_file, "## [under/complete]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
-
 # ## Perfoming LogisticRegression [complete/complete]
 # best_c = 100
 # lr = LogisticRegression(C=best_c, penalty='l1')
@@ -235,7 +236,6 @@ train_under_data, test_under_data, train_under_target, test_under_target = train
 # 	average_precision[i] = average_precision_score(test_target, predicted_score)
 # print >> results_file, "## [under/complete]\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
-
 ## MiniBatch Dictionary Learning cross-validation
 alpha_range = [1, 2, 3, 5, 7, 8, 10, 100] # sparsity
 n_range = [2, 6, 10, 20, 40, 100] # dictionary size
@@ -244,173 +244,246 @@ for a in alpha_range:
 		it = 100;
 		best_c = 100 # previously calculated through cross validation code for logisctic regression
 
-		## Train data
+		## train_data
 		if not os.path.isfile(fraud_data_path + 'train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'train_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 			sparseCode = miniBatch.transform(train_data.values)
-			denoised = np.dot(sparseCode, dictionary)
 			sparseCode_df = pd.DataFrame(sparseCode, index=train_data.index.values)
 			sparseCode_df.to_csv(fraud_data_path + 'train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
 			denoised_df = pd.DataFrame(denoised, index=train_data.index.values)
 			denoised_df.to_csv(fraud_data_path + 'train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 		
-		## Test data
+		## test_data
 		if not os.path.isfile(fraud_data_path + 'test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating test_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating test_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'test_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 			sparseCode = miniBatch.transform(test_data.values)
-			denoised = np.dot(sparseCode, dictionary)
 			sparseCode_df = pd.DataFrame(sparseCode, index=test_data.index.values)
 			sparseCode_df.to_csv(fraud_data_path + 'test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
 			denoised_df = pd.DataFrame(denoised, index=test_data.index.values)
 			denoised_df.to_csv(fraud_data_path + 'test_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-		## Train under data
+		## normal_train_data
+		if not os.path.isfile(fraud_data_path + 'normal_train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
+			print('## Creating normal_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+			print >> results_file, '## Creating normal_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			normal_train_data = pd.read_csv(fraud_data_path + 'normal_train_data.csv', index_col=0)
+			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
+			dictionary = miniBatch.fit(normal_train_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'normal_train_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			sparseCode = miniBatch.transform(normal_train_data.values)
+			sparseCode_df = pd.DataFrame(sparseCode, index=normal_train_data.index.values)
+			sparseCode_df.to_csv(fraud_data_path + 'normal_train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
+			denoised_df = pd.DataFrame(denoised, index=normal_train_data.index.values)
+			denoised_df.to_csv(fraud_data_path + 'normal_train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+
+		## fraud_train_data
+		if not os.path.isfile(fraud_data_path + 'fraud_train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
+			print('## Creating fraud_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+			print >> results_file, '## Creating fraud_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			fraud_train_data = pd.read_csv(fraud_data_path + 'fraud_train_data.csv', index_col=0)
+			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
+			dictionary = miniBatch.fit(fraud_train_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'fraud_train_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			sparseCode = miniBatch.transform(fraud_train_data.values)
+			sparseCode_df = pd.DataFrame(sparseCode, index=fraud_train_data.index.values)
+			sparseCode_df.to_csv(fraud_data_path + 'fraud_train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
+			denoised_df = pd.DataFrame(denoised, index=fraud_train_data.index.values)
+			denoised_df.to_csv(fraud_data_path + 'fraud_train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+
+		## train_under_data
 		if not os.path.isfile(fraud_data_path + 'train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating train_under_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating train_under_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_under_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'train_under_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 			sparseCode = miniBatch.transform(train_under_data.values)
-			denoised = np.dot(sparseCode, dictionary)
 			sparseCode_df = pd.DataFrame(sparseCode, index=train_under_data.index.values)
 			sparseCode_df.to_csv(fraud_data_path + 'train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
 			denoised_df = pd.DataFrame(denoised, index=train_under_data.index.values)
 			denoised_df.to_csv(fraud_data_path + 'train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-		## test under data
+		## test_under_data
 		if not os.path.isfile(fraud_data_path + 'test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating test_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating test_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_under_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'test_under_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 			sparseCode = miniBatch.transform(test_under_data.values)
-			denoised = np.dot(sparseCode, dictionary)
 			sparseCode_df = pd.DataFrame(sparseCode, index=test_under_data.index.values)
 			sparseCode_df.to_csv(fraud_data_path + 'test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
 			denoised_df = pd.DataFrame(denoised, index=test_under_data.index.values)
 			denoised_df.to_csv(fraud_data_path + 'test_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-		## dictionary data
-		str_data_type = '## denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
-		train_data = pd.read_csv(fraud_data_path + 'train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		test_data = pd.read_csv(fraud_data_path + 'test_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		train_under_data = pd.read_csv(fraud_data_path + 'train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		test_under_data = pd.read_csv(fraud_data_path + 'test_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		## normal_train_under_data
+		if not os.path.isfile(fraud_data_path + 'normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
+			print('## Creating normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+			print >> results_file, '## Creating normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			normal_train_under_data = pd.read_csv(fraud_data_path + 'normal_train_under_data.csv', index_col=0)
+			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
+			dictionary = miniBatch.fit(normal_train_under_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'normal_train_under_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			sparseCode = miniBatch.transform(normal_train_under_data.values)
+			sparseCode_df = pd.DataFrame(sparseCode, index=normal_train_under_data.index.values)
+			sparseCode_df.to_csv(fraud_data_path + 'normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
+			denoised_df = pd.DataFrame(denoised, index=normal_train_under_data.index.values)
+			denoised_df.to_csv(fraud_data_path + 'normal_train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-		## Perfoming LogisticRegression [complete/complete]		
-		lr = LogisticRegression(C=best_c, penalty='l1')
-		lr_fit = lr.fit(train_data, train_target.values.ravel())
-		test_predicted = lr.predict(test_data.values)
-		## ROC AUC
-		predicted_score = lr_fit.decision_function(test_data.values)
-		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
-		roc_auc = auc(fpr, tpr)
-		## Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		n_classes = test_target.shape[1]
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-			average_precision[i] = average_precision_score(test_target, predicted_score)
-		str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		## fraud_train_under_data
+		if not os.path.isfile(fraud_data_path + 'fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
+			print('## Creating fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
+			print >> results_file, '## Creating fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			fraud_train_under_data = pd.read_csv(fraud_data_path + 'fraud_train_under_data.csv', index_col=0)
+			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
+			dictionary = miniBatch.fit(fraud_train_under_data.values).components_
+			dictionary_df = pd.DataFrame(dictionary)
+			dictionary_df.to_csv(fraud_data_path + 'fraud_train_under_data_dictionary_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			sparseCode = miniBatch.transform(fraud_train_under_data.values)
+			sparseCode_df = pd.DataFrame(sparseCode, index=fraud_train_under_data.index.values)
+			sparseCode_df.to_csv(fraud_data_path + 'fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
+			denoised = np.dot(sparseCode, dictionary)
+			denoised_df = pd.DataFrame(denoised, index=fraud_train_under_data.index.values)
+			denoised_df.to_csv(fraud_data_path + 'fraud_train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index=True)
 
-		## Perfoming LogisticRegression [under/under]
-		lr = LogisticRegression(C=best_c, penalty='l1')
-		lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
-		test_under_predicted = lr.predict(test_under_data.values)
-		## ROC AUC
-		predicted_under_score = lr_fit.decision_function(test_under_data.values)
-		fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
-		roc_auc = auc(fpr, tpr)
-		# Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		n_classes = test_under_target.shape[1]
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
-			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
-		str_under_under = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + " PR_AUC:{:.4f}".format(average_precision[0])
+		# ## dictionary data
+		# str_data_type = '## denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+		# train_data = pd.read_csv(fraud_data_path + 'train_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# test_data = pd.read_csv(fraud_data_path + 'test_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# train_under_data = pd.read_csv(fraud_data_path + 'train_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# test_under_data = pd.read_csv(fraud_data_path + 'test_under_data_denoised_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 
-		## Perfoming LogisticRegression [under/complete]
-		test_predicted = lr.predict(test_data.values)
-		## ROC AUC
-		predicted_score = lr_fit.decision_function(test_data.values)
-		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
-		roc_auc = auc(fpr, tpr)
-		## Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-			average_precision[i] = average_precision_score(test_target, predicted_score)
-		str_under_comp = "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
-		print >> results_file, str_data_type + str_comp_comp + str_under_under + str_under_comp
+		# ## Perfoming LogisticRegression [complete/complete]		
+		# lr = LogisticRegression(C=best_c, penalty='l1')
+		# lr_fit = lr.fit(train_data, train_target.values.ravel())
+		# test_predicted = lr.predict(test_data.values)
+		# ## ROC AUC
+		# predicted_score = lr_fit.decision_function(test_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
+		# roc_auc = auc(fpr, tpr)
+		# ## Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# n_classes = test_target.shape[1]
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+		# 	average_precision[i] = average_precision_score(test_target, predicted_score)
+		# str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
 
-		## sparse data
-		str_data_type = '## sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
-		train_data = pd.read_csv(fraud_data_path + 'train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		test_data = pd.read_csv(fraud_data_path + 'test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		train_under_data = pd.read_csv(fraud_data_path + 'train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
-		test_under_data = pd.read_csv(fraud_data_path + 'test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# ## Perfoming LogisticRegression [under/under]
+		# lr = LogisticRegression(C=best_c, penalty='l1')
+		# lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
+		# test_under_predicted = lr.predict(test_under_data.values)
+		# ## ROC AUC
+		# predicted_under_score = lr_fit.decision_function(test_under_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
+		# roc_auc = auc(fpr, tpr)
+		# # Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# n_classes = test_under_target.shape[1]
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
+		# 	average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
+		# str_under_under = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + " PR_AUC:{:.4f}".format(average_precision[0])
 
-		## Perfoming LogisticRegression [complete/complete]
-		lr = LogisticRegression(C=best_c, penalty='l1')
-		lr_fit = lr.fit(train_data, train_target.values.ravel())
-		test_predicted = lr.predict(test_data.values)		
-		## ROC AUC
-		predicted_score = lr_fit.decision_function(test_data.values)
-		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
-		roc_auc = auc(fpr, tpr)
-		## Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		n_classes = test_target.shape[1]
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-			average_precision[i] = average_precision_score(test_target, predicted_score)
-		str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		# ## Perfoming LogisticRegression [under/complete]
+		# test_predicted = lr.predict(test_data.values)
+		# ## ROC AUC
+		# predicted_score = lr_fit.decision_function(test_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
+		# roc_auc = auc(fpr, tpr)
+		# ## Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+		# 	average_precision[i] = average_precision_score(test_target, predicted_score)
+		# str_under_comp = "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		# print >> results_file, str_data_type + str_comp_comp + str_under_under + str_under_comp
 
-		## Perfoming LogisticRegression [under/under]
-		lr = LogisticRegression(C=best_c, penalty='l1')
-		lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
-		test_under_predicted = lr.predict(test_under_data.values)
-		## ROC AUC
-		predicted_under_score = lr_fit.decision_function(test_under_data.values)
-		fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
-		roc_auc = auc(fpr, tpr)
-		## Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		n_classes = test_under_target.shape[1]
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
-			average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
-		str_under_comp = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		# ## sparse data
+		# str_data_type = '## sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+		# train_data = pd.read_csv(fraud_data_path + 'train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# test_data = pd.read_csv(fraud_data_path + 'test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# train_under_data = pd.read_csv(fraud_data_path + 'train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
+		# test_under_data = pd.read_csv(fraud_data_path + 'test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it), index_col=0)
 
-		## Perfoming LogisticRegression [under/complete]
-		test_predicted = lr.predict(test_data.values)
-		## ROC AUC
-		predicted_score = lr_fit.decision_function(test_data.values)
-		fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
-		roc_auc = auc(fpr, tpr)
-		## Precision-Recall AUC
-		precision = dict()
-		recall = dict()
-		average_precision = dict()
-		for i in range(n_classes):
-			precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
-			average_precision[i] = average_precision_score(test_target, predicted_score)
-		str_under_comp =  "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
-		print >> results_file, str_data_type + str_comp_comp + str_under_under + str_under_comp
+		# ## Perfoming LogisticRegression [complete/complete]
+		# lr = LogisticRegression(C=best_c, penalty='l1')
+		# lr_fit = lr.fit(train_data, train_target.values.ravel())
+		# test_predicted = lr.predict(test_data.values)		
+		# ## ROC AUC
+		# predicted_score = lr_fit.decision_function(test_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
+		# roc_auc = auc(fpr, tpr)
+		# ## Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# n_classes = test_target.shape[1]
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+		# 	average_precision[i] = average_precision_score(test_target, predicted_score)
+		# str_comp_comp =  "\t[complete/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+
+		# ## Perfoming LogisticRegression [under/under]
+		# lr = LogisticRegression(C=best_c, penalty='l1')
+		# lr_fit = lr.fit(train_under_data, train_under_target.values.ravel())
+		# test_under_predicted = lr.predict(test_under_data.values)
+		# ## ROC AUC
+		# predicted_under_score = lr_fit.decision_function(test_under_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_under_target.values.ravel(), predicted_under_score)
+		# roc_auc = auc(fpr, tpr)
+		# ## Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# n_classes = test_under_target.shape[1]
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_under_target, predicted_under_score)
+		# 	average_precision[i] = average_precision_score(test_under_target, predicted_under_score)
+		# str_under_comp = "\t[under/under]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+
+		# ## Perfoming LogisticRegression [under/complete]
+		# test_predicted = lr.predict(test_data.values)
+		# ## ROC AUC
+		# predicted_score = lr_fit.decision_function(test_data.values)
+		# fpr, tpr, thresholds = roc_curve(test_target.values.ravel(), predicted_score)
+		# roc_auc = auc(fpr, tpr)
+		# ## Precision-Recall AUC
+		# precision = dict()
+		# recall = dict()
+		# average_precision = dict()
+		# for i in range(n_classes):
+		# 	precision[i], recall[i], _ = precision_recall_curve(test_target, predicted_score)
+		# 	average_precision[i] = average_precision_score(test_target, predicted_score)
+		# str_under_comp =  "\t[under/complete]" + "\tROC_AUC:{0:.4f}".format(roc_auc) + "\tPR_AUC:{:.4f}".format(average_precision[0])
+		# print >> results_file, str_data_type + str_comp_comp + str_under_under + str_under_comp
+
 results_file.close()

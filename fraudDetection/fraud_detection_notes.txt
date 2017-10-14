@@ -1,7 +1,6 @@
-=================================================================================================================================================================================
+=================================================================================================================================================================================================================================
 
-## Image = 46500x49)
-train_data.csv 					(1939286x7)
+train_data.csv 					(1939286x7)(13575002)	## Image = 46500x49)(2278500)
 train_target.csv 				(1939286x1)
 fraud_train_data.csv 			(5748x7)
 fraud_train_target.csv 			(5748x1)
@@ -19,7 +18,7 @@ normal_train_under_target.csv 	(5723x1)
 test_under_data.csv 			(4928x7)
 test_under_target.csv 			(4928x1)
 
-=================================================================================================================================================================================
+=================================================================================================================================================================================================================================
 
 Recall: 					also known as sensitivity, means TP/(TN+FN) or TP(Expected True)
 ROC_AUC: 					A ROC curve is the True Positive Rate (TPR) against False Positive Rate (FPR).
@@ -28,8 +27,12 @@ undersample/undersample:	learn from undersample and validate against undersample
 undersample/complete: 		learn from undersample and validate against complete
 complete/complete: 			learn from complete and validate against complete
 under/complete: 			learn from complete and validate against complete
+norm:						The lower the better
+MSE							The lower the better
+NRMSE:						The lower the better
+PSNR:						The bigger the better
 
-=================================================================================================================================================================================
+=================================================================================================================================================================================================================================
 
 Facts:
 	Dataset: 
@@ -38,11 +41,20 @@ Facts:
 		we can argue that our technique can be applied into mobile clients, since the light-weight processing required for calculating a sparse cocidng and the comparison
 	Math
 		L = ((np.array(arr.shape) - np.array(patch_shape)) // np.array(extraction_step)) + 1
+	PSNR appears not fit for comparisons of not image data
 
+=================================================================================================================================================================================================================================
 
 ToDo:
-	verify the classification from DL methods of original data
 	verify how reconstruction works for test data considering different sparse codings and dictionaries (from all, legitimate and fraud separatelly)
+	test standardization and normalization
+	verify the classification from DL methods of original data
 	testar análise com tipos separados
 	usar os recursos de visualizacao do featureSelection e de outro sobre fraud que plota duas distributions juntas
+	Evaluate differents sparse coding solvers, such as OMP, Lasso, JavaOMP and others
 	testar MOS com entropy
+
+=================================================================================================================================================================================================================================
+
+Distorted_image:	norm:	16.6980		MSE:	0.0028	NRMSE:	0.1043	PSNR:	25.4724
+Original Data: 		norm:	314.0661	MSE:	1.2255	NRMSE:	0.7421	PSNR: 	0.0000
