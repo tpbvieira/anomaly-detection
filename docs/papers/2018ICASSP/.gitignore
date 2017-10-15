@@ -1,0 +1,8 @@
+*.synctex.gz
+*.pdf
+*.PDF
+*.log
+*.aux
+examples/*
+figures/*.pdf
+figures/*.PDF

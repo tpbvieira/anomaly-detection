@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{tosic2011dictionary}
+Ivana Tosic and Pascal Frossard,
+\newblock ``Dictionary learning,''
+\newblock {\em IEEE Signal Processing Magazine}, vol. 28, no. 2, pp. 27--38,
+  2011.
+
+\bibitem{zhang2010discriminative}
+Qiang Zhang and Baoxin Li,
+\newblock ``Discriminative k-svd for dictionary learning in face recognition,''
+\newblock in {\em Computer Vision and Pattern Recognition (CVPR), 2010 IEEE
+  Conference on}. IEEE, 2010, pp. 2691--2698.
+
+\bibitem{zhu2016coupled}
+Pengfei Zhu, Qinghua Hu, Changqing Zhang, and Wangmeng Zuo,
+\newblock ``Coupled dictionary learning for unsupervised feature selection.,''
+\newblock in {\em AAAI}, 2016, pp. 2422--2428.
+
+\bibitem{ravishankar2011mr}
+Saiprasad Ravishankar and Yoram Bresler,
+\newblock ``Mr image reconstruction from highly undersampled k-space data by
+  dictionary learning,''
+\newblock {\em IEEE transactions on medical imaging}, vol. 30, no. 5, pp.
+  1028--1041, 2011.
+
+\bibitem{kolda2009tensor}
+Tamara~G Kolda and Brett~W Bader,
+\newblock ``Tensor decompositions and applications,''
+\newblock {\em SIAM review}, vol. 51, no. 3, pp. 455--500, 2009.
+
+\bibitem{roemer2014tensor}
+Florian Roemer, Giovanni Del~Galdo, and Martin Haardt,
+\newblock ``Tensor-based algorithms for learning multidimensional separable
+  dictionaries,''
+\newblock in {\em Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
+  International Conference on}. IEEE, 2014, pp. 3963--3967.
+
+\bibitem{de2014distributed}
+Andr{\'e}~LF De~Almeida and Alain~Y Kibangou,
+\newblock ``Distributed large-scale tensor decomposition,''
+\newblock in {\em Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
+  International Conference on}. IEEE, 2014, pp. 26--30.
+
+\end{thebibliography}
