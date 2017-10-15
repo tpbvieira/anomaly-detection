@@ -1,6 +1,6 @@
 # coding: utf-8
 ###########################################################################################################################################
-## Implements:
+## This code implements:
 ##		Feature extraction based on dictionaries and sparse coding via MiniBatchDictionaryLearning
 ##		PR_AUC and ROC_AUC evaluation of original data and extracted features for fraud detection by logistic regression, SVM and LinearSVM
 ###########################################################################################################################################
@@ -241,6 +241,10 @@ alpha_range = [1, 2, 3, 5, 7, 8, 10, 100] # sparsity
 n_range = [2, 6, 10, 20, 40, 100] # dictionary size
 for a in alpha_range:
 	for n in n_range:
+
+		if a > n:
+			continue;
+
 		it = 100;
 		best_c = 100 # previously calculated through cross validation code for logisctic regression
 
@@ -248,6 +252,8 @@ for a in alpha_range:
 		if not os.path.isfile(fraud_data_path + 'train_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			train_data_std = preprocessing.scale(train_data.values)
+			train_data = pd.DataFrame(train_data_std, index=train_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -263,6 +269,8 @@ for a in alpha_range:
 		if not os.path.isfile(fraud_data_path + 'test_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating test_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating test_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			test_data_std = preprocessing.scale(test_data.values)
+			test_data = pd.DataFrame(test_data_std, index=test_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -279,6 +287,8 @@ for a in alpha_range:
 			print('## Creating normal_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating normal_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			normal_train_data = pd.read_csv(fraud_data_path + 'normal_train_data.csv', index_col=0)
+			normal_train_data_std = preprocessing.scale(normal_train_data.values)
+			normal_train_data = pd.DataFrame(normal_train_data_std, index=normal_train_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(normal_train_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -295,6 +305,8 @@ for a in alpha_range:
 			print('## Creating fraud_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating fraud_train_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			fraud_train_data = pd.read_csv(fraud_data_path + 'fraud_train_data.csv', index_col=0)
+			fraud_train_data_std = preprocessing.scale(fraud_train_data.values)
+			fraud_train_data = pd.DataFrame(fraud_train_data_std, index=fraud_train_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(fraud_train_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -310,6 +322,8 @@ for a in alpha_range:
 		if not os.path.isfile(fraud_data_path + 'train_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating train_under_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating train_under_data_denoised_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			train_under_data_std = preprocessing.scale(train_under_data.values)
+			train_under_data = pd.DataFrame(train_under_data_std, index=train_under_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(train_under_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -325,6 +339,8 @@ for a in alpha_range:
 		if not os.path.isfile(fraud_data_path + 'test_under_data_sparse_a{:d}_c{:d}_it{:d}.csv'.format(a,n,it)):
 			print('## Creating test_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating test_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
+			test_under_data_std = preprocessing.scale(test_under_data.values)
+			test_under_data = pd.DataFrame(test_under_data_std, index=test_under_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(test_under_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -341,6 +357,8 @@ for a in alpha_range:
 			print('## Creating normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating normal_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			normal_train_under_data = pd.read_csv(fraud_data_path + 'normal_train_under_data.csv', index_col=0)
+			normal_train_under_data_std = preprocessing.scale(normal_train_under_data.values)
+			normal_train_under_data = pd.DataFrame(normal_train_under_data_std, index=normal_train_under_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(normal_train_under_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)
@@ -357,6 +375,8 @@ for a in alpha_range:
 			print('## Creating fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it))
 			print >> results_file, '## Creating fraud_train_under_data_sparse_a{:d}_c{:d}_it{:d}'.format(a,n,it)
 			fraud_train_under_data = pd.read_csv(fraud_data_path + 'fraud_train_under_data.csv', index_col=0)
+			normal_train_under_data_std = preprocessing.scale(fraud_train_under_data.values)
+			fraud_train_under_data = pd.DataFrame(normal_train_under_data_std, index=fraud_train_under_data.index.values)
 			miniBatch = MiniBatchDictionaryLearning(n_components=n, alpha=a, n_iter=100)
 			dictionary = miniBatch.fit(fraud_train_under_data.values).components_
 			dictionary_df = pd.DataFrame(dictionary)

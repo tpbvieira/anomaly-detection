@@ -46,8 +46,10 @@ Facts:
 =================================================================================================================================================================================================================================
 
 ToDo:
+	recalculate normal_train_under_data_dictionary_a*
+	verify if data of undersample is in whole data
 	verify how reconstruction works for test data considering different sparse codings and dictionaries (from all, legitimate and fraud separatelly)
-	test standardization and normalization
+	test feature extraction after standardization and normalization
 	verify the classification from DL methods of original data
 	testar análise com tipos separados
 	usar os recursos de visualizacao do featureSelection e de outro sobre fraud que plota duas distributions juntas
