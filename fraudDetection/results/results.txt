@@ -1,13 +1,17 @@
 =================================================================================================================================================================================
 
-SVM_orig	[complete/complete]	ROC_AUC:0.0000	PR_AUC:0.0000	[under/under]	ROC_AUC:0.5039	PR_AUC:0.7493	[under/complete]	ROC_AUC:0.8496	PR_AUC:0.8497
-LSVM_orig	[complete/complete]	ROC_AUC:0.0000	PR_AUC:0.0000	[under/under]	ROC_AUC:0.9120	PR_AUC:0.9391	[under/complete]	ROC_AUC:0.9159	PR_AUC:0.4720
-LR_raw	[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530	[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC:0.9952	PR_AUC:0.7331
-LR_boxcox	[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230	[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC:0.9859	PR_AUC:0.6354
-LR_orig	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC:0.9792	PR_AUC:0.5971
-LR_orig_PCA	[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC:0.5633	PR_AUC:0.0051
+SVM_orig		[complete/complete]	ROC_AUC:0.0000	PR_AUC:0.0000	[under/under]	ROC_AUC:0.5039	PR_AUC:0.7493	[under/complete]	ROC_AUC:0.8496	PR_AUC:0.8497
+LSVM_orig		[complete/complete]	ROC_AUC:0.0000	PR_AUC:0.0000	[under/under]	ROC_AUC:0.9120	PR_AUC:0.9391	[under/complete]	ROC_AUC:0.9159	PR_AUC:0.4720
+LR_raw			[complete/complete]	ROC_AUC:0.9952	PR_AUC:0.8530	[under/under]	ROC_AUC:0.9939	PR_AUC:0.9950	[under/complete]	ROC_AUC:0.9952	PR_AUC:0.7331
+LR_boxcox		[complete/complete]	ROC_AUC:0.9827	PR_AUC:0.7230	[under/under]	ROC_AUC:0.9836	PR_AUC:0.9853	[under/complete]	ROC_AUC:0.9859	PR_AUC:0.6354
+LR_orig			[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6787	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC:0.9792	PR_AUC:0.5971
+LR_orig_PCA		[complete/complete]	ROC_AUC:0.9824	PR_AUC:0.6780	[under/under]	ROC_AUC:0.9767	PR_AUC:0.9793	[under/complete]	ROC_AUC:0.5633	PR_AUC:0.0051
 LR_orig_PCA2	[complete/complete]	ROC_AUC:0.8342	PR_AUC:0.0893	[under/under]	ROC_AUC:0.8583	PR_AUC:0.8805	[under/complete]	ROC_AUC:0.7656	PR_AUC:0.0206
 
+under/under
+	MiniBatchDL_OMP:L:4928_N:7_tnz:2_K:2_noIt:100	NORM_ROC_AUC:0.8043	NORM_PR_AUC:0.8504
+	MiniBatchDL_OMP:L:4928_N:7_tnz:2_K:10_noIt:100	NORM_ROC_AUC:0.8247	NORM_PR_AUC:0.8640
+	MiniBatchDL_OMP:L:4928_N:7_tnz:3_K:40_noIt:100	NORM_ROC_AUC:0.8622	NORM_PR_AUC:0.8917
 =================================================================================================================================================================================
 
 ## denoised_a1_c2_it100	[complete/complete]	ROC_AUC:0.6610	PR_AUC:0.0150	[under/under]	ROC_AUC:0.7033	PR_AUC:0.7507	[under/complete]	ROC_AUC:0.3937	PR_AUC:0.0027

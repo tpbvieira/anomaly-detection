@@ -31,12 +31,14 @@ norm:						The lower the better
 MSE							The lower the better
 NRMSE:						The lower the better
 PSNR:						The bigger the better
+Cos_Similarity				The bigger the better
 
 =================================================================================================================================================================================================================================
 
 Facts:
 	Dataset: 
 		E. A. Lopez-Rojas , A. Elmir, and S. Axelsson. "PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
+		E. Lopez-Rojas, A. Elmir, and S. Axelsson, “Paysim : A financial mobile money simulator for fraud detection,” in 28th European Modeling and Simulation Symposium, EMSS 2016, 2016, pp. 249–255.
 		PaySim is a financial simulator that simulates mobile money transactions based on an original dataset
 		we can argue that our technique can be applied into mobile clients, since the light-weight processing required for calculating a sparse cocidng and the comparison
 	Math

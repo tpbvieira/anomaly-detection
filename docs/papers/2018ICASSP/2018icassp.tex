@@ -61,7 +61,7 @@
 \maketitle
 
 \begin{abstract}
-The abstract goes here...
+The abstract goes here... Compressive Sensing (CS) allows to acquire signals at sampling rates significantly lower than the Nyquist rate, provided that the signals possess a sparse representation in an appropriate basis. However, in some applications of CS, the dictionary providing the sparse description is partially or entirely unknown. It has been shown that dictionary learning algorithms are able to estimate the basis vectors from a set of training samples. In some applications the dictionary is multidimensional, e.g., when estimating jointly azimuth and elevation in a 2-D direction of arrival (DOA) estimation context. In this paper we show that existing dictionary learning algorithms can be extended to exploit this structure, thereby providing a more accurate estimate of the dictionary. As examples we choose two prominent dictionary learning algorithms, the method of optimal directions (MOD) and the K-SVD algorithm. We propose tensor-based multidimensional extensions for both algorithms and show their improved performances numerically.
 \end{abstract}
 
 \begin{keywords}
@@ -72,11 +72,13 @@ Tensor-Based Dictionary Learning, Fraud Detection, Classification, Unbalanced Da
 \label{sec:introduction}
 Dictionary Learning is a signal processing technique for sparse representation of signals as basis vectors, learning the representations from training data, as dictionaries. The sparse representation in terms of such dictionaries has attracted increased interest for compressive sensing and for solving problems such as denoising, compression, image processing, data decomposition, feature extraction and classification \cite{tosic2011dictionary, zhang2010discriminative, zhu2016coupled,ravishankar2011mr}.
 
+% There are two major approaches for dictionary learning. First is the analytic approach, in which DCT bases, wavelets, curvelets and other nonadaptive functions are used as atoms to construct the dictionaries. Second is the learning-based approaches, such as the unsupervised learning for dictionary construction [9] and the online dictionary learning [11], [10], which use machine learning methods to construct the dictionary. In the analytic approach, some pre-defined functions are used to construct the dictionary. Curvelets [24], which tracks the shape of the discontinuity set, offers efficient and near-optimal representation of smooth objects. Shearlets [25], which is obtained from dilations, action of translations and shear transformations, has nice geometric properties and mathematical properties for image representation. Bandelets [26], which specifies the geometry as a vector field, is de-signed to improve the image compression and noise reduction performance. In the learning-based approach, machine learning methods are used to construct the dictionary from the training data. The least square error is used by the method of the optimal directions (MOD) [27] to update the dictionary iteratively:
+
 In some applications the data and its dictionary are multidimensional, e.g., when estimating jointly behavior of users in social networks. Computing tensor decompositions of multi-way datasets is particularly useful to extract hidden patterns and structure in multidimensional data analytics problems \cite{kolda2009tensor}. Tensor-based algorithms for dictionary learning can improve the performance for cases of multidimensional and separable data, regarding the dictionary identification rating, the required number of training samples and iterations for the optimization problem \cite{roemer2014tensor}. 
 
 Multidimensional parameter estimation and learning multidimensional separable dictionaries are growing research problems. Roemer \emph{et al.} \cite{roemer2014tensor} show that the multidimensional dictionary estimation problem can be efficiently formulated in terms of tensors, and that their results outperform existing schemes by exploiting the multilinear structure of the problem.
 
-Existing dictionary learning schemes can be applied to multidimensional analysis and obtain valuable results. However, the performance of tensor-based algorithms outperform existing schemes when dealing with growing multidimensional datasets, as can be seen in Figures \ref{fig:fig1} and \ref{fig:fig2}, which show that the detection rating of traditional algorithms decreases over the dataset increasing.
+Existing dictionary learning schemes can be applied to multidimensional analysis and obtain valuable results. However, the performance of tensor-based algorithms for recovering of a known separable dictionary outperform existing schemes when dealing with growing multidimensional datasets, as can be seen in Figures \ref{fig:fig1} and \ref{fig:fig2}, which show that the recovering rating of traditional algorithms decreases over the dataset increasing.
 
 \begin{figure}[!htb]
      \centering 
@@ -92,9 +94,14 @@ Existing dictionary learning schemes can be applied to multidimensional analysis
      \label{fig:fig2}
 \end{figure}
 
-Figures \ref{fig:fig1} and \ref{fig:fig2} show the evaluation of tensor-based and traditional dictionary learning algorithms for dictionary reconstruction of a multidimensional and separable data. Figure \ref{fig:fig1} presents the results for dictionary reconstruction from a matrix of 1000 elements, while Figures \ref{fig:fig2} presents the results from a matrix with 24000 entries. It is possible to observe better detection rating for tensor-based algorithms. However, tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets.
+Figures \ref{fig:fig1} and \ref{fig:fig2} show the evaluation of tensor-based and traditional dictionary learning algorithms for dictionary reconstruction of a multidimensional and separable data. Figure \ref{fig:fig1} presents the results for dictionary reconstruction from a matrix of 1000 elements by 50 atoms, while Figures \ref{fig:fig2} presents the results from a matrix with 24000 entries by 300 atoms. It is possible to observe better reconstruction rating for tensor-based algorithms. 
 
-We propose a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets. We focus on a distributed implementation of T-MOD \cite{roemer2014tensor} algorithm, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition. We perform experiments to test different methods for learning dictionaries, evaluating the processing time and the reconstruction of a dictionary of multidimensional and separable data.
+Imbalanced data...
+Recent developments in science and technology have enabled the growth and availability of raw data to occur at an explosive rate. This has created an immense opportunity for knowledge discovery and data engineering research to play an essential role in a wide range of applications from daily civilian life to national security. However, the high availability of raw data increases the challenges related to big data analytics and to imbalanced data, which corresponds to data sets exhibiting significant imbalances of classes or rare events of some classes. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms
+
+A key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based dictionary learning method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. In this paper, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based dictionary learning for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
+
+%However, tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets. We focus on a distributed implementation of T-MOD \cite{roemer2014tensor} algorithm, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition. We perform experiments to test different methods for learning dictionaries, evaluating the processing time and the reconstruction of a dictionary of multidimensional and separable data.
 
 \section{Data Model}
 
@@ -133,20 +140,6 @@ The dictionary estimation is evaluated by applying the proposed approach to esti
 \section{Experiments}
 
 ...
-
-\begin{figure}[!htb]
-     \centering 
-	 \includegraphics[width=0.4\textwidth]{figures/5_20_2000_4000_100.eps}
-     \caption{Matrix of 4.000 elements, 2000 sample training, 100 iterations}
-     \label{fig:facets_cross}
-\end{figure}
-
-\begin{figure}[!htb]
-     \centering 
-	 \includegraphics[width=0.4\textwidth]{figures/5_20_500_16000_100.eps}
-     \caption{Matrix of 16.000 elements, 500 sample training, 100 iterations}
-     \label{fig:facets_cross}
-\end{figure}
 
 \section{Conclusion}
 The conclusion goes here.
