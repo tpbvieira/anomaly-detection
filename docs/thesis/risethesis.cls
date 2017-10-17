@@ -404,7 +404,7 @@ requirements for the degree of \@degree\ in \@majorfielden.
   \if@openright\cleardoublepage\else\clearpage\fi
   \thispagestyle{empty}
   \begin{center}
-  \includegraphics[scale=0.35]{departmentlogo} \\
+  \includegraphics[scale=0.35]{figures/departmentlogo} \\
   \vfill
     
   %\begin{minipage}{110mm}
@@ -421,7 +421,7 @@ requirements for the degree of \@degree\ in \@majorfielden.
     \end{center}
   %\end{minipage}\\
   \vspace{0cm}
-  \includegraphics[width=1cm]{institutionlogo} \\
+  \includegraphics[width=1cm]{figures/institutionlogo} \\
   %{\sf\large \@university
   %\if\@showinstitute1\\
   %\@institute\fi
@@ -452,7 +452,7 @@ requirements for the degree of \@degree\ in \@majorfielden.
   
 	\begin{figure}[ht]
 	\begin{minipage}[b]{1.5cm}
-	  \includegraphics[width=1.5cm]{institutionlogo}
+	  \includegraphics[width=1.5cm]{figures/institutionlogo}
 	\end{minipage}
 	\hspace{0.2cm}
 	\begin{minipage}[b]{16cm}

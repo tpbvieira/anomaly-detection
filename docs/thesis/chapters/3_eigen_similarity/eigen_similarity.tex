@@ -56,7 +56,7 @@ The environment of the analyzed scenario is composed of two computers and one ro
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=6cm, width=9cm]{results/figures/fig09.png}
+     \includegraphics[height=6cm, width=9cm]{figures/fig09.png}
      \caption{Scenario to reproduce legitimate traffic, noise, flood and port scan.}
      \label{fig:fig1}
 \end{figure}
@@ -91,7 +91,7 @@ The legitimate traffic $\boldsymbol{U}^{(q)}$ is characterized by the traffic fr
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=4.5cm, width=9cm]{results/figures/fig03.png}
+     \includegraphics[height=4.5cm, width=9cm]{figures/fig03.png}
      \caption{Traffic from user's operations, that can be characterized by web access, traffic of well-known applications or network protocols.}
      \label{fig:fig3}
 \end{figure}
@@ -100,7 +100,7 @@ The traffic that is not associated with user's operations and with malicious tra
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=4.5cm, width=9cm]{results/figures/fig04.png}
+     \includegraphics[height=4.5cm, width=9cm]{figures/fig04.png}
      \caption{Network traffic of user independent operations for network management.}
      \label{fig:fig4}
 \end{figure}
@@ -119,7 +119,7 @@ With respect to the synflood attacks, the attacker sends a large quantity and co
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=4.5cm, width=9cm]{results/figures/fig05.png}
+     \includegraphics[height=4.5cm, width=9cm]{figures/fig05.png}
      \caption{A large quantity of SYN requests to a target, in order to cause a DoS.}
      \label{fig:fig5}
 \end{figure}
@@ -128,7 +128,7 @@ With respect to the fraggle attack, large packets with UDP echo segments are sen
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=4.5cm, width=9cm]{results/figures/fig06.png}
+     \includegraphics[height=4.5cm, width=9cm]{figures/fig06.png}
      \caption{Large amount of “UDP echo” requests and replies, causing packet flooding.}
      \label{fig:fig6}
 \end{figure}
@@ -141,7 +141,7 @@ In TCP SYN scan, a SYN packet is sent to the destination and two types of respon
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=5cm, width=9cm]{results/figures/fig07.png}
+     \includegraphics[height=5cm, width=9cm]{figures/fig07.png}
      \caption{Connection attempts in order to identify active ports.}
      \label{fig:fig7}
 \end{figure}
@@ -166,7 +166,7 @@ This section describes the proposed technique to detect synflood, fraggle and po
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[height=11cm, width=9cm]{results/figures/mos_eigen_similarity.eps}
+     \includegraphics[height=11cm, width=9cm]{figures/mos_eigen_similarity.eps}
      \caption{Overview of The Framework for Detection and Identification of Network Attacks.}
      \label{fig:fig80}
 \end{figure}
@@ -309,7 +309,7 @@ The incremental approach for similarity analysis is based on the incremental app
 Figure \ref{fig:fig8} ilustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\boldsymbol{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected. 
 
 \begin{figure}[h!]
-     \includegraphics[height=4cm, width=12.4cm]{results/figures/incremental.eps}
+     \includegraphics[height=4cm, width=12.4cm]{figures/incremental.eps}
      \caption{Traffic selection for incremental approach.}
      \label{fig:fig8}
 \end{figure}
@@ -331,7 +331,7 @@ where $\boldsymbol{\hat{n}}_{(n)}$ denotes a vector of $n$-th minutes detected a
 The eigen similarity analysis can also be applied in an individual fashion, where each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, as shown by Figure \ref{fig:fig9}.
 
 \begin{figure}[h!]
-     \includegraphics[height=4cm, width=12.4cm]{results/figures/individualized.eps}
+     \includegraphics[height=4cm, width=12.4cm]{figures/individualized.eps}
      \caption{Traffic selection for individual approach.}
      \label{fig:fig9}
 \end{figure}
@@ -339,7 +339,7 @@ The eigen similarity analysis can also be applied in an individual fashion, wher
 The incremental and the individual approaches can be combined to obtain the incremental individualized approach, where each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ becomes the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated, as shown in Figure \ref{fig:fig2}.
 
 \begin{figure}[h!]
-     \includegraphics[height=4cm, width=12.4cm]{results/figures/incremental_individualized.eps}
+     \includegraphics[height=4cm, width=12.4cm]{figures/incremental_individualized.eps}
      \caption{Traffic selection for incremental individualized approach.}
      \label{fig:fig2}
 \end{figure}
@@ -393,7 +393,7 @@ For the evaluation of MOS Schemes accuracy for flood and port scan detection, th
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_synflood.eps} 
+     \includegraphics[height=6cm, width=8cm]{figures/eigenvalues_synflood.eps} 
      \caption{Eigenvalues of the sample covariance matrix (synflood).}
      \label{fig:fig10}
 \end{figure}
@@ -404,7 +404,7 @@ Figure \ref{fig:fig11} illustrates the eigenvalues calculated from sample covari
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_fraggle.eps}
+     \includegraphics[height=6cm, width=8cm]{figures/eigenvalues_fraggle.eps}
      \caption{Eigenvalues of the sample covariance matrix (fraggle).}
      \label{fig:fig11}
 \end{figure}
@@ -413,7 +413,7 @@ Figure \ref{fig:fig12} depicts the eigenvalues calculated from covariance matrix
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_portscan.eps}
+     \includegraphics[height=6cm, width=8cm]{figures/eigenvalues_portscan.eps}
      \caption{Eigenvalues of the covariance matrix of zero mean and unitary standard deviation (port scan).}
      \label{fig:fig12}
 \end{figure}

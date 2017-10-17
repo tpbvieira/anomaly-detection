@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.14)  19 SEP 2017 23:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.14)  16 OCT 2017 23:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1006,10 +1006,11 @@ LaTeX Info: Redefining \nameref on input line 105.
 
 \c@lstlisting=\count182
 
-<departmentlogo.png, id=256, 1204.5pt x 602.25pt>
-File: departmentlogo.png Graphic file (type png)
- <use departmentlogo.png>
-Package pdftex.def Info: departmentlogo.png used on input line 108.
+<figures/departmentlogo.png, id=256, 1204.5pt x 602.25pt>
+File: figures/departmentlogo.png Graphic file (type png)
+
+<use figures/departmentlogo.png>
+Package pdftex.def Info: figures/departmentlogo.png used on input line 108.
 (pdftex.def)             Requested size: 421.58131pt x 210.79065pt.
 
 Overfull \hbox (1.13472pt too wide) in paragraph at lines 108--108
@@ -1018,11 +1019,12 @@ Overfull \hbox (1.13472pt too wide) in paragraph at lines 108--108
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 108.
-<institutionlogo.png, id=257, 57.0933pt x 86.0013pt>
-File: institutionlogo.png Graphic file (type png)
- <use institutionlogo.png>
-Package pdftex.def Info: institutionlogo.png used on input line 108.
-(pdftex.def)             Requested size: 28.45274pt x 42.8601pt.
+<figures/institutionlogo.jpg, id=257, 533.74406pt x 430.60875pt>
+File: figures/institutionlogo.jpg Graphic file (type jpg)
+
+<use figures/institutionlogo.jpg>
+Package pdftex.def Info: figures/institutionlogo.jpg used on input line 108.
+(pdftex.def)             Requested size: 28.45274pt x 22.95093pt.
 LaTeX Font Info:    Try loading font information for T1+times on input line 108
 .
 LaTeX Font Info:    No file T1times.fd. on input line 108.
@@ -1094,12 +1096,13 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./departmentlogo.png> <./i
-nstitutionlogo.png>]
-File: institutionlogo.png Graphic file (type png)
- <use institutionlogo.png>
-Package pdftex.def Info: institutionlogo.png used on input line 109.
-(pdftex.def)             Requested size: 42.67912pt x 64.29214pt.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/departmentlogo.p
+ng> <./figures/institutionlogo.jpg>]
+File: figures/institutionlogo.jpg Graphic file (type jpg)
+
+<use figures/institutionlogo.jpg>
+Package pdftex.def Info: figures/institutionlogo.jpg used on input line 109.
+(pdftex.def)             Requested size: 42.67912pt x 34.42969pt.
 LaTeX Font Info:    Try loading font information for T1+phv on input line 109.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
@@ -1340,11 +1343,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [14]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 52.
- <results/figures/fig09.png, id=622, 426.84468pt x 307.1475pt>
-File: results/figures/fig09.png Graphic file (type png)
+ <figures/fig09.png, id=622, 426.84468pt x 307.1475pt>
+File: figures/fig09.png Graphic file (type png)
 
-<use results/figures/fig09.png>
-Package pdftex.def Info: results/figures/fig09.png used on input line 59.
+<use figures/fig09.png>
+Package pdftex.def Info: figures/fig09.png used on input line 59.
 (pdftex.def)             Requested size: 256.08925pt x 170.71727pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 60.
@@ -1365,7 +1368,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.65 
-      <./results/figures/fig09.png (PNG copy)>]
+      <./figures/fig09.png (PNG copy)>]
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 69.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
@@ -1412,18 +1415,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16] <results/figures/fig03.png, id=645, 752.8125pt x 409.53pt>
-File: results/figures/fig03.png Graphic file (type png)
+[16] <figures/fig03.png, id=645, 752.8125pt x 409.53pt>
+File: figures/fig03.png Graphic file (type png)
 
-<use results/figures/fig03.png>
-Package pdftex.def Info: results/figures/fig03.png used on input line 94.
+<use figures/fig03.png>
+Package pdftex.def Info: figures/fig03.png used on input line 94.
 (pdftex.def)             Requested size: 256.07921pt x 128.0403pt.
+ <figures/fig04.png, id=648, 602.25pt x 335.00156pt>
+File: figures/fig04.png Graphic file (type png)
 
-<results/figures/fig04.png, id=648, 602.25pt x 335.00156pt>
-File: results/figures/fig04.png Graphic file (type png)
-
-<use results/figures/fig04.png>
-Package pdftex.def Info: results/figures/fig04.png used on input line 103.
+<use figures/fig04.png>
+Package pdftex.def Info: figures/fig04.png used on input line 103.
 (pdftex.def)             Requested size: 256.0861pt x 128.03288pt.
 
 
@@ -1444,12 +1446,11 @@ l.109
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.109 
-       <./results/figures/fig03.png> <./results/figures/fig04.png>]
-<results/figures/fig05.png, id=657, 602.25pt x 243.91125pt>
-File: results/figures/fig05.png Graphic file (type png)
-
-<use results/figures/fig05.png>
-Package pdftex.def Info: results/figures/fig05.png used on input line 122.
+       <./figures/fig03.png> <./figures/fig04.png>]
+<figures/fig05.png, id=657, 602.25pt x 243.91125pt>
+File: figures/fig05.png Graphic file (type png)
+ <use figures/fig05.png>
+Package pdftex.def Info: figures/fig05.png used on input line 122.
 (pdftex.def)             Requested size: 256.0861pt x 128.0367pt.
 
 
@@ -1464,19 +1465,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.128 
-       <./results/figures/fig05.png>]
-<results/figures/fig06.png, id=664, 602.25pt x 265.74281pt>
-File: results/figures/fig06.png Graphic file (type png)
-
-<use results/figures/fig06.png>
-Package pdftex.def Info: results/figures/fig06.png used on input line 131.
+       <./figures/fig05.png>]
+<figures/fig06.png, id=664, 602.25pt x 265.74281pt>
+File: figures/fig06.png Graphic file (type png)
+ <use figures/fig06.png>
+Package pdftex.def Info: figures/fig06.png used on input line 131.
 (pdftex.def)             Requested size: 256.0861pt x 128.03763pt.
 
-<results/figures/fig07.png, id=665, 602.25pt x 355.3275pt>
-File: results/figures/fig07.png Graphic file (type png)
-
-<use results/figures/fig07.png>
-Package pdftex.def Info: results/figures/fig07.png used on input line 144.
+<figures/fig07.png, id=665, 602.25pt x 355.3275pt>
+File: figures/fig07.png Graphic file (type png)
+ <use figures/fig07.png>
+Package pdftex.def Info: figures/fig07.png used on input line 144.
 (pdftex.def)             Requested size: 256.0861pt x 142.26402pt.
 
 
@@ -1494,7 +1493,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.150 
-       <./results/figures/fig06.png>]
+       <./figures/fig06.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1507,27 +1506,26 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.162 ...on and Identification of Network Attacks}
-                                                   <./results/figures/fig07.png
->]
-Package epstopdf Info: Source file: <results/figures/mos_eigen_similarity.eps>
+                                                   <./figures/fig07.png>]
+Package epstopdf Info: Source file: <figures/mos_eigen_similarity.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 362641 bytes
-(epstopdf)             Output file: <results/figures/mos_eigen_similarity-eps-c
-onverted-to.pdf>
+(epstopdf)             Output file: <figures/mos_eigen_similarity-eps-converted
+-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:45
 (epstopdf)                    size: 106161 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/mos_eigen_
-similarity-eps-converted-to.pdf results/figures/mos_eigen_similarity.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/mos_eigen_similari
+ty-eps-converted-to.pdf figures/mos_eigen_similarity.eps>
 (epstopdf)             \includegraphics on input line 169.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/mos_eigen_similarity-eps-converted-to.pdf, id=687, 621.32124pt
- x 654.445pt>
-File: results/figures/mos_eigen_similarity-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use results/figures/mos_eigen_similarity-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/mos_eigen_similarity-eps-converted-to.
-pdf used on input line 169.
+<figures/mos_eigen_similarity-eps-converted-to.pdf, id=687, 621.32124pt x 654.4
+45pt>
+File: figures/mos_eigen_similarity-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use figures/mos_eigen_similarity-eps-converted-to.pdf>
+Package pdftex.def Info: figures/mos_eigen_similarity-eps-converted-to.pdf used
+ on input line 169.
 (pdftex.def)             Requested size: 256.07063pt x 312.98164pt.
 
 
@@ -1542,7 +1540,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.178 
-       <./results/figures/mos_eigen_similarity-eps-converted-to.pdf>]
+       <./figures/mos_eigen_similarity-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 26.96991pt.
@@ -1589,24 +1587,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [25]
-Package epstopdf Info: Source file: <results/figures/incremental.eps>
+Package epstopdf Info: Source file: <figures/incremental.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 292953 bytes
-(epstopdf)             Output file: <results/figures/incremental-eps-converted-
-to.pdf>
+(epstopdf)             Output file: <figures/incremental-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:46
 (epstopdf)                    size: 10803 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
-l-eps-converted-to.pdf results/figures/incremental.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/incremental-eps-co
+nverted-to.pdf figures/incremental.eps>
 (epstopdf)             \includegraphics on input line 312.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental-eps-converted-to.pdf, id=780, 586.19pt x 159.59625
-pt>
-File: results/figures/incremental-eps-converted-to.pdf Graphic file (type pdf)
- <use results/figures/incremental-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/incremental-eps-converted-to.pdf used 
-on input line 312.
+<figures/incremental-eps-converted-to.pdf, id=780, 586.19pt x 159.59625pt>
+File: figures/incremental-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/incremental-eps-converted-to.pdf>
+Package pdftex.def Info: figures/incremental-eps-converted-to.pdf used on input
+ line 312.
 (pdftex.def)             Requested size: 352.80794pt x 113.8109pt.
 
 
@@ -1621,49 +1618,44 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.321 
-       <./results/figures/incremental-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <results/figures/individualized.eps>
+       <./figures/incremental-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/individualized.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 283342 bytes
-(epstopdf)             Output file: <results/figures/individualized-eps-convert
-ed-to.pdf>
+(epstopdf)             Output file: <figures/individualized-eps-converted-to.pd
+f>
 (epstopdf)                    date: 2017-09-19 23:11:47
 (epstopdf)                    size: 10730 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/individual
-ized-eps-converted-to.pdf results/figures/individualized.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/individualized-eps
+-converted-to.pdf figures/individualized.eps>
 (epstopdf)             \includegraphics on input line 334.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/individualized-eps-converted-to.pdf, id=797, 565.11125pt x 158
-.5925pt>
-File: results/figures/individualized-eps-converted-to.pdf Graphic file (type pd
-f)
- <use results/figures/individualized-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/individualized-eps-converted-to.pdf us
-ed on input line 334.
+<figures/individualized-eps-converted-to.pdf, id=797, 565.11125pt x 158.5925pt>
+File: figures/individualized-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/individualized-eps-converted-to.pdf>
+Package pdftex.def Info: figures/individualized-eps-converted-to.pdf used on in
+put line 334.
 (pdftex.def)             Requested size: 352.82288pt x 113.81383pt.
-Package epstopdf Info: Source file: <results/figures/incremental_individualized
-.eps>
+Package epstopdf Info: Source file: <figures/incremental_individualized.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 291807 bytes
-(epstopdf)             Output file: <results/figures/incremental_individualized
--eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/incremental_individualized-eps-con
+verted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:47
 (epstopdf)                    size: 12125 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/incrementa
-l_individualized-eps-converted-to.pdf results/figures/incremental_individualize
-d.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/incremental_indivi
+dualized-eps-converted-to.pdf figures/incremental_individualized.eps>
 (epstopdf)             \includegraphics on input line 342.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/incremental_individualized-eps-converted-to.pdf, id=799, 565.1
-1125pt x 159.59625pt>
-File: results/figures/incremental_individualized-eps-converted-to.pdf Graphic f
-ile (type pdf)
-
-<use results/figures/incremental_individualized-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/incremental_individualized-eps-convert
-ed-to.pdf used on input line 342.
+<figures/incremental_individualized-eps-converted-to.pdf, id=799, 565.11125pt x
+ 159.59625pt>
+File: figures/incremental_individualized-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use figures/incremental_individualized-eps-converted-to.pdf>
+Package pdftex.def Info: figures/incremental_individualized-eps-converted-to.pd
+f used on input line 342.
 (pdftex.def)             Requested size: 352.82288pt x 113.8109pt.
 
 
@@ -1684,8 +1676,8 @@ l.348
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.348 
-       <./results/figures/individualized-eps-converted-to.pdf> <./results/figur
-es/incremental_individualized-eps-converted-to.pdf>]
+       <./figures/individualized-eps-converted-to.pdf> <./figures/incremental_i
+ndividualized-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 26.96991pt.
@@ -1700,69 +1692,68 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [29]
-Package epstopdf Info: Source file: <results/figures/eigenvalues_synflood.eps>
+Package epstopdf Info: Source file: <figures/eigenvalues_synflood.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 86200 bytes
-(epstopdf)             Output file: <results/figures/eigenvalues_synflood-eps-c
-onverted-to.pdf>
+(epstopdf)             Output file: <figures/eigenvalues_synflood-eps-converted
+-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:49
 (epstopdf)                    size: 8031 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
-s_synflood-eps-converted-to.pdf results/figures/eigenvalues_synflood.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/eigenvalues_synflo
+od-eps-converted-to.pdf figures/eigenvalues_synflood.eps>
 (epstopdf)             \includegraphics on input line 396.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_synflood-eps-converted-to.pdf, id=845, 501.875pt x
- 419.5675pt>
-File: results/figures/eigenvalues_synflood-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use results/figures/eigenvalues_synflood-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/eigenvalues_synflood-eps-converted-to.
-pdf used on input line 396.
+<figures/eigenvalues_synflood-eps-converted-to.pdf, id=845, 501.875pt x 419.567
+5pt>
+File: figures/eigenvalues_synflood-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use figures/eigenvalues_synflood-eps-converted-to.pdf>
+Package pdftex.def Info: figures/eigenvalues_synflood-eps-converted-to.pdf used
+ on input line 396.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
-Package epstopdf Info: Source file: <results/figures/eigenvalues_fraggle.eps>
+Package epstopdf Info: Source file: <figures/eigenvalues_fraggle.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 86640 bytes
-(epstopdf)             Output file: <results/figures/eigenvalues_fraggle-eps-co
-nverted-to.pdf>
+(epstopdf)             Output file: <figures/eigenvalues_fraggle-eps-converted-
+to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:51
 (epstopdf)                    size: 7960 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
-s_fraggle-eps-converted-to.pdf results/figures/eigenvalues_fraggle.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/eigenvalues_fraggl
+e-eps-converted-to.pdf figures/eigenvalues_fraggle.eps>
 (epstopdf)             \includegraphics on input line 407.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_fraggle-eps-converted-to.pdf, id=851, 501.875pt x 
-419.5675pt>
-File: results/figures/eigenvalues_fraggle-eps-converted-to.pdf Graphic file (ty
-pe pdf)
- <use results/figures/eigenvalues_fraggle-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/eigenvalues_fraggle-eps-converted-to.p
-df used on input line 407.
+<figures/eigenvalues_fraggle-eps-converted-to.pdf, id=851, 501.875pt x 419.5675
+pt>
+File: figures/eigenvalues_fraggle-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/eigenvalues_fraggle-eps-converted-to.pdf>
+Package pdftex.def Info: figures/eigenvalues_fraggle-eps-converted-to.pdf used 
+on input line 407.
 (pdftex.def)             Requested size: 227.62596pt x 170.71776pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package epstopdf Info: Source file: <results/figures/eigenvalues_portscan.eps>
+Package epstopdf Info: Source file: <figures/eigenvalues_portscan.eps>
 (epstopdf)                    date: 2016-09-30 00:52:54
 (epstopdf)                    size: 23579 bytes
-(epstopdf)             Output file: <results/figures/eigenvalues_portscan-eps-c
-onverted-to.pdf>
+(epstopdf)             Output file: <figures/eigenvalues_portscan-eps-converted
+-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:11:52
 (epstopdf)                    size: 7069 bytes
-(epstopdf)             Command: <repstopdf --outfile=results/figures/eigenvalue
-s_portscan-eps-converted-to.pdf results/figures/eigenvalues_portscan.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/eigenvalues_portsc
+an-eps-converted-to.pdf figures/eigenvalues_portscan.eps>
 (epstopdf)             \includegraphics on input line 416.
 Package epstopdf Info: Output file is already uptodate.
 
-<results/figures/eigenvalues_portscan-eps-converted-to.pdf, id=853, 501.875pt x
- 406.51875pt>
-File: results/figures/eigenvalues_portscan-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use results/figures/eigenvalues_portscan-eps-converted-to.pdf>
-Package pdftex.def Info: results/figures/eigenvalues_portscan-eps-converted-to.
-pdf used on input line 416.
+<figures/eigenvalues_portscan-eps-converted-to.pdf, id=853, 501.875pt x 406.518
+75pt>
+File: figures/eigenvalues_portscan-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use figures/eigenvalues_portscan-eps-converted-to.pdf>
+Package pdftex.def Info: figures/eigenvalues_portscan-eps-converted-to.pdf used
+ on input line 416.
 (pdftex.def)             Requested size: 227.62596pt x 170.71188pt.
 
 
@@ -1787,7 +1778,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.448 
-       <./results/figures/eigenvalues_synflood-eps-converted-to.pdf>]
+       <./figures/eigenvalues_synflood-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1812,8 +1803,8 @@ l.448
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.448 
-       <./results/figures/eigenvalues_fraggle-eps-converted-to.pdf> <./results/
-figures/eigenvalues_portscan-eps-converted-to.pdf>]
+       <./figures/eigenvalues_fraggle-eps-converted-to.pdf> <./figures/eigenval
+ues_portscan-eps-converted-to.pdf>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 463.
 
@@ -2226,21 +2217,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [50]
-Package epstopdf Info: Source file: <fig01.eps>
+Package epstopdf Info: Source file: <figures/fig01.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 250487 bytes
-(epstopdf)             Output file: <fig01-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig01-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:42
 (epstopdf)                    size: 70642 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig01-eps-converted-to.pdf
- fig01.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig01-eps-converte
+d-to.pdf figures/fig01.eps>
 (epstopdf)             \includegraphics on input line 66.
 Package epstopdf Info: Output file is already uptodate.
- <fig01-eps-converted-to.pdf, id=1060, 303.1325pt x 471.7625pt>
-File: fig01-eps-converted-to.pdf Graphic file (type pdf)
+ <figures/fig01-eps-converted-to.pdf, id=1060, 303.1325pt x 471.7625pt>
+File: figures/fig01-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig01-eps-converted-to.pdf>
-Package pdftex.def Info: fig01-eps-converted-to.pdf used on input line 66.
+<use figures/fig01-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig01-eps-converted-to.pdf used on input line 
+66.
 (pdftex.def)             Requested size: 142.26378pt x 221.40446pt.
 
 
@@ -2255,23 +2247,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.74 
-      <./fig01-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <fig02.eps>
+      <./figures/fig01-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fig02.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 325179 bytes
-(epstopdf)             Output file: <fig02-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig02-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:43
 (epstopdf)                    size: 92982 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig02-eps-converted-to.pdf
- fig02.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig02-eps-converte
+d-to.pdf figures/fig02.eps>
 (epstopdf)             \includegraphics on input line 77.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig02-eps-converted-to.pdf, id=1069, 551.05875pt x 422.57875pt>
-File: fig02-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig02-eps-converted-to.pdf, id=1069, 551.05875pt x 422.57875pt>
+File: figures/fig02-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig02-eps-converted-to.pdf>
-Package pdftex.def Info: fig02-eps-converted-to.pdf used on input line 77.
+<use figures/fig02-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig02-eps-converted-to.pdf used on input line 
+77.
 (pdftex.def)             Requested size: 227.62204pt x 174.55446pt.
 
 
@@ -2286,7 +2279,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.93 
-      <./fig02-eps-converted-to.pdf>]
+      <./figures/fig02-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2294,21 +2287,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [53]
-Package epstopdf Info: Source file: <fig03.eps>
+Package epstopdf Info: Source file: <figures/fig03.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 200440 bytes
-(epstopdf)             Output file: <fig03-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig03-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:44
 (epstopdf)                    size: 54644 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig03-eps-converted-to.pdf
- fig03.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig03-eps-converte
+d-to.pdf figures/fig03.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
- <fig03-eps-converted-to.pdf, id=1093, 656.4525pt x 209.78375pt>
-File: fig03-eps-converted-to.pdf Graphic file (type pdf)
+ <figures/fig03-eps-converted-to.pdf, id=1093, 656.4525pt x 209.78375pt>
+File: figures/fig03-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig03-eps-converted-to.pdf>
-Package pdftex.def Info: fig03-eps-converted-to.pdf used on input line 119.
+<use figures/fig03-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig03-eps-converted-to.pdf used on input line 
+119.
 (pdftex.def)             Requested size: 227.62204pt x 72.74037pt.
 
 
@@ -2332,43 +2326,45 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
                                                   \fi \fi 
 l.129 	\item \textbf
                     {Key Management Center}: it includes the functions for m...
- <./fig03-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <fig04.eps>
+ <./figures/fig03-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fig04.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 312860 bytes
-(epstopdf)             Output file: <fig04-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig04-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:46
 (epstopdf)                    size: 85118 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig04-eps-converted-to.pdf
- fig04.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig04-eps-converte
+d-to.pdf figures/fig04.eps>
 (epstopdf)             \includegraphics on input line 148.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig04-eps-converted-to.pdf, id=1110, 463.7325pt x 475.7775pt>
-File: fig04-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig04-eps-converted-to.pdf, id=1110, 463.7325pt x 475.7775pt>
+File: figures/fig04-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig04-eps-converted-to.pdf>
-Package pdftex.def Info: fig04-eps-converted-to.pdf used on input line 148.
+<use figures/fig04-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig04-eps-converted-to.pdf used on input line 
+148.
 (pdftex.def)             Requested size: 227.62204pt x 233.53955pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package epstopdf Info: Source file: <fig05.eps>
+Package epstopdf Info: Source file: <figures/fig05.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 265777 bytes
-(epstopdf)             Output file: <fig05-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig05-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:47
 (epstopdf)                    size: 67651 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig05-eps-converted-to.pdf
- fig05.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig05-eps-converte
+d-to.pdf figures/fig05.eps>
 (epstopdf)             \includegraphics on input line 157.
 Package epstopdf Info: Output file is already uptodate.
-<fig05-eps-converted-to.pdf, id=1112, 492.84125pt x 465.74pt>
-File: fig05-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig05-eps-converted-to.pdf, id=1112, 492.84125pt x 465.74pt>
+File: figures/fig05-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig05-eps-converted-to.pdf>
-Package pdftex.def Info: fig05-eps-converted-to.pdf used on input line 157.
+<use figures/fig05-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig05-eps-converted-to.pdf used on input line 
+157.
 (pdftex.def)             Requested size: 227.62204pt x 215.11pt.
 
 
@@ -2381,21 +2377,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [55]
-Package epstopdf Info: Source file: <fig06.eps>
+Package epstopdf Info: Source file: <figures/fig06.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 204899 bytes
-(epstopdf)             Output file: <fig06-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig06-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:48
 (epstopdf)                    size: 51873 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig06-eps-converted-to.pdf
- fig06.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig06-eps-converte
+d-to.pdf figures/fig06.eps>
 (epstopdf)             \includegraphics on input line 171.
 Package epstopdf Info: Output file is already uptodate.
- <fig06-eps-converted-to.pdf, id=1124, 388.45125pt x 371.3875pt>
-File: fig06-eps-converted-to.pdf Graphic file (type pdf)
+ <figures/fig06-eps-converted-to.pdf, id=1124, 388.45125pt x 371.3875pt>
+File: figures/fig06-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig06-eps-converted-to.pdf>
-Package pdftex.def Info: fig06-eps-converted-to.pdf used on input line 171.
+<use figures/fig06-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig06-eps-converted-to.pdf used on input line 
+171.
 (pdftex.def)             Requested size: 227.62204pt x 217.62631pt.
 
 
@@ -2419,7 +2416,8 @@ l.177
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.177 
-       <./fig04-eps-converted-to.pdf> <./fig05-eps-converted-to.pdf>]
+       <./figures/fig04-eps-converted-to.pdf> <./figures/fig05-eps-converted-to
+.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2432,40 +2430,42 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.185 
-       <./fig06-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <fig07.eps>
+       <./figures/fig06-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fig07.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 103158 bytes
-(epstopdf)             Output file: <fig07-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig07-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:49
 (epstopdf)                    size: 26350 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig07-eps-converted-to.pdf
- fig07.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig07-eps-converte
+d-to.pdf figures/fig07.eps>
 (epstopdf)             \includegraphics on input line 188.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig07-eps-converted-to.pdf, id=1223, 536.0025pt x 296.10625pt>
-File: fig07-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig07-eps-converted-to.pdf, id=1223, 536.0025pt x 296.10625pt>
+File: figures/fig07-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig07-eps-converted-to.pdf>
-Package pdftex.def Info: fig07-eps-converted-to.pdf used on input line 188.
+<use figures/fig07-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig07-eps-converted-to.pdf used on input line 
+188.
 (pdftex.def)             Requested size: 227.62204pt x 125.74634pt.
-Package epstopdf Info: Source file: <fig08.eps>
+Package epstopdf Info: Source file: <figures/fig08.eps>
 (epstopdf)                    date: 2017-01-09 13:06:57
 (epstopdf)                    size: 116106 bytes
-(epstopdf)             Output file: <fig08-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig08-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:51
 (epstopdf)                    size: 28052 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig08-eps-converted-to.pdf
- fig08.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig08-eps-converte
+d-to.pdf figures/fig08.eps>
 (epstopdf)             \includegraphics on input line 197.
 Package epstopdf Info: Output file is already uptodate.
 
-<fig08-eps-converted-to.pdf, id=1230, 422.57875pt x 315.1775pt>
-File: fig08-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig08-eps-converted-to.pdf, id=1230, 422.57875pt x 315.1775pt>
+File: figures/fig08-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig08-eps-converted-to.pdf>
-Package pdftex.def Info: fig08-eps-converted-to.pdf used on input line 197.
+<use figures/fig08-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig08-eps-converted-to.pdf used on input line 
+197.
 (pdftex.def)             Requested size: 227.62204pt x 169.7749pt.
 
 
@@ -2483,26 +2483,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.211 
-       <./fig07-eps-converted-to.pdf>]
+       <./figures/fig07-eps-converted-to.pdf>]
 
 Package natbib Warning: Citation `nist2000' on page 59 undefined on input line 
 214.
 
-Package epstopdf Info: Source file: <fig09.eps>
+Package epstopdf Info: Source file: <figures/fig09.eps>
 (epstopdf)                    date: 2016-09-30 00:53:16
 (epstopdf)                    size: 178580 bytes
-(epstopdf)             Output file: <fig09-eps-converted-to.pdf>
+(epstopdf)             Output file: <figures/fig09-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-09-19 23:12:52
 (epstopdf)                    size: 49586 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig09-eps-converted-to.pdf
- fig09.eps>
+(epstopdf)             Command: <repstopdf --outfile=figures/fig09-eps-converte
+d-to.pdf figures/fig09.eps>
 (epstopdf)             \includegraphics on input line 222.
 Package epstopdf Info: Output file is already uptodate.
-<fig09-eps-converted-to.pdf, id=1262, 562.1pt x 165.61874pt>
-File: fig09-eps-converted-to.pdf Graphic file (type pdf)
+<figures/fig09-eps-converted-to.pdf, id=1262, 562.1pt x 165.61874pt>
+File: figures/fig09-eps-converted-to.pdf Graphic file (type pdf)
 
-<use fig09-eps-converted-to.pdf>
-Package pdftex.def Info: fig09-eps-converted-to.pdf used on input line 222.
+<use figures/fig09-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fig09-eps-converted-to.pdf used on input line 
+222.
 (pdftex.def)             Requested size: 227.62204pt x 67.06763pt.
 
 
@@ -2523,7 +2524,8 @@ l.228
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.228 
-       <./fig08-eps-converted-to.pdf> <./fig09-eps-converted-to.pdf>]
+       <./figures/fig08-eps-converted-to.pdf> <./figures/fig09-eps-converted-to
+.pdf>]
 
 Package natbib Warning: Citation `galibus2015cloud' on page 60 undefined on inp
 ut line 233.
@@ -2861,9 +2863,9 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 18860 strings out of 493304
- 286763 string characters out of 6139871
- 527324 words of memory out of 5000000
+ 18861 strings out of 493304
+ 286695 string characters out of 6139871
+ 527348 words of memory out of 5000000
  21209 multiletter control sequences out of 15000+600000
  137313 words of font info for 338 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -2886,7 +2888,7 @@ texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on thesis.pdf (101 pages, 1865027 bytes).
+Output written on thesis.pdf (101 pages, 1896289 bytes).
 PDF statistics:
  1645 PDF objects out of 1728 (max. 8388607)
  1437 compressed objects within 15 object streams
