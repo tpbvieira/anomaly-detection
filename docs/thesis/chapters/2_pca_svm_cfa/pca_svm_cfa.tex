@@ -1,13 +1,34 @@
-\chapter{PCA and SVM for Critical Factors Analysis}
+\chapter{Critical Success Factor Analysis Based on Feaure Selection}
 \label{ch:2_pca_svm_cfa}
 
 \begin{quotation}[]{Paulo Freire}
 No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
 \end{quotation}
 
-There is a significant continuous public spending on information technology (IT) by the Brazilian Federal Public Administration. In order to monitor and to diagnose the concerned public institutions IT governance (ITG), the Federal Court of Accounts, in Portuguese Tribunal de Contas da União (TCU), surveys data from these institutions practices as well as best practices for IT in government and business. These surveys started in 2007 with 39 questions and nowadays they contain more than 100 questions impacting on the ITG of Brazilian public institutions. Moreover, these questions encourage public institutions to adopt best practices not only in IT but also in all other management areas. In this paper, we propose the identification and the verification of the critical success factors (CSFs) of the TCU survey variables by means of statistical analysis. The CSFs are defined as the factors that most contributed for the high performance of the institutions and they are measured by using the ITG index created by TCU. Therefore, in order to validate our results, the statistically identified CSFs are compared with those mentioned by the public administration IT executives in interviews. Besides the statistical analysis, we successfully apply the Support Vector Classification (SVC) algorithm to classify public institutions in terms of their ITG index. By comparing the SVC based classification with the CSFs obtained from the interviews, we show that there is a very high level of similarity. Hence, the CSFs identified with SCV provide a very high impact, regarding the public administration ITG.
+Critical success factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent those managerial or enterprise areas that must be given special and continual attention to bring about high performance. CSF analysis is one challenger strategic management tool, but if properly applied, CSF analysis does provide a robust and very practical assessment for strategic planners.
 
-2.3 Análise de Componentes Principais
+The Tribunal de Contas da União (Federal Court of Accounts, often referred to as TCU) is the Brazilian federal accountability office that surveys data from public organizations in order to classify the maturity of IT governance. 
+
+Feature selection...
+
+We propose a critical factors analysis based on Principal Compoment Analytis (PCA) and recurive feature elimination (RFE) combined with Support Vector Machine (SVM), applied to the surveys data from public organizations, in order to identify the CSF for IT governance measured by TCU. 
+
+The resusts show that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn the classification adopted by TCU for IT governance evaluation. Therefore, SVM is used to highlight the more significant features for RFE, which corroborates with previous qualitative analysis for critical success factor identification.
+
+\section{Related Works}
+\label{sec:relatedworks}
+
+...
+
+\section{Data Model}
+\label{sec:datamodel}
+
+...
+
+\section{Proposed Framework for Detection and Identification of Network Attacks}
+\label{sec:prop_getv}
+
+\subsection{Análise de Componentes Principais}
 
 Segundo Sabin, Ferrão e Furtado (2004) e Silva et al. (2012), a Análise de Componentes Principais (ACP), do inglês Principal Component Analysis – PCA, é utilizada para compressão de dados para identificação das relações entre características dos dados. Tal compressão é obtida por meio da substituição das variáveis originais por um novo conjunto de variáveis, conhecidas como Componentes Principais (CPs). As CPs são obtidas pela combinação linear das variáveis que apresentam a maior variabilidade na matriz de covariância. Assim, objetivo principal da ACP é identificar as CPs responsáveis pelas maiores variações entre os resultados. Em termos práticos eliminam-se algumas variáveis com pouca informação e determinam-se as variáveis de maior influência na formação de cada CP (Vicini, 2005).
 Segundo Vicini (2005), o conjunto ortogonal de eixos não correlacionados representam as variáveis que mantém ao máximo a variabilidade do conjunto, em outras palavras, a menor perda de informação. 
@@ -29,7 +50,7 @@ Fonte: Desenvolvido pelos autores
 A Figura 1 reforça a ideia da ACP cujo objetivo inicial é a identificação de planos e linhas que representem um conjunto de pontos em um espaço com um número menor de variáveis tendo em vista as possíveis correlações que podem existir entre as variáveis originais.
 Assim, para o método da estatística multivariada ACP utilizar todas variáveis, separa-se a informação útil da informação redundante (Finkler, 2003). Ressalta-se que a ACP é um dos primeiros passos para outras análises multivariadas, sendo um dos métodos mais comuns empregados na análise de informações (Sabin, Ferrão e Furtado, 2004; Silva et al.,2012).
 
-2.4 Máquinas de Vetores de Suporte (MVS)
+\subsection{Máquinas de Vetores de Suporte}
 
 Máquina de Vetores de Suporte (MVS), do inglês Support Vector Machine (SVM), é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
 Quando aplicado para classificação, MVS busca a identificação de um hiperplano que separa os dados em classes distintas, por meio de uma margem máxima entre duas classes de dados. Desta forma, um conjunto de dados é linearmente separável se for possível dividir seus dados em duas classes, por meio um hiperplano, conforme na figura a seguir. 
@@ -42,14 +63,17 @@ As funções de kernel têm o objetivo de projetar os vetores de variáveis de u
 % Uma função kernel K(xi, xj) = φ(xi) T φ(xj) pode ser usada para treinar a MVS. Uma MVS linear tem φ(x) = x, assim uma função kernel linear pode ser representada por K(xi, xj) = xTi xj.
 Foi adotada a estratégia "um contra um" (Knerr, Personnaz e Dreyfus, 1990), para a utilização de MVS para a classificação de muitas classes. Esta estratégia consiste em construir uma máquina vetor de suporte para cada par de classes. Para um problema com c classes, c(c-1)/2 MVSs são treinados para classificar as classes entre as c classes possíveis.
 
-2 Eliminação Recursiva de Variáveis (ERV)
+\subsection{Eliminação Recursiva de Variáveis (ERV)}
 
 Dado um algoritmo de classificação, que possa estimar pesos para as variáveis de um conjunto de dados, o objetivo da Eliminação Recursiva de Variáveis (ERV), do inglês Recursive Feature Elimination (RFE) (Guyon, 2002), é selecionar variáveis por meio da redução recursiva da quantidade de variáveis, eliminando recursivamente as variáveis de menor peso para classificação por meio do algoritmo adotado. 
 Primeiramente, um modelo é treinado, utilizando o conjunto de dados inicial e o algoritmo selecionado, durante o treinamento são atribuídos pesos para cada variável, representando a importância de cada variável para a classificação. Em seguida, as variáveis com menor peso são eliminadas do conjunto de dados. Este processo, de treinamento, ordenamento de variáveis e eliminação de variáveis menos importantes, é repetido recursivamente até a obtenção do número desejado de variáveis, ou até a satisfação de alguma condição, como um limiar de taxa de erro de um algoritmo de classificação.
 As variáveis com maiores pesos apresentam maior influência na classificação (Guyon, 2002). Desta forma, se um algoritmo de classificação apresenta boa acurácia, as variáveis com maiores pesos representam as variáveis que apresentam maior influência para a classificação.
 MVS-ERV (Guyon, 2002) é uma aplicação da ERV utilizando os pesos obtidos por meio do treinamento utilizando MVS como algoritmo de classificação, para identificar as variáveis mais importantes para predições de classificação e eliminar recursivamente as variáveis que menos influenciam na classificação.
 
-4.3 Análise das componentes principais
+\section{Experiments and Results}
+\label{sec:experimentalresults}
+
+\subsection{Análise das componentes principais}
 
 Para a análise eficiente da matriz original  é relevante separar as informações úteis das redundantes. Segundo Johnson e Wichern (1992), há vários instrumentos para essa finalidade, mas a ACP é a que melhor desempenha este papel. 
 Uma vez calculados os autovalores da matriz original, temos um resultado que mostra que aproximadamente 70\% da variabilidade dos dados é explicado por 51 componentes principais. O critério para a escolha desses fatores foi o de identificar os autovalores que possuem variância acumulada em torno de 70\% (Mardia, 1979). Tal valor também será utilizado nesta pesquisa (Quadro 7). 
@@ -106,7 +130,7 @@ Fonte: Dados da pesquisa
 Dessas instituições, 22, são consideradas pelo TCU como aprimoradas, ou seja, 95,65\%. Apenas a instituição 346 é avaliada como intermediária.
 Após a análise ACP, verifica-se que a mesma não é útil para a análise da Hipótese 2. Para responder a essa hipótese, é necessária a execução dos algoritmos de classificação da Subseção 4.4 e da Subseção 4.5.
 
-4.4 Máquinas de Vetores de Suporte
+\subsection{Máquinas de Vetores de Suporte}
 
 Para prever a classificação de uma instituição de acordo com suas respostas para as questões do questionário iGovTI, foram avaliados algoritmos de classificação que pudessem apresentar acurácia para a classificação de organizações de acordo com o iGovTI. Uma vez encontrado um algoritmo capaz desta classificação, é possível utilizar o algoritmo selecionado em conjunto com técnicas de feature selection para identificar as questões mais relevantes para a classificação da instituição de acordo com o iGovTI.
 Assim, para a definição do algoritmo de classificação foram realizados testes em 21 algoritmos, a seguir é apresentada uma listagem dos algoritmos avaliados e a taxa de acerto de classificação obtida: 
