@@ -1,4 +1,4 @@
-examples/*
+iexamples/*
 figures/*.pdf
 *~
 *.pdf
@@ -14,3 +14,10 @@ figures/*.pdf
 *.pdf
 *.synctex.gz
 *.toc
+chapters/1_introduction/*.aux
+chapters/2_pca_svm_cfa/*.aux
+chapters/2_pca_svm_cfa/*.tex
+chapters/3_eigen_similarity/*.aux
+chapters/4_mobile/*.aux
+chapters/5_tensor_dl/*.aux
+chapters/6_conclusion_future_work/*.aux
