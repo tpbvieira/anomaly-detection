@@ -1,19 +1,17 @@
 \chapter{Critical Success Factor Analysis Based on Feaure Selection}
-\label{ch:2_pca_svm_cfa}
+\label{ch:2_csf_fs}
 
 \begin{quotation}[]{Paulo Freire}
 No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
 \end{quotation}
 
-Critical success factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent those managerial or enterprise areas that must be given special and continual attention to bring about high performance. CSF analysis is one challenger strategic management tool, but if properly applied, CSF analysis does provide a robust and very practical assessment for strategic planners.
+Critical success factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent the principal assets or areas that must be given investments to achieve better results. CSF analysis is one challenger strategic management tool, wich can provide a robust and very practical assessment for strategic planners.
 
-The Tribunal de Contas da União (Federal Court of Accounts, often referred to as TCU) is the Brazilian federal accountability office that surveys data from public organizations in order to classify the maturity of IT governance. 
+The identification of the most significative information for one problem is referred to as feature selection by the signal processing and data mining areas, as well as it can be formulated as a principal component problem, which is a widely adopted signal processing technique. Feature selection aims to select a subset of relevant information from a larger dataset, in order to improve: data visualization and data understanding, storage requirements, dimensionality, processing time, discriminative sensing, and to overcome overfitting problems to improve prediction and classification performance \cite{chandrashekar2014survey}.
 
-Feature selection...
+Recursive feature elimination (RFE) is a feature selection method for small sample classification problems. RFE seeks to improve generalization performance by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features \cite{chen2007enhanced}.
 
-We propose a critical factors analysis based on Principal Compoment Analytis (PCA) and recurive feature elimination (RFE) combined with Support Vector Machine (SVM), applied to the surveys data from public organizations, in order to identify the CSF for IT governance measured by TCU. 
-
-The resusts show that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn the classification adopted by TCU for IT governance evaluation. Therefore, SVM is used to highlight the more significant features for RFE, which corroborates with previous qualitative analysis for critical success factor identification.
+We propose a critical factors analysis based on Principal Compoment Analytis (PCA) and recurive feature elimination (RFE) combined with Support Vector Machine (SVM), applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Resusts show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
 
 \section{Related Works}
 \label{sec:relatedworks}
@@ -25,12 +23,14 @@ The resusts show that SVM is the classifier that best performs and obtains an ac
 
 ...
 
-\section{Proposed Framework for Detection and Identification of Network Attacks}
+\section{Discriminative}
 \label{sec:prop_getv}
 
-\subsection{Análise de Componentes Principais}
+In this section we evaluate the Principal Component Analysis (Principal Component Analysis) for data visualization and identification of critical factors of the evaluated dataset. Futhermore, we propose a 
 
-Segundo Sabin, Ferrão e Furtado (2004) e Silva et al. (2012), a Análise de Componentes Principais (ACP), do inglês Principal Component Analysis – PCA, é utilizada para compressão de dados para identificação das relações entre características dos dados. Tal compressão é obtida por meio da substituição das variáveis originais por um novo conjunto de variáveis, conhecidas como Componentes Principais (CPs). As CPs são obtidas pela combinação linear das variáveis que apresentam a maior variabilidade na matriz de covariância. Assim, objetivo principal da ACP é identificar as CPs responsáveis pelas maiores variações entre os resultados. Em termos práticos eliminam-se algumas variáveis com pouca informação e determinam-se as variáveis de maior influência na formação de cada CP (Vicini, 2005).
+\subsection{Principal Component Analysis}
+
+Principal Component Analysis – PCA, é utilizada para compressão de dados para identificação das relações entre características dos dados. Tal compressão é obtida por meio da substituição das variáveis originais por um novo conjunto de variáveis, conhecidas como Componentes Principais (CPs). As CPs são obtidas pela combinação linear das variáveis que apresentam a maior variabilidade na matriz de covariância. Assim, objetivo principal da ACP é identificar as CPs responsáveis pelas maiores variações entre os resultados. Em termos práticos eliminam-se algumas variáveis com pouca informação e determinam-se as variáveis de maior influência na formação de cada CP (Vicini, 2005).
 Segundo Vicini (2005), o conjunto ortogonal de eixos não correlacionados representam as variáveis que mantém ao máximo a variabilidade do conjunto, em outras palavras, a menor perda de informação. 
 Conforme Vicini (2005:29), para o processo de determinação das CPs 
 “é necessário calcular matriz de variância-covariância (∑), ou na matriz de correlação (), encontrar os autovalores e autovetores e, por fim, escrever as combinações lineares, que serão as novas variáveis, denominadas de componentes principais, sendo que cada componente principal é a combinação linear de todas as variáveis originais [...] em ordem de estimação e em termos da variância total, contida nos dados iniciais”. 
@@ -50,7 +50,7 @@ Fonte: Desenvolvido pelos autores
 A Figura 1 reforça a ideia da ACP cujo objetivo inicial é a identificação de planos e linhas que representem um conjunto de pontos em um espaço com um número menor de variáveis tendo em vista as possíveis correlações que podem existir entre as variáveis originais.
 Assim, para o método da estatística multivariada ACP utilizar todas variáveis, separa-se a informação útil da informação redundante (Finkler, 2003). Ressalta-se que a ACP é um dos primeiros passos para outras análises multivariadas, sendo um dos métodos mais comuns empregados na análise de informações (Sabin, Ferrão e Furtado, 2004; Silva et al.,2012).
 
-\subsection{Máquinas de Vetores de Suporte}
+\subsection{Suport Vector Machines}
 
 Máquina de Vetores de Suporte (MVS), do inglês Support Vector Machine (SVM), é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
 Quando aplicado para classificação, MVS busca a identificação de um hiperplano que separa os dados em classes distintas, por meio de uma margem máxima entre duas classes de dados. Desta forma, um conjunto de dados é linearmente separável se for possível dividir seus dados em duas classes, por meio um hiperplano, conforme na figura a seguir. 
@@ -63,7 +63,7 @@ As funções de kernel têm o objetivo de projetar os vetores de variáveis de u
 % Uma função kernel K(xi, xj) = φ(xi) T φ(xj) pode ser usada para treinar a MVS. Uma MVS linear tem φ(x) = x, assim uma função kernel linear pode ser representada por K(xi, xj) = xTi xj.
 Foi adotada a estratégia "um contra um" (Knerr, Personnaz e Dreyfus, 1990), para a utilização de MVS para a classificação de muitas classes. Esta estratégia consiste em construir uma máquina vetor de suporte para cada par de classes. Para um problema com c classes, c(c-1)/2 MVSs são treinados para classificar as classes entre as c classes possíveis.
 
-\subsection{Eliminação Recursiva de Variáveis (ERV)}
+\subsection{Recursive Feature Elimination}
 
 Dado um algoritmo de classificação, que possa estimar pesos para as variáveis de um conjunto de dados, o objetivo da Eliminação Recursiva de Variáveis (ERV), do inglês Recursive Feature Elimination (RFE) (Guyon, 2002), é selecionar variáveis por meio da redução recursiva da quantidade de variáveis, eliminando recursivamente as variáveis de menor peso para classificação por meio do algoritmo adotado. 
 Primeiramente, um modelo é treinado, utilizando o conjunto de dados inicial e o algoritmo selecionado, durante o treinamento são atribuídos pesos para cada variável, representando a importância de cada variável para a classificação. Em seguida, as variáveis com menor peso são eliminadas do conjunto de dados. Este processo, de treinamento, ordenamento de variáveis e eliminação de variáveis menos importantes, é repetido recursivamente até a obtenção do número desejado de variáveis, ou até a satisfação de alguma condição, como um limiar de taxa de erro de um algoritmo de classificação.
@@ -162,3 +162,7 @@ Assim, para a definição do algoritmo de classificação foram realizados teste
 25. 
 26. A ERV pode usar vários algoritmos de classificação como critério de seleção das variáveis mais importantes, escolhemos o algoritmo SVC por ele ter apresentado maior acurácia entre os algoritmos de classificação avaliados. Ainda é necessário definir o quantitativo de variáveis mais importantes a serem selecionadas. A partir da pesquisa de identificação por meio de entrevistas na APF, identificou-se 54 variáveis consideradas FCS, este critério foi utilizado para determinar o quantitativo de variáveis mais importantes para a classificação.
 27. Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.
+
+\section{Conclusion}
+
+support vector machines (SVMs) which have been shown to generalize well even for small sample classification[8].
