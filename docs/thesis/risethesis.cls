@@ -190,7 +190,8 @@
   \gdef\@phdproposal{Ph.D. Proposal}
   \gdef\@phdthesis{Ph.D. Thesis}
   \gdef\@bachelordegree{Bachelor}
-  \gdef\@mastersdegree{Master of Science}
+  %\gdef\@mastersdegree{Master of Science}
+  \gdef\@mastersdegree{Philosophy Doctor}
   \gdef\@phddegree{Philosophy Doctor}
   \gdef\@maleadvisertitle{Advisor}
   \gdef\@femaleadvisertitle{Advisor}
@@ -234,11 +235,11 @@
 
 \def\universitypt#1{%
   \gdef\@universitypt{#1}}
-\def\@universitypt{Universidade Federal de Pernambuco}
+\def\@universitypt{Universidade de Bras\'ilia}
 
 \def\universityen#1{%
   \gdef\@universityen{#1}}
-\def\@universityen{Federal University of Pernambuco}
+\def\@universityen{University of Bras\'ilia}
 
 \def\universitylogo{ufpelogo.tex}
 
@@ -276,7 +277,7 @@
 
 \def\address#1{%
   \gdef\@address{#1}}
-\def\@address{Recife}
+\def\@address{Bras\'ilia}
 
 %% Authors identification
 
@@ -319,17 +320,30 @@
   \if\@scr1 \hypersetup{pdftitle={\@title}}\fi}
 \def\@title{\@notdefined}
 
+%\def\@texttype{%
+%  \if\@degreetype0
+%    \@bachelordissertation
+%  \else\if\@degreetype1
+%    \@mastersdissertation
+%  \else\if\@degreetype2
+%    \@phdqualifying
+%  \else\if\@degreetype3
+%    \@phdproposal
+%  \else\if\@degreetype4
+%    \@phdthesis
+%  \fi\fi\fi\fi\fi}
+
 \def\@texttype{%
   \if\@degreetype0
-    \@bachelordissertation
+    \@phdqualifying
   \else\if\@degreetype1
-    \@mastersdissertation
+    \@phdqualifying
   \else\if\@degreetype2
     \@phdqualifying
   \else\if\@degreetype3
-    \@phdproposal
+    \@phdqualifying
   \else\if\@degreetype4
-    \@phdthesis
+    \@phdqualifying
   \fi\fi\fi\fi\fi}
 
 \def\@degree{%
@@ -433,8 +447,8 @@ requirements for the degree of \@degree\ in \@majorfielden.
   \else
     {\fontfamily{times}\selectfont \tiny \@universityen\\}
   \fi
-  {\fontfamily{times}\selectfont \tiny posgraduacao@cin.ufpe.br\\}
-  {\fontfamily{times}\selectfont \tiny \url{www.cin.ufpe.br/~posgraduacao}\\}
+  {\fontfamily{times}\selectfont \tiny sec@ppgee.unb.br\\}
+  {\fontfamily{times}\selectfont \tiny \url{www.ppgee.unb.br}\\}
   \vskip\baselineskip
   \vskip\baselineskip
   \@address , \@date

@@ -5,13 +5,13 @@
 No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
 \end{quotation}
 
-Critical success factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent the principal assets or areas that must be given investments to achieve better results. CSF analysis is one challenger strategic management tool, wich can provide a robust and very practical assessment for strategic planners.
+Critical Success Factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent the principal assets or areas that must be given investments to achieve better results. CSF analysis is one challenger strategic management tool, wich can provide a robust and very practical assessment for strategic planners.
 
 The identification of the most significative information for one problem is referred to as feature selection by the signal processing and data mining areas, as well as it can be formulated as a principal component problem, which is a widely adopted signal processing technique. Feature selection aims to select a subset of relevant information from a larger dataset, in order to improve: data visualization and data understanding, storage requirements, dimensionality, processing time, discriminative sensing, and to overcome overfitting problems to improve prediction and classification performance \cite{chandrashekar2014survey}.
 
-Recursive feature elimination (RFE) is a feature selection method for small sample classification problems. RFE seeks to improve generalization performance by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features \cite{chen2007enhanced}.
+Recursive Feature Elimination (RFE) is a feature selection method for small sample classification problems. RFE seeks to improve generalization performance by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features \cite{chen2007enhanced}.
 
-We propose a critical factors analysis based on Principal Compoment Analytis (PCA) and recurive feature elimination (RFE) combined with Support Vector Machine (SVM), applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Resusts show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
+We propose a critical factors analysis based on Principal Compoment Analytis (PCA) and RFE combined with Support Vector Machine (SVM) \cite{hearst1998support}, applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Resusts show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
 
 \section{Related Works}
 \label{sec:relatedworks}
@@ -21,27 +21,21 @@ We propose a critical factors analysis based on Principal Compoment Analytis (PC
 \section{Data Model}
 \label{sec:datamodel}
 
-...
+This section presents details of the experimental scenario and describes the dataset model used to evaluate our proposal. Subsection \ref{sec:DataCollection} describes the environment and scenario adopted in order to reproduce flood and probe attacks. Subsection \ref{sec:ModelingData} presents how network traffic can be modeled as signal superposition. Subsection \ref{sec:SynfloodFraggleandPortscan} details the traffic of synflood, fraggle and port scan attacks, and Subsection \ref{sec:DarpaDataset} discusses the use of the DARPA dataset for evaluation of the proposed approach.
 
-\section{Discriminative}
+\section{Discriminative...}
 \label{sec:prop_getv}
 
-In this section we evaluate the Principal Component Analysis (Principal Component Analysis) for data visualization and identification of critical factors of the evaluated dataset. Futhermore, we propose a 
+In this section we evaluate the PCA for data visualization and identification of critical factors of the evaluated dataset. Futhermore, we propose a 
 
 \subsection{Principal Component Analysis}
 
-Principal Component Analysis – PCA, é utilizada para compressão de dados para identificação das relações entre características dos dados. Tal compressão é obtida por meio da substituição das variáveis originais por um novo conjunto de variáveis, conhecidas como Componentes Principais (CPs). As CPs são obtidas pela combinação linear das variáveis que apresentam a maior variabilidade na matriz de covariância. Assim, objetivo principal da ACP é identificar as CPs responsáveis pelas maiores variações entre os resultados. Em termos práticos eliminam-se algumas variáveis com pouca informação e determinam-se as variáveis de maior influência na formação de cada CP (Vicini, 2005).
-Segundo Vicini (2005), o conjunto ortogonal de eixos não correlacionados representam as variáveis que mantém ao máximo a variabilidade do conjunto, em outras palavras, a menor perda de informação. 
-Conforme Vicini (2005:29), para o processo de determinação das CPs 
-“é necessário calcular matriz de variância-covariância (∑), ou na matriz de correlação (), encontrar os autovalores e autovetores e, por fim, escrever as combinações lineares, que serão as novas variáveis, denominadas de componentes principais, sendo que cada componente principal é a combinação linear de todas as variáveis originais [...] em ordem de estimação e em termos da variância total, contida nos dados iniciais”. 
-Ressalta-se que não são todos as CPs a serem analisadas, mas apenas as com maior variância, alguns autores (Vicini, 2005) determinam os CPs por meio da porcentagem que representam, geralmente, mais de 70\% da informação. 
-Conforme Silva et al. (2012) para a geração dos CPs, considera-se uma matriz X = (X1, X2, ..., Xp) de dimensões nxp (a Seção 4 mostra as dimensões utilizadas nesta pesquisa) originada a partir de um vetor aleatório. A matriz de variância-covariância  das amostras da matriz X é calculada por meio da seguinte expressão , onde é o operador de transposição de uma matriz. Nota-se que a matriz de variância-covariância é uma matriz quadrada e não negativa. Portanto, pode-se aplica a decomposição em autovalores, do Eigenvalue Decomposition (EVD), da matriz  resultando em um produto de três matrizes.
-,
-% onde  é a matriz de autovetores e  é a matriz cuja diagonal principal contém os autovalores. Para cada autovalor λi da matriz  existe um autovetor unitário e ortognal vi.
-vi = 
-A i-nésima coluna da matriz  é o autovetor normalizado  correspondente ao autovalor . Desta forma, define-se i-ésima componente principal (Yi) como sendo
-% Yi= λ i vi
-Salienta-se que a ACP é baseada na EVD já que parte dos autovalores e dos autovetores representam as componentes principais (CP). 
+PCA is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA is a common technique for finding patterns in data of high dimension and for highlighting its discrinative characteristics and strucutres, throught an orthogonal basis transformation into new basis, by diagonalizing the centered covariance matrix of a data set {Xk E RNlk = 1, ... ,f}, defined by C = ((Xi - (Xk))(Xi - (Xk))T). The coordinates in the Eigenvector basis are called principal components. The size of an Eigenvalue >. corresponding to an Eigenvector v of C equals the amount of variance in the direction of v. PCA is usually used for signal denoising, blind source separation, data compression, data visualization, feature extraction and dimensionality reduction, where a reduced number of features is extrated retaining as much information as possible \cite{jolliffe1986principal}.
+
+describe PCA matematically here? acho que talvez seja melhor fazer uma descricao mais alto nível e voltar depois se sobrar tempo
+
+descrever cmo os dados são aplicados ao pca e apresentar os resultados obtidos
+
 A Figura 1 mostra geometricamente a ACP de duas variáveis X1 e X2. A nuvem de pontos representa o diagrama de espalhamento destas duas variáveis. Conforme explicado, o primeiro passo é o cálculo da matriz de variância-covariância e em seguida se aplica a EVD. Verifica-se que a CP1, denominado CP principal (com a maior variância), é ortogonal à segunda CP (CP2 com a menor variância). Note que as duas variáveis são perpendiculares porque as variáveis obtidas pela ACP são independentes. Logo, após a aplicação da ACP, ao invés de representar os dados por meio de duas variáveis correlacionadas X1 e X2, eles podem ser representados por duas variáveis independentes Y1 e Y2. Dada a elevada correlação entre X1 e X2, verifica-se que as duas variáveis X1 e X2 podem ser aproximadas por uma única variável Y1 na Figura 1.
 
 Figura 1 – Representação e Rotação do Componente Principal
@@ -52,7 +46,7 @@ Assim, para o método da estatística multivariada ACP utilizar todas variáveis
 
 \subsection{Suport Vector Machines}
 
-Máquina de Vetores de Suporte (MVS), do inglês Support Vector Machine (SVM), é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
+SVM é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
 Quando aplicado para classificação, MVS busca a identificação de um hiperplano que separa os dados em classes distintas, por meio de uma margem máxima entre duas classes de dados. Desta forma, um conjunto de dados é linearmente separável se for possível dividir seus dados em duas classes, por meio um hiperplano, conforme na figura a seguir. 
 
 Figura 2 – Separação Linear por Margem Máxima
