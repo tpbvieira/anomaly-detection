@@ -22,14 +22,14 @@ Ramos \emph{et al} \cite{ramos2016information} propose an overview regarding the
 
 Guyon \emph{et al} \cite{guyon2002gene} propose a method of gene selection utilizing Support Vector Machine methods based on Recursive Feature Elimination (RFE) and demonstrate that the selected genes yield better classification performance and are biologically relevant to cancer.  The proposed method eliminates gene redundancy automatically and yields better and more compact gene subsets. 
 
+To the best of our knowledge, we are the first to propose a critical factors analysis based on PCA for visual discriminative analysis and based on RFE combined with SVM for CSF identification from IT governance data.
+
 \section{Data Model}
 \label{sec:datamodel}
 
-In order to audit IT governance of public institutions, the Federal Court of Accounts (TCU, in Portuguese) surveys data of IT practices from these institutions. Although these surveys started in 2007 with 39 questions, nowadays they contain more than 100 questions that allow TCU to rank these institutions by their IT governance index.
+The Federal Court of Accounts (TCU, in Portuguese) surveys data of IT practices of brazilian public organizations in order to audit IT governance. This resulting dataset is called iGovTI. We propose to use the iGovTI of 2012 for CSF analysis. The iGovTI is composed by 201 questions used for organization ranking according to their responses and their IT governance.
 
 This section presents details of the experimental scenario and describes the dataset model used to evaluate our proposal. Subsection \ref{sec:DataCollection} describes the environment and scenario adopted in order to reproduce flood and probe attacks. Subsection \ref{sec:ModelingData} presents how network traffic can be modeled as signal superposition. Subsection \ref{sec:SynfloodFraggleandPortscan} details the traffic of synflood, fraggle and port scan attacks, and Subsection \ref{sec:DarpaDataset} discusses the use of the DARPA dataset for evaluation of the proposed approach.
-
-To the best of our knowledge, we are the first to propose a critical factors analysis based on PCA for visual discriminative analysis and based on RFE combined with SVM for CSF identification.
 
 \section{Discriminative...}
 \label{sec:prop_getv}
@@ -148,35 +148,29 @@ Após a análise ACP, verifica-se que a mesma não é útil para a análise da H
 
 Para prever a classificação de uma instituição de acordo com suas respostas para as questões do questionário iGovTI, foram avaliados algoritmos de classificação que pudessem apresentar acurácia para a classificação de organizações de acordo com o iGovTI. Uma vez encontrado um algoritmo capaz desta classificação, é possível utilizar o algoritmo selecionado em conjunto com técnicas de feature selection para identificar as questões mais relevantes para a classificação da instituição de acordo com o iGovTI.
 Assim, para a definição do algoritmo de classificação foram realizados testes em 21 algoritmos, a seguir é apresentada uma listagem dos algoritmos avaliados e a taxa de acerto de classificação obtida: 
-1. KNN: 0.714286
-2. ElasticNet: 0.155336
-3. ElasticNetCV: 0.831531
-4. LassoCV: 0.827440
-5. LassoLarsIC: 0.713763
-6. LinearRegression: 0.360878
-7. LogisticRegression: 0.771429
-8. OrthogonalMatchingPursuit: 0.769630
-9. PassiveAggressiveClassifier: 0.800000
-10. PassiveAggressiveRegressor: 0.852184
-11. Perceptron: 0.800000
-12. Ridge: 0.529922
-13. RidgeClassifier: 0.657143
-14. RidgeClassifierCV: 0.742857
-15. RidgeCV: 0.750149
-16. SGDClassifier: 0.828571
-17. MultinomialNB: 0.742857
-18. lda.LDA: 0.628571
-19. SVM.SVR: 0.826885
-20. SVM.SVC: 0.914286
-21. SVM.LinearSVC: 0.714286
-22. O algoritmo que obteve maior sucesso para classificação foi o SVC, que é uma implementação de Máquina de Vetores de Suporte aplicado para a classificação. SVC apresentou uma taxa de acerto de 91,4\%. Para a avaliação dos algoritmos, utilizamos uma metodologia que divide os dados dos questionários pelo iGovTI entre questões que serão utilizadas para aprendizado do algoritmo e questões que serão utilizadas para comparativo de predições. Para treinar o algoritmo utilizou-se 90\% dos dados e os 10\% restantes foram utilizados para avaliar a eficiência de classificação dos algoritmos, comparando a taxa de acerto entre as predições feitas e os valores reais de classificações de organizações pelo iGovTI. 
-23. Uma vez identificado um algoritmo capaz de efetuar a classificação desejada, o próximo passo é identificar as variáveis mais relevantes para esta classificação. Para isso, será utilizado o algoritmo ERV. 
-24. 
-4.5 Eliminação Recursiva de Variáveis
-25. 
-26. A ERV pode usar vários algoritmos de classificação como critério de seleção das variáveis mais importantes, escolhemos o algoritmo SVC por ele ter apresentado maior acurácia entre os algoritmos de classificação avaliados. Ainda é necessário definir o quantitativo de variáveis mais importantes a serem selecionadas. A partir da pesquisa de identificação por meio de entrevistas na APF, identificou-se 54 variáveis consideradas FCS, este critério foi utilizado para determinar o quantitativo de variáveis mais importantes para a classificação.
-27. Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.
+
+k-nearest neighbors \cite{fukunaga1975branch}	0.714286
+Elastic Net \cite{zou2005regularization}	0.831531
+Lasso \cite{tibshirani1996regression}	0.827440
+LinearRegression \cite{draper2014applied}	0.360878
+LogisticRegression \cite{hosmer2013applied}	0.771429
+LDA \cite{martinez2001pca}	0.628571
+SVM \cite{hearst1998support}	0.914286
+SVM Regression \cite{smola2004tutorial}	0.826885
+Linear SVM \cite{fan2008liblinear}	0.714286
+
+O algoritmo que obteve maior sucesso para classificação foi o SVC, que é uma implementação de Máquina de Vetores de Suporte aplicado para a classificação. SVC apresentou uma taxa de acerto de 91,4\%. Para a avaliação dos algoritmos, utilizamos uma metodologia que divide os dados dos questionários pelo iGovTI entre questões que serão utilizadas para aprendizado do algoritmo e questões que serão utilizadas para comparativo de predições. Para treinar o algoritmo utilizou-se 90\% dos dados e os 10\% restantes foram utilizados para avaliar a eficiência de classificação dos algoritmos, comparando a taxa de acerto entre as predições feitas e os valores reais de classificações de organizações pelo iGovTI. 
+
+Uma vez identificado um algoritmo capaz de efetuar a classificação desejada, o próximo passo é identificar as variáveis mais relevantes para esta classificação. Para isso, será utilizado o algoritmo ERV. 
+
+A ERV pode usar vários algoritmos de classificação como critério de seleção das variáveis mais importantes, escolhemos o algoritmo SVC por ele ter apresentado maior acurácia entre os algoritmos de classificação avaliados. Ainda é necessário definir o quantitativo de variáveis mais importantes a serem selecionadas. A partir da pesquisa de identificação por meio de entrevistas na APF, identificou-se 54 variáveis consideradas FCS, este critério foi utilizado para determinar o quantitativo de variáveis mais importantes para a classificação.
+
+Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.
 
 \section{Conclusion}
 
-support vector machines (SVMs) which have been shown to generalize well even for small sample classification[8].
+pca make possible visual discriminative analysis of reduced dataset but it is not easy make correlation betwee extracted features and its original, therefore it is necessary adictional techniques to identify CSF.
+
+SVM have been shown to generalize well even for small sample classification[8]. SVM presents high performance to reproduce the iGovTI classification and can be used for RFE in order to identify CSF
+
+The selected features revealed by RFE are quite similar to the qualitative analysis of Ramos \emph{et al} \cite{ramos2016information}.
