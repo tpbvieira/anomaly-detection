@@ -53,6 +53,18 @@ A key challenge to use sparse coding and dictionary learning for classification 
 
 \section{Related Works}
 
+Compressed sensing (also known as compressive sensing, compressive sampling, or sparse sampling) is a signal processing technique for efficiently acquiring and reconstructing a signal, by finding solutions to underdetermined linear systems. This is based on the principle that, through optimization, the sparsity of a signal can be exploited to recover it from far fewer samples than required by the Shannon-Nyquist sampling theorem. There are two conditions under which recovery is possible.[1] The first one is sparsity which requires the signal to be sparse in some domain. The second one is incoherence which is applied through the isometric property which is sufficient for sparse signals.[2][3]
+
+A common goal of the engineering field of signal processing is to reconstruct a signal from a series of sampling measurements. In general, this task is impossible because there is no way to reconstruct a signal during the times that the signal is not measured.
+
+Around 2004, Emmanuel Candès, Terence Tao, and David Donoho proved that given knowledge about a signal's sparsity, the signal may be reconstructed with even fewer samples than the sampling theorem requires.[4][5] This idea is the basis of compressed sensing. 	https://www.wired.com/2008/03/engineers-test-highly-accurate-face-recognition/
+
+Sparse dictionary learning is a representation learning method which aims at finding a sparse representation of the input data (also known as sparse coding) in the form of a linear combination of basic elements as well as those basic elements themselves. These elements are called atoms and they compose a dictionary. Atoms in the dictionary are not required to be orthogonal, and they may be an over-complete spanning set. This problem setup also allows the dimensionality of the signals being represented to be higher than the one of the signals being observed. The above two properties lead to having seemingly redundant atoms that allow multiple representations of the same signal but also provide an improvement in sparsity and flexibility of the representation.
+
+sparse coding is a sparse representation of one data in the form of a linear combination of basic elements. These elements are called atoms and they compose a dictionary.
+
+One of the key principles of dictionary learning is that the dictionary has to be inferred from the input data. The emergence of sparse dictionary learning methods was stimulated by the fact that in signal processing one typically wants to represent the input data using as few components as possible. Before this approach the general practice was to use predefined dictionaries (such as fourier or wavelet transforms). However, in certain cases a dictionary that is trained to fit the input data can significantly improve the sparsity, which has applications in data decomposition, compression and analysis and has been used in the fields of image denoising and classification, video and audio processing. Sparsity and overcomplete dictionaries have immense applications in image compression, image fusion and inpainting.
+
 Face recognition...
 
 Fisher...
@@ -102,6 +114,50 @@ The dictionary estimation is evaluated by applying the proposed approach to esti
 \section{Experiments}
 
 rocauc is usually used for classification evaluation, but It os not the best option for imbalance data, and Also because It does not consider the unclassified cases, such as false negatives
+
+Receiver Operating Characteristic Curve (ROC curve) http://www.chioka.in/differences-between-roc-auc-and-pr-auc/
+
+A ROC curve is plotting True Positive Rate (TPR) against False Positive Rate (FPR).
+
+TPR is defined as:
+
+tpr-formula
+
+FPR is defined as:
+
+fpr-formula
+
+where TP = true positive, TN = true negative, FP = false positive, FN = false negative.
+
+A typical ROC curve looks like this, which shows two ROC curves for Algorithm 1 and Algorithm 2.
+
+sample-ROC-curve
+
+The goal is to have a model be at the upper left corner, which is basically getting no false positives – a perfect classifier.
+
+The receiver operating characteristic area under curve (ROC AUC) is just the area under the ROC curve. The higher it is, the better the model is.
+
+Precision Recall Curve (PR Curve)
+A PR curve is plotting Precision against Recall.
+
+Precision is defined as:
+
+precision-formula
+
+Recall is defined as:
+
+recall-formulaA typical PR curve looks like this, which shows two PR curves for Algorithm 1 and Algorithm 2.
+
+sample-PR-curve
+
+The goal is to have a model be at the upper right corner, which is basically getting only the true positives with no false positives and no false negatives – a perfect classifier.
+
+The precision recall area under curve (PR AUC) is just the area under the PR curve. The higher it is, the better the model is.
+
+Differences between the ROC AUC and PR AUC
+Randy has given a great explanation here, plus a little of my understanding.
+
+Since PR does not account for true negatives (as TN is not a component of either Precision or Recall), or there are many more negatives than positives (a characteristic of class imbalance problem), use PR. If not, use ROC.
 
 Due to the inherent complex characteristics of imbalanced data sets, learning from such data requires new understandings, principles, algorithms, and tools to transform vast amounts of raw data efficiently into information and knowledge representation.
 
