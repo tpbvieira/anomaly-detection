@@ -13,10 +13,10 @@ Recursive Feature Elimination (RFE) is a feature selection method for small samp
 
 We propose a critical factors analysis based on Principal Compoment Analytis (PCA) for visual discriminant analysis and based on RFE combined with Support Vector Machine (SVM) \cite{hearst1998support}, applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Results show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
 
-This chapter is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model and the evaluated datasets. Section \ref{sec:csf_fs} describes the proposed approach for critical success factors analysis. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusion} draws the conclusions.
+This chapter is organized as follows. In Section \ref{sec:ch2_relatedworks}, related works are discussed. Section \ref{sec:ch2_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:ch2_csf_fs} describes the proposed approach for critical success factors analysis. Section \ref{sec:ch2_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:ch2_conclusion} draws the conclusions.
 
 \section{Related Works}
-\label{sec:relatedworks}
+\label{sec:ch2_relatedworks}
 
 Fink and Sukenik \cite{fink2011effect} explore the relationships among IT infrastructure capability and IT business value using PCA applied to all indicators of their study, resulting into 11 factors, with the first factor accounting for only 27.9\% of the variance. This technique was used because the PCA extracts orthogonal factors that overcome the problem of multicollinearity.
 
@@ -27,81 +27,63 @@ Guyon \emph{et al} \cite{guyon2002gene} propose a method of gene selection utili
 To the best of our knowledge, we are the first to propose a critical factors analysis based on PCA for visual discriminant analysis and based on RFE combined with SVM for CSF identification from IT governance data.
 
 \section{Data Model}
-\label{sec:datamodel}
+\label{sec:ch2_datamodel}
 
 The brazilian Federal Court of Accounts (TCU, in Portuguese) surveys data regarding IT practices of brazilian public organizations in order to audit IT governance. The dataset with a consolidate view about the answers for this surgey the IT governance index is called iGovTI. The iGovTI is composed by 201 multiple choice questions, used for ranking according to their IT governance, submmited to 349 organizations. The TCU computes the IT governance index and classifies the IT governace of each organization. Additionally, Ramos \emph{et al} \cite{ramos2016information} classifies each question regarding its relevance for IT governance through a qualitative analysis, and identify the CSFs for selected IT managers regarding IT governance.
 
 \section{An approach for Critical Success Factors Analysis}
-\label{sec:csf_fs}
+\label{sec:ch2_csf_fs}
 
-In this section we propose an approach for Critical Success Factors Analysis based on visual discriminant analysis and based on feature selection, in orde to identify the CSFs for IT governance according to iGovTI. Initially we conduct an analysis based on PCA to evaluate the relevante of each feature according to their variance, and use the 2 most relevant features for a visualization of the iGovTI ranking. Furthermore, we propose a critical success factors analysis based on SVM for classification and based on RFE for identification of the most relevant factors.
+In this section we propose an approach for CSF Analysis based on visual discriminant analysis and based on feature selection, in order to identify the CSFs for IT governance according to iGovTI. Initially we conduct an analysis based on PCA to evaluate the relevance of each question according to their variance, and use the 2 most relevant features for a visualization of the iGovTI ranking. Furthermore, we propose a critical success factors analysis based on SVM for classification and based on RFE for identification of the most relevant factors.
 
 \subsection{Visual Discriminant Analysis based on PCA}
+\label{sec:ch2_pca}
 
-PCA is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance.
+PCA is a statistical technique commonly used for signal denoising, blind source separation, data compression, data visualization, feature extraction and dimensionality reduction, where a reduced number of features is extrated retaining as much information as possible \cite{jolliffe1986principal}. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance.
 
-PCA is also used for finding patterns in data of high dimension and for highlighting its discrinative characteristics and strucutres, throught an orthogonal basis transformation into new basis, by diagonalizing the centered covariance matrix of a data set {Xk E RNlk = 1, ... ,f}, defined by C = ((Xi - (Xk))(Xi - (Xk))T). The coordinates in the Eigenvector basis are called principal components. The size of an Eigenvalue >. corresponding to an Eigenvector v of C equals the amount of variance in the direction of v. PCA is usually used for signal denoising, blind source separation, data compression, data visualization, feature extraction and dimensionality reduction, where a reduced number of features is extrated retaining as much information as possible \cite{jolliffe1986principal}.
+PCA is an orthogonal basis transformation into new basis, by diagonalizing the centered covariance matrix of a data set \{$\mathbf{x}_j \in \mathbb{R}^m, j = 1, ... ,n$\}, defined by $\mathbf{C} = \frac{\mathbf{X}^\intercal\mathbf{X}}{n}$, where $\mathbf{X} = (\mathbf{x}_1, ... , \mathbf{x}_n)^\intercal$ and the samples are assumed to have zero mean. The eigenvectors $\mathbf{v}_i$ of $\mathbf{C}$ are called principal components (PC), and the sample variance along $\mathbf{v}_i$ of $\mathbf{C}$ is given by the corresponding eigenvalue $\lambda_i$. Projecting onto the eigenvectors with the largest eigenvalues assumes that minimal information is lost, considering that in many applications these directions contain the most interesting information, such as in in data compression and de-noising.
 
-PCA combines similar (correlated) attributes and creates new ones. Superior to original attributes. 
+Initially, we compute the covariance matrix $\mathbf{C}$ of a zero mean data and visualize the data relationship for the sambple covariance. Sample covariance is calculated by computing deviations of each measurement from the average of all measurements for that variable. Then the deviations for the two measurements are multiplied together separately for each subject. Finally these values are averaged. After that, the eigenvectors $\mathbf{v}_i$ and eigenvalues $\lambda_i$ of $\mathbf{C}$ are computed through Singular Value Decomposition (SVD), then it is possible to evaluate the variance distribution of the extracted components through an empirical cumulative distribution function (ECDF). Evaluating the variance distribution we expect to visualize if some features concentrates the variance and indicates advantages for dimensionality reduction.
 
-Feature selection doesn't combine attributes. Just evaluates their quality, predictive power and select the best set. 
+Finally, we propose to select the two features with the largest variance and evaluate the relationship between the two principal components and the iGovTI classification, in order to visualize if there is a segmentation according to the iGovTI ranking.
 
-Benefit in PCA is that combination of N attributes is better than any individual attribute. Disadvantage is in harder explanation what exactly that PCA component means.
+Considering that PCA combines attributes and creates new ones, with measurements from all of the original variables, it is hard to identify what original variables are most relevant. Therefore, it is still necessary an additional method to reveal what are the CSF for iGovTI. For this problem, we propose a CSF analysis based on RFE.
 
-describe PCA matematically here? acho que talvez seja melhor fazer uma descricao mais alto nível e voltar depois se sobrar tempo
+\subsection{CSF analysis based on RFE}
+\label{sec:ch2_csfa}
 
-descrever cmo os dados são aplicados ao pca e apresentar os resultados obtidos
+Feature selection aims the identification of the most significative information for one problem or algorithm, such as classification or prediction problems. RFE is a feature selection method for small sample classification problems by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features through a selected classifier. 
 
-A Figura 1 mostra geometricamente a ACP de duas variáveis X1 e X2. A nuvem de pontos representa o diagrama de espalhamento destas duas variáveis. Conforme explicado, o primeiro passo é o cálculo da matriz de variância-covariância e em seguida se aplica a EVD. Verifica-se que a CP1, denominado CP principal (com a maior variância), é ortogonal à segunda CP (CP2 com a menor variância). Note que as duas variáveis são perpendiculares porque as variáveis obtidas pela ACP são independentes. Logo, após a aplicação da ACP, ao invés de representar os dados por meio de duas variáveis correlacionadas X1 e X2, eles podem ser representados por duas variáveis independentes Y1 e Y2. Dada a elevada correlação entre X1 e X2, verifica-se que as duas variáveis X1 e X2 podem ser aproximadas por uma única variável Y1 na Figura 1.
+Initially, it is necessary to identify one classifier that can identify the iGovTI classificatin of one organization according to a trainning dataset. Therefore, we propose an algorithm evaluatio in order to identify wich one presents the best accuracy for iGovTI classification. The selected algorithm should be used by RFE to identify the CSF, that should be compared to results of the CSF qualitative analysis conducted by Ramos \emph{et al} \cite{ramos2016information}.
 
-Figura 1 – Representação e Rotação do Componente Principal
-Fonte: Desenvolvido pelos autores
+Feature selection doesn't combine attributes, as PCA, but just evaluates their informative quality, predictive power and select the best set. Given an external estimator or classifier, that assigns weights to features, RFE is able to select features by recursively considering smaller and smaller sets of features. First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through a coefficient attribute or through a feature importances attribute. Then, the least important features are pruned from current set of features. That procedure is recursively repeated on the pruned set until the desired number of features to select is eventually reached. RFE can also rank all features areaccording to when they were eliminated. 
 
-A Figura 1 reforça a ideia da ACP cujo objetivo inicial é a identificação de planos e linhas que representem um conjunto de pontos em um espaço com um número menor de variáveis tendo em vista as possíveis correlações que podem existir entre as variáveis originais.
-Assim, para o método da estatística multivariada ACP utilizar todas variáveis, separa-se a informação útil da informação redundante (Finkler, 2003). Ressalta-se que a ACP é um dos primeiros passos para outras análises multivariadas, sendo um dos métodos mais comuns empregados na análise de informações (Sabin, Ferrão e Furtado, 2004; Silva et al.,2012).
-
-\subsection{iGovTI classification}
-
-SVM é um método supervisionado de aprendizagem de máquina, não probabilístico, baseado na teoria de aprendizagem estatística, usado para classificação, regressão e detecção de padrões. MVS pode ser aplicado por meio de dois passos: o primeiro passo é o treinamento de um modelo a partir de um determinado conjunto de dados; o segundo consiste em estimar a classificação de dados a partir da aplicação do modelo treinado. 
-Quando aplicado para classificação, MVS busca a identificação de um hiperplano que separa os dados em classes distintas, por meio de uma margem máxima entre duas classes de dados. Desta forma, um conjunto de dados é linearmente separável se for possível dividir seus dados em duas classes, por meio um hiperplano, conforme na figura a seguir. 
-
-Figura 2 – Separação Linear por Margem Máxima
-
-Dado um conjunto de dados previamente classificados, (xi, yi), xi ∈ Rn, yi ∈ {1, −1}, i = 1, . . . , l, um classificador linear pode ser definido por: wT ⋅ x + b = 0, desta forma o hiperplano ótimo é definido pelos valores ótimos do vetor de pesos wi e do bias bi, de forma que wT ⋅ x + b = 1 e wT ⋅ x + b = -1 representam respectivamente os vetores de suporte positivos e negativos, que são os pontos próximos à margem do hiperplano ideal. A margem máxima, entre os vetores de suporte, é definida por:
-
-As funções de kernel têm o objetivo de projetar os vetores de variáveis de um conjunto de dados em um espaço de maior dimensão, para a classificação de classes originalmente apresentadas em espaços não separáveis linearmente. Com o aumento da dimensão, aumenta a probabilidade desses dados poderem ser linearmente separáveis. 
-% Uma função kernel K(xi, xj) = φ(xi) T φ(xj) pode ser usada para treinar a MVS. Uma MVS linear tem φ(x) = x, assim uma função kernel linear pode ser representada por K(xi, xj) = xTi xj.
-Foi adotada a estratégia "um contra um" (Knerr, Personnaz e Dreyfus, 1990), para a utilização de MVS para a classificação de muitas classes. Esta estratégia consiste em construir uma máquina vetor de suporte para cada par de classes. Para um problema com c classes, c(c-1)/2 MVSs são treinados para classificar as classes entre as c classes possíveis.
-
-\subsection{CSF analysis based on SVM-RFE}
-
-Dado um algoritmo de classificação, que possa estimar pesos para as variáveis de um conjunto de dados, o objetivo da Eliminação Recursiva de Variáveis (ERV), do inglês Recursive Feature Elimination (RFE) (Guyon, 2002), é selecionar variáveis por meio da redução recursiva da quantidade de variáveis, eliminando recursivamente as variáveis de menor peso para classificação por meio do algoritmo adotado. 
-Primeiramente, um modelo é treinado, utilizando o conjunto de dados inicial e o algoritmo selecionado, durante o treinamento são atribuídos pesos para cada variável, representando a importância de cada variável para a classificação. Em seguida, as variáveis com menor peso são eliminadas do conjunto de dados. Este processo, de treinamento, ordenamento de variáveis e eliminação de variáveis menos importantes, é repetido recursivamente até a obtenção do número desejado de variáveis, ou até a satisfação de alguma condição, como um limiar de taxa de erro de um algoritmo de classificação.
-As variáveis com maiores pesos apresentam maior influência na classificação (Guyon, 2002). Desta forma, se um algoritmo de classificação apresenta boa acurácia, as variáveis com maiores pesos representam as variáveis que apresentam maior influência para a classificação.
-MVS-ERV (Guyon, 2002) é uma aplicação da ERV utilizando os pesos obtidos por meio do treinamento utilizando MVS como algoritmo de classificação, para identificar as variáveis mais importantes para predições de classificação e eliminar recursivamente as variáveis que menos influenciam na classificação.
-
-Recursive feature elimination is based on the idea to repeatedly construct a model (for example an SVM or a regression model) and choose either the best or worst performing feature (for example based on coefficients), setting the feature aside and then repeating the process with the rest of the features. This process is applied until all features in the dataset are exhausted. Features are then ranked according to when they were eliminated. As such, it is a greedy optimization for finding the best performing subset of features.
-
-The stability of RFE depends heavily on the type of model that is used for feature ranking at each iteration. Just as non-regularized regression can be unstable, so can RFE when utilizing it, while using ridge regression can provide more stable results.
-
-%Given an external estimator that assigns weights to features e.g., the coefficients of a linear model, recursive feature elimination RFE is to select features by recursively considering smaller and smaller sets of features. First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through a coef attribute or through a feature_importances attribute. Then, the least important features are pruned from current set of features.That procedure is recursively repeated on the pruned set until the desired number of features to select is eventually reached.
+The variables with the least effect on training errors or largest weights indicates more relevance for a classifier. Therefore, we propose to assume that the selected most relevant features are the CSF for iGovTI and also propose to validate this assumption against the results of the CSF qualitative analysis conducted by Ramos \emph{et al} \cite{ramos2016information}.
 
 \section{Experiments and Results}
-\label{sec:experimentalresults}
+\label{sec:ch2_experimentalresults}
 
-\subsection{Análise das componentes principais}
+In this section we present the experiements and results for the visual discriminant analysis based on PCA and for CSF analysis based on RFE, and discuss the results.
 
-Para a análise eficiente da matriz original  é relevante separar as informações úteis das redundantes. Segundo Johnson e Wichern (1992), há vários instrumentos para essa finalidade, mas a ACP é a que melhor desempenha este papel. 
-Uma vez calculados os autovalores da matriz original, temos um resultado que mostra que aproximadamente 70\% da variabilidade dos dados é explicado por 51 componentes principais. O critério para a escolha desses fatores foi o de identificar os autovalores que possuem variância acumulada em torno de 70\% (Mardia, 1979). Tal valor também será utilizado nesta pesquisa (Quadro 7). 
+For the visual discriminant analysis we initially we compute the zero mean and then compute the correlation matrix $\mathbf{C}$ is computed from $\mathbf{X}$, which is shown by Figure \ref{fig:ch2_fig1}.
+ 
+\begin{figure}[h!]
+     \centering 
+     \includegraphics[height=10cm, width=10cm]{figures/ch2/raw_igovti_covariance}
+     \caption{Covariance matrix of iGovTI questions.}
+     \label{fig:ch2_fig1}
+\end{figure}
+
+The correlation matrix of 201 questions reveals 
+
+Depois da extração dos autovalores e percentual da variância explicada, é decidida a quantidade de fatores a serem retirados para análise. Para isso, o Gráfico 1 em que o total de autovalores está no eixo das ordenadas e os autovalores  no eixo das abscissas, auxilia na identificação. Esse gráfico consiste no ranking dos autovalores (eixo x), relacionado com o valor de cada autovalor (eixo y). Verifica-se que uma queda menos acentuada ocorreu entre o quarto e o quinto autovalor e analisando-se os autovalores superiores a 2, observa-se que pode-se considerar até o vigésimo valor já que a partir daí os valores dos autovalores sucessivos são praticamente constantes.
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=6cm, width=9cm]{figures/pca-svm-rfe_raw_variance_ecdf.eps}
+     \includegraphics[height=8cm, width=11cm]{figures/ch2/raw_variance_ecdf.eps}
      \caption{Empirical CDF of variance.}
-     \label{fig:fig1}
+     \label{fig:ch2_fig2}
 \end{figure}
-
-Depois da extração dos autovalores e percentual da variância explicada, é decidida a quantidade de fatores a serem retirados para análise. Para isso, o Gráfico 1 em que o total de autovalores está no eixo das ordenadas e os autovalores  no eixo das abscissas, auxilia na identificação. Esse gráfico consiste no ranking dos autovalores (eixo x), relacionado com o valor de cada autovalor (eixo y). Verifica-se que uma queda menos acentuada ocorreu entre o quarto e o quinto autovalor e analisando-se os autovalores superiores a 2, observa-se que pode-se considerar até o vigésimo valor já que a partir daí os valores dos autovalores sucessivos são praticamente constantes.
  
 Visando encontrar os planos fatoriais realizou-se uma rotação dos eixos, onde as cargas fatoriais mais elevadas são as responsáveis pelas denominações das componentes e são estatisticamente significativas. As rotações de eixos melhor expressam a dispersão de dados. No modelo fatorial final, as variáveis das medidas estão maximizadas e as relações entre dimensões suavizadas (Vicini, 2005).
 Para esta análise buscam-se valores que possuem significância maior que 0,7, mostrando que a correlação entre as variáveis está de moderada a forte (Vicini, 2005). Essa identificação não seria possível sem a rotação dos eixos, possibilitando assim a melhor visualização das variáveis mais significativas em cada componente. Tal rotação mantem os eixos perpendiculares entre si, ou seja, ortogonais e a variabilidade do sistema não é alterada, apenas as coordenadas dos eixos são rotacionadas e a inércia do sistema fica inalterada. 
@@ -110,9 +92,9 @@ Para visualização desses fatores foi utilizado o gráfico de dispersão (Gráf
  
 \begin{figure}[h!]
      \centering 
-     \includegraphics[height=6cm, width=9cm]{figures/pca-svm-rfe_raw_igovti_ranking_pc2.eps}
+     \includegraphics[height=8cm, width=11cm]{figures/ch2/raw_igovti_ranking_pc2.eps}
      \caption{iGovTI ranking from 2 principal components.}
-     \label{fig:fig1}
+     \label{fig:ch2_fig3}
 \end{figure}
 
 No Gráfico 2, para analisar apenas a , projetam-se os pontos sobre o eixo da e se tem três grupos (V, II e I). O mesmo processo se aplica a analise da . Assim, observam-se três grupos (V, IV e III). Para cada grupo se seleciona apenas uma variável representativa, o restante é desconsiderado, uma vez que cada grupo significa correlação.
@@ -135,20 +117,28 @@ O Gráfico 4 representa a relação entre os 2 principais componentes, que repre
 Dessas instituições, 22, são consideradas pelo TCU como aprimoradas, ou seja, 95,65\%. Apenas a instituição 346 é avaliada como intermediária.
 Após a análise ACP, verifica-se que a mesma não é útil para a análise da Hipótese 2. Para responder a essa hipótese, é necessária a execução dos algoritmos de classificação da Subseção 4.4 e da Subseção 4.5.
 
-\subsection{Máquinas de Vetores de Suporte}
-
 Para prever a classificação de uma instituição de acordo com suas respostas para as questões do questionário iGovTI, foram avaliados algoritmos de classificação que pudessem apresentar acurácia para a classificação de organizações de acordo com o iGovTI. Uma vez encontrado um algoritmo capaz desta classificação, é possível utilizar o algoritmo selecionado em conjunto com técnicas de feature selection para identificar as questões mais relevantes para a classificação da instituição de acordo com o iGovTI.
 Assim, para a definição do algoritmo de classificação foram realizados testes em 21 algoritmos, a seguir é apresentada uma listagem dos algoritmos avaliados e a taxa de acerto de classificação obtida: 
 
-k-nearest neighbors \cite{fukunaga1975branch}	0.714286
-Elastic Net \cite{zou2005regularization}	0.831531
-Lasso \cite{tibshirani1996regression}	0.827440
-LinearRegression \cite{draper2014applied}	0.360878
-LogisticRegression \cite{hosmer2013applied}	0.771429
-LDA \cite{martinez2001pca}	0.628571
-SVM \cite{hearst1998support}	0.914286
-SVM Regression \cite{smola2004tutorial}	0.826885
-Linear SVM \cite{fan2008liblinear}	0.714286
+\begin{table*}[!t]
+	\caption{Evaluation of classification accuracy for iGovTI}
+  	\label{tab:ch2_tab3}
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline \rowcolor{Gray} Algorithm	& Mean Accuracy\\\hline
+		Linear Regression \cite{draper2014applied}	&0.3608\\ \hline
+		LDA \cite{martinez2001pca}	&0.6285\\ \hline
+		K-Nearest Neighbors \cite{fukunaga1975branch}	&0.7142\\ \hline
+		Linear SVM \cite{fan2008liblinear}	&0.7142\\ \hline
+		Logistic Regression \cite{hosmer2013applied}	&0.7714\\ \hline
+		SVM Regression \cite{smola2004tutorial}	&0.8268\\ \hline
+		Lasso \cite{tibshirani1996regression}	&0.8274\\ \hline
+		Elastic Net \cite{zou2005regularization}	&0.8315\\ \hline
+		SVM \cite{hearst1998support}	&0.9142\\ \hline
+	\end{tabular}
+\end{table*}
+
+MVS-ERV (Guyon, 2002) é uma aplicação da ERV utilizando os pesos obtidos por meio do treinamento utilizando MVS como algoritmo de classificação, para identificar as variáveis mais importantes para predições de classificação e eliminar recursivamente as variáveis que menos influenciam na classificação.. Falar que SVM-RFE é um algoritmo bem estabelecido e que concidentemente foi o melhor avaliado para este caso. SVM já é proposto para small datasets, o que foi validado com o nosso caso.
 
 O algoritmo que obteve maior sucesso para classificação foi o SVC, que é uma implementação de Máquina de Vetores de Suporte aplicado para a classificação. SVC apresentou uma taxa de acerto de 91,4\%. Para a avaliação dos algoritmos, utilizamos uma metodologia que divide os dados dos questionários pelo iGovTI entre questões que serão utilizadas para aprendizado do algoritmo e questões que serão utilizadas para comparativo de predições. Para treinar o algoritmo utilizou-se 90\% dos dados e os 10\% restantes foram utilizados para avaliar a eficiência de classificação dos algoritmos, comparando a taxa de acerto entre as predições feitas e os valores reais de classificações de organizações pelo iGovTI. 
 
@@ -159,10 +149,12 @@ A ERV pode usar vários algoritmos de classificação como critério de seleçã
 Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.
 
 \section{Conclusion}
-\label{sec:conclusion}
+\label{sec:ch2_conclusion}
 
 pca make possible visual discriminative analysis of reduced dataset but it is not easy make correlation betwee extracted features and its original, therefore it is necessary adictional techniques to identify CSF.
 
 SVM have been shown to generalize well even for small sample classification[8]. SVM presents high performance to reproduce the iGovTI classification and can be used for RFE in order to identify CSF
 
 The selected features revealed by RFE are quite similar to the qualitative analysis of Ramos \emph{et al} \cite{ramos2016information}.
+
+Question with low variance can indicate that it is irrelevant for evaluation, since its value is almost the same all the time
