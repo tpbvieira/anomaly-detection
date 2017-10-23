@@ -14,3 +14,6 @@ figures/*.pdf
 *.pdf
 *.synctex.gz
 *.toc
+
+figures/ch2/raw_igovti_correlation.eps
+figures/ch2/raw_igovti_covariance.eps
