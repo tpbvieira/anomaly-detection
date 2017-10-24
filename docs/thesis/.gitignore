@@ -1,4 +1,6 @@
-iexamples/*
+
+
+examples/*
 figures/*.pdf
 *~
 *.pdf
