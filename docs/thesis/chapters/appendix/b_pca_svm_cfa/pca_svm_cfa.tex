@@ -1,9 +1,5 @@
 \chapter{Critical Success Factor Analysis Based on Feaure Selection}
-\label{ch:2_csf_fs}
-
-\begin{quotation}[]{Paulo Freire}
-No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
-\end{quotation}
+\label{ch:b_csf_fs}
 
 Critical Success Factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent the principal assets or areas that must be given investments to achieve better results. CSF analysis is one challenger strategic management tool, wich can provide a robust and very practical assessment for strategic planners.
 
@@ -13,10 +9,10 @@ Recursive Feature Elimination (RFE) is a feature selection method for small samp
 
 We propose a critical factors analysis based on Principal Compoment Analytis (PCA) for visual discriminant analysis and based on RFE combined with Support Vector Machine (SVM) \cite{hearst1998support}, applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Results show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
 
-This chapter is organized as follows. In Section \ref{sec:ch2_relatedworks}, related works are discussed. Section \ref{sec:ch2_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:ch2_csf_fs} describes the proposed approach for critical success factors analysis. Section \ref{sec:ch2_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:ch2_conclusion} draws the conclusions.
+This chapter is organized as follows. In Section \ref{sec:b_relatedworks}, related works are discussed. Section \ref{sec:b_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:b_csf_fs} describes the proposed approach for critical success factors analysis. Section \ref{sec:b_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:b_conclusion} draws the conclusions.
 
 \section{Related Works}
-\label{sec:ch2_relatedworks}
+\label{sec:b_relatedworks}
 
 Fink and Sukenik \cite{fink2011effect} explore the relationships among IT infrastructure capability and IT business value using PCA applied to all indicators of their study, resulting into 11 factors, with the first factor accounting for only 27.9\% of the variance. This technique was used because the PCA extracts orthogonal factors that overcome the problem of multicollinearity.
 
@@ -27,17 +23,17 @@ Guyon \emph{et al} \cite{guyon2002gene} propose a method of gene selection utili
 To the best of our knowledge, we are the first to propose a critical factors analysis based on PCA for visual discriminant analysis and based on RFE combined with SVM for CSF identification from IT governance data.
 
 \section{Data Model}
-\label{sec:ch2_datamodel}
+\label{sec:b_datamodel}
 
 The brazilian Federal Court of Accounts (TCU, in Portuguese) surveys data regarding IT practices of brazilian public organizations in order to audit IT governance. The dataset with a consolidate view about the answers for this surgey the IT governance index is called iGovTI. The iGovTI is composed by 201 multiple choice questions, used for ranking according to their IT governance, submmited to 349 organizations. The TCU computes the IT governance index and classifies the IT governace of each organization. Additionally, Ramos \emph{et al} \cite{ramos2016information} classifies each question regarding its relevance for IT governance through a qualitative analysis, and identify the CSFs for selected IT managers regarding IT governance.
 
 \section{An approach for Critical Success Factors Analysis}
-\label{sec:ch2_csf_fs}
+\label{sec:b_csf_fs}
 
 In this section we propose an approach for CSF Analysis based on visual discriminant analysis and based on feature selection, in order to identify the CSFs for IT governance according to iGovTI. Initially we conduct an analysis based on PCA to evaluate the relevance of each question according to their variance, and use the 2 most relevant features for a visualization of the iGovTI ranking. Furthermore, we propose a critical success factors analysis based on SVM for classification and based on RFE for identification of the most relevant factors.
 
 \subsection{Visual Discriminant Analysis based on PCA}
-\label{sec:ch2_pca}
+\label{sec:b_pca}
 
 PCA is a statistical technique commonly used for signal denoising, blind source separation, data compression, data visualization, feature extraction and dimensionality reduction, where a reduced number of features is extrated retaining as much information as possible \cite{jolliffe1986principal}. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance.
 
@@ -50,7 +46,7 @@ Finally, we propose to select the two features with the largest variance and eva
 Considering that PCA combines attributes and creates new ones, with measurements from all of the original variables, it is hard to identify what original variables are most relevant. Therefore, it is still necessary an additional method to reveal what are the CSF for iGovTI. For this problem, we propose a CSF analysis based on RFE.
 
 \subsection{CSF analysis based on RFE}
-\label{sec:ch2_csfa}
+\label{sec:b_csfa}
 
 Feature selection aims the identification of the most significative information for one problem or algorithm, such as classification or prediction problems. RFE is a feature selection method for small sample classification problems by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features through a selected classifier. 
 
@@ -61,7 +57,7 @@ Feature selection doesn't combine attributes, as PCA, but just evaluates their i
 The variables with the least effect on training errors or largest weights indicates more relevance for a classifier. Therefore, we propose to assume that the selected most relevant features are the CSF for iGovTI and also propose to validate this assumption against the results of the CSF qualitative analysis conducted by Ramos \emph{et al} \cite{ramos2016information}.
 
 \section{Experiments and Results}
-\label{sec:ch2_experimentalresults}
+\label{sec:b_experimentalresults}
 
 In this section we present the experiements and results for the visual discriminant analysis based on PCA and for CSF analysis based on RFE, and discuss the results.
 
@@ -125,7 +121,7 @@ The next step is to use the selected algorithm as validator for recursive featur
 The RFE algorith presents an ranking according to the significance of each feature, with an accuracy of 69,9\% for CSF classification when compared to the CSF identified by Ramos \emph{et al} \cite{ramos2016information} in a qualitative analysis.
 
 \section{Conclusion}
-\label{sec:ch2_conclusion}
+\label{sec:b_conclusion}
 
 pca make possible visual discriminative analysis of reduced dataset but it is not easy make correlation betwee extracted features and its original, therefore it is necessary adictional techniques to identify CSF.
 

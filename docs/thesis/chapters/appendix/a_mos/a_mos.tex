@@ -1,0 +1,56 @@
+\chapter{Model Order Selection (MOS)}
+\label{sec:a_mos}
+
+The model order selection is a key point in many digital signal processing applications, including radar, sonar, communications, channel modeling, medical imaging, among others. MOS allows analysis of reduced data set, through separating noise components of the main components, for example. Moreover, the model order is crucial for many parameter estimation techniques \cite{da2009comparison}, since the amount of parameters to be estimated depends on the model order.
+
+The model selection procedure chooses the ``best'' model of a finite set of models, according to some criterias \cite{rajan1997model}. Therefore, given some data set, it is chosen a model which was evaluated as the best model to describe the specified data set.
+
+The state of the art regarding estimation techniques of model order based on eigenvalues includes: Akaike's Information Theoretic Criterion - AIC \cite{akaike1974new,wax1985detection}; Minimum Description Length - MDL \cite{barron1998minimum,wax1985detection}; Efficient Detection Criterion - EDC \cite{zhao1986detection}; Stein's Unbiased Risk Estimator - SURE \cite{ulfarsson2008rank}; RADOI \cite{radoi2004new} and Exponential Fitting Test - EFT \cite{grouffaud1996some,quinlan2006model,david2011blind}.
+
+In AIC, MDL and EDC techniques, the information criterion is a function of the geometric mean $g(k)$ and the arithmetic mean $a(k)$ relating to smaller $k$ eigenvalues, where $k$ is a candidate value for the model order $d$ \cite{da2009comparison}.
+
+Basically, the difference between the AIC, MDL and EDC schemes is the penalty function $p(k, N, \alpha)$, so these techniques can be written in general as \cite{da2009comparison}:
+
+\begin{equation}\label{eq:eq1}
+  \hat{d} = \argmin\limits_k \hspace{1 mm} J(k), 
+\end{equation}
+
+where
+
+\begin{equation}\label{eq:eq2}
+  J(k) = -N(\alpha - k) \hspace{1 mm} {\rm log} \hspace{1 mm} (g(k)/a(k)) + p(k,N,\alpha),
+\end{equation}
+
+where $\hat{d}$ is an estimate $d$ of the model order, $N$ is the number of samples, $\alpha = M$ and means the number of variables of the problem, and $0 \leqslant k \leqslant min[M, N]$. Penalty functions for AIC, MDL and EDC are given by the Table \ref{tab:tab2}.
+%% ???
+
+\begin{table}[h!]
+  \centering
+  \caption{Penalty functions for the schemes AIC, MDL and EDC}
+  \label{tab:tab2}
+  \begin{tabular}{*2c}
+	\toprule
+	\textbf{Scheme} &  \textbf{Penalty function} \\
+	\textbf{} &  $p(k,N,\alpha)$ \\
+	\midrule
+    AIC	& $k(2\alpha - k)$ \\
+    MDL	& $0.5k(2\alpha - k) \hspace{1 mm} {\rm log} (N)$ \\
+    EDC	& $0.5k(2\alpha - k)\sqrt{N\hspace{1 mm}\rm ln(\rm ln N)}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The Exponential Fitting Test (EFT) can effectively be used in cases where the number of samples $N$ is small. This technique is based on observations of data contaminated only with white noise, where the profile of eigenvalues can be approximated by an exponential decaying \cite{grouffaud1996some}.
+
+Given $\lambda_i$ be the i-th eigenvalue, the exponential model can be expressed by:
+\begin{equation}\label{eq:eq3}
+  E\{\lambda_i\} = E\{\lambda_1\} \cdot q(\alpha,\beta)^{i-1},
+\end{equation}
+
+where $E\{\cdot\} $ is the expectation operator, and it is considered that the eigenvalues are ordered in the that $\lambda_1$ represents the largest eigenvalue. The term $q(\alpha, \beta)$ is defined as:
+
+\begin{equation}\label{eq:eq4}
+  q(\alpha,\beta) = \exp\left\{-\sqrt{\frac{30}{\alpha^2 + 2} - \sqrt{\frac{900}{(\alpha^2 + 2)^2} - \frac{720\alpha}{\beta(\alpha^4 + \alpha^2 - 2)}}} \right\},
+\end{equation}
+
+where $0 < q(\alpha,\beta) < 1$. According to \cite{quinlan2006model}, if $M \leq N$, then $\beta = N$.
