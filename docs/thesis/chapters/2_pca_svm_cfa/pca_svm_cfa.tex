@@ -65,7 +65,7 @@ The variables with the least effect on training errors or largest weights indica
 
 In this section we present the experiements and results for the visual discriminant analysis based on PCA and for CSF analysis based on RFE, and discuss the results.
 
-For the visual discriminant analysis we initially we compute the zero mean and then compute the correlation matrix $\mathbf{C}$ is computed from $\mathbf{X}$, which is shown by Figure \ref{fig:ch2_fig1}.
+For the visual discriminant analysis we initially we compute the zero mean and the the covariance matrix $\mathbf{C}$ is computed from $\mathbf{X}$.The resuls are shown by Figure \ref{fig:ch2_fig1}.
  
 \begin{figure}[h!]
      \centering 
@@ -74,9 +74,9 @@ For the visual discriminant analysis we initially we compute the zero mean and t
      \label{fig:ch2_fig1}
 \end{figure}
 
-Figure \ref{fig:ch2_fig1} presents the matrix presents of 201 questions of iGovTI, where is possible to observe low covariance for the majority questions and high variance for just a few variables. 
+Figure \ref{fig:ch2_fig1} presents the covariance matrix of 201 questions of iGovTI, where is possible to observe low covariance for the majority questions and high variance for just a few questions. 
 
-In the next step the eigenvectors $\mathbf{v}_i$ and eigenvalues $\lambda_i$ of $\mathbf{C}$ are computed through SVD. Considering that the first principal components have the largest variance indicated by their eigenvalues, it is necessary to evaluate the value distribution of the measured eigenvalues. Therefore, we present the Figure \ref{fig:ch2_fig2}, wich shows the variance ECDF of the iGovTI questions and shows that 97\% of the questions have variance lesser than 2, while just 3\% of the questions have variance between 2 and 11. This result indicates that just a few principal components concentrates the most significative information and motivates the evaluation regarding the relationship between the principal components and the iGovTI classification.
+In the next step the eigenvectors $\mathbf{v}_i$ and eigenvalues $\lambda_i$ of $\mathbf{C}$ are computed through SVD. Considering that the first principal components have the largest variance indicated by their eigenvalues, it is necessary to evaluate the variance distribution of the measured eigenvalues. Therefore, we present the Figure \ref{fig:ch2_fig2}, wich shows the variance ECDF of the iGovTI questions and shows that 97\% of the questions have variance lesser than 2, while just 3\% of the questions have variance between 2 and 11. This result indicates that just a few principal components concentrates the most significative information and motivates the evaluation regarding the relationship between the principal components and the iGovTI classification.
 
 \begin{figure}[h!]
      \centering 
@@ -85,7 +85,7 @@ In the next step the eigenvectors $\mathbf{v}_i$ and eigenvalues $\lambda_i$ of 
      \label{fig:ch2_fig2}
 \end{figure}
  
-Finally, we select the two largest eigenvalues and their correspondent componets in order to evaluate the relationship between the iGovTI classification and the two most informative variables. The Figure \ref{fig:ch2_fig3} shows the scatter diagram that plots the organizations with higher iGovTI with larger circunferences and colors near of red, while organizations with lower iGovTI have colors near of blue and shorter circunferences.
+Finally, we select the two largest eigenvalues and their correspondent componets in order to evaluate the relationship between the iGovTI classification for 349 organizations and the two most informative variables. The Figure \ref{fig:ch2_fig3} shows the scatter diagram that plots the organizations with higher iGovTI with larger circunferences and colors near of red, while organizations with lower iGovTI have colors near of blue and shorter circunferences. It is possible to observe that organizations with higher iGovTI are concentrated in the top left quadrant, with a visual separation of organizations with lower iGovTI, but without a clear distance separating the classes.
  
 \begin{figure}[h!]
      \centering 
@@ -94,16 +94,17 @@ Finally, we select the two largest eigenvalues and their correspondent componets
      \label{fig:ch2_fig3}
 \end{figure}
 
-O objetivo deste gráfico é fazer os planos principais com a nuvem de pontos dos indivíduos, no caso as 349 instituições, destacando o posicionamento das respostas das instituições classificadas pelo iGovTI. 
+The visual discriminant analysis indicates that just a few principal components concentrates the most significative information and that the two principal components show a visual classification of organizations according to iGovTI classification, however it is not clear what are the CSF. 
 
-...
+Hence, it is necessary additional techniques for CSF identification and we propose a critical success factors analysis based on RFE for identification of the most relevant factors for iGovTI.
 
-Para prever a classificação de uma instituição de acordo com suas respostas para as questões do questionário iGovTI, foram avaliados algoritmos de classificação que pudessem apresentar acurácia para a classificação de organizações de acordo com o iGovTI. Uma vez encontrado um algoritmo capaz desta classificação, é possível utilizar o algoritmo selecionado em conjunto com técnicas de feature selection para identificar as questões mais relevantes para a classificação da instituição de acordo com o iGovTI.
-Assim, para a definição do algoritmo de classificação foram realizados testes em 21 algoritmos, a seguir é apresentada uma listagem dos algoritmos avaliados e a taxa de acerto de classificação obtida: 
+RFE requires a classifier or predictor to evaluate its generalization performance by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features. We perform an algorithm evaluation in order to identify the classifier with the highest accuracy for iGovTI classification. The evaluated dataset is composed of 201 questions (features) and 349 organizations (observations), where each organization is classified according to iGovTI classes, which are initial, intermediate and enhanced. We divide the dataset into train and test, with the training data equivalent to 90\% of the whole dataset, while the test has 10 \% of the whole dataset.
+
+The Table \ref{tab:ch2_tab1} present the selected classification algoritms and the measured accuracy for iGovTI classification. According to results, SVM \cite{hearst1998support} is the algorithm with highest classification accuracy, with 91.42\%, while the second is Elastic Net \cite{zou2005regularization}, with 83.15\% of accuracy. The results for iGovTI classification corroborates previous evaluations that highlight the advantages of SVM for classifications from small datasets \cite{guyon2002gene}. Additionally, our results indicate that SVM is the best classifier for RFE, which corroborates the previous research of Guyon \emph{et al} \cite{guyon2002gene}, where is proposed SVM-RFE, that is a method of gene selection utilizing SVM methods based on RFE. 	
 
 \begin{table*}[!t]
 	\caption{Evaluation of classification accuracy for iGovTI}
-  	\label{tab:ch2_tab3}
+  	\label{tab:ch2_tab1}
 	\centering
 	\begin{tabular}{|l|r|}
 		\hline \rowcolor{Gray} Algorithm	& Mean Accuracy\\\hline
@@ -119,14 +120,9 @@ Assim, para a definição do algoritmo de classificação foram realizados teste
 	\end{tabular}
 \end{table*}
 
-O algoritmo que obteve maior sucesso para classificação foi o SVC, que é uma implementação de Máquina de Vetores de Suporte aplicado para a classificação. SVC apresentou uma taxa de acerto de 91,4\%. Para a avaliação dos algoritmos, utilizamos uma metodologia que divide os dados dos questionários pelo iGovTI entre questões que serão utilizadas para aprendizado do algoritmo e questões que serão utilizadas para comparativo de predições. Para treinar o algoritmo utilizou-se 90\% dos dados e os 10\% restantes foram utilizados para avaliar a eficiência de classificação dos algoritmos, comparando a taxa de acerto entre as predições feitas e os valores reais de classificações de organizações pelo iGovTI. 
+The next step is to use the selected algorithm as validator for recursive feature elimination in order to identify the CSF for iGovTI. Additionally, the RFE algorithm requires the number of desired most significatives features. We adopt 54 for this variable, considering that is the number of CSF identified by Ramos \emph{et al} \cite{ramos2016information} in a qualitative analysis, that is the proposed target to validate the results of the CSF identification for iGovTI.
 
-Uma vez identificado um algoritmo capaz de efetuar a classificação desejada, o próximo passo é identificar as variáveis mais relevantes para esta classificação. Para isso, será utilizado o algoritmo ERV. 
-MVS-ERV (Guyon, 2002) é uma aplicação da ERV utilizando os pesos obtidos por meio do treinamento utilizando MVS como algoritmo de classificação, para identificar as variáveis mais importantes para predições de classificação e eliminar recursivamente as variáveis que menos influenciam na classificação. Falar que SVM-RFE é um algoritmo bem estabelecido e que concidentemente foi o melhor avaliado para este caso. SVM já é proposto para small datasets, o que foi validado com o nosso caso.
-
-A ERV pode usar vários algoritmos de classificação como critério de seleção das variáveis mais importantes, escolhemos o algoritmo SVC por ele ter apresentado maior acurácia entre os algoritmos de classificação avaliados. Ainda é necessário definir o quantitativo de variáveis mais importantes a serem selecionadas. A partir da pesquisa de identificação por meio de entrevistas na APF, identificou-se 54 variáveis consideradas FCS, este critério foi utilizado para determinar o quantitativo de variáveis mais importantes para a classificação.
-
-Assim, aplicaram-se o algoritmo ERV utilizando o SVC como critério para a seleção das variáveis mais importantes para a classificação, selecionando as 54 variáveis que correspondem aos FCS levantados nas entrevistas com os executivos de TI. Os resultados mostraram que 69,9\% das variáveis foram classificadas da mesma forma que os FCS identificados anteriormente (Quadro 10) por meio de pesquisa qualitativa.
+The RFE algorith presents an ranking according to the significance of each feature, with an accuracy of 69,9\% for CSF classification when compared to the CSF identified by Ramos \emph{et al} \cite{ramos2016information} in a qualitative analysis.
 
 \section{Conclusion}
 \label{sec:ch2_conclusion}
