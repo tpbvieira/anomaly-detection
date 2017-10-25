@@ -1,15 +1,17 @@
 \chapter{Critical Success Factor Analysis Based on Feaure Selection}
 \label{ch:b_csf_fs}
 
+
 Critical Success Factor (CSF) is a management term for an element that is necessary for an organization or project to achieve its mission. CSFs represent the principal assets or areas that must be given investments to achieve better results. CSF analysis is one challenger strategic management tool, wich can provide a robust and very practical assessment for strategic planners.
 
 The identification of the most significative information for one problem is referred to as feature selection by the signal processing and data mining areas, as well as it can be formulated as a principal component problem, which is a widely adopted signal processing technique for data visualization and feature extraction. Feature selection aims to select a subset of relevant information from a larger dataset, in order to improve: data visualization and data understanding, storage requirements, dimensionality, processing time, discriminative sensing, and to overcome overfitting problems to improve prediction and classification performance \cite{chandrashekar2014survey}.
 
 Recursive Feature Elimination (RFE) is a feature selection method for small sample classification problems. RFE seeks to improve generalization performance by recursivelly removing the least significant features whose deletion will have the least effect on training errors, according to the higher variance measured from the features \cite{chen2007enhanced}.
 
-We propose a critical factors analysis based on Principal Compoment Analytis (PCA) for visual discriminant analysis and based on RFE combined with Support Vector Machine (SVM) \cite{hearst1998support}, applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Results show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are limilar to CSFs previsously identified by a qualitative analysis of the same datased.
+We propose a critical factors analysis based on Principal Compoment Analytis (PCA) for visual discriminant analysis and based on RFE combined with Support Vector Machine (SVM) \cite{hearst1998support}, applied to the survey that evaluates the IT governance of brazilian public organizations, in order to identify the CSF for IT governance of the public sector according to TCU. Results show how PCA can make the data discriminative and that SVM is the classifier that best performs and obtains an accuracy of 91.42\% to learn and classify according to TCU's IT governance evaluation of brazilian public sector. Finally, SVM is used to highlight the more significant features identified by RFE, wich are similar to CSFs previsously identified by a qualitative analysis of the same datased.
 
 This chapter is organized as follows. In Section \ref{sec:b_relatedworks}, related works are discussed. Section \ref{sec:b_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:b_csf_fs} describes the proposed approach for critical success factors analysis. Section \ref{sec:b_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:b_conclusion} draws the conclusions.
+
 
 \section{Related Works}
 \label{sec:b_relatedworks}
@@ -22,10 +24,12 @@ Guyon \emph{et al} \cite{guyon2002gene} propose a method of gene selection utili
 
 To the best of our knowledge, we are the first to propose a critical factors analysis based on PCA for visual discriminant analysis and based on RFE combined with SVM for CSF identification from IT governance data.
 
+
 \section{Data Model}
 \label{sec:b_datamodel}
 
 The brazilian Federal Court of Accounts (TCU, in Portuguese) surveys data regarding IT practices of brazilian public organizations in order to audit IT governance. The dataset with a consolidate view about the answers for this surgey the IT governance index is called iGovTI. The iGovTI is composed by 201 multiple choice questions, used for ranking according to their IT governance, submmited to 349 organizations. The TCU computes the IT governance index and classifies the IT governace of each organization. Additionally, Ramos \emph{et al} \cite{ramos2016information} classifies each question regarding its relevance for IT governance through a qualitative analysis, and identify the CSFs for selected IT managers regarding IT governance.
+
 
 \section{An approach for Critical Success Factors Analysis}
 \label{sec:b_csf_fs}
@@ -55,6 +59,7 @@ Initially, it is necessary to identify one classifier that can identify the iGov
 Feature selection doesn't combine attributes, as PCA, but just evaluates their informative quality, predictive power and select the best set. Given an external estimator or classifier, that assigns weights to features, RFE is able to select features by recursively considering smaller and smaller sets of features. First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through a coefficient attribute or through a feature importances attribute. Then, the least important features are pruned from current set of features. That procedure is recursively repeated on the pruned set until the desired number of features to select is eventually reached. RFE can also rank all features areaccording to when they were eliminated. 
 
 The variables with the least effect on training errors or largest weights indicates more relevance for a classifier. Therefore, we propose to assume that the selected most relevant features are the CSF for iGovTI and also propose to validate this assumption against the results of the CSF qualitative analysis conducted by Ramos \emph{et al} \cite{ramos2016information}.
+
 
 \section{Experiments and Results}
 \label{sec:b_experimentalresults}
@@ -120,13 +125,12 @@ The next step is to use the selected algorithm as validator for recursive featur
 
 The RFE algorith presents an ranking according to the significance of each feature, with an accuracy of 69,9\% for CSF classification when compared to the CSF identified by Ramos \emph{et al} \cite{ramos2016information} in a qualitative analysis.
 
+
 \section{Conclusion}
 \label{sec:b_conclusion}
 
-pca make possible visual discriminative analysis of reduced dataset but it is not easy make correlation betwee extracted features and its original, therefore it is necessary adictional techniques to identify CSF.
+The proposed approach is evaluated and the experimental results show that the visual discriminant analysis, throught PCA, highlights important characteristcs of the data, and that a selected classifier and RFE can be applied for iGovTI classification and for CSF identification. 
 
-SVM have been shown to generalize well even for small sample classification[8]. SVM presents high performance to reproduce the iGovTI classification and can be used for RFE in order to identify CSF
+Results show how PCA can make the data discriminative, however it is hard to identify what original variables are most relevant. Therefore, it is still necessary an additional method to reveal what are the CSF for iGovTI. For this problem, we propose a CSF analysis based on RFE. Since RFE depends on a classifier to select the most relevant features, we perform an algorithm evaluation to identify the classifier with the highest performance, and results show that SVM \cite{hearst1998support} presents the best accuracy, with 91.42\%. 
 
-The selected features revealed by RFE are quite similar to the qualitative analysis of Ramos \emph{et al} \cite{ramos2016information}.
-
-Question with low variance can indicate that it is irrelevant for evaluation, since its value is almost the same all the time
+Finally, SVM is used to select the more significant features identified by RFE, wich are 69,9\% similar to CSFs previsously identified by a qualitative analysis of the same datased.

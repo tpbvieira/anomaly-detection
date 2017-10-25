@@ -5,6 +5,7 @@
 All difficult things have their origin in that which is easy, and great things in that which is small. 
 \end{quotation}
 
+
 Traditionally, cyber defense methods can be effective against ordinary and conventional types of attacks, yet may fail against innovative malicious techniques \cite{lakhina2005mining}. In order to be able to detect and avoid novel attacks and their variations, it is necessary to develop or improve techniques to achieve efficiency on resource consumption, processing capacity and response time. Moreover, it is crucial to obtain high detection accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes have being applied to the detection of malicious traffic in computer networks \cite{Lu2009,Huang2009,Zonglin2009,david2011blind,da2012improved,tenorio2013greatest}, showing advances in network traffic analysis.
 
 Information security may consist of both technical and procedural aspects. The former includes equipment and security systems, while the latter corresponds to security rules and recommendations. Intrusion detection and intrusion prevention systems are security systems used, respectively, to detect (passively) and prevent (proactively) threats to computer systems and computer networks. Such systems can work in the following fashions: signature-based, anomaly-based or hybrid \cite{Huang2009,mudzingwa2012study}. Additionally, anomaly detection techniques can be categorized in classification, statistical, information theory and clustering based, according to \cite{bhuyan2014network,ahmed2016survey,osanaiye2016distributed}.
@@ -373,6 +374,7 @@ where $x^{(\hat{q})}_{(m,\hat{n})}$ denotes the $m$-th port of the selected $n$-
 Once $\boldsymbol{v}^{(q)}$ and $\boldsymbol{v}_{(m,\hat{n})}$ are obtained, then the $s_{m,\hat{n}}$ similarity degree can be calculated in order to identify if the traffic replacement highlights the adition of anomalous traffic by the evaluated $m$-th port during the $\hat{n}$-th minute previously identified as under attack. 
 
 This procedure should be repeated for each $m$-th target port of $\boldsymbol{\hat{n}}$, in order to individually identify the network ports under attack during each $\hat{q}$-th time frame.
+
 
 \section{Experiments and Results}
 \label{sec:experimentalresults}
@@ -801,6 +803,7 @@ The performance of detection rate of flooding attacks is compared with the metho
 
 Due to the lack of statistical techniques without training or learning methods for detection of probe attacks, this proposed approach is compared to the Lu and Ghorbani's \cite{Lu2009} proposal, which is a network anomaly detection model based on signal processing techniques that uses DARPA dataset for evaluation. The results of \cite{Lu2009} show the best detection rate of 94.67 \% in terms of general attack instance detection, but shows a case case with 50.00 \% of attack instance detection for the portsweep attack. The proposed approach presents 76.92 \% of detection rate measured specifically for probe attacks, without the requirement of learning or training methods, in contrast to Lu and Ghorbani's \cite{Lu2009} work.
 
+
 \section{Performance Evaluation}
 \label{sec:Complexity}
 
@@ -860,6 +863,7 @@ The experiments were performed in a desktop computer with a Intel Core i7-4510U 
 Table \ref{tab:11} presents the measured results. The experiment considered traffic time of 16, 20 and 22 hours, according to the selected traffic time per day available by the DARPA dataset. Note that the processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds.
 
 According to Table \ref{tab:11}, the processing time increases with the frame size $N$ decreasing, therefore it is possible to evaluate the frame size that produces better identification rates and acceptable processing time. The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations, since the significant increase of processing time observed between scenarios considering 17 or 34 ports, with growth between 7 \% and 199 \%.
+
 
 \section{Conclusion and Future Works}
 \label{sec:conclusionandfutureworks}
