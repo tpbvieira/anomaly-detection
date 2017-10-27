@@ -2,47 +2,49 @@
 % na conclusao, evite apresentar os resultados mais fáceis de concluir. bons revisores olham o casamento do que vc escreve no abstract/intro com a conclusao. mantenha coerente. 
 % em geral, resultados que sao aparentemente obvios, enfraquecem as outras contribuicoes. p.ex, "Os resultados mostraram que o MapReduce apresenta uma boa solução para utilizar computadores comuns para obter alta capacidade de processamento e lidar com a análise massiva de tráfego de rede." pode ser reformulado ou retirado da conclusao.
 \chapter{Conclusion and Future Work}
-\label{ch:conclusionfuturework}
+\label{ch:5_conclusionfuturework}
 
-\begin{quotation}[]{Lao Tzu}
-The softest things in the world overcome the hardest things in the world.
+\begin{quotation}[]{Chico Xavier}
+Though nobody can go back and make a new beginning, anyone can start over and make a new ending.
 \end{quotation}
 
-Distributed systems has been adopted for building modern Internet services and cloud computing infrastructure. The detection of error causes, diagnose and reproduction of errors of distributed systems are challenges that motivate efforts to develop less intrusive mechanisms for monitoring and debugging distributed applications at runtime. 
+% falar sobre uma contextualização de forma bem resumida'
 
-Network traffic analysis is one option for distributed systems measurement, although there are limitations on capacity to process large amounts of network traffic in short time, and on scalability to process network traffic where there is variation of resource demand.
+In the context of anomaly-based schemes, this thesis proposed a statistical approach based on signal processing techniques for detection of malicious traffic in computer networks. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis, where MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we evaluated the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 dataset. 
 
-In this dissertation we proposed an approach to perform deep inspection in distributed applications network traffic, in order to evaluate distributed systems at a data center through network traffic analysis, using commodity hardware and cloud computing services, in a minimally intrusive way. Thus we developed an approach based on MapReduce, to evaluate the behavior of a JXTA-based distributed system through DPI.
+This thesis also proposes a novel architecture and approach based on user behavior analysis through Model Order Selection (MOS), in order to detect possible threats, and to reduce the risks and the harm of the most common threats. The behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors. 
 
-We evaluated the effectiveness of MapReduce to implement a DPI algorithm and its completion time scalability to measure a JXTA-based application, using virtual machines of a cloud computing provider. Also, was deeply evaluated the performance of MapReduce for packet-level analysis and DPI, characterizing the behavior followed by MapReduce phases, its processing capacity scalability and speed-up, over variations of input size, block size and cluster size.
+Finally, we proposed a fraud detection approach composed by tensor-based dictionary learning for discriminant analysis of a mobile payment dataset.
 
 \section{Conclusion}
 \label{sc:conc_conclusion}
 
-With our proposed approach, it is possible to measure the network traffic behavior of distributed applications with intensive network traffic generation, through the offline evaluation of information from the production environment of a distributed system, making it possible to use the information from the evaluated indicators, to diagnose problems and analyse performance of distributed systems.
+This thesis models the network traffic as a signal processing formulation for applying the framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
 
-We showed that MapReduce programming model can express algorithms for DPI, as the Algorithm \ref{alg:JXTAperfmapper}, implemented to extract application indicators from the network traffic of a JXTA-based distributed application. We analysed the completion time scalability achieved for different number of nodes in a Hadoop cluster composed of virtual machines, with different size of network traffic used as input. We showed the processing capacity and the completion time scalability achieved, and also was showed the influence of the number of nodes and the data input size in the processing capacity for DPI using virtual machines of Amazon EC2, for a selected scenario.
+The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this thesis were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack, as well as presenting acceptable complexity and performance regarding the processing time.
 
-We evaluated the performance of MapReduce for packet level analysis and DPI of applications traffic, using commodity hardware, and showed how data input size, block size and cluster size cause relevant impacts into MapReduce phases, job completion time, processing capacity scalability and in the speedup achieved in comparison against the same execution by a non distributed implementation.
+This thesis evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
 
-The results showed that although MapReduce presents a good processing capacity using cloud services or commodity computers for dealing with massive application traffic analysis, but it is necessary to evaluate the behaviour of MapReduce to process specifics data type, in order to understand its relation with the available resources and the configuration of MapReduce parameters, and to obtain an optimal performance for specific environments.
+The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analyis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
-We showed that MapReduce processing capacity scalability is not proportional to number of allocated nodes, and the relative processing capacity decreases with node addition. We showed that input size, block size and cluster size are important factors to be considered to achieve better job completion time and to explore MapReduce scalability, due to the observed variation in completion time provided by different block size adopted. Also, in some cases, the processing capacity does not scale with node addition into the cluster, what highlights the importance of allocating resources according with the workload and input data, in order to avoid wasting resources.
+According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
 
-We verified that packet level analysis and DPI are Map-intensive jobs, due to Map phase consumes more than 70\% of the total job completion time, and shuffle phase is the second predominant phase. We also showed that using whole block as input for Map functions, it was achieved a poor completion time than the approach which splits the block into records.
+Considering the offline mobile security context, an important issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile clients. Once a mobile client releases the connection with the corporate cloud, no security measure implemented in the cloud infrastructure assures the protection of sensitive data stored in the mobile device. Aware of this problem and its importance, this thesis presented a proposal to address the offline mobile security problem combining a different cryptographic methods. Moreover, this proposed approach also prevents malicious user behavior by applying a MOS-based analytic method. 
+
+As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. The proposed approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile client and can be used for any type of enterprise. Also, part of concept is seed for new security solutions for big data apps. 
+
 
 \section{Contributions}
 \label{sc:conc_contributions}
 
-We attempt to analyse the processing capacity problem of measurement of distributed systems through network traffic analysis, the results of the work presented in this dissertation provide the contributions below:
+We attempt to analyse the processing capacity problem of measurement of distributed systems through network traffic analysis, the results of the work presented in this thesis provide the contributions below:
 
 \begin{enumerate}
-	\item We proposed \textbf{an approach to implements DPI algorithms through MapReduce}, using whole blocks as input for Map functions. It was \textbf{shown the effectiveness of MapReduce for a DPI algorithm} to extract indicators from a distributed application traffic, also it was \textbf{shown the completion time scalability of MapReduce for DPI}, using virtual machines of a cloud provider;
-	\item We developed \textit{JNetPCAP-JXTA} \citep{jnetpcapjxta}, an open source \textbf{parser to extract JXTA messages from network traffic traces};
-	\item We developed \textit{Hadoop-Analyzer} \citep{Hadoopanalyzer}, an open source \textbf{tool to extract indicators from Hadoop logs and generate graphs} of specified metrics.
-	\item We \textbf{characterized the behavior followed by MapReduce phases for packet level analysis and DPI}, showing that this kind of job is intense in Map phase and highlighting points that can be improved;
-	\item We \textbf{described the processing capacity scalability of MapReduce for packet level analysis and DPI}, evaluating the \textbf{impact caused by variations in input size, cluster size and block size};
-	\item We \textbf{showed the speed-up obtained with MapReduce for DPI}, with variations in input size, cluster size and block size;
+	\item We proposed an approach based on eigen similarity analysis for extracting detailed information about accurate time and network ports under network attack, and evaluated the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 dataset;
+	\item We discussed the computational complexity of the proposed framework and evaluated the required processing time for tested scenarios;
+	\item We proposed an architechture and techniques for offline behavioral analysis of a corporate mobile client security architecture;
+	\item We discussed the processing time of the proposed framework for mobile devices;
+	\item We proposed an tensor-based dictionary learning approach for fraud detection in mobile payment transactions;
 	\item We \textbf{published five papers} reporting our results, as follows:
 	\begin{enumerate}
 		\item T. P. B. Vieira, D. F. Ten\'orio, J. P. C. L. da Costa, E. P. de Freitas, G. Del Galdo, and R. T. de Sousa J\'unior, \textit{Model Order Selection and Eigen Similarity based Framework for Detection and Identication of Network Attacks}. Journal of Networking and Computer Applications (JNCA), Vol 90, Jul 2017, Pages 26–41.
@@ -53,12 +55,15 @@ We attempt to analyse the processing capacity problem of measurement of distribu
 	\end{enumerate}
 \end{enumerate}
 
+
 \section{Future Work}
 \label{sc:conc_futurework}
 
 Because of time constraints imposed on the Ph.D. degree, this thesis addresses some problems, but some problems are still open and others are emerging from current results. Thus, the following issues should be investigated as future work:
 
 \begin{itemize}
-	\item ...;
-	\item ....
+	\item Improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets;
+	\item Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high thoughput network traffic;
+	\item Evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis;
+	\item Explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints;
 \end{itemize}

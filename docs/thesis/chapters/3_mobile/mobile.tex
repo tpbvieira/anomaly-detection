@@ -7,14 +7,15 @@
 % Metodologia: coloque uma figura para ilustrar todo o processo de coleta e analise. coloque numa tabela (ou mais de uma) a descricao das metricas de interesse, alem dos fatores e niveis selecionados em outra tabela. explique o motivo desses fatores influenciarem as metricas de interesse.
 % Conclusão: evite apresentar os resultados mais fáceis de concluir. bons revisores olham o casamento do que vc escreve no abstract/introdução com a conclusao, então mantenha coerente an introdução com a conclusão. Em geral, resultados que sao aparentemente obvios - nao eram até vc mostrar :) - enfraquecem as outras contribuicoes. p.ex, "Os resultados mostraram que o MapReduce apresenta uma boa solução para utilizar computadores comuns para obter alta capacidade de processamento e lidar com an análise massiva de tráfego de rede." pode ser reformulado ou retirado da conclusao. 
 \chapter{Offline Mode for Corporate Mobile Client Security Architecture}
-\label{ch:mobile}
+\label{ch:3_mobile}
 
 \begin{quotation}[]{Confucius}
 Life is really simple, but we insist on making it complicated.
 \end{quotation}
 
+
 \section{Introduction}
-\label{sec_intro}
+\label{sec:3_intro}
 Cloud computing is a new rapidly evolving paradigm in the world of distributed networking and computation. The basic features of the cloud environment is providing the elastic, on-demand and secure services for the end-users. While the first two requirements are rather well conceptualized and supported by the majority of the cloud platforms in use, security is a serious concern of the cloud providers and governmental organizations as well as academia and research community \cite{csa2016,higashi2015,gartner2015}. Although for the small and medium-sized enterprises (SME) the cloud environment is often the most cost-effective and easily scalable solution, the security and privacy of the sensitive data in cloud platforms are also not fully conceptualized leading to obscure and incomplete security paradigms and solutions.
 
 A common practice to provide a cloud solution with stable security is to use a specific type of cloud service, such as Cloud Access Security Broker (CASB) or Cloud Access Control (CAC). These services are specifically designed to bring security at a single access point and provide the coordination of the most important security measures. Gartner \cite{skyhigh2015} estimates that such systems will be used by 85 \%  of companies by 2020. The reason for this is that the organization of security measures at a single control point allows to control and to monitor the level of cloud protection much more effectively. The basic features of the CASB are: discovery of cloud services, encryption along with tokenization for better search properties, access control, Data Loss Prevention (DLP) services, authentication, and auditing and alerting services \cite{lawson2015}. The protection of the confidential data, according to the standards of CASB deployment should be provided elsewhere, i.e. in transit and at the end-user, i.e. end-client, side \cite{campbell2015}.
@@ -28,10 +29,10 @@ Observing the above described landscape, this paper outlines the concept of the 
 
 This paper proposes a novel approach based on powerful cryptographic preventive methods, such as secret sharing (SSS) \cite{galibus2007} and Attribute-based Encryption (ABE) \citep{goyal2006attribute} for securing mobile clients. Moreover, our proposed approach includes the user behavior analysis based on Model Order Selection (MOS) \cite{tenorio2013greatest}, in order to detect possible threats, and to reduce the risks and the harm of the most common threats, which are the expired user misusing password and the intruder attack. The key expiration period is safely incorporated into the proposed system solution in order to enhance security. Additionally, the behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors. The main target of our proposed solution is to provide a maximum defense at the minimal resource cost.
 
-The paper is structured as follows. Section \ref{sec_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec_algorithms} explains the algorithms for the core security methods: AES, ABE, SSS and MOS. Section \ref{sec_results} discusses the security proofs including the outline of adversary model, the common threat scenarios, the data modeling, the complexity analysis and dicussion of the practical implementation results. Section \ref{sec_conclusion} concludes the paper.
+The paper is structured as follows. Section \ref{sec:3_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec:3_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec:3_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec:3_algorithms} explains the algorithms for the core security methods: AES, ABE, SSS and MOS. Section \ref{sec:3_results} discusses the security proofs including the outline of adversary model, the common threat scenarios, the data modeling, the complexity analysis and dicussion of the practical implementation results. Section \ref{sec:3_conclusion} concludes the paper.
 
 \section{Related works}
-\label{sec_related_works}
+\label{sec:3_related_works}
 The increasing usage of BYOD demands more sophisticated data protection services compared to ordinary computing environment. A common practice is to provide additional contextual methods apart from authentication, DLP services, and encryption, which can be at rest, in transit and in use \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. The contextual methods increase the security of the mobile client at a maximum level with minimum resource requirements. The most commonly used are:
 
 \begin{enumerate}
@@ -56,39 +57,39 @@ The necessity to use schemes that function without putting load on a provider ar
 In many cases the industrial providers of the mobile security API avoid the problem by completely forbidding the offline access to the protected app, i.e. SAP Mocona, which operates as a secure client wrapping layer \cite{Lelyveld2013}. Due to various constraints such as traffic load, travelling and ease of access, the SME business procedure may require such access. To the best of our knowledge, the offline mode security problem has not yet been deployed, neither in academia nor in the industry \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. Therefore, the main concern of this proposal is the protection of the mobile client and its data in offline mode, when the functions of data protection cannot be offloaded to a cloud or a trusted party. 
 
 \section{The mobile security architecture}
-\label{sec_the_client_security_architecture}
+\label{sec:3_the_client_security_architecture}
 The approach proposed in this work describes and implements the complete lifecycle of the mobile client security infrastructure. The mobile security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The mobile client then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. 
 
-The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:01}.
+The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:3_01}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=5cm]{figures/fig01.eps}
+	\includegraphics[width=8cm]{figures/fig01.eps}
 	\caption{The core set of functions and protocols of the mobile cloud security infrastructure}
-	\label{fig:01}
+	\label{fig:3_01}
 \end{figure}
 
-Figure \ref{fig:01} describes the mobile client protection both in online and offline mode. In online mode, the client has the possibility to connect to the server and the security of the client is enhanced by the server-backed up mechanisms. On the other hand, in offline mode the client’s security is supported by the standalone mechanisms. Additionally, the mobile client protection is enhanced by the threat intelligence unit providing the constant monitoring and analysis.
+Figure \ref{fig:3_01} describes the mobile client protection both in online and offline mode. In online mode, the client has the possibility to connect to the server and the security of the client is enhanced by the server-backed up mechanisms. On the other hand, in offline mode the client’s security is supported by the standalone mechanisms. Additionally, the mobile client protection is enhanced by the threat intelligence unit providing the constant monitoring and analysis.
 
-Figure \ref{fig:02} depicts the client-side protection mechanisms. The client should support 4 subsystems: i) encryption subsystem that contains the procedures of encryption and decryption; ii) storage subsystem that provides the downloaded shares and key storage protection; iii) threat intelligence unit that provides the constant monitoring, and iv) the communication subsystem. In short, all security procedures are connected to 4 groups of operations: file request and receiving; encryption and decryption; file and key storing; monitoring and analysis.
+Figure \ref{fig:3_02} depicts the client-side protection mechanisms. The client should support 4 subsystems: i) encryption subsystem that contains the procedures of encryption and decryption; ii) storage subsystem that provides the downloaded shares and key storage protection; iii) threat intelligence unit that provides the constant monitoring, and iv) the communication subsystem. In short, all security procedures are connected to 4 groups of operations: file request and receiving; encryption and decryption; file and key storing; monitoring and analysis.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig02.eps}
+	\includegraphics[width=12cm]{figures/fig02.eps}
 	\caption{The Mobile Client Architecture}
-	\label{fig:02}
+	\label{fig:3_02}
 \end{figure}
 
 This architecture consists of the modules of cryptographic functions, threat intelligence infrastructure, communication with server and storage.
 
-The cryptographic functions include the decryption (for AES and ABE) key restoration for SSS and EKE token generation procedure. While the AES-ABE hybrid encryption scheme functions both in the online and offline modes, the SSS is used only in the offline mode, while the EKE generation and executions is used in the online mode. These operations are described in Subsections \ref{sec_aes}-\ref{sec_secret} and are part of the Figure \ref{fig:01}.
+The cryptographic functions include the decryption (for AES and ABE) key restoration for SSS and EKE token generation procedure. While the AES-ABE hybrid encryption scheme functions both in the online and offline modes, the SSS is used only in the offline mode, while the EKE generation and executions is used in the online mode. These operations are described in Subsections \ref{sec:3_aes}-\ref{sec:3_secret} and are part of the Figure \ref{fig:3_01}.
 
-The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this block as well. These functions are described in Subsection \ref{sec_mos}.
+The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this block as well. These functions are described in Subsection \ref{sec:3_mos}.
 
 The communication with server includes the separate sender and receiver to check the user credentials and receive new keys, which acts based on the EKE protocol. The remaining data like access list and files can be sent via unprotected channels. 
 
 \section{The proposed solution for offline mobile security}
-\label{sec_offline_mode}
+\label{sec:3_offline_mode}
 This section proposes an approach for the mobile client protection in which the security is supported both in online and offline modes. Currently and to the best of our knowledge, the systems of mobile client protection follow a model where the protected client can operate only when it is connected to the cloud, which is not always convenient for the end-user. The basic principles of the mobile client protection herein proposed are: 
 
 \begin{enumerate}
@@ -112,25 +113,25 @@ In the online mode the mobile client uses the secure communication with the serv
 
 Such proof cannot be stored on the client, as it is not possible to guarantee its protection in the offline mode. Therefore, the most effective way to secure the proof on the offline mode without performing complex computation is to share this proof between the mobile client and the user in a protected manner. In this case, there is no need to store the function of the user password. The additional argument against the traditional password verification is the necessity to check the PIN, which is very small, so the construction of valid one-way function resilient to the offline dictionary attacks is difficult.
 
-The proposed architecture for offline mobile security is represented in Figure \ref{fig:03}.
+The proposed architecture for offline mobile security is represented in Figure \ref{fig:3_03}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig03.eps}
+	\includegraphics[width=15cm]{figures/fig03.eps}
 	\caption{Proposed Architecture for Offline Mobile Security}
-	\label{fig:03}
+	\label{fig:3_03}
 \end{figure}
 
-The Figure \ref{fig:03} describes the proposed architecture for offline mobile security, showing the modules responsible for securing the mobile client, which includes:
+The Figure \ref{fig:3_03} describes the proposed architecture for offline mobile security, showing the modules responsible for securing the mobile client, which includes:
 
 \begin{enumerate}
-	\item \textbf{Protected Storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files. The outline of the hybrid encryption scheme is presented in the Section \ref{sec_algorithms}.
-	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec_results}. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones. The TIM is an internal module of the mobile client that implements offline anomaly detection through signal processing techniques.
+	\item \textbf{Protected Storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files. The outline of the hybrid encryption scheme is presented in the Section \ref{sec:3_algorithms}.
+	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec:3_results}. Moreover, Model Order Selection (MOS), which is an effective signal processing technique to separate noise components from the principal components, can be applied into anomaly and attack detection \cite{tenorio2013greatest}, to identify and separate malicious behaviors from the legitimate ones. The TIM is an internal module of the mobile client that implements offline anomaly detection through signal processing techniques.
 	\item \textbf{Key Management Center}: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
 \end{enumerate}
 
 \subsection{Offline mode workflow}
-\label{sec_offline_mode_workflow}
+\label{sec:3_offline_mode_workflow}
 
 The user performs the following operations in the offline mode:
 
@@ -141,62 +142,62 @@ The user performs the following operations in the offline mode:
 	\item Modify the protected files and save them in an unprotected storage.
 \end{enumerate}
 
-The mobile client performs all the cryptographic calculations in the shadow. These calculations include the key storage, key restoring, decryption and showing the decrypted files in the mobile client area. Note that the mobile client does not check the password or PIN validity as it does not hold the verification proof for the above. Also, the mobile client keeps track of the user activities and the key expiry. The complete list of the mobile client activities is presented in the Figure \ref{fig:04}.
+The mobile client performs all the cryptographic calculations in the shadow. These calculations include the key storage, key restoring, decryption and showing the decrypted files in the mobile client area. Note that the mobile client does not check the password or PIN validity as it does not hold the verification proof for the above. Also, the mobile client keeps track of the user activities and the key expiry. The complete list of the mobile client activities is presented in the Figure \ref{fig:3_04}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig04.eps}
+	\includegraphics[width=12cm]{figures/fig04.eps}
 	\caption{Offline Mode Operations}
-	\label{fig:04}
+	\label{fig:3_04}
 \end{figure}
 
-To finalize the description of the offline mode, Figure \ref{fig:05} shows the complete workflow of the proposed mobile application in the offline-mode.
+To finalize the description of the offline mode, Figure \ref{fig:3_05} shows the complete workflow of the proposed mobile application in the offline-mode.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig05.eps}
+	\includegraphics[width=12cm]{figures/fig05.eps}
 	\caption{Offline mode authorization workflow}
-	\label{fig:05}
+	\label{fig:3_05}
 \end{figure}
 
-The core cryptographic module of the implemented solution is based on the combination of AES-ABE-SSS methods, described in the Section \ref{sec_algorithms}. The key feature of the offline security is that the mobile client does not actually store any part of the user password to be verified. The mobile client combines its own key with the user share (PIN and password-derived) in order to restore the initial KEY\_SET\_KEY. If the user provides the wrong share the mobile client will not be able to recognize it, but will decrypt the files incorrectly. Additionally, the password entering is tracked and too many tries in a short time are considered a threat.
+The core cryptographic module of the implemented solution is based on the combination of AES-ABE-SSS methods, described in the Section \ref{sec:3_algorithms}. The key feature of the offline security is that the mobile client does not actually store any part of the user password to be verified. The mobile client combines its own key with the user share (PIN and password-derived) in order to restore the initial KEY\_SET\_KEY. If the user provides the wrong share the mobile client will not be able to recognize it, but will decrypt the files incorrectly. Additionally, the password entering is tracked and too many tries in a short time are considered a threat.
 
 \subsection{Offline Behavioral Analysis}
-\label{sec_offline_behavioral_analysis}
+\label{sec:3_offline_behavioral_analysis}
 
-In the proposed client security architecture, the Threat Intelligence Manager (TIM) is responsible for receiving logged user operations, perform feature extraction, data modeling and malicious behavior analysis in order to identify possible threats, in offline mode. Figure \ref{fig:06} depicts the TIM for offline behavioral analysis. 
+In the proposed client security architecture, the Threat Intelligence Manager (TIM) is responsible for receiving logged user operations, perform feature extraction, data modeling and malicious behavior analysis in order to identify possible threats, in offline mode. Figure \ref{fig:3_06} depicts the TIM for offline behavioral analysis. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig06.eps}
+	\includegraphics[width=10cm]{figures/fig06.eps}
 	\caption{The Threat Intelligence Manager Workflow}
-	\label{fig:06}
+	\label{fig:3_06}
 \end{figure}
 
-As depicted in Figure \ref{fig:06}, users request operations are logged so that the main features can be monitored in the mobile client. The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations are monitored by the client app, which sends the information to the User Activity Logging (UAL). 
+As depicted in Figure \ref{fig:3_06}, users request operations are logged so that the main features can be monitored in the mobile client. The user behavior, trying or effectively executing operations, shall be incrementally captured and logged, making possible to monitor the main features that can reveal malicious behaviors, as well as to identify unexpected behaviors that can reveal possible threats. Therefore, the user operations are monitored by the client app, which sends the information to the User Activity Logging (UAL). 
 
 The UAL is responsible for the incremental logging of activities of the mobile client, feature extraction and data modeling for malicious behavior detection, through the Log Analysis Center (LAC). As an internal module of the mobile client, the UAL implements monitors of selected events of the application, such as a login attempt or a file decryption, and logs the desired information for further analysis. The logged information shall be decomposed into selected features and modeled as matrices, composed of the number of occurrences of the selected features by its location and by time. The resultant data is submitted to the LAC, for anomaly detection.
 
-The LAC performs the behavioral analysis through eigenvalue analysis and MOS schemes, which identify anomalies on sparse, subtle or abrupt number of user operations. The malicious behavior detection is detail described in \ref{sec_mos}.
+The LAC performs the behavioral analysis through eigenvalue analysis and MOS schemes, which identify anomalies on sparse, subtle or abrupt number of user operations. The malicious behavior detection is detail described in \ref{sec:3_mos}.
 
 \section{The algorithms, key usage and data protection methods}
-\label{sec_algorithms}
-In the proposed approach, the kernel encryption scheme in the mobile client is a combination of several methods of security. The files are encrypted with 128/256-bit AES, while the permanent file keys are encrypted with the attribute-based encryption. The set of expiring ABE keys corresponding to the set of files accessible by user in encrypted with a single expiring AES key (KEY\_SET\_KEY). This key is expiring and is splited by the server into 4 parts (2 are stored on the device and 2 belong to the user) by the method of secure secret sharing. The encryption workflow is outlined in the Figure \ref{fig:07}.
+\label{sec:3_algorithms}
+In the proposed approach, the kernel encryption scheme in the mobile client is a combination of several methods of security. The files are encrypted with 128/256-bit AES, while the permanent file keys are encrypted with the attribute-based encryption. The set of expiring ABE keys corresponding to the set of files accessible by user in encrypted with a single expiring AES key (KEY\_SET\_KEY). This key is expiring and is splited by the server into 4 parts (2 are stored on the device and 2 belong to the user) by the method of secure secret sharing. The encryption workflow is outlined in the Figure \ref{fig:3_07}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig07.eps}
+	\includegraphics[width=12cm]{figures/fig07.eps}
 	\caption{Encryption workflow}
-	\label{fig:07}
+	\label{fig:3_07}
 \end{figure}
 
-The key hierarchy is explained by Figure \ref{fig:08} where the key represented in Figure \ref{fig:07} serves for decrypting the key for each level represented in Figure \ref{fig:08}. As it is possible to be observed in Figure \ref{fig:08}, the master key on the upper level is computed by means of SSS (Subsection \ref{sec_secret}). It serves for decrypting the ABE key storage (section \ref{sec_abe}). The ABE key allows the user finally decrypt the permanent file share keys. Further, the file share can be decrypted by means of AES.
+The key hierarchy is explained by Figure \ref{fig:3_08} where the key represented in Figure \ref{fig:3_07} serves for decrypting the key for each level represented in Figure \ref{fig:3_08}. As it is possible to be observed in Figure \ref{fig:3_08}, the master key on the upper level is computed by means of SSS (Subsection \ref{sec:3_secret}). It serves for decrypting the ABE key storage (section \ref{sec:3_abe}). The ABE key allows the user finally decrypt the permanent file share keys. Further, the file share can be decrypted by means of AES.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig08.eps}
+	\includegraphics[width=10cm]{figures/fig08.eps}
 	\caption{Encryption key hierarchy}
-	\label{fig:08}
+	\label{fig:3_08}
 \end{figure}
 
 This proposed encryption scheme is called as a hybrid encryption since it uses a combination of different encryption methods in order to support all requirements to the encryption scheme used in the proposed infrastructure. Then it has:
@@ -207,27 +208,27 @@ This proposed encryption scheme is called as a hybrid encryption since it uses a
 	\item SSS allows protecting the key storage by avoiding the necessity to store the key proof.
 \end{enumerate}
 
-In Subsections \ref{sec_aes}-\ref{sec_secret}, a detailed description of the building blocks of the hybrid encryption is provided, and the proposed malicious behavior detection scheme is detail described in \ref{sec_mos}.
+In Subsections \ref{sec:3_aes}-\ref{sec:3_secret}, a detailed description of the building blocks of the hybrid encryption is provided, and the proposed malicious behavior detection scheme is detail described in \ref{sec:3_mos}.
 
 \subsection{AES file encryption }
-\label{sec_aes}
+\label{sec:3_aes}
 The protected files are encrypted on the server side with the secure 128/256 bit AES encryption, which is currently an industrial standard. Nevertheless, it is possible to encrypt the file storage with Blowfish or Serpent which also provide a high level of safety \cite{nist2000}. 
 
 The symmetric encryption on a server side is performed in two steps. First there is a single AES key for preserving the server storage. Second, when the encrypted file is sent from the server to the mobile client another unique AES key is generated, which serves for the encryption on client side. In other words, along with the encrypted file the user gets his own unique AES key for decrypting the files received. This key is protected by attribute-based public key encryption (ABE). 
 
-The scheme of the server-side AES encryption is represented in Figure \ref{fig:09}.
+The scheme of the server-side AES encryption is represented in Figure \ref{fig:3_09}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig09.eps}
+	\includegraphics[width=12cm]{figures/fig09.eps}
 	\caption{Server-side encryption}
-	\label{fig:09}
+	\label{fig:3_09}
 \end{figure}
 
 Usually, the AES encryption key is used as a session key. In our setting, it is not desirable to re-encrypt the files stored in the device unless there is a certain specific condition (for example, the user leaves the domain or a specific group in the domain (the group of users in the domain contains the users with the equal access rights, i.e. the same set of accessible file shares) and the file should not be accessible for this user anymore). This is why AES key in the presented notation is permanent and defined as FILE\_KEY. The randomly generated FILE\_KEY is unique for each file or set of files stored on a client. 
 
 \subsection{ABE encryption to protect the FILE\_KEY }
-\label{sec_abe}
+\label{sec:3_abe}
 With each user session, the permanent FILE\_KEY (uni\-que AES key) is re-encrypted. The set of FILE\_KEYs is protected with the corresponding ABE keys. The unique ABE model that we propose supports the attribute policy based on user groups and on file shares, i.e. the key attributes correspond both to the groups and the file shares. 
 
 The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibus2014}. The selective scheme for attribute-based encryption is as follows: if at least one attribute in the set $\{t_i\}_U$ is equal to the attribute in the set $\{t_i\}_M$, the corresponding user $U$ can decrypt the text $M$. In other words, as soon as the user and share have one attribute in common – the user can get access to the share. The components of the ABE encryption are:
@@ -242,14 +243,14 @@ The model supports the simple selective ABE scheme \cite{galibus2015cloud,galibu
 
 In order to perform this operation the user needs the pair of private key $D_i$ and public key $E_i$ corresponding to the attribute $t_i$: 
 
-\begin{equation}\label{eq:eq00}
+\begin{equation}\label{eq:3_eq00}
 Y^s = e(g,g)^{ys} = e(E_i,D_i) = e(g^{\frac{yw}{t_i}},g^{\frac{t_is}{w}})=e(g,g)^{ys}.
 \end{equation}
 
 The result of decryption is the FILE\_KEY - the symmetric AES key that permits to decrypt the contents of protected file. 
 
 \subsection{Secret sharing scheme to protect the key storage }
-\label{sec_secret}
+\label{sec:3_secret}
 
 The attribute-based private keys $D_i$ should be protected while being stored in the device memory. Therefore, server encrypts the set of $D_i$ with a single AES key before sending it to the user device. This AES key (master key) is denoted by the value KEY\_SET\_KEY in our notation. KEY\_SET\_KEY is a secret value and it is split by the secure method of polynomial modular secret sharing \cite{galibus2015mobile, galibus2008some} into the set of 4 shares: KEY\_SET\_KEY = PASS + PIN + TIME + DEV\_PASS. 
 
@@ -261,7 +262,7 @@ In this SSS, the following notation is used: $S(x) \in F_2[x]$ denotes the secre
 
 The proposed authentication system is based on the shared storing of the user key. Also, the mobile client acts as a dealer in the SSS. Using the SSS ensures that the key can only be accessed by an authenticated user. The participants of the (2, 2)-threshold SSS are the user and device. The user share $s_1(x)$ is computed based on the PIN and the PASS entered by the user. Additionally, the current time value TIME is used in the calculation of the share. Let $s(x) = d$ and $s_1(x) = f(PIN + PASS + TIME)$, where $f$ is a one-way (hash) function that transforms the data into the string of the desired length: 
 
-\begin{equation}\label{eq:eq01}
+\begin{equation}\label{eq:3_eq01}
   \left\{
   \begin{array}{@{}ll@{}}
     S = s \textrm{ mod } p_0
@@ -271,7 +272,7 @@ The proposed authentication system is based on the shared storing of the user ke
 \end{equation}
 
 According to the CRT:
-\begin{equation}\label{eq:eq02}
+\begin{equation}\label{eq:3_eq02}
 S \equiv {s_{1}p_{0}{p_0}^{-1}}_{p1} + {s_{1}p_{1}{p_1}^{-1}}_{p0} + \textrm{ mod } p_0p_1
 \end{equation}
 
@@ -280,7 +281,7 @@ Here, $p_0$ and $p_1 \in F_2[x]$ denote the public moduli of the polynomial SSS 
 Thus calculated DEV\_PASS is written to the permanent device memory. The user share is not saved. Otherwise, it would allow an attacker to locally validate the restored private key.
 
 \subsection{MOS for Threat Intelligence}
-\label{sec_mos}
+\label{sec:3_mos}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as Principal Component Analysis and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic detection of attacks or malicious behaviors. 
 
 Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. 
@@ -291,13 +292,13 @@ The MOS schemes can rely on sample covariance of zero mean variables (called as 
 
 Classical approaches to model order selection require the computation of the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\mathbf{X}$ of the zero mean samples given by
 
-\begin{equation}\label{eq:eq03}
+\begin{equation}\label{eq:3_eq03}
 \mathbf{y}_{m}^{(q)} = \mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}.
 \end{equation}
 
 The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the zero mean covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be estimated as follows
 
-\begin{equation}\label{eq:eq04}
+\begin{equation}\label{eq:3_eq04}
 \mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}},
 \end{equation}
 where $\mathbf{\hat{R}}_{yy}^{(q)}$ means the estimation of the sample covariance matrix from the measured zero mean matrix $\mathbf{Y}^{(q)}$ over $N$ minutes of the time frame $q$. 
@@ -305,19 +306,19 @@ where $\mathbf{\hat{R}}_{yy}^{(q)}$ means the estimation of the sample covarianc
 
 For MOS based on sample covariance of zero mean and unitary standard deviation, in order to identify anomalies with sparse or subtle behavior, it is required, for each variable, to make the standard deviation unitary as follows
 
-\begin{equation}\label{eq:eq05}
+\begin{equation}\label{eq:3_eq05}
 \mathbf{z}_{m}^{(q)} = \frac{\mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}}{\mathbf{\sigma}_{m}^{(q)}}.
 \end{equation}
 
 The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$, then the zero mean and standardized covariance matrix $\mathbf{\hat{R}}_{zz}^{(q)}$ can be calculated via 
 
-\begin{equation}\label{eq:eq06}
+\begin{equation}\label{eq:3_eq06}
 \mathbf{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\mathbf{Z}^{(q)}\mathbf{Z}^{(q)^{\rm T}}.
 \end{equation}
 
 Once the $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ as a matrix $\mathbf{C}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\mathbf{C}^{(q)} = \mathbf{V}^{(q)}\mathbf{\Lambda}^{(q)}\mathbf{V}^{(q)^{\rm T}}$, in order to obtain the vector of eigenvalues $e$, as following:
 
-\begin{equation}\label{eq:eq07}
+\begin{equation}\label{eq:3_eq07}
 \mathbf{e}^{(q)} = \rm diag(\mathbf{\Lambda}^{(q)}),
 \end{equation}
 
@@ -325,7 +326,7 @@ The eigenvalues should be sorted in descending order, as defined by $\lambda_{1}
 
 The process of obtaining the $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and the matrix $\mathbf{C}^{(q)}$, finding the largest eigenvalue for each $q$-th time frame, should be repeated until $q = Q$, in order to obtain the largest eigenvalue of all time frames, as presented by 
 
-\begin{equation}\label{eq:eq08}
+\begin{equation}\label{eq:3_eq08}
 \mathbf{E} =
 \begin{bmatrix}
   \lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
@@ -338,29 +339,29 @@ The process of obtaining the $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and 
 
 Since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\mathbf{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the expected input for MOS schemes and can be expressed as 
 
-\begin{equation}\label{eq:eq09}
+\begin{equation}\label{eq:3_eq09}
 \boldsymbol{e}_{\rm max} = \boldsymbol{E}\{:,1\} = [ \lambda_1^{(1)}, \lambda_1^{(2)} \cdots \lambda_1^{(Q)}]
 \end{equation}
 
 Once obtained the largest eigenvalues of each $q$-th time frame, it is possible to apply a selected MOS scheme to estimate the model order $\hat{d}$, which is the estimated number of time frames with malicious behavior. Therefore, $\boldsymbol{e}_{\rm max}$ is used as input parameter for MOS schemes, according to the equation
 
-\begin{equation}\label{eq:eq09}
+\begin{equation}\label{eq:3_eq10}
 \hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max})
 \end{equation}
 
 Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to \cite{da2009comparison}.
 
 \section{Results and analysis}
-\label{sec_results}
+\label{sec:3_results}
 
 This section provides the detailed analysis of the results the proposed approach regarding security and complexity analysis.
 
 \subsection{Security analysis}
-\label{sec_sec_analysis}
+\label{sec:3_sec_analysis}
 The security analysis of the proposed model was performed both from the point of implemented cryptographic mechanisms and from the user behavioral analysis. Two common attack scenarios were analyzed. First, the malicious outsider trying to infect or steal the important files. Second, the malicious expired user trying to steal the important files. 
 
 \subsubsection{Adversary model}
-\label{sec_adversary_model}
+\label{sec:3_adversary_model}
 The proposal is to use a restricted adversary model. In other words, the actions of the adversary are predicted within the outlines model and scenarios. For example, it is not possible to guarantee the security of the decrypted document once the user copies its content to another file. 
 
 In the analyzed scenarios, it is assumed that the adversary can:
@@ -379,9 +380,9 @@ It is also assumed that the adversary can not:
 \end{enumerate}
 
 \subsubsection{Security analysis}
-\label{sec_sec_analysis}
+\label{sec:3_sec_analysis2}
 
-In the offline mode the mobile client does not store the user password (see Section \ref{sec_offline_mode_workflow} for details), i.e. no information about the password leaks, and therefore there is no possibility for the malicious user to check if the password he is trying to enter is correct or not. The possible scenario for the information leakage in the case of the malicious outsider is if:
+In the offline mode the mobile client does not store the user password (see Section \ref{sec:3_offline_mode_workflow} for details), i.e. no information about the password leaks, and therefore there is no possibility for the malicious user to check if the password he is trying to enter is correct or not. The possible scenario for the information leakage in the case of the malicious outsider is if:
 
 \begin{enumerate}[label=(\alph*)]
 	\item The hacker steals all the parts of KEY\_SET\_KEY;
@@ -408,7 +409,7 @@ Basically, for a malicious user there is practically no way to use the mobile cl
 The mobile client still has to count the tries (to prevent the hacker to perform brute force attack) within one session. In accordance with the conditions 2 and 4 of the adversary model, the above actions are not possible for such adversary.
 
 \subsubsection{Common threat scenarios}
-\label{sec_common}
+\label{sec:3_common}
 This section provides the detailed description of the common scenarios in which the log and behavioral analysis is provided. The behavioral analysis can help to keep the user or administrator informed of the threat and take actions, as well as it can be useful in order to implement threat preventions or reactive actions to avoid threat propagation.
 
 \begin{thm}
@@ -462,9 +463,9 @@ This threat scenario, where the attacker uses expired password to perform unauth
 \end{enumerate}
 
 \subsubsection{Data Modeling for Behavioral Analysis }
-\label{sec_data}
+\label{sec:3_data}
 
-MOS schemes are used in order to identify anomalous behavior that can indicate an attack and be used to prevent or avoid attack propagation. Therefore, it is necessary to analyze the data that can be collected from user operations on mobile client, to identify features that can be modeled and submitted to MOS schemes, according to described in Section \ref{sec_mos}.
+MOS schemes are used in order to identify anomalous behavior that can indicate an attack and be used to prevent or avoid attack propagation. Therefore, it is necessary to analyze the data that can be collected from user operations on mobile client, to identify features that can be modeled and submitted to MOS schemes, according to described in Section \ref{sec:3_mos}.
 
 The selected features shall be modeled as matrices which represents a signal superposition containing noise, legitimate and malicious behavior \cite{tenorio2013greatest}, grouped into time frames $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
 
@@ -518,7 +519,8 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 
 \begin{table*}[!t]
 	\caption{Speed of decryption on a client device}
-	\label{tab:01}
+	\scriptsize
+	\label{tab:3_01}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
 		\hline \rowcolor{Gray} Device Model	& File set size	& \begin{tabular}[x]{@{}l@{}}Mean time of\\getting decrypted\\stream (ABE)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\decrypting \\content (AES)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\copying file\\without decrypt\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Mean time of\\decryption\\(the whole file)\end{tabular}	\\ \hline
@@ -535,7 +537,8 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 
 \begin{table*}
 	\caption{Speed of receiving the list of files}
-	\label{tab:02}
+	\scriptsize
+	\label{tab:3_02}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Files\\quantity\end{tabular}	 	& Samples 	& \begin{tabular}[x]{@{}l@{}}Average\\(ms)\end{tabular}	 	& \begin{tabular}[x]{@{}l@{}}Min\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Max\\(ms)\end{tabular} 	& Std. Dev. 	& Error (\%)		& Throughput 	& KB/sec 	& Avg. Bytes \\ \hline
@@ -548,7 +551,8 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 
 \begin{table*}
 	\caption{Speed of generating the user keys}
-	\label{tab:03}
+	\scriptsize
+	\label{tab:3_03}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 		\hline \rowcolor{Gray} Label	& Samples	& \begin{tabular}[x]{@{}l@{}}Average\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Min\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Max\\(ms)\end{tabular}	& Std. Dev.	& Throughput		& KB/sec		& Avg. Bytes \\ \hline
@@ -559,11 +563,12 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 \end{table*}
 
 \subsection{Complexity analysis}
-\label{sec_complex}
+\label{sec:3_complex}
 
 \begin{table*}
-	\caption{Data Modeling and Eigenvalue Decomposition Time }
-	\label{tab:04}
+	\caption{Data Modeling and Eigenvalue Decomposition Time}
+	\scriptsize
+	\label{tab:3_04}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|}
 		\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Modeling\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Min.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Max.\\(ms)\end{tabular}	\\ \hline
@@ -621,23 +626,24 @@ Similarly, in the online mode the mobile client does not perform resource-consum
 
 The proposed concept of mobile client security has been implemented in the Storgrid protected cloud environment \cite{storgrid2016}. Therefore, the approach is correlated with the practical usability requirements: the corporate user continues to use the mobile storage app in offline and does not need to reload the files every time the key is renewed. This methodology can be used in other mobile clients. The common advantage is that the mobile client performs the operations both in the offline and online mode and uses the key expiry and ABE to protect the privacy of the corporate data. 
 
-Table \ref{tab:01} presents the results of mobile client security workflow testing and demonstrates that the proposed scheme decrypts the data with acceptable speed. One can compare the speed of ABE/AES decryption (keys and actual data) and the speed of the whole decryption process.
+Table \ref{tab:3_01} presents the results of mobile client security workflow testing and demonstrates that the proposed scheme decrypts the data with acceptable speed. One can compare the speed of ABE/AES decryption (keys and actual data) and the speed of the whole decryption process.
 
-Table \ref{tab:02} demonstrates the results of testing the speed of the mobile client for receiving and displaying the list of files. The client was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads. It is possible to observe that the client receives and displays the list of files depending on the user attributes with acceptable average speed, showing that the proposed protection scheme is usable. 
+Table \ref{tab:3_02} demonstrates the results of testing the speed of the mobile client for receiving and displaying the list of files. The client was tested for displaying up to 1000 files. Around 100 requests were generated from 10 threads. It is possible to observe that the client receives and displays the list of files depending on the user attributes with acceptable average speed, showing that the proposed protection scheme is usable. 
 
-Table \ref{tab:03} demonstrates the results of performance testing of the keys generation procedure on server. It is possible to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. It is possible to conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
+Table \ref{tab:3_03} demonstrates the results of performance testing of the keys generation procedure on server. It is possible to observe that the performance does not decrease drastically with the increase of particular user shares. Each key sample generated contains the domain member code, key data and the sharing key value for each file sharing code. It is possible to conclude that the proposed client is not overloaded with calculations due to the carefully selected mathematical operations. It can be successfully used and provides acceptable level of security.
 
 The log analysis of the Log Analysis Center (LAC) has been implemented and evaluated for offline anomaly detection in mobile clients, making it possible to apply anomaly detection techniques in a lightweight fashion, considering low processing requirements for deal with the resource constraints of mobile clients. The evaluation considered the required processing time for anomaly detection from log analysis, measuring the data modeling time through the UAL, the eigenvalue decomposition time and the required time for the EDC MOS scheme execution, which is the scheme that requires less processing capacity and provides more anomaly identification accuracy \cite{da2009comparison,tenorio2013greatest}. 
 
 The experiments were performed in two mobile devices, Galaxy GT-I9300 and Galaxy Tab SM-T800, with variations of log size and window size. The Galaxy GT-I9300 has Quad-core 1.4 GHz Cortex-A9 processor and 1 GB RAM, while the Galaxy Tab SM-T800 has its processing capacity composed by Quad-core 1.9 GHz Cortex-A15 and quad-core 1.3 GHz Cortex-A7, and 3 GB RAM.
 
-Table \ref{tab:04} presents the data modeling time and the processing time of eigenvalues decomposition calculations to be applied to anomaly detection from user operation logs of Storgrid mobile client. The information presented by column are the device model, the log size in megabytes, the window size in minutes, the data modeling time in milliseconds, the average of eigenvalue decomposition time in milliseconds, the standard deviation of eigenvalue decomposition time in milliseconds, the minimum of eigenvalue decomposition time in milliseconds and the maximum of eigenvalue decomposition time in milliseconds.
+Table \ref{tab:3_04} presents the data modeling time and the processing time of eigenvalues decomposition calculations to be applied to anomaly detection from user operation logs of Storgrid mobile client. The information presented by column are the device model, the log size in megabytes, the window size in minutes, the data modeling time in milliseconds, the average of eigenvalue decomposition time in milliseconds, the standard deviation of eigenvalue decomposition time in milliseconds, the minimum of eigenvalue decomposition time in milliseconds and the maximum of eigenvalue decomposition time in milliseconds.
 
 The results show that the lower window size leads to the larger eigenvalue decomposition time, but the largest eigenvalue decomposition time, which was the maximum of 421 milliseconds with average of 347.42 milliseconds. This result highlights an acceptable speed even for the worst evaluated scenario, which is the case using a Galaxy GT-I9300 for processing 6MB with window size of 10 minutes.
 
 \begin{table*}[!t]
 	\caption{EDC MOS scheme processing time for anomaly detection}
-	\label{tab:05}
+	\footnotesize
+	\label{tab:3_05}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|l|l|}
 		\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Min. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Max. EDC.\\(ms)\end{tabular}	\\ \hline
@@ -668,12 +674,12 @@ The results show that the lower window size leads to the larger eigenvalue decom
 	\end{tabular}
 \end{table*}
 
-Table \ref{tab:05} presents the processing time of EDC MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. Table \ref{tab:05} respectively presents the device model, the log size in megabytes, the window size in minutes, the average of EDC calculation time in milliseconds, the standard deviation of EDC calculation time in milliseconds, the minimum of EDC calculation time in milliseconds and the maximum of EDC calculation time in milliseconds.
+Table \ref{tab:3_05} presents the processing time of EDC MOS calculations applied to anomaly detection from user operation logs of Storgrid mobile client. Table \ref{tab:3_05} respectively presents the device model, the log size in megabytes, the window size in minutes, the average of EDC calculation time in milliseconds, the standard deviation of EDC calculation time in milliseconds, the minimum of EDC calculation time in milliseconds and the maximum of EDC calculation time in milliseconds.
 
 It is possible to observe that the processing time increases with the window size decreasing, similar to the results for eigenvalue decomposition time. The longest processing time measured is lower than 200 milliseconds, even considering window size of 10 minutes or processing 6 MB of user operation log. This result represents an acceptable processing time for anomaly detection in mobile clients.
 
 \section{Conclusion and future work}
-\label{sec_conclusion}
+\label{sec:3_conclusion}
 
 An important security issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile clients. Once a mobile client releases the connection with the corporate cloud, no security measure implemented in the cloud infrastructure assures the protection of sensitive data stored in the mobile device. Aware of this problem and its importance, this work presented a proposal to address the offline mobile security problem combining a different cryptographic methods. Moreover, this proposed approach also prevents malicious user behavior by applying a MOS-based analytic method. 
 
