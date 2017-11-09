@@ -1,9 +1,7 @@
  - agradecer a quem me deu carta de recomendação
  - melhorar texto para ter mais meu estilo de escrita
- - incluir relação para exploratory data analysis ou fazer um paralelo com discriminant analysis 
- 	http://www.academia.edu/409575/Exploratory_Discriminant_Analysis
- 	http://jotterbach.github.io/2016/03/24/Principal_Component_Analysis/
  - remover os trabalhos futuros dos capítulos e deixar apenas no capítulo final
  - remover os textos das introducoes dos capítulos que utilizamos no início. podemos mudar para nao ter mais motivacao e apenas introduzir o trabalho que será feito, dado que a motivacao já foi apresentada
+ - mudar pra usar dataset or data set?
  - remover a parte de criptografia do trabalho de tanya?
- - mudar pra usar dataset or data set
+ - corrigir erros de caracteres em 3.4 MOS for Threat Intelligence

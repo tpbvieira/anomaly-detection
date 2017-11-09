@@ -23,6 +23,7 @@
 \usepackage{amsthm,amsmath}
 \usepackage{mathtools}
 \usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 \usepackage{algpseudocode}
 \usepackage{listings}
 \usepackage{epstopdf}
@@ -66,18 +67,7 @@
 	\fontdimen7\font=0.1em% extra space
 	%\hyphenchar\font=`\-% allowing hyphenation
 }
-
-% Algorithmic modifications
-\makeatletter
-\newcommand{\ALOOP}[1]{\ALC@it\algorithmicloop\ #1%
-  \begin{ALC@loop}}
-\newcommand{\ENDALOOP}{\end{ALC@loop}\ALC@it\algorithmicendloop}
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
-\renewcommand{\algorithmicensure}{\textbf{Output:}}
-\newcommand{\algorithmicbreak}{\textbf{break}}
-\newcommand{\BREAK}{\STATE \algorithmicbreak}
-\makeatother
-
+	
 \address{BRASÍLIA}
 
 \universitypt{Universidade de Brasília}

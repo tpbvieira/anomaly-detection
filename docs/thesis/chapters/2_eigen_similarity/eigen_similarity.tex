@@ -46,7 +46,7 @@ Several approaches for network attack detections uses the KDD 99 \cite{ji2016mul
 \section{Data Model}
 \label{sec:2_datamodel}
 
-% In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. We define the operator $\rm diag(\cdot)$ that returns the vector of the main diagonal of a given matrix, the operator $\rightarrow$, which denotes the deletion of a given element from a set and the operator $\#$, that returns the rank of a matriz, and the operator $\sim$ that sorts the elements of a vector in ascending order.
+In this work, scalars are denoted by italic letters ($a, b, A, B, \alpha, \beta$), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. We define the operator $\rm diag(\cdot)$ that returns the vector of the main diagonal of a given matrix, the operator $\rightarrow$, which denotes the deletion of a given element from a set and the operator $\#$, that returns the rank of a matriz, and the operator $\sim$ that sorts the elements of a vector in ascending order.
 
 This section presents details of the experimental scenario and the selected cases of the DARPA dataset, along with a description of the dataset model as a signal superposition of legitimate traffic, noise and malicious traffic. Subsection \ref{sec:2_DataCollection} describes the environment and scenario adopted in order to reproduce flood and probe attacks. Subsection \ref{sec:2_ModelingData} presents how network traffic can be modeled as signal superposition. Subsection \ref{sec:2_SynfloodFraggleandPortscan} details the traffic of synflood, fraggle and port scan attacks, and Subsection \ref{sec:2_DarpaDataset} discusses the use of the DARPA dataset for evaluation of the proposed approach.
 
@@ -108,7 +108,7 @@ The traffic that is not associated with user's operations and with malicious tra
 
 The traffic coming from a malicious activity, such as a synflood or fraggle attack, is represented by the matrix $\boldsymbol{A}^{(q)}$. For this work we only consider the traffic from port scanning and flood attacks.
 
-We define that if the obtained $\#\boldsymbol{A}^{(q)} ≠ 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\boldsymbol{A}^{(q)} = 0$, then there is no malicious traffic. This paper shows how to detect the $\#\boldsymbol{A}^{(q)}$, given only the matrix $\boldsymbol{X}^{(q)}$, in order to identify malicious network traffic.
+We define that if the obtained $\#\boldsymbol{A}^{(q)} ≠ 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\boldsymbol{A}^{(q)} = 0$, then there is no malicious traffic. This work shows how to detect the $\#\boldsymbol{A}^{(q)}$, given only the matrix $\boldsymbol{X}^{(q)}$, in order to identify malicious network traffic.
 
 \subsection{Synflood, Fraggle and Port scan}
 \label{sec:2_SynfloodFraggleandPortscan}
@@ -258,21 +258,20 @@ The largest eigenvalue analysis for estimating the $q$-th time frames that are u
 \begin{algorithm}[h!]
 	\caption{Detection of Time Frames Under Attack}
   	\label{alg:2_alg01}
-	% \begin{algorithmic}[1]
-	% 	\show\LOOP
-	%     \ALOOP {$f = 1$ until $f == \hat{d}$} 
-	%     	    \STATE $q_{\rm value} = \argmax\limits_{\lambda}  \hspace{1 mm} \boldsymbol{e}_{\rm max}$
- %    	    	    \ALOOP {$i = 1$ until $i == Q$} 
-	% 			\IF {$\boldsymbol{e}_{\rm max}^{(i)} == q_{\rm value}$}
-	% 			    \STATE $\boldsymbol{\hat{q}}_{\rm max}^{(f)} = i$
-	% 			\ENDIF
- %        		\ENDALOOP
-	%     		\STATE $\boldsymbol{e}_{\rm max} \rightarrow \boldsymbol{\hat{q}}_{\rm max}^{(f)}$
- %   		\ENDALOOP
-	% \end{algorithmic}
+	\begin{algorithmic}[1]
+		\For{$f = 1$ until $f == \hat{d}$} 
+    	    \State $q_{\rm value} = \argmax\limits_{\lambda}  \hspace{1 mm} \boldsymbol{e}_{\rm max}$
+	    	\For{$i = 1$ until $i == Q$} 
+				\If {$\boldsymbol{e}_{\rm max}^{(i)} == q_{\rm value}$}
+			    	\State $\boldsymbol{\hat{q}}_{\rm max}^{(f)} = i$
+				\EndIf
+    		\EndFor
+    		\State $\boldsymbol{e}_{\rm max} \rightarrow \boldsymbol{\hat{q}}_{\rm max}^{(f)}$
+    	\EndFor
+	\end{algorithmic}
 \end{algorithm}
 
-After the estimation of the $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analysing the effectiveness of cosine similarity to highlight abnormalies inserted by network traffic attacks. 
+After the estimation of the $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected Attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analysing the effectiveness of cosine similarity to highlight abnormalies inserted by network traffic attacks. 
 
 \subsection{Eigen Similarity Analysis}
 \label{sec:2_prop_EigenSimilarityAnalysis}
@@ -499,7 +498,7 @@ Therefore, we conclude that the $\hat{d}$ largest eigenvalues correspond to the 
 \subsection{Eigen Similarity Analysis}
 \label{sec:2_EigenSimilarityAnalysis}
 
-This paper proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
+This work proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
 
 \subsubsection{Time Analysis}
 \label{sec:2_TimeAnalysis}
@@ -868,11 +867,11 @@ According to Table \ref{tab:11}, the processing time increases with the frame si
 \section{Conclusion and Future Works}
 \label{sec:2_conclusionandfutureworks}
 
-This paper models the network traffic as a signal processing formulation for applying to the framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
+This work models the network traffic as a signal processing formulation for applying to the framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
 
 The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack, as well as presenting acceptable complexity and performance regarding the processing time.
 
-This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
+This work evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
 
 The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analyis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
