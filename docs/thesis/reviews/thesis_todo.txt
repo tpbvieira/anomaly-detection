@@ -5,3 +5,6 @@
  - mudar pra usar dataset or data set?
  - remover a parte de criptografia do trabalho de tanya?
  - corrigir erros de caracteres em 3.4 MOS for Threat Intelligence
+
+ Apresentação
+  - estar preparado para explicar MOS

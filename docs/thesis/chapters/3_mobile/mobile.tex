@@ -25,9 +25,9 @@ The protection scheme used on a mobile device should be both computationally sec
 Suppose that a SME uses CASB to protect data at rest, i.e. while stored on the server-side, in transit, communicating with server, and, in use, while the mobile client is connected to the network. In this case, when the mobile client goes offline with the sensitive corporate data on board all powerful cloud-based tools cannot help and the mobile client has to secure itself with its own limited resources. Moreover, due to the resources constraint, there is a crucial difference in strategy of online and offline mode protection. For example, offline mode does not allow performing the extensive computation and encryption on the mobile device.
 Observing the above described landscape, this work outlines the concept of the offline mobile cloud security. 
 
-This work proposes an archtecture and approach for user behavior analysis based on Model Order Selection (MOS) \cite{tenorio2013greatest}, in order to detect possible threats, and to reduce the risks and the harm of the most common threats, which are the expired user misusing password and the intruder attack. The key expiration period is safely incorporated into the proposed system solution in order to enhance security. Additionally, the behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors. The main target of our proposed solution is to provide a maximum defense at the minimal resource cost.
+This work proposes an archtecture and approach for user behavior analysis based on Model Order Selection (MOS) \cite{tenorio2013greatest}, in order to detect possible threats, and to reduce the risks and the harm of the most common threats, which are the expired user misusing password and the intruder attack. The key expiration period is safely incorporated into the proposed system solution in order to enhance security. Additionally, the behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors.
 
-The work is structured as follows. Section \ref{sec:3_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec:3_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec:3_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec:3_algorithms} explains the algorithms for MOS. Section \ref{sec:3_results} discusses the common threat scenarios, the data modeling, the complexity analysis and dicussion of the practical implementation results. Section \ref{sec:3_conclusion} concludes the chapter.
+The work is structured as follows. Section \ref{sec:3_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec:3_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec:3_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec:3_mos} explains the algorithms for MOS. Section \ref{sec:3_results} discusses the common threat scenarios, the data modeling, the complexity analysis and dicussion of the practical implementation results. Section \ref{sec:3_conclusion} concludes the chapter.
 
 
 \section{Related works}
@@ -54,7 +54,9 @@ An analysis of the new models of mobile cloud computing and new ways of using da
 
 The necessity to use schemes that function without putting load on a provider arises when it is desired to make the mobile client less dependent on the cloud provider, i.e. corporate client continues to provide the secure access to the sensitive data without connection to the network. As discussed in \cite{khan2015cloud}, all the currently known schemes of encryption, performing the computation, either use a cloud provider \cite{zhao2010trusted}, a third party trusted agent \cite{yang2011provable, heydari2016efficient}, a combination of both \cite{itani2010energy} or ad hoc approaches \cite{shila2016amcloud}. In some cases, they concentrate on computational complexity without taking care of user privacy and security \cite{ren2011lightweight}. Therefore, according to \cite{khan2013towards, khan2015cloud}, the state-of-the-art mobile cloud security models do not consider the problem of the offline security mode. 
 
-In many cases the industrial providers of the mobile security API avoid the problem by completely forbidding the offline access to the protected app, i.e. SAP Mocona, which operates as a secure client wrapping layer \cite{Lelyveld2013}. Due to various constraints such as traffic load, travelling and ease of access, the SME business procedure may require such access. To the best of our knowledge, the offline mode security problem has not yet been deployed, neither in academia nor in the industry \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. Therefore, the main concern of this proposal is the protection of the mobile client and its data in offline mode, when the functions of data protection cannot be offloaded to a cloud or a trusted party. 
+In many cases the industrial providers of the mobile security API avoid the problem by completely forbidding the offline access to the protected app, i.e. SAP Mocona, which operates as a secure client wrapping layer \cite{Lelyveld2013}. Due to various constraints such as traffic load, travelling and ease of access, the SME business procedure may require such access. 
+
+To the best of our knowledge, the offline mode security problem has not yet been deployed, neither in academia nor in the industry \cite{yovel2014, khan2015cloud, khan2014survey, khan2013towards}. Therefore, the main concern of this proposal is the protection of the mobile client and its data in offline mode, when the functions of data protection cannot be offloaded to a cloud or a trusted party. 
 
 
 \section{The mobile security architecture}
@@ -62,7 +64,7 @@ In many cases the industrial providers of the mobile security API avoid the prob
 
 The approach proposed in this work describes and implements a mobile client security infrastructure for malicious behavior analysis. The mobile security processes depend on the key expiry period, and are used to access the protected storage. Once the user keys expire, the user is requested to enter his valid credentials, i.e. PIN and password. The mobile client then sends the credentials to the server for verification. Once the new set of access keys is received, the user can access the protected files in the offline mode, without the access to the server. This means that no further communication with the server is needed until the key expires. 
 
-The core set of functions and protocols can be divided into three sets of operations as shown in Figure \ref{fig:3_01}.
+The core set of functions and protocols of the proposed architecture can be divided into three sets of operations as shown in Figure \ref{fig:3_01}.
 
 \begin{figure}[h!]
 	\centering
@@ -73,7 +75,7 @@ The core set of functions and protocols can be divided into three sets of operat
 
 Figure \ref{fig:3_01} describes the mobile client protection both in online and offline mode. In online mode, the client has the possibility to connect to the server and the security of the client is enhanced by the server-backed up mechanisms. On the other hand, in offline mode the client’s security is supported by the standalone mechanisms. Additionally, the mobile client protection is enhanced by the threat intelligence unit providing the constant monitoring and analysis.
 
-Figure \ref{fig:3_02} depicts the client-side protection mechanisms. The client should support 4 subsystems: i) encryption subsystem that contains the procedures of encryption and decryption; ii) storage subsystem that provides the downloaded shares and key storage protection; iii) threat intelligence unit that provides the constant monitoring, and iv) the communication subsystem. In short, all security procedures are connected to 4 groups of operations: file request and receiving; encryption and decryption; file and key storing; monitoring and analysis.
+Figure \ref{fig:3_02} depicts the client-side protection mechanisms. The client should support 4 subsystems: i) encryption subsystem (\textbf{Online/Offline Criptography}) that contains the procedures of encryption and decryption; ii) storage subsystem (\textbf{Protected Storage}) that provides the downloaded shares and key storage protection; iii) (\textbf{threat intelligence}) unit that provides the constant monitoring, and iv) the communication subsystem (\textbf{Communication with Server}). In short, all security procedures are connected to 4 groups of operations: file request and receiving; encryption and decryption; file and key storing; monitoring and analysis.
 
 \begin{figure}[h!]
 	\centering
@@ -82,11 +84,9 @@ Figure \ref{fig:3_02} depicts the client-side protection mechanisms. The client 
 	\label{fig:3_02}
 \end{figure}
 
-This architecture consists of the modules of cryptographic functions, threat intelligence infrastructure, communication with server and storage. This work focus on the threat intelligence infrastructure module.
+This architecture consists of the modules of cryptographic functions, threat intelligence infrastructure, communication with server and storage. However, this work focus on the threat intelligence infrastructure module for malicious behavior analysis.
 
-The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this block as well. These functions are described in Subsection \ref{sec:3_mos}.
-
-The communication with server includes the separate sender and receiver to check the user credentials and receive new keys. The remaining data like access list and files can be sent via unprotected channels. 
+The threat intelligence infrastructure takes into account simple actors such as the time counter for the key expiry period, the counter of unsuccessful tries in order to protect from brute force attacks, and MOS-inspired statistics analyzer. Functions such as alerting and deleting the expired key belong to this module as well. These functions are described in Subsection \ref{sec:3_mos}.
 
 
 \section{The proposed solution for offline mobile security}
@@ -102,7 +102,7 @@ This section proposes an approach for the mobile client protection in which the 
 
 The most important security issues in the proposed model arise when the client goes to the offline mode and the user is still allowed to get the access to the protected SME documents. In this case, the server can neither monitor the user activity nor provide the protection methods. The security should be performed at the mobile client. Additionally, the maximum protection should be provided at the minimum resource cost. 
 
-In the online mode the mobile client uses the secure communication with the server in order to verify the validity of user’s credentials. On the contrary, the offline protection model should be approached independently. The proposed architecture for offline mobile security is represented in Figure \ref{fig:3_03}.
+In the online mode the mobile client uses the secure communication with the server in order to verify the validity of user’s credentials. On the contrary, the offline protection model should be approached independently.
 
 \begin{figure}[h!]
 	\centering
@@ -146,7 +146,7 @@ Model Order Selection is an effective signal processing technique for several ap
 
 Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, which can be user operations, should be modeled as a matrix composed by the number of occurrences by location and time, and grouped into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\mathbf{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the mobile client.
 
-The MOS schemes can rely on sample covariance of zero mean variables (called as zero mean covariance for the sake of simplicity) and sample covariance of zero mean and unitary standard deviation (called as zero mean and standardized covariance for the sake of simplicity) variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
+The MOS schemes can rely on sample covariance of zero mean variables (called as \textbf{zero mean covariance} for the sake of simplicity) and sample covariance of zero mean and unitary standard deviation (called as \textbf{zero mean and standardized covariance} for the sake of simplicity) variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
 
 Classical approaches to model order selection require the computation of the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\mathbf{X}$ of the zero mean samples given by
 
@@ -173,10 +173,10 @@ The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$
 	\mathbf{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\mathbf{Z}^{(q)}\mathbf{Z}^{(q)^{\rm T}}.
 \end{equation}
 
-Once the $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ as a matrix $\mathbf{C}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\mathbf{C}^{(q)} = \mathbf{V}^{(q)}\mathbf{\Lambda}^{(q)}\mathbf{V}^{(q)^{\rm T}}$, in order to obtain the vector of eigenvalues $e$, as following:
+Once the $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ have been obtained for MOS in order to anomaly detection, for the sake of simplicity, we refer to $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ as a matrix $\mathbf{C}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\mathbf{C}^{(q)} = \mathbf{V}^{(q)}\mathbf{\lambda}^{(q)}\mathbf{V}^{(q)^{\rm T}}$, in order to obtain the vector of eigenvalues $\textbf{e}$, as following:
 
 \begin{equation}\label{eq:3_eq07}
-	\mathbf{e}^{(q)} = \rm diag(\mathbf{\Lambda}^{(q)}),
+	\mathbf{e}^{(q)} = \rm diag(\mathbf{\lambda}^{(q)}),
 \end{equation}
 
 The eigenvalues should be sorted in descending order, as defined by $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > \cdots > \lambda_{m}^{(q)}$, to make possible the selection of the first eigenvalue in the obtained sequence, represented by $\lambda_{1}^{(q)}$, which is the largest eigenvalue of the data evaluated for attack detection.
@@ -206,13 +206,13 @@ Once obtained the largest eigenvalues of each $q$-th time frame, it is possible 
 	\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max})
 \end{equation}
 
-Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to \cite{da2009comparison}.
+Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to Appendix \ref{apx:a_mos} and to \cite{da2009comparison}.
 
 
 \section{Results and analysis}
 \label{sec:3_results}
 
-This section provides the detailed analysis of the results fro the proposed approach regarding security and complexity analysis.
+This section provides the detailed analysis of the results from the proposed approach regarding security and complexity analysis.
 
 \subsection{Security analysis}
 \label{sec:3_sec_analysis}
@@ -226,7 +226,7 @@ This section provides the detailed description of the common scenarios in which 
 An attacker uses a valid password to perform operations on a bulk of files.
 \end{thm}
 
-The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware \cite{kaspersky2014}.
+The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware or cryptolocker \cite{kaspersky2014}.
 
 MOS schemes based on zero mean covariance analysis are effective to reveal abrupt changing of behaviors over time \cite{tenorio2013greatest}, making possible to identify intense malicious behaviors on offline mode of mobile clients, such in case of ransomware attack or bulk access to sensitive data.
 
@@ -286,9 +286,9 @@ This work proposes to evaluate the following features, which represents events o
 \paragraph{\textbf{File Access (Time and File System Location)},}i.e. data access to selected files in offline mode, accessing the data stored on the mobile client. The file access feature can be decomposed into more detailed features, which are:
 
 \begin{enumerate}
-	\item file decryption; 
-	\item decrypted file reading;
-	\item decrypted file execution. 
+	\item number of file decryption;
+	\item number of decrypted file reading;
+	\item number of decrypted file execution. 
 \end{enumerate}
 
 Therefore, it is necessary to generate three matrices for the following malicious behaviors analysis: 
@@ -302,8 +302,8 @@ Therefore, it is necessary to generate three matrices for the following maliciou
 \paragraph{\textbf{File Update (Time and File System Location)},}i.e. writing operations into selected files in offline mode, writing the data stored on the mobile client. The update feature can be decomposed into:
 
 \begin{enumerate}
-	\item file encryption;
-	\item decrypted file writing.
+	\item number of file encryption;
+	\item number of decrypted file writing.
 \end{enumerate}
 
 Therefore, it is necessary to generate two matrices for malicious behaviors analysis, such as: 
@@ -337,7 +337,7 @@ The log analysis of the Log Analysis Center (LAC) has been implemented and evalu
 
 The experiments were performed in two mobile devices, Galaxy GT-I9300 and Galaxy Tab SM-T800, with variations of log size and window size. The Galaxy GT-I9300 has Quad-core 1.4 GHz Cortex-A9 processor and 1 GB RAM, while the Galaxy Tab SM-T800 has its processing capacity composed by Quad-core 1.9 GHz Cortex-A15 and quad-core 1.3 GHz Cortex-A7, and 3 GB RAM.
 
-Table \ref{tab:3_04} presents the data modeling time and the processing time of eigenvalues decomposition calculations to be applied to anomaly detection from user operation logs of Storgrid mobile client. The information presented by column are the device model, the log size in megabytes, the window size in minutes, the data modeling time in milliseconds, the average of eigenvalue decomposition time in milliseconds, the standard deviation of eigenvalue decomposition time in milliseconds, the minimum of eigenvalue decomposition time in milliseconds and the maximum of eigenvalue decomposition time in milliseconds.
+Table \ref{tab:3_04} presents the data modeling time and the processing time of eigenvalues decomposition calculations to be applied to anomaly detection from user operation logs of Storgrid mobile client. 
 
 \begin{table*}
 	\caption{Data Modeling and Eigenvalue Decomposition Time}
@@ -372,6 +372,8 @@ Table \ref{tab:3_04} presents the data modeling time and the processing time of 
 		Galaxy Tab SM-T800	& 1.4	& 10	& 7	& 75.24	& 7.71	& 65	& 90	\\ \hline
 	\end{tabular}
 \end{table*}
+
+The information presented by column are the device model, the log size in megabytes, the window size in minutes, the data modeling time in milliseconds, the average of eigenvalue decomposition time in milliseconds, the standard deviation of eigenvalue decomposition time in milliseconds, the minimum of eigenvalue decomposition time in milliseconds and the maximum of eigenvalue decomposition time in milliseconds.
 
 The results show that the lower window size leads to the larger eigenvalue decomposition time, but the largest eigenvalue decomposition time, which was the maximum of 421 milliseconds with average of 347.42 milliseconds. This result highlights an acceptable speed even for the worst evaluated scenario, which is the case using a Galaxy GT-I9300 for processing 6MB with window size of 10 minutes.
 
@@ -420,4 +422,4 @@ An important security issue faced by corporations that use cloud-based systems i
 
 As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. The proposed approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile client and can be used for any type of enterprise. Also, part of concept is seed for new security solutions for big data apps. 
 
-Future works in the area can further explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints.
+Future works in the area can further explore enhancements in the analytics methods as well as to extended the approach to be evaluate multidimensional data through tensor-based analysis.
