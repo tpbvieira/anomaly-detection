@@ -7,6 +7,8 @@
  - corrigir erros de caracteres em 3.4 MOS for Threat Intelligence
  - se temos um separable dictionary, cada um poderia ser inicializado com dicionários de fraud e normal? Teria ganho se comparado com outras formas que concatenam ou tratam de forma totalmente aleatória?
  - descrever como o dicionário é inicializado
+ - testar a métrica de roemer para identificação de atoms	
+ - corrigir a questão dos limites de identificacao e as figuras, para conter a quantidade de identificações por iteracao e também a distribuição por grau de identificacao
 
  Apresentação
   - estar preparado para explicar MOS

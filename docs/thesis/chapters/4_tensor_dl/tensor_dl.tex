@@ -5,25 +5,26 @@
 No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
 \end{quotation}
 
+% \section{Introduction}
 % Compressed Sensing | Dictionary Learning | Multidimensional data | Tensor DL and Separable dictionaries
 
 Compressed Sensing (CS) aims to obtain the most relevant information of a dataset, what makes it useful for compression, signal reconstruction, image processing and classification, such as in sparce representation classification (SRC) problems. 
 
 Dictionary learning is related to CS but seeks to obtain compact and meaningful signal representations, known as dictionary, from learning algorithms or models. DL is a signal processing technique for sparse representation of signals as basis vectors, learning the representations from training data, as dictionaries. DL is based on the principle that some observations can be described by a sparse subset of atoms taken from a redundant dictionary, which represents the causes of some observations of the world. The sparse representation in terms of such dictionaries has attracted increased interest for compressive sensing and for solving problems such as denoising, compression, image processing, data decomposition, feature extraction and classification \cite{tosic2011dictionary, zhang2010discriminative, zhu2016coupled,ravishankar2011mr}. 
 
-There are two major approaches for dictionary learning. First is the analytic approach, in which Discrete Cosine Transform basis, wavelets, curvelets and other nonadaptive functions are used as atoms to construct the dictionaries. Second is the learning-based approaches, such as the unsupervised learning for dictionary construction [9] and the online dictionary learning [11], [10], which use machine learning methods to construct the dictionary. 
+There are two major approaches for DL. First is the analytic approach, in which Discrete Cosine Transform basis, wavelets, curvelets and other nonadaptive functions are used as atoms to construct the dictionaries. Second is the learning-based approaches, such as the unsupervised learning for dictionary construction [9] and the online dictionary learning [11], [10], which use machine learning methods to construct the dictionary. 
 
 In the analytic approach, some pre-defined functions are used to construct the dictionary. Curvelets [24], which tracks the shape of the discontinuity set, offers efficient and near-optimal representation of smooth objects. Shearlets [25], which is obtained from dilations, action of translations and shear transformations, has nice geometric properties and mathematical properties for image representation. Bandelets [26], which specifies the geometry as a vector field, is de-signed to improve the image compression and noise reduction performance. 
 
 In the learning-based approach, machine learning methods are used to construct the dictionary from the training data. The least square error is used by the method of the optimal directions (MOD) [27] to update the dictionary iteratively. While analytic dictionaries permit to capture the global structure of a signal and allow a fast implementation, learned dictionaries often perform better in applications as they are more adapted to the considered class of signals.
 
-In some applications, the data and its dictionary are multidimensional, e.g., when estimating jointly behavior of users in social networks. Computing tensor decompositions of multi-way datasets is particularly useful to extract hidden patterns and structure in multidimensional data analytics problems \cite{kolda2009tensor}. Tensor-based algorithms for dictionary learning can improve the performance for cases of multidimensional and separable data, regarding the dictionary identification rating, the required number of training samples and iterations for the optimization problem \cite{roemer2014tensor}. 
+In some applications, the data and its dictionary are multidimensional, e.g., when estimating jointly behavior of users in social networks. Computing tensor decompositions of multi-way datasets is particularly useful to extract hidden patterns and structure in multidimensional data analytics problems \cite{kolda2009tensor}. Tensor-based algorithms for DL can improve the performance for cases of multidimensional and separable data, regarding the dictionary identification rating, the required number of training samples and iterations for the optimization problem \cite{roemer2014tensor}. 
 
 In imagery, the numerical burden for (i) learning a dictionary and for (ii) employing the dictionary for reconstruction tasks only allows to deal with relatively small image patches that only capture local image information. Separable dictionaries aims at overcoming these drawbacks by allowing a separable structure on the dictionary throughout the learning process. On the one hand, this permits larger patch-sizes for the learning phase, on the other hand, the dictionary is applied efficiently in reconstruction tasks. 
 
-Multidimensional parameter estimation and learning multidimensional separable dictionaries are growing research problems. The crucial idea about separable dictionaries is to allow the dictionary to have a separable structure, where separable means that the dictionary $\textbf{D}$ is given by the Kronecker product of two smaller dictionaries $\textbf{A} \in \mathbb{R}^{h \times a}$ and $\textbf{B} \in \mathbb{R}^{w \times b}$, for example. Roemer \emph{et al.} \cite{roemer2014tensor} show that the multidimensional dictionary estimation problem can be efficiently formulated in terms of tensors, and that their results outperform existing schemes by exploiting the multilinear structure of the problem.
+Multidimensional parameter estimation and learning multidimensional separable dictionaries are growing research problems. The crucial idea about separable dictionaries is to allow the dictionary to have a separable structure, where separable means that the dictionary $\textbf{D}$ is given by the Kronecker product of two smaller dictionaries $\boldsymbol{A}^{(1)} \in \mathbb{R}^{h \times a}$ and $\boldsymbol{A}^{(2)} \in \mathbb{R}^{w \times b}$, for example. Roemer \emph{et al.} \cite{roemer2014tensor} show that the multidimensional dictionary estimation problem can be efficiently formulated in terms of tensors, and that their results outperform existing schemes by exploiting the multilinear structure of the problem.
 
-Considering that big data problems require techniques to deal with multidimensional data in order to make sense of strucutre and relationship of many dimensions, and also considering that a key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset, this work propose a tensor-based dictionary learning method for fraud detecton from imbalanced data, in order to apply the tensor deconposition for dictionary learning methods to evidentiate the discriminative sensing of a fraud detection dataset. 
+Considering that big data problems require techniques to deal with multidimensional data in order to make sense of strucutre and relationship of many dimensions, and also considering that a key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset, this work propose a tensor-based DL for fraud detecton from imbalanced data, in order to apply the tensor deconposition for DL methods to evidentiate the discriminative sensing of a fraud detection dataset. 
 
 This chapter is organized as follows. Section \ref{sec:4_motivation} presents the motivation for the proposed work. In Section \ref{sec:4_relatedworks}, related works are discussed. Section \ref{sec:4_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:4_proposal} describes the proposed approach for for fraud detecton from mobile money transacion. Section \ref{sec:2_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:4_conclusion} draws the conclusions and the suggestions for future work.
 
@@ -31,45 +32,68 @@ This chapter is organized as follows. Section \ref{sec:4_motivation} presents th
 \section{Motivation}
 \label{sec:4_motivation}
 
-Existing dictionary learning schemes can be applied to multidimensional analysis and obtain valuable results. However, the performance of tensor-based algorithms for recovering of a known separable dictionary outperform existing schemes when dealing with growing multidimensional datasets.
+Existing DL schemes can be applied to multidimensional analysis and obtain valuable results. However, the performance of tensor-based algorithms for recovering of a known separable dictionary outperform existing schemes when dealing with growing multidimensional datasets.
 
-Considering that DL aims to obtain meaningful dictionaries, it is possible to evaluate DL algorithms by their performance to generate dictionaries that better represent one target data. Therefore, we can compare dictionary learning algorithms regarding recovering of a known dictionary. 
+Considering that DL aims to obtain meaningful dictionaries, it is possible to evaluate DL algorithms by their performance to generate dictionaries that better represent one target data. Therefore, we can compare DL algorithms regarding recovering of a known dictionary. We conduct a evaluation of tensor-based DL algorithms for recovering a known dictionary in order to analyze the gains of tensor-based approaches in comparison to well known algorithms.
 
-A true dictionary of size 20x50 is made in each trial. A set of trainning data is made by using the true dictionary, each training vector is a sparse combination of some, here 5, vectors from the true dictionary and random noise. The number of training vectors can be chosen and the level of noise can be given. Then a dictionary is trained from the training set using one of the three methods, ILS-DLA (MOD), K-SVD, and RLS-DLA. The trained dictionary is then compared to the true dictionary, this is done by pairing the dictionaries atoms in the best possible way and using the angle between a true atom and a trained atom as a distance measure. The number of identified atoms is then found by comparing these angles to a limit, βlim.
+\subsection{Data Model and Experiments}
+\label{sec:4_motivation_datamodel}
 
-Dictionary recovery problem
+Consider a generic sparse recovery problem of the following form
 
-Figures \ref{fig:fig1} and \ref{fig:fig2} show the evaluation of tensor-based (K-HOSVD \cite{roemer2014tensor} and T-MOD \cite{roemer2014tensor}) and traditional dictionary learning algorithms (RLS-DLA \cite{skretting2010recursive}, K-SVD \cite{aharon2006rm} and MOD \cite{engan1999method}) for dictionary reconstruction of a multidimensional and separable data.
+\begin{equation}\label{eq:eq01}
+\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W},
+\end{equation}
+
+where $\boldsymbol{X} \in \mathbb{C}^{M \times T}$ represents $T$ consecutive observations from $M$ features, $\boldsymbol{A} \in \mathbb{C}^{M \times N}$ is the overcomplete dictionary where $N \ll T$, $\boldsymbol{S} \in \mathbb{C}^{N \times T}$ represents the sparse coefficient matrix, $\boldsymbol{W} \in \mathbb{C}^{M \times T}$ is the additive noise, and $M < N < T$.
+
+Consider a sparse recovery problem for a separable 2-D dictionary that we can write as
+
+\begin{equation}\label{eq:eq02}
+\boldsymbol{X} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)}) \cdot \boldsymbol{S} + \boldsymbol{W},
+\end{equation}
+
+where $\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)})$, $\boldsymbol{A}^{(1)} \in \mathbb{C}^{M_1 \times N_1}$, $\boldsymbol{A}^{(2)} \in \mathbb{C}^{M_2 \times N_2}$, $M = M_1 \times M_2$, and $N = N_1 \times N_2$.
+
+In order to evaluate tensor-based DL algorithms for recovering a known dictionary, we generate two random dictionaries $\boldsymbol{A}^{(1)}$ and $\boldsymbol{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the dictionary $\boldsymbol{A}$ through the Kronecker product, according to $\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)})$. Therefore, $\boldsymbol{A}$ is the known dictionary that shall be used for recovery evaluation. 
+
+Subsequently, we generate a synthetic data set $\boldsymbol{X}$ using the given dictionary $\boldsymbol{A}$, according to $\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W}$, where $\boldsymbol{S}$ is a random sparse coefficient matrix for what we assume that each column has $K = 5$ non-zero entries, and $\boldsymbol{W}$ is the additive white gaussian noise. Thus, we estimate the initial $\boldsymbol{\hat{A}}$ dictionary from a normalized subset of $\boldsymbol{X}$ and make the dictionary separable decomposing the approximation of $\boldsymbol{\hat{A}}$ and generating $\boldsymbol{\hat{A}}^{(1)}$ and $\boldsymbol{\hat{A}}^{(2)}$ according to \cite{van1993approximation}. Afterward, we update $\boldsymbol{\hat{A}}$ through $\boldsymbol{\hat{A}} = (\boldsymbol{\hat{A}}^{(1)} \otimes \boldsymbol{\hat{A}}^{(2)})$ and use it for DL experiments using MOD \cite{engan1999method}, K-SVD \cite{aharon2006rm}, RLS-DLA \cite{skretting2010recursive}, T-MOD \cite{roemer2014tensor} and K-HOSVD \cite{roemer2014tensor}. Due to its low computational complexity, we employ the Orthogonal Matching Pursuit (OMP) algorithm\cite{davis1997adaptive} for the sparse recovery stage in all the dictionary learning algorithms, assuming that K is known. 
+
+The final estimated dictionaries $\boldsymbol{\hat{A}}$ recovered by each DL algorithm are compared to the known dictionary $\boldsymbol{A}$, through a measure of the distance between two dictionaries. The recovered dictionary is then compared to the known dictionary, by using the angle between a known atom and a recovered atom as a distance measure. The number of identified atoms is computed by comparing these angles to a limit of $\beta_{lim} = 8.11$ degrees, that corresponds to the case where the inner product of the two compared atoms is equal to 0.99, and where each atom has 2-norm equal to 1.
+
+For this experiments we adopt an additive noise with $snr = 20$ and 100 iterations for dictionary learning. All experiments run 100 trials in order to obtain confident results.
+
+This evaluation extends Roemer \emph{et al.} \cite{roemer2014tensor} including RLS-DLA for comparison, and for adding the evaluation of the degree distribution for atom identification and the evaluation of the atom identification according to the dictionary size variation. Additionally, we conduct a experimental evaluation, while Roemer \emph{et al.} \cite{roemer2014tensor} presents numerical results obtained via Monte Carlo simulations.
+
+
+\subsection{Results}
+\label{sec:4_motivation_results}
+
+Figures \ref{fig:fig1} and \ref{fig:fig2} show the evaluation of tensor-based (K-HOSVD \cite{roemer2014tensor} and T-MOD \cite{roemer2014tensor}) and traditional DL algorithms (RLS-DLA, K-SVD and MOD) for dictionary reconstruction of a multidimensional and separable data. These figures show the distribution of the cumulative atom identification over the degree rates.
+
+Figure \ref{fig:fig1} presents the results for recovering a dictionary of $M=20$ and $N=50$. We see that the RLS-DLA method performs better than other methods, although T-MOD presents the best results for identification of up to 15 atoms of 50. It is possible to observe that T-MOD and K-HOSVD are better than MOD and K-SVD, and that the tensor-based methods outperforms MOD and K-SVD significantly for this experiment. Finally, Figure \ref{fig:fig1} shows that RLS-DLA recovered almost 40 atoms in $\beta_{lim} = 8.11$ degrees, while other methods present results lower results.
 
 \begin{figure}[!htb]
      \centering 
 	 \includegraphics[width=10cm]{figures/5_20_2000_1000_100.eps}
-     \caption{Matrix of 1.000 elements, 2000 sample training, 100 iterations}
+     \caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=20$, $N=50$}
      \label{fig:fig1}
 \end{figure}
 
-Figure \ref{fig:fig1} presents the results for dictionary reconstruction from a matrix of 1000 elements by 50 atoms. We see that the RLS-DLA method here performs better than ILS-DLA (MOD) and K-SVD which both perform quite similar. The most remarkable difference is that RLS-DLA is able to identify all atoms for a quite small angle βlim. ILS-DLA (MOD) and K-SVD always have some atoms that are far away from the true atom. Having βlim=8.11 degrees corresponds to the case where the inner product of the two compared atoms is equal to 0.99, each atom has 2-norm equal to 1.
-
-Figure \ref{fig:fig2} presents the results from a matrix with 24000 entries by 300 atoms. It is possible to observe better reconstruction rating for tensor-based algorithms
+Figure \ref{fig:fig2} presents the results for recovering a dictionary of $M=80$ and $N=30$. It is possible to observe that the tensor-base methods outperform MOD, RLS-DLA and K-SVD in number of identified atoms and the required degrees for identification. Note that MOD performs quite silimar to RLS-DLA, while K-SVD is the worst evaluated case for this experiment. Considering the tensor-based methods, T-MOD outperforms K-HOSVD with higher atom identification over lower degrees. The experimental results verify that the tensor-based dictionary learning algorithms are able to identify more dictionary atoms when dealing with larger dictionaries and that they converge faster.
 
 \begin{figure}[!htb]
      \centering 
 	 \includegraphics[width=10cm]{figures/5_20_2000_24000_100.eps}
-     \caption{Matrix of 24.000 elements, 2000 sample training, 100 iterations}
+     \caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=80$, $N=30$}
      \label{fig:fig2}
 \end{figure}
 
-Imbalanced data...
+The results reveals that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases. Since dictionary learning and reconstruction error are usually used for sparce representation classification (SRC) problems, it is possible to supose that tensor-based algorithms can improve results of classification problems, as well as can extract hidden patterns and structure in multidimensional data analytics problems.
 
 Recent developments in science and technology have enabled the growth and availability of raw data to occur at an explosive rate. This has created an immense opportunity for knowledge discovery and data engineering research to play an essential role in a wide range of applications from daily civilian life to national security. However, the high availability of raw data increases the challenges related to big data analytics and to imbalanced data, which corresponds to data sets exhibiting significant imbalances of classes or rare events of some classes. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms
 
-A key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based dictionary learning method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. In this paper, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based dictionary learning for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
-
-%However, tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets. We focus on a distributed implementation of T-MOD \cite{roemer2014tensor} algorithm, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition. We perform experiments to test different methods for learning dictionaries, evaluating the processing time and the reconstruction of a dictionary of multidimensional and separable data.
-
-OMP \cite{davis1997adaptive}
-
-Specifically, we propose to apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification of mobile money transactions. We propose to use tensor-based dictionary learning for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
+A key challenge to use SC and DL for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based DL method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. In this paper, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
 
 
 \section{Related Works}
@@ -103,25 +127,10 @@ Tem que ver outro...
 \section{Data Model}
 \label{sec:4_datamodel}
 
-Consider a generic sparse recovery problem of the following form
-
-\begin{equation}\label{eq:eq01}
-\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W},
-\end{equation}
-
-where $\boldsymbol{X} \in \mathbb{C}^{M \times T}$ represents $T$ consecutive observations from $M$ features, $\boldsymbol{A} \in \mathbb{C}^{M \times N}$ is the overcomplete dictionary, $\boldsymbol{S} \in \mathbb{•}hbb{C}^{N \times T}$ represents the sparse coefficient matrix, $\boldsymbol{W} \in \mathbb{C}^{M \times T}$ is the additive noise, and $M < N < T$.
-
-Consider a sparse recovery problem for a separable 2-D manifold, i.e., a manifold that can be written as the product of two 1-D manifolds. If we choose a separable 2-D sampling grid, we can write the 2D sparse recovery problem as
-
 Imbalance data where zero is predominante
 
 Data divided into learning and test, with isfraud labels with 1 or 0
 
-\begin{equation}\label{eq:eq02}
-\boldsymbol{X} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)}) \cdot \boldsymbol{S} + \boldsymbol{W},
-\end{equation}
-
-where $\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)})$, $\boldsymbol{A}^{(1)} \in \mathbb{C}^{M_1 \times N_1}$, $\boldsymbol{A}^{(2)} \in \mathbb{C}^{M_2 \times N_2}$, $M = M_1 \times M_2$, and $N = N_1 \times N_2$.
 
 The Kronecker model (\ref{eq:eq02}) can be rewritten in an equivalent tensor form. Applying the algebraic rules for unfoldings of n-mode products \cite{roemer2014tensor} we can rewrite (\ref{eq:eq02}) into a "Tucker-2" decomposition, as
 
@@ -211,3 +220,5 @@ Tensor based analysis explores the extructure and relationship of multidimension
 Can be used for feature extraction and used for well known algorithm,  and can be used for discriminative classification based on heuristics
 
 Our proposal is better for imbalanced data than others techniques
+
+%However, tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets. We focus on a distributed implementation of T-MOD \cite{roemer2014tensor} algorithm, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition. We perform experiments to test different methods for learning dictionaries, evaluating the processing time and the reconstruction of a dictionary of multidimensional and separable data.
