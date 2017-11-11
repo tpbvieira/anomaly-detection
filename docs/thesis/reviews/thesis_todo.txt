@@ -5,6 +5,8 @@
  - mudar pra usar dataset or data set?
  - remover a parte de criptografia do trabalho de tanya?
  - corrigir erros de caracteres em 3.4 MOS for Threat Intelligence
+ - se temos um separable dictionary, cada um poderia ser inicializado com dicionários de fraud e normal? Teria ganho se comparado com outras formas que concatenam ou tratam de forma totalmente aleatória?
+ - descrever como o dicionário é inicializado
 
  Apresentação
   - estar preparado para explicar MOS
