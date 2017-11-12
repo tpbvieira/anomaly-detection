@@ -1,7 +1,6 @@
-function [A, A1, A2] = makedict2(M1, M2, N1, N2, met)
-    % Make a random dictionary from kroneker product, iid Gaussian or uniform entries
-    % met 'U' (default) should be like Kreutz-Delgado, Engan, et al. in 2003 
-    % and Aharon et al. in 2005.
+function [A, A1, A2] = makeNormKroneckerDict(M1, M2, N1, N2, met)
+    % Make a random dictionary from kroneker product of normalized matrices
+    %
     % The dictionary is normalized, each column scaled so that its 2-norm == 1
     %
     % A = dictmake(M1, M2, N1, N2);           % met 'U' is default
@@ -26,8 +25,8 @@ function [A, A1, A2] = makedict2(M1, M2, N1, N2, met)
 
     % make the generating frame/dictionary
     if met(1)=='U';
-        A1 = 2 * rand(M1,N1) - 1;
-        A2 = 2 * rand(M2,N2) - 1;
+        A1 = 2 * rand(M1,N1) -1;
+        A2 = 2 * rand(M2,N2) -1;
     elseif met(1)=='u';
         A1 = rand(M1,N1);
         A2 = rand(M2,N2);
@@ -35,7 +34,11 @@ function [A, A1, A2] = makedict2(M1, M2, N1, N2, met)
         A1 = randn(M1,N1);
         A2 = randn(M2,N2);
     end
-   
+    
+    % normalize
+    A1 = A1.*(ones(size(A1,1),1)*(1./sqrt(sum(A1.*A1))));
+    A2 = A2.*(ones(size(A2,1),1)*(1./sqrt(sum(A2.*A2))));
+    
     A = kron(A1,A2);
     
     return

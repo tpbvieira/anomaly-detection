@@ -1,4 +1,4 @@
-function X = datamake(D, L, S, snr, met, wlo, whi, lim)
+function X = makeDataFromDict(D, L, S, snr, met, wlo, whi, lim)
     % datamake        Generate a random data set using a given dictionary
     %
     % X = datamake(D, L, S, snr, 'U', wlo, whi);     
@@ -34,12 +34,16 @@ function X = datamake(D, L, S, snr, met, wlo, whi, lim)
 
     X=zeros(N,L);
 
-    % now find the values of the non-zero weights
+    % now find the random values of the non-zero weights
     if strcmpi(met(1),'U');
         W = (whi-wlo)*rand(S,L) + wlo;
     elseif strcmpi(met(1),'G');
-        if (nargin < 6); wlo = 0; end;
-        if (nargin < 7); whi = 1; end;
+        if (nargin < 6); 
+            wlo = 0; 
+        end;
+        if (nargin < 7); 
+            whi = 1; 
+        end;
         W = wlo + whi*randn(S,L);
         if (lim > 0)
             I = find(abs(W)<lim);

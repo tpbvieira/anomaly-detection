@@ -58,7 +58,7 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
     elseif (strcmpi(methodChar,'B'))                                        % 'B' = RLS-DLA miniBatch
         method = 'RLS-MiniBatch';
     else                                                                    % 'L', 'Q', 'C', 'H' or 'E' = RLS-DLA (java),
-        method = ['RLS-DLA_',methodChar];
+        method = 'RLS-DLA';
     end
     metPar = cell(1,1);
     metPar{1} = struct('lamM',methodChar,'lam0',0.99,'a',0.95);
@@ -111,9 +111,9 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
             ', each using ',int2str(noIt),' iterations.']);
 
         % data generation
-        [A, A1, A2] = makedict2(M1, M2, N1, N2, 'G');                       % Generate a seperable dictionary, A = kron(A1,A2)
-        X = datamake(A, L, s, snr, 'G');                                    % Generate a random (learning) data set using a given dictionary
-        A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );         % Normalize and arrange the vectors for an initial estimated dictionary        
+        [A, A1, A2] = makeKroneckerDict(M1, M2, N1, N2, 'G');               % Generate a seperable dictionary, A = kron(A1,A2)
+        X = makeDataFromDict(A, L, s, snr, 'G');                            % Generate a random (learning) data set using a given dictionary
+        A_hat = dictnormalize( X(:, floor(0.85 * L - K) + (1:K)) );         % Normalize and arrange the vectors for an initial estimated dictionary
         [A_hat1, A_hat2] = krondecomp(A_hat, M1, M2, N1, N2);               % Make the data separable decomposing the approximation of A_hat and generating new A_hat*
     	A_hat = kron(A_hat1, A_hat2);
         
@@ -156,8 +156,8 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
 
         % compare the trained dictionary to the true dictionary
         beta = dictdiff(A_hat, A, 'all-1', 'thabs');
-        beta = beta*180/pi;                                                 % degrees
-        results.detection(trialsDone + trial,1) = sum(beta < betalim);      % degree of similarity required for identification
+        beta = beta*180/pi;                                                 % convert to degrees
+        results.detection(trialsDone + trial, 1) = sum(beta < betalim);     % degree of similarity required for identification
         
         % logging
         disp(['Trial ',int2str(trial), ...

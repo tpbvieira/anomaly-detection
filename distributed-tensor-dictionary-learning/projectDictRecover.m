@@ -11,25 +11,25 @@
 % Ver. 2.3  00.02.2017  Version of Thiago Vieira adding tersor-based
 % methods
 %----------------------------------------------------------------------
-clc;
-clf;
-clear all;
+clc; clf; clear all;
 
 %% parameters
 set(0,'RecursionLimit',1200)
 scriptName = 'dictionary_learning';
 javaclasspath('-dynamic')                                                   % java configuration
 filePath = 'results/';                                                      % change to save generated data
-nofTrials = 1;                                                              % enought trials to obtain reliable results
-noIt = 10;                                                                 % number of iterations in each trial
-L = 500;                                                                    % number of training vectors to use
-N = 80; M1 = 10; M2 = 8;                                                    % features/variables/components
-snr = 20;                                                                   % snr for added noise
-K = 200; N1 = 20; N2 = 10;                                                  % dictionary's atoms (K << L)
 s = 5;                                                                      % sparseness
+snr = 20;                                                                   % snr for added noise
+L = 2000;                                                                   % number of training vectors to use
+noIt = 100;                                                                 % number of iterations in each trial
+nofTrials = 1;                                                              % enought trials to obtain reliable results
+N = 20; M1 = 5; M2 = 4;                                                     % features/variables/components
+K = 50; N1 = 10; N2 = 5;                                                    % dictionary's atoms (K << L)
+% N = 80; M1 = 10; M2 = 8;                                                  % features/variables/components
+% K = 300; N1 = 20; N2 = 15;                                                % dictionary's atoms (K << L)
 
 %% select the methods to compare and define file names
-fileNameInfo = sprintf('%1i_%li_%li_%li_%li',s,snr,L,N*K,noIt);
+fileNameInfo = sprintf('s=%1i_snr=%li_L=%li_noIt=%li_trials=%li_N=%li_K=%li',s,snr,L,noIt,nofTrials,N,K);
 fileNameSufix = sprintf('%s.mat',fileNameInfo);
 dataFiles = [
              ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' =             RLS-DLA (java),
@@ -78,23 +78,30 @@ for i=1:numMethods;
     methodNames{i} = results.method;
     
     % prepare cumulative atom identificatin per degree rates
-    yPos = zeros(size(K,1),1);
-    for i1=1:numel(degreesRates);
-        yPos(i1) = sum(results.beta(:) < degreesRates(i1));
+    cumIdtfAtoms = zeros(size(K,1),1);
+    for degreesRate = 1:numel(degreesRates);
+        cumIdtfAtoms(degreesRate) = sum(results.beta(:) < degreesRates(degreesRate));
     end
-    yPos = yPos/results.nofTrials;                                          % simple mean by trials
+    cumIdtfAtoms = cumIdtfAtoms/results.nofTrials;                                          % simple mean by trials
     
-    % select identifications that happens in a percentual of trials
-    I = find(yPos > (results.nofTrials * confidence));
-    i1 = I(1);
+    % number of identifications that are larger than a confidence
+    % identification rate
+    % I = find(cumIdtfAtoms > (results.nofTrials * confidence))
+    % degreesRate = I(1)
     
     % update plot for the current method
-    plot(degreesRates, yPos, colors(i));
+    plot(degreesRates, cumIdtfAtoms, colors(i));
 end
 
 %% print plot
-title({'Number of dictionary atoms identified per degrees.'; 'Elements: '; N*K});
-ylabel('Number of identified atoms.');
+% title({'Number of dictionary atoms identified per degrees.'; 'Elements: '; N*K});
+
+y1=get(gca,'ylim')
+hold on
+plot([betalim betalim],y1)
+
+
+ylabel('Identified atoms');
 xlabel('Required degrees for identification.');
 legend(methodNames, 'Location','SouthEast');
 hold off;

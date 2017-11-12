@@ -1,5 +1,4 @@
 
-%
 % ---------------------------------------------------------------------------- 
 % Given a matrix A (of size m1*m2, n1*n2), find the optimal kronecker
 % decomposition of the matrix.
@@ -7,7 +6,6 @@
 % norm( A - kron(B,C), 'fro' )**2
 %
 % See Van Loan and Pitsianis, "Approximation with Kronecker Products."
-%
 
 function [B,C] = krondecomp( A, m1, m2, n1, n2 )
 
