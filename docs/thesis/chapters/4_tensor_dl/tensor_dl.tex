@@ -10,7 +10,7 @@ No one knows it all. No one is ignorant of everything. We all know something. We
 
 Compressed Sensing (CS) aims to obtain the most relevant information of a dataset, what makes it useful for compression, signal reconstruction, image processing and classification, such as in sparce representation classification (SRC) problems. 
 
-Dictionary learning is related to CS but seeks to obtain compact and meaningful signal representations, known as dictionary, from learning algorithms or models. DL is a signal processing technique for sparse representation of signals as basis vectors, learning the representations from training data, as dictionaries. DL is based on the principle that some observations can be described by a sparse subset of atoms taken from a redundant dictionary, which represents the causes of some observations of the world. The sparse representation in terms of such dictionaries has attracted increased interest for compressive sensing and for solving problems such as denoising, compression, image processing, data decomposition, feature extraction and classification \cite{tosic2011dictionary, zhang2010discriminative, zhu2016coupled,ravishankar2011mr}. 
+Dictionary learning is related to CS but seeks to obtain compact and meaningful signal representations, known as dictionary, from learning algorithms or models. DL is a signal processing technique for sparse representation of signals as basis vectors, learning the representations from training data, as dictionaries. DL is based on the principle that some observations can be described by a sparse subset of atoms taken from a redundant dictionary, which represents the causes of some observations of the world. The sparse representation in terms of such dictionaries has attracted increased interest for compressive sensing and for solving problems such as denoising, compression, image processing, data decomposition, feature extraction and classification, when the learning includes a class separability criteria in the objective function \cite{tosic2011dictionary, zhang2010discriminative, zhu2016coupled,ravishankar2011mr}. 
 
 There are two major approaches for DL. First is the analytic approach, in which Discrete Cosine Transform basis, wavelets, curvelets and other nonadaptive functions are used as atoms to construct the dictionaries. Second is the learning-based approaches, such as the unsupervised learning for dictionary construction [9] and the online dictionary learning [11], [10], which use machine learning methods to construct the dictionary. 
 
@@ -41,23 +41,35 @@ Considering that DL aims to obtain meaningful dictionaries, it is possible to ev
 
 Consider a generic sparse recovery problem of the following form
 
-\begin{equation}\label{eq:eq01}
-\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W},
+\begin{equation}\label{eq:4_eq01}
+	\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W},
 \end{equation}
 
 where $\boldsymbol{X} \in \mathbb{C}^{M \times T}$ represents $T$ consecutive observations from $M$ features, $\boldsymbol{A} \in \mathbb{C}^{M \times N}$ is the overcomplete dictionary where $N \ll T$, $\boldsymbol{S} \in \mathbb{C}^{N \times T}$ represents the sparse coefficient matrix, $\boldsymbol{W} \in \mathbb{C}^{M \times T}$ is the additive noise, and $M < N < T$.
 
 Consider a sparse recovery problem for a separable 2-D dictionary that we can write as
 
-\begin{equation}\label{eq:eq02}
-\boldsymbol{X} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)}) \cdot \boldsymbol{S} + \boldsymbol{W},
+\begin{equation}\label{eq:4_eq02}
+	\boldsymbol{X} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)}) \cdot \boldsymbol{S} + \boldsymbol{W},
 \end{equation}
 
 where $\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)})$, $\boldsymbol{A}^{(1)} \in \mathbb{C}^{M_1 \times N_1}$, $\boldsymbol{A}^{(2)} \in \mathbb{C}^{M_2 \times N_2}$, $M = M_1 \times M_2$, and $N = N_1 \times N_2$.
 
-In order to evaluate tensor-based DL algorithms for recovering a known dictionary, we generate two random dictionaries $\boldsymbol{A}^{(1)}$ and $\boldsymbol{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the dictionary $\boldsymbol{A}$ through the Kronecker product, according to $\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)})$. Therefore, $\boldsymbol{A}$ is the known dictionary that shall be used for recovery evaluation. 
+In order to evaluate tensor-based DL algorithms for recovering a known dictionary, we generate two random dictionaries $\boldsymbol{A}^{(1)}$ and $\boldsymbol{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the dictionary $\boldsymbol{A}$ through the Kronecker product, according to 
 
-Subsequently, we generate a synthetic data set $\boldsymbol{X}$ using the given dictionary $\boldsymbol{A}$, according to $\boldsymbol{X} = \boldsymbol{A} \cdot \boldsymbol{S} + \boldsymbol{W}$, where $\boldsymbol{S}$ is a random sparse coefficient matrix for what we assume that each column has $K = 5$ non-zero entries, and $\boldsymbol{W}$ is the additive white gaussian noise. Thus, we estimate the initial $\boldsymbol{\hat{A}}$ dictionary from a normalized subset of $\boldsymbol{X}$ and make the dictionary separable decomposing the approximation of $\boldsymbol{\hat{A}}$ and generating $\boldsymbol{\hat{A}}^{(1)}$ and $\boldsymbol{\hat{A}}^{(2)}$ according to \cite{van1993approximation}. Afterward, we update $\boldsymbol{\hat{A}}$ through $\boldsymbol{\hat{A}} = (\boldsymbol{\hat{A}}^{(1)} \otimes \boldsymbol{\hat{A}}^{(2)})$ and use it for DL experiments using MOD \cite{engan1999method}, K-SVD \cite{aharon2006rm}, RLS-DLA \cite{skretting2010recursive}, T-MOD \cite{roemer2014tensor} and K-HOSVD \cite{roemer2014tensor}. Due to its low computational complexity, we employ the Orthogonal Matching Pursuit (OMP) algorithm\cite{davis1997adaptive} for the sparse recovery stage in all the dictionary learning algorithms, assuming that K is known. 
+\begin{equation}\label{eq:4_eq03}
+	\boldsymbol{A} = (\boldsymbol{A}^{(1)} \otimes \boldsymbol{A}^{(2)}).
+\end{equation}
+
+Therefore, $\boldsymbol{A}$ is the known dictionary that shall be used for recovery evaluation. 
+
+Subsequently, we generate a synthetic data set $\boldsymbol{X}$ using the given dictionary $\boldsymbol{A}$, according to Equation \ref{eq:4_eq01}, where $\boldsymbol{S}$ is a random sparse coefficient matrix for what we assume that each column has $K = 5$ non-zero entries, and $\boldsymbol{W}$ is the additive white gaussian noise. Thus, we estimate the initial $\boldsymbol{\hat{A}}$ dictionary from a normalized subset of $\boldsymbol{X}$ and make the dictionary separable decomposing the approximation of $\boldsymbol{\hat{A}}$ and generating $\boldsymbol{\hat{A}}^{(1)}$ and $\boldsymbol{\hat{A}}^{(2)}$ according to \cite{van1993approximation}. Afterward, we update $\boldsymbol{\hat{A}}$ through 
+
+\begin{equation}\label{eq:4_eq04}
+	\boldsymbol{\hat{A}} = (\boldsymbol{\hat{A}}^{(1)} \otimes \boldsymbol{\hat{A}}^{(2)}),
+\end{equation}
+
+and use it for DL experiments using MOD \cite{engan1999method}, K-SVD \cite{aharon2006rm}, RLS-DLA \cite{skretting2010recursive}, T-MOD \cite{roemer2014tensor} and K-HOSVD \cite{roemer2014tensor}. Due to its low computational complexity, we employ the Orthogonal Matching Pursuit (OMP) algorithm\cite{davis1997adaptive} for the sparse recovery stage in all the dictionary learning algorithms, assuming that K is known. However, other solver for sparse recovery can be used, such as Basis Pursuit \cite{chen2001atomic}, the LASSO algorithm \cite{tibshirani1996regression} or greedy \cite{davis1997adaptive}.
 
 The final estimated dictionaries $\boldsymbol{\hat{A}}$ recovered by each DL algorithm are compared to the known dictionary $\boldsymbol{A}$, through a measure of the distance between two dictionaries. The recovered dictionary is then compared to the known dictionary, by using the angle between a known atom and a recovered atom as a distance measure. The number of identified atoms is computed by comparing these angles to a limit of $\beta_{lim} = 8.11$ degrees, that corresponds to the case where the inner product of the two compared atoms is equal to 0.99, and where each atom has 2-norm equal to 1.
 
@@ -74,68 +86,87 @@ Figures \ref{fig:fig1} and \ref{fig:fig2} show the evaluation of tensor-based (K
 Figure \ref{fig:fig1} presents the results for recovering a dictionary of $M=20$ and $N=50$. We see that the RLS-DLA method performs better than other methods, although T-MOD presents the best results for identification of up to 15 atoms of 50. It is possible to observe that T-MOD and K-HOSVD are better than MOD and K-SVD, and that the tensor-based methods outperforms MOD and K-SVD significantly for this experiment. Finally, Figure \ref{fig:fig1} shows that RLS-DLA recovered almost 40 atoms in $\beta_{lim} = 8.11$ degrees, while other methods present results lower results.
 
 \begin{figure}[!htb]
-     \centering 
-	 \includegraphics[width=10cm]{figures/5_20_2000_1000_100.eps}
-     \caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=20$, $N=50$}
-     \label{fig:fig1}
+	\centering 
+	\includegraphics[width=10cm]{figures/5_20_2000_1000_100.eps}
+	\caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=20$, $N=50$}
+	\label{fig:fig1}
 \end{figure}
 
 Figure \ref{fig:fig2} presents the results for recovering a dictionary of $M=80$ and $N=30$. It is possible to observe that the tensor-base methods outperform MOD, RLS-DLA and K-SVD in number of identified atoms and the required degrees for identification. Note that MOD performs quite silimar to RLS-DLA, while K-SVD is the worst evaluated case for this experiment. Considering the tensor-based methods, T-MOD outperforms K-HOSVD with higher atom identification over lower degrees. The experimental results verify that the tensor-based dictionary learning algorithms are able to identify more dictionary atoms when dealing with larger dictionaries and that they converge faster.
 
 \begin{figure}[!htb]
-     \centering 
-	 \includegraphics[width=10cm]{figures/5_20_2000_24000_100.eps}
-     \caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=80$, $N=30$}
-     \label{fig:fig2}
+	\centering 
+	\includegraphics[width=10cm]{figures/5_20_2000_24000_100.eps}
+	\caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=80$, $N=30$}
+	\label{fig:fig2}
 \end{figure}
 
 The results reveals that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases. Since dictionary learning and reconstruction error are usually used for sparce representation classification (SRC) problems, it is possible to supose that tensor-based algorithms can improve results of classification problems, as well as can extract hidden patterns and structure in multidimensional data analytics problems.
 
 Recent developments in science and technology have enabled the growth and availability of raw data to occur at an explosive rate. This has created an immense opportunity for knowledge discovery and data engineering research to play an essential role in a wide range of applications from daily civilian life to national security. However, the high availability of raw data increases the challenges related to big data analytics and to imbalanced data, which corresponds to data sets exhibiting significant imbalances of classes or rare events of some classes. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms
 
-A key challenge to use SC and DL for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based DL method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. In this paper, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
+A key challenge to use SC and DL for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based DL method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. 
+
+In this chapter, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
 
 
 \section{Related Works}
 \label{sec:4_relatedworks}
 
-Compressed sensing (also known as compressive sensing, compressive sampling, or sparse sampling) is a signal processing technique for efficiently acquiring and reconstructing a signal, by finding solutions to underdetermined linear systems. This is based on the principle that, through optimization, the sparsity of a signal can be exploited to recover it from far fewer samples than required by the Shannon-Nyquist sampling theorem. There are two conditions under which recovery is possible.[1] The first one is sparsity which requires the signal to be sparse in some domain. The second one is incoherence which is applied through the isometric property which is sufficient for sparse signals.[2][3]
+% Compressed Sensing | Dictionary Learning | Classification | Tensor-Based DL
 
-A common goal of the engineering field of signal processing is to reconstruct a signal from a series of sampling measurements. In general, this task is impossible because there is no way to reconstruct a signal during the times that the signal is not measured.
+Compressed sensing (also known as compressive sensing, compressive sampling, or sparse sampling) is a signal processing technique for efficiently acquiring and reconstructing a signal, by finding solutions to underdetermined linear systems. This is based on the principle that, through optimization, the sparsity of a signal can be exploited to recover it from far fewer samples than required by the Shannon-Nyquist sampling theorem. 
 
-Around 2004, Emmanuel Candès, Terence Tao, and David Donoho proved that given knowledge about a signal's sparsity, the signal may be reconstructed with even fewer samples than the sampling theorem requires.[4][5] This idea is the basis of compressed sensing. 	https://www.wired.com/2008/03/engineers-test-highly-accurate-face-recognition/
+%There are two conditions under which recovery is possible.[1] The first one is sparsity which requires the signal to be sparse in some domain. The second one is incoherence which is applied through the isometric property which is sufficient for sparse signals.[2][3]. Around 2004, Emmanuel Candès, Terence Tao, and David Donoho proved that given knowledge about a signal's sparsity, the signal may be reconstructed with even fewer samples than the sampling theorem requires.[4][5] This idea is the basis of compressed sensing. 	https://www.wired.com/2008/03/engineers-test-highly-accurate-face-recognition/
 
-Sparse dictionary learning is a representation learning method which aims at finding a sparse representation of the input data (also known as sparse coding) in the form of a linear combination of basic elements as well as those basic elements themselves. These elements are called atoms and they compose a dictionary. Atoms in the dictionary are not required to be orthogonal, and they may be an over-complete spanning set. This problem setup also allows the dimensionality of the signals being represented to be higher than the one of the signals being observed. The above two properties lead to having seemingly redundant atoms that allow multiple representations of the same signal but also provide an improvement in sparsity and flexibility of the representation.
-
-sparse coding is a sparse representation of one data in the form of a linear combination of basic elements. These elements are called atoms and they compose a dictionary.
+Sparse coding is a sparse representation of one data in the form of a linear combination of basic elements. These elements are called atoms and they compose a dictionary. Dictionary learning is a representation learning method which aims at finding a sparse representation of the input data (also known as sparse coding) in the form of a linear combination of basic elements as well as those basic elements themselves. These elements are called atoms and they compose a dictionary. Atoms in the dictionary are not required to be orthogonal, and they may be an over-complete spanning set. This problem setup also allows the dimensionality of the signals being represented to be higher than the one of the signals being observed. The above two properties lead to having seemingly redundant atoms that allow multiple representations of the same signal but also provide an improvement in sparsity and flexibility of the representation.
 
 One of the key principles of dictionary learning is that the dictionary has to be inferred from the input data. The emergence of sparse dictionary learning methods was stimulated by the fact that in signal processing one typically wants to represent the input data using as few components as possible. Before this approach the general practice was to use predefined dictionaries (such as fourier or wavelet transforms). However, in certain cases a dictionary that is trained to fit the input data can significantly improve the sparsity, which has applications in data decomposition, compression and analysis and has been used in the fields of image denoising and classification, video and audio processing. Sparsity and overcomplete dictionaries have immense applications in image compression, image fusion and inpainting.
 
-RLS-DLA \cite{skretting2010recursive}, K-SVD \cite{aharon2006rm} and MOD \cite{engan1999method}
+MOD \cite{engan1999method} is a DL algorithm that is commonly used for extensions of Least-Squares (LS) type schemes, also known as iterative least squares dictionary learning algorithm (ILS-DLA) \cite{engan2007family}. MOD defines that if we know $S$ in equation \ref{eq:4_eq01}, $A$ can be estimated solving a linear LS problem. Additionally, knowing $A$ we obtain $S$ by solving a sparse recovery problem. MOD iterates between the two steps, starting with an initial guess of $A$, denoted as $\hat{A}$, which can be estimated, generated by previous dictionary learning or generated analitically. Despite - simplicity, the MOD algorithm has been criticized for its slow convergence, which is due to the fact that $A$ and $S$ are updated separately, which may lead to a slow convergence \cite{aharon2006rm}.
 
-T-MOD and K-HOSVD \cite{roemer2014tensor} 
+K-SVD \cite{aharon2006rm} is a generalization of the K-means algorithm for dictionary learning. After the sparse approximation step, the dictionary update is performed by sequentially updating each column of $A$ using SVD to minimize the approximation error. The update step is hence a generalized K-means algorithm since each patch can be represented by multiple atoms and with different weights. In practice, dictionaries learned with K-SVD
+have shown excellent performance in image denoising. 
 
-Face recognition...
+Most DL algorithms update the dictionary after a batch of training vectors has been processed, usually using the whole set of training vectors as one batch. The training set is used iteratively to gradually improve the dictionary. The approach in RLS-DLA \cite{skretting2010recursive} is a continuous update of the dictionary as each training vector is being processed. The algorithm is based on recursive least squares (RLS) algorithm for adaptive filtering, what makes the algorithm less dependent on the initial dictionary and it improves both convergence properties of RLS-DLA as well as the representation ability of the resulting dictionary. 
 
-Fisher...
+Dimensionality reduction can first be achieved by selecting a subset of functions from a large, fixed dictionary that is used for the analysis of particular signals. These functions then determine a subspace of reduced dimension, where classification can be performed by computing the nearest neighbor points among the projected data. A simple method to build such a subspace consists in modifying the sparse approximation methods such that the objective function is augmented with a discrimination term that represents the separability properties of the projection subspace. This kind of approach typically tries to maximize the variance between the active atoms from $A$ that represent signals in different classes. The reduced subspace used for classification is finally formed by the subset of atoms in $A$ whose corresponding coefficients in $S$ are nonzero. The subset selection problem can be interpreted as the inference step in the dictionary learning methods when the objective function is modified to include a discriminative term \cite{tosic2011dictionary}.
 
-Florian...
+An important advantage of redundant dictionaries for classification is that signal analysis can be performed with functions that are likely to match the data characteristics in different classes of signals. Similarly to data approximation problems, data analysis applications can further benefit from dictionary learning methods. The previous section describes subspace selection methods from predefined dictionaries. DL algorithms can improve the classification performance, as it leads to a better adaptation of the dictionary by enforcing sparsity in the representation of data in the different classes. The atoms in a dictionary $A$ that is computed with dictionary learning methods generally capture the most important constitutive components of the signals. They naturally permit to classify the data into the corresponding linear subspace. However, there is no guarantee that the subspace built on a learned dictionary $A$ is truly optimal for classification, as it targets efficient representation but not necessarily class separability \cite{tosic2011dictionary}.
 
-Tem que ver outro...
+Dictionary learning methods should rather be modified so that they become simultaneously reconstructive and discriminative. The addition of a discriminative term into the dictionary learning algorithms requires supervision, where labels of training data are used to ensure that the data representation is sufficiently different in each class. It can be achieved by modifying the sparse coding step in the learning algorithms, so that it optimizes an objective function that favors the sparsest representation of a given signal and simultaneously the representation that is also the most different from the one of signals in other data classes. The supervised dictionary learning problem can be cast as a mixed formulation that minimizes the average value of the sparse approximation errors over different classes and also enforces discrimination between classes \cite{tosic2011dictionary}.
 
+The use of one learned dictionary for all the data classes leads to a straightforward classification stage where the dictionary vectors and the coefficients in the signal representation are used directly to make classification decisions. Alternatively, one may want to improve the discrimination by building a distinctive projection subspace for each data class. Classification is then performed by selecting the subspace that is the nearest to the test signal, or equivalently the subspace that leads to the best representation of the test signal. A simple way to build adaptive dictionaries for each class is to use the signals in the training set for the class dictionary. Sparsity constraints are then rather applied within the classification process, where the sparsest representation of the test signal determines its class label \cite{tosic2011dictionary}.
+
+Wright \emph{et al.} \cite{wright2009robust} have proposed a face recognition method that uses training face images as dictionaries and an $l_1$ sparse optimization method in the classification stage. The authors show that the recognition task can be successfully accomplished even using random features at first. Furthermore, the algorithm is robust to a certain amount of noise due to the sparsity constraints \cite{tosic2011dictionary}.
+
+It is often preferable, however, to construct adapted dictionaries that can lead to an efficient classification process based on simple subspace projections. The construction of class dictionaries can be performed with learning methods where the sparse coding step in the iterative learning algorithms is modified, so that sparse coding is computed independently within each class. Such a sparse coding stage can be implemented by class-supervised versions of simultaneous pursuit algorithms \cite{tosic2011dictionary}.
+
+Tensor data are typically highly structured, a perfect match for compressive sampling, so that the CS framework relaxes data acquisition requirements, enables compact storage, and facilitates data completion (i.e., inpainting of missing samples due to a faulty sensor or unreliable measurement) \cite{cichocki2015tensor}. Roemer \emph{et al.} \cite{roemer2014tensor} have proposed a tensor-based multidimensional extensions for MOD and K-SVD algorithms, which are respectivelly T-MOD and K-HOSVD, and show their improved performances numerically, for the dictionary reconstruction problem. 
+
+Considering that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases, accordint to subsection \ref{sec:4_motivation_results}, we believe that tensor-based DL algorithms can improve the discriminative sensing for classification classification problems. Therefore, we propose use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics
 
 \section{Data Model}
 \label{sec:4_datamodel}
+
+\subsection{Dataset}
+\label{sec:4_dataset}
+
+We adopt a synthetic financial datasets for fraud detection\footnote{https://www.kaggle.com/ntnu-testimon/paysim1} in order to validate our proposal, this dataset is synthetically generated by  PaySim \cite{lopez2016paysim} , which is a financial simulator that simulates mobile money transactions based on an original dataset and provides a synthetic dataset as an approach to such a problem. PaySim uses aggregated data from the private dataset to generate a synthetic dataset that resembles the normal operation of transactions and injects malicious behaviour to later evaluate the performance of fraud detection methods. PaySim simulates mobile money transactions based on a sample of real transactions extracted from one month of financial logs from a mobile money service implemented in an African country. The original logs were provided by a multinational company
+
+The selected dataset is composed by 9 features (variables) and 6.362.620 tramsactions (observations), it is also provided one lable that classifies each transaction as fraudulent or not. As the majority dataset of anomaly or fraud detection, the data is imbalanced, where the number of fraudlent transactions is ZZ against of NN normal transactions.
 
 Imbalance data where zero is predominante
 
 Data divided into learning and test, with isfraud labels with 1 or 0
 
+\subsection{Tensor-based Model}
+\label{sec:4_tensor_model}
 
-The Kronecker model (\ref{eq:eq02}) can be rewritten in an equivalent tensor form. Applying the algebraic rules for unfoldings of n-mode products \cite{roemer2014tensor} we can rewrite (\ref{eq:eq02}) into a "Tucker-2" decomposition, as
+The Kronecker model (\ref{eq:4_eq02}) can be rewritten in an equivalent tensor form. Applying the algebraic rules for unfoldings of n-mode products \cite{roemer2014tensor} we can rewrite (\ref{eq:4_eq02}) into a "Tucker-2" decomposition, as
 
-\begin{equation}\label{eq:eq03}
-\boldsymbol{\mathcal{X}} = \boldsymbol{\mathcal{S}} \times_1 \boldsymbol{A}^{(1)} \times_2 \boldsymbol{A}^{(2)} +  \boldsymbol{\mathcal{W}},
+\begin{equation}\label{eq:4_eq04}
+\boldsymbol{\mathcal{X}} = \boldsymbol{\mathcal{S}} \times_1 \boldsymbol{A}^{(1)} \times_2 \boldsymbol{A}^{(2)} + \boldsymbol{\mathcal{W}},
 \end{equation}
 
 where $\boldsymbol{\mathcal{X}} \in \mathbb{C}^{M_1 \times M_2 \times T}$, $\boldsymbol{\mathcal{S}} \in \mathbb{C}^{N_1 \times N_2 \times T}$, and $\boldsymbol{\mathcal{W}} \in \mathbb{C}^{M_1 \times M_2 \times T}$ are rearranged versions of the matrices $\boldsymbol{X}$, $\boldsymbol{S}$, and $\boldsymbol{W}$ such that $\boldsymbol{X} = [\boldsymbol{\mathcal{X}}]_{(3)}^T$, $\boldsymbol{S} = [\boldsymbol{\mathcal{S}}]_{(3)}^T$, and $\boldsymbol{W} = [\boldsymbol{\mathcal{W}}]_{(3)}^T$, respectively.
@@ -217,8 +248,8 @@ The importance of the right metric for classification of imbalanced data
 
 Tensor based analysis explores the extructure and relationship of multidimensional data and can improve the discriminative power of imbalanced data for classification
 
-Can be used for feature extraction and used for well known algorithm,  and can be used for discriminative classification based on heuristics
+Can be used for feature extraction and used for well known algorithm, and can be used for discriminative classification based on heuristics
 
 Our proposal is better for imbalanced data than others techniques
 
-%However, tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets. We focus on a distributed implementation of T-MOD \cite{roemer2014tensor} algorithm, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition. We perform experiments to test different methods for learning dictionaries, evaluating the processing time and the reconstruction of a dictionary of multidimensional and separable data.
+Tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose as future work a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition.

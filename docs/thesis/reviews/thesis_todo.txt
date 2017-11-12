@@ -9,6 +9,9 @@
  - descrever como o dicionário é inicializado
  - testar a métrica de roemer para identificação de atoms	
  - corrigir a questão dos limites de identificacao e as figuras, para conter a quantidade de identificações por iteracao e também a distribuição por grau de identificacao
+ - ler o magazine sobre dictionary learning e pegar os conceitos que preciso para apresentar. nele também tem coisas sobre classificação
+ - reescrever tudo que foi copiado na íntegra
+ - adicionar no apêndice os trabalhos feitos com image denoising
 
  Apresentação
   - estar preparado para explicar MOS
