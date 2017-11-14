@@ -55,6 +55,7 @@ tnz_range = [1, 2, 3, 5]
 K_range = [2, 6, 10, 20, 40, 100]
 noIt_range = [100]
 
+## discard hearder and index
 test_data = test_data.values
 test_target = test_target.values
 

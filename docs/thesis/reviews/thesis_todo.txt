@@ -12,6 +12,8 @@
  - ler o magazine sobre dictionary learning e pegar os conceitos que preciso para apresentar. nele também tem coisas sobre classificação
  - reescrever tudo que foi copiado na íntegra
  - adicionar no apêndice os trabalhos feitos com image denoising
+ - rever a quantidade de transactions, pois target tem 2.770.408 enquanto Synthetic_Financial_Datasets_For_Fraud_Detection.csv tem 6.362.620
+ - o número de atoms tem que ser maior que a quatidade de features segundo algué, que copiei para minha tese. temos que validar isto e talvez até refazer nossos experimentos
 
  Apresentação
   - estar preparado para explicar MOS

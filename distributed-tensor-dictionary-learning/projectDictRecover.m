@@ -22,7 +22,7 @@ s = 5;                                                                      % sp
 snr = 20;                                                                   % snr for added noise
 L = 2000;                                                                   % number of training vectors to use
 noIt = 100;                                                                 % number of iterations in each trial
-nofTrials = 1;                                                              % enought trials to obtain reliable results
+nofTrials = 100;                                                              % enought trials to obtain reliable results
 N = 20; M1 = 5; M2 = 4;                                                     % features/variables/components
 K = 50; N1 = 10; N2 = 5;                                                    % dictionary's atoms (K << L)
 % N = 80; M1 = 10; M2 = 8;                                                  % features/variables/components
@@ -33,9 +33,9 @@ fileNameInfo = sprintf('s=%1i_snr=%li_L=%li_noIt=%li_trials=%li_N=%li_K=%li',s,s
 fileNameSufix = sprintf('%s.mat',fileNameInfo);
 dataFiles = [
              ['L', fileNameSufix] % 'L', 'Q', 'C', 'H' or 'E' =             RLS-DLA (java),
-             ['T', fileNameSufix] % 'T' =                                   K-HOSVD
-             ['O', fileNameSufix] % 'O' =                                   T-MOD,             
-             ['K', fileNameSufix] % 'K' =                                   K-SVD,   
+             ['T', fileNameSufix] % 'T' =                                   K-HOSVD,
+             ['O', fileNameSufix] % 'O' =                                   T-MOD,
+             ['K', fileNameSufix] % 'K' =                                   K-SVD,
              ['D', fileNameSufix] % 'D' =                                   MOD,
              %['A', fileNameSufix] % 'A' =                                  AK-SVD,
              %['M', fileNameSufix] % 'M' =                                  ILS-DLA MOD,             
