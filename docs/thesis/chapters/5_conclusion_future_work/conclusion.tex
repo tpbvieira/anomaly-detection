@@ -10,11 +10,12 @@ Though nobody can go back and make a new beginning, anyone can start over and ma
 
 % falar sobre uma contextualização de forma bem resumida'
 
-In the context of anomaly-based schemes, this thesis proposed a statistical approach based on signal processing techniques for detection of malicious traffic in computer networks. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis, where MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we evaluated the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 dataset. 
+In the context of anomaly-based schemes, this thesis proposed a statistical approach based on signal processing techniques for detection of malicious traffic in computer networks. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis, where MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we evaluated the accuracy and performance of the proposed framework applied to an experimental scenario and to the DARPA 1998 dataset. 
 
 This thesis also proposes a novel architecture and approach based on user behavior analysis through Model Order Selection (MOS), in order to detect possible threats, and to reduce the risks and the harm of the most common threats. The behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors. 
 
-Finally, we proposed a fraud detection approach composed by tensor-based dictionary learning for discriminant analysis of a mobile payment dataset.
+Finally, we proposed a fraud detection approach composed by tensor-based dictionary learning for discriminant analysis of a mobile payment dataset, where the problem of imbalanced data is discussed and it is presented one analysis regarding the classification accuracy of the proposed approach against well known classifiers.
+
 
 \section{Conclusion}
 \label{sc:conc_conclusion}
@@ -25,24 +26,26 @@ The proposed framework is evaluated and the experimental results show that synfl
 
 This thesis evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work \cite{tenorio2013greatest} and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
 
-The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analyis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
+The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analysis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
 
 According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
 
 Considering the offline mobile security context, an important issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile clients. Once a mobile client releases the connection with the corporate cloud, no security measure implemented in the cloud infrastructure assures the protection of sensitive data stored in the mobile device. Aware of this problem and its importance, this thesis presented a proposal to address the offline mobile security problem combining a different cryptographic methods. Moreover, this proposed approach also prevents malicious user behavior by applying a MOS-based analytic method. 
 
-As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. The proposed approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile client and can be used for any type of enterprise. Also, part of concept is seed for new security solutions for big data apps. 
+As prove of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. This fact is due to the usage of lightweight operations and the optimized combination of the selected security methods. The proposed approach is a practical application to be used in the corporate mobile environment. It is implemented as a fully working mobile client and can be used for any type of enterprise. Also, part of concept is seed for new security solutions for big data applications. 
+
+This thesis shows that a tensor-based approach can be used for fraud detection from mobile money transactions, with average results when compared to well known classifiers in one scenario with highly skewed datasets.
 
 
 \section{Contributions}
 \label{sc:conc_contributions}
 
-We attempt to analyse the processing capacity problem of measurement of distributed systems through network traffic analysis, the results of the work presented in this thesis provide the contributions below:
+We analyze problems related to detection of information security issues and propose new approaches to improve malicious behavior detection through signal processing techniques. The results of the work presented in this thesis provide the following contributions:
 
 \begin{enumerate}
-	\item We proposed an approach based on eigen similarity analysis for extracting detailed information about accurate time and network ports under network attack, and evaluated the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 dataset;
+	\item We proposed an approach based on eigen similarity analysis for extracting detailed information about accurate time and network ports under network attack, and evaluated the accuracy and performance of the proposed framework applied to an experimental scenario and to the DARPA 1998 dataset;
 	\item We discussed the computational complexity of the proposed framework and evaluated the required processing time for tested scenarios;
-	\item We proposed an architechture and techniques for offline behavioral analysis of a corporate mobile client security architecture;
+	\item We proposed an architecture and techniques for offline behavioral analysis of a corporate mobile client security architecture;
 	\item We discussed the processing time of the proposed framework for mobile devices;
 	\item We proposed a tensor-based dictionary learning approach for fraud detection in mobile payment transactions;
 	\item We published the following papers reporting our results:
@@ -62,7 +65,7 @@ Because of time constraints imposed on the Ph.D. degree, this thesis addresses s
 
 \begin{itemize}
 	\item Improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets;
-	\item Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high thoughput network traffic;
+	\item Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high throughput network traffic;
 	\item Evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis;
 	\item Explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints;
 \end{itemize}

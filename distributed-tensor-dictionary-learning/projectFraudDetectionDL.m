@@ -30,14 +30,14 @@ lineformat = [repmat('%*s',1,HC) repmat('%f',1,NF)];
 train_data = cell2mat(textscan(fid, lineformat, 'HeaderLines', HL, 'Delimiter', ','));
 fclose (fid);
 train_data = train_data.';
-L = size(train_data, 2);                                                    % number of observations
-% Ks = [[10, 5, 2]; [50, 10, 5]; [100, 20, 5]; [200, 20, 10]; [500, 50, 10]]; % dictionary's atoms (K << L)
-Ks = [[10, 5, 2]; [50, 10, 5]; [100, 20, 5]];                               % dictionary's atoms (K << L)
-N = 7; N1 = 7; N2 = 1;                                                     % features/variables/components
-sparsities = [2, 5];                                                          % sparsity degrees
-noIts = [10, 50, 100];                                                      % number of iterations
-solver = 'javaORMP';                                                        % solver for sparse approximation
-methodChar = 'H';                                                           % method for RLS-DLA
+L = size(train_data, 2);                                                                    % number of observations
+% Ks = [[10, 5, 2]; [50, 10, 5]; [100, 20, 5]; [200, 20, 10]; [500, 50, 10]];               % dictionary's atoms (K << L)
+Ks = [[10, 5, 2]; [50, 10, 5]; [100, 20, 5]];                                               % dictionary's atoms (K << L)
+N = 7; N1 = 7; N2 = 1;                                                                      % features/variables/components
+sparsities = [2, 5];                                                                        % sparsity degrees
+noIts = [10, 50, 100];                                                                      % number of iterations
+solver = 'javaORMP';                                                                        % solver for sparse approximation
+methodChar = 'H';                                                                           % method for RLS-DLA
 
 %% Dictionary Learning Cross-Validation for fraud detection data
 fprintf('## Dictionary Learning from fraud detection data');

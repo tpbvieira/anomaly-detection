@@ -69,7 +69,8 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
     javaclasspath('-dynamic')
 
     %% prapare output
-    fileName = [methodChar, sprintf('%1i_%li_%li_%li_%li.mat',s ,snr ,L ,N*K, noIt)];
+    fileName = [methodChar, sprintf('_s=%1i_snr=%li_L=%li_noIt=%li_N=%li_K=%li.mat', s, snr, L, noIt, N, K)];
+    fileName = strcat(destPath,fileName);
     results = struct('beta', zeros(K, nofTrials), ...
                  'times', zeros(nofTrials,1), ...
                  'detection', zeros(nofTrials,1), ...
@@ -87,23 +88,25 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
     %% try load previous files and verify if the execution can be avoided
     if exist(fileName,'file')
         oldFile = dir(fileName);
-        disp([scriptName,': add to results stored in ', fileName,', (created ', oldFile.date,').']);
+        disp([scriptName,': loading ', fileName,', (created ', oldFile.date,').']);
         load(fileName);
         trialsDone = results.nofTrials;
+        disp([scriptName,': ', int2str(trialsDone) ,' trials of ', int2str(nofTrials)]);
         if (nofTrials > 0)
             results.beta = [results.beta, zeros(K, nofTrials)];
             results.times = vertcat(results.times, zeros(nofTrials,1));
             results.detection = vertcat(results.detection, zeros(nofTrials,1));
-            results.nofTrials = trialsDone + nofTrials;
+            results.nofTrials = nofTrials;
         end
     else
+        disp([scriptName,': Created ', fileName]);
         trialsDone = 0;
     end
 
     %% For each trial: generate data, estimate dictionary and 
-    disp([scriptName,': noIt=',int2str(noIt),', nofTrials=',int2str(nofTrials)]);    
     timestart = now();
-    for trial = 1:nofTrials
+    nextTrial = trialsDone + 1;
+    for trial = nextTrial:nofTrials
         % logging        
         disp([scriptName,': ',method,' L=',int2str(L), ...
             ' snr=',num2str(snr), ', s=',int2str(s), ...
@@ -152,7 +155,7 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
             A_hat = rlsdla(L, noIt, N, K, X, metPar, A_hat, s);
         end
         execTime = toc;
-        results.times(trialsDone + trial,1) = execTime;
+        results.times(trialsDone + trial, 1) = execTime;
 
         % compare the trained dictionary to the true dictionary
         beta = dictdiff(A_hat, A, 'all-1', 'thabs');
@@ -172,7 +175,7 @@ function results = execDLMethods(L, N, K, M1, M2, N1, N2, snr, methodChar, s, no
         disp(['Estimated finish time is ',datestr(now()+timeleft)]);
         
         if (trial == nofTrials)
-            save(strcat(destPath,fileName), 'results' );
+            save(fileName, 'results' );
         end
         
     end

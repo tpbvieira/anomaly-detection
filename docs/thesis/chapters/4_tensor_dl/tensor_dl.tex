@@ -8,13 +8,13 @@ No one knows it all. No one is ignorant of everything. We all know something. We
 % \section{Introduction}
 % Compressed Sensing | Dictionary Learning | Multidimensional data | Tensor DL and Separable dictionaries
 
-Compressed Sensing (CS) aims to obtain the most relevant information of a dataset, what makes it useful for compression, signal reconstruction, image processing and classification, such as in sparce representation classification (SRC) problems. 
+Compressed Sensing (CS) aims to obtain the most relevant information of a dataset, what makes it useful for compression, signal reconstruction, image processing and classification, such as in sparse representation classification (SRC) problems. 
 
 Dictionary learning is related to CS but seeks to obtain compact and meaningful signal representations, known as dictionary, from learning algorithms or models. DL is a signal processing technique for sparse representation of signals as basis vectors, learning the representations from training data, as dictionaries. DL is based on the principle that some observations can be described by a sparse subset of atoms taken from a redundant dictionary, which represents the causes of some observations of the world. The sparse representation in terms of such dictionaries has attracted increased interest for compressive sensing and for solving problems such as denoising, compression, image processing, data decomposition, feature extraction and classification, when the learning includes a class separability criteria in the objective function \cite{tosic2011dictionary, zhang2010discriminative, zhu2016coupled,ravishankar2011mr}. 
 
 There are two major approaches for DL. First is the analytic approach, in which Discrete Cosine Transform basis, wavelets, curvelets and other nonadaptive functions are used as atoms to construct the dictionaries. Second is the learning-based approaches, such as the unsupervised learning for dictionary construction [9] and the online dictionary learning [11], [10], which use machine learning methods to construct the dictionary. 
 
-In the analytic approach, some pre-defined functions are used to construct the dictionary. Curvelets [24], which tracks the shape of the discontinuity set, offers efficient and near-optimal representation of smooth objects. Shearlets [25], which is obtained from dilations, action of translations and shear transformations, has nice geometric properties and mathematical properties for image representation. Bandelets [26], which specifies the geometry as a vector field, is de-signed to improve the image compression and noise reduction performance. 
+In the analytic approach, some pre-defined functions are used to construct the dictionary. Curvelets [24], which tracks the shape of the discontinuity set, offers efficient and near-optimal representation of smooth objects. Shearlets [25], which is obtained from dilations, action of translations and shear transformations, has nice geometric properties and mathematical properties for image representation. Bandelets [26], which specifies the geometry as a vector field, is designed to improve the image compression and noise reduction performance. 
 
 In the learning-based approach, machine learning methods are used to construct the dictionary from the training data. The least square error is used by the method of the optimal directions (MOD) [27] to update the dictionary iteratively. While analytic dictionaries permit to capture the global structure of a signal and allow a fast implementation, learned dictionaries often perform better in applications as they are more adapted to the considered class of signals.
 
@@ -24,9 +24,9 @@ In imagery, the numerical burden for (i) learning a dictionary and for (ii) empl
 
 Multidimensional parameter estimation and learning multidimensional separable dictionaries are growing research problems. The crucial idea about separable dictionaries is to allow the dictionary to have a separable structure, where separable means that the dictionary $\textbf{D}$ is given by the Kronecker product of two smaller dictionaries $\boldsymbol{A}^{(1)} \in \mathbb{R}^{h \times a}$ and $\boldsymbol{A}^{(2)} \in \mathbb{R}^{w \times b}$, for example. Roemer \emph{et al.} \cite{roemer2014tensor} show that the multidimensional dictionary estimation problem can be efficiently formulated in terms of tensors, and that their results outperform existing schemes by exploiting the multilinear structure of the problem.
 
-Considering that big data problems require techniques to deal with multidimensional data in order to make sense of strucutre and relationship of many dimensions, and also considering that a key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset, this work propose a tensor-based DL for fraud detection from imbalanced data, in order to apply the tensor deconposition for DL methods to evidentiate the discriminative sensing of a fraud detection dataset. 
+Considering that big data problems require techniques to deal with multidimensional data in order to make sense of structure and relationship of many dimensions, and also considering that a key challenge to use sparse coding and dictionary learning for classification is how to find proper dictionaries and coefficients that highlight discriminative structure and relationships of one dataset, this work propose a tensor-based DL for fraud detection from imbalanced data, in order to apply the tensor decomposition for DL methods to highlight the discriminative sensing of a fraud detection dataset. 
 
-This chapter is organized as follows. Section \ref{sec:4_motivation} presents one experiment and results that motivate the proposed work. In Section \ref{sec:4_relatedworks}, related works are discussed. Section \ref{sec:4_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:4_proposal} describes the proposed approach for for fraud detecton from mobile money transacion. Section \ref{sec:2_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:4_conclusion} draws the conclusions and the suggestions for future work.
+This chapter is organized as follows. Section \ref{sec:4_motivation} presents one experiment and results that motivate the proposed work. In Section \ref{sec:4_relatedworks}, related works are discussed. Section \ref{sec:4_datamodel} presents the data model and the evaluated datasets. Section \ref{sec:4_proposal} describes the proposed approach for fraud detection from mobile money transactions. Section \ref{sec:2_experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:4_conclusion} draws the conclusions and the suggestions for future work.
 
 
 \section{Motivation}
@@ -88,26 +88,26 @@ Figure \ref{fig:fig1} presents the results for recovering a dictionary of $M=20$
 \begin{figure}[!htb]
 	\centering 
 	\includegraphics[width=10cm]{figures/5_20_2000_1000_100.eps}
-	\caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=20$, $N=50$}
+	\caption{Cumulative atom identification per degree rates. $T=2000$, $M=20$, $N=50$}
 	\label{fig:fig1}
 \end{figure}
 
-Figure \ref{fig:fig2} presents the results for recovering a dictionary of $M=80$ and $N=30$. It is possible to observe that the tensor-base methods outperform MOD, RLS-DLA and K-SVD in number of identified atoms and the required degrees for identification. Note that MOD performs quite silimar to RLS-DLA, while K-SVD is the worst evaluated case for this experiment. Considering the tensor-based methods, T-MOD outperforms K-HOSVD with higher atom identification over lower degrees. The experimental results verify that the tensor-based dictionary learning algorithms are able to identify more dictionary atoms when dealing with larger dictionaries and that they converge faster.
+Figure \ref{fig:fig2} presents the results for recovering a dictionary of $M=80$ and $N=30$. It is possible to observe that the tensor-base methods outperform MOD, RLS-DLA and K-SVD in number of identified atoms and the required degrees for identification. Note that MOD performs quite similar to RLS-DLA, while K-SVD is the worst evaluated case for this experiment. Considering the tensor-based methods, T-MOD outperforms K-HOSVD with higher atom identification over lower degrees. The experimental results verify that the tensor-based dictionary learning algorithms are able to identify more dictionary atoms when dealing with larger dictionaries and that they converge faster.
 
 \begin{figure}[!htb]
 	\centering 
 	\includegraphics[width=10cm]{figures/5_20_2000_24000_100.eps}
-	\caption{Cumulative atom identificatin per degree rates. $T=2000$, $M=80$, $N=30$}
+	\caption{Cumulative atom identification per degree rates. $T=2000$, $M=80$, $N=300$}
 	\label{fig:fig2}
 \end{figure}
 
-The results reveals that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases. Since dictionary learning and reconstruction error are usually used for sparce representation classification (SRC) problems, it is possible to supose that tensor-based algorithms can improve results of classification problems, as well as can extract hidden patterns and structure in multidimensional data analytics problems.
+The results reveals that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases. Since dictionary learning and reconstruction error are usually used for sparse representation classification (SRC) problems, it is possible to suppose that tensor-based algorithms can improve results of classification problems, as well as can extract hidden patterns and structure in multidimensional data analytics problems.
 
 Recent developments in science and technology have enabled the growth and availability of raw data to occur at an explosive rate. This has created an immense opportunity for knowledge discovery and data engineering research to play an essential role in a wide range of applications from daily civilian life to national security. However, the high availability of raw data increases the challenges related to big data analytics and to imbalanced data, which corresponds to data sets exhibiting significant imbalances of classes or rare events of some classes. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms
 
-A key challenge to use SC and DL for classification is how to find proper dictionaries and coefficients that highligh discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based DL method for fraud detecton from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. 
+A key challenge to use SC and DL for classification is how to find proper dictionaries and coefficients that highlight discriminative structure and relationships of one dataset. Therefore, we introduce a tensor-based DL method for fraud detection from unbalanced data. Specifically, we apply a sparse representation based classification (SRC) method through learning a tensor-based dictionary and evaluate the reconstruction error for fraud classification. 
 
-In this chapter, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
+In this chapter, we propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds. We propose to use tensor-based DL for learning fraudulent and legitimate data separately, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate, according to the minimum reconstruction error measured by some metrics.
 
 
 \section{Related Works}
@@ -115,15 +115,15 @@ In this chapter, we propose a tensor-based sparse representation and dictionary 
 
 % Compressed Sensing | Dictionary Learning | Classification | Tensor-Based DL
 
-Compressed sensing (also known as compressive sensing, compressive sampling, or sparse sampling) is a signal processing technique for efficiently acquiring and reconstructing a signal, by finding solutions to underdetermined linear systems. This is based on the principle that, through optimization, the sparsity of a signal can be exploited to recover it from far fewer samples than required by the Shannon-Nyquist sampling theorem. 
+Compressed sensing (also known as compressive sensing, compressive sampling, or sparse sampling) is a signal processing technique for efficiently acquiring and reconstructing a signal, by finding solutions to undetermined linear systems. This is based on the principle that, through optimization, the sparsity of a signal can be exploited to recover it from far fewer samples than required by the Shannon-Nyquist sampling theorem. 
 
 %There are two conditions under which recovery is possible.[1] The first one is sparsity which requires the signal to be sparse in some domain. The second one is incoherence which is applied through the isometric property which is sufficient for sparse signals.[2][3]. Around 2004, Emmanuel Candès, Terence Tao, and David Donoho proved that given knowledge about a signal's sparsity, the signal may be reconstructed with even fewer samples than the sampling theorem requires.[4][5] This idea is the basis of compressed sensing. 	https://www.wired.com/2008/03/engineers-test-highly-accurate-face-recognition/
 
 Sparse coding is a sparse representation of one data in the form of a linear combination of basic elements. These elements are called atoms and they compose a dictionary. Dictionary learning is a representation learning method which aims at finding a sparse representation of the input data (also known as sparse coding) in the form of a linear combination of basic elements as well as those basic elements themselves. These elements are called atoms and they compose a dictionary. Atoms in the dictionary are not required to be orthogonal, and they may be an over-complete spanning set. This problem setup also allows the dimensionality of the signals being represented to be higher than the one of the signals being observed. The above two properties lead to having seemingly redundant atoms that allow multiple representations of the same signal but also provide an improvement in sparsity and flexibility of the representation.
 
-One of the key principles of dictionary learning is that the dictionary has to be inferred from the input data. The emergence of sparse dictionary learning methods was stimulated by the fact that in signal processing one typically wants to represent the input data using as few components as possible. Before this approach the general practice was to use predefined dictionaries (such as fourier or wavelet transforms). However, in certain cases a dictionary that is trained to fit the input data can significantly improve the sparsity, which has applications in data decomposition, compression and analysis and has been used in the fields of image denoising and classification, video and audio processing. Sparsity and overcomplete dictionaries have immense applications in image compression, image fusion and inpainting.
+One of the key principles of dictionary learning is that the dictionary has to be inferred from the input data. The emergence of sparse dictionary learning methods was stimulated by the fact that in signal processing one typically wants to represent the input data using as few components as possible. Before this approach the general practice was to use predefined dictionaries (such as Fourier or wavelet transforms). However, in certain cases a dictionary that is trained to fit the input data can significantly improve the sparsity, which has applications in data decomposition, compression and analysis and has been used in the fields of image denoising and classification, video and audio processing. Sparsity and overcomplete dictionaries have immense applications in image compression, image fusion and inpainting.
 
-MOD \cite{engan1999method} is a DL algorithm that is commonly used for extensions of Least-Squares (LS) type schemes, also known as iterative least squares dictionary learning algorithm (ILS-DLA) \cite{engan2007family}. MOD defines that if we know $\boldsymbol{S}$ in equation \ref{eq:4_eq01}, $\boldsymbol{A}$ can be estimated solving a linear LS problem. Additionally, knowing $\boldsymbol{A}$ we obtain $\boldsymbol{S}$ by solving a sparse recovery problem. MOD iterates between the two steps, starting with an initial guess of $\boldsymbol{A}$, denoted as $\hat{\boldsymbol{A}}$, which can be estimated, generated by previous dictionary learning or generated analitically. Despite - simplicity, the MOD algorithm has been criticized for its slow convergence, which is due to the fact that $\boldsymbol{A}$ and $\boldsymbol{S}$ are updated separately, which may lead to a slow convergence \cite{aharon2006rm}.
+MOD \cite{engan1999method} is a DL algorithm that is commonly used for extensions of Least-Squares (LS) type schemes, also known as iterative least squares dictionary learning algorithm (ILS-DLA) \cite{engan2007family}. MOD defines that if we know $\boldsymbol{S}$ in equation \ref{eq:4_eq01}, $\boldsymbol{A}$ can be estimated solving a linear LS problem. Additionally, knowing $\boldsymbol{A}$ we obtain $\boldsymbol{S}$ by solving a sparse recovery problem. MOD iterates between the two steps, starting with an initial guess of $\boldsymbol{A}$, denoted as $\hat{\boldsymbol{A}}$, which can be estimated, generated by previous dictionary learning or generated analytically. Despite - simplicity, the MOD algorithm has been criticized for its slow convergence, which is due to the fact that $\boldsymbol{A}$ and $\boldsymbol{S}$ are updated separately, which may lead to a slow convergence \cite{aharon2006rm}.
 
 K-SVD \cite{aharon2006rm} is a generalization of the K-means algorithm for dictionary learning. After the sparse approximation step, the dictionary update is performed by sequentially updating each column of $\boldsymbol{A}$ using SVD to minimize the approximation error. The update step is hence a generalized K-means algorithm since each patch can be represented by multiple atoms and with different weights. In practice, dictionaries learned with K-SVD
 have shown excellent performance in image denoising. 
@@ -142,9 +142,9 @@ Wright \emph{et al.} \cite{wright2009robust} have proposed a face recognition me
 
 It is often preferable, however, to construct adapted dictionaries that can lead to an efficient classification process based on simple subspace projections. The construction of class dictionaries can be performed with learning methods where the sparse coding step in the iterative learning algorithms is modified, so that sparse coding is computed independently within each class. Such a sparse coding stage can be implemented by class-supervised versions of simultaneous pursuit algorithms \cite{tosic2011dictionary}.
 
-Tensor data are typically highly structured, a perfect match for compressive sampling, so that the CS framework relaxes data acquisition requirements, enables compact storage, and facilitates data completion (i.e., inpainting of missing samples due to a faulty sensor or unreliable measurement) \cite{cichocki2015tensor}. Roemer \emph{et al.} \cite{roemer2014tensor} have proposed a tensor-based multidimensional extensions for MOD and K-SVD algorithms, which are respectivelly T-MOD and K-HOSVD, and show their improved performances numerically, for the dictionary reconstruction problem. 
+Tensor data are typically highly structured, a perfect match for compressive sampling, so that the CS framework relaxes data acquisition requirements, enables compact storage, and facilitates data completion (i.e., inpainting of missing samples due to a faulty sensor or unreliable measurement) \cite{cichocki2015tensor}. Roemer \emph{et al.} \cite{roemer2014tensor} have proposed a tensor-based multidimensional extensions for MOD and K-SVD algorithms, which are respectively T-MOD and K-HOSVD, and show their improved performances numerically, for the dictionary reconstruction problem. 
 
-Considering that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases, accordint to subsection \ref{sec:4_motivation_results}, we believe that tensor-based DL algorithms can improve the discriminative sensing for classification classification problems. Therefore, we propose use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics
+Considering that tensor-based algorithms can perform better for dictionary recovery problems when the dictionary size increases, according to subsection \ref{sec:4_motivation_results}, we believe that tensor-based DL algorithms can improve the discriminative sensing for classification classification problems. Therefore, we propose use tensor-based DL for learning fraudulent and legitimate data separately, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate, according to the minimum reconstruction error measured by some metrics
 
 \section{Data Model}
 \label{sec:4_datamodel}
@@ -152,11 +152,11 @@ Considering that tensor-based algorithms can perform better for dictionary recov
 % \subsection{Dataset}
 % \label{sec:4_dataset}
 
-We adopt a synthetic financial datasets for fraud detection\footnote{https://www.kaggle.com/ntnu-testimon/paysim1} in order to validate our proposal. This dataset is synthetically generated by  PaySim \cite{lopez2016paysim}, which is a financial simulator that simulates mobile money transactions based on an original dataset and provides a synthetic dataset as an approach to such a problem. PaySim uses aggregated data from the private dataset to generate a synthetic dataset that resembles the normal operation of transactions and injects malicious behaviour to later evaluate the performance of fraud detection methods. PaySim simulates mobile money transactions based on a sample of real transactions extracted from one month of financial logs from a mobile money service implemented in an African country. The original logs were provided by a multinational company
+We adopt a synthetic financial datasets for fraud detection\footnote{https://www.kaggle.com/ntnu-testimon/paysim1} in order to validate our proposal. This dataset is synthetically generated by  PaySim \cite{lopez2016paysim}, which is a financial simulator that simulates mobile money transactions based on an original dataset and provides a synthetic dataset as an approach to such a problem. PaySim uses aggregated data from the private dataset to generate a synthetic dataset that resembles the normal operation of transactions and injects malicious behavior to later evaluate the performance of fraud detection methods. PaySim simulates mobile money transactions based on a sample of real transactions extracted from one month of financial logs from a mobile money service implemented in an African country. The original logs were provided by a multinational company
 
-The selected dataset is composed by 9 features (variables) and 2.770.408 transactions (observations). It is also provided one lable that classifies each transaction as fraudulent or not. As the majority dataset of anomaly or fraud detection, the data is imbalanced, where the number of fraudulent transactions is 8.213 against 2.762.196 of normal transactions. Therefore, the fraud class represents 0,30 \% of the entire datased. 
+The selected dataset is composed by 9 features (variables) and 2.770.408 transactions (observations). It is also provided one label that classifies each transaction as fraudulent or not. As the majority dataset of anomaly or fraud detection, the dataset of mobile money transactions is imbalanced, where the number of fraudulent transactions is 8.213 against 2.762.196 of normal transactions. Therefore, the fraud class represents 0,30 \% of the total transactions. 
 
-For evaluation of the proposed classification approach we adopt a data splitting into training and test data, where the training data has 70 \% of the whole dataset. We denote the traning data as $X_r$ and the test data as $X_e$. The dataset can also be divided by normal and fraudulent transactions, where the normal train data is denoted as $X_r^o$, the fraud train data is denoted as $X_r^f$. The same notation of fraud, normal, train and test is applied to qualify $A$ and $S$.
+For evaluation of the proposed classification approach we adopt a data splitting into training and test data, where the training data has 70 \% of the whole dataset. We denote the training data as $X_r$ and the test data as $X_e$. The dataset can also be divided by normal and fraudulent transactions, where the normal train data is denoted as $X_r^o$ and the fraud train data is denoted as $X_r^f$. The same notation of fraud, normal, train and test is applied to qualify $A$ and $S$.
 
 % \subsection{Tensor-based Model}
 % \label{sec:4_tensor_model}
@@ -174,24 +174,30 @@ For evaluation of the proposed classification approach we adopt a data splitting
 % The dictionary estimation is evaluated by applying the proposed approach to estimate the dictionary $\boldsymbol{A}$ from the sparse data $\boldsymbol{\mathcal{X}}$, according the selected number of sample training and iterations for the optimization problem.
 
 
-\section{Tensor-based Sparce Representation Classification}
+\section{Tensor-based Sparse Representation Classification}
 \label{sec:4_proposal}
 
-We propose a Tensor-based Sparce Representation Classification approach to use tensor-based DL for learning fraudulent and legitimante data separetelly, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or ligitimate, according to the minimum reconstruction error measured by some metrics.
+We propose a Tensor-based Sparse Representation Classification approach to use tensor-based DL for learning fraudulent and legitimate dictionaries separately, and apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate, according to the minimum reconstruction error measured by some metrics.
 
-Our proposal requires supervision, where labels of training data are used to classify each transaction as fraud or normal. The first step is to split the training dataset into classes, as fraud or normal, and create respectively the data matrices $\boldsymbol{X}_r^f$ and $\boldsymbol{X}_r^o$. For each data matrix we compute the data normalization and subsequently the initial dictionaries $\boldsymbol{A}_r^f$ and $\boldsymbol{A}_r^o$. Afterward, we apply the dictionaries and the data matrices to the selected DL algorithms, in order to learn the best dictionaries $\boldsymbol{A}_r^f$ and $\boldsymbol{A}_r^o$ that respectivelly represents fraud and normal classes as basis vectors.
+Our proposal requires supervision, where labels of training data are used to classify each transaction as fraud or normal. The first step is to split the training dataset into fraud and normal classes, and create the data matrices $\boldsymbol{X}_r^f$ and $\boldsymbol{X}_r^o$, respectively. For each data matrix, we randomly select $N$ columns into a matrix and compute its data normalization in order to estimate the initial dictionaries $\boldsymbol{\hat{A}}_r^f$ and $\boldsymbol{\hat{A}}_r^o$. Afterward, we apply the dictionaries and the data matrices to the selected DL algorithms for learning the best dictionaries $\boldsymbol{A}_r^f$ and $\boldsymbol{A}_r^o$ that respectively represents fraud and normal classes as basis vectors.
 
-With the trainned dictionaries $\boldsymbol{A}_r^f$ and $\boldsymbol{A}_r^o$ and the test data $\boldsymbol{X}_e$ it is possible to process each transacion of $\boldsymbol{X}_e$, denoted as $\boldsymbol{x}_e^t$ where $t$ represents the transaction index, in order to compute its sparse coding from fraud and normal dictionaries, generating respectively $\boldsymbol{S}_e^f$ and $\boldsymbol{S}_e^o$. Subsequently, we compute the signal rescontruction as $\boldsymbol{x}_e^f = \boldsymbol{A}_r^f \cdot \boldsymbol{S}_e^f$ and $\boldsymbol{x}_e^o = \boldsymbol{A}_r^o \cdot \boldsymbol{S}_e^o$. 
+With the trained dictionaries $\boldsymbol{A}_r^f$ and $\boldsymbol{A}_r^o$ and the test data $\boldsymbol{X}_e$ it is possible to process each transaction of $\boldsymbol{X}_e$, denoted as $\boldsymbol{x}_t$, where $t$ represents the transaction index, in order to compute its sparse coding from fraud and normal dictionaries, generating respectively $\boldsymbol{S}_e^f$ and $\boldsymbol{S}_e^o$. Subsequently, we compute the signal reconstruction for each test transaction $t$, as $\boldsymbol{x}_e^f = \boldsymbol{A}_r^f \cdot \boldsymbol{S}_e^f$ and $\boldsymbol{x}_e^o = \boldsymbol{A}_r^o \cdot \boldsymbol{S}_e^o$. 
 
-Finally, we compare $\boldsymbol{x}_e^f$ and $\boldsymbol{x}_e^o$ to $\boldsymbol{x}_e^t$ in order to evaluate the reconstruction error to classify the transaction as fraud or normal according to the minimum reconstruction error from $\boldsymbol{x}_e^f$ and $\boldsymbol{x}_e^o$, respectivelly. We adopt the cosine similarity to compare the reconstructed signal to the original one. 
+Finally, we compare $\boldsymbol{x}_t^f$ and $\boldsymbol{x}_t^o$ to $\boldsymbol{x}_t$ in order to evaluate the reconstruction error and to classify the transaction as fraud or normal according to the minimum reconstruction error from $\boldsymbol{x}_t^f$ and $\boldsymbol{x}_t^o$, respectively. We adopt the cosine similarity to compare the reconstructed signal to the original one. 
 
 
 \section{Experiments}
 \label{sec:4_experiments}
 
-For data analysis of imbalanced classes it is usually applied a data undersample method, where an under sized sample is selected from the original datased, with similar amount of occurrences for each class of the data. This method is efficient for algorithm trainning, but it faces generalization problems when tries to classify new data. Therefore, we propose to evaluate the our proposal for under sampled data and for the complete dataset.
+For data analysis of imbalanced classes it is usually applied a data undersample method, where an under sized sample is selected from the original dataset, with similar amount of occurrences for each class of the dataset. This method is efficient for classification algorithm training, but it faces generalization problems when tries to classify new data. 
 
-The Receiver Operating Characteristics (ROC) curve makes use of the proportion of two metrics: true positives rate (TPR) and false positives rate (FPR), which are defined as:
+Considering that fraud or other kind of malicious events are rare when compared to legitimate events, we propose to evaluate our proposal for undersampled data and for the complete dataset, evaluating the results for training using undersample data ans testing with undersample test, as well as using the undersample data for training and the complete testing data to evaluate the classification accuracy.
+
+The approach described in Section \ref{sec:4_proposal} can adopt any DL algorithm, however we propose to evaluate the K-HOSVD in order to analyze how a tensor-based DL algorithm can highlight the discriminative structure and relationships of one dataset. We propose to compare the proposed approach against the Support Vector Machines (SVM) algorithm and against the Logistic Regression (LR) algorithm, using features extracted trough Principal Component Analysis (PCA). 
+
+SVM is one classifier algorithm that has been successfully applied to areas ranging from handwriting recognition to text classification. SVM has also received considerable attention for classifying high-dimensional non-Gaussian data, with applications for anomaly detection. SVMs yield good generalization performance on such problems by directly estimating a decision boundary with maximal separability \cite{akbani2004applying, banerjee2006support}. LR is the most common method used to model binary response data \cite{hilbe2011logistic}, it is useful for situations in where it is necessary to predict the presence or absence of a characteristic, with binary classification, such as in anomaly or fraud detection \cite{bhattacharyya2011data}.
+
+We adopt the area under the Receiver Operating Characteristic (ROC) curve and the area under the Precision-Recall (PR) curve in order to evaluate our approach for fraud detection from a mobile money transaction dataset, and to compare the results against the logistic regression algorithm applied to the same problem. The ROC curve makes use of the proportion of two metrics: true positives rate (TPR) and false positives rate (FPR), which are defined as:
 
 \begin{equation}\label{eq:4_eq04}
 	TPR = \frac{TP}{Pc},
@@ -203,44 +209,65 @@ The Receiver Operating Characteristics (ROC) curve makes use of the proportion o
 
 where $TP$ denotes true positive, $Pc$ is the total positive values, $FP$ denotes the false positive and $Nc$ the total negative values.
 
-ROC curves are commonly used to present results for binary decision problems in machine learning. However, when dealing with highly skewed datasets, Precision-Recall (PR) curves give a more informative picture of an algorithm’s performance \cite{davis2006relationship, he2009learning}. The PR curve is defined by plotting Precision Rate (PR) over the Recall Rate (RR), which are defined as:
+ROC curves are commonly used to present results for binary decision problems in machine learning. However, when dealing with highly skewed datasets, PR curves give a more informative picture of an algorithm’s performance \cite{davis2006relationship, he2009learning}. The PR curve is defined by plotting Precision Rate (Pr) over the Recall Rate (Rr), which are defined as:
 
 \begin{equation}\label{eq:4_eq06}
-	PR = \frac{TP}{TP + FP},
+	Pr = \frac{TP}{TP + FP},
 \end{equation}
 
 \begin{equation}\label{eq:4_eq07}
-	RR = \frac{TP}{TP + FN}.
+	Rr = \frac{TP}{TP + FN}.
 \end{equation}
 
-PR curves exhibit a strong correspondence to ROC curves: A curve dominates in ROC space if and only if it dominates in PR space. However, an algorithm that optimizes the AUC in the ROC space is not guaranteed to optimize the AUC in PR space. Considering that our data is very imbalanced, with many more negatives than positives values, we adopt the averate precision recall for the classification evaluation
+PR curves exhibit a strong correspondence to ROC curves, where a curve dominates in ROC space if and only if it dominates in PR space. However, an algorithm that optimizes the Area Under the Curve (AUC) in the ROC space is not guaranteed to optimize the AUC in PR space. Considering that our data is very imbalanced, with many more negatives than positives (frauds) values, we adopt the area under the PR curve for classification evaluation, but we also compute the area under the ROC curve as a secondary classification metric.
 
-Logistic regression is the most common method used to model binary response data \cite{hilbe2011logistic}, it is useful for situations in where it is necessary to predict the presence or absence of a characteristic, with binary classification, such as in anomaly or fraud detection \cite{bhattacharyya2011data}. Therefore, we compare the results of out proposed approach with the logistic regression algorithm applied for fraud detection from the adopted datase.
+Additionally, we perform a cross-validation analysis in order to optimize the parameters $K$ and $N$, evaluating the values of 2, 3 and 5 for $K$ and 10, 20, 40 and 100 for $N$.
 
 
 \section{Results}
 \label{sec:4_results}
 
+Table \ref{tab:4_tab1} presents the results for fraud detection from mobile money transactions through SVM, LR with PCA and the proposed K-HOSVD-based classification.
+
+\begin{table}[h!]
+  \centering
+  % \footnotesize
+  \caption{Results for fraud detection from mobile money transactions} 
+  \label{tab:4_tab1}
+  \begin{tabular}{ c c c c c }
+	\toprule
+	\multirow{2}{*}{\textbf{Classifier}}   &\multicolumn{2}{c}{\textbf{undersample/undersample}} &\multicolumn{2}{c}{\textbf{undersample/complete}}\\ 
+			\hhline{~----}
+			&\textbf{ROC-AUC} &\textbf{PR-AUC} &\textbf{ROC-AUC} &\textbf{PR-AUC}\\
+	\midrule
+	SVM &0.5039 &0.7493 &0.8496 &0.8497 \\
+	LR with PCA &0.9767 &0.9793 &0.5633 &0.0051 \\
+	K-HOSVD ($K=3$, $N=40$) &0.8622 &0.8917 &0.8652 &0.4578 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+According to the results, the SVM algorithm presents the best PR-AUC for the scenario that evaluates the generalization performance for fraud detection of imbalanced data. However, the PR-AUC of the SVM algorithm was the worst case for training and testing with undersample data. The LR algorithm applied to PCA data presents the best results for training and testing with undersample data, although its results for the evaluation of the complete testing data presents a very low PR-AUC. 
+
+The proposed Tensor-based Sparse Representation Classification, using K-HOSVD presents higher PR-AUC than SVM for training and testing with undersample data, but its results are worst than LR with PCA for the same scenario. For training the undersample data and test with complete data, the proposed approach presents better PR-AUC than LR with PCA and the best ROC-AUC. Therefore, it is possible to observe that our approach presents average results if compared to two well known and highly adopted classifier algorithms.
+
+
 % \section{Discussion}
-% \label{sec:4_Discussion}
+% \undersample{sec:4_Discussion}
 
 %problem of imbalanced data
 
 \section{Conclusion}
 \label{sec:4_conclusion}
 
-The conclusion goes here.
+The results shows how imbalanced data and its instance for fraud detection in mobile money transactions are challenging for classification algorithms, regarding the classification performance for undersampled data and for generalization from undersample data training to complete data testing. 
 
-The importance of the right metric for classification of imbalanced data
+It is also possible to observe that the proposed tensor-based sparse representation classification, using K-HOSVD, presents average performance and highlights some enhancement possibilities, such as:
 
-Tensor based analysis explores the extructure and relationship of multidimensional data and can improve the discriminative power of imbalanced data for classification
-
-Can be used for feature extraction and used for well known algorithm, and can be used for discriminative classification based on heuristics
-
-Our proposal is better for imbalanced data than others techniques
-
-incorporate discriminative funcions
-
-evaluate other metrics beyond reconstruction, using techniques such as reconstruction with dictionary concatenation
+\begin{enumerate}
+	\item Extend the proposed approach to adopt one dictionary with basis vectors that represent legitimate and fraudulent data, as a concatenation or as a kronecker product, with the classification according to a sparse code comparison;
+	\item Extend the proposed approach to adopt discriminative discriminative functions for T-MOD and K-HOSVD;
+	\item Extend the evaluation for other DL algorithms.
+\end{enumerate}
 
 Tensor-based algorithms face challenges to achieve reasonable processing time to handle large-scale tensor factorizations \cite{de2014distributed}, demanding efforts in order to explore distributed processing techniques for tensor-based analytics of large datasets. We propose as future work a distributed and tensor-based approach for multidimensional dictionary learning in order to obtain better processing time for larger datasets, based on a modification of Almeida and Kibangou's \cite{de2014distributed} approach to use Tucker-2 decomposition.
