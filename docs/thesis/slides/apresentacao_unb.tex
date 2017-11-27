@@ -138,10 +138,9 @@
 %	FRAME: Problem Statement
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Problem Statement}
-	This thesis outlines the development and evaluation of approaches based on \textbf{signal processing for information security analysis}
+	\textbf{This thesis} outlines the development and evaluation of approaches based on \textbf{signal processing for information security analysis}...
 	\begin{itemize}
-		\item To make the data discriminative;
-		\item For network attack detection, mobile malicious behavior analysis and fraud detection in mobile money transactions.
+		\item To make the data \textbf{discriminative} for network attack detection, mobile malicious behavior analysis and fraud detection in mobile money transactions.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -151,16 +150,16 @@
 	We propose an approach based on \textbf{signal processing techniques for detection of malicious traffic in computer networks}
 	\begin{itemize}
 		\item Signal processing formulation as legitimate traffic, malicious traffic and noise;
-		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed information about accurate time and network ports under attack;
-		\item Accuracy and performance evaluation through experimental scenario and the DARPA 1998 dataset.
+		\item MOS and eigenvalue analysis are applied to network attack detection;
+		\item Eigen similarity analysis identify accurate time and network ports under attack;
+		\item Evaluation through experimental scenario and the DARPA 1998 dataset.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Problem Statement
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Problem Statement}
-	This thesis also proposes an \textbf{architecture and approach based on user behavior analysis of mobile apps}
+	This thesis also proposes an \textbf{approach malicious behavior detection in mobile apps}
 	\begin{itemize}
 		\item An architecture for mobile security analysis;
 		\item Offline user behavior analysis based on MOS;
@@ -172,24 +171,25 @@
 %	FRAME: Problem Statement
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Problem Statement}
-	We also propose a \textbf{tensor-based dictionary learning method for fraud detection from imbalanced data}, in order to apply the tensor decomposition for dictionary learning methods to evidentiate the \textbf{discriminative sensing of a fraud detection dataset}
+	We also propose a \textbf{tensor-based dictionary learning method for fraud detection from imbalanced data} 
 	\begin{itemize}
-		\item A sparse representation based classification (SRC) method through learning a tensor-based dictionary;
+		\item To evidentiate the \textbf{discriminative sensing of a fraud detection dataset};
+		\item Sparse representation based classification (SRC) through learning a tensor-based dictionary;
 		\item Apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate;
-		\item Evaluate the reconstruction error for fraud classification of mobile money transactions.
+		\item Classify fraud classification of mobile money transactions according to the reconstruction error.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Contributions
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Contributions}
-	\begin{enumerate}
-		\item An approach based on \textbf{eigen similarity analysis} for extracting detailed information about accurate time and network ports under network attack;
-		\item Computational \textbf{complexity analysis} of the proposed framework;
-		\item An architecture and techniques for \textbf{offline behavioral analysis} of a corporate mobile client security architecture;
-		\item A \textbf{tensor-based dictionary learning} approach for \textbf{fraud detection} in mobile payment transactions;
-	\end{enumerate}
-\end{frame}
+% \begin{frame}{Contributions}
+% 	\begin{enumerate}
+% 		\item An approach based on \textbf{eigen similarity analysis} for extracting detailed information about accurate time and network ports under network attack;
+% 		\item Computational \textbf{complexity analysis} of the proposed framework;
+% 		\item An architecture and techniques for \textbf{offline behavioral analysis} of a corporate mobile client security architecture;
+% 		\item A \textbf{tensor-based dictionary learning} approach for \textbf{fraud detection} in mobile payment transactions;
+% 	\end{enumerate}
+% \end{frame}
 
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -202,22 +202,12 @@
 %	FRAME: Introduction
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
-	We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise})
 	\begin{itemize}
+		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
 		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
 		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack. 
-	\end{itemize}
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Introduction
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Introduction}
-	We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise})
-	\begin{itemize}
-		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
-		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack. 
+		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
+		\item We conduct a performance evaluation for complexity analysis and processing time.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -225,31 +215,35 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Related works}
 	
-	Classical methods typically employ data mining [39, 34, 70] and regular file analysis [76] to detect patterns that indicate the presence of specific attacks in network traffic;
-
-	Callegari \emph{et al} [104] propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. 
-
+	\begin{itemize}
+		\item Classical methods typically employ data mining [39, 34, 70] and regular file analysis [76] to detect patterns that indicate the presence of specific attacks in network traffic;
+		\item Callegari \emph{et al} [104] propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} \textbf{focus on flood attack detection}, not addressing probe attack detection, and their approach relies on \textbf{visual analysis}.
+	\end{itemize}
+	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Related works
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Related works}
 	
-	Lee \emph{et al.} [61] propose OverSampling PCA (osPCA), determines the anomaly of the target according to the variation of eigenvector by similarity analysis and over sampling. In contrast, we apply MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack, for flood and probe attacks;
-
-	Lu and Ghorbani [63] proposed a network anomaly detection model based on network flow, wavelet approximation, and system identification theory. However, their work requires a training method and presents limitations on identification of behaviors without significant outliers;
-
-	Zonglin \emph{et al} [104] proposed a method to detect traffic anomaly with correlation analysis, but the work is not applied to probe and flood attack detection. 
-
+	\begin{itemize}
+		\item Lee \emph{et al.} [61] propose OverSampling PCA, determines the \textbf{anomaly} according to the variation of \textbf{eigenvector by similarity analysis and over sampling}. We apply \textbf{MOS for attack detection} and \textbf{similarity analysis for identification} of time and ports under attack;
+		\item Lu and Ghorbani [63] proposed a \textbf{network anomaly} detection model based on \textbf{network flow, wavelet approximation, and system identification theory}. However, their work requires a \textbf{training} and presents \textbf{limitations} on identification of behaviors without \textbf{significant outliers}.
+	\end{itemize}
+	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Data Model
+%	FRAME: Datasets
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Data Model}
+\begin{frame}{Datasets}
 	
-	Focus on \textbf{probe} and \textbf{flooding} attacks;
+	We focus on \textbf{probe} and \textbf{flooding} attacks;
 
-	Two scenarios: A \textbf{synthetic dataset} as a signal superposition of legitimate traffic, noise and malicious traffic, and selected cases of \textbf{DARPA dataset} that reproduce probe and flooding attacks.
+	Two scenarios: 
+	\begin{itemize}
+		\item A \textbf{synthetic dataset} as a signal superposition of legitimate traffic, noise and malicious traffic;
+		\item Selected cases of \textbf{DARPA dataset} that reproduce probe and flooding attacks.
+	\end{itemize}
 
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -353,13 +347,11 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{DARPA Dataset}
 	
-	7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks. 
-
-	The attacks in this dataset can be grouped into: denial-of-service (DoS); remote to local (R2L); user to root (U2R); and probe attack. 
-
-	The most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack. 
-
-	We select the cases that reproduce probe and flooding attacks.
+	\begin{itemize}
+		\item 7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks;
+		\item The most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack;
+		\item We select the cases that reproduce probe and flooding attacks.
+	\end{itemize}
 
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -380,7 +372,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Proposed Framework}
 	
-	For flooding detection, calculate the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
+	For \textbf{flooding} detection, calculate the \textbf{sample covariance matrix} $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
 	\begin{equation}\label{eq:eq02}
 		\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
 	\end{equation}
@@ -396,7 +388,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Proposed Framework}
 	
-	For probing detection, compute the sample covariance $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have zero mean and unitary standard deviation as follows
+	For \textbf{probing} detection, compute the \textbf{sample covariance} $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have \textbf{zero mean and unitary standard deviation} as follows
 	\begin{equation}\label{eq:eq04}
 		\boldsymbol{z}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}.
 	\end{equation}
@@ -414,7 +406,7 @@
 	
 	we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$
 
-	Compute eigenvalue decomposition (EVD) to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix, according to (\ref{eq:eq060}).
+	Compute eigenvalue decomposition (EVD) to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix (time frame $q$), according to (\ref{eq:eq060}).
 	\begin{equation}\label{eq:eq06}
 	\boldsymbol{C}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
 	\end{equation}
@@ -433,7 +425,7 @@
 	\begin{equation}\label{eq:eq07}
 		\boldsymbol{E} =
 		\begin{bmatrix}
-			\lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
+			\color{red}\lambda_1^{(1)} & \color{red}\lambda_1^{(2)} & \color{red}\lambda_1^{(3)} & \cdots & \color{red}\lambda_1^{(Q)} \\
 			\lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
 			\lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
 			\vdots & \vdots & \ddots & \vdots  \\
@@ -450,21 +442,21 @@
 %	FRAME: MOS Scheme
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{MOS Scheme}
+
+	\begin{itemize}
+		\item Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$;
+		\item $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$.
+		\item $\hat{d}$ is the estimated number of time frames under attack.
+	\end{itemize}
 	
-	Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$. 
-
-	The proposed approach applies MOS schemes for a vector of the largest eigenvalues of each $q$-th time frame to identify variations and estimate the model order $\hat{d}$ (estimated number of time frames under attack)
-
-	$\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to 
-
-	$\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$. 
-
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Eigen Similarity Analysis
+%	FRAME: Eigenvalue Analysis
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Eigen Similarity Analysis}
+\begin{frame}{Eigenvalue Analysis}
 	
+	Through eigenvalue analysis, we identify the time frames $q$ under attack
+
 	\begin{figure}[h!]
 	     \centering 
 	     \includegraphics[width=11cm]{alg.png}
@@ -477,25 +469,9 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	For eigen similarity analysis, we evaluate the cosine similarity to identify legitimate and malicious traffic,
-	\begin{equation}
-		\label{eq:eq11}
-		s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}}},
-	\end{equation}
+	The reference eigenvectors $\boldsymbol{v}^{(q)}$ is calculated from the traffic without attack. 
 
-	$s_n$ denotes the absolute similarity degree of the $n$-th minute
-	
-	$\boldsymbol{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack
-
-	$\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of traffic to be performed the flood and port scan attack identification.
-
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Eigenvalue Analysis
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Eigen Similarity Analysis}
-	
-	The reference eigenvectors $\boldsymbol{v}^{(q)}$ is calculated from the traffic without attack. Each $\boldsymbol{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames shall be individually appended into $\boldsymbol{X}^{(q)}$, as represented by
+	Each $\boldsymbol{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames shall be individually appended into $\boldsymbol{X}^{(q)}$
 	\begin{equation}\label{eq:eq12}
 		\boldsymbol{X}_{n} = \{\boldsymbol{X}^{(q)} | \boldsymbol{x}^{(\hat{q})}_{(n)}\}.
 	\end{equation}
@@ -508,7 +484,25 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	We evaluate three approaches for eigen similarity analysis: 
+	$s_n$ denotes the absolute similarity degree of the $n$-th minute
+	
+	$\boldsymbol{v}^{(q)}$ is the most significant eigenvectors
+
+	$\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of one network traffic
+
+	For eigen similarity analysis, we evaluate the cosine similarity to identify legitimate and malicious traffic,
+	\begin{equation}
+		\label{eq:eq11}
+		s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}}},
+	\end{equation}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Eigenvalue Analysis
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Eigen Similarity Analysis}
+	
+	We evaluate \textbf{three approaches} for eigen similarity analysis: 
 	\begin{itemize}
 		\item \textbf{incremental:} concatenates eigenvectors incrementally;
 		\item \textbf{individual:} concatenates each eigenvector individually and discards;
@@ -557,8 +551,9 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	For detection of ports under attack, the $\boldsymbol{v}^{(q)}$ last most significant eigenvectors without attack is compared against the $\boldsymbol{v}_{(n)}$ identified as under attack, individually evaluating the cosine similarity of each $m$-th port of all $\boldsymbol{\hat{n}}$ minutes.
+	For detection of ports under attack, the $\boldsymbol{v}^{(q)}$ last most significant eigenvectors without attack is compared against the $\boldsymbol{v}_{(n)}$ identified as under attack, 
 
+	Evaluate the cosine similarity of each $m$-th port of all $\boldsymbol{\hat{n}}$ minutes.
 
 	\begin{equation}\label{eq:eq15}
 		\left\{
@@ -589,9 +584,9 @@
 		\midrule
 		1 &1887545 &1887545 &1887545 &2,0734 \\
 		2 &2341327 &2341327 &2341327 &2,1451 \\
-		3 &3213867 &3213867 &3213867 &10,0718 \\
-		4 &133238294 &133238294 &731229 &2,1620 \\
-		5 &92384021611 &6367983 &92384021611 &2,4253 \\
+		3 &3213867 &3213867 &3213867 &\color{red}10,0718 \\
+		4 &\color{red}133238294 &\color{red}133238294 &731229 &2,1620 \\
+		5 &\color{red}92384021611 &6367983 &\color{red}92384021611 &2,4253 \\
 		6 &708335 &708335 &708335 &1,7948 \\
 	    \bottomrule
 	  \end{tabular}
@@ -614,17 +609,17 @@
 				\hhline{~------~}
 			&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
 		\midrule
-		Detection of synflood \\(presence of attack) &2 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-		Detection of synflood \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+		Detection of synflood \\(presence of attack) &2 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
+		Detection of synflood \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
 		\midrule
-		Detection of fraggle \\(presence of attack) &1 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-		Detection of fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+		Detection of fraggle \\(presence of attack) &1 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
+		Detection of fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
 		\midrule
-		Detection of port scan \\(presence of attack) &1 &1 &\textbf{1} &1 &\textbf{1} &9 &\textbf{1} \\
-		Detection of port scan \\(absence of attack) &0 &0 &\textbf{0} &1 &\textbf{0} &1 &\textbf{0} \\
+		Detection of port scan \\(presence of attack) &1 &1 &\textbf{\color{red}1} &1 &\textbf{\color{red}1} &9 &\textbf{\color{red}1} \\
+		Detection of port scan \\(absence of attack) &0 &0 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} \\
 		\midrule
-		Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{2} &5 &\textbf{2} &5 &\textbf{2} \\
-		Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+		Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} \\
+		Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
 	    \bottomrule
 	  \end{tabular}
 	\end{table}
@@ -637,9 +632,11 @@
 	
 	MOS schemes for probing and flooding attack detection:
 	\begin{itemize}
-		\item The largest eigenvalues visually indicate the time frame under probing and flooding attack detection, but MOS schemes can estimate it mathematically;
-		\item EDC and EFT estimate correctly the number of attacks $d$;
-		\item EDC is the MOS scheme that requires less processing capacity.
+		\item The \textbf{largest eigenvalues visually} indicate the time frame under probing and flooding attack detection;
+		\item MOS schemes can estimate it mathematically;
+		\begin{itemize}
+			\item \textbf{EDC and EFT} estimate \textbf{correctly} the number of attacks $d$;
+		\end{itemize}
 	\end{itemize}
 
 \end{frame}
@@ -673,12 +670,12 @@
 		3 &12 &0.9702 &0.9702 &0.9993 &no \\
 		3 &13 &0.9677 &0.9677 &0.9999 &no \\
 		3 &14 &0.9646 &0.9646 &0.9998 &no \\
-		3 &15 &0.0216 &0.0216 &0.0276 &yes \\
-		3 &16 &0.9621 &0.0209 &1.0000 &no \\
-		3 &17 &0.9611 &0.0199 &0.9998 &no \\
-		3 &18 &0.9612 &0.0191 &0.9999 &no \\
-		3 &19 &0.9613 &0.0186 &0.9998 &no \\
-		3 &20 &0.9638 &0.0190 &1.0000 &no \\
+		3 &15 &\color{red}0.0216 &\color{red}0.0216 &\color{red}0.0276 &\color{red}yes \\
+		3 &16 &0.9621 &\color{red}0.0209 &1.0000 &no \\
+		3 &17 &0.9611 &\color{red}0.0199 &0.9998 &no \\
+		3 &18 &0.9612 &\color{red}0.0191 &0.9999 &no \\
+		3 &19 &0.9613 &\color{red}0.0186 &0.9998 &no \\
+		3 &20 &0.9638 &\color{red}0.0190 &1.0000 &no \\
 	    \bottomrule
 	  \end{tabular}
 	\end{table}	
@@ -710,16 +707,16 @@
 		4 &8 &0.9980 &0.9980 &1.0000 &no \\
 		4 &9 &0.9987 &0.9987 &0.9999 &no \\
 		4 &10 &0.9991 &0.9991 &1.0000 &no \\
-		4 &11 &0.0085 &0.0085 &0.0284 &yes \\
-		4 &12 &0.0162 &0.0120 &0.0343 &yes \\
-		4 &13 &0.0248 &0.0158 &0.0427 &yes \\
-		4 &14 &0.1243 &0.0185 &0.1041 &yes \\
-		4 &15 &0.0082 &0.0162 &0.0103 &yes \\
-		4 &16 &0.0404 &0.0070 &0.0580 &yes \\
-		4 &17 &0.0397 &0.0007 &0.0573 &yes \\
-		4 &18 &0.0408 &0.0042 &0.0584 &yes \\
-		4 &19 &0.0408 &0.0079 &0.0584 &yes \\
-		4 &20 &0.0477 &0.0092 &0.0757 &yes \\
+		4 &11 &\color{red}0.0085 &\color{red}0.0085 &\color{red}0.0284 &\color{red}yes \\
+		4 &12 &\color{red}0.0162 &\color{red}0.0120 &\color{red}0.0343 &\color{red}yes \\
+		4 &13 &\color{red}0.0248 &\color{red}0.0158 &\color{red}0.0427 &\color{red}yes \\
+		4 &14 &\color{red}0.1243 &\color{red}0.0185 &\color{red}0.1041 &\color{red}yes \\
+		4 &15 &\color{red}0.0082 &\color{red}0.0162 &\color{red}0.0103 &\color{red}yes \\
+		4 &16 &\color{red}0.0404 &\color{red}0.0070 &\color{red}0.0580 &\color{red}yes \\
+		4 &17 &\color{red}0.0397 &\color{red}0.0007 &\color{red}0.0573 &\color{red}yes \\
+		4 &18 &\color{red}0.0408 &\color{red}0.0042 &\color{red}0.0584 &\color{red}yes \\
+		4 &19 &\color{red}0.0408 &\color{red}0.0079 &\color{red}0.0584 &\color{red}yes \\
+		4 &20 &\color{red}0.0477 &\color{red}0.0092 &\color{red}0.0757 &\color{red}yes \\
 	    \bottomrule
 	  \end{tabular}
 	\end{table}	
@@ -751,16 +748,16 @@
 		5 &8 &0.9995 &0.9995 &1.0000 &no \\
 		5 &9 &0.9995 &0.9995 &1.0000 &no \\
 		5 &10 &0.9995 &0.9995 &1.0000 &no \\
-		5 &11 &0.0031 &0.0031 &0.0021 &yes \\
-		5 &12 &0.0019 &0.0025 &0.0009 &yes \\
-		5 &13 &0.0030 &0.0026 &0.0020 &yes \\
-		5 &14 &0.0030 &0.0027 &0.0020 &yes \\
-		5 &15 &0.0030 &0.0028 &0.0020 &yes \\
-		5 &16 &0.0012 &0.0025 &0.0002 &yes \\
-		5 &17 &0.0030 &0.0026 &0.0020 &yes \\
-		5 &18 &0.0030 &0.0026 &0.0020 &yes \\
-		5 &19 &0.0030 &0.0027 &0.0020 &yes \\
-		5 &20 &0.0069 &0.0023 &0.0083 &yes \\
+		5 &11 &\color{red}0.0031 &\color{red}0.0031 &\color{red}0.0021 &\color{red}yes \\
+		5 &12 &\color{red}0.0019 &\color{red}0.0025 &\color{red}0.0009 &\color{red}yes \\
+		5 &13 &\color{red}0.0030 &\color{red}0.0026 &\color{red}0.0020 &\color{red}yes \\
+		5 &14 &\color{red}0.0030 &\color{red}0.0027 &\color{red}0.0020 &\color{red}yes \\
+		5 &15 &\color{red}0.0030 &\color{red}0.0028 &\color{red}0.0020 &\color{red}yes \\
+		5 &16 &\color{red}0.0012 &\color{red}0.0025 &\color{red}0.0002 &\color{red}yes \\
+		5 &17 &\color{red}0.0030 &\color{red}0.0026 &\color{red}0.0020 &\color{red}yes \\
+		5 &18 &\color{red}0.0030 &\color{red}0.0026 &\color{red}0.0020 &\color{red}yes \\
+		5 &19 &\color{red}0.0030 &\color{red}0.0027 &\color{red}0.0020 &\color{red}yes \\
+		5 &20 &\color{red}0.0069 &\color{red}0.0023 &\color{red}0.0083 &\color{red}yes \\
 	    \bottomrule
 	  \end{tabular}
 	\end{table}
@@ -785,16 +782,16 @@
 		80 &0.9999 &0.9999 &no \\
 		443 &0.9999 &0.9999 &no \\
 		53 &0.9999 &0.9999 &no \\
-		21 &0.9999 &0.9997 &yes \\
-		22 &0.0298 &0.9997 &yes \\
-		23 &0.0298 &0.9997 &yes \\
-		25 &0.0298 &0.9997 &yes \\
-		110 &0.0298 &0.9997 &yes \\
-		143 &0.0298 &0.9997 &yes \\
-		161 &0.0298 &0.9997 &yes \\
-		69 &0.0298 &0.9997 &yes \\
-		123 &0.0298 &0.9997 &yes \\
-		445 &0.0298 &0.9997 &yes \\
+		21 &0.9999 &0.9997 &\color{red}yes \\
+		22 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		23 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		25 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		110 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		143 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		161 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		69 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		123 &\color{red}0.0298 &0.9997 &\color{red}yes \\
+		445 &\color{red}0.0298 &0.9997 &\color{red}yes \\
 		600 &0.9999 &0.9999 &no \\
 		19 &0.9999 &0.9999 &no \\
 		67 &0.9999 &0.9999 &no \\
@@ -833,7 +830,7 @@
 		69 &1.0000 &1.0000 &no \\
 		123 &1.0000 &1.0000 &no \\
 		445 &1.0000 &1.0000 &no \\
-		600 &0.0077 &0.0427 &yes \\
+		600 &\color{red}0.0077 &\color{red}0.0427 &\color{red}yes \\
 		19 &1.0000 &1.0000 &no \\
 		67 &1.0000 &1.0000 &no \\
 		68 &1.0000 &1.0000 &no \\
@@ -872,7 +869,7 @@
 		123 &1.0000 &1.0000 &no \\
 		445 &1.0000 &1.0000 &no \\
 		600 &1.0000 &1.0000 &no \\
-		19 &0.0031 &0.0004 &yes \\
+		19 &\color{red}0.0031 &\color{red}0.0004 &\color{red}yes \\
 		67 &1.0000 &1.0000 &no \\
 		68 &1.0000 &1.0000 &no \\
 	    \bottomrule
@@ -885,32 +882,32 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-	For time attack detection:
+	For \textbf{time} attack detection:
 	\begin{itemize}
-		\item High similarity between network traffic without attack (0.9610) and low similarity with attack (0.0276);
-		\item The incremental approach produces false positive results;
-		\item Capability of change detection based on similarity between legitimate and malicious traffic (flood or probe);
+		\item \textbf{High similarity} between network traffic \textbf{without attack} (0.9610) and \textbf{low similarity} with \textbf{attack} (0.0276);
+		\item The \textbf{incremental} approach produces \textbf{false positive} results;
+		\item Capability of \textbf{change detection} based on similarity between legitimate and malicious traffic (flood or probe);
 	\end{itemize}
 	
-	For port attack detection:
+	For \textbf{port} attack detection:
 	\begin{itemize}
-		\item The incremental individualized has more sensibility to anomaly detection;
-		\item The individual approach was not able to identify low similarity for ports under attack;
+		\item The \textbf{incremental individualized} has more \textbf{sensibility} to anomaly detection;
+		\item The \textbf{individual} approach \textbf{was not able} to identify low similarity for ports under attack;
 	\end{itemize}
 	
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Results
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Results}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Results
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Results}
 	
-	Conclusion:
-	\begin{itemize}
-		\item \textbf{Incremental individualized can detect} low similarity for all evaluated network attacks, while the \textbf{other approaches presented false positives or low sensibility};
-		\item This approach is able to \textbf{gradually and incrementally adapt to network traffic changing}.
-	\end{itemize}
+% 	Conclusion:
+% 	\begin{itemize}
+% 		\item \textbf{Incremental individualized can detect} low similarity for all evaluated network attacks, while the \textbf{other approaches presented false positives or low sensibility};
+% 		\item This approach is able to \textbf{gradually and incrementally adapt to network traffic changing}.
+% 	\end{itemize}
 
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Results - DARPA Dataset
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -947,22 +944,20 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results - DARPA Dataset}
 	
-	Misclassification is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$;
-
-	High FP and misclassification due to legitimate traffic be massive (such as an attack) sometimes;
-
-	Callegari \emph{et al} is a statistical method, based on PCA, without training or learning methods
+	% Misclassification is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$;
 	\begin{itemize}
-		\item 82 \% while we obtain 100 \%;
-		\item FP and misclassification was not evaluated.
+		\item High FP and misclassification due to legitimate traffic be massive (such as an attack) sometimes;
+		\item Callegari \emph{et al} is a statistical method, based on PCA, without training or learning methods
+		\begin{itemize}
+			\item 82 \% while we obtain 100 \%;
+			\item FP and misclassification was not evaluated.
+		\end{itemize}
+		\item Ghorbani's is based on signal processing techniques and uses DARPA
+		\begin{itemize}
+			\item 94.67 \% and 50.00 \%, while we obtain 100 \% and 76.92 \%;
+			\item FP and misclassification was not evaluated.
+		\end{itemize}
 	\end{itemize}
-
-	Ghorbani's is based on signal processing techniques and uses DARPA
-	\begin{itemize}
-		\item 94.67 \% and 50.00 \%, while we obtain 100 \% and 76.92 \%;
-		\item FP and misclassification was not evaluated.
-	\end{itemize}
-
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Performance Evaluation
@@ -972,9 +967,8 @@
 	Complexity Analysis:
 	\begin{itemize}
 		\item the proposed framework is $O(N^3 + Q \log Q + \hat{d}Q + N^3)$ and its worst-case running time is $O(N^3)$;
-		\item The computational complexity of EVD is predominant in the framework;
-		\item However, the approach splits the data into time frames with period time $N$, which makes possible to limit the growth of $N$ even for evaluations of cases with total time larger than $N$;
-		\item It reduces the impact caused by the computational complexity of EVD.
+		\item The computational complexity of \textbf{EVD is predominant};
+		\item \textbf{However}, the approach \textbf{splits the data into time frames} with period time $N$, which makes possible to \textbf{limit the growth of $N$} even when \textbf{total time is larger} than $N$;		
 	\end{itemize}
 	
 \end{frame}
@@ -986,12 +980,12 @@
 	Processing Time Analysis:
 	\begin{itemize}
 		\item desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM;
-		\item variations on the network traffic time; 
-		\item the frame size denoted as $N$; 
-		\item the number of network ports denoted as $M$; 
-		\item the mean processing time for eigen analysis based on sample covariance of zero mean (1-time); 
-		\item the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (2-time); 
-		\item the mean processing time for EDC MOS scheme, (3-time).
+		\item Network traffic time; 
+		\item Frame size denoted as $N$; 
+		\item Number of network ports denoted as $M$; 
+		\item Mean processing time for eigen analysis based on sample covariance of zero mean (1-time); 
+		\item Mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (2-time); 
+		\item Mean processing time for EDC MOS scheme, (3-time).
 	\end{itemize}
 	
 \end{frame}
@@ -1036,37 +1030,12 @@
 
 	Processing Time Analysis:
 	\begin{itemize}
-		\item The processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds;
-		\item the processing time increases with the frame size $N$ decreasing;
-		\item The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations.
+		\item The processing time increases according to traffic time, but the \textbf{worst} processing time is \textbf{4.7250 milliseconds};
+		\item The processing time \textbf{increases} with the frame size $N$ \textbf{decreasing};
+		\item The number of ports $M$ increases the processing time.
 	\end{itemize}
 	
 \end{frame}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1075,97 +1044,16 @@
 \section{Offline Mode for Corporate Mobile Client Security Architecture}
 \label{Blocks}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Blocks
+%	FRAME: Introduction
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Blocks}
-
-\begin{block}{Block Title Here}
-		Great for definitions
-\end{block}
-
-\begin{alertblock}{Alert Title Here}
-		Great for definitions
-\end{alertblock}
-
-\begin{exampleblock}{Example Title Here}
-		Great for examples
-\end{exampleblock}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Blocks
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Blocks}
-
-\begin{block}{Block Title Here}
+\begin{frame}[c]{Introduction}
 	\begin{itemize}
-		\item point 1
-		\item point 2
+		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
+		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
+		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
+		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
+		\item We conduct a performance evaluation for complexity analysis and processing time.
 	\end{itemize}
-\end{block}
-
-\begingroup
-\setbeamercolor{block title}{fg=white, bg=\cnBlue}
-\setbeamercolor{block body}{bg=\cnLightBlue}
-\begin{block}{Blue Colored Blocks}
-	Produced by using the \texttt{cblock} theme option
-\end{block}
-\endgroup
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Additional Blocks
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Additional Blocks}
-\begin{alertblock}{Alert Block}
-	Highlight important information.
-\end{alertblock}
-
-\begingroup
-\setbeamercolor{block title}{fg=white, bg=\cnRed}
-\setbeamercolor{block body}{bg=\cnLightRed}
-\begin{block}{Red Colored Blocks}
-	Produced by using the \texttt{cblock} theme option
-\end{block}
-\endgroup
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Additional Blocks
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Additional Blocks}
-
-\begin{exampleblock}{Example Block}
-	Examples can be good.
-\end{exampleblock}
-
-\begingroup
-\setbeamercolor{block title}{fg=white, bg=\cnGreen}
-\setbeamercolor{block body}{bg=\cnLightGreen}
-\begin{block}{Green Colored Blocks}
-	Produced by using the \texttt{cblock} theme option
-\end{block}
-\endgroup
-
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Blocks
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Custom Blocks}
-\begingroup
-\setbeamercolor{block title}{fg=white, bg=\cnPurple}
-\setbeamercolor{block body}{bg=\cnLightPurple}
-\begin{block}{Purple customization}
-	Using the theme colors to generate colored blocks.
-\end{block}
-\endgroup
-
 \end{frame}
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1174,26 +1062,17 @@
 %
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Tensor-based Discriminative Sensing for Fraud Detection}
-
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: 
+%	FRAME: Introduction
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}[c]{No Special Fonts Required}
-
-This theme was originally made to work with \texttt{pdflatex} and the default latex fonts.\\
-\vspace{1em}
-\cRed{sthlm} does comes with a \texttt{pdflatex} font option, \cRed{newPxFont}, which loads the following fonts:
-
-\begin{itemize}
-	\item \emph{newpxtext} for text
-	\item \emph{cantarell} for sans-serif
-	\item \emph{inconsolata} for sans-serif monospaced
-	\item \emph{newpxmath} for math
-\end{itemize}
-
-Please refer to the \texttt{beamerfontthememsthlm.sty} for the package requirements.
-
+\begin{frame}[c]{Introduction}
+	\begin{itemize}
+		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
+		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
+		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
+		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
+		\item We conduct a performance evaluation for complexity analysis and processing time.
+	\end{itemize}
 \end{frame}
 
 
@@ -1203,282 +1082,17 @@ Please refer to the \texttt{beamerfontthememsthlm.sty} for the package requireme
 %
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Conclusion and Future Work}
-
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Tables
+%	FRAME: Introduction
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Tables}
-\begin{table}[]
-	\caption{Selection of window function and their properties}
-	\begin{tabular}[]{lrrr}
-		\toprule
-		\textbf{Window}			& \multicolumn{1}{c}{\textbf{First side lobe}}
-		                    & \multicolumn{1}{c}{\textbf{3\,dB bandwidth}}
-		                    & \multicolumn{1}{c}{\textbf{Roll-off}} \\
-		\midrule
-		Rectangular				& 13.2\,dB	& 0.886\,Hz/bin	& 6\,dB/oct		\\[0.25em]
-		Triangular				& 26.4\,dB	& 1.276\,Hz/bin	& 12\,dB/oct	\\[0.25em]
-		Hann					& 31.0\,dB	& 1.442\,Hz/bin	& 18\,dB/oct	\\[0.25em]
-		Hamming					& 41.0\,dB	& 1.300\,Hz/bin	& 6\,dB/oct		\\
-		\bottomrule
-	\end{tabular}
-	\label{tab:WindowFunctions}
-\end{table}
+\begin{frame}[c]{Introduction}
+	\begin{itemize}
+		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
+		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
+		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
+		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
+		\item We conduct a performance evaluation for complexity analysis and processing time.
+	\end{itemize}
 \end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME:
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}[c]{Mathematics Step by Step}
-Show $[x^n]'=nx^{n-1}$ by using first principles.
-\begin{align*}
-\visible<+->{f'(x) & = \displaystyle \lim_{\Delta x \to 0} \frac{f(x+\Delta x)-f(x)}{\Delta x} \\}
-\visible<+->{&= \displaystyle \lim_{\Delta x \to 0} \frac{(\cRed{x+\Delta x})^n - (\cRed{x})^n}{\Delta x}\\}
-\visible<+->{&= \displaystyle \lim_{\Delta x \to 0} \frac{\binom{n}{0}x^n\Delta x^0 +\binom{n}{1}x^{n-1}\Delta x^1 + \cdots + \binom{n}{n}x^0\Delta x^n - \cRed{x^n} }{\Delta x}\\}
-\visible<+->{&= \displaystyle \lim_{\Delta x \to 0} \frac{\cRed{1}x^n(\cRed{1}) +\cRed{n}x^{n-1}\Delta x^1 + \cdots + \cRed{1}(\cRed{1})\Delta x^n - \cRed{x^n} }{\Delta x}\\}
-\visible<+->{&= \displaystyle \lim_{\Delta x \to 0} \frac{\cRed{x^n} +nx^{n-1}\Delta x + \cdots + \Delta x^n - \cRed{x^n} }{\Delta x}\\}
-\visible<+->{&= \displaystyle \lim_{\Delta x \to 0} \frac{\cancel{\cRed{\Delta x}} (nx^{n-1} + \cdots + \Delta x^{n-1} ) }{\cancel{\Delta x}}\\}
-\visible<+->{&=nx^{n-1}}
-\end{align*}
-
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Formulas
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Functions}
-\begin{block}{Gaussian Probability Density Function}
-\[
-f \left(x \mid \mu, \sigma^2 \right) = \dfrac{1}{\sqrt{2 \sigma^2 \pi}} e^{- \dfrac{(x-\mu)^2}{2\sigma^2}}
-\]
-\end{block}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: 
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}[c]{More Mathematics}
-
-\begin{columns}[c]
-\begin{column}{0.5\textwidth}
-\begin{tikzpicture}[scale=0.7]
-	\begin{axis}[
-            domain=0:2, range=0:6,ymax=6,ymin=0,
-            axis lines =left,
-            every axis y label/.style={at=(current axis.above origin),anchor=south},
-            every axis x label/.style={at=(current axis.right of origin),anchor=west},
-            xtick={1,1.666}, ytick={1,3},
-            xticklabels={$\cPurple{x}$,$\cPurple{x}+\cRed{\Delta x}$}, yticklabels={$f(\cPurple{x})$,$f(\cPurple{x}+\cRed{\Delta x})$},
-            axis on top,
-          ]
-          \addplot [very thick,\cnRed, domain=(0:2)] {-1.994+2.994*x};S
-	  	  \addplot [\cnDarkGrey,dashed] plot coordinates {(1,0) (1,1)};
-          \addplot [\cnDarkGrey,dashed] plot coordinates {(0,1) (1,1)};
-          \addplot [\cnDarkGrey,dashed] plot coordinates {(0,3) (1.666,3)};
-          \addplot [\cnDarkGrey,dashed] plot coordinates {(1.666,0) (1.666,3)};
-          \addplot [very thick,\cnBlue, smooth,domain=(0:1.833)] {-1/(x-2)};
-          \addplot[color=\cnDarkGrey,fill=\cnDarkGrey,only marks,mark=*] coordinates{(1.666,3)};  %% closed hole
-          \addplot[color=\cnDarkGrey,fill=\cnDarkGrey,only marks,mark=*] coordinates{(1,1)};  %% closed hole
-        \end{axis}
-\end{tikzpicture}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{align*}
-m &= \frac{\Delta y}{\Delta x}	\\
-\\
-m & =  \frac{\visible<2->{f(\cPurple{x}+\cRed{\Delta x})}\visible<3->{-}\visible<4->{f(\cPurple{x})}}{\visible<5->{\cPurple{x}+\cRed{\Delta x}}\visible<6->{-}\visible<7->{\cPurple{x}}}\\
-m  &=  \underbrace{\frac{\visible<8->{f(\cPurple{x}+\cRed{\Delta x})-f(\cPurple{x})}}{\visible<9->{\cRed{\Delta x}}}}_{\visible<10->{\text{\cRed{difference quotient}}}}
-\end{align*}
-\end{column}
-\end{columns}
-
-\visible<10->{The slope of the secant line }
-\begin{itemize}
-	\item<10-> can be found using the \cRed{difference quotient}
-	\item<11-> represents a \cBlue{function}'s \cRed{average} slope on the interval $[\cPurple{x}, \cRed{x+\Delta x}]$
-\end{itemize}
-
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME:
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}[c, fragile]{Fragile Frames Not a Problem}
-\begin{tikzpicture}
-	\begin{axis}[
-            domain=0:6, range=0:7,
-            ymin=-.2,ymax=7,
-            width=\textwidth,
-            height=7cm, %% Hard coded height! Moreover this effects the aspect ratio of the zoom--sort of BAD
-            axis lines=none,
-          ]
-          \only<3->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(.8,1.6) (2.834,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(2.834,5) (4.166,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(1.2,1.6) (4.166,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(.8,1.6) (1.2,1.6)} \closedcycle; %% zoom fill
-		  }
-          \only<4->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.3,3.6) (5.334,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(5.334,5) (6.666,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(3.7,3.6) (6.666,5)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(3.3,3.6) (3.7,3.6)} \closedcycle; %% zoom fill
-  }
-          \only<4->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.7,2.4) (6.666,1)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.3,2.4) (3.7,2.4)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(3.3,2.4) (5.334,1)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(5.334,1) (6.666,1)} \closedcycle; %% zoom fill
- }
-
-          \only<3->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(.8,.4) (2.834,1)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(2.834,1) (4.166,1)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(1.2,.4) (4.166,1)} \closedcycle; %% zoom fill
-          \addplot [draw=none, fill=white] plot coordinates {(.8,.4) (1.2,.4)} \closedcycle; %% zoom fill
-}
-          \addplot[very thick,\cnRed, smooth,domain=(0:1.833)] {-1/(x-2)};
-          \only<3->{\addplot[very thick,\cnRed, smooth,domain=(2.834:4.166)] {3.333/(2.050-.3*x)-0.333}; %% 2.5 to 4.333
-          %\addplot[very thick,\cnRed, smooth,domain=(5.334:6.666)] {11.11/(1.540-.09*x)-8.109}; %% 5 to 6.833
-          \only<4->\addplot[very thick,\cnRed, smooth,domain=(5.334:6.666)] {x-3}; %% 5 to 6.833
- }
-         \only<2->{ \addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(1,1)};}  %% point to be zoomed
-          \only<3->{\addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(3.5,3)}; } %% zoomed pt 1
-          \only<4->{\addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(6,3)}; } %% zoomed pt 2
-
-          \addplot [->,\cnDarkGrey] plot coordinates {(0,0) (0,6)}; %% axis
-          \addplot [->,\cnDarkGrey] plot coordinates {(0,0) (2,0)}; %% axis
-
-          \only<2->{\addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,.4) (.8,1.6)}; %% box around pt
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(1.2,.4) (1.2,1.6)}; %% box around pt
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,1.6) (1.2,1.6)}; %% box around pt
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,.4) (1.2,.4)}; %% box around pt
- }
-          \only<3->{\addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,1) (2.834,5)}; %% zoomed box 1
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(4.166,1) (4.166,5)}; %% zoomed box 1
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,1) (4.166,1)}; %% zoomed box 1
-          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,5) (4.166,5)}; %% zoomed box 1
-}
-          \only<4->{\addplot [\cnDarkGrey] plot coordinates {(3.3,2.4) (3.3,3.6)}; %% box around zoomed pt
-          \addplot [\cnDarkGrey] plot coordinates {(3.7,2.4) (3.7,3.6)}; %% box around zoomed pt
-          \addplot [\cnDarkGrey] plot coordinates {(3.3,3.6) (3.7,3.6)}; %% box around zoomed pt
-          \addplot [\cnDarkGrey] plot coordinates {(3.3,2.4) (3.7,2.4)}; %% box around zoomed pt
-}
-          \only<4->{\addplot [\cnDarkGrey] plot coordinates {(5.334,1) (5.334,5)}; %% zoomed box 2
-          \addplot [\cnDarkGrey] plot coordinates {(6.666,1) (6.666,5)}; %% zoomed box 2
-          \addplot [\cnDarkGrey] plot coordinates {(5.334,1) (6.666,1)}; %% zoomed box 2
-          \addplot [\cnDarkGrey] plot coordinates {(5.334,5) (6.666,5)}; %% zoomed box 2
-}
-          \node at (axis cs:2.4,0) [anchor=east] {$x$};
-          \node at (axis cs:0,6.9) [anchor=north] {$y$};
-        \end{axis}
-\end{tikzpicture}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: PGFPlots
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{PGFPlots Example}
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-		\begin{axis}[
-		    ybar,
-		    enlarge x limits=0.15,
-		    legend style={at={(-.5,0.5)},
-		      anchor=north,legend columns=1},
-		    ylabel={\% students},
-		    symbolic x coords={A, B, C, D, E, F, DNF},
-		    xtick=data,
-		     bar width=2mm,
-		     width=0.7\textwidth
-		    ]
-		    \legend{2012, 2013};
-		    % Spring 2012 results
-			\addplot[fill=\cnGrey]  coordinates {(A,0) (B,0) (C,3.85) (D,23.07) (E,43.31) (F,30.77) (DNF,0.00)};
-			% Spring 2013 results
-			\addplot[fill=\cnBlue]   coordinates {(A,0) (B,3.70) (C,22.22) (D,22.22) (E,40.74) (F,3.70) (DNF,7.41)};
-		\end{axis}
-		\end{tikzpicture}
-		\caption{Consistent improvement over the last year}
-		\end{figure}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Multiple Columns
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{Multiple Columns}
-\begin{columns}
-\begin{column}{.48\linewidth}
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-\end{column}
-\begin{column}{.48\linewidth}
-		\begin{itemize}
-        	\item Point 1
-			\begin{itemize}
-				\item Sub point a
-				\item Sub point b
-			\end{itemize}
-        	\item Point 2
-		\end{itemize}
-	\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}{References}
-	\begin{thebibliography}{10}
-
-	\beamertemplatebookbibitems
-	\bibitem{Oppenheim2009}
-	Alan V. Oppenheim
-	\newblock Discrete - Time Signal Processing
-	\newblock Prentice Hall Press, 2009
-
-	\beamertemplatearticlebibitems
-	\bibitem{EBU2011}
-	European Broadcasting Union
-	\newblock Specification of the Broadcast Wave Format (BWF)
-	\newblock 2011
-
-  \end{thebibliography}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%
-%	SECTION: Conclusion
-%
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-\begin{frame}{About}
-
-This sthlm beamer theme is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.\\
-\vspace{1cm}
-If you have any questions or comments
-\begin{itemize}
-	\item Website: \cBlue{markolson.se}
-	\item Twitter: \cBlue{@markolsonse}
-	\item Instagram: \cBlue{@markolson.se}
-\end{itemize}
-\end{frame}
-
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME:
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begingroup
-\setbeamercolor{background canvas}{bg=\cnDarkGrey}
-\begin{frame}[plain]
-
-\centering{\cGrey{\Huge{THE \newline END}}}
-
-\end{frame}
-\endgroup
 
 \end{document}

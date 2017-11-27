@@ -23,11 +23,11 @@
 \headcommand {\beamer@framepages {8}{8}}
 \headcommand {\slideentry {2}{0}{9}{9/9}{}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {2}{0}{10}{10/10}{}{0}}
+\headcommand {\sectionentry {3}{Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks}{10}{Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks}{0}}
+\headcommand {\beamer@sectionpages {3}{9}}
+\headcommand {\beamer@subsectionpages {3}{9}}
+\headcommand {\slideentry {3}{0}{10}{10/10}{}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\sectionentry {3}{Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks}{11}{Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks}{0}}
-\headcommand {\beamer@sectionpages {3}{10}}
-\headcommand {\beamer@subsectionpages {3}{10}}
 \headcommand {\slideentry {3}{0}{11}{11/11}{}{0}}
 \headcommand {\beamer@framepages {11}{11}}
 \headcommand {\slideentry {3}{0}{12}{12/12}{}{0}}
@@ -112,61 +112,29 @@
 \headcommand {\beamer@framepages {51}{51}}
 \headcommand {\slideentry {3}{0}{52}{52/52}{}{0}}
 \headcommand {\beamer@framepages {52}{52}}
-\headcommand {\slideentry {3}{0}{53}{53/53}{}{0}}
+\headcommand {\sectionentry {4}{Offline Mode for Corporate Mobile Client Security Architecture}{53}{Offline Mode for Corporate Mobile Client Security Architecture}{0}}
+\headcommand {\beamer@sectionpages {10}{52}}
+\headcommand {\beamer@subsectionpages {10}{52}}
+\headcommand {\slideentry {4}{0}{53}{53/53}{}{0}}
 \headcommand {\beamer@framepages {53}{53}}
-\headcommand {\slideentry {3}{0}{54}{54/54}{}{0}}
+\headcommand {\slideentry {4}{0}{54}{54/54}{}{0}}
 \headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {3}{0}{55}{55/55}{}{0}}
+\headcommand {\sectionentry {5}{Tensor-based Discriminative Sensing for Fraud Detection}{55}{Tensor-based Discriminative Sensing for Fraud Detection}{0}}
+\headcommand {\beamer@sectionpages {53}{54}}
+\headcommand {\beamer@subsectionpages {53}{54}}
+\headcommand {\slideentry {5}{0}{55}{55/55}{}{0}}
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\sectionentry {4}{Offline Mode for Corporate Mobile Client Security Architecture}{56}{Offline Mode for Corporate Mobile Client Security Architecture}{0}}
-\headcommand {\beamer@sectionpages {11}{55}}
-\headcommand {\beamer@subsectionpages {11}{55}}
-\headcommand {\slideentry {4}{0}{56}{56/56}{}{0}}
+\headcommand {\slideentry {5}{0}{56}{56/56}{}{0}}
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\slideentry {4}{0}{57}{57/57}{}{0}}
+\headcommand {\sectionentry {6}{Conclusion and Future Work}{57}{Conclusion and Future Work}{0}}
+\headcommand {\beamer@sectionpages {55}{56}}
+\headcommand {\beamer@subsectionpages {55}{56}}
+\headcommand {\slideentry {6}{0}{57}{57/57}{}{0}}
 \headcommand {\beamer@framepages {57}{57}}
-\headcommand {\slideentry {4}{0}{58}{58/58}{}{0}}
+\headcommand {\slideentry {6}{0}{58}{58/58}{}{0}}
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\slideentry {4}{0}{59}{59/59}{}{0}}
-\headcommand {\beamer@framepages {59}{59}}
-\headcommand {\slideentry {4}{0}{60}{60/60}{}{0}}
-\headcommand {\beamer@framepages {60}{60}}
-\headcommand {\slideentry {4}{0}{61}{61/61}{}{0}}
-\headcommand {\beamer@framepages {61}{61}}
-\headcommand {\sectionentry {5}{Tensor-based Discriminative Sensing for Fraud Detection}{62}{Tensor-based Discriminative Sensing for Fraud Detection}{0}}
-\headcommand {\beamer@sectionpages {56}{61}}
-\headcommand {\beamer@subsectionpages {56}{61}}
-\headcommand {\slideentry {5}{0}{62}{62/62}{}{0}}
-\headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {5}{0}{63}{63/63}{}{0}}
-\headcommand {\beamer@framepages {63}{63}}
-\headcommand {\sectionentry {6}{Conclusion and Future Work}{64}{Conclusion and Future Work}{0}}
-\headcommand {\beamer@sectionpages {62}{63}}
-\headcommand {\beamer@subsectionpages {62}{63}}
-\headcommand {\slideentry {6}{0}{64}{64/64}{}{0}}
-\headcommand {\beamer@framepages {64}{64}}
-\headcommand {\slideentry {6}{0}{65}{65/65}{}{0}}
-\headcommand {\beamer@framepages {65}{65}}
-\headcommand {\slideentry {6}{0}{66}{66/72}{}{0}}
-\headcommand {\beamer@framepages {66}{72}}
-\headcommand {\slideentry {6}{0}{67}{73/73}{}{0}}
-\headcommand {\beamer@framepages {73}{73}}
-\headcommand {\slideentry {6}{0}{68}{74/84}{}{0}}
-\headcommand {\beamer@framepages {74}{84}}
-\headcommand {\slideentry {6}{0}{69}{85/88}{}{0}}
-\headcommand {\beamer@framepages {85}{88}}
-\headcommand {\slideentry {6}{0}{70}{89/89}{}{0}}
-\headcommand {\beamer@framepages {89}{89}}
-\headcommand {\slideentry {6}{0}{71}{90/90}{}{0}}
-\headcommand {\beamer@framepages {90}{90}}
-\headcommand {\slideentry {6}{0}{72}{91/91}{}{0}}
-\headcommand {\beamer@framepages {91}{91}}
-\headcommand {\slideentry {6}{0}{73}{92/92}{}{0}}
-\headcommand {\beamer@framepages {92}{92}}
-\headcommand {\slideentry {6}{0}{74}{93/93}{}{0}}
-\headcommand {\beamer@framepages {93}{93}}
-\headcommand {\beamer@partpages {1}{93}}
-\headcommand {\beamer@subsectionpages {64}{93}}
-\headcommand {\beamer@sectionpages {64}{93}}
-\headcommand {\beamer@documentpages {93}}
-\headcommand {\def \inserttotalframenumber {73}}
+\headcommand {\beamer@partpages {1}{58}}
+\headcommand {\beamer@subsectionpages {57}{58}}
+\headcommand {\beamer@sectionpages {57}{58}}
+\headcommand {\beamer@documentpages {58}}
+\headcommand {\def \inserttotalframenumber {57}}
