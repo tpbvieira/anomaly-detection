@@ -460,7 +460,7 @@
 	\begin{figure}[h!]
 	     \centering 
 	     \includegraphics[width=11cm]{alg.png}
-	     \label{fig:2_fig9}
+	     \label{fig:2_fig91}
 	\end{figure}
 
 \end{frame}
@@ -1048,13 +1048,208 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
 	\begin{itemize}
-		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
-		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
-		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
-		\item We conduct a performance evaluation for complexity analysis and processing time.
+		\item We present the \textbf{mobile security architecture for offline mobile client security};
+		\item We discuss the common \textbf{threat} scenarios for \textbf{file cloud apps};
+		\item We evaluate the \textbf{performance} for \textbf{mobile} offline processing.
 	\end{itemize}
 \end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Related works
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Related works}
+	
+	\begin{itemize}
+		\item According to [53, 55], the \textbf{state-of-the-art mobile cloud security models do not consider} the problem of the offline security mode;
+		\item Providers of the mobile security \textbf{avoid} the problem by completely \textbf{forbidding} the offline access.
+	\end{itemize}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: The mobile security architecture
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{The mobile security architecture}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=5cm]{../figures/fig01.eps}
+		\caption{The core set of functions and protocols of the mobile cloud security infrastructure}
+		\label{fig:3_01}
+	\end{figure}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: The Client-side Architecture
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{The Client-side Architecture}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=9cm]{../figures/fig02.eps}
+		\caption{The Client-side Architecture}
+		\label{fig:3_02}
+	\end{figure}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Proposal for offline mobile security
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Proposal for offline mobile security}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=11cm]{../figures/fig03.eps}
+		\caption{Proposed Architecture for Offline Mobile Security}
+		\label{fig:3_03}
+	\end{figure}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Offline Behavioral Analysis
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Offline Behavioral Analysis}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=7cm]{../figures/fig06.eps}
+		\caption{The Threat Intelligence Manager Workflow}
+		\label{fig:3_06}
+	\end{figure}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: MOS for Threat Intelligence
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{MOS for Threat Intelligence}
+	
+	\begin{itemize}
+		\item Previously presented;
+		\item Applied to user behavior analysis;
+		\begin{itemize}
+			\item File operations modeled as signals into matrices;
+			\item Selected features can highlight malicious behaviors;
+			\item Implemented and evaluated into mobile devices.
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Common threat scenarios
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Common threat scenarios}
+	
+	\begin{enumerate}
+		\item An attacker uses a \textbf{valid password} to perform operations on a \textbf{bulk} of files.;
+		\item Usage of \textbf{expired password} to perform unauthorized \textbf{operations};
+	\end{enumerate}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Data Modeling for Behavioral Analysis
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Data Modeling for Behavioral Analysis}
+	
+	Selected features:
+	\begin{itemize}
+		\item File Access (Time and File System Location);
+		\item File Update (Time and File System Location);
+		\item File Download (Start Time, End Time and File System Location);
+		\item File Upload (Start Time, End Time and File System Location).
+	\end{itemize}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Data Modeling and Eigenvalue Decomposition Time}
+		
+	\begin{table}
+		\tiny
+		\label{tab:3_04}
+		\centering
+		\begin{tabular}{|l|l|l|l|l|l|l|l|}
+			\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Modeling\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. Eig.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Min.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Eig. Max.\\(ms)\end{tabular}	\\ \hline
+			Galaxy GT-I9300	& 6	& 60	& 107	& 209.52	& 18.58	& 183	& 276	\\ \hline
+			Galaxy GT-I9300	& 6	& 40	& 115	& 227.26	& 18.13	& 191	& 289	\\ \hline
+			Galaxy GT-I9300	& 6	& 20	& 89	& 268.14	& 21.94	& 229	& 315	\\ \hline
+			Galaxy GT-I9300	& 6	& 10	& 90	& 347.42	& 24.11	& 304	& 421	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 60	& 20	& 60.90	& 15.19	& 37	& 106	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 40	& 20	& 68.72	& 15.71	& 43	& 114	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 20	& 34	& 89.04	& 16.78	& 54	& 133	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 10	& 21	& 117.24	& 14.36	& 96	& 171	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 60	& 10	& 159.82	& 15.82	& 125	& 197	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 40	& 10	& 168.06	& 15.90	& 139	& 220	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 20	& 11	& 204.4	& 20.46	& 176	& 269	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 10	& 13	& 259.00	& 21.34	& 220	& 315	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 60	& 7	& 59.30	& 6.55	& 54	& 74	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 40	& 8	& 62.56	& 7.05	& 56	& 80	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 20	& 10	& 73.28	& 8.59	& 65	& 95	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 10	& 8	& 93.48	& 9.13	& 83	& 130	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 60	& 11	& 18.64	& 4.51	& 16	& 38	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 40	& 11	& 19.64	& 5.12	& 17	& 38	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 20	& 12	& 25.12	& 5.55	& 21	& 46	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 10	& 12	& 32.32	& 7.29	& 27	& 55	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 60	& 4	& 49.08	& 6.01	& 42	& 62	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 40	& 5	& 51.42	& 7.36	& 44	& 74	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 20	& 5	& 51.12	& 7.80	& 54	& 91	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 10	& 7	& 75.24	& 7.71	& 65	& 90	\\ \hline
+		\end{tabular}
+	\end{table}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{EDC MOS scheme processing time for anomaly detection}
+	
+	\begin{table}[!t]
+		\tiny
+		\label{tab:3_05}
+		\centering
+		\begin{tabular}{|l|l|l|l|l|l|l|l|}
+			\hline \rowcolor{Gray} Device	& \begin{tabular}[x]{@{}l@{}}Log Size\\(MB)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Window\\(min)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Avg. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Std. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Min. EDC.\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Max. EDC.\\(ms)\end{tabular}	\\ \hline
+			Galaxy GT-I9300	& 6	& 60	& 5.27	& 4.04	& 3	& 20	\\ \hline
+			Galaxy GT-I9300	& 6	& 40	& 10.78	& 6.37	& 6	& 34	\\ \hline
+			Galaxy GT-I9300	& 6	& 20	& 32.62	& 12.44	& 21	& 88	\\ \hline
+			Galaxy GT-I9300	& 6	& 10	& 115.08	& 17.45	& 88	& 158	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 60	& 5.68	& 4.18	& 3	& 23	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 40	& 10.76	& 5.31	& 7	& 27	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 20	& 37.58	& 10.30	& 23	& 61	\\ \hline
+			Galaxy GT-I9300	& 4.1	& 10	& 125.98	& 18.56	& 101	& 191	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 60	& 4.92	& 3.49	& 3	& 17	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 40	& 9.00	& 4.23	& 6	& 25	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 20	& 30.14	& 9.21	& 19	& 62	\\ \hline
+			Galaxy GT-I9300	& 1.4	& 10	& 100.62	& 15.83	& 69	& 163	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 60	& 1.84	& 0.65	& 1	& 3	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 40	& 3.26	& 1.24	& 2	& 7	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 20	& 10.90	& 2.40	& 9	& 21	\\ \hline
+			Galaxy Tab SM-T800	& 6	& 10	& 41.86	& 7.33	& 34	& 60	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 60	& 1.85	& 0.60	& 1	& 3	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 40	& 3.62	& 1.10	& 2	& 8	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 20	& 12.04	& 2.79	& 9	& 22	\\ \hline
+			Galaxy Tab SM-T800	& 4.1	& 10	& 40.16	& 6.48	& 35	& 60	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 60	& 1.98	& 0.89	& 1	& 6	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 40	& 3.30	& 1.16	& 2	& 7	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 20	& 10.48	& 2.90	& 8	& 21	\\ \hline
+			Galaxy Tab SM-T800	& 1.4	& 10	& 34.52	& 4.08	& 30	& 45	\\ \hline
+		\end{tabular}
+	\end{table}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Results}
+	
+	\begin{itemize}
+		\item The lower window size leads to the larger eigenvalue decomposition time;
+		\item The largest eigenvalue decomposition time, which was the maximum of 421 milliseconds with average of 347.42 milliseconds;
+		\item The MOS processing time increases with the window size decreasing;
+		\item The longest processing time measured is lower than 200 milliseconds;
+		\item This results represent an acceptable processing time for anomaly detection in mobile clients
+	\end{itemize}
+	
+\end{frame}
+
 
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %

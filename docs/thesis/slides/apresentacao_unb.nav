@@ -119,22 +119,44 @@
 \headcommand {\beamer@framepages {53}{53}}
 \headcommand {\slideentry {4}{0}{54}{54/54}{}{0}}
 \headcommand {\beamer@framepages {54}{54}}
-\headcommand {\sectionentry {5}{Tensor-based Discriminative Sensing for Fraud Detection}{55}{Tensor-based Discriminative Sensing for Fraud Detection}{0}}
-\headcommand {\beamer@sectionpages {53}{54}}
-\headcommand {\beamer@subsectionpages {53}{54}}
-\headcommand {\slideentry {5}{0}{55}{55/55}{}{0}}
+\headcommand {\slideentry {4}{0}{55}{55/55}{}{0}}
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {5}{0}{56}{56/56}{}{0}}
+\headcommand {\slideentry {4}{0}{56}{56/56}{}{0}}
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\sectionentry {6}{Conclusion and Future Work}{57}{Conclusion and Future Work}{0}}
-\headcommand {\beamer@sectionpages {55}{56}}
-\headcommand {\beamer@subsectionpages {55}{56}}
-\headcommand {\slideentry {6}{0}{57}{57/57}{}{0}}
+\headcommand {\slideentry {4}{0}{57}{57/57}{}{0}}
 \headcommand {\beamer@framepages {57}{57}}
-\headcommand {\slideentry {6}{0}{58}{58/58}{}{0}}
+\headcommand {\slideentry {4}{0}{58}{58/58}{}{0}}
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\beamer@partpages {1}{58}}
-\headcommand {\beamer@subsectionpages {57}{58}}
-\headcommand {\beamer@sectionpages {57}{58}}
-\headcommand {\beamer@documentpages {58}}
-\headcommand {\def \inserttotalframenumber {57}}
+\headcommand {\slideentry {4}{0}{59}{59/59}{}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\slideentry {4}{0}{60}{60/60}{}{0}}
+\headcommand {\beamer@framepages {60}{60}}
+\headcommand {\slideentry {4}{0}{61}{61/61}{}{0}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\slideentry {4}{0}{62}{62/62}{}{0}}
+\headcommand {\beamer@framepages {62}{62}}
+\headcommand {\slideentry {4}{0}{63}{63/63}{}{0}}
+\headcommand {\beamer@framepages {63}{63}}
+\headcommand {\slideentry {4}{0}{64}{64/64}{}{0}}
+\headcommand {\beamer@framepages {64}{64}}
+\headcommand {\slideentry {4}{0}{65}{65/65}{}{0}}
+\headcommand {\beamer@framepages {65}{65}}
+\headcommand {\sectionentry {5}{Tensor-based Discriminative Sensing for Fraud Detection}{66}{Tensor-based Discriminative Sensing for Fraud Detection}{0}}
+\headcommand {\beamer@sectionpages {53}{65}}
+\headcommand {\beamer@subsectionpages {53}{65}}
+\headcommand {\slideentry {5}{0}{66}{66/66}{}{0}}
+\headcommand {\beamer@framepages {66}{66}}
+\headcommand {\slideentry {5}{0}{67}{67/67}{}{0}}
+\headcommand {\beamer@framepages {67}{67}}
+\headcommand {\sectionentry {6}{Conclusion and Future Work}{68}{Conclusion and Future Work}{0}}
+\headcommand {\beamer@sectionpages {66}{67}}
+\headcommand {\beamer@subsectionpages {66}{67}}
+\headcommand {\slideentry {6}{0}{68}{68/68}{}{0}}
+\headcommand {\beamer@framepages {68}{68}}
+\headcommand {\slideentry {6}{0}{69}{69/69}{}{0}}
+\headcommand {\beamer@framepages {69}{69}}
+\headcommand {\beamer@partpages {1}{69}}
+\headcommand {\beamer@subsectionpages {68}{69}}
+\headcommand {\beamer@sectionpages {68}{69}}
+\headcommand {\beamer@documentpages {69}}
+\headcommand {\def \inserttotalframenumber {68}}
