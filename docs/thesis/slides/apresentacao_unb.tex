@@ -605,7 +605,7 @@
 	
 	\begin{table}[h!]
 	  \centering
-	  % \scriptsize
+	  \tiny
 	  \caption{MOS schemes applied to port scan and flood detection}
 	  \label{tab:tab4}
 	  \begin{tabular}{ c c c c c c c c }
@@ -635,40 +635,53 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Port Scan Detection}
-  \label{tab:tab5}
-  \begin{tabular}{ c c c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
-	\midrule
-	3 &1 &0.9946 &0.9946 &0.9946 &no \\
-	3 &2 &0.9934 &0.9934 &0.9999 &no \\
-	3 &3 &0.9912 &0.9912 &0.9999 &no \\
-	3 &4 &0.9888 &0.9888 &0.9999 &no \\
-	3 &5 &0.9856 &0.9856 &0.9998 &no \\
-	3 &6 &0.9840 &0.9840 &0.9999 &no \\
-	3 &7 &0.9824 &0.9824 &1.0000 &no \\
-	3 &8 &0.9794 &0.9794 &0.9999 &no \\
-	3 &9 &0.9673 &0.9673 &0.9926 &no \\
-	3 &10 &0.9674 &0.9674 &0.9997 &no \\
-	3 &11 &0.9733 &0.9733 &0.9993 &no \\
-	3 &12 &0.9702 &0.9702 &0.9993 &no \\
-	3 &13 &0.9677 &0.9677 &0.9999 &no \\
-	3 &14 &0.9646 &0.9646 &0.9998 &no \\
-	3 &15 &0.0216 &0.0216 &0.0276 &yes \\
-	3 &16 &0.9621 &0.0209 &1.0000 &no \\
-	3 &17 &0.9611 &0.0199 &0.9998 &no \\
-	3 &18 &0.9612 &0.0191 &0.9999 &no \\
-	3 &19 &0.9613 &0.0186 &0.9998 &no \\
-	3 &20 &0.9638 &0.0190 &1.0000 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}	
+	MOS schemes for probing and flooding attack detection:
+	\begin{itemize}
+		\item The largest eigenvalues visually indicate the time frame under probing and flooding attack detection, but MOS schemes can estimate it mathematically;
+		\item EDC and EFT estimate correctly the number of attacks $d$;
+		\item EDC is the MOS scheme that requires less processing capacity.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Results}
+	
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Port Scan Detection}
+	  \label{tab:tab5}
+	  \begin{tabular}{ c c c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~~---~}
+				& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+		\midrule
+		3 &1 &0.9946 &0.9946 &0.9946 &no \\
+		3 &2 &0.9934 &0.9934 &0.9999 &no \\
+		3 &3 &0.9912 &0.9912 &0.9999 &no \\
+		3 &4 &0.9888 &0.9888 &0.9999 &no \\
+		3 &5 &0.9856 &0.9856 &0.9998 &no \\
+		3 &6 &0.9840 &0.9840 &0.9999 &no \\
+		3 &7 &0.9824 &0.9824 &1.0000 &no \\
+		3 &8 &0.9794 &0.9794 &0.9999 &no \\
+		3 &9 &0.9673 &0.9673 &0.9926 &no \\
+		3 &10 &0.9674 &0.9674 &0.9997 &no \\
+		3 &11 &0.9733 &0.9733 &0.9993 &no \\
+		3 &12 &0.9702 &0.9702 &0.9993 &no \\
+		3 &13 &0.9677 &0.9677 &0.9999 &no \\
+		3 &14 &0.9646 &0.9646 &0.9998 &no \\
+		3 &15 &0.0216 &0.0216 &0.0276 &yes \\
+		3 &16 &0.9621 &0.0209 &1.0000 &no \\
+		3 &17 &0.9611 &0.0199 &0.9998 &no \\
+		3 &18 &0.9612 &0.0191 &0.9999 &no \\
+		3 &19 &0.9613 &0.0186 &0.9998 &no \\
+		3 &20 &0.9638 &0.0190 &1.0000 &no \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}	
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -676,40 +689,40 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Synflood Detection}
-  \label{tab:tab6}
-  \begin{tabular}{ c c c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
-	\midrule
-	4 &1 &1.0000 &1.0000 &1.0000 &no \\
-	4 &2 &0.9999 &0.9999 &1.0000 &no \\
-	4 &3 &0.9997 &0.9997 &0.9999 &no \\
-	4 &4 &0.9998 &0.9998 &1.0000 &no \\
-	4 &5 &0.9965 &0.9965 &0.9908 &no \\
-	4 &6 &0.9975 &0.9975 &1.0000 &no \\
-	4 &7 &0.9977 &0.9977 &1.0000 &no \\
-	4 &8 &0.9980 &0.9980 &1.0000 &no \\
-	4 &9 &0.9987 &0.9987 &0.9999 &no \\
-	4 &10 &0.9991 &0.9991 &1.0000 &no \\
-	4 &11 &0.0085 &0.0085 &0.0284 &yes \\
-	4 &12 &0.0162 &0.0120 &0.0343 &yes \\
-	4 &13 &0.0248 &0.0158 &0.0427 &yes \\
-	4 &14 &0.1243 &0.0185 &0.1041 &yes \\
-	4 &15 &0.0082 &0.0162 &0.0103 &yes \\
-	4 &16 &0.0404 &0.0070 &0.0580 &yes \\
-	4 &17 &0.0397 &0.0007 &0.0573 &yes \\
-	4 &18 &0.0408 &0.0042 &0.0584 &yes \\
-	4 &19 &0.0408 &0.0079 &0.0584 &yes \\
-	4 &20 &0.0477 &0.0092 &0.0757 &yes \\
-    \bottomrule
-  \end{tabular}
-\end{table}	
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Synflood Detection}
+	  \label{tab:tab6}
+	  \begin{tabular}{ c c c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~~---~}
+				& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+		\midrule
+		4 &1 &1.0000 &1.0000 &1.0000 &no \\
+		4 &2 &0.9999 &0.9999 &1.0000 &no \\
+		4 &3 &0.9997 &0.9997 &0.9999 &no \\
+		4 &4 &0.9998 &0.9998 &1.0000 &no \\
+		4 &5 &0.9965 &0.9965 &0.9908 &no \\
+		4 &6 &0.9975 &0.9975 &1.0000 &no \\
+		4 &7 &0.9977 &0.9977 &1.0000 &no \\
+		4 &8 &0.9980 &0.9980 &1.0000 &no \\
+		4 &9 &0.9987 &0.9987 &0.9999 &no \\
+		4 &10 &0.9991 &0.9991 &1.0000 &no \\
+		4 &11 &0.0085 &0.0085 &0.0284 &yes \\
+		4 &12 &0.0162 &0.0120 &0.0343 &yes \\
+		4 &13 &0.0248 &0.0158 &0.0427 &yes \\
+		4 &14 &0.1243 &0.0185 &0.1041 &yes \\
+		4 &15 &0.0082 &0.0162 &0.0103 &yes \\
+		4 &16 &0.0404 &0.0070 &0.0580 &yes \\
+		4 &17 &0.0397 &0.0007 &0.0573 &yes \\
+		4 &18 &0.0408 &0.0042 &0.0584 &yes \\
+		4 &19 &0.0408 &0.0079 &0.0584 &yes \\
+		4 &20 &0.0477 &0.0092 &0.0757 &yes \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}	
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -717,40 +730,40 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Fraggle Detection}
-  \label{tab:tab7}
-  \begin{tabular}{ c c c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
-	\midrule
-	5 &1 &1.0000 &1.0000 &1.0000 &no \\
-	5 &2 &0.9999 &0.9999 &1.0000 &no \\
-	5 &3 &1.0000 &1.0000 &1.0000 &no \\
-	5 &4 &0.9999 &0.9999 &1.0000 &no \\
-	5 &5 &0.9993 &0.9993 &0.9997 &no \\
-	5 &6 &0.9993 &0.9993 &0.9997 &no \\
-	5 &7 &0.9994 &0.9994 &1.0000 &no \\
-	5 &8 &0.9995 &0.9995 &1.0000 &no \\
-	5 &9 &0.9995 &0.9995 &1.0000 &no \\
-	5 &10 &0.9995 &0.9995 &1.0000 &no \\
-	5 &11 &0.0031 &0.0031 &0.0021 &yes \\
-	5 &12 &0.0019 &0.0025 &0.0009 &yes \\
-	5 &13 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &14 &0.0030 &0.0027 &0.0020 &yes \\
-	5 &15 &0.0030 &0.0028 &0.0020 &yes \\
-	5 &16 &0.0012 &0.0025 &0.0002 &yes \\
-	5 &17 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &18 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &19 &0.0030 &0.0027 &0.0020 &yes \\
-	5 &20 &0.0069 &0.0023 &0.0083 &yes \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Fraggle Detection}
+	  \label{tab:tab7}
+	  \begin{tabular}{ c c c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~~---~}
+				& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+		\midrule
+		5 &1 &1.0000 &1.0000 &1.0000 &no \\
+		5 &2 &0.9999 &0.9999 &1.0000 &no \\
+		5 &3 &1.0000 &1.0000 &1.0000 &no \\
+		5 &4 &0.9999 &0.9999 &1.0000 &no \\
+		5 &5 &0.9993 &0.9993 &0.9997 &no \\
+		5 &6 &0.9993 &0.9993 &0.9997 &no \\
+		5 &7 &0.9994 &0.9994 &1.0000 &no \\
+		5 &8 &0.9995 &0.9995 &1.0000 &no \\
+		5 &9 &0.9995 &0.9995 &1.0000 &no \\
+		5 &10 &0.9995 &0.9995 &1.0000 &no \\
+		5 &11 &0.0031 &0.0031 &0.0021 &yes \\
+		5 &12 &0.0019 &0.0025 &0.0009 &yes \\
+		5 &13 &0.0030 &0.0026 &0.0020 &yes \\
+		5 &14 &0.0030 &0.0027 &0.0020 &yes \\
+		5 &15 &0.0030 &0.0028 &0.0020 &yes \\
+		5 &16 &0.0012 &0.0025 &0.0002 &yes \\
+		5 &17 &0.0030 &0.0026 &0.0020 &yes \\
+		5 &18 &0.0030 &0.0026 &0.0020 &yes \\
+		5 &19 &0.0030 &0.0027 &0.0020 &yes \\
+		5 &20 &0.0069 &0.0023 &0.0083 &yes \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -758,37 +771,37 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  % \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack (q=3 and n=15)}
-  \label{tab:tab8}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &0.9999 &0.9999 &no \\
-	443 &0.9999 &0.9999 &no \\
-	53 &0.9999 &0.9999 &no \\
-	21 &0.9999 &0.9997 &yes \\
-	22 &0.0298 &0.9997 &yes \\
-	23 &0.0298 &0.9997 &yes \\
-	25 &0.0298 &0.9997 &yes \\
-	110 &0.0298 &0.9997 &yes \\
-	143 &0.0298 &0.9997 &yes \\
-	161 &0.0298 &0.9997 &yes \\
-	69 &0.0298 &0.9997 &yes \\
-	123 &0.0298 &0.9997 &yes \\
-	445 &0.0298 &0.9997 &yes \\
-	600 &0.9999 &0.9999 &no \\
-	19 &0.9999 &0.9999 &no \\
-	67 &0.9999 &0.9999 &no \\
-	68 &0.9999 &0.9999 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack (q=3 and n=15)}
+	  \label{tab:tab8}
+	  \begin{tabular}{ c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~--~}
+				&\textbf{Incremental Individualized} &\textbf{Individual}\\
+		\midrule
+		80 &0.9999 &0.9999 &no \\
+		443 &0.9999 &0.9999 &no \\
+		53 &0.9999 &0.9999 &no \\
+		21 &0.9999 &0.9997 &yes \\
+		22 &0.0298 &0.9997 &yes \\
+		23 &0.0298 &0.9997 &yes \\
+		25 &0.0298 &0.9997 &yes \\
+		110 &0.0298 &0.9997 &yes \\
+		143 &0.0298 &0.9997 &yes \\
+		161 &0.0298 &0.9997 &yes \\
+		69 &0.0298 &0.9997 &yes \\
+		123 &0.0298 &0.9997 &yes \\
+		445 &0.0298 &0.9997 &yes \\
+		600 &0.9999 &0.9999 &no \\
+		19 &0.9999 &0.9999 &no \\
+		67 &0.9999 &0.9999 &no \\
+		68 &0.9999 &0.9999 &no \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -796,37 +809,37 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  % \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Synflood Attack (q=4 and n=11)}
-  \label{tab:tab9}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &1.0000 &1.0000 &no \\
-	443 &1.0000 &1.0000 &no \\
-	53 &1.0000 &1.0000 &no \\
-	21 &1.0000 &1.0000 &nos \\
-	22 &1.0000 &1.0000 &no \\
-	23 &1.0000 &1.0000 &no \\
-	25 &1.0000 &1.0000 &no \\
-	110 &1.0000 &1.0000 &no \\
-	143 &1.0000 &1.0000 &no \\
-	161 &1.0000 &1.0000 &no \\
-	69 &1.0000 &1.0000 &no \\
-	123 &1.0000 &1.0000 &no \\
-	445 &1.0000 &1.0000 &no \\
-	600 &0.0077 &0.0427 &yes \\
-	19 &1.0000 &1.0000 &no \\
-	67 &1.0000 &1.0000 &no \\
-	68 &1.0000 &1.0000 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Detection of Ports Under Synflood Attack (q=4 and n=11)}
+	  \label{tab:tab9}
+	  \begin{tabular}{ c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~--~}
+				&\textbf{Incremental Individualized} &\textbf{Individual}\\
+		\midrule
+		80 &1.0000 &1.0000 &no \\
+		443 &1.0000 &1.0000 &no \\
+		53 &1.0000 &1.0000 &no \\
+		21 &1.0000 &1.0000 &nos \\
+		22 &1.0000 &1.0000 &no \\
+		23 &1.0000 &1.0000 &no \\
+		25 &1.0000 &1.0000 &no \\
+		110 &1.0000 &1.0000 &no \\
+		143 &1.0000 &1.0000 &no \\
+		161 &1.0000 &1.0000 &no \\
+		69 &1.0000 &1.0000 &no \\
+		123 &1.0000 &1.0000 &no \\
+		445 &1.0000 &1.0000 &no \\
+		600 &0.0077 &0.0427 &yes \\
+		19 &1.0000 &1.0000 &no \\
+		67 &1.0000 &1.0000 &no \\
+		68 &1.0000 &1.0000 &no \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -834,37 +847,37 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[h!]
-  \centering
-  % \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Fraggle Attack (q=5 and t=11)}
-  \label{tab:tab10}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &1.0000 &1.0000 &no \\
-	443 &1.0000 &1.0000 &no \\
-	53 &1.0000 &1.0000 &no \\
-	21 &1.0000 &1.0000 &no \\
-	22 &1.0000 &1.0000 &no \\
-	23 &1.0000 &1.0000 &no \\
-	25 &1.0000 &1.0000 &no \\
-	110 &1.0000 &1.0000 &no \\
-	143 &1.0000 &1.0000 &no \\
-	161 &1.0000 &1.0000 &no \\
-	69 &1.0000 &1.0000 &no \\
-	123 &1.0000 &1.0000 &no \\
-	445 &1.0000 &1.0000 &no \\
-	600 &1.0000 &1.0000 &no \\
-	19 &0.0031 &0.0004 &yes \\
-	67 &1.0000 &1.0000 &no \\
-	68 &1.0000 &1.0000 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+	\begin{table}[h!]
+	  \centering
+	  \tiny
+	  \caption{Eigen Similarity Analysis for Detection of Ports Under Fraggle Attack (q=5 and t=11)}
+	  \label{tab:tab10}
+	  \begin{tabular}{ c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
+				\hhline{~--~}
+				&\textbf{Incremental Individualized} &\textbf{Individual}\\
+		\midrule
+		80 &1.0000 &1.0000 &no \\
+		443 &1.0000 &1.0000 &no \\
+		53 &1.0000 &1.0000 &no \\
+		21 &1.0000 &1.0000 &no \\
+		22 &1.0000 &1.0000 &no \\
+		23 &1.0000 &1.0000 &no \\
+		25 &1.0000 &1.0000 &no \\
+		110 &1.0000 &1.0000 &no \\
+		143 &1.0000 &1.0000 &no \\
+		161 &1.0000 &1.0000 &no \\
+		69 &1.0000 &1.0000 &no \\
+		123 &1.0000 &1.0000 &no \\
+		445 &1.0000 &1.0000 &no \\
+		600 &1.0000 &1.0000 &no \\
+		19 &0.0031 &0.0004 &yes \\
+		67 &1.0000 &1.0000 &no \\
+		68 &1.0000 &1.0000 &no \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -872,29 +885,97 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Results}
 	
-\begin{table}[!t]
-	\caption{Results of the attack detection evaluation}
-	\label{tab:tab12}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Solution\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Attack Type\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Metric\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Result\end{tabular} \\ \hline
-		Proposed Work	&Flooding	&True Positive	&100.00 \%\\ \hline
-		Proposed Work	&Flooding	&False Positive	&60.00 \%\\ \hline
-		Proposed Work	&Flooding	&Misclassification	&50.00 \%\\ \hline
-		Proposed Work	&Probe	&True Positive	&76.92 \%\\ \hline
-		Proposed Work	&Probe	&False Positive	&18.52 \%\\ \hline
-		Proposed Work	&Probe	&Misclassification	&32.73 \%\\ \hline
-		Callegari \emph{et al}	&Flooding	&True Positive	&82.00 \%\\ \hline
-		Callegari \emph{et al}	&Flooding	&False Positive	&-\\ \hline
-		Callegari \emph{et al}	&Flooding	&Misclassification	&-\\ \hline
-		Lu and Ghorbani	&Overall	&True Positive	&94.67 \%\\ \hline
-		Lu and Ghorbani	&Overall	&False Positive	&-\\ \hline
-		Lu and Ghorbani	&Overall	&Misclassification	&-\\ \hline
-		Lu and Ghorbani	&Portsweep	&True Positive	&50.00 \%\\ \hline
-		Lu and Ghorbani	&Portsweep	&False Positive	&-\\ \hline
-		Lu and Ghorbani	&Portsweep	&Misclassification	&-\\ \hline
-	\end{tabular}
-\end{table}
+	For time attack detection:
+	\begin{itemize}
+		\item High similarity between network traffic without attack (0.9610) and low similarity with attack (0.0276);
+		\item The incremental approach produces false positive results;
+		\item Capability of change detection based on similarity between legitimate and malicious traffic (flood or probe);
+	\end{itemize}
+	
+	For port attack detection:
+	\begin{itemize}
+		\item The incremental individualized has more sensibility to anomaly detection;
+		\item The individual approach was not able to identify low similarity for ports under attack;
+	\end{itemize}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Results}
+	
+	Conclusion:
+	\begin{itemize}
+		\item \textbf{Incremental individualized can detect} low similarity for all evaluated network attacks, while the \textbf{other approaches presented false positives or low sensibility};
+		\item This approach is able to \textbf{gradually and incrementally adapt to network traffic changing}.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results - DARPA Dataset
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Results - DARPA Dataset}
+	
+	\begin{table}[!t]
+		\caption{Results of the attack detection evaluation}
+		\label{tab:tab12}
+		\centering
+		\scriptsize
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Solution\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Attack Type\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Metric\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Result\end{tabular} \\ \hline
+			Proposed Work	&Flooding	&True Positive	&100.00 \%\\ \hline
+			Proposed Work	&Flooding	&False Positive	&60.00 \%\\ \hline
+			Proposed Work	&Flooding	&Misclassification	&50.00 \%\\ \hline
+			Proposed Work	&Probe	&True Positive	&76.92 \%\\ \hline
+			Proposed Work	&Probe	&False Positive	&18.52 \%\\ \hline
+			Proposed Work	&Probe	&Misclassification	&32.73 \%\\ \hline
+			Callegari \emph{et al}	&Flooding	&True Positive	&82.00 \%\\ \hline
+			Callegari \emph{et al}	&Flooding	&False Positive	&-\\ \hline
+			Callegari \emph{et al}	&Flooding	&Misclassification	&-\\ \hline
+			Lu and Ghorbani	&Overall	&True Positive	&94.67 \%\\ \hline
+			Lu and Ghorbani	&Overall	&False Positive	&-\\ \hline
+			Lu and Ghorbani	&Overall	&Misclassification	&-\\ \hline
+			Lu and Ghorbani	&Portsweep	&True Positive	&50.00 \%\\ \hline
+			Lu and Ghorbani	&Portsweep	&False Positive	&-\\ \hline
+			Lu and Ghorbani	&Portsweep	&Misclassification	&-\\ \hline
+		\end{tabular}
+	\end{table}
+	
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results - DARPA Dataset
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Results - DARPA Dataset}
+	
+	Misclassification is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$;
+
+	High FP and misclassification due to legitimate traffic be massive (such as an attack) sometimes;
+
+	Callegari \emph{et al} is a statistical method, based on PCA, without training or learning methods
+	\begin{itemize}
+		\item 82 \% while we obtain 100 \%;
+		\item FP and misclassification was not evaluated.
+	\end{itemize}
+
+	Ghorbani's is based on signal processing techniques and uses DARPA
+	\begin{itemize}
+		\item 94.67 \% and 50.00 \%, while we obtain 100 \% and 76.92 \%;
+		\item FP and misclassification was not evaluated.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Performance Evaluation
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Performance Evaluation}
+
+	Complexity Analysis:
+	\begin{itemize}
+		\item the proposed framework is $O(N^3 + Q \log Q + \hat{d}Q + N^3)$ and its worst-case running time is $O(N^3)$;
+		\item The computational complexity of EVD is predominant in the framework;
+		\item However, the approach splits the data into time frames with period time $N$, which makes possible to limit the growth of $N$ even for evaluations of cases with total time larger than $N$;
+		\item It reduces the impact caused by the computational complexity of EVD.
+	\end{itemize}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -902,7 +983,16 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Performance Evaluation}
 	
-	complexity
+	Processing Time Analysis:
+	\begin{itemize}
+		\item desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM;
+		\item variations on the network traffic time; 
+		\item the frame size denoted as $N$; 
+		\item the number of network ports denoted as $M$; 
+		\item the mean processing time for eigen analysis based on sample covariance of zero mean (1-time); 
+		\item the mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (2-time); 
+		\item the mean processing time for EDC MOS scheme, (3-time).
+	\end{itemize}
 	
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -910,11 +1000,48 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Performance Evaluation}
 	
-	processing
+	\begin{table}[!t]
+		\caption{Processing time of the main steps for anomaly detection}
+		\label{tab:11}
+		\centering
+		\tiny
+		\begin{tabular}{|r|r|r|r|r|r|r|}
+			\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Traffic Time\\(hour)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Frame Size\\(min)\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Num. Ports\end{tabular}	& \begin{tabular}[x]{@{}l@{}}1-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}2-time\\(ms)\end{tabular}	& \begin{tabular}[x]{@{}l@{}}3-time\\(ms)\end{tabular}	\\ \hline
+			16	& 10	& 17	& 0.7900	& 0.8100	& 0.0650\\ \hline
+			16	& 20	& 17	& 0.5250	& 0.5950	& 0.0100\\ \hline
+			16	& 60	& 17	& 0.9700	& 1.1400	& 0.0250\\ \hline
+			16	& 120	& 17	& 0.6050	& 0.6100	& 0.0050\\ \hline
+			16	& 60	& 34	& 1.2750	& 1.2200	& 0.0050\\ \hline
+			16	& 120	& 34	& 1.1200	& 1.1700	& 0.0050\\ \hline
+			20	& 10	& 17	& 2.7950	& 2.8950	& 1.1000\\ \hline
+			20	& 20	& 17	& 2.0700	& 2.0200	& 0.3500\\ \hline
+			20	& 60	& 17	& 1.0250	& 1.0450	& 0.0650\\ \hline
+			20	& 120	& 17	& 1.0000	& 1.0700	& 0.0350\\ \hline
+			20	& 60	& 34	& 2.9650	& 3.2100	& 0.0400\\ \hline
+			20	& 120	& 34	& 2.9950	& 3.1150	& 0.0200\\ \hline
+			22	& 10	& 17	& 4.7250	& 4.0850	& 1.4600\\ \hline
+			22	& 20	& 17	& 2.3200	& 2.6800	& 0.2450\\ \hline
+			22	& 60	& 17	& 1.0700	& 1.1200	& 0.0300\\ \hline
+			22	& 120	& 17	& 0.9900	& 1.0500	& 0.0250\\ \hline
+			22	& 60	& 34	& 3.0850	& 3.1250	& 0.0650\\ \hline
+			22	& 120	& 34	& 2.8100	& 2.9600	& 0.0250\\ \hline
+		\end{tabular}
+	\end{table}
 	
 \end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Performance Evaluation
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}{Performance Evaluation}
 
-
+	Processing Time Analysis:
+	\begin{itemize}
+		\item The processing time increases according to the increment in traffic time, around 2 or 3 times for 1-time and 2-time, but the worst measured processing time is 4.7250 milliseconds;
+		\item the processing time increases with the frame size $N$ decreasing;
+		\item The number of ports evaluated during the proposed scheme is also an important variable regarding processing time optimizations.
+	\end{itemize}
+	
+\end{frame}
 
 
 
