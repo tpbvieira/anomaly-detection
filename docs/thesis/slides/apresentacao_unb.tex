@@ -983,9 +983,9 @@
 		\item Network traffic time; 
 		\item Frame size denoted as $N$; 
 		\item Number of network ports denoted as $M$; 
-		\item Mean processing time for eigen analysis based on sample covariance of zero mean (1-time); 
-		\item Mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (2-time); 
-		\item Mean processing time for EDC MOS scheme, (3-time).
+		\item Mean processing time for eigen analysis based on sample covariance of zero mean (\textbf{1-time}); 
+		\item Mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (\textbf{2-time}); 
+		\item Mean processing time for EDC MOS scheme (\textbf{3-time}).
 	\end{itemize}
 	
 \end{frame}
@@ -1262,12 +1262,211 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
 	\begin{itemize}
-		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
-		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
-		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
-		\item We conduct a performance evaluation for complexity analysis and processing time.
+		\item A \textbf{key challenge} to use sparse coding and dictionary learning for \textbf{classification} is how to find \textbf{proper dictionaries and coefficients};
+		\item The data and its dictionary can be \textbf{multidimensional};
+		\item \textbf{Tensor decompositions} can be useful to extract \textbf{hidden patterns} and structure in \textbf{multidimensional} data analytics problems;
+		\item The \textbf{fundamental issue} with the \textbf{imbalanced learning} problem is the ability of imbalanced data to \textbf{compromise the performance of algorithms};
 	\end{itemize}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Introduction
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Introduction}
+	\begin{itemize}
+		\item We propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds; 
+		\item Tensor-based DL for learning fraudulent and legitimate data separately
+		\item Apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate.
+	\end{itemize}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+	\begin{itemize}
+		\item Tensor-based algorithms for recovering of a known separable dictionary outperform existing schemes when dealing with growing multidimensional datasets.
+	\end{itemize}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+
+	Consider a generic sparse recovery problem
+	\begin{equation}\label{eq:4_eq01}
+		\textbf{X} = \textbf{A} \cdot \textbf{S} + \textbf{W},
+	\end{equation}
+	where $\textbf{X} \in \mathbb{C}^{M \times T}$ represents $T$ consecutive observations from $M$ features, $\textbf{A} \in \mathbb{C}^{M \times N}$ is the overcomplete dictionary where $N \ll T$, $\textbf{S} \in \mathbb{C}^{N \times T}$ represents the sparse coefficient matrix, $\textbf{W} \in \mathbb{C}^{M \times T}$ is the additive noise, and $M < N < T$.
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+
+	Consider a sparse recovery problem for a separable 2-D dictionary that we can write as
+	\begin{equation}\label{eq:4_eq02}
+		\textbf{X} = (\textbf{A}^{(1)} \otimes \textbf{A}^{(2)}) \cdot \textbf{S} + \textbf{W},
+	\end{equation}
+	where $\textbf{A} = (\textbf{A}^{(1)} \otimes \textbf{A}^{(2)})$, $\textbf{A}^{(1)} \in \mathbb{C}^{M_1 \times N_1}$, $\textbf{A}^{(2)} \in \mathbb{C}^{M_2 \times N_2}$, $M = M_1 \times M_2$, and $N = N_1 \times N_2$.
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+
+	we generate two random dictionaries $\textbf{A}^{(1)}$ and $\textbf{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the known dictionary $\textbf{A}$
+	\begin{equation}\label{eq:4_eq03}
+		\textbf{A} = (\textbf{A}^{(1)} \otimes \textbf{A}^{(2)}).
+	\end{equation}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+
+	Generate a synthetic data set $\textbf{X}$ from $\textbf{A}$, estimate the initial $\hat{\textbf{A}}$ and make the dictionary separable decomposing the approximation of $\hat{\textbf{A}}$ and generating $\hat{\textbf{A}}^{(1)}$ and $\hat{\textbf{A}}^{(2)}$
+	\begin{equation}\label{eq:4_eq04}
+		\hat{\textbf{A}} = (\hat{\textbf{A}}^{(1)} \otimes \hat{\textbf{A}}^{(2)}),
+	\end{equation}
+	and use it for DL recovery experiments using MOD, K-SVD, RLS-DLA, T-MOD and K-HOSVD. 
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+	\begin{figure}[!htb]
+		\centering 
+		\includegraphics[width=10cm]{../figures/ch4/s=5_snr=20_L=2000_noIt=100_N=20_K=50.eps}
+		\caption{Cumulative atom identification per degree rates. $T=2000$, $M=20$, $N=50$}
+		\label{fig:fig1}
+	\end{figure}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Motivation: Tensor-based Dictionary Recovery
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
+	\begin{figure}[!htb]
+		\centering 
+		\includegraphics[width=10cm]{../figures/ch4/5_20_2000_24000_100.eps}
+		\caption{Cumulative atom identification per degree rates. $T=2000$, $M=80$, $N=300$}
+		\label{fig:fig2}
+	\end{figure}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Related Works
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Related Works}
+
+	\begin{itemize}
+		\item Wright \emph{et al} [93] have proposed a face \textbf{recognition method} that uses training face images as dictionaries and an $l_1$ sparse optimization method in the classification stage. The authors show that the recognition task can be \textbf{successfully} accomplished even using \textbf{random features};
+		\item Roemer \emph{et al} [78] have proposed a \textbf{tensor-based multidimensional extensions for MOD and K-SVD algorithms} and show their improved performances numerically, for the dictionary reconstruction problem;
+		\item To the best of our knowledge \textbf{there is no similar model} applied to \textbf{fraud detection}.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Data Model
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Data Model}
+
+	\begin{itemize}
+		\item We adopt a synthetic financial datasets for fraud detection generated by PaySim;
+		\begin{itemize}
+			\item 9 features (variables);
+			\item 2.770.408 transactions(observations);
+			\item labels to classify fraudulent or legitimate transactions;
+			\item 2.762.195 of normal transactions.
+			\item 8.213 fraudulent transactions(0,30 \%);
+		\end{itemize}
+	\end{itemize}
+
+	Training data as $\textbf{X}_r$,  test data as $\textbf{X}_e$. 
+
+	Normal train data is $\textbf{X}_r^o$ and fraud train data is $\textbf{X}_r^f$. 
+
+	The same notation is applied to qualify $\textbf{A}$ and $\textbf{S}$.
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Tensor-based Sparse Representation Classification
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Tensor-based Sparse Representation Classification}
+
+	\begin{itemize}
+		\item Split the training data into fraud and normal ($\textbf{X}_r^f$ and $\textbf{X}_r^o$);
+		\item Estimate the initial dictionaries $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
+		\item Apply the dictionaries and the data matrices to the selected DL algorithms for learning the best dictionaries $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
+		\item Process each transaction of $\textbf{X}_e$, denoted as $\textbf{x}_t$, to generate  $\hat{\textbf{s}}_t^f$ and $\hat{\textbf{s}}_t^o$;
+		\item Compute signal reconstruction for each test transaction $t$
+			\begin{equation}\label{eq:4_eq041}
+				\hat{\textbf{x}}_t^f = \hat{\textbf{A}}_r^f \cdot \hat{\textbf{s}}_t^f
+			\end{equation}
+			\begin{equation}\label{eq:4_eq042}
+				\hat{\textbf{x}}_e^o = \hat{\textbf{A}}_r^o \cdot \hat{\textbf{s}}_e^o
+			\end{equation}
+		\item Compare $\hat{\textbf{x}}_t^f$ and $\hat{\textbf{x}}_t^o$ to $\textbf{x}_t$ to classify the transaction as fraud or normal according to the minimum reconstruction error.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Experiments
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Experiments}
+
+	\begin{itemize}
+		\item We propose to evaluate the \textbf{K-HOSVD} to analyze how a tensor-based DL algorithm can highlight the \textbf{discriminative structure for fraud detection};
+		\item We compare the proposed approach against the \textbf{Support Vector Machines (SVM) Logistic Regression (LR) using PCA data};
+		\item We adopt the area under the Receiver Operating Characteristic (\textbf{ROC}) curve and the area under the Precision-Recall (\textbf{PR}) curve.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Results}
+
+	\begin{table}[h!]
+	  \centering
+	  \scriptsize
+	  \caption{Results for fraud detection from mobile money transactions} 
+	  \label{tab:4_tab1}
+	  \begin{tabular}{ c c c c c }
+		\toprule
+		\multirow{2}{*}{\textbf{Classifier}}   &\multicolumn{2}{c}{\textbf{undersample/undersample}} &\multicolumn{2}{c}{\textbf{undersample/complete}}\\ 
+				\hhline{~----}
+				&\textbf{ROC-AUC} &\textbf{PR-AUC} &\textbf{ROC-AUC} &\textbf{PR-AUC}\\
+		\midrule
+		SVM &0.5039 &0.7493 &0.8496 &\color{red}0.8497 \\
+		LR with PCA &\color{red}0.9767 &\color{red}0.9793 &0.5633 &0.0051 \\
+		K-HOSVD ($K=3$, $N=40$) &0.8622 &0.8917 &\color{red}0.8652 &0.4578 \\
+	    \bottomrule
+	  \end{tabular}
+	\end{table}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Results}
+
+	\begin{itemize}
+		\item SVM presents the best PR-AUC for generalization, but its PR-AUC was the worst for training and testing with undersampled data;
+		\item LR with PCA data presents the best results for training and testing with undersampled data, but the complete testing data presents a very low PR-AUC;
+		\item K-HOSVD presents higher PR-AUC than SVM for undersampled data, but its results are worst than LR with PCA for the same scenario;
+		\item K-HOSVD presents better PR-AUC than LR with PCA and the best ROC-AUC for training the undersampled data and test with complete data.
+	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Results
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Results}
+
+	Our approach presents average results if compared to two well known and highly adopted classifier algorithms for fraud detection from mobile money transactions.
+
 \end{frame}
 
 
@@ -1278,16 +1477,54 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \section{Conclusion and Future Work}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Introduction
+%	FRAME: Conclusion
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Introduction}
+\begin{frame}[c]{Conclusion}
+
 	\begin{itemize}
-		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
-		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
-		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
-		\item We conduct a performance evaluation for complexity analysis and processing time.
+		\item Synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis;
+		\item This thesis presented a proposal to address the offline mobile security problem through malicious behavior analysis. The solution has positive results in terms of performance;
+		\item A tensor-based approach can be used for fraud detection from mobile money transactions, with average results
 	\end{itemize}
+
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Contributions
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Contributions}
+% 	\begin{enumerate}
+% 		\item We proposed an approach based on eigen similarity analysis for extracting detailed information about accurate time and network ports under network attack, and evaluated the accuracy and performance of the proposed framework applied to an experimental scenario and to the DARPA 1998 dataset;
+% 		\item We discussed the computational complexity of the proposed framework and evaluated the required processing time for tested scenarios;
+% 		\item We proposed an architecture and techniques for offline behavioral analysis of a corporate mobile client security architecture;
+% 		\item We discussed the processing time of the proposed framework for mobile devices.
+% 	\end{enumerate}
+% \end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Contributions
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Contributions}
+	\begin{enumerate}
+		% \item We proposed a tensor-based dictionary learning approach for fraud detection in mobile payment transactions;
+		\item We published the following papers reporting our results:
+		\begin{enumerate}
+			\item T. P. B. Vieira, D. F. Ten\'orio, J. P. C. L. da Costa, E. P. de Freitas, G. Del Galdo, and R. T. de Sousa J\'unior, \textit{Model Order Selection and Eigen Similarity based Framework for Detection and Identication of Network Attacks}. Journal of Networking and Computer Applications (JNCA), Vol 90, Jul 2017, Pages 26–41.
+			\item T. Galibus, T. P. B. Vieira, E. P. de Freitas, R. Albuquerque, J. P. C. L. da Costa, R. T. de Sousa Jr, V. Krasnoproshin, A. Zaleski, H. Vissia, and G. del Galdo, \textit{Offline Mode for Corporate Mobile Client Security Architecture}. Mobile Networks and Applications, Springer, Mar 2017, Pages 1-17.
+		\end{enumerate}
+	\end{enumerate}
+\end{frame}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Future Work
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[c]{Future Work}
+	\begin{enumerate}
+		\item To adopt one dictionary with basis vectors that represent legitimate and fraudulent data, as a concatenation or as a kronecker product;
+		\item To adopt discriminative discriminative functions for T-MOD and K-HOSVD, such as the Fisher discrimination criterion;
+		\item To extend the evaluation for other DL algorithms.
+		% \item Improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets;
+		% \item Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high throughput network traffic;
+		% \item Evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis;
+		% \item Explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints;
+	\end{enumerate}
 \end{frame}
 
 \end{document}
