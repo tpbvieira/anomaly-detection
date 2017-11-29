@@ -99,9 +99,10 @@
 {
   \begin{minipage}[b][\paperheight]{\textwidth}
     \vfill
+    \vspace*{0.5em}
     \ifx\inserttitle\@empty%
     \else%
-    {\raggedright\linespread{1.0}\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
+      {\raggedright\linespread{1.0}\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
     \vspace*{0.5em}
     \fi%
     \ifx\insertsubtitle\@empty%
@@ -118,14 +119,14 @@
     \fi%
     \ifx\insertdate\@empty%
     \else%
-    {\usebeamerfont{date}\usebeamercolor[fg]{date}\small{Data: \today} \par}%
+    {\usebeamerfont{date}\usebeamercolor[fg]{date}\small{Date: \today} \par}%
     \fi%
     \ifx\insertinstitut\@empty%
     \else%
     \vspace*{5mm}
     {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
     \fi%
- 	\hfill \includegraphics[height=20mm]{logo}  \par
+ 	% \hfill \includegraphics[height=20mm]{logo}  \par
 	\vspace*{5mm}
     \vfill
   \end{minipage}

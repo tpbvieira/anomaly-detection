@@ -53,31 +53,23 @@
 \usepackage{hhline}
 \usepackage{color, colortbl}
 
+\usepackage[backend=bibtex, style=numeric, defernumbers=true]{biblatex}
+\addbibresource{../references.bib}
+
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
 
 \definecolor{lightgray}{gray}{0.8}
 \definecolor{Gray}{gray}{0.9}
 
-
 \title{Discriminative Sensing Based on Signal Processing for Information Security Analysis}
 \subtitle{\small{Ph.D. Thesis Qualification}}
-\date{\today}
 \author{\texttt{Thiago P. de B. Vieira \newline \textbf{Advisor:} João Paulo C. L. da Costa} }
-\institute{Universidade de Brasília 
-	\par \scriptsize{Departamento de Engenharia Elétrica - ENE/FT}
-	\par \scriptsize{Progama de Pós-Graduação em Engenharia Elétrica - PPGEE}
-}
+\institute{
+		\scriptsize{Universidade de Brasília}
+	\\ 	\scriptsize{Departamento de Engenharia Elétrica - ENE/FT}
+	\\ \scriptsize{Progama de Pós-Graduação em Engenharia Elétrica - PPGEE}}
 
-\hypersetup{
-	pdfauthor = {Thiago P. de B. Vieira},
-	pdfsubject = {Discriminative Sensing Based on Signal Processing for Information Security Analysis},
-	pdfkeywords = {Signal Processing, Information Security Analysis},
-	pdfmoddate= {/home/thiago/dev/projects/discriminative-sensing/docs/thesis/slides},
-	pdfcreator = {Sublime and Latex}
-}
 
 \begin{document}
 
@@ -114,71 +106,58 @@
 %	FRAME: Motivation
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Motivation}
-	It is necessary investments to detect \textbf{novel attacks and their variations}
 	\begin{itemize}
-		\item Signal processing schemes have being applied to detect malicious traffic;		
-	\end{itemize}
-	Secure mobile cloud architecture is challenging, specially in \textbf{offline mode}
-	\begin{itemize}
-		\item Signal processing can be applied to \textbf{behavioral analysis of mobile apps in offline mode};		
-	\end{itemize}
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Motivation
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Motivation}
-	\textbf{Fraud detection} of \textbf{Mobile Money Transactions} has been motivating investments
-	\begin{itemize}
-		\item The \textbf{extraction of relevant information} from \textbf{raw or big} data is useful for classification problems and for security analysis.;
-		\item Imbalanced data is challenging for classification related to anomaly detection, novelty detection, fraud detection and attack detection;
-		\item \textbf{Tensor-based} algorithms for \textbf{dictionary learning} can improve \textbf{discriminative sensing} for classification in information security analysis;
+		\item It is necessary investments to detect \textbf{novel attacks and their variations};
+		\item Secure mobile cloud architecture is challenging, specially in \textbf{offline mode}
+		\item \textbf{Fraud detection} of \textbf{Mobile Money Transactions} has been motivating investments
+		\begin{itemize}
+			\item The \textbf{extraction of relevant information} from \textbf{raw or big data} is useful for classification problems and for security analysis.;
+			\item \textbf{Imbalanced data is challenging} for classification related to anomaly detection, novelty detection, fraud detection and attack detection.
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Problem Statement
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Problem Statement}
-	\textbf{This thesis} outlines the development and evaluation of approaches based on \textbf{signal processing for information security analysis}...
+	\textbf{This thesis} outlines the \textbf{development} and evaluation of approaches based on \textbf{signal processing for information security analysis}...
 	\begin{itemize}
-		\item To make the data \textbf{discriminative} for network attack detection, mobile malicious behavior analysis and fraud detection in mobile money transactions.
+		\item To make the data \textbf{discriminative for network attack detection, mobile malicious behavior analysis and fraud detection.}
 	\end{itemize}
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Problem Statement
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Problem Statement}
-	We propose an approach based on \textbf{signal processing techniques for detection of malicious traffic in computer networks}
-	\begin{itemize}
-		\item Signal processing formulation as legitimate traffic, malicious traffic and noise;
-		\item MOS and eigenvalue analysis are applied to network attack detection;
-		\item Eigen similarity analysis identify accurate time and network ports under attack;
-		\item Evaluation through experimental scenario and the DARPA 1998 dataset.
-	\end{itemize}
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Problem Statement
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Problem Statement}
-	This thesis also proposes an \textbf{approach malicious behavior detection in mobile apps}
-	\begin{itemize}
-		\item An architecture for mobile security analysis;
-		\item Offline user behavior analysis based on MOS;
-		\item Scenario analysis for feature selection;
-		\item Processing time evaluation in mobile devices.
-	\end{itemize}
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Problem Statement
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Problem Statement}
-	We also propose a \textbf{tensor-based dictionary learning method for fraud detection from imbalanced data} 
-	\begin{itemize}
-		\item To evidentiate the \textbf{discriminative sensing of a fraud detection dataset};
-		\item Sparse representation based classification (SRC) through learning a tensor-based dictionary;
-		\item Apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate;
-		\item Classify fraud classification of mobile money transactions according to the reconstruction error.
-	\end{itemize}
-\end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Problem Statement
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Problem Statement}
+% 	We propose an approach for \textbf{identification of malicious traffic in computer networks}
+% 	\begin{itemize}
+% 		\item We use\textbf{largest eigenvalues and MOS} to \textbf{network attack detection};
+% 		\item We propose \textbf{Eigen similarity analysis} identify \textbf{accurate time and ports} under attack;
+% 	\end{itemize}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Problem Statement
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Problem Statement}
+% 	This thesis also proposes an \textbf{approach for malicious behavior detection in mobile apps}
+% 	\begin{itemize}
+% 		\item An \textbf{architecture} for mobile security analysis;
+% 		\item \textbf{Offline user behavior analysis} based on MOS;
+% 		\item Scenario analysis for \textbf{feature selection};
+% 		\item \textbf{Processing time} evaluation in \textbf{mobile} devices.
+% 	\end{itemize}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Problem Statement
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Problem Statement}
+% 	We finally propose a \textbf{tensor-based dictionary learning method for fraud detection} 
+% 	\begin{itemize}
+% 		\item Sparse representation based \textbf{classification} (SRC) through learning a \textbf{tensor-based} dictionary;
+% 		\item Apply the \textbf{learned dictionaries to reconstruct} a test signal;
+% 		\item \textbf{Fraud classification} of mobile money transactions according to the \textbf{reconstruction error}.
+% 	\end{itemize}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Contributions
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -203,11 +182,11 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
 	\begin{itemize}
-		\item We model the network traffic as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
-		\item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
+		\item The network traffic is modeled as a signal processing formulation (\textbf{legitimate traffic, malicious traffic and noise});
+		% \item The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis;
 		\item MOS and eigenvalue analysis are applied to detect time frames under attack;
-		\item Eigen similarity analysis for extracting detailed time and network ports under attack;
-		\item We conduct a performance evaluation for complexity analysis and processing time.
+		\item We \textbf{propose Eigen similarity analysis} for extracting detailed time and network ports under attack;
+		\item We \textbf{conduct a performance evaluation} for complexity analysis and processing time.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -216,8 +195,8 @@
 \begin{frame}[c]{Related works}
 	
 	\begin{itemize}
-		\item Classical methods typically employ data mining [39, 34, 70] and regular file analysis [76] to detect patterns that indicate the presence of specific attacks in network traffic;
-		\item Callegari \emph{et al} [104] propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} \textbf{focus on flood attack detection}, not addressing probe attack detection, and their approach relies on \textbf{visual analysis}.
+		% \item \textbf{Classical methods typically employ data mining} \cite{he2008applying,ghourabi2010data,osanaiye2016distributed} and regular file analysis \cite{raynal2004honeypot} to detect patterns that indicate the presence of specific attacks in network traffic;
+		\item Callegari \emph{et al} \cite{Zonglin2009} propose a \textbf{PCA-based} method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} \textbf{focus on flood attack detection, not addressing probe} attack detection, and their approach relies on \textbf{visual analysis}.
 	\end{itemize}
 	
 \end{frame}
@@ -227,8 +206,8 @@
 \begin{frame}[c]{Related works}
 	
 	\begin{itemize}
-		\item Lee \emph{et al.} [61] propose OverSampling PCA, determines the \textbf{anomaly} according to the variation of \textbf{eigenvector by similarity analysis and over sampling}. We apply \textbf{MOS for attack detection} and \textbf{similarity analysis for identification} of time and ports under attack;
-		\item Lu and Ghorbani [63] proposed a \textbf{network anomaly} detection model based on \textbf{network flow, wavelet approximation, and system identification theory}. However, their work requires a \textbf{training} and presents \textbf{limitations} on identification of behaviors without \textbf{significant outliers}.
+		\item Lee \emph{et al.} \cite{Lee2013} propose OverSampling PCA, determines the \textbf{anomaly} according to the variation of \textbf{eigenvector by similarity analysis and over sampling}. We apply \textbf{MOS for attack detection} and \textbf{similarity analysis for identification} of time and ports under attack;
+		\item Lu and Ghorbani \cite{Lu2009} proposed a \textbf{network anomaly} detection model based on \textbf{network flow, wavelet approximation, and system identification theory}. However, their work requires a \textbf{training} and presents \textbf{limitations} on identification of behaviors without \textbf{significant outliers}.
 	\end{itemize}
 	
 \end{frame}
@@ -237,9 +216,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Datasets}
 	
-	We focus on \textbf{probe} and \textbf{flooding} attacks;
-
-	Two scenarios: 
+	We focus on \textbf{probe} and \textbf{flooding} attacks for two scenarios: 
 	\begin{itemize}
 		\item A \textbf{synthetic dataset} as a signal superposition of legitimate traffic, noise and malicious traffic;
 		\item Selected cases of \textbf{DARPA dataset} that reproduce probe and flooding attacks.
@@ -251,15 +228,16 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Data Model}
 	
-	Network traffic:
-
+	Network traffic as a signal superposition matrix:
 	\begin{equation}\label{eq:eq01}
 		\boldsymbol{X}^{(q)} = \boldsymbol{U}^{(q)} + \boldsymbol{N}^{(q)} + \boldsymbol{A}^{(q)},
 	\end{equation}
 
-	$\boldsymbol{X}^{(q)} \in \mathbb{R}^{M \times N}$ has \emph{M} rows and \emph{N} columns. 
+	The data is divided into $Q$ time frames.
 
-	Each row is a TCP or UDP port, and each column represents time bins (minute)
+	$\boldsymbol{X}^{(q)} \in \mathbb{R}^{M \times N}$ has \emph{M} rows and \emph{N} columns.
+
+	Each \textbf{row} is a \textbf{TCP or UDP port}, and each \textbf{column} represents \textbf{time} bins (minute).
 
 	Each element $x_{m,n}^{(q)}$ stands for the number of times that the port $m$ appears at the $n$-th minute, at the $q$-th time frame.
 
@@ -293,16 +271,16 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Synthetic Dataset
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Synthetic Dataset}
+% \begin{frame}[c]{Synthetic Dataset}
 	
-	\begin{figure}[h!]
-	     \centering 
-	     \includegraphics[width=9cm]{../figures/fig04.png}
-	     \caption{Network traffic of user independent operations for network management.}
-	     \label{fig:2_fig4}
-	\end{figure}
+% 	\begin{figure}[h!]
+% 	     \centering 
+% 	     \includegraphics[width=9cm]{../figures/fig04.png}
+% 	     \caption{Network traffic of user independent operations for network management.}
+% 	     \label{fig:2_fig4}
+% 	\end{figure}
 
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Synthetic Dataset
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -316,41 +294,41 @@
 	\end{figure}
 
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Synthetic Dataset
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Synthetic Dataset}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Synthetic Dataset
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Synthetic Dataset}
 	
-	\begin{figure}[h!]
-	     \centering 
-	     \includegraphics[width=9cm]{../figures/fig06.png}
-	     \caption{Large amount of “UDP echo” requests and replies, causing packet flooding.}
-	     \label{fig:2_fig6}
-	\end{figure}
+% 	\begin{figure}[h!]
+% 	     \centering 
+% 	     \includegraphics[width=9cm]{../figures/fig06.png}
+% 	     \caption{Large amount of “UDP echo” requests and replies, causing packet flooding.}
+% 	     \label{fig:2_fig6}
+% 	\end{figure}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Synthetic Dataset
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Synthetic Dataset}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Synthetic Dataset
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{Synthetic Dataset}
 	
-	\begin{figure}[h!]
-	     \centering 
-	     \includegraphics[width=9cm]{../figures/fig07.png}
-	     \caption{Connection attempts in order to identify active ports.}
-	     \label{fig:2_fig7}
-	\end{figure}
+% 	\begin{figure}[h!]
+% 	     \centering 
+% 	     \includegraphics[width=9cm]{../figures/fig07.png}
+% 	     \caption{Connection attempts in order to identify active ports.}
+% 	     \label{fig:2_fig7}
+% 	\end{figure}
 
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: DARPA Dataset
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{DARPA Dataset}
 	
 	\begin{itemize}
-		\item 7 weeks of sniffed traffic saved into raw TCPDUMP packet data, from inside and outside origins, with labeled attacks;
-		\item The most cases of DoS focus on exploit system vulnerabilities instead of on flooding attack;
-		\item We select the cases that reproduce probe and flooding attacks.
+		\item \textbf{7 weeks} of sniffed traffic saved into raw TCPDUMP packet data, from \textbf{inside and outside} origins, with \textbf{labeled} attacks;
+		\item The most cases of \textbf{DoS focus on exploit} system vulnerabilities instead of on \textbf{flooding} attack;
+		\item We select the cases that reproduce \textbf{probe and flooding} attacks.
 	\end{itemize}
 
 \end{frame}
@@ -367,95 +345,95 @@
 	\end{figure}
 
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Proposed Framework
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Proposed Framework}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Proposed Framework
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Proposed Framework}
 	
-	For \textbf{flooding} detection, calculate the \textbf{sample covariance matrix} $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
-	\begin{equation}\label{eq:eq02}
-		\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
-	\end{equation}
+% 	For \textbf{flooding} detection, calculate the \textbf{sample covariance matrix} $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
+% 	\begin{equation}\label{eq:eq02}
+% 		\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
+% 	\end{equation}
 
-	the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
-	\begin{equation}\label{eq:eq03}
-		\boldsymbol{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^{\rm T}}.
-	\end{equation}
+% 	the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
+% 	\begin{equation}\label{eq:eq03}
+% 		\boldsymbol{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^{\rm T}}.
+% 	\end{equation}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Proposed Framework
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Proposed Framework}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Proposed Framework
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Proposed Framework}
 	
-	For \textbf{probing} detection, compute the \textbf{sample covariance} $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have \textbf{zero mean and unitary standard deviation} as follows
-	\begin{equation}\label{eq:eq04}
-		\boldsymbol{z}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}.
-	\end{equation}
+% 	For \textbf{probing} detection, compute the \textbf{sample covariance} $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have \textbf{zero mean and unitary standard deviation} as follows
+% 	\begin{equation}\label{eq:eq04}
+% 		\boldsymbol{z}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}.
+% 	\end{equation}
 
-	The sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)}$ can be calculated via 
-	\begin{equation}\label{eq:eq05}
-		\boldsymbol{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\boldsymbol{Z}^{(q)}\boldsymbol{Z}^{(q)^{\rm T}}.
-	\end{equation}
+% 	The sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)}$ can be calculated via 
+% 	\begin{equation}\label{eq:eq05}
+% 		\boldsymbol{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\boldsymbol{Z}^{(q)}\boldsymbol{Z}^{(q)^{\rm T}}.
+% 	\end{equation}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Proposed Framework
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Proposed Framework}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Proposed Framework
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Proposed Framework}
 	
-	we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$
+% 	we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$
 
-	Compute eigenvalue decomposition (EVD) to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix (time frame $q$), according to (\ref{eq:eq060}).
-	\begin{equation}\label{eq:eq06}
-	\boldsymbol{C}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
-	\end{equation}
-	\begin{equation}\label{eq:eq060}
-	\boldsymbol{e}^{(q)} = \rm diag(\boldsymbol{\Lambda}^{(q)}),
-	\end{equation}
+% 	Compute eigenvalue decomposition (EVD) to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix (time frame $q$), according to (\ref{eq:eq060}).
+% 	\begin{equation}\label{eq:eq06}
+% 	\boldsymbol{C}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
+% 	\end{equation}
+% 	\begin{equation}\label{eq:eq060}
+% 	\boldsymbol{e}^{(q)} = \rm diag(\boldsymbol{\Lambda}^{(q)}),
+% 	\end{equation}
 
-	The eigenvalues should be sorted in descending order, i.e., $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > ... > \lambda_{m}^{(q)}$.
+% 	The eigenvalues should be sorted in descending order, i.e., $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > ... > \lambda_{m}^{(q)}$.
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Proposed Framework
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Proposed Framework}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Proposed Framework
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Proposed Framework}
 	
-	\begin{equation}\label{eq:eq07}
-		\boldsymbol{E} =
-		\begin{bmatrix}
-			\color{red}\lambda_1^{(1)} & \color{red}\lambda_1^{(2)} & \color{red}\lambda_1^{(3)} & \cdots & \color{red}\lambda_1^{(Q)} \\
-			\lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
-			\lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
-			\vdots & \vdots & \ddots & \vdots  \\
-			\lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
-		\end{bmatrix}.
-	\end{equation}
+% 	\begin{equation}\label{eq:eq07}
+% 		\boldsymbol{E} =
+% 		\begin{bmatrix}
+% 			\color{red}\lambda_1^{(1)} & \color{red}\lambda_1^{(2)} & \color{red}\lambda_1^{(3)} & \cdots & \color{red}\lambda_1^{(Q)} \\
+% 			\lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
+% 			\lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
+% 			\vdots & \vdots & \ddots & \vdots  \\
+% 			\lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
+% 		\end{bmatrix}.
+% 	\end{equation}
 
-	\begin{equation}\label{eq:eq08}
-		\boldsymbol{e}_{\rm max} = \boldsymbol{E}\{:,1\} = [ \lambda_1^{(1)}, \lambda_1^{(2)} ... \lambda_1^{(Q)}]
-	\end{equation}
+% 	\begin{equation}\label{eq:eq08}
+% 		\boldsymbol{e}_{\rm max} = \boldsymbol{E}\{:,1\} = [ \lambda_1^{(1)}, \lambda_1^{(2)} ... \lambda_1^{(Q)}]
+% 	\end{equation}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: MOS Scheme
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{MOS Scheme}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: MOS Scheme
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{MOS Scheme}
 
-	\begin{itemize}
-		\item Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$;
-		\item $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$.
-		\item $\hat{d}$ is the estimated number of time frames under attack.
-	\end{itemize}
+% 	\begin{itemize}
+% 		\item Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$;
+% 		\item $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$.
+% 		\item $\hat{d}$ is the estimated number of time frames under attack.
+% 	\end{itemize}
 	
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Eigenvalue Analysis
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigenvalue Analysis}
 	
-	Through eigenvalue analysis, we identify the time frames $q$ under attack
+	\textbf{MOS} reveal the \textbf{number of attacks} and through \textbf{eigenvalue analysis} we identify the \textbf{time frames} $q$ under attack
 
 	\begin{figure}[h!]
 	     \centering 
@@ -469,14 +447,16 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	The reference eigenvectors $\boldsymbol{v}^{(q)}$ is calculated from the traffic without attack. 
+	\textbf{Eigen Similarity} Analysis attempts to identify \textbf{time and ports}.
+
+	The \textbf{reference eigenvectors} $\boldsymbol{v}^{(q)}$ is calculated from the \textbf{traffic without attack}.
 
 	Each $\boldsymbol{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames shall be individually appended into $\boldsymbol{X}^{(q)}$
 	\begin{equation}\label{eq:eq12}
 		\boldsymbol{X}_{n} = \{\boldsymbol{X}^{(q)} | \boldsymbol{x}^{(\hat{q})}_{(n)}\}.
 	\end{equation}
 
-	The resultant $\boldsymbol{X}_{(n)}$ is necessary to obtain $\boldsymbol{v}_{(n)}$, through (\ref{eq:eq06}).
+	The resultant $\boldsymbol{X}_{(n)}$ is necessary to obtain $\boldsymbol{v}_{(n)}$
 
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -490,7 +470,7 @@
 
 	$\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of one network traffic
 
-	For eigen similarity analysis, we evaluate the cosine similarity to identify legitimate and malicious traffic,
+	we evaluate the cosine similarity to identify legitimate and malicious traffic,
 	\begin{equation}
 		\label{eq:eq11}
 		s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}}},
@@ -502,7 +482,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	We evaluate \textbf{three approaches} for eigen similarity analysis: 
+	We propose and evaluate \textbf{three approaches} for eigen similarity analysis: 
 	\begin{itemize}
 		\item \textbf{incremental:} concatenates eigenvectors incrementally;
 		\item \textbf{individual:} concatenates each eigenvector individually and discards;
@@ -551,7 +531,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}{Eigen Similarity Analysis}
 	
-	For detection of ports under attack, the $\boldsymbol{v}^{(q)}$ last most significant eigenvectors without attack is compared against the $\boldsymbol{v}_{(n)}$ identified as under attack, 
+	\textbf{For detection of ports under attack}, the $\boldsymbol{v}^{(q)}$ last most significant eigenvectors without attack is compared against the $\boldsymbol{v}_{(n)}$ identified as under attack, 
 
 	Evaluate the cosine similarity of each $m$-th port of all $\boldsymbol{\hat{n}}$ minutes.
 
@@ -565,81 +545,83 @@
 	\end{equation}
 
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Results
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Results}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Results
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Results}
 	
-	\begin{table}[h!]
-	  \centering
-	  \scriptsize
-	  \caption{Largest Eigenvalue related to attacks detection}
-	  \label{tab:tab3}
-	  \begin{tabular}{ c c c c c }
-		\toprule
-		\multirow{3}{*}{\textbf{Time Frame} $q$} &\multicolumn{4}{c }{\textbf{Vectors GETV}}\\ 
-				\hhline{~----}
-			&\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}\\
-			&\textbf{\emph{synflood/fraggle}}	 &\textbf{\emph{synflood}}	 &\textbf{\emph{fraggle}}	 &\textbf{\emph{port scan}}\\
-		\midrule
-		1 &1887545 &1887545 &1887545 &2,0734 \\
-		2 &2341327 &2341327 &2341327 &2,1451 \\
-		3 &3213867 &3213867 &3213867 &\color{red}10,0718 \\
-		4 &\color{red}133238294 &\color{red}133238294 &731229 &2,1620 \\
-		5 &\color{red}92384021611 &6367983 &\color{red}92384021611 &2,4253 \\
-		6 &708335 &708335 &708335 &1,7948 \\
-	    \bottomrule
-	  \end{tabular}
-	\end{table}
+% 	\begin{table}[h!]
+% 	  \centering
+% 	  \scriptsize
+% 	  \caption{Largest Eigenvalue related to attacks detection}
+% 	  \label{tab:tab3}
+% 	  \begin{tabular}{ c c c c c }
+% 		\toprule
+% 		\multirow{3}{*}{\textbf{Time Frame} $q$} &\multicolumn{4}{c }{\textbf{Vectors GETV}}\\ 
+% 				\hhline{~----}
+% 			&\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}\\
+% 			&\textbf{\emph{synflood/fraggle}}	 &\textbf{\emph{synflood}}	 &\textbf{\emph{fraggle}}	 &\textbf{\emph{port scan}}\\
+% 		\midrule
+% 		1 &1887545 &1887545 &1887545 &2,0734 \\
+% 		2 &2341327 &2341327 &2341327 &2,1451 \\
+% 		3 &3213867 &3213867 &3213867 &\color{red}10,0718 \\
+% 		4 &\color{red}133238294 &\color{red}133238294 &731229 &2,1620 \\
+% 		5 &\color{red}92384021611 &6367983 &\color{red}92384021611 &2,4253 \\
+% 		6 &708335 &708335 &708335 &1,7948 \\
+% 	    \bottomrule
+% 	  \end{tabular}
+% 	\end{table}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Results
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Results}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Results
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Results}
 	
-	\begin{table}[h!]
-	  \centering
-	  \tiny
-	  \caption{MOS schemes applied to port scan and flood detection}
-	  \label{tab:tab4}
-	  \begin{tabular}{ c c c c c c c c }
-		\toprule
-		\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} &{\textbf{(d)}}\\ 
-				\hhline{~------~}
-			&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
-		\midrule
-		Detection of synflood \\(presence of attack) &2 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
-		Detection of synflood \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
-		\midrule
-		Detection of fraggle \\(presence of attack) &1 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
-		Detection of fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
-		\midrule
-		Detection of port scan \\(presence of attack) &1 &1 &\textbf{\color{red}1} &1 &\textbf{\color{red}1} &9 &\textbf{\color{red}1} \\
-		Detection of port scan \\(absence of attack) &0 &0 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} \\
-		\midrule
-		Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} \\
-		Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
-	    \bottomrule
-	  \end{tabular}
-	\end{table}
+% 	\begin{table}[h!]
+% 	  \centering
+% 	  \tiny
+% 	  \caption{MOS schemes applied to port scan and flood detection}
+% 	  \label{tab:tab4}
+% 	  \begin{tabular}{ c c c c c c c c }
+% 		\toprule
+% 		\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} &{\textbf{(d)}}\\ 
+% 				\hhline{~------~}
+% 			&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
+% 		\midrule
+% 		Detection of synflood \\(presence of attack) &2 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
+% 		Detection of synflood \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
+% 		\midrule
+% 		Detection of fraggle \\(presence of attack) &1 &1 &\textbf{\color{red}1} &5 &\textbf{\color{red}1} &4 &\textbf{\color{red}1} \\
+% 		Detection of fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
+% 		\midrule
+% 		Detection of port scan \\(presence of attack) &1 &1 &\textbf{\color{red}1} &1 &\textbf{\color{red}1} &9 &\textbf{\color{red}1} \\
+% 		Detection of port scan \\(absence of attack) &0 &0 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} \\
+% 		\midrule
+% 		Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} &5 &\textbf{\color{red}2} \\
+% 		Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{\color{red}0} &1 &\textbf{\color{red}0} &3 &\textbf{\color{red}0} \\
+% 	    \bottomrule
+% 	  \end{tabular}
+% 	\end{table}
 
-\end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Results
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Results}
+% \end{frame}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Results
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Results}
 	
-	MOS schemes for probing and flooding attack detection:
-	\begin{itemize}
-		\item The \textbf{largest eigenvalues visually} indicate the time frame under probing and flooding attack detection;
-		\item MOS schemes can estimate it mathematically;
-		\begin{itemize}
-			\item \textbf{EDC and EFT} estimate \textbf{correctly} the number of attacks $d$;
-		\end{itemize}
-	\end{itemize}
+% 	MOS schemes for probing and flooding attack detection:
+% 	\begin{itemize}
+% 		\item The \textbf{largest eigenvalues visually} indicate the time frame under probing and flooding attack detection;
+% 		\item MOS schemes can estimate it mathematically;
+% 		\begin{itemize}
+% 			\item \textbf{EDC and EFT} estimate \textbf{correctly} the number of attacks $d$;
+% 		\end{itemize}
+% 	\end{itemize}
 
-\end{frame}
+% 	It is still necessary \textbf{to identify} the \textbf{times and ports} under attack.
+
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Results
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -946,16 +928,16 @@
 	
 	% Misclassification is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$;
 	\begin{itemize}
-		\item High FP and misclassification due to legitimate traffic be massive (such as an attack) sometimes;
-		\item Callegari \emph{et al} is a statistical method, based on PCA, without training or learning methods
+		\item \textbf{High FP and misclassification} due to \textbf{massive legitimate traffic} (such as an attack) sometimes;
+		\item Callegari \emph{et al} is based on PCA, without training
 		\begin{itemize}
 			\item 82 \% while we obtain 100 \%;
-			\item FP and misclassification was not evaluated.
+			\item \textbf{FP and misclassification was not evaluated}.
 		\end{itemize}
-		\item Ghorbani's is based on signal processing techniques and uses DARPA
+		\item Ghorbani's is based on signal processing and uses DARPA
 		\begin{itemize}
 			\item 94.67 \% and 50.00 \%, while we obtain 100 \% and 76.92 \%;
-			\item FP and misclassification was not evaluated.
+			\item \textbf{FP and misclassification was not evaluated}.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -966,29 +948,29 @@
 
 	Complexity Analysis:
 	\begin{itemize}
-		\item the proposed framework is $O(N^3 + Q \log Q + \hat{d}Q + N^3)$ and its worst-case running time is $O(N^3)$;
+		\item The worst-case running time is $O(N^3)$;
 		\item The computational complexity of \textbf{EVD is predominant};
 		\item \textbf{However}, the approach \textbf{splits the data into time frames} with period time $N$, which makes possible to \textbf{limit the growth of $N$} even when \textbf{total time is larger} than $N$;		
 	\end{itemize}
 	
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: Performance Evaluation
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}{Performance Evaluation}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: Performance Evaluation
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}{Performance Evaluation}
 	
-	Processing Time Analysis:
-	\begin{itemize}
-		\item desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM;
-		\item Network traffic time; 
-		\item Frame size denoted as $N$; 
-		\item Number of network ports denoted as $M$; 
-		\item Mean processing time for eigen analysis based on sample covariance of zero mean (\textbf{1-time}); 
-		\item Mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (\textbf{2-time}); 
-		\item Mean processing time for EDC MOS scheme (\textbf{3-time}).
-	\end{itemize}
+% 	Processing Time Analysis:
+% 	\begin{itemize}
+% 		% \item desktop computer with a Intel Core i7-4510U 2.00GHz and 16 GB of RAM;
+% 		\item Network traffic time; 
+% 		\item Frame size denoted as $N$; 
+% 		\item Number of network ports denoted as $M$; 
+% 		\item Mean processing time for eigen analysis based on sample covariance of zero mean (\textbf{1-time}); 
+% 		\item Mean processing time for eigen analysis based on sample covariance of zero mean and unitary standard deviation (\textbf{2-time}); 
+% 		\item Mean processing time for \textbf{EDC MOS}	 scheme (\textbf{3-time}).
+% 	\end{itemize}
 	
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Performance Evaluation
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1030,8 +1012,8 @@
 
 	Processing Time Analysis:
 	\begin{itemize}
-		\item The processing time increases according to traffic time, but the \textbf{worst} processing time is \textbf{4.7250 milliseconds};
-		\item The processing time \textbf{increases} with the frame size $N$ \textbf{decreasing};
+		\item The processing time \textbf{increases according to traffic time}, but the \textbf{worst} processing time is \textbf{4.7250 milliseconds};
+		% \item The processing time \textbf{increases} with the frame size $N$ \textbf{decreasing};
 		\item The number of ports $M$ increases the processing time.
 	\end{itemize}
 	
@@ -1047,6 +1029,7 @@
 %	FRAME: Introduction
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
+	In this work:
 	\begin{itemize}
 		\item We present the \textbf{mobile security architecture for offline mobile client security};
 		\item We discuss the common \textbf{threat} scenarios for \textbf{file cloud apps};
@@ -1059,7 +1042,7 @@
 \begin{frame}[c]{Related works}
 	
 	\begin{itemize}
-		\item According to [53, 55], the \textbf{state-of-the-art mobile cloud security models do not consider} the problem of the offline security mode;
+		\item According to \cite{khan2013towards, khan2015cloud}, the \textbf{state-of-the-art mobile cloud security models do not consider} the problem of the \textbf{offline security mode};
 		\item Providers of the mobile security \textbf{avoid} the problem by completely \textbf{forbidding} the offline access.
 	\end{itemize}
 	
@@ -1077,19 +1060,19 @@
 	\end{figure}
 	
 \end{frame}
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-%	FRAME: The Client-side Architecture
-%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{The Client-side Architecture}
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% %	FRAME: The Client-side Architecture
+% %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+% \begin{frame}[c]{The Client-side Architecture}
 	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=9cm]{../figures/fig02.eps}
-		\caption{The Client-side Architecture}
-		\label{fig:3_02}
-	\end{figure}
+% 	\begin{figure}[h!]
+% 		\centering
+% 		\includegraphics[width=9cm]{../figures/fig02.eps}
+% 		\caption{The Client-side Architecture}
+% 		\label{fig:3_02}
+% 	\end{figure}
 	
-\end{frame}
+% \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Proposal for offline mobile security
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1122,12 +1105,12 @@
 \begin{frame}[c]{MOS for Threat Intelligence}
 	
 	\begin{itemize}
-		\item Previously presented;
+		\item Largest eigenvalue analysis and MOS (Previously presented);
 		\item Applied to user behavior analysis;
 		\begin{itemize}
-			\item File operations modeled as signals into matrices;
-			\item Selected features can highlight malicious behaviors;
-			\item Implemented and evaluated into mobile devices.
+			\item We model file operations as signals (matrices);
+			\item We Select features that can highlight malicious behaviors;
+			\item We implement and evaluate into mobile devices.
 		\end{itemize}
 	\end{itemize}
 	
@@ -1160,7 +1143,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Results
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{Data Modeling and Eigenvalue Decomposition Time}
+\begin{frame}[c]{Result: Data Modeling and Eigenvalue Analysis}
 		
 	\begin{table}
 		\tiny
@@ -1199,7 +1182,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 %	FRAME: Results
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-\begin{frame}[c]{EDC MOS scheme processing time for anomaly detection}
+\begin{frame}[c]{Result: EDC MOS}
 	
 	\begin{table}[!t]
 		\tiny
@@ -1241,11 +1224,11 @@
 \begin{frame}[c]{Results}
 	
 	\begin{itemize}
-		\item The lower window size leads to the larger eigenvalue decomposition time;
-		\item The largest eigenvalue decomposition time, which was the maximum of 421 milliseconds with average of 347.42 milliseconds;
-		\item The MOS processing time increases with the window size decreasing;
-		\item The longest processing time measured is lower than 200 milliseconds;
-		\item This results represent an acceptable processing time for anomaly detection in mobile clients
+		\item The \textbf{lower window} size leads to the \textbf{larger eigenvalue analysis time};
+		\item The largest eigenvalue analysis time: 421 milliseconds with average of 347.42 milliseconds;
+		\item The \textbf{MOS} processing time \textbf{increases} with the \textbf{window size decreasing};
+		\item The longest MOS processing time: lower than 200 milliseconds;
+		\item This results represent an \textbf{acceptable processing time} for \textbf{anomaly detection in mobile clients}.
 	\end{itemize}
 	
 \end{frame}
@@ -1265,7 +1248,7 @@
 		\item A \textbf{key challenge} to use sparse coding and dictionary learning for \textbf{classification} is how to find \textbf{proper dictionaries and coefficients};
 		\item The data and its dictionary can be \textbf{multidimensional};
 		\item \textbf{Tensor decompositions} can be useful to extract \textbf{hidden patterns} and structure in \textbf{multidimensional} data analytics problems;
-		\item The \textbf{fundamental issue} with the \textbf{imbalanced learning} problem is the ability of imbalanced data to \textbf{compromise the performance of algorithms};
+		\item The \textbf{fundamental issue} with the \textbf{imbalanced learning} problem is the ability of imbalanced data to \textbf{compromise the performance of algorithms} \cite{he2009learning};
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1273,9 +1256,9 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Introduction}
 	\begin{itemize}
-		\item We propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds; 
-		\item Tensor-based DL for learning fraudulent and legitimate data separately
-		\item Apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate.
+		\item We propose a tensor-based sparse representation and dictionary learning technique to analyze mobile money transactions in order to identify frauds.
+	% 	\item Tensor-based DL for learning fraudulent and legitimate data separately
+	% 	\item Apply the learned dictionaries to reconstruct a test signal and classify it as fraud or legitimate.
 	\end{itemize}
 \end{frame}
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1291,7 +1274,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
 
-	Consider a generic sparse recovery problem
+	We consider a \textbf{generic sparse recovery problem}
 	\begin{equation}\label{eq:4_eq01}
 		\textbf{X} = \textbf{A} \cdot \textbf{S} + \textbf{W},
 	\end{equation}
@@ -1303,7 +1286,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
 
-	Consider a sparse recovery problem for a separable 2-D dictionary that we can write as
+	Based on Roemer \emph{et al} \cite{roemer2014tensor}, we consider a sparse recovery problem for a \textbf{separable 2-D dictionary} that we can write as
 	\begin{equation}\label{eq:4_eq02}
 		\textbf{X} = (\textbf{A}^{(1)} \otimes \textbf{A}^{(2)}) \cdot \textbf{S} + \textbf{W},
 	\end{equation}
@@ -1315,7 +1298,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
 
-	we generate two random dictionaries $\textbf{A}^{(1)}$ and $\textbf{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the known dictionary $\textbf{A}$
+	We \textbf{generate two random dictionaries} $\textbf{A}^{(1)}$ and $\textbf{A}^{(2)}$ from an i.i.d. zero mean Gaussian random process, and calculate the known dictionary $\textbf{A}$
 	\begin{equation}\label{eq:4_eq03}
 		\textbf{A} = (\textbf{A}^{(1)} \otimes \textbf{A}^{(2)}).
 	\end{equation}
@@ -1326,7 +1309,9 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Motivation: Tensor-based Dictionary Recovery}
 
-	Generate a synthetic data set $\textbf{X}$ from $\textbf{A}$, estimate the initial $\hat{\textbf{A}}$ and make the dictionary separable decomposing the approximation of $\hat{\textbf{A}}$ and generating $\hat{\textbf{A}}^{(1)}$ and $\hat{\textbf{A}}^{(2)}$
+	Generate a synthetic data set $\textbf{X}$ from $\textbf{A}$
+
+	Estimate the initial $\hat{\textbf{A}}$ and make the dictionary separable decomposing the approximation of $\hat{\textbf{A}}$ and generating $\hat{\textbf{A}}^{(1)}$ and $\hat{\textbf{A}}^{(2)}$
 	\begin{equation}\label{eq:4_eq04}
 		\hat{\textbf{A}} = (\hat{\textbf{A}}^{(1)} \otimes \hat{\textbf{A}}^{(2)}),
 	\end{equation}
@@ -1361,8 +1346,8 @@
 \begin{frame}[c]{Related Works}
 
 	\begin{itemize}
-		\item Wright \emph{et al} [93] have proposed a face \textbf{recognition method} that uses training face images as dictionaries and an $l_1$ sparse optimization method in the classification stage. The authors show that the recognition task can be \textbf{successfully} accomplished even using \textbf{random features};
-		\item Roemer \emph{et al} [78] have proposed a \textbf{tensor-based multidimensional extensions for MOD and K-SVD algorithms} and show their improved performances numerically, for the dictionary reconstruction problem;
+		\item Wright \emph{et al} \cite{wright2009robust} have proposed a face \textbf{recognition method} that uses training face images as dictionaries and an $l_1$ sparse optimization method in the classification stage. The authors show that the recognition task can be \textbf{successfully} accomplished even using \textbf{random features};
+		\item Roemer \emph{et al} \cite{roemer2014tensor} have proposed a \textbf{tensor-based multidimensional extensions for MOD and K-SVD algorithms} and show their improved performances numerically, for the dictionary reconstruction problem;
 		\item To the best of our knowledge \textbf{there is no similar model} applied to \textbf{fraud detection}.
 	\end{itemize}
 
@@ -1396,9 +1381,9 @@
 \begin{frame}[c]{Tensor-based Sparse Representation Classification}
 
 	\begin{itemize}
-		\item Split the training data into fraud and normal ($\textbf{X}_r^f$ and $\textbf{X}_r^o$);
-		\item Estimate the initial dictionaries $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
-		\item Apply the dictionaries and the data matrices to the selected DL algorithms for learning the best dictionaries $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
+		\item \textbf{Split} the training data into \textbf{fraud and normal} ($\textbf{X}_r^f$ and $\textbf{X}_r^o$);
+		\item \textbf{Estimate} the initial dictionaries $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
+		\item Apply the \textbf{dictionaries} and the \textbf{data matrices} to the selected \textbf{DL algorithm} for learning the \textbf{best dictionaries} $\hat{\textbf{A}}_r^f$ and $\hat{\textbf{A}}_r^o$;
 		\item Process each transaction of $\textbf{X}_e$, denoted as $\textbf{x}_t$, to generate  $\hat{\textbf{s}}_t^f$ and $\hat{\textbf{s}}_t^o$;
 		\item Compute signal reconstruction for each test transaction $t$
 			\begin{equation}\label{eq:4_eq041}
@@ -1453,10 +1438,10 @@
 \begin{frame}[c]{Results}
 
 	\begin{itemize}
-		\item SVM presents the best PR-AUC for generalization, but its PR-AUC was the worst for training and testing with undersampled data;
-		\item LR with PCA data presents the best results for training and testing with undersampled data, but the complete testing data presents a very low PR-AUC;
-		\item K-HOSVD presents higher PR-AUC than SVM for undersampled data, but its results are worst than LR with PCA for the same scenario;
-		\item K-HOSVD presents better PR-AUC than LR with PCA and the best ROC-AUC for training the undersampled data and test with complete data.
+		\item \textbf{SVM} presents the \textbf{best PR-AUC for generalization}, but its \textbf{PR-AUC} was the \textbf{worst} for training and testing with \textbf{undersampled} data;
+		\item \textbf{LR with PCA} data presents the \textbf{best} results for training and testing with \textbf{undersampled} data, but the \textbf{complete} testing data presents a \textbf{very low PR-AUC};
+		\item \textbf{K-HOSVD} presents \textbf{higher PR-AUC than SVM} for \textbf{undersampled} data, but its results are \textbf{worst than LR with PCA} for the same scenario;
+		\item \textbf{K-HOSVD} presents \textbf{better PR-AUC than LR with PCA} and the \textbf{best ROC-AUC} for training the undersampled data and test with \textbf{complete} data.
 	\end{itemize}
 
 \end{frame}
@@ -1465,7 +1450,7 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Results}
 
-	Our approach presents average results if compared to two well known and highly adopted classifier algorithms for fraud detection from mobile money transactions.
+	Our \textbf{approach} presents \textbf{average results} if compared to two well known and highly adopted \textbf{classifier algorithms for fraud detection} from mobile money transactions.
 
 \end{frame}
 
@@ -1482,9 +1467,9 @@
 \begin{frame}[c]{Conclusion}
 
 	\begin{itemize}
-		\item Synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis;
-		\item This thesis presented a proposal to address the offline mobile security problem through malicious behavior analysis. The solution has positive results in terms of performance;
-		\item A tensor-based approach can be used for fraud detection from mobile money transactions, with average results
+		\item \textbf{Synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion}, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis;
+		\item This thesis presented a proposal to address the \textbf{offline mobile security} problem through malicious behavior analysis. The solution has \textbf{positive results in terms of performance};
+		\item A \textbf{tensor-based DL} approach can be used for \textbf{fraud detection} from mobile money transactions, with \textbf{average results}.
 	\end{itemize}
 
 \end{frame}
@@ -1517,14 +1502,22 @@
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 \begin{frame}[c]{Future Work}
 	\begin{enumerate}
-		\item To adopt one dictionary with basis vectors that represent legitimate and fraudulent data, as a concatenation or as a kronecker product;
-		\item To adopt discriminative discriminative functions for T-MOD and K-HOSVD, such as the Fisher discrimination criterion;
-		\item To extend the evaluation for other DL algorithms.
+		\item To adopt one dictionary with basis vectors that represent legitimate and fraudulent data, as a \textbf{concatenation or as a kronecker product};
+		\item To adopt \textbf{discriminative functions} for T-MOD and K-HOSVD, such as the Fisher discrimination criterion;
+		\item To extend the evaluation for other \textbf{DL algorithms}.
 		% \item Improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets;
 		% \item Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high throughput network traffic;
 		% \item Evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis;
 		% \item Explore enhancements in the analytics methods as well as to extended the approach to be used by mobile devices with even more severe resources constraints;
 	\end{enumerate}
+\end{frame}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: Bibliography
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\begin{frame}[plain, allowframebreaks]{Bibliography}
+	\setbeamertemplate{bibliography item}[text]
+	\printbibliography
 \end{frame}
 
 \end{document}
