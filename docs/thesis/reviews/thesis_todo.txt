@@ -2,10 +2,8 @@
  - melhorar texto para ter mais meu estilo de escrita
  - remover os trabalhos futuros dos capítulos e deixar apenas no capítulo final
  - remover os textos das introducoes dos capítulos que utilizamos no início. podemos mudar para nao ter mais motivacao e apenas introduzir o trabalho que será feito, dado que a motivacao já foi apresentada
- - mudar pra usar dataset or data set?
- - remover a parte de criptografia do trabalho de tanya?
- - corrigir erros de caracteres em 3.4 MOS for Threat Intelligence
- - se temos um separable dictionary, cada um poderia ser inicializado com dicionários de fraud e normal? Teria ganho se comparado com outras formas que concatenam ou tratam de forma totalmente aleatória?
+ - melhorar a descrição da arquitetura do artigo de mobile e adicionar os resultados da análise de ransomware
+ - avaliar se temos um separable dictionary, cada um poderia ser inicializado com dicionários de fraud e normal? Teria ganho se comparado com outras formas que concatenam ou tratam de forma totalmente aleatória?
  - descrever como o dicionário é inicializado
  - testar a métrica de roemer para identificação de atoms	
  - corrigir a questão dos limites de identificacao e as figuras, para conter a quantidade de identificações por iteracao e também a distribuição por grau de identificacao
@@ -13,7 +11,12 @@
  - reescrever tudo que foi copiado na íntegra
  - adicionar no apêndice os trabalhos feitos com image denoising
  - rever a quantidade de transactions, pois target tem 2.770.408 enquanto Synthetic_Financial_Datasets_For_Fraud_Detection.csv tem 6.362.620
- - o número de atoms tem que ser maior que a quatidade de features segundo algué, que copiei para minha tese. temos que validar isto e talvez até refazer nossos experimentos
+ - o número de atoms tem que ser maior que a quatidade de features segundo alguém, que copiei para minha tese. temos que validar isto e talvez até refazer nossos experimentos
+ - incluir a descrição de cada um dos altorithms
+ - why M < N < T ??
+ - corrigir norm_2 em vez de apenas norm? ou a notação está correta?
+ - rever se a complexidade é M³ ou N³
 
  Apresentação
-  - estar preparado para explicar MOS
+  - estar preparado para explicar tudo que for perguntado
+  - ocultar slide 9, sobre contributions

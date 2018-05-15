@@ -11,7 +11,7 @@
 % Ver. 2.3  00.02.2017  Version of Thiago Vieira adding tersor-based
 % methods
 %----------------------------------------------------------------------
-clc; clf; clear all;
+clc; clf;
 
 %% parameters
 set(0,'RecursionLimit',1200)
@@ -23,10 +23,10 @@ snr = 20;                                                                   % sn
 L = 2000;                                                                   % number of training vectors to use
 noIt = 100;                                                                 % number of iterations in each trial
 nofTrials = 100;                                                            % enought trials to obtain reliable results
-N = 20; M1 = 5; M2 = 4;                                                     % features/variables/components
-K = 50; N1 = 10; N2 = 5;                                                    % dictionary's atoms (K << L)
-% N = 80; M1 = 10; M2 = 8;                                                  % features/variables/components
-% K = 300; N1 = 20; N2 = 15;                                                % dictionary's atoms (K << L)
+% N = 20; M1 = 5; M2 = 4;                                                     % features/variables/components
+% K = 50; N1 = 10; N2 = 5;                                                    % dictionary's atoms (K << L)
+N = 80; M1 = 10; M2 = 8;                                                    % features/variables/components
+K = 300; N1 = 20; N2 = 15;                                                  % dictionary's atoms (K << L)
 
 %% select the methods to compare and define file names
 fileNameInfo = sprintf('s=%1i_snr=%li_L=%li_noIt=%li_N=%li_K=%li', s, snr, L, noIt, N, K);

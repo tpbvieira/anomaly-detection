@@ -1,0 +1,11 @@
+data = 300x700
+features = 300
+occurrences = 700
+classes = 100
+class repetition = 7
+
+% class, dict_class_size = 300x7, dict_total_size = 300x700,
+% coef_class_size = 700x7, coef_total_size = 700x700
+
+ - ao iniciar o dicionário, dicionários são contíguos por classe apendados conforme são gerados
+ - ao iniciar os coef, os coeficienes são preenchidos para cada classe mas levando em consideração a coluna em que aparecem

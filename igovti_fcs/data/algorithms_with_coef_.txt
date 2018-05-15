@@ -1,0 +1,34 @@
+linear_model.
+	ElasticNet
+	ElasticNetCV
+	Lars
+	LarsCV
+	Lasso
+	LassoCV
+	LassoLars
+	LassoLarsCV
+	LassoLarsIC
+	LinearRegression
+	LogisticRegression
+	MultiTaskLasso
+	MultiTaskElasticNet
+	MultiTaskLassoCV
+	MultiTaskElasticNetCV
+	OrthogonalMatchingPursuit
+	OrthogonalMatchingPursuitCV
+	PassiveAggressiveClassifier
+	PassiveAggressiveRegressor
+	Perceptron
+	Ridge
+	RidgeClassifier
+	RidgeClassifierCV
+	RidgeCV
+	SGDClassifier
+	SGDRegressor
+svm.SVC
+svm.LinearSVC
+naive_bayes.MultinomialNB
+lda.LDA
+svm.OneClassSVM
+svm.SVR
+svm.NuSVC

@@ -1,0 +1,9 @@
+L = ((np.array(arr.shape) - np.array(patch_shape)) // np.array(extraction_step)) + 1
+
+% Without loss of generality we choose square image patches with w = h = 8, which is in accordance to the patch-sizes mostly used in the literature
+
+MiniBatchDictionaryLearning implements a faster, but less accurate version of the dictionary learning algorithm that is better suited for large datasets.
+
+By default, MiniBatchDictionaryLearning divides the data into mini-batches and optimizes in an online manner by cycling over the mini-batches for the specified number of iterations. However, at the moment it does not implement a stopping condition.
+
+The estimator also implements partial_fit, which updates the dictionary by iterating only once over a mini-batch. This can be used for online learning when the data is not readily available from the start, or for when the data does not fit into the memory.

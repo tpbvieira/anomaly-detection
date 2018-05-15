@@ -27,7 +27,7 @@ Observing the above described landscape, this work outlines the concept of the o
 
 This work proposes an architecture and approach for user behavior analysis based on Model Order Selection (MOS) \cite{tenorio2013greatest}, in order to detect possible threats, and to reduce the risks and the harm of the most common threats, which are the expired user misusing password and the intruder attack. The key expiration period is safely incorporated into the proposed system solution in order to enhance security. Additionally, the behavioral analysis can indicate well known malicious behaviors, their variations, as well as novel attacks, which present low or high variance in comparison to legitimate user behaviors.
 
-The work is structured as follows. Section \ref{sec:3_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec:3_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec:3_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec:3_mos} explains the algorithms for MOS. Section \ref{sec:3_results} discusses the common threat scenarios, the data modeling, the complexity analysis and discussion of the practical implementation results. Section \ref{sec:3_conclusion} concludes the chapter.
+The work is structured as follows. Section \ref{sec:3_related_works} analyzes the most common security problems in the mobile cloud environment and the solutions for offline protection in the BYOD world. Section \ref{sec:3_the_client_security_architecture} outlines the mobile security architecture of the proposed solution. Section \ref{sec:3_offline_mode} presents the detailed scheme of the proposed solution to the problem of offline mobile client security. Section \ref{sec:3_mos} explains the algorithms for MOS. Section \ref{sec:3_results} discusses the common threat scenarios, the data modeling, the performance analysis and discussion of the practical implementation results. Section \ref{sec:3_conclusion} concludes the chapter.
 
 
 \section{Related works}
@@ -80,7 +80,7 @@ Figure \ref{fig:3_02} depicts the client-side protection mechanisms. The client 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=12cm]{figures/fig02.eps}
-	\caption{The Mobile Client Architecture}
+	\caption{The Client-side Architecture}
 	\label{fig:3_02}
 \end{figure}
 
@@ -212,7 +212,7 @@ Note that some MOS schemes may also require the amount of time that compose a ti
 \section{Results and analysis}
 \label{sec:3_results}
 
-This section provides the detailed analysis of the results from the proposed approach regarding security and complexity analysis.
+This section provides the detailed analysis of the results from the proposed approach regarding security and performance analysis.
 
 \subsection{Security analysis}
 \label{sec:3_sec_analysis}
@@ -223,7 +223,7 @@ The security analysis of the proposed model was performed from the user behavior
 This section provides the detailed description of the common scenarios in which the log and behavioral analysis is provided. The behavioral analysis can help to keep the user or administrator informed of the threat and take actions, as well as it can be useful in order to implement threat preventions or reactive actions to avoid threat propagation.
 
 \begin{thm}
-An attacker uses a valid password to perform operations on a bulk of files.
+	An attacker uses a valid password to perform operations on a bulk of files.
 \end{thm}
 
 The session time defines the period when operations can be performed until the next session renewing. During this period, it is still necessary to identify attacks and malicious behavior on file operations, in order to avoid fast attacks to perform unauthorized access to information or data modification. Some attacks present behavioral patterns based on abrupt number of operations, such as the ransomware attack, which is a growing attack \cite{McAfee2015} that blocks the access to valuable resources and requires a payment in order to unblock the content. The access to the resources can be blocked by the attacker through some techniques, when the content is encrypted by the attacker, the ransomware attack can be called cryptoransomware or cryptolocker \cite{kaspersky2014}.
@@ -248,7 +248,7 @@ This threat scenario, where an attacker uses a valid password and session to per
 \end{enumerate}
 
 \begin{thm}
-Usage of expired password to perform unauthorized operations.
+	Usage of expired password to perform unauthorized operations.
 \end{thm}
 
 In the offline mode, the session time is used to restrict the operations during a specified period, although it is possible to manipulate the current time in mobile device, to emulate a period in which the session was valid. The log analysis by MOS can deal with this kind of threat, through the incremental logging of the time when each operation was performed, followed by the behavioral evaluation of operations over time. 
@@ -327,7 +327,7 @@ Therefore, it is necessary to generate two matrices for malicious behaviors anal
 	\item low number of file upload to several folders, characterized by sparse operations, which can reveal unreachable navigation performed by automated file upload in order to avoid the massive file upload characterization. Malicious sparse file upload can be identified by MOS schemes based on zero mean and standardized covariance analysis.
 \end{enumerate}
 
-\subsection{Complexity analysis}
+\subsection{Performance analysis}
 \label{sec:3_complex}
 
 
