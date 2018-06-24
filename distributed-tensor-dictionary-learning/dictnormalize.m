@@ -26,7 +26,6 @@ function varargout = dictnormalize(D)
     %       for k=1:K; Wn(k,:) = W(I(k),:)/sf(I(k)); end;
     %       Xn = Dn*Wn;
     %       disp(norm(X-Xn));   % should be 0
-
     %----------------------------------------------------------------------
     % Copyright (c) 2009.  Karl Skretting.  All rights reserved.
     % University of Stavanger, Signal Processing Group
