@@ -21,10 +21,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
+
 def data_cleasing(df):
 	# data cleasing, feature engineering and save clean data into pickles
 	
-	print('Data Cleasing and Feature Engineering')
+	print('### Data Cleasing and Feature Engineering')
 	le = preprocessing.LabelEncoder()
 	
 	# [Protocol] - Discard ipv6-icmp and categorize
@@ -259,12 +260,12 @@ def selectThresholdByCV(probs, labels):
 	max_prob = max(probs);
 	stepsize = (max(probs) - min(probs)) / 1000;
 	epsilons = np.arange(min(probs), max(probs), stepsize)
-#	 print('Epsilons min max: ',min(probs), max(probs))
-#	 print('Epsilons: ', epsilons.size)
-#	 print('Step Size: ', stepsize)
+#	 print('### Epsilons min max: ',min(probs), max(probs))
+#	 print('### Epsilons: ', epsilons.size)
+#	 print('### Step Size: ', stepsize)
 	
 	for epsilon in epsilons:
-#		 print('For below Epsilon: ', epsilon)
+#		 print('### For below Epsilon: ', epsilon)
 		predictions = (probs < epsilon)
 		
 		f1 = f1_score(labels, predictions, average = "binary")
@@ -279,11 +280,11 @@ def selectThresholdByCV(probs, labels):
 			best_f1 = f1
 			best_precision = Precision
 			best_recall = Recall
-#			 print('F1,Epsilon',best_f1,best_epsilon)
+#			 print('### F1,Epsilon',best_f1,best_epsilon)
 			
-#			 print('Best F1 Score: %f' %f)
-#			 print('Best Recall Score: %f' %Recall)
-#			 print('Best Precision Score: %f' %Precision)
+#			 print('### Best F1 Score: %f' %f)
+#			 print('### Best Recall Score: %f' %Recall)
+#			 print('### Best Precision Score: %f' %Precision)
 #			 print('-'*40)
 
 #	 # plot results
@@ -330,18 +331,18 @@ def selectThresholdByCV(probs, labels):
 	return best_f1, best_epsilon
 
 def print_classification_report(y_test, y_predic):
-	print('Classification report:')
+	print('### Classification report:')
 	print(classification_report(y_test, y_predic))
 
-	print('Average Precision = ' + str(average_precision_score(y_test, y_predic)))
+	print('\tAverage Precision = ' + str(average_precision_score(y_test, y_predic)))
 
-	print('\nBinary F1 Score, Recall and Precision:')
+	print('\n### Binary F1 Score, Recall and Precision:')
 	f = f1_score(y_test, y_predic, average = "binary")
 	Recall = recall_score(y_test, y_predic, average = "binary")
 	Precision = precision_score(y_test, y_predic, average = "binary")
-	print('F1 Score %f' %f)
-	print('Recall Score %f' %Recall)
-	print('Precision Score %f' %Precision)
+	print('\tF1 Score %f' %f)
+	print('\tRecall Score %f' %Recall)
+	print('\tPrecision Score %f' %Precision)
 
 #	 print('\nMicro F1 Score, Recall and Precision:')
 #	 f = f1_score(y_test, y_predic, average = "micro")
@@ -360,7 +361,6 @@ def print_classification_report(y_test, y_predic):
 #	 print('Precision Score %f' %Precision)
 
 def model_order_selection(data, max_components):
-	
 	bic = []
 	lowest_bic = np.infty
 	n_components_range = range(1, max_components)
@@ -390,16 +390,16 @@ def data_splitting(df):
 	#	 'Dur',
 		'Proto',
 		'SrcAddr',
-		'Sport',
+		# 'Sport',
 	#	 'Dir',
 		'DstAddr',
 	#	 'Dport',
 	#	 'State',
-		'sTos',
+		'sTos'
 	#	 'dTos',
 	#	 'TotPkts',
-		'TotBytes',
-		'SrcBytes'
+	#	 'TotBytes',
+		# 'SrcBytes'
 	], axis =1, inplace = True)
 #	 print("train_df_shape: ", df.shape)
 #	 print('Train Data Types: ', df.dtypes)
@@ -480,42 +480,37 @@ for sample_file in raw_files:
 	# data splitting
 	norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df)
 	norm_train_df.loc[:, 'Label'] = int(0)
-	print('## norm_train_df Type: ', type(norm_train_df))
-	print('## norm_train_df Head: ', norm_train_df.head())
-	print('## norm_train_df Count: ', norm_train_df['Label'].value_counts())
+	# print('### norm_train_df Type: ', type(norm_train_df))
+	# print('### norm_train_df Head: ', norm_train_df.head())
+	# print('### norm_train_df Count: ', norm_train_df['Label'].value_counts())
 	cv_df.loc[:, 'Label'] = cv_label
-	print('## cv_df Type: ', type(cv_df))
-	print('## cv_df Head: ', cv_df.head())
-	print('## cv_df Count: ', cv_df['Label'].value_counts())
+	# print('### cv_df Type: ', type(cv_df))
+	# print('### cv_df Head: ', cv_df.head())
+	# print('### cv_df Count: ', cv_df['Label'].value_counts())
 	train_df = pd.concat([norm_train_df, cv_df], axis=0)
-	print('## train_df Type: ', type(train_df))
-	print('## train_df Head: ', train_df['Label'].head())
-	print('## train_df Count: ', train_df['Label'].value_counts())
+	# print('### train_df Type: ', type(train_df))
+	# print('### train_df Head: ', train_df.head())
+	# print('### train_df Count: ', train_df['Label'].value_counts())
 	train_label_df = pd.concat([norm_train_df['Label'], cv_df['Label']], axis=0)
-	print('## train_label Type: ', type(train_label_df))
-	print('## train_label Head: ', train_label_df.head())
-	print('## train_label Count: ', train_label_df.value_counts())
-
+	# print('### train_label Type: ', type(train_label_df))
+	# print('### train_label Head: ', train_label_df.head())
+	# print('### train_label Count: ', train_label_df.value_counts())
+	# drops the label for clustering training
 	train_df = train_df.drop(labels = ["Label"], axis = 1)
 
-	# Trainning - estimate clusters for training
+	# Training - estimate clusters (anomalous or normal) for training
 	kmeans = KMeans(n_clusters = 2)
 	kmeans.fit(train_df)
-	print('## Trainning Predicted Labels:')
-	print(pd.Series(kmeans.labels_).value_counts())
 	
-	# Test	
+	# Test prediction	
 	pred_test_label = kmeans.predict(test_df)
 	kmeans_test_label.extend(test_label.astype(int))			# append into global array
 	kmeans_pred_test_label.extend(pred_test_label.astype(int))	# append into global array
-	print('## Testing Predicted Labels:')
-	pd.Series(pred_test_label).value_counts()
-	pred_test_label['Label'].value_counts()
 
-	break
-
-# np.savetxt('kmeans_test_label.out', kmeans_test_label, delimiter=',')
-# np.savetxt('kmeans_pred_test_label.out', kmeans_pred_test_label, delimiter=',')
-
-# print ('[kmeans] classification report for Test dataset')
-# print_classification_report(kmeans_test_label, kmeans_pred_test_label)
+# save results
+np.savetxt('output/kmeans_test_label.out', kmeans_test_label, delimiter=',')
+np.savetxt('output/kmeans_pred_test_label.out', kmeans_pred_test_label, delimiter=',')
+	
+# print results
+print ('\n[KMeans] Classification report for Cross Validation dataset')
+print_classification_report(kmeans_test_label, kmeans_pred_test_label)
