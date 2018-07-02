@@ -1,62 +1,114 @@
+===============================================================================================================================================================================================================================
     df.drop([
-    #     'Dur',
-    #     'Proto',
+    #    'Dur',
+        'Proto',
         'SrcAddr',
         'Sport',
-    #     'Dir',
+    #    'Dir',
         'DstAddr',
-    #     'Dport',
-    #     'State',
+    #    'Dport',
+    #    'State',
         'sTos',
-    #     'dTos',
-    #     'TotPkts',
+    #    'dTos',
+    #    'TotPkts',
         'TotBytes',
         'SrcBytes'
     ], axis =1, inplace = True)
 
+10 0.1900719984821402
+70 0.19111311860649752
+210 0.19796708341896524
+Best batch_size:  210
+[MBKMeans] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
 
+          0       0.96      0.93      0.94   3906400
+          1       0.17      0.24      0.20    222349
+
+avg / total       0.91      0.90      0.90   4128749
+
+    Average Precision = 0.08137959599808793
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.197967
+    Recall Score 0.236106
+    Precision Score 0.170436
 ================================================================================================================================================================================================================================
     df.drop([
-    #     'Dur',
-        'Proto',
+    #    'Dur',
+    #    'Proto',
         'SrcAddr',
         'Sport',
-    #     'Dir',
+    #    'Dir',
         'DstAddr',
-    #     'Dport',
-    #     'State',
+    #    'Dport',
+    #    'State',
         'sTos',
-    #     'dTos',
-    #     'TotPkts',
+    #    'dTos',
+    #    'TotPkts',
         'TotBytes',
         'SrcBytes'
     ], axis =1, inplace = True)
 
+Best batch_size:  160
+[MBKMeans] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
 
-================================================================================================================================================================================================================================
-    df.drop([
-    #     'Dur',
-        'Proto',
-        'SrcAddr',
-        'Sport',
-    #     'Dir',
-        'DstAddr',
-    #     'Dport',
-    #     'State',
-        'sTos',
-    #     'dTos',
-    #     'TotPkts',
-	#     'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
+          0       0.96      0.93      0.94   3906400
+          1       0.17      0.24      0.20    222349
 
+avg / total       0.91      0.90      0.90   4128749
 
+    Average Precision = 0.08141133666922377
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.198083
+    Recall Score 0.237613
+    Precision Score 0.169830
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
         'Proto',
         'SrcAddr',
-        # 'Sport',
+        'Sport',
+    #    'Dir',
+        'DstAddr',
+    #    'Dport',
+    #    'State',
+        'sTos',
+    #    'dTos',
+    #    'TotPkts',
+	#    'TotBytes',
+        'SrcBytes'
+    ], axis =1, inplace = True)
+
+10 0.1554719733752764
+40 0.18447397513890618
+140 0.19715017169487367
+Best batch_size:  140
+[MBKMeans] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.96      0.94      0.95   3906400
+          1       0.17      0.23      0.20    222349
+
+avg / total       0.91      0.90      0.91   4128749
+
+    Average Precision = 0.08113123752234824
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.197150
+    Recall Score 0.231357
+    Precision Score 0.171756
+================================================================================================================================================================================================================================
+    df.drop([
+    #    'Dur',
+        'Proto',
+        'SrcAddr',
+    #    'Sport',
     #    'Dir',
         'DstAddr',
     #    'Dport',
@@ -65,7 +117,48 @@
     #    'dTos',
     #    'TotPkts',
     #    'TotBytes',
-        # 'SrcBytes'
+    #    'SrcBytes'
     ], axis =1, inplace = True)
+
+10 0.1518441187283662
+70 0.18589148577916526
+Best batch_size:  70
+[MBKMeans] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.95      0.94      0.95   3906400
+          1       0.17      0.21      0.19    222349
+
+avg / total       0.91      0.90      0.91   4128749
+
+    Average Precision = 0.07765262617363779
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.185891
+    Recall Score 0.205807
+    Precision Score 0.169490
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
