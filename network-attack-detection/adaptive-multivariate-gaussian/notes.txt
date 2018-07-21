@@ -1,19 +1,18 @@
-capture.binetflow
-capture1.7.binetflow
-capture1.binetflow
-capture20110810.binetflow
-capture20110811.binetflow
-capture20110812.binetflow
-capture20110815-2.binetflow
-capture20110815-3.binetflow
-capture20110815.binetflow
-capture20110816-2.binetflow
-capture20110816-3.binetflow
-capture20110816.binetflow
-capture20110817.binetflow
-capture20110818-2.binetflow
-capture20110818.binetflow
-capture20110819.binetflow'
+num     atk     c&c     name                            types               obs
+--------------------------------------------------------------------------------------------------------------
+01      40961   1026    capture20110810.binetflow       IRC, Spam, CF       0.00 - qtd ok, mas não está aparecendo nas análises individuais?
+02      20941   2102    capture20110811.binetflow       IRC, Spam, CF       0.34 - qtd ok
+03      26822   0063    capture20110812.binetflow       IRC, PS, US         0.21 - qtd ok
+04      02580   0049    capture20110815.binetflow       IRC, DDoS, US       0.01 - erro de contagem?)
+05      00901   0206    capture20110815-2.binetflow     Span, PS, HTTP      0.10 - 
+06      4630    0199    capture20110816.binetflow       PS                  0.33 - 
+07      0066    0026    capture20110816-2.binetflow     HTTP                0.04 - 
+08      6127    1074    capture20110816-3.binetflow     PS                  0.05 - 
+09      184987  5099    capture20110817.binetflow       IRC, Span, CF, PS   0.86 - erro de quantidade de ataques?
+10      106352  37      capture20110818.binetflow       IRC, DDoS,US        0.80 - 
+11      8164    3       capture20110818-2.binetflow     IRC, DDoS,US        0.31 - 
+12      2168    25      capture20110819.binetflow       P2P                 0.09 - 
+13      40003   1202    capture20110815-3.binetflow     Span, PS, HTTP      0.13 - 
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
@@ -195,60 +194,6 @@ Wall time: 1h 36min 19s
         'SrcBytes'
     ], axis =1, inplace = True))
 
-Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
----------------------------------------------------------------------------
-LinAlgError                               Traceback (most recent call last)
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _compute_precision_cholesky(covariances, covariance_type)
-    317             try:
---> 318                 cov_chol = linalg.cholesky(covariance, lower=True)
-    319             except linalg.LinAlgError:
-
-/usr/local/lib/python3.4/dist-packages/scipy/linalg/decomp_cholesky.py in cholesky(a, lower, overwrite_a, check_finite)
-     80     c, lower = _cholesky(a, lower=lower, overwrite_a=overwrite_a, clean=True,
----> 81                             check_finite=check_finite)
-     82     return c
-
-/usr/local/lib/python3.4/dist-packages/scipy/linalg/decomp_cholesky.py in _cholesky(a, lower, overwrite_a, clean, check_finite)
-     29     if info > 0:
----> 30         raise LinAlgError("%d-th leading minor not positive definite" % info)
-     31     if info < 0:
-
-LinAlgError: 7-th leading minor not positive definite
-
-During handling of the above exception, another exception occurred:
-
-ValueError                                Traceback (most recent call last)
-<timed exec> in <module>()
-
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/base.py in fit(self, X, y)
-    205 
-    206             if do_init:
---> 207                 self._initialize_parameters(X, random_state)
-    208                 self.lower_bound_ = -np.infty
-    209 
-
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/base.py in _initialize_parameters(self, X, random_state)
-    155                              % self.init_params)
-    156 
---> 157         self._initialize(X, resp)
-    158 
-    159     @abstractmethod
-
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _initialize(self, X, resp)
-    641             self.covariances_ = covariances
-    642             self.precisions_cholesky_ = _compute_precision_cholesky(
---> 643                 covariances, self.covariance_type)
-    644         elif self.covariance_type == 'full':
-    645             self.precisions_cholesky_ = np.array(
-
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _compute_precision_cholesky(covariances, covariance_type)
-    318                 cov_chol = linalg.cholesky(covariance, lower=True)
-    319             except linalg.LinAlgError:
---> 320                 raise ValueError(estimate_precision_error_message)
-    321             precisions_chol[k] = linalg.solve_triangular(cov_chol,
-    322                                                          np.eye(n_features),
-
-ValueError: Fitting the mixture model failed because some components have ill-defined empirical covariance (for instance caused by singleton or collapsed samples). Try to decrease the number of components, or increase reg_covar.
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
@@ -266,25 +211,8 @@ ValueError: Fitting the mixture model failed because some components have ill-de
     #    'SrcBytes'
     ], axis =1, inplace = True)
 
-Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
-/usr/local/lib/python3.4/dist-packages/ipykernel_launcher.py:338: SettingWithCopyWarning:
-
-
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-
-/usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning:
-
-F-score is ill-defined and being set to 0.0 due to no predicted samples.
-
-/usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning:
-
-Precision is ill-defined and being set to 0.0 due to no predicted samples.
-
-
 [MGM] Classification report for Cross Validation dataset
-Classification report:
+### Classification report:
              precision    recall  f1-score   support
 
           0       1.00      0.82      0.90    556734
@@ -292,15 +220,15 @@ Classification report:
 
 avg / total       0.97      0.82      0.88    577214
 
-Average Precision = 0.1572097778377693
+    Average Precision = 0.1572097778377693
 
-Binary F1 Score, Recall and Precision:
-F1 Score 0.276900
-Recall Score 0.964844
-Precision Score 0.161645
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.276900
+    Recall Score 0.964844
+    Precision Score 0.161645
 
 [MGM] classification report for Test dataset
-Classification report:
+### Classification report:
              precision    recall  f1-score   support
 
           0       1.00      0.87      0.93    556734
@@ -308,62 +236,437 @@ Classification report:
 
 avg / total       0.97      0.87      0.91    577214
 
-Average Precision = 0.21286545694060668
+    Average Precision = 0.21286545694060668
 
-Binary F1 Score, Recall and Precision:
-F1 Score 0.355491
-Recall Score 0.975293
-Precision Score 0.217359
----------------------------------------------------------------------------
-LinAlgError                               Traceback (most recent call last)
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _compute_precision_cholesky(covariances, covariance_type)
-    317             try:
---> 318                 cov_chol = linalg.cholesky(covariance, lower=True)
-    319             except linalg.LinAlgError:
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.355491
+    Recall Score 0.975293
+    Precision Score 0.217359
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
 
-/usr/local/lib/python3.4/dist-packages/scipy/linalg/decomp_cholesky.py in cholesky(a, lower, overwrite_a, check_finite)
-     80     c, lower = _cholesky(a, lower=lower, overwrite_a=overwrite_a, clean=True,
----> 81                             check_finite=check_finite)
-     82     return c
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
 
-/usr/local/lib/python3.4/dist-packages/scipy/linalg/decomp_cholesky.py in _cholesky(a, lower, overwrite_a, clean, check_finite)
-     29     if info > 0:
----> 30         raise LinAlgError("%d-th leading minor not positive definite" % info)
-     31     if info < 0:
+          0       1.00      0.84      0.91    357435
+          1       0.15      0.97      0.27     10470
 
-LinAlgError: 9-th leading minor not positive definite
+avg / total       0.97      0.85      0.90    367905
 
-During handling of the above exception, another exception occurred:
+    Average Precision = 0.14995194414702206
 
-ValueError                                Traceback (most recent call last)
-<timed exec> in <module>()
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.265500
+    Recall Score 0.969150
+    Precision Score 0.153819
 
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/base.py in fit(self, X, y)
-    205 
-    206             if do_init:
---> 207                 self._initialize_parameters(X, random_state)
-    208                 self.lower_bound_ = -np.infty
-    209 
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
 
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/base.py in _initialize_parameters(self, X, random_state)
-    155                              % self.init_params)
-    156 
---> 157         self._initialize(X, resp)
-    158 
-    159     @abstractmethod
+          0       1.00      0.89      0.94    357436
+          1       0.21      0.99      0.34     10470
 
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _initialize(self, X, resp)
-    641             self.covariances_ = covariances
-    642             self.precisions_cholesky_ = _compute_precision_cholesky(
---> 643                 covariances, self.covariance_type)
-    644         elif self.covariance_type == 'full':
-    645             self.precisions_cholesky_ = np.array(
+avg / total       0.98      0.89      0.92    367906
 
-/usr/local/lib/python3.4/dist-packages/sklearn/mixture/gaussian_mixture.py in _compute_precision_cholesky(covariances, covariance_type)
-    318                 cov_chol = linalg.cholesky(covariance, lower=True)
-    319             except linalg.LinAlgError:
---> 320                 raise ValueError(estimate_precision_error_message)
-    321             precisions_chol[k] = linalg.solve_triangular(cov_chol,
-    322                                                          np.eye(n_features),
+    Average Precision = 0.20382351458670037
 
-ValueError: Fitting the mixture model failed because some components have ill-defined empirical covariance (for instance caused by singleton or collapsed samples). Try to decrease the number of components, or increase reg_covar.
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.340043
+    Recall Score 0.992359
+    Precision Score 0.205174
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.87      0.93    936762
+          1       0.09      0.97      0.17     13411
+
+avg / total       0.99      0.87      0.92    950173
+
+    Average Precision = 0.09139468958876205
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.171057
+    Recall Score 0.969801
+    Precision Score 0.093801
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.89      0.94    936763
+          1       0.12      0.99      0.21     13410
+
+avg / total       0.99      0.90      0.93    950173
+
+    Average Precision = 0.11751698065589825
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.211350
+    Recall Score 0.992841
+    Precision Score 0.118263
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.92      0.96     25785
+          1       0.15      0.78      0.25       450
+
+avg / total       0.98      0.92      0.95     26235
+
+    Average Precision = 0.11991362072279198
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.249645
+    Recall Score 0.782222
+    Precision Score 0.148523
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.92      0.95     25786
+          1       0.06      0.31      0.10       450
+
+avg / total       0.97      0.90      0.94     26236
+
+    Average Precision = 0.030730948970009803
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.101402
+    Recall Score 0.313333
+    Precision Score 0.060489
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.97      0.94      0.96    377028
+          1       0.32      0.54      0.40     20001
+
+avg / total       0.94      0.92      0.93    397029
+
+    Average Precision = 0.19518423971059215
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.400413
+    Recall Score 0.542473
+    Precision Score 0.317316
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.95      0.95      0.95    377029
+          1       0.13      0.13      0.13     20001
+
+avg / total       0.91      0.91      0.91    397030
+
+    Average Precision = 0.060866947554839755
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.130830
+    Recall Score 0.131543
+    Precision Score 0.130125
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.92      0.96    223698
+          1       0.03      0.47      0.06      1290
+
+avg / total       0.99      0.92      0.95    224988
+
+    Average Precision = 0.01806831639969527
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.059832
+    Recall Score 0.470543
+    Precision Score 0.031947
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.97      0.98    223699
+          1       0.00      0.02      0.01      1289
+
+avg / total       0.99      0.96      0.98    224988
+
+    Average Precision = 0.0056886658484904505
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.006129
+    Recall Score 0.019395
+    Precision Score 0.003640
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.93      0.96     22802
+          1       0.02      1.00      0.04        31
+
+avg / total       1.00      0.93      0.96     22833
+
+    Average Precision = 0.0184194890077243
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.036173
+    Recall Score 1.000000
+    Precision Score 0.018419
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.94      0.97     22802
+          1       0.02      1.00      0.04        31
+
+avg / total       1.00      0.94      0.97     22833
+
+    Average Precision = 0.021423635107118175
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.041949
+    Recall Score 1.000000
+    Precision Score 0.021424
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.83      0.91    589620
+          1       0.03      0.92      0.05      3063
+
+avg / total       0.99      0.83      0.90    592683
+
+    Average Precision = 0.025586996965985515
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.053201
+    Recall Score 0.918707
+    Precision Score 0.027394
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.81      0.89    589620
+          1       0.03      0.98      0.05      3063
+
+avg / total       0.99      0.81      0.89    592683
+
+    Average Precision = 0.02496697556149083
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.049620
+    Recall Score 0.975841
+    Precision Score 0.025457
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.87      0.93    110857
+          1       0.14      1.00      0.25      2315
+
+avg / total       0.98      0.88      0.92    113172
+
+    Average Precision = 0.14299847705528976
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.250284
+    Recall Score 0.999568
+    Precision Score 0.143051
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.91      0.96    110857
+          1       0.20      1.00      0.33      2314
+
+avg / total       0.98      0.92      0.94    113171
+
+    Average Precision = 0.1958802033524327
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.328006
+    Recall Score 0.997839
+    Precision Score 0.196260
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.83      0.90    380503
+          1       0.58      1.00      0.73     92493
+
+avg / total       0.92      0.86      0.87    472996
+
+    Average Precision = 0.5796950917095999
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.734066
+    Recall Score 0.996508
+    Precision Score 0.581041
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.92      0.96    380504
+          1       0.75      0.99      0.86     92493
+
+avg / total       0.95      0.93      0.94    472997
+
+    Average Precision = 0.7490947776660378
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.856518
+    Recall Score 0.994756
+    Precision Score 0.752013
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       1.00      0.10      0.18     19816
+          1       0.19      1.00      0.31      4082
+
+avg / total       0.86      0.25      0.20     23898
+
+    Average Precision = 0.18556158833766673
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.313001
+    Recall Score 0.998775
+    Precision Score 0.185580
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.10      0.18     19817
+          1       0.19      1.00      0.31      4081
+
+avg / total       0.86      0.25      0.20     23898
+
+    Average Precision = 0.18508062749423923
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.312267
+    Recall Score 0.997060
+    Precision Score 0.185123
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.96      0.91      0.93    240687
+          1       0.66      0.84      0.74     53176
+
+avg / total       0.91      0.89      0.90    293863
+
+    Average Precision = 0.5880615924517693
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.742748
+    Recall Score 0.841451
+    Precision Score 0.664770
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.96      0.95      0.96    240687
+          1       0.79      0.82      0.80     53175
+
+avg / total       0.93      0.93      0.93    293862
+
+    Average Precision = 0.6811055621520464
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.804761
+    Recall Score 0.815703
+    Precision Score 0.794108
+Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.85      0.92     64660
+          1       0.06      0.58      0.11      1084
+
+avg / total       0.98      0.85      0.90     65744
+
+    Average Precision = 0.04309295319136167
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.112480
+    Recall Score 0.581181
+    Precision Score 0.062265
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.84      0.91     64660
+          1       0.05      0.51      0.09      1083
+
+avg / total       0.97      0.83      0.90     65743
+
+    Average Precision = 0.03418897114429048
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.092663
+    Recall Score 0.514312
+    Precision Score 0.050919
+
+[MGM] Classification report for Cross Validation dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.86      0.92   3906387
+          1       0.26      0.91      0.41    222346
+
+avg / total       0.95      0.86      0.89   4128733
+
+    Average Precision = 0.24500256545299182
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.409816
+    Recall Score 0.906259
+    Precision Score 0.264775
+
+[MGM] classification report for Test dataset
+### Classification report:
+             precision    recall  f1-score   support
+
+          0       0.99      0.89      0.94   3906394
+          1       0.31      0.86      0.45    222340
+
+avg / total       0.95      0.89      0.91   4128734
+
+    Average Precision = 0.27213759257543796
+
+### Binary F1 Score, Recall and Precision:
+    F1 Score 0.452716
+    Recall Score 0.862701
+    Precision Score 0.306878
