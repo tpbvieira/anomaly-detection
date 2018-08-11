@@ -1,164 +1,185 @@
-===============================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-        'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-
-10 0.1900719984821402
-70 0.19111311860649752
-210 0.19796708341896524
-Best batch_size:  210
+all_dataset=====================================================================================================================================================================================================================
+### batch_size:  20
+20 0.08511006770085475
+### batch_size:  30
+30 0.10520472819012675
+### batch_size:  40
+40 0.140692441913858
+### batch_size:  50
+50 0.19919913651149168
+Best batch_size:  50
 [MBKMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.96      0.93      0.94   3906400
-          1       0.17      0.24      0.20    222349
-
-avg / total       0.91      0.90      0.90   4128749
-
-    Average Precision = 0.08137959599808793
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.197967
-    Recall Score 0.236106
-    Precision Score 0.170436
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-    #    'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-        'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-
-Best batch_size:  160
+    F1 Score 0.199199
+### batch_size:  10
+10 0.1418858347292955
+### batch_size:  110
+110 0.21142805614836638
 [MBKMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.96      0.93      0.94   3906400
-          1       0.17      0.24      0.20    222349
-
-avg / total       0.91      0.90      0.90   4128749
-
-    Average Precision = 0.08141133666922377
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.198083
-    Recall Score 0.237613
-    Precision Score 0.169830
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-	#    'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-
-10 0.1554719733752764
-40 0.18447397513890618
-140 0.19715017169487367
-Best batch_size:  140
+    F1 Score 0.211428
+### batch_size:  10
+10 0.08452930504912615
+### batch_size:  40
+40 0.18102973853099025
+### batch_size:  100
+100 0.19786775693491007
+### batch_size:  130
+130 0.2019928663447466
 [MBKMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.96      0.94      0.95   3906400
-          1       0.17      0.23      0.20    222349
-
-avg / total       0.91      0.90      0.91   4128749
-
-    Average Precision = 0.08113123752234824
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.197150
-    Recall Score 0.231357
-    Precision Score 0.171756
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-    #    'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos'
-    #    'dTos',
-    #    'TotPkts',
-    #    'TotBytes',
-    #    'SrcBytes'
-    ], axis =1, inplace = True)
-
-10 0.1518441187283662
-70 0.18589148577916526
-Best batch_size:  70
+    F1 Score 0.201993
+### batch_size:  10
+10 0.09318610378703446
+### batch_size:  20
+20 0.14530268434937949
+### batch_size:  30
+30 0.1947067977244764
+### batch_size:  80
+80 0.2040576281325299
 [MBKMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
+    F1 Score 0.204058
 
-          0       0.95      0.94      0.95   3906400
-          1       0.17      0.21      0.19    222349
+train/test_dataset==============================================================================================================================================================================================================
+### batch_size:  10
+10 0.01964772987908265
+### batch_size:  20
+20 0.15171050984722986
+### batch_size:  30
+30 0.1545862203177886
+### batch_size:  60
+60 0.1589808211094641
+### batch_size:  140
+140 0.1757099577483483
+### batch_size:  180
+180 0.175735810012094
+### batch_size:  280
+280 0.17891129925629476
+### batch_size:  300
+### Best batch_size:  280
+### drop_features04 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.178911
+### batch_size:  10
+10 0.049652688977854506
+### batch_size:  20
+20 0.08254871965325693
+### batch_size:  30
+30 0.08431173188118195
+### batch_size:  300
+### Best batch_size:  30
+### drop_features03 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.084312
+### batch_size:  10
+10 0.0021880189752692286
+### batch_size:  20
+20 0.07780209025819977
+### Best batch_size:  20
+### drop_features01 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.077802
+### batch_size:  10
+10 0.00887713539624848
+### batch_size:  20
+20 0.008963039919647
+### batch_size:  30
+30 0.052130252475321485
+### batch_size:  90
+90 0.052132293655025676
+### batch_size:  130
+130 0.052160542797903726
+### batch_size:  150
+150 0.052175082391750165
+### batch_size:  240
+240 0.0521781710145382
+### Best batch_size:  240
+### drop_features02 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.052178
 
-avg / total       0.91      0.90      0.91   4128749
+train2/test2_dataset============================================================================================================================================================================================================
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110810.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110812.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110815.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110815-3.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110817.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110818.binetflow
+/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/capture20110819.binetflow
+### Data Cleasing and Feature Engineering
+### Data Cleasing and Feature Engineering
+### batch_size:  10
+10 0.014425102517968375
+### batch_size:  50
+50 0.024172834556982374
+### Best batch_size:  50
+### drop_features03 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.024173
+### batch_size:  10
+10 2.6800038214869306e-05
+### batch_size:  20
+20 0.00010376258928304593
+### batch_size:  40
+40 0.007104149361180333
+### batch_size:  60
+60 0.04772390702466036
+### batch_size:  90
+90 0.056712013966745314
+### batch_size:  120
+120 0.06324801217199477
+### Best batch_size:  120
+### drop_features04 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.063248
+### batch_size:  10
+10 0.0016738784367355919
+### batch_size:  20
+20 0.01529605032967191
+### Best batch_size:  20
+### drop_features02 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.015296
+### batch_size:  10
+10 0.0016962675556041313
+### batch_size:  230
+230 0.015300393860848447
+### batch_size:  270
+270 0.015305652224680978
+### Best batch_size:  270
+### drop_features01 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.015306
 
-    Average Precision = 0.07765262617363779
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.185891
-    Recall Score 0.205807
-    Precision Score 0.169490
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+all_sorted_dataset==============================================================================================================================================================================================================
+### batch_size:  10
+10 0.15126268233332277
+### Best batch_size:  10
+### drop_features03 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.151263
+### batch_size:  10
+10 0.09195084637023147
+### batch_size:  20
+20 0.0927858066320435
+### batch_size:  50
+50 0.10180836203896408
+### batch_size:  70
+70 0.10630399601448605
+### batch_size:  120
+120 0.12092166093850122
+### batch_size:  250
+250 0.12952599088849712
+### batch_size:  300
+### Best batch_size:  250
+### drop_features04 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.129526
+### batch_size:  10
+10 0.07550904197009338
+### batch_size:  30
+30 0.1125013627163066
+### batch_size:  70
+70 0.11915534635799176
+### batch_size:  110
+110 0.12125078017989283
+### Best batch_size:  110
+### drop_features01 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.121251
+### batch_size:  10
+10 0.05815099441892836
+### batch_size:  20
+20 0.10716672716706992
+### batch_size:  250
+250 0.1080899318165358
+### batch_size:  300
+### Best batch_size:  250
+### drop_features02 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.108090

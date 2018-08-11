@@ -1,18 +1,27 @@
-num     atk     c&c     name                            types               obs
---------------------------------------------------------------------------------------------------------------
-01      40961   1026    capture20110810.binetflow       IRC, Spam, CF       0.00 - qtd ok, mas não está aparecendo nas análises individuais?
-02      20941   2102    capture20110811.binetflow       IRC, Spam, CF       0.34 - qtd ok
-03      26822   0063    capture20110812.binetflow       IRC, PS, US         0.21 - qtd ok
-04      02580   0049    capture20110815.binetflow       IRC, DDoS, US       0.01 - erro de contagem?)
-05      00901   0206    capture20110815-2.binetflow     Span, PS, HTTP      0.10 - 
-06      4630    0199    capture20110816.binetflow       PS                  0.33 - 
-07      0066    0026    capture20110816-2.binetflow     HTTP                0.04 - 
-08      6127    1074    capture20110816-3.binetflow     PS                  0.05 - 
-09      184987  5099    capture20110817.binetflow       IRC, Span, CF, PS   0.86 - erro de quantidade de ataques?
-10      106352  37      capture20110818.binetflow       IRC, DDoS,US        0.80 - 
-11      8164    3       capture20110818-2.binetflow     IRC, DDoS,US        0.31 - 
-12      2168    25      capture20110819.binetflow       P2P                 0.09 - 
-13      40003   1202    capture20110815-3.binetflow     Span, PS, HTTP      0.13 - 
+num name                            types               type    Total       Botnet  C&C     Attack     
+--------------------------------------------------------------------------------------------------------------------------------------
+    01  capture20110810.binetflow       IRC, Spam, CF       test    2824636|OK  40961   341
+    02  capture20110811.binetflow       IRC, Spam, CF       test    1808122|OK  20941   673
+03  capture20110812.binetflow       IRC, PS, US         train   4710638|OK  26822   63
+04  capture20110815.binetflow       IRC, DDoS, US       train   1121076|OK  2580    60
+    05  capture20110815-2.binetflow     Spam, PS, HTTP      train   129832|OK   901     24
+06  capture20110816.binetflow       PS                  test    558919|OK   4630    199
+07  capture20110816-2.binetflow     HTTP                train   114077|OK   63      26
+08  capture20110816-3.binetflow     PS                  test    2954230|OK  6127    1074
+09  capture20110817.binetflow       IRC, Spam, CF, PS   test    2087508|??  184987  2973
+    10  capture20110818.binetflow       IRC, DDoS,US        train   1309791|OK  106352  1176
+11  capture20110818-2.binetflow     IRC, DDoS,US        train   107251|OK   8164    100
+12  capture20110819.binetflow       P2P                 train   325471|OK   2168    25
+    13  capture20110815-3.binetflow     Spam, PS, HTTP      train   1925149|OK  40003   536
+===============================================================================================================================================================================================================================
+pkl             raw and original files in pkl format
+pkl_all         raw data into one pkl file
+raw             raw and original files in csv format
+raw_all         raw data into one csv file
+raw_attack      
+raw_botnet      
+raw_train       raw and original files selected for training
+raw_test        raw and original files selected for testing
 ===============================================================================================================================================================================================================================
 zero mean and unit variance
     features_01
@@ -2767,14 +2776,6 @@ Wall time: 1h 51min 4s
 ### Files:  [b'capture20110810.binetflow', b'capture20110811.binetflow', b'capture20110812.binetflow', b'capture20110815-2.binetflow', b'capture20110815-3.binetflow', b'capture20110815.binetflow', b'capture20110816-2.binetflow', b'capture20110816-3.binetflow', b'capture20110816.binetflow', b'capture20110817.binetflow', b'capture20110818-2.binetflow', b'capture20110818.binetflow', b'capture20110819.binetflow']
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
 ### Scaler: RobustScaler
-/usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning:
-
-F-score is ill-defined and being set to 0.0 due to no predicted samples.
-
-/usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning:
-
-Precision is ill-defined and being set to 0.0 due to no predicted samples.
-
 
 ### [MGM] Classification report for Cross Validation dataset
 ### Binary F1 Score, Recall and Precision:

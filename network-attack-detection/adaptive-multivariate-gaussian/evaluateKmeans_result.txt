@@ -14,22 +14,7 @@
         'TotBytes',
         'SrcBytes'
     ], axis =1, inplace = True)
-
-[KMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.95      0.98      0.96   3906394
-          1       0.01      0.00      0.00    222340
-
-avg / total       0.89      0.93      0.91   4128734
-
-    Average Precision = 0.0537351288060996
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.003573
-    Recall Score 0.002465
-    Precision Score 0.006491
+F1 Score 0.003573
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
@@ -46,22 +31,7 @@ avg / total       0.89      0.93      0.91   4128734
         'TotBytes',
         'SrcBytes'
     ], axis =1, inplace = True)
-
-[KMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.95      0.98      0.96   3906394
-          1       0.01      0.00      0.00    222340
-
-avg / total       0.89      0.93      0.91   4128734
-
-    Average Precision = 0.05373512861660077
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.003573
-    Recall Score 0.002465
-    Precision Score 0.006491
+F1 Score 0.003573
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
@@ -78,23 +48,7 @@ avg / total       0.89      0.93      0.91   4128734
     #    'TotBytes',
         'SrcBytes'
     ], axis =1, inplace = True)
-
-[KMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.95      1.00      0.97   3906394
-          1       0.00      0.00      0.00    222340
-
-avg / total       0.90      0.95      0.92   4128734
-
-    Average Precision = 0.05385185870535617
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.000000
-    Recall Score 0.000000
-    Precision Score 0.000000
-
+F1 Score 0.000000
 ================================================================================================================================================================================================================================
     df.drop([
     #    'Dur',
@@ -112,45 +66,4 @@ avg / total       0.90      0.95      0.92   4128734
     #    'SrcBytes'
     ], axis =1, inplace = True)
 
-[KMeans] Classification report for Cross Validation dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.95      1.00      0.97   3906394
-          1       0.00      0.00      0.00    222340
-
-avg / total       0.90      0.95      0.92   4128734
-
-    Average Precision = 0.05385185870535617
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.000000
-    Recall Score 0.000000
-    Precision Score 0.000000
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+F1 Score 0.000000
