@@ -183,3 +183,229 @@ all_sorted_dataset==============================================================
 ### Best batch_size:  250
 ### drop_features02 [MBKMeans] Classification report for Test dataset
     F1 Score 0.108090
+
+raw_attack======================================================================================================================================================================================================================
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110810.binetflow
+10 0.18845757662933024
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110811.binetflow
+10 0.17661771754760555
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110812.binetflow
+20 0.09541449418112909
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-2.binetflow
+10 0.1138993628916916
+40 0.11505122143420016
+80 0.11514195583596215
+130 0.11527832609553888
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-3.binetflow
+10 0.26601224346700464
+20 0.27158964192789
+40 0.27250500725188204
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815.binetflow
+20 0.031522998547072995
+40 0.03161136828903931
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-2.binetflow
+30 0.00641254007837549
+40 0.006450456907364272
+50 0.006479481641468683
+60 0.0065111231687466084
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-3.binetflow
+10 0.03141817276884312
+90 0.03165826625542265
+100 0.031688461634999124
+230 0.03173446111114602
+240 0.031744834392542165
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816.binetflow
+10 0.13999936794867746
+30 0.14008791069790974
+40 0.14058136582889058
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110817.binetflow
+10 0.6897364571411246
+70 0.6901261579647879
+100 0.6907731430523398
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818-2.binetflow
+20 0.0026958214767110974
+30 0.0027141133896260556
+60 0.0027235587834770767
+270 0.002730168360382224
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818.binetflow
+10 0.00475770678532947
+60 0.004760371308962098
+70 0.004769118554676542
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110819.binetflow
+10 0.04144503546099291
+20 0.09069012462037909
+30 0.09096638655462184
+60 0.09196622949078744
+170 0.09197111299915038
+180 0.09201997662310062
+190 0.09204931972789115
+### drop_features02 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.235382
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110810.binetflow
+10 0.18423798161974836
+20 0.18459720486308373
+30 0.18782573308731382
+50 0.18809189717371272
+180 0.2113050490336342
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110811.binetflow
+30 0.0007233273056057866
+50 0.05580142172465311
+60 0.18577270810027693
+100 0.19110503230674908
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110812.binetflow
+30 0.09460454056502292
+120 0.10930141287284145
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-2.binetflow
+10 0.11440622116778701
+60 0.11464468001570474
+90 0.11529349828902344
+100 0.12679114198871036
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-3.binetflow
+20 0.2702484263590847
+40 0.27143269905477363
+150 0.2790816110002971
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815.binetflow
+30 0.031133069350092635
+60 0.05670427101597909
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-2.binetflow
+10 0.011932383162081537
+20 0.03773584905660377
+60 0.07142857142857142
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-3.binetflow
+20 0.008645617014574284
+30 0.008672341755522393
+100 0.008787606169073542
+110 0.04049621901638292
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816.binetflow
+40 0.03973307980698513
+210 0.1565039214300855
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110817.binetflow
+20 0.6880805743645582
+80 0.6907967403145058
+150 0.8188260065596783
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818-2.binetflow
+20 0.009018036072144289
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818.binetflow
+10 0.004743502099697253
+30 0.0160786065207682
+40 0.07575757575757576
+50 0.17456359102244387
+60 0.206794682422452
+150 0.3063457330415755
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110819.binetflow
+10 0.028776376602463558
+20 0.08957074229040755
+30 0.09048639047071731
+50 0.09069012462037909
+### drop_features04 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.288880
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110810.binetflow
+10 0.1881398171223168
+50 0.1889960168261177
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110811.binetflow
+10 0.1803201380918061
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110812.binetflow
+20 0.09442478438685342
+30 0.09487175847728273
+60 0.09515471182386981
+160 0.09528357698311439
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-2.binetflow
+10 0.11524799368504146
+20 0.11526315789473685
+80 0.11532385466034754
+120 0.11535422702133263
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-3.binetflow
+10 0.2714793892814631
+20 0.272499361156962
+100 0.27278383871904427
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815.binetflow
+10 0.03166041708997543
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-2.binetflow
+10 0.006470165348670022
+50 0.006484149855907781
+70 0.0065040650406504065
+100 0.0065075921908893716
+220 0.006517016654598118
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-3.binetflow
+10 0.021864595375096874
+20 0.031642000526322385
+30 0.03177299609915691
+40 0.0324170956849957
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816.binetflow
+30 0.1401322240850283
+60 0.14047883304265102
+70 0.14089882637320694
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110817.binetflow
+10 0.6912506456807754
+50 0.6918997418653365
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818-2.binetflow
+10 0.0027153416804947955
+60 0.0027202659815626414
+80 0.002726033621081327
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818.binetflow
+10 0.004752785271957169
+50 0.004787383835539285
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110819.binetflow
+10 0.01763653583079028
+30 0.06932185145317546
+40 0.09202486584134742
+### drop_features01 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.236568
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110810.binetflow
+20 0.22207881697966683
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110811.binetflow
+20 0.19613080548539133
+130 0.21350730380894165
+240 0.35856334041047416
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110812.binetflow
+10 0.05211452095808384
+30 0.10815621485610726
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-2.binetflow
+10 0.11364815775817332
+20 0.2372055239642567
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815-3.binetflow
+10 0.272497479177314
+140 0.2845172595311407
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110815.binetflow
+50 0.02101108169069334
+60 0.03169027104980956
+150 0.03514311490199295
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-2.binetflow
+20 0.0032280843337032183
+50 0.043478260869565216
+60 0.07692307692307691
+140 0.08
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816-3.binetflow
+10 0.00872181386094838
+60 0.016683790953751214
+240 0.03678130781220411
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110816.binetflow
+10 0.040621704644445464
+30 0.052161831198191407
+50 0.14506516471281683
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110817.binetflow
+10 0.0014161220043572985
+40 0.0018902170527649793
+80 0.32764381173736207
+90 0.7098655536822414
+280 0.733495915132301
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818-2.binetflow
+20 0.0026789700848340527
+30 0.0026998650067496625
+80 0.002768378960319902
+90 0.0027760641579272056
+230 0.004073319755600814
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110818.binetflow
+10 0.0008556918482516075
+20 0.0008632075064524763
+30 0.1173512154233026
+50 0.23569023569023567
+80 0.2661596958174905
+290 0.30501089324618735
+## PKL Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_normal/capture20110819.binetflow
+20 0.028806324775541958
+60 0.040960451977401134
+90 0.06832852269745474
+120 0.10890666666666668
+### drop_features03 [MBKMeans] Classification report for Test dataset
+    F1 Score 0.289555

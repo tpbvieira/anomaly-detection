@@ -391,16 +391,16 @@ drop_features = {
 raw_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_normal/')
 raw_normal_directory = os.fsencode(raw_normal_path)
 raw_normal_files = os.listdir(raw_normal_directory)
-print("## Directory: ", raw_normal_directory)
-print("## Files: ", raw_normal_files)
-raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_attack/')
+# print("## Directory: ", raw_normal_directory)
+# print("## Files: ", raw_normal_files)
+raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_cc/')
 raw_anom_directory = os.fsencode(raw_anom_path)
 raw_anom_files = os.listdir(raw_anom_directory)
 
 # pickle files have the same names
 pkl_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_normal/')
 pkl_normal_directory = os.fsencode(pkl_normal_path)
-pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_attack/')
+pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_cc/')
 pkl_anom_directory = os.fsencode(pkl_anom_path)
 
 # for each feature set
@@ -418,14 +418,21 @@ for features_key, value in drop_features.items():
 
         # read pickle or raw dataset file with pandas
         if os.path.isfile(pkl_normal_file_path):
-            print("## PKL Sample File: ", pkl_normal_file_path)
+            print("## PKL Normal File: ", pkl_normal_file_path)
             normal_df = pd.read_pickle(pkl_normal_file_path)
-            anom_df = pd.read_pickle(pkl_anom_file_path)
         else:
-            print("## Raw File: ", raw_normal_file_path)            
+            print("## Normal File: ", raw_normal_file_path)            
             normal_df = pd.read_csv(raw_normal_file_path, low_memory=True, header = 0, dtype=column_types)
             normal_df = data_cleasing(normal_df)
             normal_df.to_pickle(pkl_normal_file_path)            
+        gc.collect()
+
+        # read pickle or raw dataset file with pandas
+        if os.path.isfile(pkl_anom_file_path):
+            print("## PKL Anomalous File: ", pkl_anom_file_path)
+            anom_df = pd.read_pickle(pkl_anom_file_path)
+        else:
+            print("## Anomalous File: ", raw_normal_file_path)            
             anom_df = pd.read_csv(raw_anom_file_path, low_memory=True, header = 0, dtype=column_types)
             anom_df = data_cleasing(anom_df)
             anom_df.to_pickle(pkl_anom_file_path)
@@ -451,8 +458,7 @@ for features_key, value in drop_features.items():
         test_label = test_label_df.astype(int).values
 
         for m_batch_size in range(10, 310, 10):
-            print('### batch_size: ', m_batch_size)
-        
+            
             mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=2, batch_size=m_batch_size, n_init=10, max_no_improvement=10)
             mbkmeans.fit(train_df)
             pred_test_label = mbkmeans.predict(test_df).astype(int)
@@ -464,7 +470,6 @@ for features_key, value in drop_features.items():
                 best_mbkmeans_pred_test_label = pred_test_label
                 print(best_batch_size, best_f1_score)
 
-        print('### Best batch_size: ', best_batch_size)
         mbkmeans_test_label.extend(test_label)
         mbkmeans_pred_test_label.extend(best_mbkmeans_pred_test_label)  # append into global array
         
