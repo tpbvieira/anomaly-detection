@@ -1,1 +1,6 @@
-/target/
+/doc
+/target
+.settings
+.classpath
+.project
+out.txt

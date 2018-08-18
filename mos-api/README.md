@@ -1,2 +1,2 @@
-# mos
-Model Order Selection for Anomaly Detection
+# MOS API
+Model Order Selection API for Anomaly Detection
