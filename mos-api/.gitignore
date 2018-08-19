@@ -1,8 +1,0 @@
-/doc
-/target
-.settings
-.classpath
-.project
-pom.xml.releaseBackup
-release.properties
-out.txt

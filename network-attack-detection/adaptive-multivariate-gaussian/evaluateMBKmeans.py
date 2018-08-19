@@ -28,7 +28,7 @@ from sklearn.metrics.pairwise import pairwise_distances_argmin
 # data cleasing, feature engineering and save clean data into pickles
 def data_cleasing(df):
         
-    print('### Data Cleasing and Feature Engineering')
+    # print('### Data Cleasing and Feature Engineering')
     le = preprocessing.LabelEncoder()
     
     df['Proto'] = df['Proto'].fillna('-')

@@ -432,7 +432,7 @@ for features_key, value in drop_features.items():
             print("## PKL Anomalous File: ", pkl_anom_file_path)
             anom_df = pd.read_pickle(pkl_anom_file_path)
         else:
-            print("## Anomalous File: ", raw_normal_file_path)            
+            print("## Anomalous File: ", raw_anom_file_path)            
             anom_df = pd.read_csv(raw_anom_file_path, low_memory=True, header = 0, dtype=column_types)
             anom_df = data_cleasing(anom_df)
             anom_df.to_pickle(pkl_anom_file_path)
