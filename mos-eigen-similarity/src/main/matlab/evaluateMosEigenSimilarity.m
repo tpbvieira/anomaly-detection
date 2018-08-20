@@ -1,8 +1,8 @@
 clc; clear all; close all;
 
-addpath('util/');
 addpath('eigen_analysis/');
 addpath('mos/');
+addpath('util/');
 dataPath = '/media/thiago/shared/backup/doutorado/data/';
 resultPath = '../../../results/';
 
@@ -42,7 +42,7 @@ threshold = 0.40;
 
 %% Extracts GETV Information
 % extracts traffic information and calculates EVD for kinds of traffic
-mosEigenSimilarity_evd(dataPath, resultPath);
+extracteigendata(dataPath, resultPath);
 
 
 %% eigen analysis
@@ -184,7 +184,7 @@ for matrix = 1:numberOfMatrices
         else
             [S0,E0,Vr0,Mr0] = eigencovariance(X0);
         end
-        X = dlmread([dataPath matrices{matrix} '/traffic/' num2str(pcs_q(pc)) '.txt'], '\t');     % traffi of the period q under attack
+        X = dlmread([dataPath matrices{matrix} '/traffic/' num2str(pcs_q(pc)) '.txt'], '\t');     % traffic of the period q under attack
         t_attacks = {};
         
         for t = 1:periodsSize
@@ -202,7 +202,7 @@ for matrix = 1:numberOfMatrices
             if(cosTheta < threshold)
                 X0 = cat(2,X0,X(:,1:t-1));
                 t_attacks = [t_attacks,t];                
-                ports = mosEigenSimilarity_findport(X0,X(:,t),pcs_q(pc) == 3,threshold);
+                ports = getportattack(X0,X(:,t),pcs_q(pc) == 3,threshold);
                 %warning('Matrix = %s, Period(q) = %s, Time(t) = %s, Ports= %s',matrices{matrix},num2str(pcs_q(pc)),num2str(t),mat2str(ports));
                 t = t + 1;                
                 for a = t:periodsSize
@@ -216,7 +216,7 @@ for matrix = 1:numberOfMatrices
                     warning('Matrix = %s, Period(q) = %s, Time(t) = %s, cosTheta= %s',matrices{matrix},num2str(pcs_q(pc)),num2str(a),cosTheta);                    
                     if(cosTheta < threshold)
                         t_attacks = [t_attacks,a];
-                        ports = mosEigenSimilarity_findport(X0,X(:,a),pcs_q(pc) == 3,threshold);
+                        ports = getportattack(X0,X(:,a),pcs_q(pc) == 3,threshold);
                         %warning('Matrix = %s, Period(q) = %s, Time(t) = %s, Ports= %s',matrices{matrix},num2str(pcs_q(pc)),num2str(a),mat2str(ports));
                     end
                 end

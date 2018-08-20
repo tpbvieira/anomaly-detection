@@ -1,4 +1,4 @@
-function P = moseigensimfindport(X0,Xt,isCorr,threshold)
+function P = getportattack(X0,Xt,isCorr,threshold)
 % moseigensimfindport seeks for ports under attack according to the defined
 % threshold and the consine similarity analysis of changes on the principal
 % eigenvectors 
