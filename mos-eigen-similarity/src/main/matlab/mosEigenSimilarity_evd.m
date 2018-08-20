@@ -1,18 +1,15 @@
 %% Extracts GETV Information
 % It extracts traffic information from provided file and calculates GETV for kinds of traffic
 % Extracts GETV information by different granularities 
-function mosEigenSimilarity_generateData()
+function mosEigenSimilarity_generateData(dataPath, resultPath )
 
-    addpath('/home/thiago/Dropbox/dev/projects/anomaly-detector/fontes/mos-eigen-similarity/src/main/matlab/eigen_analysis/');
-
-    dataPath = '/media/thiago/shared/backup/doutorado/data/';
-    resultPath = '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/';
+    addpath('eigen_analysis/');
     
     %matrix metadata
     matrices = {'all';'signal';'noise';'portscan';'synflood';'fraggle'};
-    numberOfMatrices = size(matrices,1); %6 matrices
+    numberOfMatrices = size(matrices,1);                                    %6 matrices
     ports = [80,443,53,21,22,23,25,110,143,161,69,123,445,600,19,67,68];
-    numberOfPorts = size(ports,2); %17 ports
+    numberOfPorts = size(ports,2);                                          %17 ports
     
     %minutes
     numPeriods = 6;
@@ -175,28 +172,28 @@ function mosEigenSimilarity_generateData()
         end
         
         % data persistence (minutes)
-        save([dataPath matrices{matrix} '/Sqxx'],'Sqxx');            % covariance
-        save([dataPath matrices{matrix} '/Esqxx'],'Esqxx');          % eigenvalues
-        save([dataPath matrices{matrix} '/Vsqxx'],'Vsqxx');          % eigenvectors
+        save([dataPath matrices{matrix} '/Sqxx'],'Sqxx');                   % covariance
+        save([dataPath matrices{matrix} '/Esqxx'],'Esqxx');                 % eigenvalues
+        save([dataPath matrices{matrix} '/Vsqxx'],'Vsqxx');                 % eigenvectors
         GETVsqxx_ = cell2mat(GETVsqxx);                               
-        save([dataPath matrices{matrix} '/GETVsqxx'],'GETVsqxx_');	% getv 
-        save([dataPath matrices{matrix} '/Rqxx'],'Rqxx');            % correlation
-        save([dataPath matrices{matrix} '/Erqxx'],'Erqxx');          % eigenvalues
-        save([dataPath matrices{matrix} '/Vrqxx'],'Vrqxx');          % eigevectors	
+        save([dataPath matrices{matrix} '/GETVsqxx'],'GETVsqxx_');          % getv 
+        save([dataPath matrices{matrix} '/Rqxx'],'Rqxx');                   % correlation
+        save([dataPath matrices{matrix} '/Erqxx'],'Erqxx');                 % eigenvalues
+        save([dataPath matrices{matrix} '/Vrqxx'],'Vrqxx');                 % eigevectors	
         GETVrqxx_ = cell2mat(GETVrqxx);								        
-        save([dataPath matrices{matrix} '/GETVrqxx'],'GETVrqxx_');	% getv
+        save([dataPath matrices{matrix} '/GETVrqxx'],'GETVrqxx_');          % getv
         
         % data persistence (seconds)
-        save([dataPath matrices{matrix} '/Sqxxss'],'Sqxxss');            % covariance
-        save([dataPath matrices{matrix} '/Esqxxss'],'Esqxxss');          % eigenvalues
-        save([dataPath matrices{matrix} '/Vsqxxss'],'Vsqxxss');          % eigenvectors
+        save([dataPath matrices{matrix} '/Sqxxss'],'Sqxxss');               % covariance
+        save([dataPath matrices{matrix} '/Esqxxss'],'Esqxxss');             % eigenvalues
+        save([dataPath matrices{matrix} '/Vsqxxss'],'Vsqxxss');             % eigenvectors
         GETVsqxxss_ = cell2mat(GETVsqxxss);                               
-        save([dataPath matrices{matrix} '/GETVsqxxss'],'GETVsqxxss_');	 % getv 
-        save([dataPath matrices{matrix} '/Rqxxss'],'Rqxxss');            % correlation
-        save([dataPath matrices{matrix} '/Erqxxss'],'Erqxxss');          % eigenvalues
-        save([dataPath matrices{matrix} '/Vrqxxss'],'Vrqxxss');          % eigevectors	
+        save([dataPath matrices{matrix} '/GETVsqxxss'],'GETVsqxxss_');      % getv 
+        save([dataPath matrices{matrix} '/Rqxxss'],'Rqxxss');               % correlation
+        save([dataPath matrices{matrix} '/Erqxxss'],'Erqxxss');             % eigenvalues
+        save([dataPath matrices{matrix} '/Vrqxxss'],'Vrqxxss');             % eigevectors	
         GETVrqxxss_ = cell2mat(GETVrqxxss);								        
-        save([dataPath matrices{matrix} '/GETVrqxxss'],'GETVrqxxss_');	% getv        
+        save([dataPath matrices{matrix} '/GETVrqxxss'],'GETVrqxxss_');      % getv        
     end
     
     % data persistence of maps for future tracking

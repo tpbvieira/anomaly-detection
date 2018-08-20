@@ -1,13 +1,10 @@
-clc;
-clear all;
-close all;
+clc; clear all; close all;
 
 addpath('util/');
 addpath('eigen_analysis/');
-addpath('/home/thiago/Dropbox/dev/projects/anomaly-detector/fontes/mos-api/src/main/matlab/');
-
+addpath('mos/');
 dataPath = '/media/thiago/shared/backup/doutorado/data/';
-resultPath = '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/';
+resultPath = '../../../results/';
 
 %[1]=80     
 %[2]=443    
@@ -35,18 +32,17 @@ resultPath = '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/201
 %warning ('off', 'textscan: no data read');
 %warning ('off', 'division by zero');
 matrices = {'all';'signal';'noise';'portscan';'synflood';'fraggle'};
-numberOfMatrices = size(matrices,1); %6 matrices
+numberOfMatrices = size(matrices,1);                                        %6 matrices
 ports = [80,443,53,21,22,23,25,110,143,161,69,123,445,600,19,67,68];
-numberOfPorts = size(ports,2); %17 ports
+numberOfPorts = size(ports,2);                                              %17 ports
 numPeriods = 6;
 periodsSize = 20;
 numMinutes = 120;
-
 threshold = 0.40;
 
 %% Extracts GETV Information
 % extracts traffic information and calculates EVD for kinds of traffic
-mosEigenSimilarity_evd();
+mosEigenSimilarity_evd(dataPath, resultPath);
 
 
 %% eigen analysis
@@ -67,13 +63,13 @@ for matrix = 1:numPeriods
 				Erqxx_plot(i,period) = Erq(i,1);
             end
         end
-		plot(Erqxx_plot,'linestyle','-','marker','x');
-        set(gca,'FontSize',16);
-		%title('Portscan Eigenvalues');
-		xlabel('Decrescent Largest Eigenvalues');
-		ylabel('Eigenvalues');
-		legend(strcat('q=',strtrim(cellstr(num2str(periods)))));
-		print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_portscan.eps'];
+% 		plot(Erqxx_plot,'linestyle','-','marker','x');
+%         set(gca,'FontSize',16);
+% 		title('Portscan Eigenvalues');
+% 		xlabel('Decrescent Largest Eigenvalues');
+% 		ylabel('Eigenvalues');
+% 		legend(strcat('q=',strtrim(cellstr(num2str(periods)))));
+% 		print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_portscan.eps'];
 		%waitforbuttonpress();
     end
     
@@ -97,17 +93,17 @@ for matrix = 1:numPeriods
 		elseif matrix == 6
 			strTitle = 'Fraggle Eigenvalues';
         end
-		plot(Esqxx_plot,'linestyle','-','marker','x');
-        set(gca,'FontSize',16);
-		%title(strTitle);
-		xlabel('Decrescent Largest Eigenvalues');
-		ylabel('Eigenvalues');
-		legend(strcat('q=',strtrim(cellstr(num2str(periods)))));
-		if matrix == 5
-			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_synflood.eps';
-		elseif matrix == 6
-			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_fraggle.eps';
-        end
+% 		plot(Esqxx_plot,'linestyle','-','marker','x');
+%         set(gca,'FontSize',16);
+% 		title(strTitle);
+% 		xlabel('Decrescent Largest Eigenvalues');
+% 		ylabel('Eigenvalues');
+% 		legend(strcat('q=',strtrim(cellstr(num2str(periods)))));
+% 		if matrix == 5
+% 			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_synflood.eps';
+% 		elseif matrix == 6
+% 			print -depsc '/home/thiago/Dropbox/dev/projects/anomaly-detector/docs/papers/2016JNCA/results/figures/eigenvalues_fraggle.eps';
+%         end
     end
 end
 

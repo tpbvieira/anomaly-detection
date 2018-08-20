@@ -6,7 +6,6 @@
 % portTimes is a matrix nxm where n are ports and m are times
 % mapTimes is a containers.Map to save original time and the new one
 function [portTimes, mapTimes] = mosEigenSimilarity_getTimeFromFile(filePath, numberOfPorts, ports, granularity, portTimes, mapTimes)
-
     for port = 1:numberOfPorts        
         fileID = fopen([filePath num2str(ports(port)) '.txt']);
         fileInfo = textscan(fileID,'%s %u');

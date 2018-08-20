@@ -1,10 +1,7 @@
-clc;
-clear all;
-close all;
+clc;clear all;close all;
 
 addpath('eigen_analysis/');
-addpath('/home/thiago/Dropbox/dev/projects/anomaly-detector/fontes/mos-api/src/main/matlab/');
-
+addpath('mos/');
 dataPath = '/media/thiago/shared/backup/doutorado/data/';
 
 matrices = {'all';'signal';'noise';'portscan';'synflood';'fraggle'};

@@ -1,5 +1,6 @@
 /doc
 /target
+/results
 .idea
 .settings
 .classpath
