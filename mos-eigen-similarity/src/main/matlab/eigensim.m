@@ -95,7 +95,7 @@ while (obsIni < nObs)
 
     if(nAttacks > 0)
         % gets index of periods that are under attack
-        attacked_q = NaN;
+        attacked_q = [];
         maxEig_sorted = sort(maxEig,'descend');
         for i = 1:nAttacks
             attacked_q(i) = find(maxEig == maxEig_sorted(i));
@@ -118,6 +118,9 @@ while (obsIni < nObs)
         end
         for iAtt = 1:nAttacks                                                   % for each predicted number of attacks
             X0End = (attacked_q(iAtt) * windowSize) + obsIni - 1;
+            if(X0End > nObs)
+                X0End = nObs;
+            end
             X0Ini = X0End - windowSize + 1;
 
             for t = X0Ini:X0End                                                   
