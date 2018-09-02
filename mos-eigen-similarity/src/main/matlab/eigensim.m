@@ -1,4 +1,4 @@
-function y = eigensim(X,w,s,cov,mos,th)
+function y = eigensim(X,w,s,normMethod,svdMethod,mos,th)
 % eigensim 
 %
 % SYNOPSIS: 
@@ -25,7 +25,6 @@ function y = eigensim(X,w,s,cov,mos,th)
 
 addpath('eigen_analysis/');
 addpath('mos/');
-addpath('util/');
 
 nVar = size(X,1);
 nObs = size(X,2);
@@ -35,7 +34,7 @@ threshold = th;
 y = zeros(1,nObs);
 obsIni = 1;
 
-if(not(strcmp(cov,'unit')) && not(strcmp(cov,'zmean')))
+if(not(strcmp(normMethod,'unit')) && not(strcmp(normMethod,'zmean')))
     throw(MException('varError:InvalidCovValue','cov variable must be "unit" or "zmean"'))
 end
 
@@ -50,10 +49,10 @@ while (obsIni < nObs)
     maxEig = zeros(1,6);
     for li = 1:seasonSize
         X0 = X(:, X0Ini:X0End);
-        if(strcmp(cov,'unit'))
-            [Sx,Ex,Vx,Mx] = eigencorrelation(X0);
-        elseif(strcmp(cov,'zmean'))
-            [Sx,Ex,Vx,Mx] = eigencovariance(X0);
+        if(strcmp(normMethod,'unit'))
+            [Sx,Ex,Vx,Mx] = eigencorrelation(X0,svdMethod);
+        elseif(strcmp(normMethod,'zmean'))
+            [Sx,Ex,Vx,Mx] = eigencovariance(X0,svdMethod);
         end
         maxEig(li) = Mx(1);
         
@@ -111,10 +110,10 @@ while (obsIni < nObs)
             X0Ini = X0End - windowSize + 1;
             X0 = X(:, X0Ini:X0End);                                             % the reference traffic without attack
         end
-        if(strcmp(cov,'unit'))
-            [S0,E0,Vr0,Mr0] = eigencorrelation(X0);
-        elseif(strcmp(cov,'zmean'))
-            [S0,E0,Vr0,Mr0] = eigencovariance(X0);
+        if(strcmp(normMethod,'unit'))
+            [S0,E0,Vr0,Mr0] = eigencorrelation(X0,svdMethod);
+        elseif(strcmp(normMethod,'zmean'))
+            [S0,E0,Vr0,Mr0] = eigencovariance(X0,svdMethod);
         end
         for iAtt = 1:nAttacks                                                   % for each predicted number of attacks
             X0End = (attacked_q(iAtt) * windowSize) + obsIni - 1;
@@ -125,10 +124,10 @@ while (obsIni < nObs)
 
             for t = X0Ini:X0End                                                   
                 Xc = cat(2, X0, X(:,X0Ini:t));                                  % incremental
-                if (strcmp(cov,'unit'))
-                    [Sc,Ec,Vrc,Mrc] = eigencorrelation(Xc);
+                if (strcmp(normMethod,'unit'))
+                    [Sc,Ec,Vrc,Mrc] = eigencorrelation(Xc,svdMethod);
                 else
-                    [Sc,Ec,Vrc,Mrc] = eigencovariance(Xc);
+                    [Sc,Ec,Vrc,Mrc] = eigencovariance(Xc,svdMethod);
                 end
                 cosTheta = dot(Vr0(:,Mr0(2)), Vrc(:,Mrc(2))) / (norm(Vr0(:,Mr0(2))) * norm(Vrc(:,Mrc(2))));
                 cosTheta  = abs(cosTheta);
@@ -138,10 +137,10 @@ while (obsIni < nObs)
                     X0 = cat(2,X0, X(:,X0Ini:t-1));
                     tIni = t + 1;
                     for t = tIni:X0End                                          % individualized
-                        if (strcmp(cov,'unit'))
-                            [S,E,Vrc,Mrc] = eigencorrelation(cat(2, X0, X(:,t)));
+                        if (strcmp(normMethod,'unit'))
+                            [S,E,Vrc,Mrc] = eigencorrelation(cat(2, X0, X(:,t)),svdMethod);
                         else
-                            [S,E,Vrc,Mrc] = eigencovariance(cat(2, X0, X(:,t)));
+                            [S,E,Vrc,Mrc] = eigencovariance(cat(2, X0, X(:,t)),svdMethod);
                         end
                         cosTheta = dot(Vr0(:,Mr0(2)),Vrc(:,Mrc(2)))/(norm(Vr0(:,Mr0(2)))*norm(Vrc(:,Mrc(2))));
                         cosTheta  = abs(cosTheta);

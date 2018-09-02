@@ -9,3 +9,5 @@
 *.releaseBackup
 release.properties
 out.txt
+*.dat
+*.mat

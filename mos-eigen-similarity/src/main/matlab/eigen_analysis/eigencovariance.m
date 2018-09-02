@@ -1,4 +1,4 @@
-function [S,E,V,M] = eigencovariance(X)
+function [S,E,V,M] = eigencovariance(X,method)
 % eigencovariance calculates the eigenvalues, eigenvectors, largest
 % eigenvalue using the covariance matrix of zero mean of X
 %
@@ -6,13 +6,18 @@ function [S,E,V,M] = eigencovariance(X)
 % largest eigenvalue using the covariance matrix of zero mean of X
 %
 % INPUT X: data matrix
+%       method: decomposition method, such as 'eig', 'svd', 'rsvd',
+%       'rSVDbasic',  'rSVDsp' e 'rSVD_exSP'
 %
 % OUTPUT S: covariance matrix 
 %        E: eigenvalues diagonal matrix
 %        V: eigenvector matrix
 %        M: largest eigenvalue
 %
-% EXAMPLE eigencovariance(X)
+% EXAMPLE: 
+%   [S,E,V,M] = eigencovariance(X,'eig')
+%   [S,E,V,M] = eigencovariance(X,'rsvd')
+%   [S,E,V,M] = eigencovariance(X) 
 %
 % SEE ALSO 
 %
@@ -21,21 +26,49 @@ function [S,E,V,M] = eigencovariance(X)
 % DATE: 
 %
 
+addpath('../../../main/matlab/rsvd/rsvd');
+addpath('../../../main/matlab/rsvd/rSVD-single-pass');
+
+if nargin<2,
+    method='eig';
+end
+
 numLines = size(X,1);
 numColumns = size(X,2);
 Y = zeros(numLines,numColumns);
 
 for i = 1:numLines;
-    Y(i,:) = (X(i,:) - mean(X(i,:)));                                       % zero mean
+    % zero mean
+    Y(i,:) = (X(i,:) - mean(X(i,:)));
 end
 
-S = 1/numColumns*Y*Y';                                                      % estimation of covariance matrices (S)    
-[V,E] = eig(S);                                                             % eigenvectors (V) and eigenvalues diagonal matrix (E)
-M(1) = max(diag(E));                                                        % value of the largest eigenvalue (M)
+% estimation of covariance matrices (S)    
+S = 1/numColumns*Y*Y';                                                      
 
+% right eigenvectors (V) and eigenvalues (E) of correlation matrix
+switch method		
+    case 'eig'
+        [V,E] = eig(S);                                                     
+    case 'svd'
+        [U,E,V] = svd(S,'econ');
+    case 'rsvd'
+        [U,E,V] = rsvd(S,1);
+    case 'rSVDbasic'
+        [U,E,V] = rSVDbasic(S,1);
+    case 'rSVDsp'
+        [U,E,V] = rSVDsp(S,1);
+    case 'rSVD_exSP'
+        [U,E,V] = rSVD_exSP(S,1);
+    otherwise
+        [V,E] = eig(S);
+end                                                           
+
+% value of the largest eigenvalue (M)
+M(1) = max(diag(E));                                                        
 Ed  = diag(E);    
 for i = 1:size(Ed,1);
     if M(1) == Ed(i)
-        M(2) = i;                                                           % index of the largest eigenvalue
+        % index of the largest eigenvalue
+        M(2) = i;
     end        
 end
