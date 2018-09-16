@@ -26,9 +26,6 @@ function [S,E,V,M] = eigencovariance(X,method)
 % DATE: 
 %
 
-addpath('../../../main/matlab/rsvd/rsvd');
-addpath('../../../main/matlab/rsvd/rSVD-single-pass');
-
 if nargin<2,
     method='eig';
 end

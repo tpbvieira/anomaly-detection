@@ -1,6 +1,7 @@
 /doc
 /target
 /results
+/src/test/matlab/results/
 .idea
 .settings
 .classpath
@@ -11,3 +12,4 @@ release.properties
 out.txt
 *.dat
 *.mat
+*.csv

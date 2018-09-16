@@ -146,123 +146,123 @@ y15TestZmean(71:80) = 1;
 y15TestZmean(91:100) = 1;
 
 %% Test Scenario 1 - unit
-y = eigensim(X1Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X1Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y1TestUnit))
 
 %% Test Scenario 1 - zmean
-y = eigensim(X1Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X1Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y1TestZmean))
 
 %% Test Scenario 2 - unit
-y = eigensim(X2Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X2Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y2TestUnit))
 
 %% Test Scenario 2 - zmean
-y = eigensim(X2Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X2Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y2TestZmean))
 
 %% Test Scenario 3 - unit
-y = eigensim(X3Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X3Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y3TestUnit))
 
 %% Test Scenario 3 - zmean
-y = eigensim(X3Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X3Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y3TestZmean))
 
 %% Test Scenario 4 - unit
-y = eigensim(X4Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X4Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y4TestUnit))
 
 %% Test Scenario 4 - zmean
-y = eigensim(X4Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X4Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y4TestZmean))
 
 %% Test Scenario 5 - unit
-y = eigensim(X5Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X5Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y5TestUnit))
 
 %% Test Scenario 5 - zmean
-y = eigensim(X5Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X5Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y5TestZmean))
 
 %% Test Scenario 6 - unit
-y = eigensim(X6Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X6Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y6TestUnit))
 
 %% Test Scenario 6 - zmean
-y = eigensim(X6Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X6Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y6TestZmean))
 
 %% Test Scenario 7 - unit
-y = eigensim(X7Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X7Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y7TestUnit))
 
 %% Test Scenario 7 - zmean
-y = eigensim(X7Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X7Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y7TestZmean))
 
 %% Test Scenario 8 - unit
-y = eigensim(X8Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X8Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y8TestUnit))
 
 %% Test Scenario 8 - zmean
-y = eigensim(X8Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X8Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y8TestZmean))
 
 %% Test Scenario 9 - unit
-y = eigensim(X9Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X9Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y9TestUnit))
 
 %% Test Scenario 9 - zmean
-y = eigensim(X9Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X9Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y9TestZmean))
 
 %% Test Scenario 10 - unit
-y = eigensim(X10Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X10Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y10TestUnit))
 
 %% Test Scenario 10 - zmean
-y = eigensim(X10Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X10Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y10TestZmean))
 
 %% Test Scenario 11 - unit
-y = eigensim(X11Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X11Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y11TestUnit))
 
 %% Test Scenario 11 - zmean
-y = eigensim(X11Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X11Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y11TestZmean))
 
 %% Test Scenario 12 - unit
-y = eigensim(X12Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X12Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y12TestUnit))
 
 %% Test Scenario 12 - zmean
-y = eigensim(X12Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X12Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y12TestZmean))
 
 %% Test Scenario 13 - unit
-y = eigensim(X13Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X13Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y13TestUnit))
 
 %% Test Scenario 13 - zmean
-y = eigensim(X13Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X13Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y13TestZmean))
 
 %% Test Scenario 14 - unit
-y = eigensim(X14Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X14Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y14TestUnit))
 
 %% Test Scenario 14 - zmean
-y = eigensim(X14Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X14Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y14TestZmean))
 
 %% Test Scenario 15 - unit
-y = eigensim(X15Test,20,6,'unit','rsvd','edc', 0.30);
+y = eigensim(X15Test,20,6,'unit','eig','edc', 0.30);
 assert(isequal(y,y15TestUnit))
 
 %% Test Scenario 15 - zmean
-y = eigensim(X15Test,20,6,'zmean','rsvd','edc', 0.30);
+y = eigensim(X15Test,20,6,'zmean','eig','edc', 0.30);
 assert(isequal(y,y15TestZmean))
 
 display('Test Success!!')
