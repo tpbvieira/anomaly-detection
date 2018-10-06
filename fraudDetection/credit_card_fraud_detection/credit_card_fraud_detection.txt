@@ -1,0 +1,184 @@
+code/Gaussian Distribution
+================================================================================================================================================================================================================================
+ - based on multivariate gaussian distribution 
+ - print features distribution
+ - drop not discriminative features according to a visual evaluation
+ - split data into training, cross validation and testing
+ - use train normal data to estimate best mu (mean) and sigma (covariance matrix)
+ - estimate the probability from cross validation dataset using best_mu and best_signma
+ - select the best threshold according to the estimated probabilities and the expected values
+ - use the best threshold for testing results
+ - F1 Score 0.664234
+ - Recall Score 0.742857
+ - Precision Score 0.600660
+
+
+code/SVM
+================================================================================================================================================================================================================================
+ - based on svm
+ - split the data into training and testing
+ - Standardize 'Amount' by removing the mean and scaling to unit variance
+ - drop time
+ - test size of 25%
+ - train from normal and anomalous data
+ - C= 1, kernel= 'linear'
+ - F1 Score 		1.000000
+ - Recall Score 	1.000000
+ - Precision Score 	1.000000
+
+
+code/GMM
+================================================================================================================================================================================================================================
+ - based on gaussian mixture model. One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians
+ - print the distribution of selected features ['V17','V14', 'V11', 'V4', 'V15', 'V13']
+ - train a simple Gaussian mixture model using V14 and V17 of normal data
+ - 90% of normal for training and 10% for testing. 50% anomaly for cross-validation and 50% for testing.
+ - Cross-Validation Results
+	F1 Score 		0.814815
+	Recall Score 	0.715447
+	Precision score 0.946237
+ - Test Results
+	F1 Score 		0.848861
+	Recall Score 	0.833333
+	Precision Score 0.864979
+
+
+code/Logistc Regression
+================================================================================================================================================================================================================================
+ - based on Logistic Regression
+ - Standardize 'Amount' by removing the mean and scaling to unit variance
+ - undersample the data to 984 and 50% of normal and anomalies
+ - uses k-fold for identification of best C for undersampled data
+ 	C parameter =  1.0
+ 	Mean F1 score  0.9292638915524769
+ - train from undersample data using normal and anomalous
+ - get F1-Score for undersample training and undersample testing
+ 	F1 Score 		0.954704
+	Recall Score 	0.931973
+	Precision Score 0.978571
+ - get F1-Score for undersample training and whole testing	
+	F1 Score 		0.093973
+	Recall Score 	0.938776
+	Precision Score 0.049462
+ - uses k-fold for identification of best C for whole data
+ 	C parameter =  10.0
+ 	Mean F1 score  0.7242272584944212
+ - get F1-Score for whole training and whole testing
+	F1 Score 		0.728000
+	Recall Score 	0.619048
+	Precision Score 0.883495
+
+
+code/Multivariate Gaussian and Neural Network
+================================================================================================================================================================================================================================
+ - based on multivariate gaussian distribution and neural network
+ - print features distribution
+ - Gaussian distribution
+	 - Splits the data in training_set (60%) and test_set (40%), and test set into CV and test, with 50% each
+	 - implements Multivariate Gaussian from scratch
+	 - train Mu and Sigma from normal data of X_cv
+	 - find best epsilon
+	 - gets F1-Score for X_test
+		F1 Score 		0.545106
+		Recall Score 	0.577236
+		Precision Score 0.516364
+	 - gets F1-Score for fraud data (sounds unreal)
+		F1 Score 		0.730323
+		Recall Score 	0.575203
+		Precision Score 1.000000
+ - Neural Network - Sequential
+ 	 - normalize the data
+ 	 - Split the data - 20% of normal data + 50% of fraud
+ 	 - categorize y using LabelEncoder
+ 	 - The Sequential model is a linear stack of layers.
+ 	 - predicts X_test
+ 	 - gets F1-score for X_test
+ 	 - Predictions only for fraud transactions
+		F1 Score 		0.925764
+		Recall Score 	0.861789
+		Precision Score 1.000000
+
+
+code/Semi-Supervised Anomaly Detection Survey
+================================================================================================================================================================================================================================
+ - interesting evaluation about anomaly detection, with concepts and discussion
+ - focus on semi-supervised anomaly detection
+ - transform the Amount and Time features to make them more Gaussian like.
+ 	np.log(dataset['Amount'] + 1)
+ 	np.log(dataset['Time'] + 1)
+ - split data as 50% of normal for training, 25% for CV and 25% for testing. 50% of fraud are appended into for CV and 50% of fraud are appended into for testing
+ - evaluation based on precision, recall and f2-score
+ - Multivariate Gaussiam
+ 	 - The model is a parametric one in the sense the we only estimate the parameters of the multivariate distribution, namely the mean and covariance matrix.
+	 - This would not be a problem if all our variables where principal components extracted from PCA, since they would be linear independent, but as this is not the case, we better account for correlation among features. To do that, we simply use the use the Mahalanobis distance of a test instance ( \pmb{x} ) to the sample mean ( \pmb{\bar{x}} ). So that this score reflects a valid probability distribution, we will fit a full covariance matrix multi-variate normal distribution to the data:
+	 - estimates mu and sigma from normal data
+	 - Since the probability of the data ( P(\pmb{X} )) is usually a very small number, we usually use the log probability as a score to avoid underflow problems.
+	 - With this score, we can define a threshold above which we will classify the instances as anomalies. Now, this is equivalent to fitting a hyper-elipse to the data, centered at the mean and with eccentricity dictated by the covariance matrix; samples outside this ellipsis will be considered anomalous transactions.
+	 - estimate the best threshold from validation data
+	 - estimate the probabilities from test data
+	 - compute metrics
+		Final threshold: 		-269
+		Test Recall Score: 		0.793
+		Test Precision Score: 	0.701
+		Test F1 Score: 			0.744
+		Test F2 Score: 			0.773
+ - Histogram
+ 	- a non-parametric statistical technique
+ 	- We first model one histogram per feature in the normal training data. Than, at evaluation time, for each histogram, we see in which bin a data instance fall in. We then combine the hight of these bins to produce a final score for the data instance. If the score is tow low, it mean the data falls in bins where there is little or no normal data. We can than flag it as an anomaly.
+ 	- compute metrics
+		Final threshold: 		36161
+		Test Recall Score: 		0.646
+		Test Precision Score: 	0.170
+		Test F1 Score: 			0.270
+		Test F2 Score: 			0.415
+ - Gaussian Mixture Model
+ 	- we explore it as a semi-supervised technique that assumes that the "Normal data instances lie close to their closest cluster centroid, while anomalies are far away from their closest cluster centroid"
+ 	- One drawback we have compared to the simple multivariate Gaussian method we used is that in the mixture of Gaussian, the number of Gaussian to fit is a hyper-parameter we also have to tune. We did this using the validation set and found 3 Gaussian to be optimal in this dataset. 
+		Final threshold: 		-101.010101
+		Test Recall Score: 		0.809
+		Test Precision Score: 	0.726
+		Test F1 Score: 			0.765
+		Test F2 Score: 			0.791
+ - SVM
+ 	- OneClassSVM as semi-supervised technique
+ 	- fits a one class SVM to the data and uses kernels to learn arbitrarily shaped boundaries. The way this SVM works is that we first project the data onto a space with larger (possibly infinite) dimensions, where we can encapsulate the normal data in a hypersphere, even if no hypersphere could capture all data in the original space.
+ 	- At evaluation time, we use the distance from the boundary as a score, where negative scores means the data falls outside this boundary. 
+ 	- train from normal data, validate using CV data to obtain the best threshold, and evaluate test data
+		Final threshold: 		-22466.533066
+		Test Recall Score: 		0.630
+		Test Precision Score: 	0.323
+		Test F1 Score: 			0.427
+		Test F2 Score: 			0.529
+ - IsolationForest
+ 	- based on isolation forest that "isolates’ observations by randomly selecting a feature and then randomly selecting a split value between the maximum and minimum values of the selected feature"
+ 	- We use the average path length for the forest as a score and flag instances with a shorter average path as anomalous transactions.
+ 	- train from normal data, validate from CV data to obtain the best thresholds, and evaluate test data
+		Final threshold: 		0.049246
+		Test Recall Score: 		0.760
+		Test Precision Score: 	0.482
+		Test F1 Score: 			0.590
+		Test F2 Score: 			0.681
+ - Deep Learning
+ 	- based on Autoencoder
+ 	- a multilayer perceptron with the same number of input and output neurons is trained with maximum likelihood to replicate the input data. To avoid simply learning the identity function, we use a bottleneck layer, with fewer neurons than the input size, thus forcing the network to compress the input in its internal representation.
+ 	- we can hope it will learn a good internal representation of it and thus have a low reconstruction error wen asked to replicate normal data.
+ 	- as it have never seen how the anomalous data looks like, we also hope that the network will do a poor job reconstructing the anomalies.
+ 	- we can use the reconstruction error, ( (\pmb{\tilde{x}} - \pmb{x})^2 ), as an anomaly score.
+ 	- train from normal, validate from CV and tests from test dataset
+ 	- results
+		Final threshold: 		1.818182
+		Test Recall Score: 		0.654
+		Test Precision Score: 	0.296
+		Test F1 Score: 			0.408
+		Test F2 Score: 			0.527
+
+
+code/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM
+================================================================================================================================================================================================================================
+ - focus on Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM
+ - based on ensemble models (bagged models), with the default size being 5 models. The Isolation Forest and One Class SVM use these functions.
+ - calculate the mean value of all algorithms for decision_function
+ 
+
+code/script_Credit_Card_Fraud_Detection.py
+================================================================================================================================================================================================================================
