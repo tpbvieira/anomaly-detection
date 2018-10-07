@@ -1,6 +1,6 @@
-code/Gaussian Distribution
+code/Multivariate Gaussian
 ================================================================================================================================================================================================================================
- - based on multivariate gaussian distribution 
+ - based on multivariate gaussian distribution as semi-supervised learning
  - print features distribution
  - drop not discriminative features according to a visual evaluation
  - split data into training, cross validation and testing
@@ -8,28 +8,15 @@ code/Gaussian Distribution
  - estimate the probability from cross validation dataset using best_mu and best_signma
  - select the best threshold according to the estimated probabilities and the expected values
  - use the best threshold for testing results
- - F1 Score 0.664234
- - Recall Score 0.742857
- - Precision Score 0.600660
-
-
-code/SVM
-================================================================================================================================================================================================================================
- - based on svm
- - split the data into training and testing
- - Standardize 'Amount' by removing the mean and scaling to unit variance
- - drop time
- - test size of 25%
- - train from normal and anomalous data
- - C= 1, kernel= 'linear'
- - F1 Score 		1.000000
- - Recall Score 	1.000000
- - Precision Score 	1.000000
+ - Results
+	F1 Score 		0.664234
+	Recall Score 	0.742857
+	Precision Score 0.600660
 
 
 code/GMM
 ================================================================================================================================================================================================================================
- - based on gaussian mixture model. One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians
+ - based on gaussian mixture model, witch is a clustering algorithm, used here as semi-supervised learning. One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians
  - print the distribution of selected features ['V17','V14', 'V11', 'V4', 'V15', 'V13']
  - train a simple Gaussian mixture model using V14 and V17 of normal data
  - 90% of normal for training and 10% for testing. 50% anomaly for cross-validation and 50% for testing.
@@ -41,32 +28,6 @@ code/GMM
 	F1 Score 		0.848861
 	Recall Score 	0.833333
 	Precision Score 0.864979
-
-
-code/Logistc Regression
-================================================================================================================================================================================================================================
- - based on Logistic Regression
- - Standardize 'Amount' by removing the mean and scaling to unit variance
- - undersample the data to 984 and 50% of normal and anomalies
- - uses k-fold for identification of best C for undersampled data
- 	C parameter =  1.0
- 	Mean F1 score  0.9292638915524769
- - train from undersample data using normal and anomalous
- - get F1-Score for undersample training and undersample testing
- 	F1 Score 		0.954704
-	Recall Score 	0.931973
-	Precision Score 0.978571
- - get F1-Score for undersample training and whole testing	
-	F1 Score 		0.093973
-	Recall Score 	0.938776
-	Precision Score 0.049462
- - uses k-fold for identification of best C for whole data
- 	C parameter =  10.0
- 	Mean F1 score  0.7242272584944212
- - get F1-Score for whole training and whole testing
-	F1 Score 		0.728000
-	Recall Score 	0.619048
-	Precision Score 0.883495
 
 
 code/Multivariate Gaussian and Neural Network
@@ -99,16 +60,16 @@ code/Multivariate Gaussian and Neural Network
 		Precision Score 1.000000
 
 
-code/Semi-Supervised Anomaly Detection Survey
+code/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder
 ================================================================================================================================================================================================================================
  - interesting evaluation about anomaly detection, with concepts and discussion
- - focus on semi-supervised anomaly detection
+ - focus on semi-supervised anomaly detection algorithms
  - transform the Amount and Time features to make them more Gaussian like.
  	np.log(dataset['Amount'] + 1)
  	np.log(dataset['Time'] + 1)
  - split data as 50% of normal for training, 25% for CV and 25% for testing. 50% of fraud are appended into for CV and 50% of fraud are appended into for testing
  - evaluation based on precision, recall and f2-score
- - Multivariate Gaussiam
+ - Multivariate Gaussian
  	 - The model is a parametric one in the sense the we only estimate the parameters of the multivariate distribution, namely the mean and covariance matrix.
 	 - This would not be a problem if all our variables where principal components extracted from PCA, since they would be linear independent, but as this is not the case, we better account for correlation among features. To do that, we simply use the use the Mahalanobis distance of a test instance ( \pmb{x} ) to the sample mean ( \pmb{\bar{x}} ). So that this score reflects a valid probability distribution, we will fit a full covariance matrix multi-variate normal distribution to the data:
 	 - estimates mu and sigma from normal data
@@ -178,7 +139,45 @@ code/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM
  - focus on Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM
  - based on ensemble models (bagged models), with the default size being 5 models. The Isolation Forest and One Class SVM use these functions.
  - calculate the mean value of all algorithms for decision_function
- 
+ - poor results
 
-code/script_Credit_Card_Fraud_Detection.py
+
+ code/SVM
 ================================================================================================================================================================================================================================
+ - based on supervised svm
+ - split the data into training and testing
+ - Standardize 'Amount' by removing the mean and scaling to unit variance
+ - drop time
+ - test size of 25%
+ - train from normal and anomalous data
+ - C= 1, kernel= 'linear'
+ - Results
+	F1 Score 		1.000000
+	Recall Score 	1.000000
+	Precision Score 1.000000
+
+
+code/Logistc Regression
+================================================================================================================================================================================================================================
+ - based on supervised Logistic Regression
+ - Standardize 'Amount' by removing the mean and scaling to unit variance
+ - undersample the data to 984 and 50% of normal and anomalies
+ - uses k-fold for identification of best C for undersampled data
+ 	C parameter =  1.0
+ 	Mean F1 score  0.9292638915524769
+ - train from undersample data using normal and anomalous
+ - get F1-Score for undersample training and undersample testing
+ 	F1 Score 		0.954704
+	Recall Score 	0.931973
+	Precision Score 0.978571
+ - get F1-Score for undersample training and whole testing	
+	F1 Score 		0.093973
+	Recall Score 	0.938776
+	Precision Score 0.049462
+ - uses k-fold for identification of best C for whole data
+ 	C parameter =  10.0
+ 	Mean F1 score  0.7242272584944212
+ - get F1-Score for whole training and whole testing
+	F1 Score 		0.728000
+	Recall Score 	0.619048
+	Precision Score 0.883495
