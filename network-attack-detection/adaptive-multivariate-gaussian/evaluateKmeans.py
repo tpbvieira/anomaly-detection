@@ -100,6 +100,7 @@ def data_cleasing(df):
 	
 	return df
 
+
 def classify_ip(ip):
 	'''
 	str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
@@ -117,29 +118,35 @@ def classify_ip(ip):
 			else: return 'N/A'
 	except ValueError:
 		return 'N/A'
+
 	
 def avg_duration(x):
 	return np.average(x)
+
 	
 def n_dports_gt1024(x):
 	if x.size == 0: return 0
 	return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_dports_gt1024.__name__ = 'n_dports>1024'
 
+
 def n_dports_lt1024(x):
 	if x.size == 0: return 0
 	return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_dports_lt1024.__name__ = 'n_dports<1024'
+
 
 def n_sports_gt1024(x):
 	if x.size == 0: return 0
 	return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_sports_gt1024.__name__ = 'n_sports>1024'
 
+
 def n_sports_lt1024(x):
 	if x.size == 0: return 0
 	return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_sports_lt1024.__name__ = 'n_sports<1024'
+
 
 def label_atk_v_norm(x):
 	for l in x:
@@ -147,11 +154,13 @@ def label_atk_v_norm(x):
 	return 0
 label_atk_v_norm.__name__ = 'label'
 
+
 def background_flow_count(x):
 	count = 0
 	for l in x:
 		if l == 0: count += 1
 	return count
+
 
 def normal_flow_count(x):
 	if x.size == 0: return 0
@@ -160,8 +169,10 @@ def normal_flow_count(x):
 		if l == 0: count += 1
 	return count
 
+
 def n_conn(x):
 	return x.size
+
 
 def n_tcp(x):
 	count = 0
@@ -169,11 +180,13 @@ def n_tcp(x):
 		if p == 10: count += 1 # tcp == 10
 	return count
 	
+
 def n_udp(x):
 	count = 0
 	for p in x: 
 		if p == 11: count += 1 # udp == 11
 	return count
+
 	
 def n_icmp(x):
 	count = 0
@@ -181,11 +194,13 @@ def n_icmp(x):
 		if p == 1: count += 1 # icmp == 1
 	return count
 
+
 def n_s_a_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'A': count += 1
 	return count
+
 	
 def n_d_a_p_address(x):
 	count = 0
@@ -193,35 +208,41 @@ def n_d_a_p_address(x):
 		if classify_ip(i) == 'A': count += 1
 	return count
 
+
 def n_s_b_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'B': count += 1
 	return count
 
+
 def n_d_b_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'A': count += 1
 	return count
+
 		
 def n_s_c_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'C': count += 1
 	return count
+
 	
 def n_d_c_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'C': count += 1
 	return count
+
 		
 def n_s_na_p_address(x):
 	count = 0
 	for i in x: 
 		if classify_ip(i) == 'N/A': count += 1
 	return count
+
 	
 def n_d_na_p_address(x):
 	count = 0
@@ -229,106 +250,53 @@ def n_d_na_p_address(x):
 		if classify_ip(i) == 'N/A': count += 1
 	return count
 
+
 def n_ipv6(x):
 	count = 0
 	for i in x:
 		if classify_ip(i) == 'ipv6': count += 1
 	return count
 
-def estimateGaussian(dataset):
-	mu = np.mean(dataset, axis=0)
-	sigma = np.cov(dataset.T)
-	return mu, sigma
 
-def multivariateGaussian(dataset, mu, sigma):
-	p = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
-	return p.pdf(dataset)
-
-def selectThresholdByCV(probs, labels):
-	# select best epsilon (threshold)
+def getBestByCV(X_train, X_cv, labels):
+	# select the best epsilon (threshold) and number of clusters
 	
 	# initialize
 	best_epsilon = 0
+	best_num_clusters = 0
 	best_f1 = 0
 	best_precision = 0
 	best_recall = 0
 	
-#	 farray = []
-#	 Recallarray = []
-#	 Precisionarray = []
-	min_prob = min(probs);
-	max_prob = max(probs);
-	stepsize = (max(probs) - min(probs)) / 1000;
-	epsilons = np.arange(min(probs), max(probs), stepsize)
-#	 print('### Epsilons min max: ',min(probs), max(probs))
-#	 print('### Epsilons: ', epsilons.size)
-#	 print('### Step Size: ', stepsize)
-	
-	for epsilon in epsilons:
-#		 print('### For below Epsilon: ', epsilon)
-		predictions = (probs < epsilon)
+	nums_clusters = np.arange(1, 10, 1)
+	for num_clusters in nums_clusters:
 		
-		f1 = f1_score(labels, predictions, average = "binary")
-		Recall = recall_score(labels, predictions, average = "binary")
-		Precision = precision_score(labels, predictions, average = "binary")	
-#		 farray.append(f)
-#		 Recallarray.append(Recall)
-#		 Precisionarray.append(Precision)
+		kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_jobs=-1).fit(X_train)
+		X_cv_clusters = kmeans.predict(X_cv)
+		X_cv_clusters_centers = kmeans.cluster_centers_
+
+		dist = [np.linalg.norm(x-y) for x,y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
+
+		y_pred = np.array(dist)
 		
-		if f1 > best_f1:
-			best_epsilon = epsilon
-			best_f1 = f1
-			best_precision = Precision
-			best_recall = Recall
-#			 print('### F1,Epsilon',best_f1,best_epsilon)
-			
-#			 print('### Best F1 Score: %f' %f)
-#			 print('### Best Recall Score: %f' %Recall)
-#			 print('### Best Precision Score: %f' %Precision)
-#			 print('-'*40)
+		epsilons = np.arange(70, 99, 1)
+		for epsilon in epsilons:
+			y_pred[dist >= np.percentile(dist,epsilon)] = 1
+			y_pred[dist < np.percentile(dist,epsilon)] = 0
+		
+			f1 = f1_score(labels, y_pred, average = "binary")
+			Recall = recall_score(labels, y_pred, average = "binary")
+			Precision = precision_score(labels, y_pred, average = "binary")	
 
-#	 # plot results
-#	 fig = plt.figure()
-#	 ax = fig.add_axes([0.1, 0.5, 0.7, 0.3])
-#	 #plt.subplot(3,1,1)
-#	 plt.plot(farray ,"ro")
-#	 plt.plot(farray)
-#	 ax.set_xticks(range(12))
-#	 ax.set_xticklabels(epsilons,rotation = 60 ,fontsize = 'medium' )
-#	 ax.set_ylim((0,1.1))
-#	 ax.set_title('F1 score vs Epsilon value')
-#	 ax.annotate('Best F1 Score', xy=(best_epsilon,best_f1), xytext=(best_epsilon,best_f1))
-#	 plt.xlabel("Epsilon value") 
-#	 plt.ylabel("F1 Score") 
-#	 plt.show()
-#	 fig = plt.figure()
-#	 ax = fig.add_axes([0.1, 0.5, 0.9, 0.3])
-#	 #plt.subplot(3,1,2)
-#	 plt.plot(Recallarray ,"ro")
-#	 plt.plot(Recallarray)
-#	 ax.set_xticks(range(12))
-#	 ax.set_xticklabels(epsilons,rotation = 60 ,fontsize = 'medium' )
-#	 ax.set_ylim((0,1.1))
-#	 ax.set_title('Recall vs Epsilon value')
-#	 ax.annotate('Best Recall Score', xy=(best_epsilon, best_recall), xytext=(best_epsilon, best_recall))
-#	 plt.xlabel("Epsilon value") 
-#	 plt.ylabel("Recall Score") 
-#	 plt.show()
-#	 fig = plt.figure()
-#	 ax = fig.add_axes([0.1, 0.5, 0.9, 0.3])
-#	 #plt.subplot(3,1,3)
-#	 plt.plot(Precisionarray ,"ro")
-#	 plt.plot(Precisionarray)
-#	 ax.set_xticks(range(12))
-#	 ax.set_xticklabels(epsilons,rotation = 60 ,fontsize = 'medium' )
-#	 ax.set_ylim((0,1.1))
-#	 ax.set_title('Precision vs Epsilon value')
-#	 ax.annotate('Best Precision Score', xy=(best_epsilon,best_precision), xytext=(best_epsilon,best_precision))
-#	 plt.xlabel("Epsilon value") 
-#	 plt.ylabel("Precision Score") 
-#	 plt.show()
+			if f1 > best_f1:
+				best_num_clusters = num_clusters
+				best_epsilon = epsilon
+				best_f1 = f1
+				best_precision = Precision
+				best_recall = Recall
 
-	return best_f1, best_epsilon
+	return best_num_clusters, best_epsilon, best_f1
+
 
 def print_classification_report(y_test, y_predic):
 	print('### Classification report:')
@@ -344,21 +312,6 @@ def print_classification_report(y_test, y_predic):
 	print('\tRecall Score %f' %Recall)
 	print('\tPrecision Score %f' %Precision)
 
-#	 print('\nMicro F1 Score, Recall and Precision:')
-#	 f = f1_score(y_test, y_predic, average = "micro")
-#	 Recall = recall_score(y_test, y_predic, average = "micro")
-#	 Precision = precision_score(y_test, y_predic, average = "micro")
-#	 print('F1 Score %f' %f)
-#	 print('Recall Score %f' %Recall)
-#	 print('Precision Score %f' %Precision)
-
-#	 print('\nMacro F1 Score, Recall and Precision:')
-#	 f = f1_score(y_test, y_predic, average = "macro")
-#	 Recall = recall_score(y_test, y_predic, average = "macro")
-#	 Precision = precision_score(y_test, y_predic, average = "macro")
-#	 print('F1 Score %f' %f)
-#	 print('Recall Score %f' %Recall)
-#	 print('Precision Score %f' %Precision)
 
 def model_order_selection(data, max_components):
 	bic = []
@@ -381,6 +334,7 @@ def model_order_selection(data, max_components):
 #	 print('best_cov_type:', best_cov_type)
 	
 	return best_n_components, best_cov_type
+
 
 def data_splitting(df):
 	# Data splitting
@@ -479,38 +433,44 @@ for sample_file in raw_files:
 	
 	# data splitting
 	norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df)
+
+	best_num_clusters, best_epsilon, best_f1 = getBestByCV(norm_train_df, cv_df, cv_label)
+	print("### : best_num_clusters", best_num_clusters)
+	print("### : best_epsilon", best_epsilon)
+	print("### : best_f1", best_f1)
+
 	norm_train_df.loc[:, 'Label'] = int(0)
-	# print('### norm_train_df Type: ', type(norm_train_df))
-	# print('### norm_train_df Head: ', norm_train_df.head())
-	# print('### norm_train_df Count: ', norm_train_df['Label'].value_counts())
 	cv_df.loc[:, 'Label'] = cv_label
-	# print('### cv_df Type: ', type(cv_df))
-	# print('### cv_df Head: ', cv_df.head())
-	# print('### cv_df Count: ', cv_df['Label'].value_counts())
+
 	train_df = pd.concat([norm_train_df, cv_df], axis=0)
-	# print('### train_df Type: ', type(train_df))
-	# print('### train_df Head: ', train_df.head())
-	# print('### train_df Count: ', train_df['Label'].value_counts())
 	train_label_df = pd.concat([norm_train_df['Label'], cv_df['Label']], axis=0)
-	# print('### train_label Type: ', type(train_label_df))
-	# print('### train_label Head: ', train_label_df.head())
-	# print('### train_label Count: ', train_label_df.value_counts())
-	# drops the label for clustering training
+
 	train_df = train_df.drop(labels = ["Label"], axis = 1)
 
 	# Training - estimate clusters (anomalous or normal) for training
-	kmeans = KMeans(n_clusters = 2)
+	kmeans = KMeans(n_clusters = best_num_clusters)
 	kmeans.fit(train_df)
 	
-	# Test prediction	
-	pred_test_label = kmeans.predict(test_df)
+	# Test prediction
+	test_clusters = kmeans.predict(test_df)
+	test_clusters_centers = kmeans.cluster_centers_
+
+	dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
+
+	pred_test_label = np.array(dist)
+	pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
+	pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
+
+	print ('\n[KMeans] Classification report for ', sample_file)
+	print_classification_report(test_label, pred_test_label)
+
 	kmeans_test_label.extend(test_label.astype(int))			# append into global array
 	kmeans_pred_test_label.extend(pred_test_label.astype(int))	# append into global array
 
 # save results
-np.savetxt('output/kmeans_test_label.out', kmeans_test_label, delimiter=',')
-np.savetxt('output/kmeans_pred_test_label.out', kmeans_pred_test_label, delimiter=',')
+# np.savetxt('output/kmeans_test_label.out', kmeans_test_label, delimiter=',')
+# np.savetxt('output/kmeans_pred_test_label.out', kmeans_pred_test_label, delimiter=',')
 	
 # print results
-print ('\n[KMeans] Classification report for Cross Validation dataset')
+print ('\n[KMeans] Classification report for full dataset')
 print_classification_report(kmeans_test_label, kmeans_pred_test_label)
