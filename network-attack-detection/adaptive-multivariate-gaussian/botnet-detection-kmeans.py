@@ -28,7 +28,6 @@ def data_cleasing(df):
 	le = preprocessing.LabelEncoder()
 	
 	# [Protocol] - Discard ipv6-icmp and categorize
-	# df = df[df.Proto != 'ipv6-icmp']
 	df['Proto'] = df['Proto'].fillna('-')
 	df['Proto'] = le.fit_transform(df['Proto'])
 	le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
@@ -68,26 +67,9 @@ def data_cleasing(df):
 
 	# [SrcAddr] Extract subnet features and categorize
 	df['SrcAddr'] = df['SrcAddr'].fillna('0.0.0.0')
-	# tmp_df = pd.DataFrame(df['SrcAddr'].str.split('.').tolist(), columns = ['1','2','3','4'])
-	# df["SrcAddr1"] = tmp_df["1"]
-	# df["SrcAddr2"] = tmp_df["1"].map(str) + tmp_df["2"]
-	# df["SrcAddr3"] = tmp_df["1"].map(str) + tmp_df["2"].map(str) + tmp_df["3"]
-	# df['SrcAddr0'] = le.fit_transform(df['SrcAddr'])
-	# le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-	# df['SrcAddr1'] = df['SrcAddr1'].astype(int)
-	# df['SrcAddr2'] = df['SrcAddr2'].astype(int)
-	# df['SrcAddr3'] = df['SrcAddr3'].astype(int)
 
 	# [DstAddr] Extract subnet features
 	df['DstAddr'] = df['DstAddr'].fillna('0.0.0.0')
-	# tmp_df = pd.DataFrame(df['DstAddr'].str.split('.').tolist(), columns = ['1','2','3','4'])
-	# df["DstAddr1"] = tmp_df["1"]
-	# df["DstAddr2"] = tmp_df["1"].map(str) + tmp_df["2"]
-	# df["DstAddr3"] = tmp_df["1"].map(str) + tmp_df["2"].map(str) + tmp_df["3"]
-	# df['DstAddr0'] = le.fit_transform(df['DstAddr'])
-	# df['DstAddr1'] = df['DstAddr1'].astype(int)
-	# df['DstAddr2'] = df['DstAddr2'].astype(int)
-	# df['DstAddr3'] = df['DstAddr3'].astype(int)
 
 	# [StartTime] - Parse to datatime, reindex based on StartTime, but first drop the ns off the time stamps
 	df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
@@ -257,51 +239,11 @@ def n_ipv6(x):
 	return count
 
 
-def getBestByCV(X_train, X_cv, labels):
-	# select the best epsilon (threshold) and number of clusters
-	
-	# initialize
-	best_epsilon = 0
-	best_num_clusters = 0
-	best_f1 = 0
-	best_precision = 0
-	best_recall = 0
-	
-	for num_clusters in np.arange(1, 10, 1):
-		
-		kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_jobs=-1).fit(X_train)
-		X_cv_clusters = kmeans.predict(X_cv)
-		X_cv_clusters_centers = kmeans.cluster_centers_
-
-		dist = [np.linalg.norm(x-y) for x,y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
-
-		y_pred = np.array(dist)
-
-		for epsilon in np.arange(70, 99, 1):
-			y_pred[dist >= np.percentile(dist,epsilon)] = 1
-			y_pred[dist < np.percentile(dist,epsilon)] = 0
-		
-			f1 = f1_score(labels, y_pred, average = "binary")
-			Recall = recall_score(labels, y_pred, average = "binary")
-			Precision = precision_score(labels, y_pred, average = "binary")	
-
-			if f1 > best_f1:
-				best_num_clusters = num_clusters
-				best_epsilon = epsilon
-				best_f1 = f1
-				best_precision = Precision
-				best_recall = Recall
-
-	return best_num_clusters, best_epsilon, best_f1
-
-
 def print_classification_report(y_test, y_predic):
-	f = f1_score(y_test, y_predic, average = "binary")
+	f1 = f1_score(y_test, y_predic, average = "binary")
 	Recall = recall_score(y_test, y_predic, average = "binary")
 	Precision = precision_score(y_test, y_predic, average = "binary")
-	print('\tF1 Score %f' %f)
-	print('\tRecall Score %f' %Recall)
-	print('\tPrecision Score %f' %Precision)
+	print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
 
 def model_order_selection(data, max_components):
@@ -369,6 +311,44 @@ def data_splitting(df, drop_features):
 	return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
+def getBestByCV(X_train, X_cv, labels):
+	# select the best epsilon (threshold) and number of clusters
+	
+	# initialize
+	best_epsilon = 0
+	best_num_clusters = 0
+	best_f1 = 0
+	best_precision = 0
+	best_recall = 0
+	
+	for num_clusters in np.arange(1, 10, 1):
+		
+		kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_jobs=-1).fit(X_train)
+		X_cv_clusters = kmeans.predict(X_cv)
+		X_cv_clusters_centers = kmeans.cluster_centers_
+
+		dist = [np.linalg.norm(x-y) for x,y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
+
+		y_pred = np.array(dist)
+
+		for epsilon in np.arange(70, 99, 1):
+			y_pred[dist >= np.percentile(dist,epsilon)] = 1
+			y_pred[dist < np.percentile(dist,epsilon)] = 0
+		
+			f1 = f1_score(labels, y_pred, average = "binary")
+			Recall = recall_score(labels, y_pred, average = "binary")
+			Precision = precision_score(labels, y_pred, average = "binary")	
+
+			if f1 > best_f1:
+				best_num_clusters = num_clusters
+				best_epsilon = epsilon
+				best_f1 = f1
+				best_precision = Precision
+				best_recall = Recall
+
+	return best_num_clusters, best_epsilon, best_f1
+
+
 # features
 column_types = {
 			'StartTime': 'str',
@@ -395,14 +375,14 @@ drop_features = {
 	'drop_features04':['SrcAddr','DstAddr','sTos','Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_all/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 print("## Directory: ", raw_directory)
 print("## Files: ", raw_files)
 
 # pickle files have the same names
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_all/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
@@ -426,15 +406,14 @@ for features_key, value in drop_features.items():
 			df = data_cleasing(raw_df)
 		
 		# data splitting
-		norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
+		train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
 		# Cross-Validation
-		best_num_clusters, best_epsilon, best_f1 = getBestByCV(norm_train_df, cv_df, cv_label)
+		best_num_clusters, best_epsilon, best_f1 = getBestByCV(train_df, cv_df, cv_label)
 		print('###[KMeans][',features_key,'] Cross-Validation (best_num_clusters, best_epsilon, best_f1): ', best_num_clusters, best_epsilon, best_f1)
 
 		# Training - estimate clusters (anomalous or normal) for training
-		kmeans = KMeans(n_clusters = best_num_clusters)
-		kmeans.fit(norm_train_df)
+		kmeans = KMeans(n_clusters = best_num_clusters).fit(train_df)
 		
 		# Test prediction
 		test_clusters = kmeans.predict(test_df)

@@ -400,7 +400,7 @@ for features_key, value in drop_features.items():
     print('###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
 
     # Training - estimate clusters (anomalous or normal) for training    
-    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=20, max_no_improvement=10).fit(X_train)
+    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=20, max_no_improvement=10).fit(train_df)
     
     # Test prediction
     test_clusters = mbkmeans.predict(test_df)
@@ -412,4 +412,4 @@ for features_key, value in drop_features.items():
 
     # print results
     print('###[MB-KMeans][',features_key,'] Test')
-    print_classification_report(test_label_df, pred_test_label)
+    print_classification_report(test_label_df.astype(int).values, pred_test_label)

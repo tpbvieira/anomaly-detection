@@ -319,10 +319,10 @@ def multivariateGaussian(dataset, mu, sigma):
 
 
 def print_classification_report(y_test, y_predic):
-    f = f1_score(y_test, y_predic, average = "binary")
+    f1 = f1_score(y_test, y_predic, average = "binary")
     Recall = recall_score(y_test, y_predic, average = "binary")
     Precision = precision_score(y_test, y_predic, average = "binary")
-    print('\tF1 Score %f' %f)
+    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
 
 def model_order_selection(data, max_components):
@@ -345,7 +345,7 @@ def model_order_selection(data, max_components):
     return best_n_components, best_cov_type
 
 
-def data_splitting(normal_df, anom_df):
+def data_merge_splitting(normal_df, anom_df):
 
     # Length and indexes
     norm_len = len(normal_df.index)
@@ -357,16 +357,16 @@ def data_splitting(normal_df, anom_df):
     norm_cv_end = (norm_len * 80) // 100
     norm_test_start = norm_cv_end + 1
 
-    # anomalies split data
+    # split anomalous data
     anom_cv_df  = anom_df[:anom_train_end]
     anom_test_df = anom_df[anom_cv_start:anom_len]
 
-    # normal split data
+    # split normal data
     norm_train_df = normal_df[:norm_train_end]
     norm_cv_df = normal_df[norm_cv_start:norm_cv_end]
     norm_test_df = normal_df[norm_test_start:norm_len]
 
-    # CV and test data. train data is norm_train_df
+    # CV and test data from concatenation of normal and anomalous data
     cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
 
@@ -374,13 +374,55 @@ def data_splitting(normal_df, anom_df):
     cv_label_df = cv_df["Label"]
     test_label_df = test_df["Label"]
 
-    # drop label
+    # drop label from data
     norm_train_df = norm_train_df.drop(labels = ["Label"], axis = 1)
     cv_df = cv_df.drop(labels = ["Label"], axis = 1)
     test_df = test_df.drop(labels = ["Label"], axis = 1)
     
     return norm_train_df, cv_df, test_df, cv_label_df, test_label_df
 
+
+def getBestByCV(X_train, X_cv, labels):
+    # select the best epsilon (threshold) and number of clusters
+    
+    # initialize
+    best_epsilon = 0
+    best_cluster_size = 0
+    best_batch_size = 0
+    best_f1 = 0
+    best_precision = 0
+    best_recall = 0
+    
+    for m_clusters in np.arange(1, 10, 1):
+        for m_batch_size in range(10, 300, 10): 
+
+            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=10, max_no_improvement=10).fit(X_train)
+            
+            X_cv_clusters = mbkmeans.predict(X_cv)
+            X_cv_clusters_centers = mbkmeans.cluster_centers_
+
+            dist = [np.linalg.norm(x-y) for x,y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
+
+            y_pred = np.array(dist)        
+
+            for m_epsilon in np.arange(70, 99, 1):
+                y_pred[dist >= np.percentile(dist,m_epsilon)] = 1
+                y_pred[dist < np.percentile(dist,m_epsilon)] = 0
+            
+                f1 = f1_score(labels, y_pred, average = "binary")
+                Recall = recall_score(labels, y_pred, average = "binary")
+                Precision = precision_score(labels, y_pred, average = "binary") 
+
+                if f1 > best_f1:
+                    best_cluster_size = m_clusters
+                    best_batch_size = m_batch_size
+                    best_epsilon = m_epsilon
+                    best_f1 = f1
+                    best_precision = Precision
+                    best_recall = Recall
+                    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
+
+    return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
 
 column_types = {
             'StartTime': 'str',
@@ -460,36 +502,32 @@ for features_key, value in drop_features.items():
         normal_df.drop(drop_features[features_key], axis =1, inplace = True)
         anom_df.drop(drop_features[features_key], axis =1, inplace = True)
 
-        # data splitting
-        norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting(normal_df, anom_df)
+        # data merge and splitting
+        train_df, cv_df, test_df, cv_label_df, test_label_df = data_merge_splitting(normal_df, anom_df)
 
-        # train - TODO
-        norm_train_df.loc[:, 'Label'] = int(0)
-        cv_df.loc[:, 'Label'] = cv_label_df
-        train_df = pd.concat([norm_train_df, cv_df], axis=0)
-        train_label_df = pd.concat([norm_train_df['Label'], cv_df['Label']], axis=0)
-        train_df = train_df.drop(labels = ["Label"], axis = 1)
-        
-        best_f1_score = 0;
-        best_batch_size = 0
-        best_mbkmeans_pred_test_label = []
+        # Cross-Validation
+        best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
+        print('###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
+
+        # Training - estimate clusters (anomalous or normal) for training    
+        mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=10, max_no_improvement=10).fit(train_df)
+
+        # Test prediction
+        test_clusters = mbkmeans.predict(test_df)
+        test_clusters_centers = kmeans.cluster_centers_
+        dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
+        pred_test_label = np.array(dist)
+        pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
+        pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
         test_label = test_label_df.astype(int).values
 
-        for m_batch_size in range(10, 310, 10):
-            
-            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=2, batch_size=m_batch_size, n_init=10, max_no_improvement=10)
-            mbkmeans.fit(train_df)
-            pred_test_label = mbkmeans.predict(test_df).astype(int)
-            
-            m_f1_score = f1_score(test_label, pred_test_label, average = "binary")
-            if m_f1_score > best_f1_score:
-                best_batch_size = m_batch_size
-                best_f1_score = m_f1_score                
-                best_mbkmeans_pred_test_label = pred_test_label
-                print(best_batch_size, best_f1_score)
+        # print test results
+        print('###[MB-KMeans][',features_key,'] Test')
+        print_classification_report(test_label, pred_test_label)
 
+        # save results for total evaluation later
         mbkmeans_test_label.extend(test_label)
-        mbkmeans_pred_test_label.extend(best_mbkmeans_pred_test_label)  # append into global array
+        mbkmeans_pred_test_label.extend(pred_test_label)
         
-    print('###', features_key, '[MBKMeans] Classification report for Test dataset')
+    print('###[KMeans][',features_key,'] Test Full dataset')
     print_classification_report(mbkmeans_test_label, mbkmeans_pred_test_label)
