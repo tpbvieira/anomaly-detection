@@ -1,3 +1,6 @@
+'''
+minibactch-kmeans implementation for train and test files
+'''
 import glob
 import pandas as pd
 import numpy as np
@@ -24,6 +27,7 @@ from sklearn.preprocessing import StandardScaler
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 from sklearn.cluster import MiniBatchKMeans, KMeans
 from sklearn.metrics.pairwise import pairwise_distances_argmin
+
 
 # data cleasing, feature engineering and save clean data into pickles
 def data_cleasing(df):
@@ -75,6 +79,7 @@ def data_cleasing(df):
     
     return df
 
+
 def classify_ip(ip):
     '''
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
@@ -92,29 +97,35 @@ def classify_ip(ip):
             else: return 'N/A'
     except ValueError:
         return 'N/A'
+
             
 def avg_duration(x):
     return np.average(x)
-            
+        
+
 def n_dports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_dports_gt1024.__name__ = 'n_dports>1024'
+
 
 def n_dports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_dports_lt1024.__name__ = 'n_dports<1024'
 
+
 def n_sports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_sports_gt1024.__name__ = 'n_sports>1024'
 
+
 def n_sports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_sports_lt1024.__name__ = 'n_sports<1024'
+
 
 def label_atk_v_norm(x):
     for l in x:
@@ -122,11 +133,13 @@ def label_atk_v_norm(x):
     return 0
 label_atk_v_norm.__name__ = 'label'
 
+
 def background_flow_count(x):
     count = 0
     for l in x:
         if l == 0: count += 1
     return count
+
 
 def normal_flow_count(x):
     if x.size == 0: return 0
@@ -135,20 +148,24 @@ def normal_flow_count(x):
         if l == 0: count += 1
     return count
 
+
 def n_conn(x):
     return x.size
+
 
 def n_tcp(x):
     count = 0
     for p in x: 
         if p == 10: count += 1 # tcp == 10
     return count
+
             
 def n_udp(x):
     count = 0
     for p in x: 
         if p == 11: count += 1 # udp == 11
     return count
+
             
 def n_icmp(x):
     count = 0
@@ -156,11 +173,13 @@ def n_icmp(x):
         if p == 1: count += 1 # icmp == 1
     return count
 
+
 def n_s_a_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'A': count += 1
     return count
+
             
 def n_d_a_p_address(x):
     count = 0
@@ -168,11 +187,13 @@ def n_d_a_p_address(x):
         if classify_ip(i) == 'A': count += 1
     return count
 
+
 def n_s_b_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'B': count += 1
     return count
+
 
 def n_d_b_p_address(x):
     count = 0
@@ -180,23 +201,27 @@ def n_d_b_p_address(x):
         if classify_ip(i) == 'A': count += 1
     return count
                         
+
 def n_s_c_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'C': count += 1
     return count
             
+
 def n_d_c_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'C': count += 1
     return count
+
                         
 def n_s_na_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'N/A': count += 1
     return count
+
             
 def n_d_na_p_address(x):
     count = 0
@@ -204,34 +229,31 @@ def n_d_na_p_address(x):
         if classify_ip(i) == 'N/A': count += 1
     return count
 
+
 def n_ipv6(x):
     count = 0
     for i in x:
         if classify_ip(i) == 'ipv6': count += 1
     return count
 
+
 def estimateGaussian(dataset):
     mu = np.mean(dataset, axis=0)
     sigma = np.cov(dataset.T)
     return mu, sigma
 
+
 def multivariateGaussian(dataset, mu, sigma):
     p = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
     return p.pdf(dataset)
 
+
 def print_classification_report(y_test, y_predic):
-    # print('### Classification report:')
-    # print(classification_report(y_test, y_predic))
-
-    # print('\tAverage Precision = ' + str(average_precision_score(y_test, y_predic)))
-
-    # print('\n### Binary F1 Score, Recall and Precision:')
-    f = f1_score(y_test, y_predic, average = "binary")
+    f1 = f1_score(y_test, y_predic, average = "binary")
     Recall = recall_score(y_test, y_predic, average = "binary")
     Precision = precision_score(y_test, y_predic, average = "binary")
-    print('\tF1 Score %f' %f)
-    # print('\tRecall Score %f' %Recall)
-    # print('\tPrecision Score %f' %Precision)
+    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
+
 
 def model_order_selection(data, max_components):
     bic = []
@@ -251,6 +273,50 @@ def model_order_selection(data, max_components):
                 best_cov_type = cov_type
 
     return best_n_components, best_cov_type
+
+
+def getBestByCV(X_train, X_cv, labels):
+    # select the best epsilon (threshold) and number of clusters
+    
+    # initialize
+    best_epsilon = 0
+    best_cluster_size = 0
+    best_batch_size = 0
+    best_f1 = 0
+    best_precision = 0
+    best_recall = 0
+    
+    for m_clusters in np.arange(1, 10, 1):
+        for m_batch_size in range(10, 300, 10): 
+
+            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=20, max_no_improvement=10).fit(X_train)
+            
+            X_cv_clusters = mbkmeans.predict(X_cv)
+            X_cv_clusters_centers = mbkmeans.cluster_centers_
+
+            dist = [np.linalg.norm(x-y) for x,y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
+
+            y_pred = np.array(dist)        
+
+            for m_epsilon in np.arange(70, 99, 1):
+                y_pred[dist >= np.percentile(dist,m_epsilon)] = 1
+                y_pred[dist < np.percentile(dist,m_epsilon)] = 0
+            
+                f1 = f1_score(labels, y_pred, average = "binary")
+                Recall = recall_score(labels, y_pred, average = "binary")
+                Precision = precision_score(labels, y_pred, average = "binary") 
+
+                if f1 > best_f1:
+                    best_cluster_size = m_clusters
+                    best_batch_size = m_batch_size
+                    best_epsilon = m_epsilon
+                    best_f1 = f1
+                    best_precision = Precision
+                    best_recall = Recall
+                    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
+
+    return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
+
 
 column_types = {
             'StartTime': 'str',
@@ -285,10 +351,10 @@ for features_key, value in drop_features.items():
     mbkmeans_pred_test_label = []
 
     # Load data
-    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_train2/train.binetflow'
-    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_train2/train.binetflow'
-    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_test2/test.binetflow'
-    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_test2/test.binetflow'
+    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train2/train.binetflow'
+    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train2/train.binetflow'
+    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test2/test.binetflow'
+    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test2/test.binetflow'
 
     # read pickle or raw dataset for training
     if os.path.isfile(pkl_train_file_path):
@@ -313,37 +379,37 @@ for features_key, value in drop_features.items():
         # save clean data into pickles
         test_df.to_pickle(pkl_test_file_path)
     gc.collect()
-                
-    # data splitting
+    
+    # drop unnecessary features
     train_df.drop(drop_features[features_key], axis =1, inplace = True)
     test_df.drop(drop_features[features_key], axis =1, inplace = True)
 
-    train_df = train_df.drop(labels = ["Label"], axis = 1)
-    test_label_df = test_df["Label"]
-    test_df = test_df.drop(labels = ["Label"], axis = 1)
+    # data splitting
+    train_len = (len(train_df) * 60) // 100
+    cv_df = train_df[train_len+1:]                                      # use the last 40% of training data for cross-validation    
+    train_df = train_df[:train_len]                                     # use the first 60% of training data for training
+    train_df = train_df[train_df["Label"] == 0]                         # only normal data for training    
+    train_df = train_df.drop(labels = ["Label"], axis = 1)              # drop label from training data
+    cv_label_df = cv_df["Label"]                                        # save label for testing
+    cv_df = cv_df.drop(labels = ["Label"], axis = 1)                    # drop label from testing data
+    test_label_df = test_df["Label"]                                    # save label for testing
+    test_df = test_df.drop(labels = ["Label"], axis = 1)                # drop label from testing data
 
-    best_f1_score = 0;
-    best_batch_size = 0
-    best_mbkmeans_pred_test_label = []
-    for m_batch_size in range(10, 310, 10):
-        print('### batch_size: ', m_batch_size)
-        # Training - estimate clusters (anomalous or normal) for training
-        mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=2, batch_size=m_batch_size, n_init=10, max_no_improvement=10)
-        mbkmeans.fit(train_df)
-        
-        # Testing
-        pred_test_label = mbkmeans.predict(test_df)
-        mbkmeans_test_label = test_label_df.astype(int).values
-        mbkmeans_pred_test_label = pred_test_label.astype(int)
-        
-        m_f1_score = f1_score(mbkmeans_test_label, mbkmeans_pred_test_label, average = "binary")
-        if m_f1_score > best_f1_score:
-            best_f1_score = m_f1_score
-            best_batch_size = m_batch_size
-            best_mbkmeans_pred_test_label = mbkmeans_pred_test_label
-            print(best_batch_size, best_f1_score)
+    # Cross-Validation
+    best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
+    print('###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
+
+    # Training - estimate clusters (anomalous or normal) for training    
+    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=20, max_no_improvement=10).fit(X_train)
+    
+    # Test prediction
+    test_clusters = mbkmeans.predict(test_df)
+    test_clusters_centers = kmeans.cluster_centers_
+    dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
+    pred_test_label = np.array(dist)
+    pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
+    pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
 
     # print results
-    print('### Best batch_size: ', best_batch_size)
-    print('###', features_key, '[MBKMeans] Classification report for Test dataset')
-    print_classification_report(mbkmeans_test_label, best_mbkmeans_pred_test_label)
+    print('###[MB-KMeans][',features_key,'] Test')
+    print_classification_report(test_label_df, pred_test_label)

@@ -1,375 +1,185 @@
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-        'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-F1 Score 0.003573
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-    #    'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-        'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-F1 Score 0.003573
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-        'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos',
-    #    'dTos',
-    #    'TotPkts',
-    #    'TotBytes',
-        'SrcBytes'
-    ], axis =1, inplace = True)
-F1 Score 0.000000
-================================================================================================================================================================================================================================
-    df.drop([
-    #    'Dur',
-        'Proto',
-        'SrcAddr',
-    #    'Sport',
-    #    'Dir',
-        'DstAddr',
-    #    'Dport',
-    #    'State',
-        'sTos'
-    #    'dTos',
-    #    'TotPkts',
-    #    'TotBytes',
-    #    'SrcBytes'
-    ], axis =1, inplace = True)
-
-F1 Score 0.000000
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Directory:  b'/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/'
 ## Files:  [b'capture20110810.binetflow', b'capture20110811.binetflow', b'capture20110812.binetflow', b'capture20110815-2.binetflow', b'capture20110815-3.binetflow', b'capture20110815.binetflow', b'capture20110816-2.binetflow', b'capture20110816-3.binetflow', b'capture20110816.binetflow', b'capture20110817.binetflow', b'capture20110818-2.binetflow', b'capture20110818.binetflow', b'capture20110819.binetflow']
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
-### : best_num_clusters 1
-### : best_epsilon 90
-### : best_f1 0.412495844096059
-
-[KMeans] Classification report for  b'capture20110810.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.99      0.92      0.96    556734
-          1       0.27      0.77      0.40     20480
-
-avg / total       0.97      0.92      0.94    577214
-
-    Average Precision = 0.2183842284296802
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.403161
-    Recall Score 0.769727
-    Precision Score 0.273102
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 90 0.412495844096059
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.403161 Recall Score 0.769727 Precision Score 0.273102
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
-### : best_num_clusters 1
-### : best_epsilon 87
-### : best_f1 0.33486569007513123
-
-[KMeans] Classification report for  b'capture20110811.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.89      0.94    357436
-          1       0.19      0.86      0.31     10470
-
-avg / total       0.97      0.89      0.92    367906
-
-    Average Precision = 0.16558390411617552
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.308587
-    Recall Score 0.859121
-    Precision Score 0.188070
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 87 0.33486569007513123
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.308587 Recall Score 0.859121 Precision Score 0.188070
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
-### : best_num_clusters 1
-### : best_epsilon 84
-### : best_f1 0.16130416649036808
-
-[KMeans] Classification report for  b'capture20110812.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.85      0.92    936763
-          1       0.09      1.00      0.16     13410
-
-avg / total       0.99      0.85      0.91    950173
-
-    Average Precision = 0.0881227382873354
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.162030
-    Recall Score 0.999478
-    Precision Score 0.088161
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 84 0.16130416649036808
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.162030 Recall Score 0.999478 Precision Score 0.088161
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
-### : best_num_clusters 8
-### : best_epsilon 98
-### : best_f1 0.30358974358974355
-
-[KMeans] Classification report for  b'capture20110815-2.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.99      0.98      0.98     25786
-          1       0.17      0.19      0.18       450
-
-avg / total       0.97      0.97      0.97     26236
-
-    Average Precision = 0.04587404584032118
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.178462
-    Recall Score 0.193333
-    Precision Score 0.165714
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  8 98 0.30358974358974355
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.178279 Recall Score 0.193333 Precision Score 0.165399
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
-### : best_num_clusters 1
-### : best_epsilon 83
-### : best_f1 0.4448431928316723
-
-[KMeans] Classification report for  b'capture20110815-3.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.95      0.83      0.89    377029
-          1       0.05      0.17      0.08     20001
-
-avg / total       0.90      0.80      0.84    397030
-
-    Average Precision = 0.05027166188791437
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.076758
-    Recall Score 0.167892
-    Precision Score 0.049752
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 83 0.4448431928316723
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.076758 Recall Score 0.167892 Precision Score 0.049752
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
-### : best_num_clusters 3
-### : best_epsilon 89
-### : best_f1 0.0563769730020354
-
-[KMeans] Classification report for  b'capture20110815.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.89      0.94    223699
-          1       0.03      0.53      0.05      1289
-
-avg / total       0.99      0.89      0.94    224988
-
-    Average Precision = 0.01735469291428517
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.052539
-    Recall Score 0.530644
-    Precision Score 0.027637
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  3 89 0.0563769730020354
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.052539 Recall Score 0.530644 Precision Score 0.027637
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
-### : best_num_clusters 7
-### : best_epsilon 90
-### : best_f1 0.026781857451403886
-
-[KMeans] Classification report for  b'capture20110816-2.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.90      0.95     22802
-          1       0.01      0.81      0.02        31
-
-avg / total       1.00      0.90      0.95     22833
-
-    Average Precision = 0.009089962463604115
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.021598
-    Recall Score 0.806452
-    Precision Score 0.010946
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  7 90 0.026781857451403886
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.021598 Recall Score 0.806452 Precision Score 0.010946
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
-### : best_num_clusters 1
-### : best_epsilon 91
-### : best_f1 0.09399875897526815
-
-[KMeans] Classification report for  b'capture20110816-3.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.91      0.95    589620
-          1       0.02      0.36      0.04      3063
-
-avg / total       0.99      0.91      0.95    592683
-
-    Average Precision = 0.010788694623155987
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.039216
-    Recall Score 0.361084
-    Precision Score 0.020734
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 91 0.09399875897526815
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.039216 Recall Score 0.361084 Precision Score 0.020734
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
-### : best_num_clusters 1
-### : best_epsilon 90
-### : best_f1 0.3215726545881317
-
-[KMeans] Classification report for  b'capture20110816.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       1.00      0.91      0.95    110857
-          1       0.16      0.78      0.27      2314
-
-avg / total       0.98      0.91      0.94    113171
-
-    Average Precision = 0.12967329698263097
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.265698
-    Recall Score 0.782627
-    Precision Score 0.160011
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 90 0.3215726545881317
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.265698 Recall Score 0.782627 Precision Score 0.160011
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
-### : best_num_clusters 1
-### : best_epsilon 74
-### : best_f1 0.7911654414494691
-
-[KMeans] Classification report for  b'capture20110817.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.99      0.91      0.95    380504
-          1       0.73      0.96      0.83     92493
-
-avg / total       0.94      0.92      0.93    472997
-
-    Average Precision = 0.7063433583018751
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.827866
-    Recall Score 0.964300
-    Precision Score 0.725254
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 74 0.7911654414494691
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.827866 Recall Score 0.964300 Precision Score 0.725254
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
-### : best_num_clusters 2
-### : best_epsilon 70
-### : best_f1 0.20600782083185212
-
-[KMeans] Classification report for  b'capture20110818-2.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.81      0.69      0.74     19817
-          1       0.13      0.23      0.17      4081
-
-avg / total       0.70      0.61      0.65     23898
-
-    Average Precision = 0.16165346044669354
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.167274
-    Recall Score 0.230581
-    Precision Score 0.131241
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  2 70 0.20600782083185212
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.167274 Recall Score 0.230581 Precision Score 0.131241
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
-### : best_num_clusters 3
-### : best_epsilon 70
-### : best_f1 0.22237945307248735
-
-[KMeans] Classification report for  b'capture20110818.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.82      0.70      0.76    240687
-          1       0.19      0.32      0.24     53175
-
-avg / total       0.71      0.63      0.66    293862
-
-    Average Precision = 0.18401936407590885
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.237848
-    Recall Score 0.316088
-    Precision Score 0.190656
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  3 70 0.22237945307248735
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.237848 Recall Score 0.316088 Precision Score 0.190656
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
-### : best_num_clusters 6
-### : best_epsilon 86
-### : best_f1 0.12168335115171543
-
-[KMeans] Classification report for  b'capture20110819.binetflow'
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.99      0.87      0.92     64660
-          1       0.05      0.44      0.09      1083
-
-avg / total       0.97      0.86      0.91     65743
-
-    Average Precision = 0.03212440661451502
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.092933
-    Recall Score 0.441367
-    Precision Score 0.051934
-
-[KMeans] Classification report for full dataset
-### Classification report:
-             precision    recall  f1-score   support
-
-          0       0.98      0.87      0.92   3906394
-          1       0.24      0.69      0.35    222340
-
-avg / total       0.94      0.86      0.89   4128734
-
-    Average Precision = 0.17941692852177618
-
-### Binary F1 Score, Recall and Precision:
-    F1 Score 0.352078
-    Recall Score 0.686566
-    Precision Score 0.236741
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  6 86 0.12168335115171543
+  ###[KMeans][ drop_features04 ] Test F1 Score 0.092738 Recall Score 0.440443 Precision Score 0.051825
+  ###[KMeans][ drop_features04 ] Test Full dataset F1 Score 0.352075 Recall Score 0.686561 Precision Score 0.236739
+================================================================================================================================================================================================================================
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.12820451843043995
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.142964 Recall Score 0.293213 Precision Score 0.094527
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  2 91 0.03776615271659324
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.150016 Recall Score 0.312225 Precision Score 0.098726
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 92 0.0013866368465194295
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.000224 Recall Score 0.000746 Precision Score 0.000132
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  6 97 0.28432956381260094
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.190630 Recall Score 0.262222 Precision Score 0.149746
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 75 0.21553090332805072
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.000184 Recall Score 0.000550 Precision Score 0.000111
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.08210760781904067
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.091254 Recall Score 0.923972 Precision Score 0.047997
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 70 0.0005788712011577424
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.001157 Recall Score 0.129032 Precision Score 0.000581
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 94 0.03645401822700912
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.29670255264405165
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.292353 Recall Score 0.932584 Precision Score 0.173347
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 88 0.3275244048695839
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.295695 Recall Score 0.238851 Precision Score 0.388049
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 76 0.7704200996846708
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.638102 Recall Score 0.780936 Precision Score 0.539438
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 74 0.7965365292751252
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.775110 Recall Score 0.944410 Precision Score 0.657282
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  8 97 0.14131501472031402
+  ###[KMeans][ drop_features02 ] Test F1 Score 0.104678 Recall Score 0.147738 Precision Score 0.081054
+  ###[KMeans][ drop_features02 ] Test Full dataset F1 Score 0.246952 Recall Score 0.397697 Precision Score 0.179074
+================================================================================================================================================================================================================================
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 88 0.20526075379627667
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.238718 Recall Score 0.523047 Precision Score 0.154650
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.2261876717707106
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.207338 Recall Score 0.504394 Precision Score 0.130488
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 92 0.00029074643556052556
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.000246 Recall Score 0.000820 Precision Score 0.000145
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  8 98 0.2994871794871795
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.178279 Recall Score 0.193333 Precision Score 0.165399
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 88 0.19681291390728478
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.002484 Recall Score 0.004200 Precision Score 0.001763
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 90 0.04199079882894186
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.078901 Recall Score 0.728472 Precision Score 0.041709
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 98 0.016393442622950817
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.008197 Recall Score 0.064516 Precision Score 0.004376
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 93 0.10172154512602966
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 88 0.2751635631605435
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.277446 Recall Score 0.952895 Precision Score 0.162359
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 86 0.34283446111972177
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.313853 Recall Score 0.269296 Precision Score 0.376078
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 87 0.06498194945848375
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.018642 Recall Score 0.016418 Precision Score 0.021564
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 88 0.03991406603346902
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.018544 Recall Score 0.015421 Precision Score 0.023253
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 92 0.08890290037831022
+  ###[KMeans][ drop_features03 ] Test F1 Score 0.093647 Recall Score 0.274238 Precision Score 0.056464
+  ###[KMeans][ drop_features03 ] Test Full dataset F1 Score 0.140998 Recall Score 0.204250 Precision Score 0.107659
+================================================================================================================================================================================================================================
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.12820451843043995
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.142964 Recall Score 0.293213 Precision Score 0.094527
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  2 91 0.03776615271659324
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.150016 Recall Score 0.312225 Precision Score 0.098726
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 92 0.0013866368465194295
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.000201 Recall Score 0.000671 Precision Score 0.000118
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  6 97 0.28432956381260094
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.190630 Recall Score 0.262222 Precision Score 0.149746
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 75 0.21553090332805072
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.274951 Recall Score 0.819759 Precision Score 0.165176
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.08210760781904067
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.091254 Recall Score 0.923972 Precision Score 0.047997
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 70 0.0005788712011577424
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.001157 Recall Score 0.129032 Precision Score 0.000581
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  9 94 0.03645401822700912
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.000207 Recall Score 0.001306 Precision Score 0.000112
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 89 0.29670255264405165
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.292353 Recall Score 0.932584 Precision Score 0.173347
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 88 0.3275244048695839
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.295695 Recall Score 0.238851 Precision Score 0.388049
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 76 0.7704200996846708
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.638102 Recall Score 0.780936 Precision Score 0.539438
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 74 0.7965365292751252
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.775110 Recall Score 0.944410 Precision Score 0.657282
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  8 97 0.14131501472031402
+  ###[KMeans][ drop_features01 ] Test F1 Score 0.104712 Recall Score 0.147738 Precision Score 0.081095
+  ###[KMeans][ drop_features01 ] Test Full dataset F1 Score 0.292784 Recall Score 0.471404 Precision Score 0.212330
+================================================================================================================================================================================================================================
+## Directory:  b'/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all/'
+## Files:  [b'all.binetflow']
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+  ###[KMeans][ drop_features01 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 98 0.14349149296218075
+  ###[KMeans][ drop_features01 ] Test               F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+  ###[KMeans][ drop_features01 ] Test Full dataset  F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+  ###[KMeans][ drop_features03 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 98 0.14387191562487703
+  ###[KMeans][ drop_features03 ] Test               F1 Score 0.001955 Recall Score 0.001340 Precision Score 0.003609
+  ###[KMeans][ drop_features03 ] Test Full dataset  F1 Score 0.001955 Recall Score 0.001340 Precision Score 0.003609
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+  ###[KMeans][ drop_features04 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 98 0.14387191562487703
+  ###[KMeans][ drop_features04 ] Test               F1 Score 0.001955 Recall Score 0.001340 Precision Score 0.003609
+  ###[KMeans][ drop_features04 ] Test Full dataset  F1 Score 0.001955 Recall Score 0.001340 Precision Score 0.003609
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+  ###[KMeans][ drop_features02 ] Cross-Validation (best_num_clusters, best_epsilon, best_f1):  1 98 0.14349149296218075
+  ###[KMeans][ drop_features02 ] Test               F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+  ###[KMeans][ drop_features02 ] Test Full dataset  F1 Score 0.000000 Recall Score 0.000000 Precision Score 0.000000
+================================================================================================================================================================================================================================

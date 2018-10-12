@@ -149,6 +149,7 @@ def data_cleasing(df):
     
     return df
 
+
 def classify_ip(ip):
     '''
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
@@ -166,29 +167,35 @@ def classify_ip(ip):
             else: return 'N/A'
     except ValueError:
         return 'N/A'
+
             
 def avg_duration(x):
     return np.average(x)
             
+
 def n_dports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_dports_gt1024.__name__ = 'n_dports>1024'
+
 
 def n_dports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_dports_lt1024.__name__ = 'n_dports<1024'
 
+
 def n_sports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_sports_gt1024.__name__ = 'n_sports>1024'
 
+
 def n_sports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_sports_lt1024.__name__ = 'n_sports<1024'
+
 
 def label_atk_v_norm(x):
     for l in x:
@@ -196,11 +203,13 @@ def label_atk_v_norm(x):
     return 0
 label_atk_v_norm.__name__ = 'label'
 
+
 def background_flow_count(x):
     count = 0
     for l in x:
         if l == 0: count += 1
     return count
+
 
 def normal_flow_count(x):
     if x.size == 0: return 0
@@ -209,8 +218,10 @@ def normal_flow_count(x):
         if l == 0: count += 1
     return count
 
+
 def n_conn(x):
     return x.size
+
 
 def n_tcp(x):
     count = 0
@@ -218,23 +229,27 @@ def n_tcp(x):
         if p == 10: count += 1 # tcp == 10
     return count
             
+
 def n_udp(x):
     count = 0
     for p in x: 
         if p == 11: count += 1 # udp == 11
     return count
             
+
 def n_icmp(x):
     count = 0
     for p in x: 
         if p == 1: count += 1 # icmp == 1
     return count
 
+
 def n_s_a_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'A': count += 1
     return count
+
             
 def n_d_a_p_address(x):
     count = 0
@@ -242,23 +257,27 @@ def n_d_a_p_address(x):
         if classify_ip(i) == 'A': count += 1
     return count
 
+
 def n_s_b_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'B': count += 1
     return count
 
+
 def n_d_b_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'A': count += 1
     return count
+
                         
 def n_s_c_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'C': count += 1
     return count
+
             
 def n_d_c_p_address(x):
     count = 0
@@ -266,11 +285,13 @@ def n_d_c_p_address(x):
         if classify_ip(i) == 'C': count += 1
     return count
                         
+
 def n_s_na_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'N/A': count += 1
     return count
+
             
 def n_d_na_p_address(x):
     count = 0
@@ -278,34 +299,31 @@ def n_d_na_p_address(x):
         if classify_ip(i) == 'N/A': count += 1
     return count
 
+
 def n_ipv6(x):
     count = 0
     for i in x:
         if classify_ip(i) == 'ipv6': count += 1
     return count
 
+
 def estimateGaussian(dataset):
     mu = np.mean(dataset, axis=0)
     sigma = np.cov(dataset.T)
     return mu, sigma
 
+
 def multivariateGaussian(dataset, mu, sigma):
     p = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
     return p.pdf(dataset)
 
+
 def print_classification_report(y_test, y_predic):
-    # print('### Classification report:')
-    # print(classification_report(y_test, y_predic))
-
-    # print('\tAverage Precision = ' + str(average_precision_score(y_test, y_predic)))
-
-    # print('\n### Binary F1 Score, Recall and Precision:')
     f = f1_score(y_test, y_predic, average = "binary")
     Recall = recall_score(y_test, y_predic, average = "binary")
     Precision = precision_score(y_test, y_predic, average = "binary")
     print('\tF1 Score %f' %f)
-    # print('\tRecall Score %f' %Recall)
-    # print('\tPrecision Score %f' %Precision)
+
 
 def model_order_selection(data, max_components):
     bic = []
@@ -325,6 +343,7 @@ def model_order_selection(data, max_components):
                 best_cov_type = cov_type
 
     return best_n_components, best_cov_type
+
 
 def data_splitting(normal_df, anom_df):
 
@@ -391,13 +410,10 @@ drop_features = {
 raw_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_normal/')
 raw_normal_directory = os.fsencode(raw_normal_path)
 raw_normal_files = os.listdir(raw_normal_directory)
-# print("## Directory: ", raw_normal_directory)
-# print("## Files: ", raw_normal_files)
 raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_cc/')
 raw_anom_directory = os.fsencode(raw_anom_path)
 raw_anom_files = os.listdir(raw_anom_directory)
 
-# pickle files have the same names
 pkl_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_normal/')
 pkl_normal_directory = os.fsencode(pkl_normal_path)
 pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_cc/')
@@ -411,17 +427,19 @@ for features_key, value in drop_features.items():
     mbkmeans_pred_test_label = []
 
     for sample_file in raw_normal_files:
-        pkl_normal_file_path = os.path.join(pkl_normal_directory, sample_file).decode('utf-8')
-        pkl_anom_file_path = os.path.join(pkl_anom_directory, sample_file).decode('utf-8')
+        
         raw_normal_file_path = os.path.join(raw_normal_directory, sample_file).decode('utf-8')    
         raw_anom_file_path = os.path.join(raw_anom_directory, sample_file).decode('utf-8')
+
+        pkl_normal_file_path = os.path.join(pkl_normal_directory, sample_file).decode('utf-8')
+        pkl_anom_file_path = os.path.join(pkl_anom_directory, sample_file).decode('utf-8')        
 
         # read pickle or raw dataset file with pandas
         if os.path.isfile(pkl_normal_file_path):
             print("## PKL Normal File: ", pkl_normal_file_path)
             normal_df = pd.read_pickle(pkl_normal_file_path)
         else:
-            print("## Normal File: ", raw_normal_file_path)            
+            print("## Raw Normal File: ", raw_normal_file_path)
             normal_df = pd.read_csv(raw_normal_file_path, low_memory=True, header = 0, dtype=column_types)
             normal_df = data_cleasing(normal_df)
             normal_df.to_pickle(pkl_normal_file_path)            
@@ -432,7 +450,7 @@ for features_key, value in drop_features.items():
             print("## PKL Anomalous File: ", pkl_anom_file_path)
             anom_df = pd.read_pickle(pkl_anom_file_path)
         else:
-            print("## Anomalous File: ", raw_anom_file_path)            
+            print("## Raw Anomalous File: ", raw_anom_file_path)            
             anom_df = pd.read_csv(raw_anom_file_path, low_memory=True, header = 0, dtype=column_types)
             anom_df = data_cleasing(anom_df)
             anom_df.to_pickle(pkl_anom_file_path)
@@ -445,7 +463,7 @@ for features_key, value in drop_features.items():
         # data splitting
         norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting(normal_df, anom_df)
 
-        # train
+        # train - TODO
         norm_train_df.loc[:, 'Label'] = int(0)
         cv_df.loc[:, 'Label'] = cv_label_df
         train_df = pd.concat([norm_train_df, cv_df], axis=0)

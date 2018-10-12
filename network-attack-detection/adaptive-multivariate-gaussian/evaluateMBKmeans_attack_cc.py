@@ -25,6 +25,7 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 from sklearn.cluster import MiniBatchKMeans, KMeans
 from sklearn.metrics.pairwise import pairwise_distances_argmin
 
+
 # data cleasing, feature engineering and save clean data into pickles
 def data_cleasing(df):
         
@@ -144,6 +145,7 @@ def data_cleasing(df):
     
     return df
 
+
 def classify_ip(ip):
     '''
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
@@ -161,29 +163,35 @@ def classify_ip(ip):
             else: return 'N/A'
     except ValueError:
         return 'N/A'
+
             
 def avg_duration(x):
     return np.average(x)
+
             
 def n_dports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_dports_gt1024.__name__ = 'n_dports>1024'
 
+
 def n_dports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_dports_lt1024.__name__ = 'n_dports<1024'
+
 
 def n_sports_gt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b>1024 else a),x)
 n_sports_gt1024.__name__ = 'n_sports>1024'
 
+
 def n_sports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a,b: a+b if b<1024 else a),x)
 n_sports_lt1024.__name__ = 'n_sports<1024'
+
 
 def label_atk_v_norm(x):
     for l in x:
@@ -191,11 +199,13 @@ def label_atk_v_norm(x):
     return 0
 label_atk_v_norm.__name__ = 'label'
 
+
 def background_flow_count(x):
     count = 0
     for l in x:
         if l == 0: count += 1
     return count
+
 
 def normal_flow_count(x):
     if x.size == 0: return 0
@@ -204,8 +214,10 @@ def normal_flow_count(x):
         if l == 0: count += 1
     return count
 
+
 def n_conn(x):
     return x.size
+
 
 def n_tcp(x):
     count = 0
@@ -225,6 +237,7 @@ def n_icmp(x):
         if p == 1: count += 1 # icmp == 1
     return count
 
+
 def n_s_a_p_address(x):
     count = 0
     for i in x: 
@@ -237,23 +250,27 @@ def n_d_a_p_address(x):
         if classify_ip(i) == 'A': count += 1
     return count
 
+
 def n_s_b_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'B': count += 1
     return count
 
+
 def n_d_b_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'A': count += 1
     return count
+
                         
 def n_s_c_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'C': count += 1
     return count
+
             
 def n_d_c_p_address(x):
     count = 0
@@ -261,11 +278,13 @@ def n_d_c_p_address(x):
         if classify_ip(i) == 'C': count += 1
     return count
                         
+
 def n_s_na_p_address(x):
     count = 0
     for i in x: 
         if classify_ip(i) == 'N/A': count += 1
     return count
+
             
 def n_d_na_p_address(x):
     count = 0
@@ -273,34 +292,31 @@ def n_d_na_p_address(x):
         if classify_ip(i) == 'N/A': count += 1
     return count
 
+
 def n_ipv6(x):
     count = 0
     for i in x:
         if classify_ip(i) == 'ipv6': count += 1
     return count
 
+
 def estimateGaussian(dataset):
     mu = np.mean(dataset, axis=0)
     sigma = np.cov(dataset.T)
     return mu, sigma
 
+
 def multivariateGaussian(dataset, mu, sigma):
     p = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
     return p.pdf(dataset)
 
+
 def print_classification_report(y_test, y_predic):
-    # print('### Classification report:')
-    # print(classification_report(y_test, y_predic))
-
-    # print('\tAverage Precision = ' + str(average_precision_score(y_test, y_predic)))
-
-    # print('\n### Binary F1 Score, Recall and Precision:')
     f = f1_score(y_test, y_predic, average = "binary")
     Recall = recall_score(y_test, y_predic, average = "binary")
     Precision = precision_score(y_test, y_predic, average = "binary")
     print('\tF1 Score %f' %f)
-    # print('\tRecall Score %f' %Recall)
-    # print('\tPrecision Score %f' %Precision)
+
 
 def model_order_selection(data, max_components):
     bic = []
@@ -320,6 +336,7 @@ def model_order_selection(data, max_components):
                 best_cov_type = cov_type
 
     return best_n_components, best_cov_type
+
 
 def data_splitting(normal_df, anom_df):
 
