@@ -349,22 +349,22 @@ def data_merge_splitting(normal_df, anom_df):
 
     # Length and indexes
     norm_len = len(normal_df.index)
-    anom_len = len(anom_df.index)
-    anom_train_end = anom_len // 2
-    anom_cv_start = anom_train_end + 1
     norm_train_end = (norm_len * 60) // 100
     norm_cv_start = norm_train_end + 1
     norm_cv_end = (norm_len * 80) // 100
     norm_test_start = norm_cv_end + 1
-
-    # split anomalous data
-    anom_cv_df  = anom_df[:anom_train_end]
-    anom_test_df = anom_df[anom_cv_start:anom_len]
+    anom_len = len(anom_df.index)
+    anom_cv_end = anom_len // 2
+    anom_test_start = anom_cv_end + 1
 
     # split normal data
     norm_train_df = normal_df[:norm_train_end]
     norm_cv_df = normal_df[norm_cv_start:norm_cv_end]
     norm_test_df = normal_df[norm_test_start:norm_len]
+    
+    # split anomalous data
+    anom_cv_df  = anom_df[:anom_cv_end]
+    anom_test_df = anom_df[anom_test_start:anom_len]
 
     # CV and test data from concatenation of normal and anomalous data
     cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
@@ -393,8 +393,9 @@ def getBestByCV(X_train, X_cv, labels):
     best_precision = 0
     best_recall = 0
     
-    for m_clusters in np.arange(1, 10, 1):
-        for m_batch_size in range(10, 300, 10): 
+    for m_clusters in np.arange(1, 10, 2):
+
+        for m_batch_size in range(10, 100, 10): 
 
             mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=10, max_no_improvement=10).fit(X_train)
             
@@ -405,7 +406,7 @@ def getBestByCV(X_train, X_cv, labels):
 
             y_pred = np.array(dist)        
 
-            for m_epsilon in np.arange(70, 99, 1):
+            for m_epsilon in np.arange(70, 95, 2):
                 y_pred[dist >= np.percentile(dist,m_epsilon)] = 1
                 y_pred[dist < np.percentile(dist,m_epsilon)] = 0
             
@@ -420,7 +421,6 @@ def getBestByCV(X_train, X_cv, labels):
                     best_f1 = f1
                     best_precision = Precision
                     best_recall = Recall
-                    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
     return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
 
@@ -482,7 +482,7 @@ for features_key, value in drop_features.items():
             normal_df = pd.read_pickle(pkl_normal_file_path)
         else:
             print("## Raw Normal File: ", raw_normal_file_path)
-            normal_df = pd.read_csv(raw_normal_file_path, low_memory=True, header = 0, dtype=column_types)
+            normal_df = pd.read_csv(raw_normal_file_path, low_memory=True, header=0, dtype=column_types)
             normal_df = data_cleasing(normal_df)
             normal_df.to_pickle(pkl_normal_file_path)            
         gc.collect()
@@ -493,14 +493,14 @@ for features_key, value in drop_features.items():
             anom_df = pd.read_pickle(pkl_anom_file_path)
         else:
             print("## Raw Anomalous File: ", raw_anom_file_path)            
-            anom_df = pd.read_csv(raw_anom_file_path, low_memory=True, header = 0, dtype=column_types)
+            anom_df = pd.read_csv(raw_anom_file_path, low_memory=True, header=0, dtype=column_types)
             anom_df = data_cleasing(anom_df)
             anom_df.to_pickle(pkl_anom_file_path)
         gc.collect()
 
         # drop features
-        normal_df.drop(drop_features[features_key], axis =1, inplace = True)
-        anom_df.drop(drop_features[features_key], axis =1, inplace = True)
+        normal_df.drop(drop_features[features_key], axis=1, inplace=True)
+        anom_df.drop(drop_features[features_key], axis=1, inplace=True)
 
         # data merge and splitting
         train_df, cv_df, test_df, cv_label_df, test_label_df = data_merge_splitting(normal_df, anom_df)
@@ -514,7 +514,7 @@ for features_key, value in drop_features.items():
 
         # Test prediction
         test_clusters = mbkmeans.predict(test_df)
-        test_clusters_centers = kmeans.cluster_centers_
+        test_clusters_centers = mbkmeans.cluster_centers_
         dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
         pred_test_label = np.array(dist)
         pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
