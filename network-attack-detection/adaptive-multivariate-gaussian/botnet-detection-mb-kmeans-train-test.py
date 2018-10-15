@@ -286,10 +286,11 @@ def getBestByCV(X_train, X_cv, labels):
     best_precision = 0
     best_recall = 0
     
-    for m_clusters in np.arange(1, 10, 1):
-        for m_batch_size in range(10, 300, 10): 
+    for m_clusters in np.arange(1, 10, 2):
 
-            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=20, max_no_improvement=10).fit(X_train)
+        for m_batch_size in range(10, 100, 10): 
+
+            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=10, max_no_improvement=10).fit(X_train)
             
             X_cv_clusters = mbkmeans.predict(X_cv)
             X_cv_clusters_centers = mbkmeans.cluster_centers_
@@ -298,7 +299,7 @@ def getBestByCV(X_train, X_cv, labels):
 
             y_pred = np.array(dist)        
 
-            for m_epsilon in np.arange(70, 99, 1):
+            for m_epsilon in np.arange(80, 95, 2):
                 y_pred[dist >= np.percentile(dist,m_epsilon)] = 1
                 y_pred[dist < np.percentile(dist,m_epsilon)] = 0
             
@@ -313,7 +314,6 @@ def getBestByCV(X_train, X_cv, labels):
                     best_f1 = f1
                     best_precision = Precision
                     best_recall = Recall
-                    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
     return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
 
@@ -351,10 +351,10 @@ for features_key, value in drop_features.items():
     mbkmeans_pred_test_label = []
 
     # Load data
-    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train2/train.binetflow'
-    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train2/train.binetflow'
-    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test2/test.binetflow'
-    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test2/test.binetflow'
+    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow'
+    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train/train.binetflow'
+    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test/test.binetflow'
+    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test/test.binetflow'
 
     # read pickle or raw dataset for training
     if os.path.isfile(pkl_train_file_path):
@@ -397,10 +397,10 @@ for features_key, value in drop_features.items():
 
     # Cross-Validation
     best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
-    print('###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
+    print('    ###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
 
     # Training - estimate clusters (anomalous or normal) for training    
-    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=20, max_no_improvement=10).fit(train_df)
+    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=10, max_no_improvement=10).fit(train_df)
     
     # Test prediction
     test_clusters = mbkmeans.predict(test_df)
@@ -411,5 +411,5 @@ for features_key, value in drop_features.items():
     pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
 
     # print results
-    print('###[MB-KMeans][',features_key,'] Test')
+    print('    ###[MB-KMeans][',features_key,'] Test')
     print_classification_report(test_label_df.astype(int).values, pred_test_label)

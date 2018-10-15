@@ -449,24 +449,23 @@ drop_features = {
     'drop_features04':['SrcAddr','DstAddr','sTos','Proto']
 }
 
-raw_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_normal/')
+raw_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_normal_fast/')
 raw_normal_directory = os.fsencode(raw_normal_path)
 raw_normal_files = os.listdir(raw_normal_directory)
-raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_cc/')
+raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_cc_fast/')
 raw_anom_directory = os.fsencode(raw_anom_path)
 raw_anom_files = os.listdir(raw_anom_directory)
 
-pkl_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_normal/')
+pkl_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_normal_fast/')
 pkl_normal_directory = os.fsencode(pkl_normal_path)
-pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_cc/')
+pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_cc_fast/')
 pkl_anom_directory = os.fsencode(pkl_anom_path)
 
 # for each feature set
 for features_key, value in drop_features.items():
 
-    # Initialize labels
-    mbkmeans_test_label = []
-    mbkmeans_pred_test_label = []
+    all_normal_df = None
+    all_anom_df = None
 
     for sample_file in raw_normal_files:
         
@@ -498,36 +497,39 @@ for features_key, value in drop_features.items():
             anom_df.to_pickle(pkl_anom_file_path)
         gc.collect()
 
-        # drop features
-        normal_df.drop(drop_features[features_key], axis=1, inplace=True)
-        anom_df.drop(drop_features[features_key], axis=1, inplace=True)
+        if all_normal_df is None:
+            all_normal_df = normal_df;
+        else:
+            all_normal_df.append(normal_df)
 
-        # data merge and splitting
-        train_df, cv_df, test_df, cv_label_df, test_label_df = data_merge_splitting(normal_df, anom_df)
+        if all_anom_df is None:
+            all_anom_df = anom_df;
+        else:
+            all_anom_df.append(anom_df)
 
-        # Cross-Validation
-        best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
-        print('###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
+    # drop features
+    all_normal_df.drop(drop_features[features_key], axis=1, inplace=True)
+    all_anom_df.drop(drop_features[features_key], axis=1, inplace=True)
 
-        # Training - estimate clusters (anomalous or normal) for training    
-        mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=10, max_no_improvement=10).fit(train_df)
+    # data merge and splitting
+    train_df, cv_df, test_df, cv_label_df, test_label_df = data_merge_splitting(all_normal_df, all_anom_df)
 
-        # Test prediction
-        test_clusters = mbkmeans.predict(test_df)
-        test_clusters_centers = mbkmeans.cluster_centers_
-        dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
-        pred_test_label = np.array(dist)
-        pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
-        pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
-        test_label = test_label_df.astype(int).values
+    # Cross-Validation
+    best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
+    print('    ###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
 
-        # print test results
-        print('###[MB-KMeans][',features_key,'] Test')
-        print_classification_report(test_label, pred_test_label)
+    # Training - estimate clusters (anomalous or normal) for training    
+    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=10, max_no_improvement=10).fit(train_df)
 
-        # save results for total evaluation later
-        mbkmeans_test_label.extend(test_label)
-        mbkmeans_pred_test_label.extend(pred_test_label)
-        
-    print('###[KMeans][',features_key,'] Test Full dataset')
-    print_classification_report(mbkmeans_test_label, mbkmeans_pred_test_label)
+    # Test prediction
+    test_clusters = mbkmeans.predict(test_df)
+    test_clusters_centers = mbkmeans.cluster_centers_
+    dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
+    pred_test_label = np.array(dist)
+    pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
+    pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
+    test_label = test_label_df.astype(int).values
+
+    # print test results
+    print('    ###[MB-KMeans][',features_key,'] Test')
+    print_classification_report(test_label, pred_test_label)

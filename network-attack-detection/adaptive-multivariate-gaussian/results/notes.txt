@@ -28,6 +28,7 @@ pkl_all_train2      train raw data selected according to my opinion.          cd
 pkl_attack          
 pkl_cc              
 pkl_normal          
+pkl_fast            Only one file for fast test
 raw                 raw and original files in csv format
 raw_all             raw data into one csv file
 raw_all_sorted      sorted raw data into one csv file
@@ -37,6 +38,13 @@ raw_all_train       train raw data selected according to original paper
 raw_all_train2      train raw data selected according to my opinion
 raw_attack          
 raw_cc              
+raw_fast            Only one file for fast test
 raw_train           raw and original files selected for training
 raw_test            raw and original files selected for testing
+raw_normal_fast     Only one file for fast test
+raw_cc_fast         Only one file for fast test
+pkl_normal_fast     Only one file for fast test
+pkl_cc_fast         Only one file for fast test
 =================================================================================================================================================================================================================================
+
+

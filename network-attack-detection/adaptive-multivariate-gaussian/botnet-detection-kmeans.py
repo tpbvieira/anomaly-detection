@@ -23,18 +23,18 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
 def data_cleasing(df):
 	# data cleasing, feature engineering and save clean data into pickles
-	
+
 	print('### Data Cleasing and Feature Engineering')
 	le = preprocessing.LabelEncoder()
-	
+
 	# [Protocol] - Discard ipv6-icmp and categorize
 	df['Proto'] = df['Proto'].fillna('-')
 	df['Proto'] = le.fit_transform(df['Proto'])
 	le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
 
-	# [Label] - Categorize 
+	# [Label] - Categorize
 	anomalies = df.Label.str.contains('Botnet')
-	normal = np.invert(anomalies);
+	normal = np.invert(anomalies)
 	df.loc[anomalies, 'Label'] = int(1)
 	df.loc[normal, 'Label'] = int(0)
 	df['Label'] = pd.to_numeric(df['Label'])
@@ -60,7 +60,7 @@ def data_cleasing(df):
 	df['State'] = le.fit_transform(df['State'])
 	le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
 
-	# [Dir] - replace NaN with "-" and categorize 
+	# [Dir] - replace NaN with "-" and categorize
 	df['Dir'] = df['Dir'].fillna('-')
 	df['Dir'] = le.fit_transform(df['Dir'])
 	le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
@@ -78,7 +78,7 @@ def data_cleasing(df):
 
 	# save clean data into pickles
 	df.to_pickle(pkl_file_path)  # where to save it, usually as a .pkl
-	
+
 	return df
 
 
@@ -86,7 +86,7 @@ def classify_ip(ip):
 	'''
 	str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
 	'''
-	try: 
+	try:
 		ip_addr = ipaddress.ip_address(ip)
 		if isinstance(ip_addr, ipaddress.IPv6Address):
 			return 'ipv6'
@@ -100,11 +100,11 @@ def classify_ip(ip):
 	except ValueError:
 		return 'N/A'
 
-	
+
 def avg_duration(x):
 	return np.average(x)
 
-	
+
 def n_dports_gt1024(x):
 	if x.size == 0: return 0
 	return reduce((lambda a,b: a+b if b>1024 else a),x)
@@ -157,77 +157,77 @@ def n_conn(x):
 
 def n_tcp(x):
 	count = 0
-	for p in x: 
+	for p in x:
 		if p == 10: count += 1 # tcp == 10
 	return count
-	
+
 
 def n_udp(x):
 	count = 0
-	for p in x: 
+	for p in x:
 		if p == 11: count += 1 # udp == 11
 	return count
 
-	
+
 def n_icmp(x):
 	count = 0
-	for p in x: 
+	for p in x:
 		if p == 1: count += 1 # icmp == 1
 	return count
 
 
 def n_s_a_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'A': count += 1
 	return count
 
-	
+
 def n_d_a_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'A': count += 1
 	return count
 
 
 def n_s_b_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'B': count += 1
 	return count
 
 
 def n_d_b_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'A': count += 1
 	return count
 
-		
+
 def n_s_c_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'C': count += 1
 	return count
 
-	
+
 def n_d_c_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'C': count += 1
 	return count
 
-		
+
 def n_s_na_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'N/A': count += 1
 	return count
 
-	
+
 def n_d_na_p_address(x):
 	count = 0
-	for i in x: 
+	for i in x:
 		if classify_ip(i) == 'N/A': count += 1
 	return count
 
@@ -246,35 +246,15 @@ def print_classification_report(y_test, y_predic):
 	print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
 
-def model_order_selection(data, max_components):
-	bic = []
-	lowest_bic = np.infty
-	n_components_range = range(1, max_components)
-	cov_types = ['spherical', 'tied', 'diag', 'full']
-	
-	for cov_type in cov_types:
-		for n_components in n_components_range:
-			gmm = mixture.GaussianMixture(n_components=n_components, covariance_type=cov_type)
-			gmm.fit(data)
-			bic.append(gmm.bic(data))
-			if bic[-1] < lowest_bic:
-				lowest_bic = bic[-1]
-				best_gmm = gmm
-				best_n_components = n_components
-				best_cov_type = cov_type
-	
-	return best_n_components, best_cov_type
-
-
-def data_splitting(df, drop_features):
+def data_splitting(m_df, m_drop_features):
 	# Data splitting
 
 	# drop non discriminant features
-	df.drop(drop_features, axis =1, inplace = True)
+	m_df.drop(m_drop_features, axis =1, inplace = True)
 
 	# split into normal and anomaly
-	df_l1 = df[df["Label"] == 1]
-	df_l0 = df[df["Label"] == 0]
+	df_l1 = m_df[m_df["Label"] == 1]
+	df_l0 = m_df[m_df["Label"] == 0]
 
 	# Length and indexes
 	norm_len = len(df_l0)
@@ -287,7 +267,7 @@ def data_splitting(df, drop_features):
 	norm_test_start = norm_cv_end + 1
 
 	# anomalies split data
-	anom_cv_df  = df_l1[:anom_train_end] # 50% of anomalies59452 
+	anom_cv_df = df_l1[:anom_train_end] # 50% of anomalies59452
 	anom_test_df = df_l1[anom_cv_start:anom_len] # 50% of anomalies
 
 	# normal split data
@@ -313,16 +293,16 @@ def data_splitting(df, drop_features):
 
 def getBestByCV(X_train, X_cv, labels):
 	# select the best epsilon (threshold) and number of clusters
-	
+
 	# initialize
 	best_epsilon = 0
 	best_num_clusters = 0
 	best_f1 = 0
 	best_precision = 0
 	best_recall = 0
-	
+
 	for num_clusters in np.arange(1, 10, 1):
-		
+
 		kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_jobs=-1).fit(X_train)
 		X_cv_clusters = kmeans.predict(X_cv)
 		X_cv_clusters_centers = kmeans.cluster_centers_
@@ -334,10 +314,10 @@ def getBestByCV(X_train, X_cv, labels):
 		for epsilon in np.arange(70, 99, 1):
 			y_pred[dist >= np.percentile(dist,epsilon)] = 1
 			y_pred[dist < np.percentile(dist,epsilon)] = 0
-		
+
 			f1 = f1_score(labels, y_pred, average = "binary")
 			Recall = recall_score(labels, y_pred, average = "binary")
-			Precision = precision_score(labels, y_pred, average = "binary")	
+			Precision = precision_score(labels, y_pred, average = "binary")
 
 			if f1 > best_f1:
 				best_num_clusters = num_clusters
@@ -346,7 +326,7 @@ def getBestByCV(X_train, X_cv, labels):
 				best_precision = Precision
 				best_recall = Recall
 
-	return best_num_clusters, best_epsilon, best_f1
+	return best_num_clusters, best_epsilon, best_f1, best_precision, best_recall
 
 
 # features
@@ -375,14 +355,14 @@ drop_features = {
 	'drop_features04':['SrcAddr','DstAddr','sTos','Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_fast/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 print("## Directory: ", raw_directory)
 print("## Files: ", raw_files)
 
 # pickle files have the same names
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
@@ -404,17 +384,17 @@ for features_key, value in drop_features.items():
 			print("## Sample File: ", raw_file_path)
 			raw_df = pd.read_csv(raw_file_path, low_memory=False, dtype={'Label':'str'})
 			df = data_cleasing(raw_df)
-		
+
 		# data splitting
 		train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
 		# Cross-Validation
-		best_num_clusters, best_epsilon, best_f1 = getBestByCV(train_df, cv_df, cv_label)
-		print('###[KMeans][',features_key,'] Cross-Validation (best_num_clusters, best_epsilon, best_f1): ', best_num_clusters, best_epsilon, best_f1)
+    best_num_clusters, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label)
+		print('###[KMeans][',features_key,'] Cross-Validation (best_num_clusters, best_epsilon, best_f1, best_precision, best_recall): ', best_num_clusters, best_epsilon, best_f1, best_precision, best_recall)
 
 		# Training - estimate clusters (anomalous or normal) for training
 		kmeans = KMeans(n_clusters = best_num_clusters).fit(train_df)
-		
+
 		# Test prediction
 		test_clusters = kmeans.predict(test_df)
 		test_clusters_centers = kmeans.cluster_centers_
@@ -430,7 +410,7 @@ for features_key, value in drop_features.items():
 
 		kmeans_test_label.extend(test_label.astype(int))			# append into global array
 		kmeans_pred_test_label.extend(pred_test_label.astype(int))	# append into global array
-		
+
 	# print results
 	print('###[KMeans][',features_key,'] Test Full dataset')
 	print_classification_report(kmeans_test_label, kmeans_pred_test_label)

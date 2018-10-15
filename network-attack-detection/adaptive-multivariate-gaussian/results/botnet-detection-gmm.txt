@@ -1,0 +1,16 @@
+zero mean and unit variance
+    features_01 GMM Cross Validation dataset    0.154249 GMM Test dataset    0.196387
+    features_02 GMM Cross Validation dataset    0.139332 GMM Test dataset    0.190634
+    features_03 GMM Cross Validation dataset    0.137769 GMM Test dataset    0.196029
+    features_04 GMM Cross Validation dataset    0.154384 GMM Test dataset    0.322914
+RobustScaler
+    features_01 GMM Cross Validation dataset    0.323623 GMM Test dataset    0.252390
+    features_02 GMM Cross Validation dataset    0.288457 GMM Test dataset    0.241186
+    features_03 GMM Cross Validation dataset    0.225801 GMM Test dataset    0.239016
+    features_04 GMM Cross Validation dataset    0.104462 GMM Test dataset    0.368944
+Raw Data
+    features_01 GMM Cross Validation dataset    0.204347 GMM Test dataset    0.382992
+    features_02 GMM Cross Validation dataset    0.348877 GMM Test dataset    0.376319
+    features_03 GMM Cross Validation dataset    0.149438 GMM Test dataset    0.185207
+    features_04 GMM Cross Validation dataset    0.568822 GMM Test dataset    0.235434
+===============================================================================================================================================================================================================================
