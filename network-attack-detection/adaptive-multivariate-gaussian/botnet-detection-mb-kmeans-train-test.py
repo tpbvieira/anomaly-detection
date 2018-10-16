@@ -1,3 +1,4 @@
+# coding=utf-8
 '''
 minibactch-kmeans implementation for train and test files
 '''

@@ -1,27 +1,15 @@
+# coding=utf-8
 import pandas as pd
 import numpy as np
 import os
 import gc
-import datetime as dt
-import seaborn as sns
-import matplotlib.gridspec as gridspec
 import ipaddress
-import random as rnd
-import plotly.graph_objs as go
-import lime
-import lime.lime_tabular
-import itertools
 import warnings
 import time
-from pandas.tools.plotting import scatter_matrix
 from functools import reduce
-from numpy import genfromtxt
-from scipy import linalg
 from scipy.stats import multivariate_normal
-from sklearn import preprocessing, mixture
-from sklearn.metrics import classification_report, average_precision_score, f1_score, recall_score, precision_score
-from sklearn.preprocessing import StandardScaler, RobustScaler
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from sklearn import preprocessing
+from sklearn.metrics import f1_score, recall_score, precision_score
 warnings.filterwarnings(action='once')
 
 
@@ -89,13 +77,13 @@ def data_cleasing(df):
 
 
 def classify_ip(ip):
-    '''
+    """
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
-    '''
+    """
     try:
         ip_addr = ipaddress.ip_address(ip)
         if isinstance(ip_addr, ipaddress.IPv6Address):
-              return 'ipv6'
+            return 'ipv6'
         elif isinstance(ip_addr, ipaddress.IPv4Address):
             # split on .
             octs = ip_addr.exploded.split('.')
@@ -116,7 +104,8 @@ def avg_duration(x):
 
 
 def n_dports_gt1024(x):
-    if x.size == 0: return 0
+    if x.size == 0:
+        return 0
     return reduce((lambda a, b: a + b if b > 1024 else a), x)
 
 
@@ -132,7 +121,8 @@ n_dports_lt1024.__name__ = 'n_dports<1024'
 
 
 def n_sports_gt1024(x):
-    if x.size == 0: return 0
+    if x.size == 0:
+        return 0
     return reduce((lambda a, b: a + b if b > 1024 else a), x)
 
 
@@ -149,7 +139,8 @@ n_sports_lt1024.__name__ = 'n_sports<1024'
 
 def label_atk_v_norm(x):
     for l in x:
-        if l == 1: return 1
+        if l == 1:
+            return 1
     return 0
 
 
@@ -430,16 +421,16 @@ for features_key, value in drop_features.items():
 
         # read pickle or raw dataset file with pandas
         if os.path.isfile(pkl_file_path):
-              print("### Sample File: ", pkl_file_path)
-              df = pd.read_pickle(pkl_file_path)
+            print("### Sample File: ", pkl_file_path)
+            data = pd.read_pickle(pkl_file_path)
         else:
-              print("### Sample File: ", raw_file_path)
-              raw_df = pd.read_csv(raw_file_path, header=0, dtype=column_types)
-              df = data_cleasing(raw_df)
+            print("### Sample File: ", raw_file_path)
+            raw_data = pd.read_csv(raw_file_path, header=0, dtype=column_types)
+            data = data_cleasing(raw_data)
         gc.collect()
 
         # data splitting
-        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
+        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(data, drop_features[features_key])
 
         # Scaler: raw, standardization (zero mean and unitary variance) or robust scaler
         scaler = 'Raw'
@@ -454,28 +445,28 @@ for features_key, value in drop_features.items():
         #                   gc.collect()
 
         try:
-              # trainning - estimate the mean vector and the covariance matrix from the normal data
-              mu, sigma = estimate_gaussian(norm_train_df)
+            # trainning - estimate the mean vector and the covariance matrix from the normal data
+            mu, sigma = estimate_gaussian(norm_train_df)
 
-              # Cross-Validation
-              p_cv = multivariate_gaussian(cv_df, mu, sigma)
-              best_epsilon, best_f1, best_precision, best_recall = selectThresholdByCV(p_cv, cv_label)
-              pred_cv_label = (p_cv < best_epsilon)
-              print('### [MGM][', features_key, '][', scaler, '] Cross-Validation. Epsilon: ', best_epsilon, ', F1: ', best_f1, ', Precision: ', best_precision, ', Recall: ', best_recall)
+            # Cross-Validation
+            p_cv = multivariate_gaussian(cv_df, mu, sigma)
+            best_epsilon, best_f1, best_precision, best_recall = selectThresholdByCV(p_cv, cv_label)
+            pred_cv_label = (p_cv < best_epsilon)
+            print('### [MGM][', features_key, '][', scaler, '] Cross-Validation. Epsilon: ', best_epsilon, ', F1: ', best_f1, ', Precision: ', best_precision, ', Recall: ', best_recall)
 
-              # [MGM] Test
-              p_test = multivariate_gaussian(test_df, mu, sigma)
-              pred_test_label = (p_test < best_epsilon)
-              f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-              print('### [MGM][', features_key, '][', scaler, '] Test. F1: ', f1, ', Precision: ', Precision, ', Recall: ', Recall)
+            # [MGM] Test
+            p_test = multivariate_gaussian(test_df, mu, sigma)
+            pred_test_label = (p_test < best_epsilon)
+            f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+            print('### [MGM][', features_key, '][', scaler, '] Test. F1: ', f1, ', Precision: ', Precision, ', Recall: ', Recall)
 
-              mgm_cv_label.extend(cv_label.astype(int))
-              mgm_pred_cv_label.extend(pred_cv_label.astype(int))
-              mgm_test_label.extend(test_label.astype(int))
-              mgm_pred_test_label.extend(pred_test_label.astype(int))
+            mgm_cv_label.extend(cv_label.astype(int))
+            mgm_pred_cv_label.extend(pred_cv_label.astype(int))
+            mgm_test_label.extend(test_label.astype(int))
+            mgm_pred_test_label.extend(pred_test_label.astype(int))
 
         except Exception as e:
-              print("### [MGM] Error: ", str(e))
+            print("### [MGM] Error: ", str(e))
 
     # [MGM] print results
     f1, Recall, Precision = get_classification_report(mgm_cv_label, mgm_pred_cv_label)

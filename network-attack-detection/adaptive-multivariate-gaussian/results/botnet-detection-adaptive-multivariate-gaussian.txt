@@ -18,46 +18,46 @@ Raw Data
 ================================================================================================================================================================================================================================
 ### Directory:  b'/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/'
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -49.829307426465675 , F1:  0.06853016515167486 , Precision:  0.035480836363699364 , Recall:  1.0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.06853050912680486 , Precision:  0.03548102077233589 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.06853005049406553 , Precision:  0.035480774894579827 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0553417764340233 , Precision:  0.028458356210553783 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0553417764340233 , Precision:  0.028458356210553783 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -50.37581361364573 , F1:  0.027835663522848032 , Precision:  0.014114271822078717 , Recall:  1.0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.027833616823875057 , Precision:  0.014113219382154618 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.027833616823875057 , Precision:  0.014113219382154618 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -48.84239486212681 , F1:  0.375 , Precision:  0.6724137931034483 , Recall:  0.26
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.22182468694096602 , Precision:  0.5688073394495413 , Recall:  0.13777777777777778
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -73.84314866322012 , F1:  0.3338088445078459 , Precision:  0.46613545816733065 , Recall:  0.26
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.19076923076923077 , Precision:  0.31 , Recall:  0.13777777777777778
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0959209267416571 , Precision:  0.05037654585295821 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0959209267416571 , Precision:  0.05037654585295821 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -224.99874267082214 , F1:  0.0015151515151515152 , Precision:  0.03333333333333333 , Recall:  0.0007751937984496124
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -1275.8239246482608 , F1:  0.0015313935681470136 , Precision:  0.0625 , Recall:  0.0007751937984496124
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.002711686494051784 , Precision:  0.001357684053781807 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.002711686494051784 , Precision:  0.001357684053781807 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.010282905802137154 , Precision:  0.005168024053330364 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.010282905802137154 , Precision:  0.005168024053330364 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.04007446854569858 , Precision:  0.0204469342852851 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.04007446854569858 , Precision:  0.0204469342852851 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.32712514810164633 , Precision:  0.19554669479933276 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.32712514810164633 , Precision:  0.19554669479933276 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -40.87660748192103 , F1:  0.3992369954116616 , Precision:  0.25282402873000326 , Recall:  0.9485546300832925
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.41745565349874847 , Precision:  0.2683080366510457 , Recall:  0.9399656946826758
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -64.61908623442713 , F1:  0.29752589443213173 , Precision:  0.18244854939812505 , Recall:  0.8057324840764332
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.294833504212544 , Precision:  0.1801983435047951 , Recall:  0.810340602793433
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -823.4049766344833 , F1:  0.0003759822536376283 , Precision:  0.5555555555555556 , Recall:  0.00018805476154656236
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -78.36648990144022 , F1:  0.3064563534829039 , Precision:  0.18095568668286474 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.3064735513469275 , Precision:  0.18096767935964497 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -46.60849343108566 , F1:  0.03244197704520628 , Precision:  0.016488447439271102 , Recall:  1.0
-### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.03241495936906062 , Precision:  0.01647448964069488 , Recall:  1.0
-### [MGM][ drop_features03 ][ Raw ] Cross-Validation of all data. F1:  0.08813286181118223 , Precision:  0.04680691100343357 , Recall:  0.7526467757459095
-### [MGM][ drop_features03 ][ Raw ] Test of all data. F1:  0.08810294436823463 , Precision:  0.04679178198397626 , Recall:  0.7521948367365296
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.03241253404363571 , Precision:  0.016473236694400924 , Recall:  1.0
+### [MGM][ drop_features04 ][ Raw ] Cross-Validation of all data. F1:  0.10743405814641067 , Precision:  0.05680175520835351 , Recall:  0.989138549827746
+### [MGM][ drop_features04 ][ Raw ] Test of all data. F1:  0.10740698317084305 , Precision:  0.05678715322012695 , Recall:  0.9889763425384546
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
 ### [MGM][ drop_features02 ][ Raw ] Cross-Validation. Epsilon:  -36.44503446170711 , F1:  0.06853016515167486 , Precision:  0.035480836363699364 , Recall:  1.0
 ### [MGM][ drop_features02 ][ Raw ] Test. F1:  0.06853050912680486 , Precision:  0.03548102077233589 , Recall:  1.0
@@ -100,46 +100,46 @@ Raw Data
 ### [MGM][ drop_features02 ][ Raw ] Cross-Validation of all data. F1:  0.09156035173988293 , Precision:  0.0491602084129581 , Recall:  0.6658406267708886
 ### [MGM][ drop_features02 ][ Raw ] Test of all data. F1:  0.09122325007009936 , Precision:  0.04899420931133132 , Recall:  0.6606503553116848
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.06853005049406553 , Precision:  0.035480774894579827 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -49.829307426465675 , F1:  0.06853016515167486 , Precision:  0.035480836363699364 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.06853050912680486 , Precision:  0.03548102077233589 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110811.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0553417764340233 , Precision:  0.028458356210553783 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0553417764340233 , Precision:  0.028458356210553783 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110812.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.027833616823875057 , Precision:  0.014113219382154618 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -50.37581361364573 , F1:  0.027835663522848032 , Precision:  0.014114271822078717 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.027833616823875057 , Precision:  0.014113219382154618 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-2.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -73.84314866322012 , F1:  0.3338088445078459 , Precision:  0.46613545816733065 , Recall:  0.26
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.19076923076923077 , Precision:  0.31 , Recall:  0.13777777777777778
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -48.84239486212681 , F1:  0.375 , Precision:  0.6724137931034483 , Recall:  0.26
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.22182468694096602 , Precision:  0.5688073394495413 , Recall:  0.13777777777777778
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815-3.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0959209267416571 , Precision:  0.05037654585295821 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0959209267416571 , Precision:  0.05037654585295821 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110815.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -1275.8239246482608 , F1:  0.0015313935681470136 , Precision:  0.0625 , Recall:  0.0007751937984496124
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -224.99874267082214 , F1:  0.0015151515151515152 , Precision:  0.03333333333333333 , Recall:  0.0007751937984496124
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-2.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.002711686494051784 , Precision:  0.001357684053781807 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.002711686494051784 , Precision:  0.001357684053781807 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816-3.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.010282905802137154 , Precision:  0.005168024053330364 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.010282905802137154 , Precision:  0.005168024053330364 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110816.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.04007446854569858 , Precision:  0.0204469342852851 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.04007446854569858 , Precision:  0.0204469342852851 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110817.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.32712514810164633 , Precision:  0.19554669479933276 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.32712514810164633 , Precision:  0.19554669479933276 , Recall:  1.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818-2.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -64.61908623442713 , F1:  0.29752589443213173 , Precision:  0.18244854939812505 , Recall:  0.8057324840764332
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.294833504212544 , Precision:  0.1801983435047951 , Recall:  0.810340602793433
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -40.87660748192103 , F1:  0.3992369954116616 , Precision:  0.25282402873000326 , Recall:  0.9485546300832925
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.41745565349874847 , Precision:  0.2683080366510457 , Recall:  0.9399656946826758
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110818.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  -78.36648990144022 , F1:  0.3064563534829039 , Precision:  0.18095568668286474 , Recall:  1.0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.3064735513469275 , Precision:  0.18096767935964497 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -823.4049766344833 , F1:  0.0003759822536376283 , Precision:  0.5555555555555556 , Recall:  0.00018805476154656236
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.0 , Precision:  0.0 , Recall:  0.0
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110819.binetflow
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
-### [MGM][ drop_features04 ][ Raw ] Test. F1:  0.03241253404363571 , Precision:  0.016473236694400924 , Recall:  1.0
-### [MGM][ drop_features04 ][ Raw ] Cross-Validation of all data. F1:  0.10743405814641067 , Precision:  0.05680175520835351 , Recall:  0.989138549827746
-### [MGM][ drop_features04 ][ Raw ] Test of all data. F1:  0.10740698317084305 , Precision:  0.05678715322012695 , Recall:  0.9889763425384546
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation. Epsilon:  -46.60849343108566 , F1:  0.03244197704520628 , Precision:  0.016488447439271102 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Test. F1:  0.03241495936906062 , Precision:  0.01647448964069488 , Recall:  1.0
+### [MGM][ drop_features03 ][ Raw ] Cross-Validation of all data. F1:  0.08813286181118223 , Precision:  0.04680691100343357 , Recall:  0.7526467757459095
+### [MGM][ drop_features03 ][ Raw ] Test of all data. F1:  0.08810294436823463 , Precision:  0.04679178198397626 , Recall:  0.7521948367365296
 ### Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
 ### [MGM][ drop_features01 ][ Raw ] Cross-Validation. Epsilon:  0 , F1:  0 , Precision:  0 , Recall:  0
 ### [MGM][ drop_features01 ][ Raw ] Test. F1:  0.06853005049406553 , Precision:  0.035480774894579827 , Recall:  1.0
@@ -181,6 +181,5 @@ Raw Data
 ### [MGM][ drop_features01 ][ Raw ] Test. F1:  0.08905731880625296 , Precision:  0.04869204869204869 , Recall:  0.5207756232686981
 ### [MGM][ drop_features01 ][ Raw ] Cross-Validation of all data. F1:  0.09151707079878736 , Precision:  0.04914729900857397 , Recall:  0.6636368542721705
 ### [MGM][ drop_features01 ][ Raw ] Test of all data. F1:  0.09115543077807228 , Precision:  0.04896718084085173 , Recall:  0.6584555185751552
-CPU times: user 2h 45min 23s, sys: 21.7 s, total: 2h 45min 44s
-Wall time: 2h 45min 47s
-================================================================================================================================================================================================================================
+CPU times: user 3h 5min 13s, sys: 41 s, total: 3h 5min 54s
+Wall time: 3h 23min 19s
