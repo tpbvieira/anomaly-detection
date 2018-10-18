@@ -213,3 +213,17 @@ raw_attack======================================================================
 ###[MB-KMeans][ drop_features04 ] Test Full. F1: 0.2431744635395394 , Recall: 0.41773859854277234 , Precision: 0.17150580918686156
 --- 34408.45972895622 seconds ---
 ================================================================================================================================================================================================================================
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+###[MB-KMeans][ drop_features04 ] Cross-Validation. Clusters: 3 , Batch: 90 , Epslilon: 70 ,F1: 0.12995576923340182 , Recall: 0.4269459273484477 , Precision: 0.07664224442426078
+###[MB-KMeans][ drop_features04 ] Test. F1: 0.05671011256873839 , Recall: 0.18631070974009328 , Precision: 0.03344515087294379
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+###[MB-KMeans][ drop_features01 ] Cross-Validation. Clusters: 3 , Batch: 70 , Epslilon: 70 ,F1: 0.12103021682795176 , Recall: 0.39762265627459537 , Precision: 0.07137834292057725
+###[MB-KMeans][ drop_features01 ] Test. F1: 0.08778800991667202 , Recall: 0.2884114612613504 , Precision: 0.05177353920678171
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+###[MB-KMeans][ drop_features02 ] Cross-Validation. Clusters: 5 , Batch: 10 , Epslilon: 88 ,F1: 0.15972437966617395 , Recall: 0.257815416304998 , Precision: 0.11570289635684732
+###[MB-KMeans][ drop_features02 ] Test. F1: 0.053260035190909986 , Recall: 0.08596845499642454 , Precision: 0.03858108789988899
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all/all.binetflow
+###[MB-KMeans][ drop_features03 ] Cross-Validation. Clusters: 3 , Batch: 40 , Epslilon: 70 ,F1: 0.12148060129749058 , Recall: 0.3991023121309293 , Precision: 0.07164396003633061
+###[MB-KMeans][ drop_features03 ] Test. F1: 0.05649108060786845 , Recall: 0.1855911202658883 , Precision: 0.03331597537592088
+--- 33152.84666824341 seconds ---
+================================================================================================================================================================================================================================

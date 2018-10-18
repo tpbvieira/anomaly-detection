@@ -2,32 +2,18 @@
 '''
 minibactch-kmeans implementation for train and test files
 '''
-import glob
 import pandas as pd
 import numpy as np
 import os
 import sys
 import gc
-import datetime as dt
-import seaborn as sns
-import matplotlib.gridspec as gridspec
 import ipaddress
-import random as rnd
-import plotly.graph_objs as go
-import lime
-import lime.lime_tabular
-import itertools
-from pandas.tools.plotting import scatter_matrix
+import time
 from functools import reduce
-from numpy import genfromtxt
-from scipy import linalg
 from scipy.stats import multivariate_normal
-from sklearn import preprocessing, mixture
-from sklearn.metrics import classification_report, average_precision_score, f1_score, recall_score, precision_score
-from sklearn.preprocessing import StandardScaler
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from sklearn.cluster import MiniBatchKMeans, KMeans
-from sklearn.metrics.pairwise import pairwise_distances_argmin
+from sklearn import preprocessing
+from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.cluster import MiniBatchKMeans
 
 
 # data cleasing, feature engineering and save clean data into pickles
@@ -41,7 +27,7 @@ def data_cleasing(df):
     le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
 
     anomalies = df.Label.str.contains('Botnet')
-    normal = np.invert(anomalies);
+    normal = np.invert(anomalies)
     df.loc[anomalies, 'Label'] = np.uint8(1)
     df.loc[normal, 'Label'] = np.uint8(0)
     df['Label'] = pd.to_numeric(df['Label'])
@@ -256,24 +242,11 @@ def print_classification_report(y_test, y_predic):
     print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
 
 
-def model_order_selection(data, max_components):
-    bic = []
-    lowest_bic = np.infty
-    n_components_range = range(1, max_components)
-    cov_types = ['spherical', 'tied', 'diag', 'full']
-    
-    for cov_type in cov_types:
-        for n_components in n_components_range:
-            gmm = mixture.GaussianMixture(n_components=n_components, covariance_type=cov_type)
-            gmm.fit(data)
-            bic.append(gmm.bic(data))
-            if bic[-1] < lowest_bic:
-                lowest_bic = bic[-1]
-                best_gmm = gmm
-                best_n_components = n_components
-                best_cov_type = cov_type
-
-    return best_n_components, best_cov_type
+def get_classification_report(y_test, y_predic):
+    f1 = f1_score(y_test, y_predic, average = "binary")
+    Recall = recall_score(y_test, y_predic, average = "binary")
+    Precision = precision_score(y_test, y_predic, average = "binary")
+    return f1, Recall,Precision
 
 
 def getBestByCV(X_train, X_cv, labels):
@@ -300,7 +273,7 @@ def getBestByCV(X_train, X_cv, labels):
 
             y_pred = np.array(dist)        
 
-            for m_epsilon in np.arange(80, 95, 2):
+            for m_epsilon in np.arange(70, 95, 2):
                 y_pred[dist >= np.percentile(dist,m_epsilon)] = 1
                 y_pred[dist < np.percentile(dist,m_epsilon)] = 0
             
@@ -318,6 +291,9 @@ def getBestByCV(X_train, X_cv, labels):
 
     return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
 
+
+# track execution time
+start_time = time.time()
 
 column_types = {
             'StartTime': 'str',
@@ -338,10 +314,10 @@ column_types = {
 
 # feature selection
 drop_features = {
-    'drop_features01':['SrcAddr','DstAddr','sTos','Sport','Proto','TotBytes','SrcBytes'],
-    'drop_features02':['SrcAddr','DstAddr','sTos','Sport','TotBytes','SrcBytes'],
-    'drop_features03':['SrcAddr','DstAddr','sTos','Sport','Proto','SrcBytes'],
-    'drop_features04':['SrcAddr','DstAddr','sTos','Proto']
+    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
+    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
 # for each feature set
@@ -359,10 +335,10 @@ for features_key, value in drop_features.items():
 
     # read pickle or raw dataset for training
     if os.path.isfile(pkl_train_file_path):
-        # print("### Train File: ", pkl_train_file_path)
+        print("## PKL Normal File: ", pkl_train_file_path)
         train_df = pd.read_pickle(pkl_train_file_path)
     else:
-        # print("### Train File: ", raw_train_file_path)
+        print("## Raw Normal File: ", raw_train_file_path)
         raw_df = pd.read_csv(raw_train_file_path, header = 0, dtype=column_types)
         train_df = data_cleasing(raw_df)
         # save clean data into pickles
@@ -397,20 +373,22 @@ for features_key, value in drop_features.items():
     test_df = test_df.drop(labels = ["Label"], axis = 1)                # drop label from testing data
 
     # Cross-Validation
-    best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall = getBestByCV(train_df, cv_df, cv_label_df)
-    print('    ###[MB-KMeans][',features_key,'] Cross-Validation (cluster_size, batch_size, epsilon, f1, precision, recall): ', best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall)
+    b_clusters, b_batch, b_epsilon, b_f1, b_precision, b_recall = getBestByCV(train_df, cv_df, cv_label_df)
+    print('###[MB-KMeans][', features_key, '] Cross-Validation. Clusters:', b_clusters, ', Batch:', b_batch, ', Epslilon:', b_epsilon, ',F1:', b_f1, ', Recall:', b_recall, ', Precision:',
+          b_precision)
 
     # Training - estimate clusters (anomalous or normal) for training    
-    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=best_cluster_size, batch_size=best_batch_size, n_init=10, max_no_improvement=10).fit(train_df)
+    mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=b_clusters, batch_size=b_batch, n_init=10, max_no_improvement=10).fit(train_df)
     
     # Test prediction
     test_clusters = mbkmeans.predict(test_df)
-    test_clusters_centers = kmeans.cluster_centers_
+    test_clusters_centers = mbkmeans.cluster_centers_
     dist = [np.linalg.norm(x-y) for x,y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
     pred_test_label = np.array(dist)
-    pred_test_label[dist >= np.percentile(dist, best_epsilon)] = 1
-    pred_test_label[dist < np.percentile(dist, best_epsilon)] = 0
+    pred_test_label[dist >= np.percentile(dist, b_epsilon)] = 1
+    pred_test_label[dist < np.percentile(dist, b_epsilon)] = 0
 
     # print results
-    print('    ###[MB-KMeans][',features_key,'] Test')
-    print_classification_report(test_label_df.astype(int).values, pred_test_label)
+    f1, Recall, Precision = get_classification_report(test_label_df.astype(int).values, pred_test_label)
+    print('###[MB-KMeans][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+print("--- %s seconds ---" % (time.time() - start_time))

@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import os
 import ipaddress
+import time
 from functools import reduce
 from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
@@ -323,6 +324,8 @@ def getBestByCV(X_train, X_cv, labels):
 
     return best_num_clusters, best_epsilon, best_f1, best_precision, best_recall
 
+# track execution time
+start_time = time.time()
 
 # features
 column_types = {
@@ -344,9 +347,9 @@ column_types = {
 
 # feature selection
 drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
+    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
@@ -409,4 +412,4 @@ for features_key, value in drop_features.items():
     # print results
     f1, Recall, Precision = get_classification_report(kmeans_test_label, kmeans_pred_test_label)
     print('###[KMeans][', features_key, '] Test Full. F1:',f1,', Recall:',Recall,', Precision:',Precision)
-
+print("--- %s seconds ---" % (time.time() - start_time))
