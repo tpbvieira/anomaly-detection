@@ -4,12 +4,13 @@ import numpy as np
 import os
 import gc
 import ipaddress
-import warnings
 import time
+import warnings
 from functools import reduce
 from scipy.stats import multivariate_normal
-from sklearn import preprocessing
+from sklearn import preprocessing, mixture
 from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.preprocessing import StandardScaler, RobustScaler
 warnings.filterwarnings(action='once')
 
 
@@ -27,7 +28,7 @@ def data_cleasing(df):
 
     # [Label] - Categorize
     anomalies = df.Label.str.contains('Botnet')
-    normal = np.invert(anomalies)
+    normal = np.invert(anomalies);
     df.loc[anomalies, 'Label'] = np.uint8(1)
     df.loc[normal, 'Label'] = np.uint8(0)
     df['Label'] = pd.to_numeric(df['Label'])
@@ -79,9 +80,9 @@ def data_cleasing(df):
 
 
 def classify_ip(ip):
-    """
+    '''
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
-    """
+    '''
     try:
         ip_addr = ipaddress.ip_address(ip)
         if isinstance(ip_addr, ipaddress.IPv6Address):
@@ -106,54 +107,58 @@ def avg_duration(x):
 
 
 def n_dports_gt1024(x):
-    if x.size == 0:
-        return 0
+    if x.size == 0: return 0
     return reduce((lambda a, b: a + b if b > 1024 else a), x)
+
+
 n_dports_gt1024.__name__ = 'n_dports>1024'
 
 
 def n_dports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a, b: a + b if b < 1024 else a), x)
+
+
 n_dports_lt1024.__name__ = 'n_dports<1024'
 
 
 def n_sports_gt1024(x):
-    if x.size == 0:
-        return 0
+    if x.size == 0: return 0
     return reduce((lambda a, b: a + b if b > 1024 else a), x)
+
+
 n_sports_gt1024.__name__ = 'n_sports>1024'
 
 
 def n_sports_lt1024(x):
     if x.size == 0: return 0
     return reduce((lambda a, b: a + b if b < 1024 else a), x)
+
+
 n_sports_lt1024.__name__ = 'n_sports<1024'
 
 
 def label_atk_v_norm(x):
     for l in x:
-        if l == 1:
-            return 1
+        if l == 1: return 1
     return 0
+
+
 label_atk_v_norm.__name__ = 'label'
 
 
 def background_flow_count(x):
     count = 0
     for l in x:
-        if l == 0:
-            count += 1
+        if l == 0: count += 1
     return count
 
 
 def normal_flow_count(x):
-    if x.size == 0:
-        return 0
+    if x.size == 0: return 0
     count = 0
     for l in x:
-        if l == 0:
-            count += 1
+        if l == 0: count += 1
     return count
 
 
@@ -164,108 +169,126 @@ def n_conn(x):
 def n_tcp(x):
     count = 0
     for p in x:
-        if p == 10:
-            count += 1    # tcp == 10
+        if p == 10: count += 1  # tcp == 10
     return count
 
 
 def n_udp(x):
     count = 0
     for p in x:
-        if p == 11:
-            count += 1    # udp == 11
+        if p == 11: count += 1  # udp == 11
     return count
 
 
 def n_icmp(x):
     count = 0
     for p in x:
-        if p == 1:
-            count += 1    # icmp == 1
+        if p == 1: count += 1  # icmp == 1
     return count
 
 
 def n_s_a_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'A':
-            count += 1
+        if classify_ip(i) == 'A': count += 1
     return count
 
 
 def n_d_a_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'A':
-            count += 1
+        if classify_ip(i) == 'A': count += 1
     return count
 
 
 def n_s_b_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'B':
-            count += 1
+        if classify_ip(i) == 'B': count += 1
     return count
 
 
 def n_d_b_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'A':
-            count += 1
+        if classify_ip(i) == 'A': count += 1
     return count
 
 
 def n_s_c_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'C':
-            count += 1
+        if classify_ip(i) == 'C': count += 1
     return count
 
 
 def n_d_c_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'C':
-            count += 1
+        if classify_ip(i) == 'C': count += 1
     return count
 
 
 def n_s_na_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'N/A':
-            count += 1
+        if classify_ip(i) == 'N/A': count += 1
     return count
 
 
 def n_d_na_p_address(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'N/A':
-            count += 1
+        if classify_ip(i) == 'N/A': count += 1
     return count
 
 
 def n_ipv6(x):
     count = 0
     for i in x:
-        if classify_ip(i) == 'ipv6':
-            count += 1
+        if classify_ip(i) == 'ipv6': count += 1
     return count
 
 
-def estimate_gaussian(dataset):
+def estimateGaussian(dataset):
     mu = np.mean(dataset, axis=0)
     sigma = np.cov(dataset.T)
     return mu, sigma
 
 
-def multivariate_gaussian(dataset, mu, sigma):
+def multivariateGaussian(dataset, mu, sigma):
     mg_model = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
     return mg_model.logpdf(dataset)
+
+
+def selectThresholdByCV(probs, labels):
+    # select best epsilon (threshold)
+
+    # initialize
+    best_epsilon = 0
+    best_f1 = 0
+    best_precision = 0
+    best_recall = 0
+
+    min_prob = min(probs);
+    max_prob = max(probs);
+    stepsize = (max(probs) - min(probs)) / 1000;
+    epsilons = np.arange(min(probs), max(probs), stepsize)
+
+    for epsilon in epsilons:
+        predictions = (probs < epsilon)
+
+        f1 = f1_score(labels, predictions, average="binary")
+        Recall = recall_score(labels, predictions, average="binary")
+        Precision = precision_score(labels, predictions, average="binary")
+
+        if f1 > best_f1:
+            best_epsilon = epsilon
+            best_f1 = f1
+            best_precision = Precision
+            best_recall = Recall
+
+    return best_f1, best_epsilon
 
 
 def print_classification_report(y_test, y_predic):
@@ -283,11 +306,32 @@ def get_classification_report(y_test, y_predic):
     return f1, Recall, Precision
 
 
+def model_order_selection(data, max_components):
+    bic = []
+    lowest_bic = np.infty
+    n_components_range = range(1, max_components)
+    cov_types = ['spherical', 'tied', 'diag', 'full']
+
+    for cov_type in cov_types:
+        for n_components in n_components_range:
+            gmm = mixture.GaussianMixture(n_components=n_components, covariance_type=cov_type)
+            gmm.fit(data)
+            bic.append(gmm.bic(data))
+            if bic[-1] < lowest_bic:
+                lowest_bic = bic[-1]
+                best_gmm = gmm
+                best_n_components = n_components
+                best_cov_type = cov_type
+
+    return best_n_components, best_cov_type
+
+
 def data_splitting(df, drop_features):
     # Data splitting
 
     # drop non discriminant features
     df.drop(drop_features, axis=1, inplace=True)
+    gc.collect()
 
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
@@ -295,24 +339,24 @@ def data_splitting(df, drop_features):
     gc.collect()
 
     # Length and indexes
-    anom_len = len(df_l1)    # total number of anomalous flows
-    anom_train_end = anom_len // 2    # 50% of anomalous for training
-    anom_cv_start = anom_train_end + 1    # 50% of anomalous for testing
-    norm_len = len(df_l0)    # total number of normal flows
-    norm_train_end = (norm_len * 60) // 100    # 60% of normal for training
-    norm_cv_start = norm_train_end + 1    # 20% of normal for cross validation
-    norm_cv_end = (norm_len * 80) // 100    # 20% of normal for cross validation
-    norm_test_start = norm_cv_end + 1    # 20% of normal for testing
+    anom_len = len(df_l1)  # total number of anomalous flows
+    anom_train_end = anom_len // 2  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1  # 50% of anomalous for testing
+    norm_len = len(df_l0)  # total number of normal flows
+    norm_train_end = (norm_len * 60) // 100  # 60% of normal for training
+    norm_cv_start = norm_train_end + 1  # 20% of normal for cross validation
+    norm_cv_end = (norm_len * 80) // 100  # 20% of normal for cross validation
+    norm_test_start = norm_cv_end + 1  # 20% of normal for testing
 
     # anomalies split data
-    anom_cv_df = df_l1[:anom_train_end]    # 50% of anomalies59452
-    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
+    anom_cv_df = df_l1[:anom_train_end]  # 50% of anomalies59452
+    anom_test_df = df_l1[anom_cv_start:anom_len]  # 50% of anomalies
     gc.collect()
 
     # normal split data
-    norm_train_df = df_l0[:norm_train_end]    # 60% of normal
-    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]    # 20% of normal
-    norm_test_df = df_l0[norm_test_start:norm_len]    # 20% of normal
+    norm_train_df = df_l0[:norm_train_end]  # 60% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]  # 20% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 20% of normal
     gc.collect()
 
     # CV and test data. train data is norm_train_df
@@ -320,13 +364,7 @@ def data_splitting(df, drop_features):
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
     gc.collect()
 
-    # Sort data by index
-    norm_train_df = norm_train_df.sort_index()
-    cv_df = cv_df.sort_index()
-    test_df = test_df.sort_index()
-    gc.collect()
-
-    # save labels and drop label from data
+    # save labels and drop labels from data
     cv_label = cv_df["Label"]
     test_label = test_df["Label"]
     norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
@@ -338,38 +376,8 @@ def data_splitting(df, drop_features):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def selectThresholdByCV(pred, labels):
-
-    # initialize
-    best_epsilon = 0
-    best_f1 = 0
-    best_precision = 0
-    best_recall = 0
-
-    t_df = pd.DataFrame({'pred': pred, 'labels': labels.values})
-    anomalies = t_df[t_df['labels'] == 1]
-    min_prob = min(anomalies['pred'])
-    max_prob = max(anomalies['pred'])
-    stepsize = (max_prob - min_prob) / 1000  # divided by the expected number of steps
-    epsilons = np.arange(min(pred), max(pred), stepsize)
-
-    for epsilon in epsilons:
-        predictions = (pred < epsilon)
-
-        f1 = f1_score(labels, predictions, average="binary")
-        Recall = recall_score(labels, predictions, average="binary")
-        Precision = precision_score(labels, predictions, average="binary")
-
-        if f1 > best_f1:
-            best_epsilon = epsilon
-            best_f1 = f1
-            best_precision = Precision
-            best_recall = Recall
-
-    return best_epsilon, best_f1, best_precision, best_recall
-
-
 start_time = time.time()
+
 
 # features
 column_types = {
@@ -398,23 +406,24 @@ drop_features = {
 }
 
 # raw files
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/raw_all/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/raw/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 print("### Directory: ", raw_directory)
+print("### Files: ", raw_files)
 
 # pickle files - have the same names but different directory
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/pkl_all/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
 for features_key, value in drop_features.items():
 
     # initialize labels
-    mgm_cv_label = []
-    mgm_pred_cv_label = []
-    mgm_test_label = []
-    mgm_pred_test_label = []
+    gmm_cv_label = []
+    gmm_pred_cv_label = []
+    gmm_test_label = []
+    gmm_pred_test_label = []
 
     # for each file
     for sample_file in raw_files:
@@ -424,57 +433,65 @@ for features_key, value in drop_features.items():
         # read pickle or raw dataset file with pandas
         if os.path.isfile(pkl_file_path):
             print("### Sample File: ", pkl_file_path)
-            data = pd.read_pickle(pkl_file_path)
+            df = pd.read_pickle(pkl_file_path)
         else:
             print("### Sample File: ", raw_file_path)
-            raw_data = pd.read_csv(raw_file_path, header=0, dtype=column_types)
-            data = data_cleasing(raw_data)
+            raw_df = pd.read_csv(raw_file_path, header=0, dtype=column_types)
+            df = data_cleasing(raw_df)
         gc.collect()
 
         # data splitting
-        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(data, drop_features[features_key])
+        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
         # Scaler: raw, standardization (zero mean and unitary variance) or robust scaler
-        scaler = 'Raw'
-        #                   norm_train_values = RobustScaler().fit_transform(norm_train_df.values)
-        #                   norm_train_df = pd.DataFrame(norm_train_values, index=norm_train_df.index, columns=norm_train_df.columns)
-        #                   gc.collect()
-        #                   cv_values = RobustScaler().fit_transform(cv_df.values)
-        #                   cv_df = pd.DataFrame(cv_values, index=cv_df.index, columns=cv_df.columns)
-        #                   gc.collect()
-        #                   test_values = RobustScaler().fit_transform(test_df.values)
-        #                   test_df = pd.DataFrame(test_values, index=test_df.index, columns=test_df.columns)
-        #                   gc.collect()
+        scaler = 'RobustScaler'
+        norm_train_values = RobustScaler().fit_transform(norm_train_df.values)
+        norm_train_df = pd.DataFrame(norm_train_values, index=norm_train_df.index, columns=norm_train_df.columns)
+        gc.collect()
+        cv_values = RobustScaler().fit_transform(cv_df.values)
+        cv_df = pd.DataFrame(cv_values, index=cv_df.index, columns=cv_df.columns)
+        gc.collect()
+        test_values = RobustScaler().fit_transform(test_df.values)
+        test_df = pd.DataFrame(test_values, index=test_df.index, columns=test_df.columns)
+        gc.collect()
 
         try:
-            # trainning - estimate the mean vector and the covariance matrix from the normal data
-            mu, sigma = estimate_gaussian(norm_train_df)
+            # [GMM] Fit a Gaussian Mixture Model
+            # best_n_components, best_cov_type = model_order_selection(norm_train_df, len(norm_train_df.columns))
+            gmm = mixture.GaussianMixture(n_components=10, covariance_type='full')
+            gmm.fit(norm_train_df)
 
-            # Cross-Validation
-            p_cv = multivariate_gaussian(cv_df, mu, sigma)
-            best_epsilon, best_f1, best_precision, best_recall = selectThresholdByCV(p_cv, cv_label)
-            pred_cv_label = (p_cv < best_epsilon)
-            print('### [MGM][', features_key, '][', scaler, '] Cross-Validation. Epsilon: ', best_epsilon, ', F1: ', best_f1, ', Precision: ', best_precision, ', Recall: ', best_recall)
+            # [GMM] Cross Validation and threshold selection
+            p_cv = gmm.score_samples(cv_df)
 
-            # [MGM] Test
-            p_test = multivariate_gaussian(test_df, mu, sigma)
-            pred_test_label = (p_test < best_epsilon)
-            f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-            print('### [MGM][', features_key, '][', scaler, '] Test. F1: ', f1, ', Precision: ', Precision, ', Recall: ', Recall)
+            # [GMM] Cross Validation
+            fscore, epsilon = selectThresholdByCV(p_cv, cv_label)
+            pred_cv_label = (p_cv < epsilon)
+            gmm_cv_label.extend(cv_label.astype(int))
+            gmm_pred_cv_label.extend(pred_cv_label.astype(int))
+            print('###', features_key, scaler, '[GMM]', 'Classification report for Cross Validation dataset')
+            print_classification_report(cv_label, pred_cv_label)
 
-            mgm_cv_label.extend(cv_label.astype(int))
-            mgm_pred_cv_label.extend(pred_cv_label.astype(int))
-            mgm_test_label.extend(test_label.astype(int))
-            mgm_pred_test_label.extend(pred_test_label.astype(int))
-
-        except Exception as e:
-            print("### [MGM] Error: ", str(e))
+            # [GMM] Test
+            p_test = gmm.score_samples(test_df)
+            pred_label = (p_test < epsilon)
+            gmm_test_label.extend(test_label.astype(int))
+            gmm_pred_test_label.extend(pred_test_label.astype(int))
+            print('###', features_key, scaler, '[GMM]', 'Classification report for Test dataset')
+            print_classification_report(test_label, pred_test_label)
+        except:
+            print("### [GMM] Error!!")
 
     # [MGM] print results
-    f1, Recall, Precision = get_classification_report(mgm_cv_label, mgm_pred_cv_label)
-    print('### [MGM][', features_key, '][', scaler, '] Cross-Validation of all data. F1: ', f1, ', Precision: ', Precision, ', Recall: ', Recall)
+    print('###', features_key, scaler, '[MGM]', 'Total Classification report for Cross Validation dataset')
+    print_classification_report(mgm_cv_label, mgm_pred_cv_label)
+    print('###', features_key, scaler, '[MGM]', 'Total Classification report for Test dataset')
+    print_classification_report(mgm_test_label, mgm_pred_test_label)
 
-    f1, Recall, Precision = get_classification_report(mgm_test_label, mgm_pred_test_label)
-    print('### [MGM][', features_key, '][', scaler, '] Test of all data. F1: ', f1, ', Precision: ', Precision, ', Recall: ', Recall)
+    # [GMM] print results
+    print('###', features_key, scaler, '[GMM]', 'Total Classification report for Cross Validation dataset')
+    print_classification_report(gmm_cv_label, gmm_pred_cv_label)
+    print('###', features_key, scaler, '[GMM]', 'Total Classification report for Test dataset')
+    print_classification_report(gmm_test_label, gmm_pred_test_label)
 
 print("--- %s seconds ---" % (time.time() - start_time))
