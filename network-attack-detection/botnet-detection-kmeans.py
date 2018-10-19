@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import os
+import gc
 import ipaddress
 import time
 from functools import reduce
@@ -67,6 +68,8 @@ def data_cleasing(df):
 
     # save clean data into pickles
     df.to_pickle(pkl_file_path)  # where to save it, usually as a .pkl
+
+    gc.collect()
 
     return df
 
@@ -251,6 +254,7 @@ def data_splitting(m_df, m_drop_features):
     # split into normal and anomaly
     df_l1 = m_df[m_df["Label"] == 1]
     df_l0 = m_df[m_df["Label"] == 0]
+    gc.collect()
 
     # Length and indexes
     norm_len = len(df_l0)
@@ -265,24 +269,32 @@ def data_splitting(m_df, m_drop_features):
     # anomalies split data
     anom_cv_df = df_l1[:anom_train_end] # 50% of anomalies59452
     anom_test_df = df_l1[anom_cv_start:anom_len] # 50% of anomalies
+    gc.collect()
 
     # normal split data
     norm_train_df = df_l0[:norm_train_end] # 60% of normal
     norm_cv_df = df_l0[norm_cv_start:norm_cv_end] # 2059452 % of normal
     norm_test_df = df_l0 [norm_test_start:norm_len] # 20% of normal
+    gc.collect()
 
     # CV and test data. train data is norm_train_df
     cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
 
-    # labels
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop from data
     cv_label = cv_df["Label"]
     test_label = test_df["Label"]
-
-    # drop label
     norm_train_df = norm_train_df.drop(labels = ["Label"], axis = 1)
     cv_df = cv_df.drop(labels = ["Label"], axis = 1)
     test_df = test_df.drop(labels = ["Label"], axis = 1)
+    gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
@@ -353,14 +365,14 @@ drop_features = {
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_fast/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 print("## Directory: ", raw_directory)
 print("## Files: ", raw_files)
 
 # pickle files have the same names
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
@@ -382,6 +394,7 @@ for features_key, value in drop_features.items():
             print("## Sample File: ", raw_file_path)
             raw_df = pd.read_csv(raw_file_path, low_memory=False, dtype={'Label': 'str'})
             df = data_cleasing(raw_df)
+        gc.collect()
 
         # data splitting
         train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])

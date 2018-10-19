@@ -136,6 +136,8 @@ def data_cleasing(df):
     except:
         print(">>> Unexpected error:", sys.exc_info()[0])
         df['StartTime'].to_csv('error_starttime.csv', index=False)
+
+    gc.collect()
     
     return df
 
@@ -338,23 +340,32 @@ def data_merge_splitting(normal_df, anom_df):
     norm_train_df = normal_df[:norm_train_end]
     norm_cv_df = normal_df[norm_cv_start:norm_cv_end]
     norm_test_df = normal_df[norm_test_start:norm_len]
+    gc.collect()
     
     # split anomalous data
     anom_cv_df  = anom_df[:anom_cv_end]
     anom_test_df = anom_df[anom_test_start:anom_len]
+    gc.collect()
 
     # CV and test data from concatenation of normal and anomalous data
     cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
 
-    # labels
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop labels from data
     cv_label_df = cv_df["Label"]
     test_label_df = test_df["Label"]
-
-    # drop label from data
     norm_train_df = norm_train_df.drop(labels = ["Label"], axis = 1)
     cv_df = cv_df.drop(labels = ["Label"], axis = 1)
     test_df = test_df.drop(labels = ["Label"], axis = 1)
+
+    gc.collect()
     
     return norm_train_df, cv_df, test_df, cv_label_df, test_label_df
 

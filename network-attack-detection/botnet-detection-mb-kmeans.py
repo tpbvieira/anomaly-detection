@@ -72,11 +72,9 @@ def data_cleasing(df):
     df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
     df['StartTime'] = pd.to_datetime(df['StartTime'])
 
-    print('### Sorting...')
-    df = df.sort_values('StartTime')
-    gc.collect()
-    print('### Sorted!')
     df = df.set_index('StartTime')
+
+    gc.collect()
 
     return df
 
@@ -284,6 +282,7 @@ def data_splitting(df, drop_feature):
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
     df_l0 = df[df["Label"] == 0]
+    gc.collect()
 
     # Length and indexes
     anom_len = len(df_l1)  # total number of anomalous flows
@@ -298,24 +297,33 @@ def data_splitting(df, drop_feature):
     # anomalies split data
     anom_cv_df = df_l1[:anom_train_end]  # 50% of anomalies59452
     anom_test_df = df_l1[anom_cv_start:anom_len]  # 50% of anomalies
+    gc.collect()
 
     # normal split data
     norm_train_df = df_l0[:norm_train_end]  # 60% of normal
     norm_cv_df = df_l0[norm_cv_start:norm_cv_end]  # 20% of normal
     norm_test_df = df_l0[norm_test_start:norm_len]  # 20% of normal
+    gc.collect()
 
     # CV and test data. train data is norm_train_df
     cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
 
-    # labels
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop labels from data
     cv_label_df = cv_df["Label"]
     test_label_df = test_df["Label"]
-
-    # drop label
     norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
     cv_df = cv_df.drop(labels=["Label"], axis=1)
     test_df = test_df.drop(labels=["Label"], axis=1)
+
+    gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label_df, test_label_df
 

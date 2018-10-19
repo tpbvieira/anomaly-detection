@@ -63,7 +63,9 @@ def data_cleasing(df):
     df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
     df['StartTime'] = pd.to_datetime(df['StartTime'])
     df = df.set_index('StartTime')
-    
+
+    gc.collect()
+
     return df
 
 
@@ -360,17 +362,21 @@ for features_key, value in drop_features.items():
     # drop unnecessary features
     train_df.drop(drop_features[features_key], axis =1, inplace = True)
     test_df.drop(drop_features[features_key], axis =1, inplace = True)
+    gc.collect()
 
     # data splitting
     train_len = (len(train_df) * 60) // 100
     cv_df = train_df[train_len+1:]                                      # use the last 40% of training data for cross-validation    
     train_df = train_df[:train_len]                                     # use the first 60% of training data for training
-    train_df = train_df[train_df["Label"] == 0]                         # only normal data for training    
+    train_df = train_df[train_df["Label"] == 0]                         # only normal data for training
+    train_df = train_df.sort_index()                                    # sort train data
+    cv_df = cv_df.sort_index()                                          # sort cv data
     train_df = train_df.drop(labels = ["Label"], axis = 1)              # drop label from training data
     cv_label_df = cv_df["Label"]                                        # save label for testing
     cv_df = cv_df.drop(labels = ["Label"], axis = 1)                    # drop label from testing data
     test_label_df = test_df["Label"]                                    # save label for testing
     test_df = test_df.drop(labels = ["Label"], axis = 1)                # drop label from testing data
+    gc.collect()
 
     # Cross-Validation
     b_clusters, b_batch, b_epsilon, b_f1, b_precision, b_recall = getBestByCV(train_df, cv_df, cv_label_df)
