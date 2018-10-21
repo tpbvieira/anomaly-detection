@@ -1,83 +1,82 @@
 # coding=utf-8
-import os, sys, gc, ipaddress, time
+import os, sys, gc, ipaddress, time, warnings
 import pandas as pd
 import numpy as np
 from functools import reduce
 from sklearn import preprocessing
-from sklearn.metrics import f1_score, recall_score, precision_score
-from sklearn.cluster import MiniBatchKMeans
+from sklearn.metrics import f1_score, recall_score, precision_score, make_scorer
+from sklearn.covariance import EllipticEnvelope
+from sklearn.model_selection import StratifiedKFold, GridSearchCV
+warnings.filterwarnings("ignore")
 
 
-def data_cleasing(df):
+def data_cleasing(m_df):
     # data cleasing, feature engineering and save clean data into pickles
 
     print('### Data Cleasing and Feature Engineering')
     le = preprocessing.LabelEncoder()
 
     # [Protocol] - Discard ipv6-icmp and categorize
-    df = df[df.Proto != 'ipv6-icmp']
-    df['Proto'] = df['Proto'].fillna('-')
-    df['Proto'] = le.fit_transform(df['Proto'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+    m_df = m_df[m_df.Proto != 'ipv6-icmp']
+    m_df['Proto'] = m_df['Proto'].fillna('-')
+    m_df['Proto'] = le.fit_transform(m_df['Proto'])
 
     # [Label] - Categorize
-    anomalies = df.Label.str.contains('Botnet')
+    anomalies = m_df.Label.str.contains('Botnet')
     normal = np.invert(anomalies)
-    df.loc[anomalies, 'Label'] = np.uint8(1)
-    df.loc[normal, 'Label'] = np.uint8(0)
-    df['Label'] = pd.to_numeric(df['Label'])
+    m_df.loc[anomalies, 'Label'] = np.uint8(1)
+    m_df.loc[normal, 'Label'] = np.uint8(0)
+    m_df['Label'] = pd.to_numeric(m_df['Label'])
 
     # [Dport] - replace NaN with 0 port number
-    df['Dport'] = df['Dport'].fillna('0')
-    df['Dport'] = df['Dport'].apply(lambda x: int(x, 0))
+    m_df['Dport'] = m_df['Dport'].fillna('0')
+    m_df['Dport'] = m_df['Dport'].apply(lambda x: int(x, 0))
 
     # [sport] - replace NaN with 0 port number
     try:
-        df['Sport'] = df['Sport'].fillna('0')
-        df['Sport'] = df['Sport'].str.replace('.*x+.*', '0')
-        df['Sport'] = df['Sport'].apply(lambda x: int(x, 0))
+        m_df['Sport'] = m_df['Sport'].fillna('0')
+        m_df['Sport'] = m_df['Sport'].str.replace('.*x+.*', '0')
+        m_df['Sport'] = m_df['Sport'].apply(lambda x: int(x, 0))
     except:
         print("Unexpected error:", sys.exc_info()[0])
 
     # [sTos] - replace NaN with "10" and convert to int
-    df['sTos'] = df['sTos'].fillna('10')
-    df['sTos'] = df['sTos'].astype(int)
+    m_df['sTos'] = m_df['sTos'].fillna('10')
+    m_df['sTos'] = m_df['sTos'].astype(int)
 
     # [dTos] - replace NaN with "10" and convert to int
-    df['dTos'] = df['dTos'].fillna('10')
-    df['dTos'] = df['dTos'].astype(int)
+    m_df['dTos'] = m_df['dTos'].fillna('10')
+    m_df['dTos'] = m_df['dTos'].astype(int)
 
     # [State] - replace NaN with "-" and categorize
-    df['State'] = df['State'].fillna('-')
-    df['State'] = le.fit_transform(df['State'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+    m_df['State'] = m_df['State'].fillna('-')
+    m_df['State'] = le.fit_transform(m_df['State'])
 
     # [Dir] - replace NaN with "-" and categorize
-    df['Dir'] = df['Dir'].fillna('-')
-    df['Dir'] = le.fit_transform(df['Dir'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+    m_df['Dir'] = m_df['Dir'].fillna('-')
+    m_df['Dir'] = le.fit_transform(m_df['Dir'])
 
     # [SrcAddr] Extract subnet features and categorize
-    df['SrcAddr'] = df['SrcAddr'].fillna('0.0.0.0')
+    m_df['SrcAddr'] = m_df['SrcAddr'].fillna('0.0.0.0')
 
     # [DstAddr] Extract subnet features
-    df['DstAddr'] = df['DstAddr'].fillna('0.0.0.0')
+    m_df['DstAddr'] = m_df['DstAddr'].fillna('0.0.0.0')
 
     # [StartTime] - Parse to datatime, reindex based on StartTime, but first drop the ns off the time stamps
-    df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
-    df['StartTime'] = pd.to_datetime(df['StartTime'])
+    m_df['StartTime'] = m_df['StartTime'].apply(lambda x: x[:19])
+    m_df['StartTime'] = pd.to_datetime(m_df['StartTime'])
 
-    df = df.set_index('StartTime')
+    m_df = m_df.set_index('StartTime')
 
     gc.collect()
 
-    return df
+    return m_df
 
 
 def classify_ip(ip):
-    '''
+    """
     str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
-    '''
+    """
     try:
         ip_addr = ipaddress.ip_address(ip)
         if isinstance(ip_addr, ipaddress.IPv6Address):
@@ -246,26 +245,26 @@ def n_ipv6(x):
 
 
 def print_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average="binary")
-    Recall = recall_score(y_test, y_predic, average="binary")
-    Precision = precision_score(y_test, y_predic, average="binary")
-    print('\tF1 Score: ', f1, ', Recall: ', Recall, ', Precision: ,', Precision)
+    m_f1 = f1_score(y_test, y_predic, average="binary")
+    m_recall = recall_score(y_test, y_predic, average="binary")
+    m_precision = precision_score(y_test, y_predic, average="binary")
+    print('\tF1 Score: ', m_f1, ', Recall: ', m_recall, ', Precision: ,', m_precision)
 
 
 def get_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average = "binary")
-    Recall = recall_score(y_test, y_predic, average = "binary")
-    Precision = precision_score(y_test, y_predic, average = "binary")
-    return f1, Recall,Precision
+    m_f1 = f1_score(y_test, y_predic, average = "binary")
+    m_recall = recall_score(y_test, y_predic, average = "binary")
+    m_precision = precision_score(y_test, y_predic, average = "binary")
+    return m_f1, m_recall, m_precision
 
 
-def data_splitting(df, drop_feature):
+def data_splitting(m_df, drop_feature):
     # drop non discriminant features
-    df.drop(drop_feature, axis=1, inplace=True)
+    m_df.drop(drop_feature, axis=1, inplace=True)
 
     # split into normal and anomaly
-    df_l1 = df[df["Label"] == 1]
-    df_l0 = df[df["Label"] == 0]
+    df_l1 = m_df[m_df["Label"] == 1]
+    df_l0 = m_df[m_df["Label"] == 0]
     gc.collect()
 
     # Length and indexes
@@ -284,75 +283,96 @@ def data_splitting(df, drop_feature):
     gc.collect()
 
     # normal split data
-    norm_train_df = df_l0[:norm_train_end]  # 60% of normal
+    m_norm_train_df = df_l0[:norm_train_end]  # 60% of normal
     norm_cv_df = df_l0[norm_cv_start:norm_cv_end]  # 20% of normal
     norm_test_df = df_l0[norm_test_start:norm_len]  # 20% of normal
     gc.collect()
 
     # CV and test data. train data is norm_train_df
-    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
-    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    m_cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
+    m_test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
     gc.collect()
 
     # Sort data by index
-    norm_train_df = norm_train_df.sort_index()
-    cv_df = cv_df.sort_index()
-    test_df = test_df.sort_index()
+    m_norm_train_df = m_norm_train_df.sort_index()
+    m_cv_df = m_cv_df.sort_index()
+    m_test_df = m_test_df.sort_index()
     gc.collect()
 
     # save labels and drop labels from data
-    cv_label_df = cv_df["Label"]
-    test_label_df = test_df["Label"]
-    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
-    cv_df = cv_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
+    m_cv_label = m_cv_df["Label"]
+    m_test_label = m_test_df["Label"]
+    m_norm_train_df = m_norm_train_df.drop(labels=["Label"], axis=1)
+    m_cv_df = m_cv_df.drop(labels=["Label"], axis=1)
+    m_test_df = m_test_df.drop(labels=["Label"], axis=1)
 
     gc.collect()
 
-    return norm_train_df, cv_df, test_df, cv_label_df, test_label_df
+    return m_norm_train_df, m_cv_df, m_test_df, m_cv_label, m_test_label
 
 
-def getBestByCV(X_train, X_cv, labels):
-    # select the best epsilon (threshold) and number of clusters
+def getBestByCV(cv, t_cv_label):
+
+    # prepare data
+    m_cv_label = t_cv_label.astype(np.int8)
+    m_cv_label[m_cv_label == 1] = -1
+    m_cv_label[m_cv_label == 0] = 1
 
     # initialize
-    best_epsilon = 0
-    best_cluster_size = 0
-    best_batch_size = 0
-    best_f1 = 0
-    best_precision = 0
-    best_recall = 0
+    m_best_contamination = 0
+    m_best_f1 = 0
+    m_best_precision = 0
+    m_best_recall = 0
 
-    for m_clusters in np.arange(1, 10, 2):
+    for m_contamination in np.linspace(0.01, 0.1, 15):
+        # configure GridSearchCV
+        m_ell_model = EllipticEnvelope(contamination = m_contamination)
+        m_ell_model.fit(cv, m_cv_label)
+        m_pred = m_ell_model.predict(cv)
 
-        for m_batch_size in range(10, 100, 10):
+        m_f1 = f1_score(m_cv_label, m_pred, average="binary")
+        m_recall = recall_score(m_cv_label, m_pred, average="binary")
+        m_precision = precision_score(m_cv_label, m_pred, average="binary")
 
-            mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=m_clusters, batch_size=m_batch_size, n_init=10, max_no_improvement=10).fit(X_train)
+        if m_f1 > m_best_f1:
+            m_best_contamination = m_contamination
+            m_best_f1 = m_f1
+            m_best_precision = m_precision
+            m_best_recall = m_recall
 
-            X_cv_clusters = mbkmeans.predict(X_cv)
-            X_cv_clusters_centers = mbkmeans.cluster_centers_
+    return m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
-            dist = [np.linalg.norm(x - y) for x, y in zip(X_cv.as_matrix(), X_cv_clusters_centers[X_cv_clusters])]
 
-            y_pred = np.array(dist)
+def getBestByNormalCV(t_normal, cv, t_cv_label):
 
-            for m_epsilon in np.arange(70, 95, 2):
-                y_pred[dist >= np.percentile(dist, m_epsilon)] = 1
-                y_pred[dist < np.percentile(dist, m_epsilon)] = 0
+    # prepare data
+    m_cv_label = t_cv_label.astype(np.int8)
+    m_cv_label[m_cv_label == 1] = -1
+    m_cv_label[m_cv_label == 0] = 1
 
-                f1 = f1_score(labels, y_pred, average="binary")
-                Recall = recall_score(labels, y_pred, average="binary")
-                Precision = precision_score(labels, y_pred, average="binary")
+    # initialize
+    m_best_contamination = 0
+    m_best_f1 = 0
+    m_best_precision = 0
+    m_best_recall = 0
 
-                if f1 > best_f1:
-                    best_cluster_size = m_clusters
-                    best_batch_size = m_batch_size
-                    best_epsilon = m_epsilon
-                    best_f1 = f1
-                    best_precision = Precision
-                    best_recall = Recall
+    for m_contamination in np.linspace(0.01, 0.1, 15):
+        # configure GridSearchCV
+        m_ell_model = EllipticEnvelope(contamination = m_contamination)
+        m_ell_model.fit(t_normal)
+        m_pred = m_ell_model.predict(cv)
 
-    return best_cluster_size, best_batch_size, best_epsilon, best_f1, best_precision, best_recall
+        m_f1 = f1_score(m_cv_label, m_pred, average="binary")
+        m_recall = recall_score(m_cv_label, m_pred, average="binary")
+        m_precision = precision_score(m_cv_label, m_pred, average="binary")
+
+        if m_f1 > m_best_f1:
+            m_best_contamination = m_contamination
+            m_best_f1 = m_f1
+            m_best_precision = m_precision
+            m_best_recall = m_recall
+
+    return m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
 
 start_time = time.time()
@@ -372,7 +392,7 @@ column_types = {
     'TotPkts': 'uint32',
     'TotBytes': 'uint32',
     'SrcBytes': 'uint32',
-    'Label': 'str'}
+    'Label': 'uint8'}
 
 # feature selection
 drop_features = {
@@ -382,19 +402,19 @@ drop_features = {
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_fast/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
 for features_key, value in drop_features.items():
 
     # Initialize labels
-    mbkmeans_test_label = []
-    mbkmeans_pred_test_label = []
+    ee_test_label = []
+    ee_pred_test_label = []
 
     for sample_file in raw_files:
 
@@ -413,32 +433,28 @@ for features_key, value in drop_features.items():
         gc.collect()
 
         # data splitting
-        norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting(df, drop_features[features_key])
+        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
         # Cross-Validation
-        b_clusters, b_batch, b_epsilon, b_f1, b_precision, b_recall = getBestByCV(norm_train_df, cv_df, cv_label_df)
-        print('###[MB-KMeans][', features_key, '] Cross-Validation. Clusters:',b_clusters,', Batch:',b_batch,', Epslilon:',b_epsilon,',F1:',b_f1,', Recall:',b_recall,', Precision:',b_precision)
+        best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
+        print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:',best_contamination,',F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
 
-        # Training - estimate clusters (anomalous or normal) for training
-        mbkmeans = MiniBatchKMeans(init='k-means++', n_clusters=b_clusters, batch_size=b_batch, n_init=10, max_no_improvement=10).fit(norm_train_df)
-
-        # Test prediction
-        test_clusters = mbkmeans.predict(test_df)
-        test_clusters_centers = mbkmeans.cluster_centers_
-        dist = [np.linalg.norm(x - y) for x, y in zip(test_df.as_matrix(), test_clusters_centers[test_clusters])]
-        pred_test_label = np.array(dist)
-        pred_test_label[dist >= np.percentile(dist, b_epsilon)] = 1
-        pred_test_label[dist < np.percentile(dist, b_epsilon)] = 0
-        test_label = test_label_df.astype(int).values
+        # Test
+        test_label = test_label.astype(np.int8)
+        test_label[test_label == 1] = -1
+        test_label[test_label == 0] = 1
+        ell_model = EllipticEnvelope(contamination=best_contamination)
+        ell_model.fit(test_df, test_label)
+        pred_test_label = ell_model.predict(test_df)
 
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-        print('###[MB-KMeans][', features_key, '] Test. F1:',f1,', Recall:',Recall,', Precision:',Precision)
+        print('###[EllipticEnvelope][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
 
         # save results for total evaluation later
-        mbkmeans_test_label.extend(test_label)
-        mbkmeans_pred_test_label.extend(pred_test_label)
+        ee_test_label.extend(test_label)
+        ee_pred_test_label.extend(pred_test_label)
 
-    f1, Recall, Precision = get_classification_report(mbkmeans_test_label, mbkmeans_pred_test_label)
-    print('###[MB-KMeans][', features_key, '] Test Full. F1:',f1,', Recall:',Recall,', Precision:',Precision)
+    f1, Recall, Precision = get_classification_report(ee_test_label, ee_pred_test_label)
+    print('###[EllipticEnvelope][', features_key, '] Test Full. F1:',f1,', Recall:',Recall,', Precision:',Precision)
 print("--- %s seconds ---" % (time.time() - start_time))

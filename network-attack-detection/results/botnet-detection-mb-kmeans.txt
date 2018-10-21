@@ -178,13 +178,39 @@
 ###[MB-KMeans][ drop_features03 ] Test. F1: 0.05649108060786845 , Recall: 0.1855911202658883 , Precision: 0.03331597537592088
 --- 33152.84666824341 seconds ---
 train/test_dataset==============================================================================================================================================================================================================
-
-
+## PKL Normal File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow
+###[MB-KMeans][ drop_features02 ] Cross-Validation. Clusters: 1 , Batch: 60 , Epslilon: 84 ,F1: 0.30259901641761183 , Recall: 0.8444989787071461 , Precision: 0.18432252994852222
+###[MB-KMeans][ drop_features02 ] Test. F1: 0.06966688282462344 , Recall: 0.2562314183026323 , Precision: 0.040313927989775115
+## PKL Normal File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow
+###[MB-KMeans][ drop_features04 ] Cross-Validation. Clusters: 3 , Batch: 40 , Epslilon: 94 ,F1: 0.6194501285340094 , Recall: 0.8418685985510866 , Precision: 0.48999525314425735
+###[MB-KMeans][ drop_features04 ] Test. F1: 0.01669704962192437 , Recall: 0.028244179998913238 , Precision: 0.011851695018770205
+## PKL Normal File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow
+###[MB-KMeans][ drop_features03 ] Cross-Validation. Clusters: 9 , Batch: 40 , Epslilon: 94 ,F1: 0.022365728589153408 , Recall: 0.030396320406753757 , Precision: 0.017691659646166806
+###[MB-KMeans][ drop_features03 ] Test. F1: 0.02190555623753085 , Recall: 0.03705471848971069 , Precision: 0.015548733316503938
+## PKL Normal File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow
+###[MB-KMeans][ drop_features01 ] Cross-Validation. Clusters: 1 , Batch: 70 , Epslilon: 88 ,F1: 0.36845112219162296 , Recall: 0.8173796123495614 , Precision: 0.23782872022250678
+###[MB-KMeans][ drop_features01 ] Test. F1: 0.006316401643449089 , Recall: 0.01821103374397429 , Precision: 0.0038208157914023503
+--- 114757.38408064842 seconds ---
 train2/test2_dataset============================================================================================================================================================================================================
 
 
 normal_attack===================================================================================================================================================================================================================
-
-
+###[MB-KMeans][ drop_features02 ] Cross-Validation. Clusters: 1 , Batch: 90 , Epslilon: 94 ,F1: 0.598806353870168 , Recall: 0.8027967896006697 , Precision: 0.47747906050489075
+###[MB-KMeans][ drop_features02 ] Test. F1: 0.5707178783721993 , Recall: 0.7682686625960212 , Precision: 0.4539820176331946
+###[MB-KMeans][ drop_features03 ] Cross-Validation. Clusters: 1 , Batch: 70 , Epslilon: 92 ,F1: 0.5067363336725549 , Recall: 0.8213599881825792 , Precision: 0.366389913899139
+###[MB-KMeans][ drop_features03 ] Test. F1: 0.49723555501549305 , Recall: 0.8059877880638172 , Precision: 0.35951502372166577
+###[MB-KMeans][ drop_features04 ] Cross-Validation. Clusters: 1 , Batch: 80 , Epslilon: 92 ,F1: 0.5249024104986558 , Recall: 0.8508050617952632 , Precision: 0.3795246881040239
+###[MB-KMeans][ drop_features04 ] Test. F1: 0.5047390485448691 , Recall: 0.8181504825684459 , Precision: 0.3649402565454226
+###[MB-KMeans][ drop_features01 ] Cross-Validation. Clusters: 1 , Batch: 20 , Epslilon: 94 ,F1: 0.598806353870168 , Recall: 0.8027967896006697 , Precision: 0.47747906050489075
+###[MB-KMeans][ drop_features01 ] Test. F1: 0.5705294741849318 , Recall: 0.7677762458144574 , Precision: 0.4539155749636099
+--- 21867.75540304184 seconds ---
 normal_cc=======================================================================================================================================================================================================================
-
+###[MB-KMeans][ drop_features02 ] Cross-Validation. Clusters: 1 , Batch: 10 , Epslilon: 94 ,F1: 0.008094720309290806 , Recall: 0.788235294117647 , Precision: 0.004068249438338697
+###[MB-KMeans][ drop_features02 ] Test. F1: 0.006463694575329225 , Recall: 0.6294117647058823 , Precision: 0.0032485275365838847
+###[MB-KMeans][ drop_features03 ] Cross-Validation. Clusters: 1 , Batch: 90 , Epslilon: 94 ,F1: 0.008215537030324998 , Recall: 0.8 , Precision: 0.004128969579209424
+###[MB-KMeans][ drop_features03 ] Test. F1: 0.004047360154645403 , Recall: 0.3941176470588235 , Precision: 0.0020341247191693486
+###[MB-KMeans][ drop_features04 ] Cross-Validation. Clusters: 1 , Batch: 50 , Epslilon: 94 ,F1: 0.007732270146188233 , Recall: 0.7529411764705882 , Precision: 0.0038860890157265166
+###[MB-KMeans][ drop_features04 ] Test. F1: 0.004711852120333453 , Recall: 0.4588235294117647 , Precision: 0.002368085493958346
+###[MB-KMeans][ drop_features01 ] Cross-Validation. Clusters: 1 , Batch: 10 , Epslilon: 94 ,F1: 0.008094720309290806 , Recall: 0.788235294117647 , Precision: 0.004068249438338697
+###[MB-KMeans][ drop_features01 ] Test. F1: 0.006463694575329225 , Recall: 0.6294117647058823 , Precision: 0.0032485275365838847
+--- 17372.92930173874 seconds ---

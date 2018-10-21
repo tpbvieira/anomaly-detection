@@ -330,10 +330,10 @@ for features_key, value in drop_features.items():
     mbkmeans_pred_test_label = []
 
     # Load data
-    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train/train.binetflow'
-    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train/train.binetflow'
-    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test/test.binetflow'
-    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test/test.binetflow'
+    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train2/train.binetflow'
+    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train2/train.binetflow'
+    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test2/test.binetflow'
+    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test2/test.binetflow'
 
     # read pickle or raw dataset for training
     if os.path.isfile(pkl_train_file_path):

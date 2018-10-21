@@ -444,13 +444,13 @@ drop_features = {
 raw_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_normal/')
 raw_normal_directory = os.fsencode(raw_normal_path)
 raw_normal_files = os.listdir(raw_normal_directory)
-raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_cc/')
+raw_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/raw_attack/')
 raw_anom_directory = os.fsencode(raw_anom_path)
 raw_anom_files = os.listdir(raw_anom_directory)
 
 pkl_normal_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_normal/')
 pkl_normal_directory = os.fsencode(pkl_normal_path)
-pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_cc/')
+pkl_anom_path = os.path.join('/media/thiago/ubuntu/datasets/network/','stratosphere-botnet-2011/ctu-13/pkl_attack/')
 pkl_anom_directory = os.fsencode(pkl_anom_path)
 
 # for each feature set
@@ -498,6 +498,7 @@ for features_key, value in drop_features.items():
             all_anom_df = anom_df
         else:
             all_anom_df.append(anom_df)
+        gc.collect()
 
     # drop features
     all_normal_df.drop(drop_features[features_key], axis=1, inplace=True)
