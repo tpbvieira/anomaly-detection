@@ -351,6 +351,7 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
     m_cv_label[m_cv_label == 0] = 1
 
     # initialize
+    m_best_model = EllipticEnvelope()
     m_best_contamination = 0
     m_best_f1 = 0
     m_best_precision = 0
@@ -367,12 +368,13 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
         m_precision = precision_score(m_cv_label, m_pred, average="binary")
 
         if m_f1 > m_best_f1:
+            m_best_model = m_ell_model
             m_best_contamination = m_contamination
             m_best_f1 = m_f1
             m_best_precision = m_precision
             m_best_recall = m_recall
 
-    return m_best_contamination, m_best_f1, m_best_precision, m_best_recall
+    return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
 
 start_time = time.time()
@@ -435,16 +437,14 @@ for features_key, value in drop_features.items():
         # data splitting
         norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
-        # Cross-Validation
-        best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
+        # Cross-Validation and model selection
+        ell_model, best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
         print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:',best_contamination,',F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
 
         # Test
         test_label = test_label.astype(np.int8)
         test_label[test_label == 1] = -1
         test_label[test_label == 0] = 1
-        ell_model = EllipticEnvelope(contamination=best_contamination)
-        ell_model.fit(test_df, test_label)
         pred_test_label = ell_model.predict(test_df)
 
         # print results

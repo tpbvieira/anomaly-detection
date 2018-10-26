@@ -350,7 +350,7 @@ def selectThresholdByCV(pred, labels):
     anomalies = t_df[t_df['labels'] == 1]
     min_prob = min(anomalies['pred'])
     max_prob = max(anomalies['pred'])
-    stepsize = (max_prob - min_prob) / 1000  # divided by the expected number of steps
+    stepsize = (max_prob - min_prob) / 500  # divided by the expected number of steps
     epsilons = np.arange(min(pred), max(pred), stepsize)
 
     for epsilon in epsilons:
