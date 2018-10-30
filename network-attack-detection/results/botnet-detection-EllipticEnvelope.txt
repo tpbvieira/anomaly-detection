@@ -1,40 +1,20 @@
-================================================================================================================================================================================================================================
-/usr/bin/python3.4 /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/botnet-detection-EllipticEnvelope.py
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features03 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9010695802185164 , Recall: 0.9884436818732337 , Precision: 0.8278879073502684
-###[EllipticEnvelope][ drop_features03 ] Test. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-###[EllipticEnvelope][ drop_features03 ] Test Full. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features01 ] Cross-Validation. Contamination: 0.01 ,F1: 0.902138422625891 , Recall: 0.9899576100121115 , Precision: 0.8286305651769874
-###[EllipticEnvelope][ drop_features01 ] Test. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-###[EllipticEnvelope][ drop_features01 ] Test Full. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features02 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9012535940195513 , Recall: 0.9886455389584174 , Precision: 0.8280569762035589
-###[EllipticEnvelope][ drop_features02 ] Test. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-###[EllipticEnvelope][ drop_features02 ] Test Full. F1: 0.9006348330113165 , Recall: 0.987939647777161 , Precision: 0.8275075024303647
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.08714285714285715 ,F1: 0.9132137109365618 , Recall: 0.9592753330641905 , Precision: 0.8713729085491634
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.9148251345119139 , Recall: 0.9609426250189231 , Precision: 0.8729314691725877
-###[EllipticEnvelope][ drop_features04 ] Test Full. F1: 0.9148251345119139 , Recall: 0.9609426250189231 , Precision: 0.8729314691725877
---- 227.87005925178528 seconds ---
-================================================================================================================================================================================================================================
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9031635979613389 , Recall: 0.9926322163907954 , Precision: 0.8284895964956617
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.9069831631244823 , Recall: 0.994903365797043 , Precision: 0.8333403778688871
-###[EllipticEnvelope][ drop_features04 ] Test Full. F1: 0.9069831631244823 , Recall: 0.994903365797043 , Precision: 0.8333403778688871
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features03 ] Cross-Validation. Contamination: 0.04214285714285715 ,F1: 0.9045468094375531 , Recall: 0.995407751312071 , Precision: 0.8288859940328613
-###[EllipticEnvelope][ drop_features03 ] Test. F1: 0.8847729880347486 , Recall: 0.9533733663016601 , Precision: 0.825382262996942
-###[EllipticEnvelope][ drop_features03 ] Test Full. F1: 0.8847729880347486 , Recall: 0.9533733663016601 , Precision: 0.825382262996942
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features01 ] Cross-Validation. Contamination: 0.06142857142857144 ,F1: 0.9320731200664727 , Recall: 0.9057327412192168 , Precision: 0.9599914420196833
-###[EllipticEnvelope][ drop_features01 ] Test. F1: 0.8980468208893199 , Recall: 0.9814300852803148 , Precision: 0.8277226880027237
-###[EllipticEnvelope][ drop_features01 ] Test Full. F1: 0.8980468208893199 , Recall: 0.9814300852803148 , Precision: 0.8277226880027237
-## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_fast/capture20110818-2.binetflow
-###[EllipticEnvelope][ drop_features02 ] Cross-Validation. Contamination: 0.02285714285714286 ,F1: 0.9548492009045405 , Recall: 0.9482236576503835 , Precision: 0.9615679852617574
-###[EllipticEnvelope][ drop_features02 ] Test. F1: 0.8981653076352853 , Recall: 0.9782509966190645 , Precision: 0.8301999914350563
-###[EllipticEnvelope][ drop_features02 ] Test Full. F1: 0.8981653076352853 , Recall: 0.9782509966190645 , Precision: 0.8301999914350563
---- 444.88530921936035 seconds ---
+================================================================================================================================================================================================================================## Sample File:  /opt/data/pkl_all/all.binetflow
+###[EllipticEnvelope][ drop_features01 ] Cross-Validation. Contamination: 0.01 ,F1: 0.967801655555981 , Recall: 0.9901494957376346 , Precision: 0.9464403383864225
+###[EllipticEnvelope][ drop_features01 ] Test. F1: 0.9675607319166546 , Recall: 0.9899838726192914 , Precision: 0.9461308621660244
+###[EllipticEnvelope][ drop_features01 ] Test Full. F1: 0.9675607319166546 , Recall: 0.9899838726192914 , Precision: 0.9461308621660244
+## Sample File:  /opt/data/pkl_all/all.binetflow
+###[EllipticEnvelope][ drop_features02 ] Cross-Validation. Contamination: 0.01 ,F1: 0.967804883907396 , Recall: 0.9901558954935223 , Precision: 0.9464406660219945
+###[EllipticEnvelope][ drop_features02 ] Test. F1: 0.9675582299967438 , Recall: 0.9899813127175916 , Precision: 0.9461284156595011
+###[EllipticEnvelope][ drop_features02 ] Test Full. F1: 0.9675582299967438 , Recall: 0.9899813127175916 , Precision: 0.9461284156595011
+## Sample File:  /opt/data/pkl_all/all.binetflow
+###[EllipticEnvelope][ drop_features03 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9654831286478676 , Recall: 0.9858496277517991 , Precision: 0.9459410931451041
+###[EllipticEnvelope][ drop_features03 ] Test. F1: 0.9671866948899912 , Recall: 0.9896011673151751 , Precision: 0.9457651094407996
+###[EllipticEnvelope][ drop_features03 ] Test Full. F1: 0.9671866948899912 , Recall: 0.9896011673151751 , Precision: 0.9457651094407996
+## Sample File:  /opt/data/pkl_all/all.binetflow
+###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9653817450424687 , Recall: 0.9856468834852763 , Precision: 0.9459331309619389
+###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.9672374838641803 , Recall: 0.9896531333196805 , Precision: 0.9458147735232214
+###[EllipticEnvelope][ drop_features04 ] Test Full. F1: 0.9672374838641803 , Recall: 0.9896531333196805 , Precision: 0.9458147735232214
+--- 102496.45034718513 seconds ---
 ================================================================================================================================================================================================================================
 ## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/capture20110810.binetflow
 ###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.01 ,F1: 0.9768265604155495 , Recall: 0.9897024431775319 , Precision: 0.9642814016531008
