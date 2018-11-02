@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/matlab/note.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/matlab/eigensimCTU13Test.m" afterPath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/matlab/eigensimCTU13Test.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/python/eigensimF1ScoreTest.py" afterPath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/python/eigensimF1ScoreTest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pkl-to-csv.py" afterPath="$PROJECT_DIR$/pkl-to-csv.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,21 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pkl-to-csv.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pkl-to-csv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="botnet-detection-EllipticEnvelope.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="404" column="1" lean-forward="true" selection-start-line="404" selection-start-column="1" selection-end-line="404" selection-end-column="1" />
+            <state relative-caret-position="-96">
+              <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="434" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -40,7 +29,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pred == -1</find>
       <find>f1_score</find>
       <find>data_merge_splitting</find>
       <find>data_cleasing</find>
@@ -49,7 +37,6 @@
       <find>ell.</find>
       <find>ell.pre</find>
       <find>cv_label_df</find>
-      <find>get_classification_report</find>
       <find>data_splitting</find>
       <find>label_</find>
       <find>getBestByCV</find>
@@ -70,6 +57,8 @@
       <find>raw</find>
       <find>pkl</find>
       <find>Print</find>
+      <find>print_</find>
+      <find>get_classification_report</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -296,7 +285,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1882" y="243" width="1875" height="1092" extended-state="6" />
+    <frame x="1967" y="-4" width="1873" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -336,6 +325,21 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pkl-to-csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7272">
+          <caret line="404" column="1" lean-forward="true" selection-start-line="404" selection-start-column="1" selection-end-line="404" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pkl-to-mat.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -537,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="285" column="46" lean-forward="true" selection-start-line="285" selection-start-column="20" selection-end-line="285" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-adaptive-multivariate-gaussian.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -619,15 +616,21 @@
     <entry file="file://$PROJECT_DIR$/pkl-to-csv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
+          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="237" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="404" column="1" lean-forward="true" selection-start-line="404" selection-start-column="1" selection-end-line="404" selection-end-column="1" />
+        <state relative-caret-position="-96">
+          <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="434" selection-end-column="20" />
           <folding />
         </state>
       </provider>
