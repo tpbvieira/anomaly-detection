@@ -14,7 +14,7 @@ pkl_files = os.listdir(pkl_directory)
 print("### Pkl Directory: ", pkl_directory)
 print("### Files: ", pkl_files)
 
-csv_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw')
+csv_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/csv/')
 csv_directory = os.fsencode(csv_path)
 
 for sample_file in pkl_files:
