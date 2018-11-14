@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../docs/papers/2016JNCA/2016JNCA.pdf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/credit_card_fraud_detection.txt" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/credit_card_fraud_detection.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/matlab/eigensimCTU13Test.m" afterPath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/matlab/eigensimCTU13Test.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/python/eigensimF1ScoreTest.py" afterPath="$PROJECT_DIR$/../mos-eigen-similarity/src/test/python/eigensimF1ScoreTest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -14,22 +16,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="botnet-detection-EllipticEnvelope.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="434" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>f1_score</find>
       <find>data_merge_splitting</find>
       <find>data_cleasing</find>
       <find>classify_ip</find>
@@ -37,9 +27,7 @@
       <find>ell.</find>
       <find>ell.pre</find>
       <find>cv_label_df</find>
-      <find>data_splitting</find>
       <find>label_</find>
-      <find>getBestByCV</find>
       <find>norm_train_df</find>
       <find>cv_df</find>
       <find>test_df</find>
@@ -50,7 +38,6 @@
       <find>byCV(</find>
       <find>getBestByCV(</find>
       <find>fit</find>
-      <find>getBestByNormalCV</find>
       <find>fit(</find>
       <find>media</find>
       <find>raw_fie</find>
@@ -59,6 +46,10 @@
       <find>Print</find>
       <find>print_</find>
       <find>get_classification_report</find>
+      <find>data_splitting</find>
+      <find>best</find>
+      <find>getBestByNormalCV</find>
+      <find>getBestByCV</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -83,6 +74,7 @@
         <option value="$PROJECT_DIR$/botnet-detection-multivariate-gaussian.py" />
         <option value="$PROJECT_DIR$/pkl-to-mat.py" />
         <option value="$PROJECT_DIR$/pkl-to-csv.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-MCD.py" />
       </list>
     </option>
   </component>
@@ -165,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pkl-to-csv">
+  <component name="RunManager" selected="Python.botnet-detection-MCD">
     <configuration name="botnet-detection-EllipticEnvelope" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -183,7 +175,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="botnet-detection-kmeans" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="botnet-detection-MCD" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -195,7 +187,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adaptive-multivariate-gaussian" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-kmeans.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-MCD.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -252,19 +244,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-kmeans" />
-      <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
-      <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-EllipticEnvelope" />
-      <item index="3" class="java.lang.String" itemvalue="Python.pkl-to-mat" />
-      <item index="4" class="java.lang.String" itemvalue="Python.pkl-to-csv" />
+      <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
+      <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-EllipticEnvelope" />
+      <item index="2" class="java.lang.String" itemvalue="Python.pkl-to-mat" />
+      <item index="3" class="java.lang.String" itemvalue="Python.pkl-to-csv" />
+      <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-MCD" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.pkl-to-csv" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pkl-to-mat" />
-        <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-EllipticEnvelope" />
-        <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
-        <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-kmeans" />
+        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-MCD" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pkl-to-csv" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pkl-to-mat" />
+        <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-EllipticEnvelope" />
+        <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
       </list>
     </recent_temporary>
   </component>
@@ -285,8 +277,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1967" y="-4" width="1873" height="1084" extended-state="6" />
-    <editor active="true" />
+    <frame x="1882" y="243" width="1875" height="1092" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -320,11 +311,26 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/botnet-detection-MCD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pkl-to-csv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -336,7 +342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7272">
           <caret line="404" column="1" lean-forward="true" selection-start-line="404" selection-start-column="1" selection-end-line="404" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -359,7 +364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8136">
           <caret line="459" column="56" lean-forward="false" selection-start-line="459" selection-start-column="0" selection-end-line="459" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -368,7 +372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8262">
           <caret line="459" column="56" lean-forward="true" selection-start-line="459" selection-start-column="0" selection-end-line="459" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -629,8 +632,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="434" selection-end-column="20" />
+        <state relative-caret-position="998">
+          <caret line="442" column="0" lean-forward="true" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-MCD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

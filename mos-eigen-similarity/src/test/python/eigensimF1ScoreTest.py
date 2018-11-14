@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import gc
 from sklearn.metrics import f1_score, recall_score, precision_score
 
 
@@ -18,20 +17,21 @@ results_dirs = os.listdir(results_dir)
 for res_dir in results_dirs:
 
     res_dir_path = os.path.join(results_dir, res_dir).decode('utf-8')
-    res_directory = os.fsencode(res_dir_path)
-    res_files = os.listdir(res_directory)
 
-    y_test = pd.read_csv(res_dir_path + '/y_test.csv')
+    if os.path.isdir(res_dir_path):
+        res_directory = os.fsencode(res_dir_path)
+        res_files = os.listdir(res_directory)
 
-    for res_file in res_files:
+        y_test = pd.read_csv(res_dir_path + '/y_test.csv')
 
-        if res_file != 'y_test.csv'.encode('utf-8'):
+        for res_file in res_files:
 
-            res_file_path = os.path.join(res_directory, res_file).decode('utf-8')
+            if res_file != 'y_test.csv'.encode('utf-8'):
 
-            if os.path.isfile(res_file_path):
+                res_file_path = os.path.join(res_directory, res_file).decode('utf-8')
 
-                y_predict = pd.read_csv(res_file_path)
-                f1, recall, precision = get_classification_report(y_test, y_predict)
-                print('###[Eigensim][', res_file, '] Test. F1:', f1, ', Recall:', recall, ', Precision:', precision)
-                gc.collect()
+                if os.path.isfile(res_file_path):
+                    y_predict = pd.read_csv(res_file_path)
+                    f1, recall, precision = get_classification_report(y_test, y_predict)
+                    print('###[Eigensim][', res_dir, '] Test. F1:', f1, ', Recall:', recall, ', Precision:', precision)
+                    y_predict.close()

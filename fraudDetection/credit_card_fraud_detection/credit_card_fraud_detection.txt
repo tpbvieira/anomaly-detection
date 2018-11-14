@@ -121,7 +121,7 @@ code/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder
 		Test F2 Score: 			0.681
  - Deep Learning
  	- based on Autoencoder
- 	- a multilayer perceptron with the same number of input and output neurons is trained with maximum likelihood to replicate the input data. To avoid simply learning the identity function, we use a bottleneck layer, with fewer neurons than the input size, thus forcing the network to compress the input in its internal representation.
+ 	- a multilayer perceptron with the same number of input and output neurons is trained with maximum likelihood to replicate the input data. To avoid simply learning the identity function, we use a bottleneck layer, with fewer neurons than the input size, thus forcing the network to compress the input in its internal representation																																																																																										.
  	- we can hope it will learn a good internal representation of it and thus have a low reconstruction error wen asked to replicate normal data.
  	- as it have never seen how the anomalous data looks like, we also hope that the network will do a poor job reconstructing the anomalies.
  	- we can use the reconstruction error, ( (\pmb{\tilde{x}} - \pmb{x})^2 ), as an anomaly score.

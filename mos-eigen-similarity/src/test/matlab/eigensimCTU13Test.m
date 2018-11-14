@@ -83,19 +83,19 @@ for i = 3:size(fileList,1)
                     unitStr = sprintf('%d_%d_unit_eig_%s_%0.1f.csv',wsz,ws,m{1},th);
                     destFile = strcat(resFolder, unitStr);
                     if exist(destFile, 'file') ~= 2
-                        fprintf('### Test Scenario: features01 - %s\n',unitStr)
+                        fprintf('### Test Scenario: features01 - %s\n',destFile)
                         tic;
                         yTest = eigensim(X,wsz,ws,'unit','eig',m{1},th);
-                        dlmwrite(unitStr,yTest','delimiter','\t');
+                        dlmwrite(destFile,yTest','delimiter','\t');
                         toc;
                     end
                     zmeanStr = sprintf('%d_%d_zmean_eig_%s_%0.1f.csv',wsz,ws,m{1},th);
                     destFile = strcat(resFolder, zmeanStr);
                     if exist(destFile, 'file') ~= 2
-                        fprintf('### Test Scenario: features01 - %s\n',zmeanStr)
+                        fprintf('### Test Scenario: features01 - %s\n',destFile)
                         tic;
                         yTest = eigensim(X,wsz,ws,'zmean','eig',m{1},th);
-                        dlmwrite(zmeanStr,yTest','delimiter','\t');
+                        dlmwrite(destFile,yTest','delimiter','\t');
                         toc;
                     end
                 end
