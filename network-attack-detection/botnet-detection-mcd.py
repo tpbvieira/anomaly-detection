@@ -2,9 +2,10 @@
 import sys, gc, ipaddress, warnings
 import pandas as pd
 import numpy as np
+from scipy import linalg
 from functools import reduce
 from sklearn import preprocessing
-from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.metrics import f1_score, recall_score, precision_score, pairwise_distances
 from outlier_detection import MEllipticEnvelope
 warnings.filterwarnings("ignore")
 
@@ -374,8 +375,65 @@ pkl_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/
 print("## Sample File: ", pkl_file_path)
 df = pd.read_pickle(pkl_file_path)
 
+# data splitting
 norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
 # Cross-Validation and model selection
 ell_model, best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
 print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:',best_contamination,',F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
+
+# Test Prediction
+test_label = test_label.astype(np.int8)
+test_label[test_label == 1] = -1
+test_label[test_label == 0] = 1
+pred_test_label = ell_model.predict(test_df)
+f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+print('###[EllipticEnvelope][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+
+# Prediction using skew1
+is_inlier = np.full(test_df.shape[0], -1, dtype=int)
+mahal_dist = pairwise_distances(test_df, ell_model.raw_skew1_[np.newaxis, :], metric='mahalanobis', VI=linalg.pinvh(ell_model.covariance_))
+mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2
+mahal_dist = -mahal_dist
+dec_function = mahal_dist - (np.percentile(-ell_model.raw_skew1_dist_, 100. * best_contamination))
+values = dec_function
+is_inlier[values >= 0] = 1
+pred_test_label = is_inlier
+f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+print('###[skew1][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+
+# Prediction using skew2
+is_inlier = np.full(test_df.shape[0], -1, dtype=int)
+mahal_dist = pairwise_distances(test_df, ell_model.raw_skew2_[np.newaxis, :], metric='mahalanobis', VI=linalg.pinvh(ell_model.covariance_))
+mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2
+mahal_dist = -mahal_dist
+dec_function = mahal_dist - (np.percentile(-ell_model.raw_skew2_dist_, 100. * best_contamination))
+values = dec_function
+is_inlier[values >= 0] = 1
+pred_test_label = is_inlier
+f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+print('###[skew2][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+
+# Prediction using kurt1
+is_inlier = np.full(test_df.shape[0], -1, dtype=int)
+mahal_dist = pairwise_distances(test_df, ell_model.raw_kurt1_[np.newaxis, :], metric='mahalanobis', VI=linalg.pinvh(ell_model.covariance_))
+mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2
+mahal_dist = -mahal_dist
+dec_function = mahal_dist - (np.percentile(-ell_model.raw_kurt1_dist_, 100. * best_contamination))
+values = dec_function
+is_inlier[values >= 0] = 1
+pred_test_label = is_inlier
+f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+print('###[kurt1][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+
+# Prediction using kurt2
+is_inlier = np.full(test_df.shape[0], -1, dtype=int)
+mahal_dist = pairwise_distances(test_df, ell_model.raw_kurt2_[np.newaxis, :], metric='mahalanobis', VI=linalg.pinvh(ell_model.covariance_))
+mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2
+mahal_dist = -mahal_dist
+dec_function = mahal_dist - (np.percentile(-ell_model.raw_kurt2_dist_, 100. * best_contamination))
+values = dec_function
+is_inlier[values >= 0] = 1
+pred_test_label = is_inlier
+f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
+print('###[kurt2][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)

@@ -160,10 +160,22 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
 
     previous_dist = dist
     dist = (np.dot(X - location, precision) * (X - location)).sum(axis=1)
+    skew1_dist = (np.dot(X - skew1, precision) * (X - skew1)).sum(axis=1)
+    skew2_dist = (np.dot(X - skew2, precision) * (X - skew2)).sum(axis=1)
+    kurt1_dist = (np.dot(X - kurt1, precision) * (X - kurt1)).sum(axis=1)
+    kurt2_dist = (np.dot(X - kurt2, precision) * (X - kurt2)).sum(axis=1)
+    moment2_dist = (np.dot(X - moment2, precision) * (X - moment2)).sum(axis=1)
+    moment3_dist = (np.dot(X - moment3, precision) * (X - moment3)).sum(axis=1)
+    moment4_dist = (np.dot(X - moment4, precision) * (X - moment4)).sum(axis=1)
+    moment5_dist = (np.dot(X - moment5, precision) * (X - moment5)).sum(axis=1)
+    moment6_dist = (np.dot(X - moment6, precision) * (X - moment6)).sum(axis=1)
+
+    moments = skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6, \
+              skew1_dist, skew2_dist, kurt1_dist, kurt2_dist, moment2_dist, moment3_dist, moment4_dist, moment5_dist, moment6_dist
 
     # Check if best fit already found (det => 0, logdet => -inf)
     if np.isinf(det):
-        results = location, covariance, det, support, dist, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6
+        results = location, covariance, det, support, dist, moments
 
     # Check convergence
     if np.allclose(det, previous_det):
@@ -171,18 +183,18 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
         if verbose:
             print("Optimal couple (location, covariance) found before"
                   " ending iterations (%d left)" % (remaining_iterations))
-        results = location, covariance, det, support, dist, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6
+        results = location, covariance, det, support, dist, moments
     elif det > previous_det:
         # determinant has increased (should not happen)
         warnings.warn("Warning! det > previous_det (%.15f > %.15f)"
                       % (det, previous_det), RuntimeWarning)
-        results = previous_location, previous_covariance, previous_det, previous_support, previous_dist, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6
+        results = previous_location, previous_covariance, previous_det, previous_support, previous_dist, moments
 
     # Check early stopping
     if remaining_iterations == 0:
         if verbose:
             print('Maximum number of iterations reached')
-        results = location, covariance, det, support, dist, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6
+        results = location, covariance, det, support, dist, moments
 
     return results
 
@@ -289,8 +301,10 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
             initial_estimates = (estimates_list[0][j], estimates_list[1][j])
             all_estimates.append(_c_step(X, n_support, remaining_iterations=n_iter, initial_estimates=initial_estimates, verbose=verbose, cov_computation_method=cov_computation_method, random_state=random_state))
 
-    all_locs_sub, all_covs_sub, all_dets_sub, all_supports_sub, all_ds_sub, all_skew1_sub, all_skew2_sub, all_kurt1_sub, all_kurt2_sub, all_moment2_sub, all_moment3_sub, all_moment4_sub, \
-    all_moment5_sub, all_moment6_sub = zip(*all_estimates)
+    all_locs_sub, all_covs_sub, all_dets_sub, all_supports_sub, all_ds_sub, all_moments_sub = zip(*all_estimates)
+
+    all_skew1_sub, all_skew2_sub, all_kurt1_sub, all_kurt2_sub, all_moment2_sub, all_moment3_sub, all_moment4_sub, all_moment5_sub, all_moment6_sub, all_skew1_dist_sub, all_skew2_dist_sub,\
+    all_kurt1_dist_sub, all_kurt2_dist_sub, all_moment2_dist_sub, all_moment3_dist_sub, all_moment4_dist_sub, all_moment5_dist_sub, all_moment6_dist_sub = zip(*all_moments_sub)
 
     # find the `n_best` best results among the `n_trials` ones
     index_best = np.argsort(all_dets_sub)[:select]
@@ -298,6 +312,7 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     best_covariances = np.asarray(all_covs_sub)[index_best]
     best_supports = np.asarray(all_supports_sub)[index_best]
     best_ds = np.asarray(all_ds_sub)[index_best]
+
     best_skew1 = np.asarray(all_skew1_sub)[index_best]
     best_skew2 = np.asarray(all_skew2_sub)[index_best]
     best_kurt1 = np.asarray(all_kurt1_sub)[index_best]
@@ -307,8 +322,19 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     best_moment4 = np.asarray(all_moment4_sub)[index_best]
     best_moment5 = np.asarray(all_moment5_sub)[index_best]
     best_moment6 = np.asarray(all_moment6_sub)[index_best]
+    best_skew1_dist = np.asarray(all_skew1_dist_sub)[index_best]
+    best_skew2_dist = np.asarray(all_skew2_dist_sub)[index_best]
+    best_kurt1_dist = np.asarray(all_kurt1_dist_sub)[index_best]
+    best_kurt2_dist = np.asarray(all_kurt2_dist_sub)[index_best]
+    best_moment2_dist = np.asarray(all_moment2_dist_sub)[index_best]
+    best_moment3_dist = np.asarray(all_moment3_dist_sub)[index_best]
+    best_moment4_dist = np.asarray(all_moment4_dist_sub)[index_best]
+    best_moment5_dist = np.asarray(all_moment5_dist_sub)[index_best]
+    best_moment6_dist = np.asarray(all_moment6_dist_sub)[index_best]
+    best_moments = best_skew1, best_skew2, best_kurt1, best_kurt2, best_moment2, best_moment3, best_moment4, best_moment5, best_moment6, best_skew1_dist, best_skew2_dist, best_kurt1_dist, \
+                   best_kurt2_dist, best_moment2_dist, best_moment3_dist, best_moment4_dist, best_moment5_dist, best_moment6_dist
 
-    return best_locations, best_covariances, best_supports, best_ds, best_skew1, best_skew2, best_kurt1, best_kurt2, best_moment2, best_moment3, best_moment4, best_moment5, best_moment6
+    return best_locations, best_covariances, best_supports, best_ds, best_moments
 
 
 def fast_mcd(X, support_fraction=None,
@@ -436,15 +462,14 @@ def fast_mcd(X, support_fraction=None,
         except MemoryError:
             # The above is too big. Let's try with something much small
             # (and less optimal)
-            all_best_covariances = np.zeros((n_best_tot, n_features,
-                                             n_features))
+            all_best_covariances = np.zeros((n_best_tot, n_features, n_features))
             n_best_tot = 10
             n_best_sub = 2
         for i in range(n_subsets):
             low_bound = i * n_samples_subsets
             high_bound = low_bound + n_samples_subsets
             current_subset = X[samples_shuffle[low_bound:high_bound]]
-            best_locations_sub, best_covariances_sub, _, _, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6 = \
+            best_locations_sub, best_covariances_sub, _, _, best_moments_sub = \
                 select_candidates(current_subset, h_subset, n_trials,select=n_best_sub, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
             subset_slice = np.arange(i * n_best_sub, (i + 1) * n_best_sub)
             all_best_locations[subset_slice] = best_locations_sub
@@ -453,8 +478,7 @@ def fast_mcd(X, support_fraction=None,
         # 2. Pool the candidate supports into a merged set
         # (possibly the full dataset)
         n_samples_merged = min(1500, n_samples)
-        h_merged = int(np.ceil(n_samples_merged *
-                               (n_support / float(n_samples))))
+        h_merged = int(np.ceil(n_samples_merged * (n_support / float(n_samples))))
         if n_samples > 1500:
             n_best_merged = 10
         else:
@@ -462,7 +486,7 @@ def fast_mcd(X, support_fraction=None,
 
         # find the best couples (location, covariance) on the merged set
         selection = random_state.permutation(n_samples)[:n_samples_merged]
-        locations_merged, covariances_merged, supports_merged, d, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6 = \
+        locations_merged, covariances_merged, supports_merged, d, moments_merged = \
             select_candidates(X[selection], h_merged, n_trials=(all_best_locations, all_best_covariances), select=n_best_merged, cov_computation_method=cov_computation_method, random_state=random_state)
 
         # 3. Finally get the overall best (locations, covariance) couple
@@ -474,31 +498,97 @@ def fast_mcd(X, support_fraction=None,
             dist = np.zeros(n_samples)
             support[selection] = supports_merged[0]
             dist[selection] = d[0]
+
+            skew1_merged, skew2_merged, kurt1_merged, kurt2_merged, moment2_merged, moment3_merged, moment4_merged, moment5_merged, moment6_merged, skew1_dist_merged, skew2_dist_merged, \
+            kurt1_dist_merged, kurt2_dist_merged, moment2_dist_merged, moment3_dist_merged, moment4_dist_merged, moment5_dist_merged, moment6_dist_merged = moments_merged
+            skew1 = skew1_merged[0]
+            skew2 = skew2_merged[0]
+            kurt1 = kurt1_merged[0]
+            kurt2 = kurt2_merged[0]
+            moment2 = moment2_merged[0]
+            moment3 = moment3_merged[0]
+            moment4 = moment4_merged[0]
+            moment5 = moment5_merged[0]
+            moment6 = moment6_merged[0]
+            skew1_dist = skew1_dist_merged[0]
+            skew2_dist = skew2_dist_merged[0]
+            kurt1_dist = kurt1_dist_merged[0]
+            kurt2_dist = kurt2_dist_merged[0]
+            moment2_dist = moment2_dist_merged[0]
+            moment3_dist = moment3_dist_merged[0]
+            moment4_dist = moment4_dist_merged[0]
+            moment5_dist = moment5_dist_merged[0]
+            moment6_dist = moment6_dist_merged[0]
         else:
             # select the best couple on the full dataset
-            locations_full, covariances_full, supports_full, d, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6 = \
+            locations_full, covariances_full, supports_full, d, moments_full = \
                 select_candidates(X, n_support,n_trials=(locations_merged, covariances_merged),select=1,cov_computation_method=cov_computation_method,random_state=random_state)
             location = locations_full[0]
             covariance = covariances_full[0]
             support = supports_full[0]
             dist = d[0]
+
+            skew1_full, skew2_full, kurt1_full, kurt2_full, moment2_full, moment3_full, moment4_full, moment5_full, moment6_full, skew1_dist_full, skew2_dist_full, \
+            kurt1_dist_full, kurt2_dist_full, moment2_dist_full, moment3_dist_full, moment4_dist_full, moment5_dist_full, moment6_dist_full = moments_full
+            skew1 = skew1_full[0]
+            skew2 = skew2_full[0]
+            kurt1 = kurt1_full[0]
+            kurt2 = kurt2_full[0]
+            moment2 = moment2_full[0]
+            moment3 = moment3_full[0]
+            moment4 = moment4_full[0]
+            moment5 = moment5_full[0]
+            moment6 = moment6_full[0]
+            skew1_dist = skew1_dist_full[0]
+            skew2_dist = skew2_dist_full[0]
+            kurt1_dist = kurt1_dist_full[0]
+            kurt2_dist = kurt2_dist_full[0]
+            moment2_dist = moment2_dist_full[0]
+            moment3_dist = moment3_dist_full[0]
+            moment4_dist = moment4_dist_full[0]
+            moment5_dist = moment5_dist_full[0]
+            moment6_dist = moment6_dist_full[0]
     elif n_features > 1:
         # 1. Find the 10 best couples (location, covariance)
         # considering two iterations
         n_trials = 30
         n_best = 10
-        locations_best, covariances_best, _, _, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6 = \
+        locations_best, covariances_best, _, _, moments_best = \
             select_candidates(X, n_support, n_trials=n_trials, select=n_best, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
 
         # 2. Select the best couple on the full dataset amongst the 10
-        locations_full, covariances_full, supports_full, d, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6 = \
+        locations_full, covariances_full, supports_full, d, moments_full = \
             select_candidates(X, n_support, n_trials=(locations_best, covariances_best),select=1, cov_computation_method=cov_computation_method,random_state=random_state)
         location = locations_full[0]
         covariance = covariances_full[0]
         support = supports_full[0]
         dist = d[0]
 
-    return location, covariance, support, dist, skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6
+        skew1_full, skew2_full, kurt1_full, kurt2_full, moment2_full, moment3_full, moment4_full, moment5_full, moment6_full, skew1_dist_full, skew2_dist_full, \
+        kurt1_dist_full, kurt2_dist_full, moment2_dist_full, moment3_dist_full, moment4_dist_full, moment5_dist_full, moment6_dist_full = moments_full
+        skew1 = skew1_full[0]
+        skew2 = skew2_full[0]
+        kurt1 = kurt1_full[0]
+        kurt2 = kurt2_full[0]
+        moment2 = moment2_full[0]
+        moment3 = moment3_full[0]
+        moment4 = moment4_full[0]
+        moment5 = moment5_full[0]
+        moment6 = moment6_full[0]
+        skew1_dist = skew1_dist_full[0]
+        skew2_dist = skew2_dist_full[0]
+        kurt1_dist = kurt1_dist_full[0]
+        kurt2_dist = kurt2_dist_full[0]
+        moment2_dist = moment2_dist_full[0]
+        moment3_dist = moment3_dist_full[0]
+        moment4_dist = moment4_dist_full[0]
+        moment5_dist = moment5_dist_full[0]
+        moment6_dist = moment6_dist_full[0]
+
+    moments = skew1, skew2, kurt1, kurt2, moment2, moment3, moment4, moment5, moment6, \
+              skew1_dist, skew2_dist, kurt1_dist, kurt2_dist, moment2_dist, moment3_dist, moment4_dist, moment5_dist, moment6_dist
+
+    return location, covariance, support, dist, moments
 
 
 class MMinCovDet(EmpiricalCovariance):
@@ -616,7 +706,7 @@ class MMinCovDet(EmpiricalCovariance):
         if (linalg.svdvals(np.dot(X.T, X)) > 1e-8).sum() != n_features:
             warnings.warn("The covariance matrix associated to your dataset is not full rank")
         # compute and store raw estimates
-        raw_location, raw_covariance, raw_support, raw_dist, raw_skew1, raw_skew2, raw_kurt1, raw_kurt2, raw_moment2, raw_moment3, raw_moment4, raw_moment5, raw_moment6 = \
+        raw_location, raw_covariance, raw_support, raw_dist, raw_moments = \
             fast_mcd(X, support_fraction=self.support_fraction,cov_computation_method=self._nonrobust_covariance,random_state=random_state)
         if self.assume_centered:
             raw_location = np.zeros(n_features)
@@ -630,6 +720,9 @@ class MMinCovDet(EmpiricalCovariance):
         self.location_ = raw_location
         self.support_ = raw_support
         self.dist_ = raw_dist
+
+        raw_skew1, raw_skew2, raw_kurt1, raw_kurt2, raw_moment2, raw_moment3, raw_moment4, raw_moment5, raw_moment6, raw_skew1_dist, raw_skew2_dist, \
+        raw_kurt1_dist, raw_kurt2_dist, raw_moment2_dist, raw_moment3_dist, raw_moment4_dist, raw_moment5_dist, raw_moment6_dist = raw_moments
         self.raw_skew1_ = raw_skew1
         self.raw_skew2_ = raw_skew2
         self.raw_kurt1_ = raw_kurt1
@@ -639,11 +732,39 @@ class MMinCovDet(EmpiricalCovariance):
         self.raw_moment4_ = raw_moment4
         self.raw_moment5_ = raw_moment5
         self.raw_moment6_ = raw_moment6
+        self.raw_skew1_dist_ = raw_skew1_dist
+        self.raw_skew2_dist_ = raw_skew2_dist
+        self.raw_kurt1_dist_ = raw_kurt1_dist
+        self.raw_kurt2_dist_ = raw_kurt2_dist
+        self.raw_moment2_dist_ = raw_moment2_dist
+        self.raw_moment3_dist_ = raw_moment3_dist
+        self.raw_moment4_dist_ = raw_moment4_dist
+        self.raw_moment5_dist_ = raw_moment5_dist
+        self.raw_moment6_dist_ = raw_moment6_dist
 
         # obtain consistency at normal models
         self.correct_covariance(X)
+        # self.corrected_skew1_dist_ = corrected_skew1
+        # self.corrected_skew2_dist_ = corrected_skew2
+        # self.corrected_kurt1_dist_ = corrected_kurt1
+        # self.corrected_kurt2_dist_ = corrected_kurt2
+        # self.corrected_moment2_dist_ = corrected_moment2
+        # self.corrected_moment3_dist_ = corrected_moment3
+        # self.corrected_moment4_dist_ = corrected_moment4
+        # self.corrected_moment5_dist_ = corrected_moment5
+        # self.corrected_moment6_dist_ = corrected_moment6
+
         # re-weight estimator
         self.reweight_covariance(X)
+        # self.reweighted_skew1_dist_ = reweighted_skew1
+        # self.reweighted_skew2_dist_ = reweighted_skew2
+        # self.reweighted_kurt1_dist_ = reweighted_kurt1
+        # self.reweighted_kurt2_dist_ = reweighted_kurt2
+        # self.reweighted_moment2_dist_ = reweighted_moment2
+        # self.reweighted_moment3_dist_ = reweighted_moment3
+        # self.reweighted_moment4_dist_ = reweighted_moment4
+        # self.reweighted_moment5_dist_ = reweighted_moment5
+        # self.reweighted_moment6_dist_ = reweighted_moment6
 
         return self
 
@@ -719,14 +840,12 @@ class MMinCovDet(EmpiricalCovariance):
             location_reweighted = np.zeros(n_features)
         else:
             location_reweighted = data[mask].mean(0)
-        covariance_reweighted = self._nonrobust_covariance(
-            data[mask], assume_centered=self.assume_centered)
+        covariance_reweighted = self._nonrobust_covariance(data[mask], assume_centered=self.assume_centered)
         support_reweighted = np.zeros(n_samples, dtype=bool)
         support_reweighted[mask] = True
         self._set_covariance(covariance_reweighted)
         self.location_ = location_reweighted
         self.support_ = support_reweighted
         X_centered = data - self.location_
-        self.dist_ = np.sum(
-            np.dot(X_centered, self.get_precision()) * X_centered, 1)
+        self.dist_ = np.sum(np.dot(X_centered, self.get_precision()) * X_centered, 1)
         return location_reweighted, covariance_reweighted, support_reweighted
