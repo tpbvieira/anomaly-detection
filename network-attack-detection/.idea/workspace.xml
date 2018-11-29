@@ -4,6 +4,7 @@
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mcd.ipynb" afterPath="$PROJECT_DIR$/botnet-detection-mcd.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/notes.txt" afterPath="$PROJECT_DIR$/results/notes.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +18,8 @@
       <file leaf-file-name="botnet-detection-mcd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="418" column="27" lean-forward="false" selection-start-line="418" selection-start-column="27" selection-end-line="418" selection-end-column="27" />
+            <state relative-caret-position="18">
+              <caret line="390" column="57" lean-forward="false" selection-start-line="390" selection-start-column="49" selection-end-line="390" selection-end-column="57" />
               <folding>
                 <element signature="e#15#50#0" expanded="true" />
               </folding>
@@ -26,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="botnet-detection-EllipticEnvelope.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="botnet-detection-EllipticEnvelope.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="298" column="38" lean-forward="true" selection-start-line="298" selection-start-column="4" selection-end-line="298" selection-end-column="38" />
+            <state relative-caret-position="7182">
+              <caret line="406" column="56" lean-forward="false" selection-start-line="406" selection-start-column="56" selection-end-line="406" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -51,18 +52,18 @@
       <file leaf-file-name="empirical_covariance_.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/empirical_covariance_.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4374">
-              <caret line="250" column="13" lean-forward="false" selection-start-line="250" selection-start-column="13" selection-end-line="250" selection-end-column="13" />
+            <state relative-caret-position="242">
+              <caret line="214" column="77" lean-forward="true" selection-start-line="214" selection-start-column="77" selection-end-line="214" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="robust_moments.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="robust_moments.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robust_moments.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="298">
-              <caret line="169" column="16" lean-forward="false" selection-start-line="169" selection-start-column="4" selection-end-line="169" selection-end-column="16" />
+              <caret line="115" column="49" lean-forward="true" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="49" />
               <folding>
                 <element signature="e#216#231#0" expanded="true" />
               </folding>
@@ -93,7 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>results</find>
       <find>_c_ste</find>
       <find>skew1</find>
       <find>select_</find>
@@ -123,6 +123,7 @@
       <find>decision_function</find>
       <find>mahalanobis</find>
       <find>moment5_dist</find>
+      <find>moment</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -361,13 +362,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -726,10 +727,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/pairwise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-496">
+          <caret line="1195" column="10" lean-forward="true" selection-start-line="1195" selection-start-column="4" selection-end-line="1195" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7182">
+          <caret line="406" column="56" lean-forward="false" selection-start-line="406" selection-start-column="56" selection-end-line="406" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="390" column="57" lean-forward="false" selection-start-line="390" selection-start-column="49" selection-end-line="390" selection-end-column="57" />
+          <folding>
+            <element signature="e#15#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/empirical_covariance_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4374">
-          <caret line="250" column="13" lean-forward="false" selection-start-line="250" selection-start-column="13" selection-end-line="250" selection-end-column="13" />
+        <state relative-caret-position="242">
+          <caret line="214" column="77" lean-forward="true" selection-start-line="214" selection-start-column="77" selection-end-line="214" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -737,36 +763,10 @@
     <entry file="file://$PROJECT_DIR$/robust_moments.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
-          <caret line="169" column="16" lean-forward="false" selection-start-line="169" selection-start-column="4" selection-end-line="169" selection-end-column="16" />
+          <caret line="115" column="49" lean-forward="true" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="49" />
           <folding>
             <element signature="e#216#231#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/pairwise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-496">
-          <caret line="1195" column="10" lean-forward="true" selection-start-line="1195" selection-start-column="4" selection-end-line="1195" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="418" column="27" lean-forward="false" selection-start-line="418" selection-start-column="27" selection-end-line="418" selection-end-column="27" />
-          <folding>
-            <element signature="e#15#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="298" column="38" lean-forward="true" selection-start-line="298" selection-start-column="4" selection-end-line="298" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
