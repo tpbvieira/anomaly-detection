@@ -1,0 +1,98 @@
+================================================================================================================================================================================================================================
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004679457182966776 , Recall: 0.002449779519843214 , Precision: 0.052083333333333336
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.09443507588532885 , Recall: 0.054875061244487995 , Precision: 0.338368580060423
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.10150223304912707 , Recall: 0.06124448799608035 , Precision: 0.2962085308056872
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10208248264597794 , Recall: 0.06124448799608035 , Precision: 0.30637254901960786
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.7610486891385769 , Recall: 0.9955903968642822 , Precision: 0.6159442255228857
+--
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004675081813931744 , Recall: 0.002449779519843214 , Precision: 0.05102040816326531
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.00994350282485876 , Recall: 0.005389514943655071 , Precision: 0.0641399416909621
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.09805153991200503 , Recall: 0.05732484076433121 , Precision: 0.3386396526772793
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.10054293183189222 , Recall: 0.06124448799608035 , Precision: 0.28058361391694725
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.11 ,F1: 0.11152658104373271 , Recall: 0.08402743753062224 , Precision: 0.16578057032382792
+--
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.00482392667631452 , Recall: 0.002462447672986949 , Precision: 0.11764705882352941
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.030444964871194375 , Recall: 0.016005909874415167 , Precision: 0.31100478468899523
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.0392881904321701 , Recall: 0.02093080522038907 , Precision: 0.31954887218045114
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10504201680672269 , Recall: 0.061561191824673726 , Precision: 0.35765379113018597
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.13 ,F1: 0.11770815302059894 , Recall: 0.08372322088155627 , Precision: 0.19813519813519814
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.14 ,F1: 0.12056737588652484 , Recall: 0.08372322088155627 , Precision: 0.21532615579480685
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.12724550898203593 , Recall: 0.08372322088155627 , Precision: 0.26500389711613404
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18000000000000002 ,F1: 0.8016977593524824 , Recall: 1.0 , Precision: 0.6690280065897858
+================================================================================================================================================================================================================================
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004676174888940846 , Recall: 0.002449779519843214 , Precision: 0.05128205128205128
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.10097087378640777 , Recall: 0.05732484076433121 , Precision: 0.4231464737793852
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.09999999999999999 ,F1: 0.10462439840970915 , Recall: 0.06124448799608035 , Precision: 0.3586800573888092
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.12 ,F1: 0.10730486469576099 , Recall: 0.08402743753062224 , Precision: 0.14842059714409347
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.7487793643482266 , Recall: 0.9955903968642822 , Precision: 0.6000295290122546
+###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.16 ,F1: 0.7487793643482266 , Recall: 0.9955903968642822 , Precision: 0.6000295290122546
+--
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.01627906976744186 , Recall: 0.00857422831945125 , Precision: 0.16055045871559634
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.03792949576082106 , Recall: 0.02082312591866732 , Precision: 0.2125
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.0696982575435614 , Recall: 0.04017638412542871 , Precision: 0.26282051282051283
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.07905477980665951 , Recall: 0.04507594316511514 , Precision: 0.32111692844677137
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.09706853038245 , Recall: 0.06124448799608035 , Precision: 0.23386342376052385
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.060000000000000005 ,F1: 0.10037328909166321 , Recall: 0.059284664380205784 , Precision: 0.327027027027027
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.09999999999999999 ,F1: 0.11457286432160804 , Recall: 0.08378245957863792 , Precision: 0.18114406779661016
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18000000000000002 ,F1: 0.7225531158325185 , Recall: 0.9955903968642822 , Precision: 0.5670433933305428
+--
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.010576923076923078 , Recall: 0.005417384880571288 , Precision: 0.2222222222222222
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.04923362749651648 , Recall: 0.02610194533366166 , Precision: 0.4326530612244898
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.10342541436464088 , Recall: 0.057621275547894604 , Precision: 0.5043103448275862
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10508617065994116 , Recall: 0.061561191824673726 , Precision: 0.3586800573888092
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.10921799912625602 , Recall: 0.061561191824673726 , Precision: 0.4835589941972921
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.12201686703750224 , Recall: 0.08372322088155627 , Precision: 0.22486772486772486
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.8238158028197586 , Recall: 1.0 , Precision: 0.7004139358399448
+--
+###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.7788911155644622 , Recall: 1.0 , Precision: 0.637855579868709
+###[skew1][ drop_features04 ] Test. F1: 0.8494466485696388 , Recall: 0.9968145062484686 , Precision: 0.7400400218300891
+###[skew2][ drop_features04 ] Test. F1: 0.8494466485696388 , Recall: 0.9968145062484686 , Precision: 0.7400400218300891
+###[kurt1][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
+###[kurt2][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
+###[moment2][ drop_features04 ] Test. F1: 0.6990426457789383 , Recall: 0.9840725312423426 , Precision: 0.542043460655959
+###[moment3][ drop_features04 ] Test. F1: 0.3033147113594041 , Recall: 0.9977946581720166 , Precision: 0.17883965040186217
+###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+================================================================================================================================================================================================================================
+-- treino com dado normal e ataque, mas sem usar o best_contamination
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.08272028772273991 , Recall: 0.06197942185203332 , Precision: 0.12432432432432433
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.7224888888888888 , Recall: 0.9955903968642822 , Precision: 0.5669642857142857
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.11863224005582693 , Recall: 0.08372322088155627 , Precision: 0.20347097546379414
+###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.11598302687411598 , Recall: 0.09041901494731683 , Precision: 0.16170026292725678
+###[skew1][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
+###[skew2][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
+###[kurt1][ drop_features04 ] Test. F1: 0.9734048896839596 , Recall: 1.0 , Precision: 0.9481877323420075
+###[kurt2][ drop_features04 ] Test. F1: 0.9734048896839596 , Recall: 1.0 , Precision: 0.9481877323420075
+###[moment2][ drop_features04 ] Test. F1: 0.5714534377719757 , Recall: 0.8044596912521441 , Precision: 0.44310973140774734
+###[moment3][ drop_features04 ] Test. F1: 0.3025417086552458 , Recall: 0.9931389365351629 , Precision: 0.1784519196900317
+###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+================================================================================================================================================================================================================================
+-- treino com dado normal apenas, mas sem usar o best_contamination 
+###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.18 ,F1: 0.721014814157722 , Recall: 0.9955903968642822 , Precision: 0.5651508830482548
+###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.7492197539930238 , Recall: 1.0 , Precision: 0.5990019081168355
+###[skew1][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
+###[skew2][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
+###[kurt1][ drop_features04 ] Test. F1: 0.9736371227484194 , Recall: 1.0 , Precision: 0.9486285448628545
+###[kurt2][ drop_features04 ] Test. F1: 0.9736371227484194 , Recall: 1.0 , Precision: 0.9486285448628545
+###[moment2][ drop_features04 ] Test. F1: 0.06422976501305483 , Recall: 0.09041901494731683 , Precision: 0.0498042920772034
+###[moment3][ drop_features04 ] Test. F1: 0.30330732069862504 , Recall: 1.0 , Precision: 0.17876385299399886
+###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+================================================================================================================================================================================================================================
+-- again
+###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.7240334936753965 , Recall: 0.9955903968642822 , Precision: 0.568868980963046
+###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.750459727841118 , Recall: 1.0 , Precision: 0.6005886681383373
+###[skew1][ drop_features04 ] Test. F1: 0.8492378367091251 , Recall: 0.9965694682675815 , Precision: 0.7398581044205931
+###[skew2][ drop_features04 ] Test. F1: 0.8492378367091251 , Recall: 0.9965694682675815 , Precision: 0.7398581044205931
+###[kurt1][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
+###[kurt2][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
+###[moment2][ drop_features04 ] Test. F1: 0.6917319408181027 , Recall: 0.973780936045087 , Precision: 0.5363746794439196
+###[moment3][ drop_features04 ] Test. F1: 0.3016019830552369 , Recall: 0.9987748100955648 , Precision: 0.17761896461565277
+###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+================================================================================================================================================================================================================================

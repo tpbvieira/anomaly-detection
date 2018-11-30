@@ -14,9 +14,11 @@ covariance estimator (the Minimum Covariance Determinant).
 
 import numpy as np
 import scipy as sp
+from scipy import linalg
+from scipy.stats import skew,kurtosis
 from robust_moments import MMinCovDet
 from sklearn.utils.validation import check_is_fitted, check_array
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, pairwise_distances
 
 
 class MEllipticEnvelope(MMinCovDet):
@@ -86,15 +88,10 @@ class MEllipticEnvelope(MMinCovDet):
         covariance determinant estimator" Technometrics 41(3), 212 (1999)
 
     """
-    def __init__(self, store_precision=True, assume_centered=False,
-                 support_fraction=None, contamination=0.1,
-                 random_state=None):
-        super(MEllipticEnvelope, self).__init__(
-            store_precision=store_precision,
-            assume_centered=assume_centered,
-            support_fraction=support_fraction,
-            random_state=random_state)
+    def __init__(self, store_precision=True, assume_centered=False, support_fraction=None, contamination=0.1, random_state=None):
+        super(MEllipticEnvelope, self).__init__(store_precision=store_precision, assume_centered=assume_centered, support_fraction=support_fraction, random_state=random_state)
         self.contamination = contamination
+
 
     def fit(self, X, y=None):
         """Fit the MEllipticEnvelope model with X.
@@ -106,8 +103,8 @@ class MEllipticEnvelope(MMinCovDet):
         y : (ignored)
         """
         super(MEllipticEnvelope, self).fit(X)
-        self.threshold_ = sp.stats.scoreatpercentile(
-            self.dist_, 100. * (1. - self.contamination))
+        self.threshold_ = sp.stats.scoreatpercentile(self.dist_, 100. * (1. - self.contamination))
+        self.prediction_dist_ = None
         return self
 
     def decision_function(self, X, raw_values=False):
@@ -172,6 +169,77 @@ class MEllipticEnvelope(MMinCovDet):
             raise NotImplementedError("You must provide a contamination rate.")
 
         return is_inlier
+
+
+    def kurtosis_prediction(self, X):
+        """Outlyingness of observations in X according to the fitted model, using kurtosis intead of location.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outliers : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered
+            as an outlier according to the fitted model.
+
+        threshold : float,
+            The values of the less outlying point's decision function.
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        pred_label = np.full(X.shape[0], 0, dtype=int)
+        if self.contamination is not None:
+            inv_cov = linalg.pinvh(self.covariance_)
+            X_kurt1 = X - kurtosis(X, axis=0, fisher=True, bias=True)
+            mahal_dist = pairwise_distances(X_kurt1, self.raw_kurt1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
+            mahal_dist = np.reshape(mahal_dist, (len(X_kurt1),)) ** 2
+            mahal_dist = -mahal_dist
+            contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
+            pred_label[mahal_dist <= contamination_threshold] = 1
+            self.prediction_dist_ = mahal_dist
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return pred_label
+
+
+    def skewness_prediction(self, X):
+        """Outlyingness of observations in X according to the fitted model, using skewness intead of location.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outliers : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered
+            as an outlier according to the fitted model.
+
+        threshold : float,
+            The values of the less outlying point's decision function.
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        pred_label = np.full(X.shape[0], 0, dtype=int)
+        if self.contamination is not None:
+            inv_cov = linalg.pinvh(self.covariance_)
+            X_skew1 = X - skew(X, axis=0, bias=True)
+            mahal_dist = pairwise_distances(X_skew1, self.raw_skew1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
+            mahal_dist = np.reshape(mahal_dist, (len(X_skew1),)) ** 2
+            mahal_dist = -mahal_dist
+            contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
+            pred_label[mahal_dist <= contamination_threshold] = 1
+            self.prediction_dist_ = mahal_dist
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return pred_label
+
 
     def score(self, X, y, sample_weight=None):
         """Returns the mean accuracy on the given test data and labels.

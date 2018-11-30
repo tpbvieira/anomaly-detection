@@ -4,9 +4,8 @@ import pandas as pd
 import numpy as np
 from functools import reduce
 from sklearn import preprocessing
-from sklearn.metrics import f1_score, recall_score, precision_score, make_scorer
+from sklearn.metrics import f1_score, recall_score, precision_score
 from sklearn.covariance import EllipticEnvelope
-from sklearn.model_selection import StratifiedKFold, GridSearchCV
 warnings.filterwarnings("ignore")
 
 
@@ -396,7 +395,6 @@ column_types = {
     'SrcBytes': 'uint32',
     'Label': 'uint8'}
 
-# feature selection
 drop_features = {
     'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
     'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
@@ -406,10 +404,10 @@ drop_features = {
 
 raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
 raw_directory = os.fsencode(raw_path)
-raw_files = os.listdir(raw_directory)
 
 pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
 pkl_directory = os.fsencode(pkl_path)
+file_list = os.listdir(pkl_directory)
 
 # for each feature set
 for features_key, value in drop_features.items():
@@ -418,16 +416,16 @@ for features_key, value in drop_features.items():
     ee_test_label = []
     ee_pred_test_label = []
 
-    for sample_file in raw_files:
-
-        raw_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
-        pkl_file_path = os.path.join(pkl_directory, sample_file).decode('utf-8')
+    # for each file/case
+    for sample_file in file_list:
 
         # read pickle file with pandas or...
+        pkl_file_path = os.path.join(pkl_directory, sample_file).decode('utf-8')
         if os.path.isfile(pkl_file_path):
             print("## Sample File: ", pkl_file_path)
             df = pd.read_pickle(pkl_file_path)
         else:  # load raw file and save clean data into pickles
+            raw_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
             print("## Sample File: ", raw_file_path)
             raw_df = pd.read_csv(raw_file_path, header=0, dtype=column_types)
             df = data_cleasing(raw_df)
@@ -439,7 +437,7 @@ for features_key, value in drop_features.items():
 
         # Cross-Validation and model selection
         ell_model, best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
-        print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:',best_contamination,',F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
+        print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
 
         # Test
         test_label = test_label.astype(np.int8)
