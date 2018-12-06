@@ -1,98 +1,126 @@
 ================================================================================================================================================================================================================================
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004679457182966776 , Recall: 0.002449779519843214 , Precision: 0.052083333333333336
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.09443507588532885 , Recall: 0.054875061244487995 , Precision: 0.338368580060423
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.10150223304912707 , Recall: 0.06124448799608035 , Precision: 0.2962085308056872
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10208248264597794 , Recall: 0.06124448799608035 , Precision: 0.30637254901960786
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.7610486891385769 , Recall: 0.9955903968642822 , Precision: 0.6159442255228857
---
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004675081813931744 , Recall: 0.002449779519843214 , Precision: 0.05102040816326531
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.00994350282485876 , Recall: 0.005389514943655071 , Precision: 0.0641399416909621
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.09805153991200503 , Recall: 0.05732484076433121 , Precision: 0.3386396526772793
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.10054293183189222 , Recall: 0.06124448799608035 , Precision: 0.28058361391694725
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.11 ,F1: 0.11152658104373271 , Recall: 0.08402743753062224 , Precision: 0.16578057032382792
---
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.00482392667631452 , Recall: 0.002462447672986949 , Precision: 0.11764705882352941
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.030444964871194375 , Recall: 0.016005909874415167 , Precision: 0.31100478468899523
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.0392881904321701 , Recall: 0.02093080522038907 , Precision: 0.31954887218045114
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10504201680672269 , Recall: 0.061561191824673726 , Precision: 0.35765379113018597
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.13 ,F1: 0.11770815302059894 , Recall: 0.08372322088155627 , Precision: 0.19813519813519814
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.14 ,F1: 0.12056737588652484 , Recall: 0.08372322088155627 , Precision: 0.21532615579480685
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.12724550898203593 , Recall: 0.08372322088155627 , Precision: 0.26500389711613404
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18000000000000002 ,F1: 0.8016977593524824 , Recall: 1.0 , Precision: 0.6690280065897858
+## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.00022246941045606225 , Recall: 0.000326477309826967 , Precision: 0.00016871941960519654
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.217328727691422 , Recall: 0.7394711067580804 , Precision: 0.1273831618019234
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.217328727691422 , Recall: 0.7394711067580804 , Precision: 0.1273831618019234
+	###[k-mcd][ drop_features01 ] Test. F1: 0.2136849483090941 , Recall: 0.7962781586679726 , Precision: 0.1233999494055148
+## Sample File:  /opt/data/pkl/capture20110810.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.00022854530910753056 , Recall: 0.000146484375 , Precision: 0.0005196604884808592
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.028352849336455894 , Recall: 0.02216796875 , Precision: 0.039324382849718495
+	###[k-mcd] Cross-Validation. Contamination: 0.12 ,F1: 0.088646091462041 , Recall: 0.268994140625 , Precision: 0.05306708280352946
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.12 , F1: 0.088646091462041 , Recall: 0.268994140625 , Precision: 0.05306708280352946
+	###[k-mcd][ drop_features01 ] Test. F1: 0.09183140454522044 , Recall: 0.304736328125 , Precision: 0.05406131164297532
+## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.005586592178770949 , Recall: 0.06451612903225806 , Precision: 0.00291970802919708
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.005586592178770949 , Recall: 0.06451612903225806 , Precision: 0.00291970802919708
+	###[k-mcd][ drop_features01 ] Test. F1: 0.008379888268156426 , Recall: 0.0967741935483871 , Precision: 0.004379562043795621
+## Sample File:  /opt/data/pkl/capture20110819.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.14351320321469577 , Recall: 0.11531365313653137 , Precision: 0.1899696048632219
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.01 , F1: 0.14351320321469577 , Recall: 0.11531365313653137 , Precision: 0.1899696048632219
+	###[k-mcd][ drop_features01 ] Test. F1: 0.027570361860999423 , Recall: 0.0221606648199446 , Precision: 0.0364741641337386
+## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0013885674612358248 , Recall: 0.0007349338559529642 , Precision: 0.012552301255230125
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.005701754385964913 , Recall: 0.0031847133757961785 , Precision: 0.027196652719665274
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.864475579416001 , Recall: 0.8086722195002449 , Precision: 0.9285513361462728
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.864475579416001 , Recall: 0.8086722195002449 , Precision: 0.9285513361462728
+	###[k-mcd][ drop_features01 ] Test. F1: 0.8926736955934037 , Recall: 0.8091154128889978 , Precision: 0.9954778414229726
+## Sample File:  /opt/data/pkl/capture20110812.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.00038159746237687524 , Recall: 0.0005965252404742375 , Precision: 0.0002805245809664072
+	###[k-mcd] Cross-Validation. Contamination: 0.04 ,F1: 0.45003695204014166 , Recall: 0.8627246290358661 , Precision: 0.30441760728286893
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.04 , F1: 0.45003695204014166 , Recall: 0.8627246290358661 , Precision: 0.30441760728286893
+	###[k-mcd][ drop_features01 ] Test. F1: 0.4928720073127565 , Recall: 0.9448918717375093 , Precision: 0.3333859552187755
+## Sample File:  /opt/data/pkl/capture20110815-3.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0005005840146837977 , Recall: 0.0002999850007499625 , Precision: 0.0015109544195416771
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.007154099298898269 , Recall: 0.004999750012499375 , Precision: 0.01257071024512885
+	###[k-mcd] Cross-Validation. Contamination: 0.04 ,F1: 0.03717637878661204 , Recall: 0.03334833258337083 , Precision: 0.041997229568064474
+	###[k-mcd] Cross-Validation. Contamination: 0.060000000000000005 ,F1: 0.2757456130342514 , Recall: 0.30208489575521225 , Precision: 0.25363109730501215
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.2757456130342514 , Recall: 0.30208489575521225 , Precision: 0.25363109730501215
+	###[k-mcd][ drop_features01 ] Test. F1: 0.7465486160235493 , Recall: 0.8178591070446478 , Precision: 0.6866761816807992
+## Sample File:  /opt/data/pkl/capture20110811.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.21681978798586568 , Recall: 0.14651384909264564 , Precision: 0.41684782608695653
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.633438720476102 , Recall: 0.6506208213944603 , Precision: 0.6171407863743432
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.633438720476102 , Recall: 0.6506208213944603 , Precision: 0.6171407863743432
+	###[k-mcd][ drop_features01 ] Test. F1: 0.5134833550306863 , Recall: 0.5274116523400191 , Precision: 0.5002717883674579
+## Sample File:  /opt/data/pkl/capture20110815.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.0022388059701492534 , Recall: 0.0069767441860465115 , Precision: 0.0013333333333333333
+	###[k-mcd] Cross-Validation. Contamination: 0.08 ,F1: 0.0068432785525429 , Recall: 0.05116279069767442 , Precision: 0.0036668703816878714
+	###[k-mcd] Cross-Validation. Contamination: 0.09 ,F1: 0.008449788755281117 , Recall: 0.07054263565891473 , Precision: 0.004494049088843893
+	###[k-mcd] Cross-Validation. Contamination: 0.09999999999999999 ,F1: 0.010424986338223549 , Recall: 0.09612403100775194 , Precision: 0.005511356060269345
+	###[k-mcd] Cross-Validation. Contamination: 0.11 ,F1: 0.03694458312531203 , Recall: 0.37286821705426354 , Precision: 0.019435128692068367
+	###[k-mcd] Cross-Validation. Contamination: 0.12 ,F1: 0.0390257697338188 , Recall: 0.42790697674418604 , Precision: 0.02044520167413608
+	###[k-mcd] Cross-Validation. Contamination: 0.13 ,F1: 0.08035626575853826 , Recall: 0.9511627906976744 , Precision: 0.04195015214195357
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.13 , F1: 0.08035626575853826 , Recall: 0.9511627906976744 , Precision: 0.04195015214195357
+	###[k-mcd][ drop_features01 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /opt/data/pkl/capture20110816.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0017406440382941688 , Recall: 0.0012958963282937365 , Precision: 0.00265017667844523
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.0017471063550993664 , Recall: 0.0017278617710583153 , Precision: 0.0017667844522968198
+	###[k-mcd] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.0025395585075210004 , Recall: 0.005615550755939525 , Precision: 0.0016407926290546511
+	###[k-mcd] Cross-Validation. Contamination: 0.11 ,F1: 0.11067461392576536 , Recall: 0.35291576673866093 , Precision: 0.06562776126596513
+	###[k-mcd] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.2289150381006687 , Recall: 0.95377969762419 , Precision: 0.13006597549481622
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.15000000000000002 , F1: 0.2289150381006687 , Recall: 0.95377969762419 , Precision: 0.13006597549481622
+	###[k-mcd][ drop_features01 ] Test. F1: 0.2288639536687523 , Recall: 0.956352636127917 , Precision: 0.12998531571218797
+## Sample File:  /opt/data/pkl/capture20110817.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.2534011117612639 , Recall: 0.14982755451763918 , Precision: 0.8208256826393413
+	###[k-mcd] Cross-Validation. Contamination: 0.05 ,F1: 0.2797701411385502 , Recall: 0.1858086557901679 , Precision: 0.5659805697348922
+	###[k-mcd] Cross-Validation. Contamination: 0.08 ,F1: 0.3831416448635418 , Recall: 0.2699447525758706 , Precision: 0.6598308668076109
+	###[k-mcd] Cross-Validation. Contamination: 0.11 ,F1: 0.38962656462985135 , Recall: 0.30440141416107164 , Precision: 0.5411301172400538
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.11 , F1: 0.38962656462985135 , Recall: 0.30440141416107164 , Precision: 0.5411301172400538
+	###[k-mcd][ drop_features01 ] Test. F1: 0.3104280979498073 , Recall: 0.24252646146194848 , Precision: 0.4311358831443398
+## Sample File:  /opt/data/pkl/capture20110815-2.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.24000000000000002 , Recall: 0.26 , Precision: 0.22285714285714286
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.02 , F1: 0.24000000000000002 , Recall: 0.26 , Precision: 0.22285714285714286
+	###[k-mcd][ drop_features01 ] Test. F1: 0.12923076923076923 , Recall: 0.14 , Precision: 0.12
+## Sample File:  /opt/data/pkl/capture20110818.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.007769758531586921 , Recall: 0.004099593801715059 , Precision: 0.07417488941816945
+	###[k-mcd] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.8508677842133758 , Recall: 0.7831916654129683 , Precision: 0.9313460205291053
+	###[k-mcd] Cross-Validation. Contamination: 0.08 ,F1: 0.8572604798122743 , Recall: 0.7831916654129683 , Precision: 0.9468024643644714
+	###[k-mcd] Cross-Validation. Contamination: 0.13 ,F1: 0.9107691052432967 , Recall: 0.8396645103054009 , Precision: 0.9950304191830277
+	###[k-mcd] Cross-Validation. Contamination: 0.17 ,F1: 0.9603640236228095 , Recall: 0.93271400631864 , Precision: 0.98970347607455
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.17 , F1: 0.9603640236228095 , Recall: 0.93271400631864 , Precision: 0.98970347607455
+	###[k-mcd][ drop_features01 ] Test. F1: 0.9572103469640645 , Recall: 0.9297226140103432 , Precision: 0.9863729773947049
+###[k-mcd][ drop_features01 ] Test Full. F1: 0.4133965327104724 , Recall: 0.5428892686875956 , Precision: 0.33378130253959826
 ================================================================================================================================================================================================================================
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.004676174888940846 , Recall: 0.002449779519843214 , Precision: 0.05128205128205128
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.10097087378640777 , Recall: 0.05732484076433121 , Precision: 0.4231464737793852
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.09999999999999999 ,F1: 0.10462439840970915 , Recall: 0.06124448799608035 , Precision: 0.3586800573888092
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.12 ,F1: 0.10730486469576099 , Recall: 0.08402743753062224 , Precision: 0.14842059714409347
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.7487793643482266 , Recall: 0.9955903968642822 , Precision: 0.6000295290122546
-###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.16 ,F1: 0.7487793643482266 , Recall: 0.9955903968642822 , Precision: 0.6000295290122546
---
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.01627906976744186 , Recall: 0.00857422831945125 , Precision: 0.16055045871559634
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.03792949576082106 , Recall: 0.02082312591866732 , Precision: 0.2125
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.0696982575435614 , Recall: 0.04017638412542871 , Precision: 0.26282051282051283
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.04 ,F1: 0.07905477980665951 , Recall: 0.04507594316511514 , Precision: 0.32111692844677137
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.09706853038245 , Recall: 0.06124448799608035 , Precision: 0.23386342376052385
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.060000000000000005 ,F1: 0.10037328909166321 , Recall: 0.059284664380205784 , Precision: 0.327027027027027
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.09999999999999999 ,F1: 0.11457286432160804 , Recall: 0.08378245957863792 , Precision: 0.18114406779661016
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18000000000000002 ,F1: 0.7225531158325185 , Recall: 0.9955903968642822 , Precision: 0.5670433933305428
---
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.01 ,F1: 0.010576923076923078 , Recall: 0.005417384880571288 , Precision: 0.2222222222222222
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.02 ,F1: 0.04923362749651648 , Recall: 0.02610194533366166 , Precision: 0.4326530612244898
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.03 ,F1: 0.10342541436464088 , Recall: 0.057621275547894604 , Precision: 0.5043103448275862
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.05 ,F1: 0.10508617065994116 , Recall: 0.061561191824673726 , Precision: 0.3586800573888092
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.10921799912625602 , Recall: 0.061561191824673726 , Precision: 0.4835589941972921
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.12201686703750224 , Recall: 0.08372322088155627 , Precision: 0.22486772486772486
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.16 ,F1: 0.8238158028197586 , Recall: 1.0 , Precision: 0.7004139358399448
---
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.7788911155644622 , Recall: 1.0 , Precision: 0.637855579868709
-###[skew1][ drop_features04 ] Test. F1: 0.8494466485696388 , Recall: 0.9968145062484686 , Precision: 0.7400400218300891
-###[skew2][ drop_features04 ] Test. F1: 0.8494466485696388 , Recall: 0.9968145062484686 , Precision: 0.7400400218300891
-###[kurt1][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
-###[kurt2][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
-###[moment2][ drop_features04 ] Test. F1: 0.6990426457789383 , Recall: 0.9840725312423426 , Precision: 0.542043460655959
-###[moment3][ drop_features04 ] Test. F1: 0.3033147113594041 , Recall: 0.9977946581720166 , Precision: 0.17883965040186217
-###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.0001340752161962861 , Recall: 0.000326477309826967 , Precision: 8.435970980259827e-05
+	###[k-mcd] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.10121883037012189 , Recall: 0.7388181521384264 , Precision: 0.05433112455584366
+	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.06999999999999999 , F1: 0.10121883037012189 , Recall: 0.7388181521384264 , Precision: 0.05433112455584366
+	###[k-mcd][ drop_features02 ] Test. F1: 0.10908602992150637 , Recall: 0.7962781586679726 , Precision: 0.058553800355308015
+## Sample File:  /opt/data/pkl/capture20110810.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.01957827340794243 , Recall: 0.01806640625 , Precision: 0.021366287463186463
+	###[k-mcd] Cross-Validation. Contamination: 0.05 ,F1: 0.061810959792477305 , Recall: 0.074462890625 , Precision: 0.0528339800443459
+	###[k-mcd] Cross-Validation. Contamination: 0.060000000000000005 ,F1: 0.2231778346306679 , Recall: 0.30029296875 , Precision: 0.17757630006063582
+	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.2231778346306679 , Recall: 0.30029296875 , Precision: 0.17757630006063582
+	###[k-mcd][ drop_features02 ] Test. F1: 0.23674995010251668 , Recall: 0.3185546875 , Precision: 0.18837524903993302
+## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.004098360655737704 , Recall: 0.03225806451612903 , Precision: 0.002188183807439825
+	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.02 , F1: 0.004098360655737704 , Recall: 0.03225806451612903 , Precision: 0.002188183807439825
+	###[k-mcd][ drop_features02 ] Test. F1: 0.004098360655737704 , Recall: 0.03225806451612903 , Precision: 0.002188183807439825
+## Sample File:  /opt/data/pkl/capture20110819.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.034443168771526984 , Recall: 0.027675276752767528 , Precision: 0.04559270516717325
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.050854522717799076 , Recall: 0.05627306273062731 , Precision: 0.04638783269961977
+	###[k-mcd] Cross-Validation. Contamination: 0.04 ,F1: 0.06839872746553553 , Recall: 0.11900369003690037 , Precision: 0.04799107142857143
+	###[k-mcd] Cross-Validation. Contamination: 0.06999999999999999 ,F1: 0.07420432565500264 , Recall: 0.19464944649446494 , Precision: 0.04583966978057789
+	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.06999999999999999 , F1: 0.07420432565500264 , Recall: 0.19464944649446494 , Precision: 0.04583966978057789
+	###[k-mcd][ drop_features02 ] Test. F1: 0.10026385224274405 , Recall: 0.2631578947368421 , Precision: 0.06192959582790091
+## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 0.011571395510298541 , Recall: 0.006124448799608035 , Precision: 0.10460251046025104
+	###[k-mcd] Cross-Validation. Contamination: 0.04 ,F1: 0.8541029392206411 , Recall: 0.7866242038216561 , Precision: 0.9342449810881582
+	###[k-mcd] Cross-Validation. Contamination: 0.15000000000000002 ,F1: 0.8584844137211427 , Recall: 0.8062224399804018 , Precision: 0.9179916317991632
+	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.15000000000000002 , F1: 0.8584844137211427 , Recall: 0.8062224399804018 , Precision: 0.9179916317991632
+	###[k-mcd][ drop_features02 ] Test. F1: 0.8568090354407373 , Recall: 0.8086253369272237 , Precision: 0.9110988404196576
+## Sample File:  /opt/data/pkl/capture20110812.binetflow
+	###[k-mcd] Cross-Validation. Contamination: 0.01 ,F1: 8.728669314363024e-05 , Recall: 7.456565505927969e-05 , Precision: 0.00010524100189433803
+	###[k-mcd] Cross-Validation. Contamination: 0.02 ,F1: 0.0034551904982261295 , Recall: 0.004175676683319663 , Precision: 0.002946748053041465
+	###[k-mcd] Cross-Validation. Contamination: 0.03 ,F1: 0.4155831762769282 , Recall: 0.6494668555663261 , Precision: 0.3055497088332281
+
 ================================================================================================================================================================================================================================
--- treino com dado normal e ataque, mas sem usar o best_contamination
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.08272028772273991 , Recall: 0.06197942185203332 , Precision: 0.12432432432432433
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.7224888888888888 , Recall: 0.9955903968642822 , Precision: 0.5669642857142857
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.11863224005582693 , Recall: 0.08372322088155627 , Precision: 0.20347097546379414
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.11598302687411598 , Recall: 0.09041901494731683 , Precision: 0.16170026292725678
-###[skew1][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
-###[skew2][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
-###[kurt1][ drop_features04 ] Test. F1: 0.9734048896839596 , Recall: 1.0 , Precision: 0.9481877323420075
-###[kurt2][ drop_features04 ] Test. F1: 0.9734048896839596 , Recall: 1.0 , Precision: 0.9481877323420075
-###[moment2][ drop_features04 ] Test. F1: 0.5714534377719757 , Recall: 0.8044596912521441 , Precision: 0.44310973140774734
-###[moment3][ drop_features04 ] Test. F1: 0.3025417086552458 , Recall: 0.9931389365351629 , Precision: 0.1784519196900317
-###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+
 ================================================================================================================================================================================================================================
--- treino com dado normal apenas, mas sem usar o best_contamination 
-###[EllipticEnvelope][ drop_features04 ] Cross-Validation. Contamination: 0.18 ,F1: 0.721014814157722 , Recall: 0.9955903968642822 , Precision: 0.5651508830482548
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.7492197539930238 , Recall: 1.0 , Precision: 0.5990019081168355
-###[skew1][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
-###[skew2][ drop_features04 ] Test. F1: 0.8521612027563165 , Recall: 1.0 , Precision: 0.7424049481535383
-###[kurt1][ drop_features04 ] Test. F1: 0.9736371227484194 , Recall: 1.0 , Precision: 0.9486285448628545
-###[kurt2][ drop_features04 ] Test. F1: 0.9736371227484194 , Recall: 1.0 , Precision: 0.9486285448628545
-###[moment2][ drop_features04 ] Test. F1: 0.06422976501305483 , Recall: 0.09041901494731683 , Precision: 0.0498042920772034
-###[moment3][ drop_features04 ] Test. F1: 0.30330732069862504 , Recall: 1.0 , Precision: 0.17876385299399886
-###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-================================================================================================================================================================================================================================
--- again
-###[EllipticEnvelope] Cross-Validation. Contamination: 0.18 ,F1: 0.7240334936753965 , Recall: 0.9955903968642822 , Precision: 0.568868980963046
-###[EllipticEnvelope][ drop_features04 ] Test. F1: 0.750459727841118 , Recall: 1.0 , Precision: 0.6005886681383373
-###[skew1][ drop_features04 ] Test. F1: 0.8492378367091251 , Recall: 0.9965694682675815 , Precision: 0.7398581044205931
-###[skew2][ drop_features04 ] Test. F1: 0.8492378367091251 , Recall: 0.9965694682675815 , Precision: 0.7398581044205931
-###[kurt1][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
-###[kurt2][ drop_features04 ] Test. F1: 0.9502564714302755 , Recall: 0.9759862778730704 , Precision: 0.9258484425848442
-###[moment2][ drop_features04 ] Test. F1: 0.6917319408181027 , Recall: 0.973780936045087 , Precision: 0.5363746794439196
-###[moment3][ drop_features04 ] Test. F1: 0.3016019830552369 , Recall: 0.9987748100955648 , Precision: 0.17761896461565277
-###[moment4][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment5][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
-###[moment6][ drop_features04 ] Test. F1: 0.29171878909181886 , Recall: 1.0 , Precision: 0.1707674282366725
+
 ================================================================================================================================================================================================================================
