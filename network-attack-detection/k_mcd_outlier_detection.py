@@ -16,9 +16,9 @@ import numpy as np
 import scipy as sp
 from scipy import linalg
 from scipy.stats import skew,kurtosis
-from robust_moments import MMinCovDet
 from sklearn.utils.validation import check_is_fitted, check_array
 from sklearn.metrics import accuracy_score, pairwise_distances
+from k_mcd_robust_moments import MMinCovDet
 
 
 class MEllipticEnvelope(MMinCovDet):

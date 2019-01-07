@@ -5,7 +5,7 @@ import numpy as np
 from functools import reduce
 from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
-from outlier_detection import MEllipticEnvelope
+from k_mcd_outlier_detection import MEllipticEnvelope
 warnings.filterwarnings("ignore")
 
 
