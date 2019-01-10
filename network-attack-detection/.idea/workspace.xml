@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../eigensim/src/test/matlab/eigensimCTU13Test.m" afterPath="$PROJECT_DIR$/../eigensim/src/test/matlab/eigensimCTU13Test.m" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-k-mcd.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" afterPath="$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-EllipticEnvelope.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-EllipticEnvelope.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,32 +16,7 @@
     <favorites_list name="network-attack-detection" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="botnet-detection-EllipticEnvelope.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3636">
-              <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="43" />
-              <folding>
-                <element signature="e#15#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="botnet-detection-k-mcd.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="203" column="27" lean-forward="true" selection-start-line="203" selection-start-column="27" selection-end-line="203" selection-end-column="27" />
-              <folding>
-                <element signature="e#15#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -330,7 +300,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2272" y="151" width="1875" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -643,16 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3636">
-          <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="43" />
-          <folding>
-            <element signature="e#15#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
@@ -672,7 +631,17 @@
         <state relative-caret-position="662">
           <caret line="203" column="27" lean-forward="true" selection-start-line="203" selection-start-column="27" selection-end-line="203" selection-end-column="27" />
           <folding>
-            <element signature="e#15#49#0" expanded="true" />
+            <element signature="e#15#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="43" />
+          <folding>
+            <element signature="e#15#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
