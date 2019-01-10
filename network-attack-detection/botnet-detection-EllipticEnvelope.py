@@ -1,9 +1,7 @@
 # coding=utf-8
-import os, sys, gc, ipaddress, time, warnings
+import os, gc, time, warnings
 import pandas as pd
 import numpy as np
-from functools import reduce
-from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
 from sklearn.covariance import EllipticEnvelope
 warnings.filterwarnings("ignore")
@@ -80,8 +78,6 @@ def getBestByCV(cv, t_cv_label):
 
     # prepare data
     m_cv_label = t_cv_label.astype(np.int8)
-    m_cv_label[m_cv_label == 1] = -1
-    m_cv_label[m_cv_label == 0] = 1
 
     # initialize
     m_best_contamination = 0
@@ -94,6 +90,8 @@ def getBestByCV(cv, t_cv_label):
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(cv, m_cv_label)
         m_pred = m_ell_model.predict(cv)
+        m_pred[m_pred == 1] = 0
+        m_pred[m_pred == -1] = 1
 
         m_f1 = f1_score(m_cv_label, m_pred, average="binary")
         m_recall = recall_score(m_cv_label, m_pred, average="binary")
@@ -112,21 +110,20 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
 
     # prepare data
     m_cv_label = t_cv_label.astype(np.int8)
-    m_cv_label[m_cv_label == 1] = -1
-    m_cv_label[m_cv_label == 0] = 1
 
     # initialize
     m_best_model = EllipticEnvelope()
-    m_best_contamination = 0
-    m_best_f1 = 0
-    m_best_precision = 0
-    m_best_recall = 0
+    m_best_contamination = -1
+    m_best_f1 = -1
+    m_best_precision = -1
+    m_best_recall = -1
 
     for m_contamination in np.linspace(0.01, 0.1, 15):
-        # configure GridSearchCV
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(t_normal)
         m_pred = m_ell_model.predict(cv)
+        m_pred[m_pred == -1] = 1
+        m_pred[m_pred == 1] = 0
 
         m_f1 = f1_score(m_cv_label, m_pred, average="binary")
         m_recall = recall_score(m_cv_label, m_pred, average="binary")
@@ -168,10 +165,10 @@ drop_features = {
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -207,9 +204,9 @@ for features_key, value in drop_features.items():
 
         # Test
         test_label = test_label.astype(np.int8)
-        test_label[test_label == 1] = -1
-        test_label[test_label == 0] = 1
         pred_test_label = ell_model.predict(test_df)
+        pred_test_label[pred_test_label == -1] = 1
+        pred_test_label[pred_test_label == 1] = 0
 
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)

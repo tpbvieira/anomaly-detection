@@ -177,3 +177,162 @@
 ###[EllipticEnvelope][ drop_features03 ] Test. F1: 0.9915887707019079 , Recall: 0.9991184658212187 , Precision: 0.9841717193260413
 ###[EllipticEnvelope][ drop_features03 ] Test Full. F1: 0.973202680725646 , Recall: 0.9902866940713098 , Precision: 0.956698123403164
 --- 82053.19839477539 seconds ---
+================================================================================================================================================================================================================================
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9798060581825453 , Recall: 0.9958341800447064 , Precision: 0.9642857142857143
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.977452650566189 , Recall: 0.9910587279008332 , Precision: 0.9642151047844998
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9867676914153133 , Recall: 0.9989173715984366 , Precision: 0.9749100091334014
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9843493110245161 , Recall: 0.9942383206723182 , Precision: 0.9746550824744122
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9923850137069753 , Recall: 0.9932926829268293 , Precision: 0.9914790018259282
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9920634920634921 , Recall: 0.9908536585365854 , Precision: 0.9932762836185819
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01642857142857143 , F1: 0.6657929226736566 , Recall: 0.996078431372549 , Precision: 0.5
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.6640522875816993 , Recall: 0.9921875 , Precision: 0.49901768172888017
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.03571428571428572 , F1: 0.8522238163558106 , Recall: 0.9818181818181818 , Precision: 0.752851711026616
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8394004282655246 , Recall: 0.9702970297029703 , Precision: 0.7396226415094339
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_19.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.07428571428571429 , F1: 0.8662721893491124 , Recall: 0.961892247043364 , Precision: 0.7879440258342304
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8235294117647058 , Recall: 0.9290407358738502 , Precision: 0.7395397489539749
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.09357142857142857 , F1: 0.5509119237466776 , Recall: 0.944977204842006 , Precision: 0.3887846840437229
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.4891014043249763 , Recall: 0.8923294561458661 , Precision: 0.3368739615475908
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.07428571428571429 , F1: 0.9406603212373587 , Recall: 0.9486077088436734 , Precision: 0.9328449928715402
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9246017609038628 , Recall: 0.9082160621891169 , Precision: 0.9415895721578689
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.04214285714285715 , F1: 0.9577916295636688 , Recall: 0.9976255843288566 , Precision: 0.9210165776133717
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.943994820330204 , Recall: 0.973586585546817 , Precision: 0.9161488514975913
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_10.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.07428571428571429 , F1: 0.6617170626349892 , Recall: 0.9249056603773584 , Precision: 0.5151324085750315
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.6782655973902406 , Recall: 0.9411542814032441 , Precision: 0.530174245643859
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_12.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.9581144364941641 , Recall: 0.9196385789581765 , Precision: 0.9999503808271516
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9235530339314003 , Recall: 0.857964268601547 , Precision: 1.0
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_19.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.8473748473748474 , Recall: 0.980225988700565 , Precision: 0.7462365591397849
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.7792521109770809 , Recall: 0.9124293785310734 , Precision: 0.68
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01642857142857143 , F1: 0.9903279510118494 , Recall: 0.9966260087190427 , Precision: 0.9841089930734443
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9870743700416602 , Recall: 0.9903418050273629 , Precision: 0.9838284246535897
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_18.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02285714285714286 , F1: 0.9730821315720699 , Recall: 0.9754691816709536 , Precision: 0.9707067355548182
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9773611011713066 , Recall: 0.9757549776126513 , Precision: 0.9789725209080048
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_11.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.06785714285714287 , F1: 0.9706890641069592 , Recall: 0.9447781114447781 , Precision: 0.9980613323933732
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9676809351899605 , Recall: 0.9391057724391058 , Precision: 0.9980496453900709
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02285714285714286 , F1: 0.9224991464663708 , Recall: 0.9926524614254225 , Precision: 0.8616071428571429
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9112627986348123 , Recall: 0.9808963997060984 , Precision: 0.8508604206500956
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02928571428571429 , F1: 0.9672131147540983 , Recall: 0.9915966386554622 , Precision: 0.944
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9500000000000001 , Recall: 0.95 , Precision: 0.95
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.09357142857142857 , F1: 0.9322836941468037 , Recall: 0.9749961884433602 , Precision: 0.8931564245810056
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9031923561217687 , Recall: 0.9295624332977588 , Precision: 0.8782771535580525
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9648721679484514 , Recall: 0.9879118072699412 , Precision: 0.9428826779330517
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9655000622742558 , Recall: 0.9897854954034729 , Precision: 0.9423778264040846
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.06785714285714287 , F1: 0.9095279244214334 , Recall: 0.9495261921006747 , Precision: 0.8727632532471152
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.865069157535477 , Recall: 0.9126993753411365 , Precision: 0.822163646048157
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_17.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.7573913043478261 , Recall: 0.9340482573726542 , Precision: 0.636928702010969
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9481522338665195 , Recall: 0.9217158176943699 , Precision: 0.9761499148211243
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_17.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.717758396734088 , Recall: 0.9376969696969697 , Precision: 0.5813918532992635
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8096647985619118 , Recall: 0.9281212121212121 , Precision: 0.7180232558139535
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_11.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.77002997002997 , Recall: 0.9506660088801184 , Precision: 0.6470785762256548
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.7434900893898173 , Recall: 0.943759250123335 , Precision: 0.6133376082077588
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_12.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9590235726302921 , Recall: 0.9951158913334859 , Precision: 0.9254577184309576
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9600324801012171 , Recall: 0.9972016084213279 , Precision: 0.9255346263077409
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_12.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.09357142857142857 , F1: 0.8588851748125396 , Recall: 0.9126427954305463 , Precision: 0.8111082672126951
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.46293597891799715 , Recall: 0.3583393328533717 , Precision: 0.6537653239929947
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01642857142857143 , F1: 0.9723885562208915 , Recall: 0.992024435771254 , Precision: 0.9535149241559289
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9674356625301908 , Recall: 0.985408890397014 , Precision: 0.9501063307704891
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.863038064745642 , Recall: 0.9099774943735934 , Precision: 0.8207036535859269
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.87248322147651 , Recall: 0.9264816204051013 , Precision: 0.8244325767690254
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_18.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02285714285714286 , F1: 0.9684267617092164 , Recall: 0.9836310694892579 , Precision: 0.9536853349610865
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9734125742883953 , Recall: 0.979617533642874 , Precision: 0.967285725386588
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_19.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.05500000000000001 , F1: 0.9569194452640897 , Recall: 0.9744591346153846 , Precision: 0.94
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9395143487858719 , Recall: 0.9588465004505857 , Precision: 0.9209463358338142
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_10.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.49080072557657417 , Recall: 0.9311701081612586 , Precision: 0.3332160450387051
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.48460373548712776 , Recall: 0.943952802359882 , Precision: 0.32597623089983024
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15-3.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.1781143901802037 , Recall: 0.9669187145557656 , Precision: 0.09809185923866143
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.1490917313635336 , Recall: 0.9347826086956522 , Precision: 0.08100581538209517
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9741730856366108 , Recall: 0.9857863365428703 , Precision: 0.9628302731751007
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9776762172613817 , Recall: 0.9916963830871116 , Precision: 0.9640469469618185
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02928571428571429 , F1: 0.915225500169549 , Recall: 0.9666905444126075 , Precision: 0.8689632968448164
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9089085742938324 , Recall: 0.9738538681948424 , Precision: 0.8520839862112191
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_18-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.8987341772151898 , Recall: 0.9466666666666667 , Precision: 0.8554216867469879
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8689655172413793 , Recall: 0.84 , Precision: 0.9
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_10.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.8848700199453599 , Recall: 0.9924057295387044 , Precision: 0.7983607548995887
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8851145166158076 , Recall: 0.992330538742058 , Precision: 0.7988076143207335
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_11.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08714285714285715 , F1: 0.587162932016711 , Recall: 0.9415347137637028 , Precision: 0.42660044150110377
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.5610370903853079 , Recall: 0.9488428745432399 , Precision: 0.39826175869120656
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_10.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.8281483118748963 , Recall: 0.9926480328520334 , Precision: 0.7104190367842245
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8294783328733094 , Recall: 0.9952311564445622 , Precision: 0.7110543251940186
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_17.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.05500000000000001 , F1: 0.7987161852361302 , Recall: 0.9656319290465631 , Precision: 0.6810007818608288
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9826912339475153 , Recall: 0.975609756097561 , Precision: 0.9898762654668166
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_18.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9318734793187347 , Recall: 0.9864777849323889 , Precision: 0.8829971181556195
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9507282305546947 , Recall: 0.9877656149388281 , Precision: 0.9163679808841099
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_18.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9532882606023355 , Recall: 0.986013986013986 , Precision: 0.9226650803093397
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9653349914503342 , Recall: 0.9869675778766688 , Precision: 0.9446303620322483
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9898785425101214 , Recall: 0.9928934010152284 , Precision: 0.9868819374369324
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9898580121703854 , Recall: 0.9908629441624366 , Precision: 0.9888551165146909
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_19.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9567447426910584 , Recall: 0.995906744972415 , Precision: 0.9205461424576411
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9551676933607118 , Recall: 0.993415198433885 , Precision: 0.9197561377492174
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.871986417657046 , Recall: 0.9968944099378882 , Precision: 0.7748943874471937
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8721600542556799 , Recall: 0.9984472049689441 , Precision: 0.7742323901264299
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_12.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9684722877871939 , Recall: 0.994643395089622 , Precision: 0.9436431027553254
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9687225809998785 , Recall: 0.9952082391926494 , Precision: 0.943610113136813
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.08071428571428572 , F1: 0.47091412742382266 , Recall: 0.8947368421052632 , Precision: 0.31954887218045114
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.44680851063829785 , Recall: 0.875 , Precision: 0.3
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_11.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.05500000000000001 , F1: 0.9024256292906178 , Recall: 0.9536660862836138 , Precision: 0.856410701876303
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.8851533082302312 , Recall: 0.9549279427410775 , Precision: 0.8248809424346227
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_18-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.05500000000000001 , F1: 0.9296636085626913 , Recall: 0.987012987012987 , Precision: 0.8786127167630058
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9320388349514563 , Recall: 0.935064935064935 , Precision: 0.9290322580645162
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_18-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.04214285714285715 , F1: 0.9542280837858805 , Recall: 0.9624413145539906 , Precision: 0.9461538461538461
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9627228525121556 , Recall: 0.9295774647887324 , Precision: 0.9983193277310924
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01642857142857143 , F1: 0.9776876267748479 , Recall: 0.9958677685950413 , Precision: 0.9601593625498008
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9714285714285714 , Recall: 0.9794238683127572 , Precision: 0.9635627530364372
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_18-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.02285714285714286 , F1: 0.924198250728863 , Recall: 0.8838289962825279 , Precision: 0.9684317718940937
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9162067235323632 , Recall: 0.8485130111524164 , Precision: 0.9956379498364231
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15-2.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.9150435142975549 , Recall: 0.9932523616734144 , Precision: 0.8482520169035728
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.9157872956755637 , Recall: 0.9955015744489428 , Precision: 0.8478927203065134
+## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_17.pk1
+###[EllipticEnvelope][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.585007094749885 , Recall: 0.9918005014569357 , Precision: 0.4148526077097506
+###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.6062052505966588 , Recall: 0.9896327415638976 , Precision: 0.43692224848176625
+###[EllipticEnvelope][ drop_features00 ] Test Full. F1: 0.9165489644640186 , Recall: 0.9581687557388598 , Precision: 0.878394319956332
+--- 8864.958969593048 seconds ---

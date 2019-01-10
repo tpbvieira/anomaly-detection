@@ -1,19 +1,74 @@
 # coding=utf-8
-import os,sys, gc, ipaddress, time, warnings
+import os, sys, gc, time, warnings
 import pandas as pd
 import numpy as np
-from functools import reduce
 from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
 from k_mcd_outlier_detection import MEllipticEnvelope
 warnings.filterwarnings("ignore")
 
 
-def print_classification_report(y_test, y_predic):
-    m_f1 = f1_score(y_test, y_predic, average="binary")
-    m_recall = recall_score(y_test, y_predic, average="binary")
-    m_precision = precision_score(y_test, y_predic, average="binary")
-    print('\tF1 Score: ', m_f1, ', Recall: ', m_recall, ', Precision: ,', m_precision)
+def data_cleasing(m_df):
+    # data cleasing, feature engineering and save clean data into pickles
+
+    print('### Data Cleasing and Feature Engineering')
+    le = preprocessing.LabelEncoder()
+
+    # [Protocol] - Discard ipv6-icmp and categorize
+    m_df = m_df[m_df.Proto != 'ipv6-icmp']
+    m_df['Proto'] = m_df['Proto'].fillna('-')
+    m_df['Proto'] = le.fit_transform(m_df['Proto'])
+
+    # [Label] - Categorize
+    anomalies = m_df.Label.str.contains('Botnet')
+    normal = np.invert(anomalies)
+    m_df.loc[anomalies, 'Label'] = np.uint8(1)
+    m_df.loc[normal, 'Label'] = np.uint8(0)
+    m_df['Label'] = pd.to_numeric(m_df['Label'])
+
+    # [Dport] - replace NaN with 0 port number
+    m_df['Dport'] = m_df['Dport'].fillna('0')
+    m_df['Dport'] = m_df['Dport'].apply(lambda x: int(x, 0))
+
+    # [sport] - replace NaN with 0 port number
+    try:
+        m_df['Sport'] = m_df['Sport'].fillna('0')
+        m_df['Sport'] = m_df['Sport'].str.replace('.*x+.*', '0')
+        m_df['Sport'] = m_df['Sport'].apply(lambda x: int(x, 0))
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+
+    # [sTos] - replace NaN with "10" and convert to int
+    m_df['sTos'] = m_df['sTos'].fillna('10')
+    m_df['sTos'] = m_df['sTos'].astype(int)
+
+    # [dTos] - replace NaN with "10" and convert to int
+    m_df['dTos'] = m_df['dTos'].fillna('10')
+    m_df['dTos'] = m_df['dTos'].astype(int)
+
+    # [State] - replace NaN with "-" and categorize
+    m_df['State'] = m_df['State'].fillna('-')
+    m_df['State'] = le.fit_transform(m_df['State'])
+
+    # [Dir] - replace NaN with "-" and categorize
+    m_df['Dir'] = m_df['Dir'].fillna('-')
+    m_df['Dir'] = le.fit_transform(m_df['Dir'])
+
+    # [SrcAddr] Extract subnet features and categorize
+    m_df['SrcAddr'] = m_df['SrcAddr'].fillna('0.0.0.0')
+
+    # [DstAddr] Extract subnet features
+    m_df['DstAddr'] = m_df['DstAddr'].fillna('0.0.0.0')
+
+    # [StartTime] - Parse to datatime, reindex based on StartTime, but first drop the ns off the time stamps
+    m_df['StartTime'] = m_df['StartTime'].apply(lambda x: x[:19])
+    m_df['StartTime'] = pd.to_datetime(m_df['StartTime'])
+
+    m_df = m_df.set_index('StartTime')
+
+    gc.collect()
+
+    return m_df
 
 
 def get_classification_report(y_test, y_predic):
@@ -76,39 +131,6 @@ def data_splitting(m_df, drop_feature):
     return m_normal_train_df, m_cv_df, m_test_df, m_cv_label, m_test_label
 
 
-def getBestBySemiSupervCV(t_normal_df, t_cv_df, t_cv_label):
-    m_cv_label = t_cv_label.astype(np.int8)
-
-    # initialize
-    m_best_model = MEllipticEnvelope()
-    m_best_contamination = -1
-    m_best_f1 = -1
-    m_best_precision = -1
-    m_best_recall = -1
-
-    # configure GridSearchCV
-    for m_contamination in np.linspace(0.01, 0.2, 2):
-        m_ell_model = MEllipticEnvelope(contamination=m_contamination)
-        m_ell_model.fit(t_normal_df)
-        m_pred = m_ell_model.predict(t_cv_df)
-        m_pred[m_pred == 1] = 0
-        m_pred[m_pred == -1] = 1
-
-        m_f1 = f1_score(m_cv_label, m_pred, average="binary")
-        m_recall = recall_score(m_cv_label, m_pred, average="binary")
-        m_precision = precision_score(m_cv_label, m_pred, average="binary")
-
-        if m_f1 > m_best_f1:
-            m_best_model = m_ell_model
-            m_best_contamination = m_contamination
-            m_best_f1 = m_f1
-            m_best_precision = m_precision
-            m_best_recall = m_recall
-            # print('###[EllipticEnvelope] Cross-Validation. Contamination:', m_contamination, ',F1:', m_f1, ', Recall:', m_recall, ', Precision:', m_precision)
-
-    return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
-
-
 def getBestBySemiSupervKurtosisCV(t_normal_df, t_cv_df, t_cv_label):
     m_cv_label = t_cv_label.astype(np.int8)
 
@@ -120,7 +142,7 @@ def getBestBySemiSupervKurtosisCV(t_normal_df, t_cv_df, t_cv_label):
     m_best_recall = -1
 
     # configure GridSearchCV
-    for m_contamination in np.linspace(0.01, 0.2, 2):
+    for m_contamination in np.linspace(0.01, 0.2, 20):
         m_ell_model = MEllipticEnvelope(contamination=m_contamination)
         m_ell_model.fit(t_normal_df)
         m_pred = m_ell_model.kurtosis_prediction(t_cv_df)
@@ -135,59 +157,8 @@ def getBestBySemiSupervKurtosisCV(t_normal_df, t_cv_df, t_cv_label):
             m_best_f1 = m_f1
             m_best_precision = m_precision
             m_best_recall = m_recall
-            # print('###[EllipticEnvelope] Cross-Validation. Contamination:', m_contamination, ',F1:', m_f1, ', Recall:', m_recall, ', Precision:', m_precision)
+            print('###[k-mcd] Cross-Validation. Contamination:', m_contamination, ',F1:', m_f1, ', Recall:', m_recall, ', Precision:', m_precision)
 
-    return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
-
-
-def getBestBySupervCV(t_normal_df, t_cv_df, t_cv_label):
-    m_normal_train_df = t_normal_df.copy()
-    m_cv_df = t_cv_df.copy()
-
-    m_normal_train_df['Label'] = 0
-    m_cv_df['Label'] = t_cv_label.astype(np.int8)
-    m_train_df = m_normal_train_df.append(m_cv_df)
-    m_train_df = m_train_df.sort_index()
-    gc.collect()
-
-    # Length and indexes
-    m_total_len = len(m_train_df)
-    m_train_end = (m_total_len * 80) // 100
-    m_test_start = m_train_end + 1
-
-    m_train = m_train_df[:m_train_end]
-    m_test = m_train_df[m_test_start:]
-
-    m_test_label = m_test['Label']
-    m_train = m_train.drop(labels=["Label"], axis=1)
-    m_test = m_test.drop(labels=["Label"], axis=1)
-
-    # initialize
-    m_best_model = MEllipticEnvelope()
-    m_best_contamination = -1
-    m_best_f1 = -1
-    m_best_precision = -1
-    m_best_recall = -1
-
-    # configure GridSearchCV
-    for m_contamination in np.linspace(0.01, 0.2, 2):
-        m_ell_model = MEllipticEnvelope(contamination=m_contamination)
-        m_ell_model.fit(m_train)
-        m_pred = m_ell_model.predict(m_test)
-        m_pred[m_pred == 1] = 0
-        m_pred[m_pred == -1] = 1
-
-        m_f1 = f1_score(m_test_label, m_pred, average="binary")
-        m_recall = recall_score(m_test_label, m_pred, average="binary")
-        m_precision = precision_score(m_test_label, m_pred, average="binary")
-
-        if m_f1 > m_best_f1:
-            m_best_model = m_ell_model
-            m_best_contamination = m_contamination
-            m_best_f1 = m_f1
-            m_best_precision = m_precision
-            m_best_recall = m_recall
-            # print('###[EllipticEnvelope] Cross-Validation. Contamination:', m_contamination, ',F1:', m_f1, ', Recall:', m_recall, ', Precision:', m_precision)
     return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
 
@@ -211,16 +182,17 @@ column_types = {
     'Label': 'uint8'}
 
 drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features00': []
+    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
+    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_fast/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -252,19 +224,19 @@ for features_key, value in drop_features.items():
 
         # Cross-Validation and model selection
         ell_model, best_contamination, best_f1, best_precision, best_recall = getBestBySemiSupervKurtosisCV(norm_train_df, cv_df, cv_label)
-        print('###[Kurtosis-MCD][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
+        print('###[k-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
 
         # Test
         pred_test_label = ell_model.kurtosis_prediction(test_df)
 
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-        print('###[Kurtosis-MCD][', features_key, '] Test. F1:', f1,', Recall:', Recall, ', Precision:', Precision)
+        print('###[k-mcd][', features_key, '] Test. F1:', f1,', Recall:', Recall, ', Precision:', Precision)
 
         # save results for total evaluation later
         ee_test_label.extend(test_label)
         ee_pred_test_label.extend(pred_test_label)
 
     f1, Recall, Precision = get_classification_report(ee_test_label, ee_pred_test_label)
-    print('###[Kurtosis-MCD][', features_key, '] Test Full. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+    print('###[k-mcd][', features_key, '] Test Full. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
 print("--- %s seconds ---" % (time.time() - start_time))

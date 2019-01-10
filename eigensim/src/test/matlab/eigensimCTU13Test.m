@@ -37,8 +37,8 @@ addpath('../../main/matlab/mos/');
 addpath('../../main/matlab/rsvd/rsvd');
 addpath('../../main/matlab/rsvd/rSVD-single-pass');
 
-resultsFolder = '/home/thiago/dev/projects/discriminative-sensing/mos-eigen-similarity/src/test/matlab/results/';
-fileFolder = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/csv/';
+resultsFolder = '/home/thiago/dev/projects/discriminative-sensing/eigensim/src/test/matlab/results_agg/';
+fileFolder = '/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/csv/';
 fileList = dir(fileFolder);
 
 for i = 3:size(fileList,1)
@@ -48,25 +48,26 @@ for i = 3:size(fileList,1)
     filePath = strcat(fileFolder,fileName);
     
     % destination
-    resFolder = strcat(resultsFolder,fileName(1:end-4),'/');
+%     resFolder = strcat(resultsFolder,fileName(1:end-4),'/');
+    resFolder = strcat(resultsFolder,'/',fileName);
     
-    disp('### Loading...')
+    disp(filePath)
     X = readtable(filePath);
     % Select data and drop features for features01 set
-    X.SrcAddr = [];
-    X.DstAddr = [];
-    X.sTos = [];
-    X.Proto = [];
+%     X.SrcAddr = [];
+%     X.DstAddr = [];
+%     X.sTos = [];
+%     X.Proto = [];
 
     X = sortrows(X);
     y = X.Label;
     testFile = strcat(resFolder,'y_test.csv');
     if exist(testFile, 'file') ~= 2
-        dlmwrite(testFile,y,'delimiter','\t');
-        fprintf('### Saved: %s\n',testFile)
+%         dlmwrite(testFile,y,'delimiter','\t');
+%         fprintf('### Saved: %s\n',testFile)
     end
     X.Label = [];
-    X.StartTime = [];
+%     X.StartTime = [];
     X = table2array(X);
     X = X';
 
