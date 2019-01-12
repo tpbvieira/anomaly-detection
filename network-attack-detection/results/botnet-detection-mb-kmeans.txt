@@ -214,3 +214,161 @@ normal_cc=======================================================================
 ###[MB-KMeans][ drop_features01 ] Cross-Validation. Clusters: 1 , Batch: 10 , Epslilon: 94 ,F1: 0.008094720309290806 , Recall: 0.788235294117647 , Precision: 0.004068249438338697
 ###[MB-KMeans][ drop_features01 ] Test. F1: 0.006463694575329225 , Recall: 0.6294117647058823 , Precision: 0.0032485275365838847
 --- 17372.92930173874 seconds ---
+================================================================================================================================================================================================================================
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_11.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 10 , Epslilon: 70 ,F1: 0.12905911740216489 , Recall: 0.09348612786489746 , Precision: 0.20833333333333334
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.24989587671803415 , Recall: 0.18105009052504525 , Precision: 0.4032258064516129
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_19.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 30 , Epslilon: 76 ,F1: 0.5908256880733944 , Recall: 0.5513698630136986 , Precision: 0.6363636363636364
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.1911764705882353 , Recall: 0.17869415807560138 , Precision: 0.20553359683794467
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_17.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 10 , Epslilon: 70 ,F1: 0.4177534881795222 , Recall: 0.3025487256371814 , Precision: 0.6746456271730409
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.386236594757981 , Recall: 0.2797169245531966 , Precision: 0.6237795907449512
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_18.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 60 , Epslilon: 88 ,F1: 0.6052173913043478 , Recall: 0.5014409221902018 , Precision: 0.7631578947368421
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.5321739130434783 , Recall: 0.4409221902017291 , Precision: 0.6710526315789473
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_17.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 50 , Epslilon: 70 ,F1: 0.5158823529411765 , Recall: 0.364353967594516 , Precision: 0.8831822759315207
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.5329411764705883 , Recall: 0.3764021603656003 , Precision: 0.9123867069486404
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_17.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 70 ,F1: 0.4979616487996376 , Recall: 0.35355917667238423 , Precision: 0.8417559979581419
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.5354877680459076 , Recall: 0.38022732146686683 , Precision: 0.9050535987748851
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 30 , Epslilon: 70 ,F1: 0.2952650279167573 , Recall: 0.36784101174345074 , Precision: 0.24660852713178294
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.2205249673708126 , Recall: 0.2747365251430292 , Precision: 0.18418184020348016
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_18-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 10 , Epslilon: 70 ,F1: 0.5757575757575758 , Recall: 0.5757575757575758 , Precision: 0.5757575757575758
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.7878787878787878 , Recall: 0.7878787878787878 , Precision: 0.7878787878787878
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 30 , Epslilon: 70 ,F1: 0.5266666666666666 , Recall: 0.37799043062200954 , Precision: 0.8681318681318682
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.46153846153846156 , Recall: 0.3317307692307692 , Precision: 0.7582417582417582
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 80 , Epslilon: 76 ,F1: 0.17891054472763618 , Recall: 0.3784355179704017 , Precision: 0.11714659685863875
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.161 , Recall: 0.3411016949152542 , Precision: 0.10536649214659685
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_19.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 40 , Epslilon: 70 ,F1: 0.5774278215223098 , Recall: 0.5213270142180095 , Precision: 0.6470588235294118
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.2691292875989446 , Recall: 0.24285714285714285 , Precision: 0.30177514792899407
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_17.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 20 , Epslilon: 70 ,F1: 0.41074402363685203 , Recall: 0.3030158918876075 , Precision: 0.6373259981662083
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.35486556901506816 , Recall: 0.26180002377838546 , Precision: 0.5505917652942157
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_10.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 90 , Epslilon: 70 ,F1: 0.40548029556650245 , Recall: 0.30034207525655643 , Precision: 0.6238749407863572
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.440030792917629 , Recall: 0.3259580291970803 , Precision: 0.6769303647560397
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_11.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 70 ,F1: 0.11383442265795207 , Recall: 0.08867204072974119 , Precision: 0.15893536121673005
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.18251157722691366 , Recall: 0.14219015280135824 , Precision: 0.25475285171102663
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_18.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 40 , Epslilon: 84 ,F1: 0.5384615384615385 , Recall: 0.5487804878048781 , Precision: 0.5285234899328859
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.4803418803418803 , Recall: 0.4895470383275261 , Precision: 0.4714765100671141
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 40 , Epslilon: 94 ,F1: 0.12280701754385964 , Recall: 0.5 , Precision: 0.07
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.03539823008849558 , Recall: 0.15384615384615385 , Precision: 0.02
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_19.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 90 , Epslilon: 90 ,F1: 0.5167464114832536 , Recall: 0.4726477024070022 , Precision: 0.5699208443271768
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.1722488038277512 , Recall: 0.1575492341356674 , Precision: 0.18997361477572558
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 30 , Epslilon: 70 ,F1: 0.49029126213592233 , Recall: 0.39147286821705424 , Precision: 0.6558441558441559
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.3737864077669903 , Recall: 0.29844961240310075 , Precision: 0.5
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 60 , Epslilon: 70 ,F1: 0.22568093385214008 , Recall: 0.3210332103321033 , Precision: 0.174
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.1608300907911803 , Recall: 0.22878228782287824 , Precision: 0.124
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 10 , Epslilon: 86 ,F1: 0.3868235294117647 , Recall: 0.388468809073724 , Precision: 0.3851921274601687
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.08564705882352942 , Recall: 0.08601134215500945 , Precision: 0.08528584817244611
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 20 , Epslilon: 70 ,F1: 0.06763816332141875 , Recall: 0.43555240793201133 , Precision: 0.036666070470398854
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.04102282100632389 , Recall: 0.26416430594900847 , Precision: 0.02223812078936386
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 90 , Epslilon: 70 ,F1: 0.30157068062827225 , Recall: 0.3372365339578454 , Precision: 0.2727272727272727
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.26387434554973827 , Recall: 0.29508196721311475 , Precision: 0.23863636363636365
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_18-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 90 , Epslilon: 70 ,F1: 0.5245901639344263 , Recall: 0.5517241379310345 , Precision: 0.5
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.6721311475409836 , Recall: 0.7068965517241379 , Precision: 0.640625
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 20 , Epslilon: 80 ,F1: 0.11487018095987411 , Recall: 0.3054393305439331 , Precision: 0.07073643410852713
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.06926406926406926 , Recall: 0.18448637316561844 , Precision: 0.04263565891472868
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 10 , Epslilon: 94 ,F1: 0.136986301369863 , Recall: 0.38461538461538464 , Precision: 0.08333333333333333
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.027777777777777776 , Recall: 0.08333333333333333 , Precision: 0.016666666666666666
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_18-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 50 , Epslilon: 70 ,F1: 0.4363103953147877 , Recall: 0.5379061371841155 , Precision: 0.3669950738916256
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.6178623718887262 , Recall: 0.7617328519855595 , Precision: 0.5197044334975369
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 30 , Epslilon: 78 ,F1: 0.07778836987607245 , Recall: 0.26877470355731226 , Precision: 0.045474810521622826
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.08848207475209763 , Recall: 0.30606860158311344 , Precision: 0.05171645118145341
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 30 , Epslilon: 86 ,F1: 0.1702127659574468 , Recall: 0.36363636363636365 , Precision: 0.1111111111111111
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.0851063829787234 , Recall: 0.18181818181818182 , Precision: 0.05555555555555555
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 90 , Epslilon: 72 ,F1: 0.31026785714285715 , Recall: 0.34577114427860695 , Precision: 0.2813765182186235
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.140625 , Recall: 0.15671641791044777 , Precision: 0.12753036437246965
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_10.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 10 , Epslilon: 70 ,F1: 0.2486887854322588 , Recall: 0.3051337671728127 , Precision: 0.20986671971354684
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.20096652522395095 , Recall: 0.246601099218976 , Precision: 0.16958424507658643
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_12.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 50 , Epslilon: 70 ,F1: 0.06756149892719923 , Recall: 0.21427441050799176 , Precision: 0.04010307140953114
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.09246160947070345 , Recall: 0.29326580675793307 , Precision: 0.05488256375322098
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 70 , Epslilon: 70 ,F1: 0.046070656092285514 , Recall: 0.44529616724738674 , Precision: 0.024291959703478427
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.02703774469158946 , Recall: 0.2615062761506276 , Precision: 0.014255844896407526
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 50 , Epslilon: 70 ,F1: 0.3795620437956204 , Recall: 0.3359173126614987 , Precision: 0.436241610738255
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.15474452554744525 , Recall: 0.13695090439276486 , Precision: 0.17785234899328858
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_12.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 80 , Epslilon: 70 ,F1: 0.32582571234222657 , Recall: 0.4209549848647593 , Precision: 0.26576659885333825
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.2230536659108088 , Recall: 0.28818359375 , Precision: 0.18193588162762023
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 1 , Batch: 50 , Epslilon: 70 ,F1: 0.4378587471924133 , Recall: 0.2903599503516756 , Precision: 0.889931524220137
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.4434739206388819 , Recall: 0.2940835746793546 , Precision: 0.9013441541973117
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 80 , Epslilon: 92 ,F1: 0.19941593658740092 , Recall: 0.19574119574119575 , Precision: 0.2032312925170068
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.05340008343763037 , Recall: 0.05241605241605242 , Precision: 0.05442176870748299
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_19.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 50 , Epslilon: 92 ,F1: 0.4705882352941177 , Recall: 0.46774193548387094 , Precision: 0.47346938775510206
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.1969543147208122 , Recall: 0.19595959595959597 , Precision: 0.19795918367346937
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_18.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 20 , Epslilon: 84 ,F1: 0.27963215258855584 , Recall: 0.37903970452446906 , Precision: 0.22153264975715056
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.1311307901907357 , Recall: 0.17774699907663896 , Precision: 0.10388559093362115
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_10.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 3 , Batch: 80 , Epslilon: 70 ,F1: 0.3086836935166994 , Recall: 0.3115482233502538 , Precision: 0.30587135960130823
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.2507073247406476 , Recall: 0.2530541012216405 , Precision: 0.2484036754399626
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_10.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 60 , Epslilon: 70 ,F1: 0.4186717998075073 , Recall: 0.2937204591492235 , Precision: 0.7286432160804021
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.46113116726835135 , Recall: 0.32353934481594054 , Precision: 0.8023450586264657
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_11.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 30 , Epslilon: 70 ,F1: 0.3102011876274041 , Recall: 0.38639876352395675 , Precision: 0.2591057151317738
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.12727111583798636 , Recall: 0.1585338926915434 , Precision: 0.10630737340835061
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 50 , Epslilon: 70 ,F1: 0.4091118505246993 , Recall: 0.294711999409986 , Precision: 0.6686746987951807
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.39858707893928536 , Recall: 0.2871367458327187 , Precision: 0.6514390896921017
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_12.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 70 , Epslilon: 70 ,F1: 0.5507194244604318 , Recall: 0.5724791225227471 , Precision: 0.5305533094605521
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.27339768571257267 , Recall: 0.28421839940164545 , Precision: 0.26337068268453273
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 70 ,F1: 0.2860411899313501 , Recall: 0.3333333333333333 , Precision: 0.250501002004008
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.25629290617848977 , Recall: 0.2986666666666667 , Precision: 0.22444889779559118
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_18-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 70 ,F1: 0.41860465116279066 , Recall: 0.4918032786885246 , Precision: 0.3643724696356275
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.7023255813953488 , Recall: 0.825136612021858 , Precision: 0.611336032388664
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 20 , Epslilon: 70 ,F1: 0.2175379426644182 , Recall: 0.3233082706766917 , Precision: 0.1639135959339263
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.18212478920741992 , Recall: 0.2706766917293233 , Precision: 0.1372299872935197
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15-3.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 7 , Batch: 70 , Epslilon: 70 ,F1: 0.3491703912324741 , Recall: 0.3587920729789242 , Precision: 0.3400512789935007
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.2880759222409307 , Recall: 0.2960236567258085 , Precision: 0.2805437958380538
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_11.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 90 , Epslilon: 70 ,F1: 0.20860559733694983 , Recall: 0.21956916688294836 , Precision: 0.19868482855800845
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.14597460239181356 , Recall: 0.1536465092135998 , Precision: 0.13903240958196336
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 20 , Epslilon: 72 ,F1: 0.11068883610451308 , Recall: 0.3240611961057024 , Precision: 0.06674305356631338
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.11166547873604181 , Recall: 0.32729805013927576 , Precision: 0.0673159553136637
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16-2.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 70 ,F1: 0.25 , Recall: 0.6666666666666666 , Precision: 0.15384615384615385
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.0851063829787234 , Recall: 0.25 , Precision: 0.05128205128205128
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_12.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 5 , Batch: 90 , Epslilon: 70 ,F1: 0.10382301571899863 , Recall: 0.26159237225979953 , Precision: 0.06476344194492081
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.11168251503978263 , Recall: 0.28139515931871895 , Precision: 0.06966609502673257
+## Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_18.pk1
+###[MB-KMeans][ drop_features00 ] Cross-Validation. Clusters: 9 , Batch: 50 , Epslilon: 90 ,F1: 0.35874744724302254 , Recall: 0.34785478547854787 , Precision: 0.3703443429374561
+###[MB-KMeans][ drop_features00 ] Test. F1: 0.19877467665078286 , Recall: 0.19273927392739273 , Precision: 0.20520028109627547
+###[MB-KMeans][ drop_features00 ] Test Full. F1: 0.2117467222780867 , Recall: 0.2736674582427012 , Precision: 0.17267647753206894

@@ -13,4 +13,272 @@ Raw Data
     features_02 GMM Cross Validation dataset    0.348877 GMM Test dataset    0.376319
     features_03 GMM Cross Validation dataset    0.149438 GMM Test dataset    0.185207
     features_04 GMM Cross Validation dataset    0.568822 GMM Test dataset    0.235434
-===============================================================================================================================================================================================================================
+================================================================================================================================================================================================================================
+/usr/bin/python3.4 /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/botnet-detection-gmm.py
+### Directory:  b'/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl'
+### Files:  [b'0.15s_16.pk1', b'0.25s_16-3.pk1', b'0.15s_16-2.pk1', b'1s_15-2.pk1', b'2s_16.pk1', b'1s_19.pk1', b'1s_15-3.pk1', b'0.25s_15-3.pk1', b'1s_16-3.pk1', b'1s_10.pk1', b'1s_12.pk1', b'2s_19.pk1', b'0.15s_16-3.pk1', b'0.15s_18.pk1', b'0.15s_11.pk1', b'1s_16.pk1', b'2s_16-2.pk1', b'2s_16-3.pk1', b'0.25s_15.pk1', b'0.15s_15-3.pk1', b'1s_17.pk1', b'0.25s_17.pk1', b'1s_11.pk1', b'0.25s_12.pk1', b'2s_12.pk1', b'0.25s_16.pk1', b'2s_15.pk1', b'0.25s_18.pk1', b'0.25s_19.pk1', b'2s_10.pk1', b'2s_15-3.pk1', b'0.15s_15.pk1', b'1s_15.pk1', b'2s_18-2.pk1', b'0.15s_10.pk1', b'2s_11.pk1', b'0.25s_10.pk1', b'2s_17.pk1', b'2s_18.pk1', b'1s_18.pk1', b'0.25s_16-2.pk1', b'0.15s_19.pk1', b'0.25s_15-2.pk1', b'0.15s_12.pk1', b'2s_15-2.pk1', b'0.25s_11.pk1', b'1s_18-2.pk1', b'0.25s_18-2.pk1', b'1s_16-2.pk1', b'0.15s_18-2.pk1', b'0.15s_15-2.pk1', b'0.15s_17.pk1']
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5148771021992239 , Recall:  0.41631799163179917 , Precision: , 0.6745762711864407
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5075862068965517 , Recall:  0.3857442348008386 , Precision: , 0.7419354838709677
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.13555992141453832 , Recall:  0.09773371104815864 , Precision: , 0.22115384615384615
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.010227272727272727 , Recall:  0.006373937677053824 , Precision: , 0.02586206896551724
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.03537414965986394 , Recall:  0.9285714285714286 , Precision: , 0.018030513176144243
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.021148036253776436 , Recall:  0.5384615384615384 , Precision: , 0.01078582434514638
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.6440677966101697 , Recall:  0.8837209302325582 , Precision: , 0.5066666666666667
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.6683937823834197 , Recall:  1.0 , Precision: , 0.5019455252918288
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.6515397082658022 , Recall:  0.5193798449612403 , Precision: , 0.8739130434782608
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5395348837209302 , Recall:  0.4496124031007752 , Precision: , 0.6744186046511628
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_19.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.3790642347343378 , Recall:  0.8184931506849316 , Precision: , 0.24664602683178535
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.4589614740368509 , Recall:  0.9415807560137457 , Precision: , 0.3034330011074197
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.00734322220590395 , Recall:  0.00368758758020503 , Precision: , 0.847457627118644
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.009210526315789475 , Recall:  0.004646703053547721 , Precision: , 0.5163934426229508
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.024636610002463664 , Recall:  0.012582573136206355 , Precision: , 0.5865102639296188
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.014846891432106402 , Recall:  0.007550018875047188 , Precision: , 0.44280442804428044
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.46883575068600547 , Recall:  0.48976248976248976 , Precision: , 0.4496240601503759
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.007462686567164179 , Recall:  0.004095004095004095 , Precision: , 0.04201680672268908
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_10.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.028314606741573035 , Recall:  0.014367160775370582 , Precision: , 0.9692307692307692
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.019869044931135695 , Recall:  0.010036496350364963 , Precision: , 0.9777777777777777
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_12.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.318467375754183 , Recall:  0.9999023532858119 , Precision: , 0.1893946399837239
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.3184723280513786 , Recall:  1.0 , Precision: , 0.1893946399837239
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_19.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5 , Recall:  0.8909952606635071 , Precision: , 0.34750462107208874
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.6002928257686677 , Recall:  0.9761904761904762 , Precision: , 0.4334038054968288
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_16-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.0756756756756757 , Recall:  0.06829268292682927 , Precision: , 0.08484848484848485
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.005753739930955121 , Recall:  0.003486750348675035 , Precision: , 0.01644736842105263
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_18.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.39680232558139533 , Recall:  0.2520775623268698 , Precision: , 0.931740614334471
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.21137555465913674 , Recall:  0.12096029547553093 , Precision: , 0.8370607028753994
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_11.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5298073635016528 , Recall:  0.5131375579598145 , Precision: , 0.5475966069745523
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.3450538358008075 , Recall:  0.4528593508500773 , Precision: , 0.27870634597092
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5761316872427983 , Recall:  0.5223880597014925 , Precision: , 0.6422018348623854
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5185185185185186 , Recall:  0.48756218905472637 , Precision: , 0.5536723163841808
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.2 , Recall:  0.3333333333333333 , Precision: , 0.14285714285714285
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.2181818181818182 , Recall:  0.75 , Precision: , 0.1276595744680851
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_16-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.512621359223301 , Recall:  0.7485822306238186 , Precision: , 0.38976377952755903
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.17529880478087648 , Recall:  0.12476370510396975 , Precision: , 0.29464285714285715
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.9972260748959778 , Recall:  1.0 , Precision: , 0.9944674965421854
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.21654411764705883 , Recall:  0.8203342618384402 , Precision: , 0.12473528166031343
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.004055343511450382 , Recall:  0.002047576031315869 , Precision: , 0.2085889570552147
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.003946424300406601 , Recall:  0.001987353206865402 , Precision: , 0.2773109243697479
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_17.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5849509269356598 , Recall:  0.5750428816466552 , Precision: , 0.5952063914780293
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5343511450381679 , Recall:  0.5104010293802274 , Precision: , 0.5606595995288575
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_17.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.42885362900656343 , Recall:  0.40359820089955023 , Precision: , 0.4574807966827544
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.46908878719941033 , Recall:  0.45801847187237615 , Precision: , 0.48070749669541135
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_11.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.17136329017517138 , Recall:  0.09546033092914723 , Precision: , 0.8364312267657993
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.2948846539618857 , Recall:  0.18718166383701187 , Precision: , 0.694488188976378
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_12.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.00545171339563863 , Recall:  0.002852253280091272 , Precision: , 0.061511423550087874
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.006896011284382102 , Recall:  0.003585689837829028 , Precision: , 0.08979591836734693
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_12.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.0012417732522041476 , Recall:  0.0006232082762059081 , Precision: , 0.16666666666666666
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.0004979459728619445 , Recall:  0.0002493143854400399 , Precision: , 0.18181818181818182
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5481120584652862 , Recall:  0.47568710359408034 , Precision: , 0.646551724137931
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.4876712328767123 , Recall:  0.3771186440677966 , Precision: , 0.689922480620155
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.07754442649434572 , Recall:  0.05620608899297424 , Precision: , 0.125
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.3841642228739003 , Recall:  0.30679156908665106 , Precision: , 0.5137254901960784
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_18.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.3586132177681473 , Recall:  0.21848184818481847 , Precision: , 1.0
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.17018708509354252 , Recall:  0.09306930693069307 , Precision: , 0.9929577464788732
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_19.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.4248275862068966 , Recall:  0.6739606126914661 , Precision: , 0.31017119838872104
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.2048331415420023 , Recall:  0.19474835886214442 , Precision: , 0.21601941747572814
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_10.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.05470530771735591 , Recall:  0.02835921674544227 , Precision: , 0.7706422018348624
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.03320053120849934 , Recall:  0.016886187098953058 , Precision: , 0.9803921568627451
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15-3.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.32146814404432134 , Recall:  0.19205626810095158 , Precision: , 0.9855626326963907
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.40648634790411486 , Recall:  0.26239139429044267 , Precision: , 0.9016206994597669
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.027913468248429867 , Recall:  0.026350461133069828 , Precision: , 0.02967359050445104
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.14484243491877077 , Recall:  0.48812664907651715 , Precision: , 0.0850379223167088
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_15.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.014311270125223614 , Recall:  0.007380073800738007 , Precision: , 0.23529411764705882
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.04421768707482993 , Recall:  0.023985239852398525 , Precision: , 0.2826086956521739
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_18-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.6363636363636364 , Recall:  0.6363636363636364 , Precision: , 0.6363636363636364
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5416666666666666 , Recall:  0.7878787878787878 , Precision: , 0.4126984126984127
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_10.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.34208117935145566 , Recall:  1.0 , Precision: , 0.2063316822820314
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.34204863086551063 , Recall:  1.0 , Precision: , 0.20630799988064333
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_11.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.13974287311347122 , Recall:  0.07539203860072376 , Precision: , 0.9541984732824428
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.3408567480423768 , Recall:  0.22329511164755583 , Precision: , 0.7198443579766537
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_10.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.4550803104132828 , Recall:  1.0 , Precision: , 0.29456567450119153
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.45502454519203 , Recall:  1.0 , Precision: , 0.2945189477127237
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_17.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.6846339501206758 , Recall:  0.7071042791857084 , Precision: , 0.6635477582846004
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.6049747048903878 , Recall:  0.5961778147071043 , Precision: , 0.6140350877192983
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_18.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.27363184079601993 , Recall:  0.1585014409221902 , Precision: , 1.0
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.22506393861892585 , Recall:  0.12680115273775217 , Precision: , 1.0
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_18.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.34820143884892085 , Recall:  0.21080139372822299 , Precision: , 1.0
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.2361963190184049 , Recall:  0.13414634146341464 , Precision: , 0.9871794871794872
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_16-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.13445378151260504 , Recall:  0.6153846153846154 , Precision: , 0.07547169811320754
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.08333333333333333 , Recall:  0.08333333333333333 , Precision: , 0.08333333333333333
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_19.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.3801513877207738 , Recall:  0.9112903225806451 , Precision: , 0.24017003188097769
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.16663861302810976 , Recall:  1.0 , Precision: , 0.09089239809034154
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_15-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5554359526372443 , Recall:  0.688 , Precision: , 0.4657039711191336
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.14051522248243561 , Recall:  0.08 , Precision: , 0.5769230769230769
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_12.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.004247572815533981 , Recall:  0.0022155404336129136 , Precision: , 0.05128205128205128
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.00653886164363204 , Recall:  0.003481839044076917 , Precision: , 0.0535931790499391
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/2s_15-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.8124999999999999 , Recall:  0.9952153110047847 , Precision: , 0.6864686468646864
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.7870182555780932 , Recall:  0.9326923076923077 , Precision: , 0.6807017543859649
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_11.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5738977588984914 , Recall:  0.5084349857254088 , Precision: , 0.6587088096839274
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.4792340535644974 , Recall:  0.4806644173371399 , Precision: , 0.47781217750258
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_18-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.640625 , Recall:  0.7068965517241379 , Precision: , 0.5857142857142857
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5074626865671642 , Recall:  0.8793103448275862 , Precision: , 0.35664335664335667
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.25s_18-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.4662576687116565 , Recall:  0.8306010928961749 , Precision: , 0.32409381663113007
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5483359746434231 , Recall:  0.9453551912568307 , Precision: , 0.3861607142857143
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/1s_16-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.17142857142857143 , Recall:  0.2727272727272727 , Precision: , 0.125
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.22222222222222218 , Recall:  0.5454545454545454 , Precision: , 0.13953488372093023
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_18-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.5272938443670151 , Recall:  0.8194945848375451 , Precision: , 0.3886986301369863
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.5039370078740159 , Recall:  0.924187725631769 , Precision: , 0.34641407307171856
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_15-2.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.2993103448275862 , Recall:  0.543859649122807 , Precision: , 0.20647002854424357
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.3237232289950576 , Recall:  0.9849624060150376 , Precision: , 0.1936914736323312
+### Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/0.15s_17.pk1
+### drop_features00 RobustScaler [GMM] Classification report for Cross Validation dataset
+    F1 Score:  0.1845138888888889 , Recall:  0.1052986168905798 , Precision: , 0.7448836557331091
+### drop_features00 RobustScaler [GMM] Classification report for Test dataset
+    F1 Score:  0.16083749702593383 , Recall:  0.10716125708397733 , Precision: , 0.3222500297938267
+### drop_features00 RobustScaler [GMM] Total Classification report for Cross Validation dataset
+    F1 Score:  0.28276986056312525 , Recall:  0.25704722425911236 , Precision: , 0.31421306487313794
+### drop_features00 RobustScaler [GMM] Total Classification report for Test dataset
+    F1 Score:  0.26588477559830864 , Recall:  0.25379657161102354 , Precision: , 0.2791820786091385
+================================================================================================================================================================================================================================

@@ -183,3 +183,162 @@ Raw Data
 ### [MGM][ drop_features01 ][ Raw ] Test of all data. F1:  0.09115543077807228 , Precision:  0.04896718084085173 , Recall:  0.6584555185751552
 CPU times: user 3h 5min 13s, sys: 41 s, total: 3h 5min 54s
 Wall time: 3h 23min 19s
+================================================================================================================================================================================================================================
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_11.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -39.0124199619313 , F1:  0.8019347037484884 , Precision:  0.6693580944691159 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8014510278113663 , Precision:  0.668684422921711 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_19.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -32.16858624614133 , F1:  0.48866498740554154 , Precision:  0.3236929922135706 , Recall:  0.9965753424657534
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.46623794212218655 , Precision:  0.304302203567681 , Recall:  0.9965635738831615
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_17.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -25.302272434986662 , F1:  0.9314563432210492 , Precision:  0.8717519736498144 , Recall:  0.9999400299850075
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.9299498047964306 , Precision:  0.8690711977483582 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_18.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -37.17970475554466 , F1:  0.32564705882352946 , Precision:  0.19460067491563554 , Recall:  0.9971181556195965
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.3120503597122302 , Precision:  0.1848694725625999 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_17.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -39.69620779782417 , F1:  0.8500264970853205 , Precision:  0.7393976644130301 , Recall:  0.9995845450768591
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8461944102654245 , Precision:  0.7333942717854967 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_17.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -33.565337045060005 , F1:  0.849904310580516 , Precision:  0.7391028689174196 , Recall:  0.9997855917667239
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8467405120755402 , Precision:  0.7342150842387025 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -42.83054966898635 , F1:  0.23033414135652833 , Precision:  0.5464591790708164 , Recall:  0.14591990364348087
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.11493920092646207 , Precision:  0.2891478514202476 , Recall:  0.07172538392050587
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_18-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -119.01353006045883 , F1:  0.7333333333333333 , Precision:  0.8148148148148148 , Recall:  0.6666666666666666
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.732394366197183 , Precision:  0.6842105263157895 , Recall:  0.7878787878787878
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -39.505358913915984 , F1:  0.830188679245283 , Precision:  0.7388059701492538 , Recall:  0.9473684210526315
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8254620123203285 , Precision:  0.7204301075268817 , Recall:  0.9663461538461539
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -81.4155056847726 , F1:  0.5951742627345844 , Precision:  0.8131868131868132 , Recall:  0.4693446088794926
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5562913907284769 , Precision:  0.7420494699646644 , Recall:  0.4449152542372881
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_19.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -38.15478051716491 , F1:  0.5607476635514018 , Precision:  0.3903345724907063 , Recall:  0.995260663507109
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5485564304461942 , Precision:  0.3786231884057971 , Recall:  0.9952380952380953
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_17.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -24.207728304434568 , F1:  0.9530158250557087 , Precision:  0.9102485480321778 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.9544362694104519 , Precision:  0.9129097619219915 , Recall:  0.9999207387151746
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_10.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -405.0815096774604 , F1:  0.043710972346119537 , Precision:  0.98989898989899 , Recall:  0.02234891676168757
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.04240124972104441 , Precision:  0.979381443298969 , Recall:  0.02166970802919708
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_11.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -33.49447597953986 , F1:  0.6999405822935235 , Precision:  0.5385142857142857 , Recall:  0.9995757318625371
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.699213533165158 , Precision:  0.5375313712069358 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_18.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -32.186346877366304 , F1:  0.3627172195892575 , Precision:  0.2215360864531069 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.30442853354547866 , Precision:  0.17954332186424773 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -76.61606525144367 , F1:  0.1935483870967742 , Precision:  0.17647058823529413 , Recall:  0.21428571428571427
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.11764705882352941 , Precision:  0.09523809523809523 , Recall:  0.15384615384615385
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_19.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -23.906625509657715 , F1:  0.5972495088408645 , Precision:  0.4261682242990654 , Recall:  0.9978118161925602
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5101123595505618 , Precision:  0.3431594860166289 , Recall:  0.9934354485776805
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -32.380992595496934 , F1:  0.6969253294289898 , Precision:  0.56 , Recall:  0.9224806201550387
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.7001477104874446 , Precision:  0.5656324582338902 , Recall:  0.9186046511627907
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -38.951430935718236 , F1:  0.5792724776938916 , Precision:  0.46120218579234973 , Recall:  0.7785977859778598
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.46210995542347694 , Precision:  0.38681592039800994 , Recall:  0.5738007380073801
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -47.568762613562285 , F1:  0.46308387744851837 , Precision:  0.4941050375133976 , Recall:  0.43572778827977315
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.35465865178188066 , Precision:  0.32494099134539733 , Recall:  0.390359168241966
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -58.98762864083983 , F1:  0.3238095238095238 , Precision:  0.3353566009104704 , Recall:  0.3130311614730878
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.32165702101736215 , Precision:  0.2822020309994655 , Recall:  0.37393767705382436
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -41.70284829451339 , F1:  0.5591739475774423 , Precision:  0.4230769230769231 , Recall:  0.8243559718969555
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5153846153846154 , Precision:  0.3837342497136312 , Recall:  0.7845433255269321
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_18-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -82.80165251768813 , F1:  0.780952380952381 , Precision:  0.8723404255319149 , Recall:  0.7068965517241379
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8253968253968255 , Precision:  0.7647058823529411 , Recall:  0.896551724137931
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -118.5441949899996 , F1:  0.5866302864938608 , Precision:  0.8431372549019608 , Recall:  0.4497907949790795
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5619174434087882 , Precision:  0.7700729927007299 , Recall:  0.44234800838574423
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_16-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -56.22011647150572 , F1:  0.27777777777777773 , Precision:  0.21739130434782608 , Recall:  0.38461538461538464
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.10256410256410256 , Precision:  0.07407407407407407 , Recall:  0.16666666666666666
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_18-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -41.32315006736894 , F1:  0.7226277372262774 , Precision:  0.7306273062730627 , Recall:  0.7148014440433214
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8348623853211009 , Precision:  0.7241379310344828 , Recall:  0.9855595667870036
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -70.9552556288545 , F1:  0.5975308641975309 , Precision:  0.562137049941928 , Recall:  0.6376811594202898
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.20917135961383745 , Precision:  0.26804123711340205 , Recall:  0.17150395778364116
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -55.45891951415567 , F1:  0.4210526315789474 , Precision:  0.5 , Recall:  0.36363636363636365
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.2608695652173913 , Precision:  0.25 , Recall:  0.2727272727272727
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -52.33400856154026 , F1:  0.662807525325615 , Precision:  0.7923875432525952 , Recall:  0.5696517412935324
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.6167400881057269 , Precision:  0.7526881720430108 , Recall:  0.5223880597014925
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_10.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -25.524573308881372 , F1:  0.7617054092761925 , Precision:  0.6151792864133819 , Recall:  0.9998553868402025
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.7489168110918544 , Precision:  0.5986147186147186 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_12.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -42.276252760580974 , F1:  0.08845562812139839 , Precision:  0.11250916198387491 , Recall:  0.07287545497705333
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.0914102174573549 , Precision:  0.10123053258988655 , Recall:  0.0833267389412044
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_16-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -73.72539297374897 , F1:  0.28688805203697365 , Precision:  0.2819650067294751 , Recall:  0.29198606271777006
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.31201434548714885 , Precision:  0.2730125523012552 , Recall:  0.36401673640167365
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -37.2019083694031 , F1:  0.5712177121771218 , Precision:  0.39979338842975204 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5598259608411893 , Precision:  0.38911290322580644 , Recall:  0.9974160206718347
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_12.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -40.722226852369204 , F1:  0.28971007476736055 , Precision:  0.3225149700598802 , Recall:  0.262962601308466
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.2672542895040863 , Precision:  0.23783413296778616 , Recall:  0.30498046875
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_15-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -33.59377639068407 , F1:  0.958556414832441 , Precision:  0.9204112718964204 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.958366375892149 , Precision:  0.9200609059763989 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_16-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -40.305643684463575 , F1:  0.37691555265731985 , Precision:  0.3131094257854821 , Recall:  0.47338247338247336
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.3036249659307713 , Precision:  0.2275326797385621 , Recall:  0.4561834561834562
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_19.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -22.676189166490076 , F1:  0.6462540716612378 , Precision:  0.4773820981713186 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5681426106958022 , Precision:  0.3971061093247588 , Recall:  0.997979797979798
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_18.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -23.62662967480719 , F1:  0.6043265875785065 , Precision:  0.4330866173234647 , Recall:  0.9995383194829178
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.6104847801578354 , Precision:  0.43935091277890465 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_10.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -29.532016648510762 , F1:  0.7490939338126077 , Precision:  0.5988410753301036 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.7011628553942025 , Precision:  0.5399314481576692 , Recall:  0.9996826907821672
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_10.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -43.87086930274381 , F1:  0.8568948053827232 , Precision:  0.7498100785008863 , Recall:  0.99966239027684
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8563991323210411 , Precision:  0.7488619119878603 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_11.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -24.589756145342108 , F1:  0.8113579362235759 , Precision:  0.6825923134890731 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.8027669386307201 , Precision:  0.6708166592559656 , Recall:  0.9993376021196733
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/1s_15-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -55.472934062825516 , F1:  0.1807630736392743 , Precision:  0.9455687369155618 , Recall:  0.09993362342355631
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.07046979865771813 , Precision:  0.675603217158177 , Recall:  0.03717362442838177
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_12.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -39.25464167414793 , F1:  0.48135593220338985 , Precision:  0.3169642857142857 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.43604935587324023 , Precision:  0.2788127346030863 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -21.9781125300658 , F1:  0.5677179962894248 , Precision:  0.4352773826458037 , Recall:  0.816
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.5584677419354839 , Precision:  0.44894651539708263 , Recall:  0.7386666666666667
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_18-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -36.658163066794714 , F1:  0.7218045112781954 , Precision:  0.6666666666666666 , Recall:  0.7868852459016393
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.7637130801687764 , Precision:  0.6219931271477663 , Recall:  0.9890710382513661
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.15s_15-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -18.85225502336084 , F1:  0.5393794749403341 , Precision:  0.3951048951048951 , Recall:  0.849624060150376
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.590990990990991 , Precision:  0.4613220815752461 , Recall:  0.8220551378446115
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15-3.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -42.32055904716253 , F1:  0.2365418446845941 , Precision:  0.58825 , Recall:  0.14803397294746776
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.11097321336229188 , Precision:  0.31155632984901277 , Recall:  0.06750975210771361
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_11.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -25.287225799671432 , F1:  0.7474296799224054 , Precision:  0.5967167415208301 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.7085977011494253 , Precision:  0.5487040729136998 , Recall:  1.0
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_15.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -52.08521241234848 , F1:  0.5859714463066418 , Precision:  0.5291479820627802 , Recall:  0.6564673157162726
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.24271079590228528 , Precision:  0.279491833030853 , Recall:  0.21448467966573817
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/2s_16-2.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -58.943982796820904 , F1:  0.5333333333333333 , Precision:  0.6666666666666666 , Recall:  0.4444444444444444
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.23529411764705882 , Precision:  0.2222222222222222 , Recall:  0.25
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_12.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -28.920061974058626 , F1:  0.17392982165991344 , Precision:  0.13141452849050317 , Recall:  0.25711025996251324
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.18970855654396226 , Precision:  0.13580550962248883 , Recall:  0.31456279031863743
+### Sample File:  /home/tpbvieira/data/agg_pkl/pkl/0.25s_18.pk1
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation. Epsilon:  -23.68438825942576 , F1:  0.49156391953277095 , Precision:  0.32587653258765326 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Test. F1:  0.48164043872198375 , Precision:  0.31721105527638194 , Recall:  1.0
+### [MGM][ drop_features00 ][ Raw ] Cross-Validation of all data. F1:  0.5813510694409295 , Precision:  0.5527793020933601 , Recall:  0.6130374272331383
+### [MGM][ drop_features00 ][ Raw ] Test of all data. F1:  0.5452173400069882 , Precision:  0.5000083231374899 , Recall:  0.5994143002534373

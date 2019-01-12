@@ -1,28 +1,12 @@
 # coding=utf-8
 import pandas as pd
 import numpy as np
-import os
-import gc
-import ipaddress
-import time
-import warnings
-from functools import reduce
+import os, gc, time, warnings
 from scipy.stats import multivariate_normal
 from sklearn import preprocessing, mixture
 from sklearn.metrics import f1_score, recall_score, precision_score
 from sklearn.preprocessing import StandardScaler, RobustScaler
 warnings.filterwarnings(action='once')
-
-
-def estimateGaussian(dataset):
-    mu = np.mean(dataset, axis=0)
-    sigma = np.cov(dataset.T)
-    return mu, sigma
-
-
-def multivariateGaussian(dataset, mu, sigma):
-    mg_model = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
-    return mg_model.logpdf(dataset)
 
 
 def selectThresholdByCV(probs, labels):
@@ -34,8 +18,6 @@ def selectThresholdByCV(probs, labels):
     best_precision = 0
     best_recall = 0
 
-    min_prob = min(probs);
-    max_prob = max(probs);
     stepsize = (max(probs) - min(probs)) / 1000;
     epsilons = np.arange(min(probs), max(probs), stepsize)
 
@@ -94,7 +76,7 @@ def data_splitting(df, drop_features):
     # Data splitting
 
     # drop non discriminant features
-    df.drop(drop_features, axis=1, inplace=True)
+    # df.drop(drop_features, axis=1, inplace=True)
     gc.collect()
 
     # split into normal and anomaly
@@ -163,21 +145,22 @@ column_types = {
 
 # feature selection
 drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features00': []
+    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
+    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
+    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
+    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
 # raw files
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 print("### Directory: ", raw_directory)
 print("### Files: ", raw_files)
 
 # pickle files - have the same names but different directory
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
@@ -205,7 +188,7 @@ for features_key, value in drop_features.items():
         gc.collect()
 
         # data splitting
-        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
+        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, [])
 
         # Scaler: raw, standardization (zero mean and unitary variance) or robust scaler
         scaler = 'RobustScaler'
@@ -240,17 +223,11 @@ for features_key, value in drop_features.items():
             p_test = gmm.score_samples(test_df)
             pred_label = (p_test < epsilon)
             gmm_test_label.extend(test_label.astype(int))
-            gmm_pred_test_label.extend(pred_test_label.astype(int))
+            gmm_pred_test_label.extend(pred_label.astype(int))
             print('###', features_key, scaler, '[GMM]', 'Classification report for Test dataset')
-            print_classification_report(test_label, pred_test_label)
+            print_classification_report(test_label, pred_label)
         except:
             print("### [GMM] Error!!")
-
-    # [MGM] print results
-    print('###', features_key, scaler, '[MGM]', 'Total Classification report for Cross Validation dataset')
-    print_classification_report(mgm_cv_label, mgm_pred_cv_label)
-    print('###', features_key, scaler, '[MGM]', 'Total Classification report for Test dataset')
-    print_classification_report(mgm_test_label, mgm_pred_test_label)
 
     # [GMM] print results
     print('###', features_key, scaler, '[GMM]', 'Total Classification report for Cross Validation dataset')

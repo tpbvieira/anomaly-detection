@@ -1,16 +1,75 @@
 # coding=utf-8
 import pandas as pd
 import numpy as np
-import os
-import gc
-import ipaddress
-import warnings
-import time
-from functools import reduce
+import os, gc, warnings, time
 from scipy.stats import multivariate_normal
 from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
 warnings.filterwarnings(action='once')
+
+def data_cleasing(df):
+    # data cleasing, feature engineering and save clean data into pickles
+
+    print('### Data Cleasing and Feature Engineering')
+    df.head()
+    le = preprocessing.LabelEncoder()
+
+    # [Protocol] - Discard ipv6-icmp and categorize
+    df['Proto'] = df['Proto'].fillna('-')
+    df['Proto'] = le.fit_transform(df['Proto'])
+    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+
+    # [Label] - Categorize
+    anomalies = df.Label.str.contains('Botnet')
+    normal = np.invert(anomalies)
+    df.loc[anomalies, 'Label'] = np.uint8(1)
+    df.loc[normal, 'Label'] = np.uint8(0)
+    df['Label'] = pd.to_numeric(df['Label'])
+
+    # [Dport] - replace NaN with 0 port number
+    df['Dport'] = df['Dport'].fillna('0')
+    df['Dport'] = df['Dport'].apply(lambda x: int(x, 0))
+
+    # [sport] - replace NaN with 0 port number
+    try:
+        df['Sport'] = df['Sport'].fillna('0')
+        df['Sport'] = df['Sport'].str.replace('.*x+.*', '0')
+        df['Sport'] = df['Sport'].apply(lambda x: int(x, 0))
+    except:
+        print("### data_cleasing: Unexpected error:", sys.exc_info()[0])
+
+    # [sTos] - replace NaN with "10" and convert to int
+    df['sTos'] = df['sTos'].fillna('10')
+    df['sTos'] = df['sTos'].astype(int)
+
+    # [dTos] - replace NaN with "10" and convert to int
+    df['dTos'] = df['dTos'].fillna('10')
+    df['dTos'] = df['dTos'].astype(int)
+
+    # [State] - replace NaN with "-" and categorize
+    df['State'] = df['State'].fillna('-')
+    df['State'] = le.fit_transform(df['State'])
+    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+
+    # [Dir] - replace NaN with "-" and categorize
+    df['Dir'] = df['Dir'].fillna('-')
+    df['Dir'] = le.fit_transform(df['Dir'])
+    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+
+    # [SrcAddr] Extract subnet features and categorize
+    df['SrcAddr'] = df['SrcAddr'].fillna('0.0.0.0')
+
+    # [DstAddr] Extract subnet features
+    df['DstAddr'] = df['DstAddr'].fillna('0.0.0.0')
+
+    # [StartTime] - Parse to datatime, reindex based on StartTime, but first drop the ns off the time stamps
+    df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
+    df['StartTime'] = pd.to_datetime(df['StartTime'])
+    df = df.set_index('StartTime')
+
+    gc.collect()
+
+    return df
 
 
 def estimate_gaussian(dataset):
@@ -22,13 +81,6 @@ def estimate_gaussian(dataset):
 def multivariate_gaussian(dataset, mu, sigma):
     mg_model = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
     return mg_model.logpdf(dataset)
-
-
-def print_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average="binary")
-    Recall = recall_score(y_test, y_predic, average="binary")
-    Precision = precision_score(y_test, y_predic, average="binary")
-    print('\tF1 Score: ', f1, ', Recall: ', Recall, ', Precision: ,', Precision)
 
 
 def get_classification_report(y_test, y_predic):
@@ -106,7 +158,7 @@ def selectThresholdByCV(pred, labels):
     anomalies = t_df[t_df['labels'] == 1]
     min_prob = min(anomalies['pred'])
     max_prob = max(anomalies['pred'])
-    stepsize = (max_prob - min_prob) / 500  # divided by the expected number of steps
+    stepsize = (max_prob - min_prob) / 100  # divided by the expected number of steps
     epsilons = np.arange(min(pred), max(pred), stepsize)
 
     for epsilon in epsilons:
@@ -147,21 +199,22 @@ column_types = {
 
 # feature selection
 drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features00': []
+    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
+    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
+    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
+    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
 # raw files
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/raw_all/')
+raw_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 raw_directory = os.fsencode(raw_path)
-raw_files = os.listdir(raw_directory)
-print("### Directory: ", raw_directory)
 
 # pickle files - have the same names but different directory
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/', 'stratosphere-botnet-2011/ctu-13/pkl_all/')
+pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 pkl_directory = os.fsencode(pkl_path)
+pkl_files = os.listdir(pkl_directory)
+print("### Directory: ", pkl_directory)
 
 # for each feature set
 for features_key, value in drop_features.items():
@@ -171,9 +224,10 @@ for features_key, value in drop_features.items():
     mgm_pred_cv_label = []
     mgm_test_label = []
     mgm_pred_test_label = []
+    scaler = ''
 
     # for each file
-    for sample_file in raw_files:
+    for sample_file in pkl_files:
         pkl_file_path = os.path.join(pkl_directory, sample_file).decode('utf-8')
         raw_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
 

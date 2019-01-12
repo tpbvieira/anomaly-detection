@@ -1,18 +1,9 @@
 # coding=utf-8
-import os, sys, gc, ipaddress, time
+import os, gc, time
 import pandas as pd
 import numpy as np
-from functools import reduce
-from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
 from sklearn.cluster import MiniBatchKMeans
-
-
-def print_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average="binary")
-    Recall = recall_score(y_test, y_predic, average="binary")
-    Precision = precision_score(y_test, y_predic, average="binary")
-    print('\tF1 Score: ', f1, ', Recall: ', Recall, ', Precision: ,', Precision)
 
 
 def get_classification_report(y_test, y_predic):
@@ -139,17 +130,18 @@ column_types = {
 
 # feature selection
 drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features00': []
+    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
+    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw/')
+raw_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 raw_directory = os.fsencode(raw_path)
 raw_files = os.listdir(raw_directory)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl/')
+pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 
 # for each feature set
