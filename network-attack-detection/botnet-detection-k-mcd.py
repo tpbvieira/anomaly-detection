@@ -157,7 +157,6 @@ def getBestBySemiSupervKurtosisCV(t_normal_df, t_cv_df, t_cv_label):
             m_best_f1 = m_f1
             m_best_precision = m_precision
             m_best_recall = m_recall
-            print('###[k-mcd] Cross-Validation. Contamination:', m_contamination, ',F1:', m_f1, ', Recall:', m_recall, ', Precision:', m_precision)
 
     return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
@@ -182,17 +181,17 @@ column_types = {
     'Label': 'uint8'}
 
 drop_features = {
-    'drop_features00': []
-    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
-    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
-    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
-    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    # 'drop_features00': []
+    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
+    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_fast/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -232,6 +231,10 @@ for features_key, value in drop_features.items():
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
         print('###[k-mcd][', features_key, '] Test. F1:', f1,', Recall:', Recall, ', Precision:', Precision)
+        # unique, counts = np.unique(test_label, return_counts=True)
+        # print(dict(zip(unique, counts)))
+        # unique, counts = np.unique(pred_test_label, return_counts=True)
+        # print(dict(zip(unique, counts)))
 
         # save results for total evaluation later
         ee_test_label.extend(test_label)

@@ -336,3 +336,192 @@
 ###[EllipticEnvelope][ drop_features00 ] Test. F1: 0.6062052505966588 , Recall: 0.9896327415638976 , Precision: 0.43692224848176625
 ###[EllipticEnvelope][ drop_features00 ] Test Full. F1: 0.9165489644640186 , Recall: 0.9581687557388598 , Precision: 0.878394319956332
 --- 8864.958969593048 seconds ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/usr/bin/python3.4 /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/botnet-detection-mcd.py
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_17.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_10.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_11.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_12.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_15-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_15-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_15.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_16-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_16-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_16.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_17.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_18-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_18.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.15s_19.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_10.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_11.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_12.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_15-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_15-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_15.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_16-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_16-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_16.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_18-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_18.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/0.25s_19.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_10.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_11.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_12.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_15-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_15-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_15.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_16-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_16-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_16.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_17.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_18-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_18.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/1s_19.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_10.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_11.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_12.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_15-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_15-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_15.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_16-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_16-3.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_16.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_17.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_18-2.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_18.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  /media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/2s_19.pk1
+###[mcd][ drop_features00 ] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+###[md][ drop_features00 ] Test Full. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+--- 5857.771652698517 seconds ---
+
+Process finished with exit code 0

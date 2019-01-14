@@ -118,7 +118,7 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
     m_best_precision = -1
     m_best_recall = -1
 
-    for m_contamination in np.linspace(0.01, 0.1, 15):
+    for m_contamination in np.linspace(0.01, 0.2, 20):
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(t_normal)
         m_pred = m_ell_model.predict(cv)
@@ -135,6 +135,11 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
             m_best_f1 = m_f1
             m_best_precision = m_precision
             m_best_recall = m_recall
+
+    # unique, counts = np.unique(m_cv_label, return_counts=True)
+    # print(dict(zip(unique, counts)))
+    # unique, counts = np.unique(m_pred, return_counts=True)
+    # print(dict(zip(unique, counts)))
 
     return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
@@ -159,15 +164,18 @@ column_types = {
     'Label': 'uint8'}
 
 drop_features = {
+    # 'drop_features00': []
     'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
     'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
     'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
+# raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_fast/')
 raw_directory = os.fsencode(raw_path)
 
+# pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
@@ -200,7 +208,7 @@ for features_key, value in drop_features.items():
 
         # Cross-Validation and model selection
         ell_model, best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
-        print('###[EllipticEnvelope][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
+        print('###[mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
 
         # Test
         test_label = test_label.astype(np.int8)
@@ -210,12 +218,16 @@ for features_key, value in drop_features.items():
 
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-        print('###[EllipticEnvelope][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+        print('###[mcd][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
+        # unique, counts = np.unique(test_label, return_counts=True)
+        # print(dict(zip(unique, counts)))
+        # unique, counts = np.unique(pred_test_label, return_counts=True)
+        # print(dict(zip(unique, counts)))
 
         # save results for total evaluation later
         ee_test_label.extend(test_label)
         ee_pred_test_label.extend(pred_test_label)
 
     f1, Recall, Precision = get_classification_report(ee_test_label, ee_pred_test_label)
-    print('###[EllipticEnvelope][', features_key, '] Test Full. F1:',f1,', Recall:',Recall,', Precision:',Precision)
+    print('###[mcd][', features_key, '] Test Full. F1:',f1,', Recall:',Recall,', Precision:',Precision)
 print("--- %s seconds ---" % (time.time() - start_time))

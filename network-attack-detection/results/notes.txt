@@ -1,18 +1,18 @@
 num name                            types               malware 	type    Total    	Malicious 	C&C 	Botnet 	Data Status
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 01  capture20110810.binetflow       IRC,Spam,CF       	neris		test    2824636		40961   	341		40620	OK|NO|NO|NO	
-02  capture20110811.binetflow       IRC,Spam,CF       	neris		test    1808122 	20941   	673		20268	OK|NO|NI|NO 	k-mcd
-03  capture20110812.binetflow       IRC,PS,US         	rbot		train   4710638 	26822   	63		26759	OK|OK|OK|OK 	k-mcd
-04  capture20110815.binetflow       IRC,DDoS,US       	rbot		train   1121076 	2580    	52		2528	OK|NO|NO|NO
+02  capture20110811.binetflow       IRC,Spam,CF       	neris		test    1808122 	20941   	673		20268	OK|NO|NI|NO
+03  capture20110812.binetflow       IRC,PS,US         	rbot		train   4710638 	26822   	63		26759	OK|OK|OK|OK
+04  capture20110815.binetflow       IRC,DDoS,US       	rbot		train   1121076 	2580    	52		2528	OK|NO|NO|NO data cleasing problem (1768 instead of 2580)
 05  capture20110815-2.binetflow     Spam,PS,HTTP      	virut		train   129832 		901     	24		877		OK|OK|NO|NO
 06  capture20110816.binetflow       PS                  menti		test    558919 		4630    	199		4431	OK|OK|OK|OK
 07  capture20110816-2.binetflow     HTTP                sogou		train   114077 		63      	26		37		OK|OK|OK|OK
 08  capture20110816-3.binetflow     PS                  murlo		test    2954230 	6127    	1074	5053	OK|OK|OK|OK
-09  capture20110817.binetflow       IRC,Spam,CF,PS 		neris		test    2087508 	184987  	2973	182014	NO|NO|NO|NO 	k-mcd
-10  capture20110818.binetflow       IRC,DDoS,US        	rbot		train   1309791 	106352  	33		106319	OK|NO|NO|NO 	k-mcd
-11  capture20110818-2.binetflow     IRC,DDoS,US        	rbot		train   107251 		8164   		2 		8162	OK|NO|NO|OK
+09  capture20110817.binetflow       IRC,Spam,CF,PS 		neris		test    2087508 	184987  	2973	182014	NO|NO|NO|NO
+10  capture20110818.binetflow       IRC,DDoS,US        	rbot		train   1309791 	106352  	33		106319	OK|NO|NO|NO data cleasing problem (375 instead of 106352)
+11  capture20110818-2.binetflow     IRC,DDoS,US        	rbot		train   107251 		8164   		2 		8162	OK|NO|NO|OK data cleasing problem (21 instead of 8164)
 12  capture20110819.binetflow       P2P                 nsys.ay		train   325471  	2168    	25		2143 	OK|OK|OK|OK
-13  capture20110815-3.binetflow     Spam,PS,HTTP      	virut		train   1925149 	40003   	536		39467	OK|NO|NO|NO 	k-mcd
+13  capture20110815-3.binetflow     Spam,PS,HTTP      	virut		train   1925149 	40003   	536		39467	OK|NO|NO|NO
 ================================================================================================================================================================================================================================
 pkl                 raw in pkl format
 pkl_all             raw_all in pkl format
