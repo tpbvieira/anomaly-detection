@@ -3,73 +3,9 @@ import pandas as pd
 import numpy as np
 import os, gc, warnings, time
 from scipy.stats import multivariate_normal
-from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
+from botnet_detection_utils import data_splitting, drop_agg_features, data_cleasing, column_types
 warnings.filterwarnings(action='once')
-
-def data_cleasing(df):
-    # data cleasing, feature engineering and save clean data into pickles
-
-    print('### Data Cleasing and Feature Engineering')
-    df.head()
-    le = preprocessing.LabelEncoder()
-
-    # [Protocol] - Discard ipv6-icmp and categorize
-    df['Proto'] = df['Proto'].fillna('-')
-    df['Proto'] = le.fit_transform(df['Proto'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-
-    # [Label] - Categorize
-    anomalies = df.Label.str.contains('Botnet')
-    normal = np.invert(anomalies)
-    df.loc[anomalies, 'Label'] = np.uint8(1)
-    df.loc[normal, 'Label'] = np.uint8(0)
-    df['Label'] = pd.to_numeric(df['Label'])
-
-    # [Dport] - replace NaN with 0 port number
-    df['Dport'] = df['Dport'].fillna('0')
-    df['Dport'] = df['Dport'].apply(lambda x: int(x, 0))
-
-    # [sport] - replace NaN with 0 port number
-    try:
-        df['Sport'] = df['Sport'].fillna('0')
-        df['Sport'] = df['Sport'].str.replace('.*x+.*', '0')
-        df['Sport'] = df['Sport'].apply(lambda x: int(x, 0))
-    except:
-        print("### data_cleasing: Unexpected error:", sys.exc_info()[0])
-
-    # [sTos] - replace NaN with "10" and convert to int
-    df['sTos'] = df['sTos'].fillna('10')
-    df['sTos'] = df['sTos'].astype(int)
-
-    # [dTos] - replace NaN with "10" and convert to int
-    df['dTos'] = df['dTos'].fillna('10')
-    df['dTos'] = df['dTos'].astype(int)
-
-    # [State] - replace NaN with "-" and categorize
-    df['State'] = df['State'].fillna('-')
-    df['State'] = le.fit_transform(df['State'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-
-    # [Dir] - replace NaN with "-" and categorize
-    df['Dir'] = df['Dir'].fillna('-')
-    df['Dir'] = le.fit_transform(df['Dir'])
-    le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-
-    # [SrcAddr] Extract subnet features and categorize
-    df['SrcAddr'] = df['SrcAddr'].fillna('0.0.0.0')
-
-    # [DstAddr] Extract subnet features
-    df['DstAddr'] = df['DstAddr'].fillna('0.0.0.0')
-
-    # [StartTime] - Parse to datatime, reindex based on StartTime, but first drop the ns off the time stamps
-    df['StartTime'] = df['StartTime'].apply(lambda x: x[:19])
-    df['StartTime'] = pd.to_datetime(df['StartTime'])
-    df = df.set_index('StartTime')
-
-    gc.collect()
-
-    return df
 
 
 def estimate_gaussian(dataset):
@@ -89,61 +25,6 @@ def get_classification_report(y_test, y_predic):
     Precision = precision_score(y_test, y_predic, average="binary")
 
     return f1, Recall, Precision
-
-
-def data_splitting(df, drop_features):
-    # Data splitting
-
-    # drop non discriminant features
-    df.drop(drop_features, axis=1, inplace=True)
-
-    # split into normal and anomaly
-    df_l1 = df[df["Label"] == 1]
-    df_l0 = df[df["Label"] == 0]
-    gc.collect()
-
-    # Length and indexes
-    anom_len = len(df_l1)    # total number of anomalous flows
-    anom_train_end = anom_len // 2    # 50% of anomalous for training
-    anom_cv_start = anom_train_end + 1    # 50% of anomalous for testing
-    norm_len = len(df_l0)    # total number of normal flows
-    norm_train_end = (norm_len * 60) // 100    # 60% of normal for training
-    norm_cv_start = norm_train_end + 1    # 20% of normal for cross validation
-    norm_cv_end = (norm_len * 80) // 100    # 20% of normal for cross validation
-    norm_test_start = norm_cv_end + 1    # 20% of normal for testing
-
-    # anomalies split data
-    anom_cv_df = df_l1[:anom_train_end]    # 50% of anomalies59452
-    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
-    gc.collect()
-
-    # normal split data
-    norm_train_df = df_l0[:norm_train_end]    # 60% of normal
-    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]    # 20% of normal
-    norm_test_df = df_l0[norm_test_start:norm_len]    # 20% of normal
-    gc.collect()
-
-    # CV and test data. train data is norm_train_df
-    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
-    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
-    gc.collect()
-
-    # Sort data by index
-    norm_train_df = norm_train_df.sort_index()
-    cv_df = cv_df.sort_index()
-    test_df = test_df.sort_index()
-    gc.collect()
-
-    # save labels and drop label from data
-    cv_label = cv_df["Label"]
-    test_label = test_df["Label"]
-    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
-    cv_df = cv_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
-
-    gc.collect()
-
-    return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
 def selectThresholdByCV(pred, labels):
@@ -179,45 +60,18 @@ def selectThresholdByCV(pred, labels):
 
 start_time = time.time()
 
-# features
-column_types = {
-    'StartTime': 'str',
-    'Dur': 'float32',
-    'Proto': 'str',
-    'SrcAddr': 'str',
-    'Sport': 'str',
-    'Dir': 'str',
-    'DstAddr': 'str',
-    'Dport': 'str',
-    'State': 'str',
-    'sTos': 'float16',
-    'dTos': 'float16',
-    'TotPkts': 'uint32',
-    'TotBytes': 'uint32',
-    'SrcBytes': 'uint32',
-    'Label': 'str'}
-
-# feature selection
-drop_features = {
-    'drop_features00': []
-    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
-    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
-    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
-    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
-}
-
 # raw files
-raw_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast')
 raw_directory = os.fsencode(raw_path)
 
 # pickle files - have the same names but different directory
-pkl_path = os.path.join('/home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/pkl/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast')
 pkl_directory = os.fsencode(pkl_path)
 pkl_files = os.listdir(pkl_directory)
 print("### Directory: ", pkl_directory)
 
 # for each feature set
-for features_key, value in drop_features.items():
+for features_key, value in drop_agg_features.items():
 
     # initialize labels
     mgm_cv_label = []
@@ -242,7 +96,7 @@ for features_key, value in drop_features.items():
         gc.collect()
 
         # data splitting
-        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(data, drop_features[features_key])
+        norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(data, drop_agg_features[features_key])
 
         # Scaler: raw, standardization (zero mean and unitary variance) or robust scaler
         scaler = 'Raw'

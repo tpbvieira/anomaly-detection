@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/pkl-to-csv.py" afterPath="$PROJECT_DIR$/botnet-detection-pkl-to-csv.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/to_pkl_csv.py" afterPath="$PROJECT_DIR$/botnet-detection-to-pkl-csv.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-etl.py" afterPath="$PROJECT_DIR$/botnet-detection-etl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-gmm.ipynb" afterPath="$PROJECT_DIR$/botnet-detection-gmm.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-gmm.py" afterPath="$PROJECT_DIR$/botnet-detection-gmm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-kmeans.py" afterPath="$PROJECT_DIR$/botnet-detection-kmeans.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-mcd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mgm.py" afterPath="$PROJECT_DIR$/botnet-detection-mgm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataset_statistics.py" afterPath="$PROJECT_DIR$/dataset_statistics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-kmeans.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-kmeans.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mb-kmeans.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mb-kmeans.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mgm.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mgm.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,18 +33,7 @@
     <favorites_list name="network-attack-detection" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="botnet-detection-lof.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-lof.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,19 +44,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getBestBySupervCV</find>
-      <find>getBestBySemiSupervCV</find>
-      <find>estimateGaussian</find>
-      <find>multivariateGaussian</find>
-      <find>selectThresholdByCV</find>
-      <find>data_sḉo</find>
-      <find>estimate_gaussian</find>
-      <find>multivariate_gaussian</find>
-      <find>get_classification_report</find>
-      <find>500</find>
-      <find>print_classification_report</find>
-      <find>data_splitting</find>
-      <find>getBestByCV</find>
       <find>scal</find>
       <find>dict</find>
       <find>m_cv_label</find>
@@ -68,6 +61,19 @@
       <find>0,</find>
       <find>getBestByNormalCV</find>
       <find>cm(</find>
+      <find>stratosphere-botnet-2011/ctu-13</find>
+      <find>selectThresholdByCV</find>
+      <find>dro</find>
+      <find>data_cle</find>
+      <find>data_spli</find>
+      <find>','stratosphere_botnet_2011/</find>
+      <find>getBestBySemiSupervCV</find>
+      <find>getBestBySemiSupervKurtosisCV</find>
+      <find>getBestBySupervCV</find>
+      <find>drop_fe</find>
+      <find>get_classification_report</find>
+      <find>drop_</find>
+      <find>sgg</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -75,6 +81,7 @@
       <replace>MMinCovDet</replace>
       <replace>m_df</replace>
       <replace>stratosphere_botnet_2011/ctu_13</replace>
+      <replace>stratosphere_botnet_2011/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -83,10 +90,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/botnet-detection-kmeans.py" />
         <option value="$PROJECT_DIR$/botnet-detection-adaptive-multivariate-gaussian.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
         <option value="$PROJECT_DIR$/pkl-to-mat.py" />
         <option value="$PROJECT_DIR$/botnet-detection-MCD.py" />
         <option value="$PROJECT_DIR$/binet_features.py" />
@@ -97,13 +101,23 @@
         <option value="$PROJECT_DIR$/botnet-detection-data_cleasing.py" />
         <option value="$PROJECT_DIR$/botnet-detection-k-mcd-cicids2017.py" />
         <option value="$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-gmm.py" />
         <option value="$PROJECT_DIR$/botnet-detection-multivariate-gaussian.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" />
         <option value="$PROJECT_DIR$/pkl-to-csv.py" />
+        <option value="$PROJECT_DIR$/.ipynb_checkpoints/botnet-detection-adaptive-multivariate-gaussian-checkpoint.ipynb" />
+        <option value="$PROJECT_DIR$/botnet-detection-etl.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-gmm.py" />
+        <option value="$PROJECT_DIR$/botnet_detection_utils.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" />
+        <option value="$PROJECT_DIR$/botnet-detection-kmeans.py" />
         <option value="$PROJECT_DIR$/dataset_statistics.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-to-pkl-csv.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-pkl-to-csv.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-mgm.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
       </list>
     </option>
   </component>
@@ -191,8 +205,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.botnet-detection-mcd">
-    <configuration name="botnet-detection-k-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.botnet-detection-to-pkl-csv">
+    <configuration name="botnet-detection-mb-kmeans-anom-type" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -204,7 +218,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adaptive-multivariate-gaussian" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="botnet-detection-mb-kmeans-train-test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="adaptive-multivariate-gaussian" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,7 +274,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="botnet-detection-multivariate-gaussian" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="botnet-detection-to-pkl-csv" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -255,42 +286,25 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="adaptive-multivariate-gaussian" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-multivariate-gaussian.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="dataset_statistics" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataset_statistics.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-to-pkl-csv.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
-      <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
-      <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-multivariate-gaussian" />
-      <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
-      <item index="4" class="java.lang.String" itemvalue="Python.dataset_statistics" />
+      <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans-anom-type" />
+      <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans-train-test" />
+      <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
+      <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
+      <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-to-pkl-csv" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
-        <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
-        <item index="2" class="java.lang.String" itemvalue="Python.dataset_statistics" />
-        <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
-        <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-multivariate-gaussian" />
+        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-to-pkl-csv" />
+        <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
+        <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
+        <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans-train-test" />
+        <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans-anom-type" />
       </list>
     </recent_temporary>
   </component>
@@ -312,14 +326,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1928" y="56" width="1875" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25460124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -330,7 +344,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -368,41 +381,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="65" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6750">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="381" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6750">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="381" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6750">
@@ -469,24 +452,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-adaptive-multivariate-gaussian.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="335" column="109" lean-forward="false" selection-start-line="335" selection-start-column="109" selection-end-line="335" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="1039" column="0" lean-forward="false" selection-start-line="1039" selection-start-column="0" selection-end-line="1039" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="443" column="38" lean-forward="false" selection-start-line="443" selection-start-column="33" selection-end-line="443" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -512,13 +481,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pkl-to-mat.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="237" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-MCD.py" />
     <entry file="file://$PROJECT_DIR$/binet_features.py" />
     <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/outlier_detection.py">
@@ -571,13 +533,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkl-to-csv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -592,48 +547,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="170" column="25" lean-forward="true" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-multivariate-gaussian.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="818">
           <caret line="289" column="56" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="289" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-etl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="174" column="19" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="174" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset_statistics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="199" column="36" lean-forward="true" selection-start-line="199" selection-start-column="36" selection-end-line="199" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="172" column="102" lean-forward="false" selection-start-line="172" selection-start-column="97" selection-end-line="172" selection-end-column="105" />
-          <folding>
-            <element signature="e#15#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,6 +559,148 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.ipynb_checkpoints/botnet-detection-adaptive-multivariate-gaussian-checkpoint.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-etl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="56" />
+          <folding>
+            <element signature="e#15#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="95" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="95" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset_statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-to-pkl-csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-pkl-to-csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mgm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <folding>
+            <element signature="e#98#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="108" lean-forward="false" selection-start-line="9" selection-start-column="108" selection-end-line="9" selection-end-column="108" />
+          <folding>
+            <element signature="e#81#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="124" lean-forward="false" selection-start-line="6" selection-start-column="124" selection-end-line="6" selection-end-column="124" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="124" lean-forward="false" selection-start-line="6" selection-start-column="124" selection-end-line="6" selection-end-column="124" />
+          <folding>
+            <element signature="e#15#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding>
+            <element signature="e#15#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,8 +1,6 @@
 # coding=utf-8
 import pandas as pd
-import os
-import gc
-import time
+import os, gc, time
 
 # track execution time
 start_time = time.time()
@@ -18,7 +16,7 @@ csv_path = os.path.join('/opt/data/csv/')
 csv_directory = os.fsencode(csv_path)
 
 for sample_file in pkl_files:
-    print('Loading: ', pkl_file_path)
+    print('Loading: ', sample_file)
     pkl_file_path = os.path.join(pkl_directory, sample_file).decode('utf-8')
     pkl_df = pd.read_pickle(pkl_file_path)
     print('Loaded: ', pkl_df.shape)

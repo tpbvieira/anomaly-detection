@@ -4,41 +4,10 @@ minibactch-kmeans implementation for train and test files
 '''
 import pandas as pd
 import numpy as np
-import os
-import sys
-import gc
-import ipaddress
-import time
-from functools import reduce
-from scipy.stats import multivariate_normal
-from sklearn import preprocessing
+import os, gc, time
 from sklearn.metrics import f1_score, recall_score, precision_score
 from sklearn.cluster import MiniBatchKMeans
-
-
-def estimateGaussian(dataset):
-    mu = np.mean(dataset, axis=0)
-    sigma = np.cov(dataset.T)
-    return mu, sigma
-
-
-def multivariateGaussian(dataset, mu, sigma):
-    p = multivariate_normal(mean=mu, cov=sigma, allow_singular=True)
-    return p.pdf(dataset)
-
-
-def print_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average = "binary")
-    Recall = recall_score(y_test, y_predic, average = "binary")
-    Precision = precision_score(y_test, y_predic, average = "binary")
-    print('\tF1 Score: ',f1,', Recall: ',Recall,', Precision: ,',Precision)
-
-
-def get_classification_report(y_test, y_predic):
-    f1 = f1_score(y_test, y_predic, average = "binary")
-    Recall = recall_score(y_test, y_predic, average = "binary")
-    Precision = precision_score(y_test, y_predic, average = "binary")
-    return f1, Recall,Precision
+from botnet_detection_utils import drop_raw_features, get_classification_report, column_types, data_cleasing
 
 
 def getBestByCV(X_train, X_cv, labels):
@@ -87,43 +56,18 @@ def getBestByCV(X_train, X_cv, labels):
 # track execution time
 start_time = time.time()
 
-column_types = {
-            'StartTime': 'str',
-            'Dur': 'float32',
-            'Proto': 'str',
-            'SrcAddr': 'str',
-            'Sport': 'str',
-            'Dir': 'str',
-            'DstAddr': 'str',
-            'Dport': 'str',
-            'State': 'str',
-            'sTos': 'float16',
-            'dTos': 'float16',
-            'TotPkts': 'uint32',
-            'TotBytes': 'uint32',
-            'SrcBytes': 'uint32',
-            'Label': 'str'}
-
-# feature selection
-drop_features = {
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
-}
-
 # for each feature set
-for features_key, value in drop_features.items():
+for features_key, value in drop_raw_features.items():
 
     # Initialize labels
     mbkmeans_test_label = []
     mbkmeans_pred_test_label = []
 
     # Load data
-    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_train2/train.binetflow'
-    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_train2/train.binetflow'
-    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/pkl_all_test2/test.binetflow'
-    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere-botnet-2011/ctu-13/raw_all_test2/test.binetflow'
+    pkl_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_all_train2/train.binetflow'
+    raw_train_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_all_train2/train.binetflow'
+    pkl_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_all_test2/test.binetflow'
+    raw_test_file_path = '/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_all_test2/test.binetflow'
 
     # read pickle or raw dataset for training
     if os.path.isfile(pkl_train_file_path):
@@ -150,8 +94,8 @@ for features_key, value in drop_features.items():
     gc.collect()
     
     # drop unnecessary features
-    train_df.drop(drop_features[features_key], axis =1, inplace = True)
-    test_df.drop(drop_features[features_key], axis =1, inplace = True)
+    train_df.drop(drop_raw_features[features_key], axis =1, inplace = True)
+    test_df.drop(drop_raw_features[features_key], axis =1, inplace = True)
     gc.collect()
 
     # data splitting
