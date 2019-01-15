@@ -2,7 +2,7 @@
 import os, gc, time, warnings
 import pandas as pd
 import numpy as np
-from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.metrics import f1_score, recall_score, precision_score, confusion_matrix
 from sklearn.covariance import EllipticEnvelope
 warnings.filterwarnings("ignore")
 
@@ -21,9 +21,9 @@ def get_classification_report(y_test, y_predic):
     return m_f1, m_recall, m_precision
 
 
-def data_splitting(m_df, drop_feature):
+def data_splitting(m_df, drop_feature_list):
     # drop non discriminant features
-    m_df.drop(drop_feature, axis=1, inplace=True)
+    m_df.drop(drop_feature_list, axis=1, inplace=True)
 
     # split into normal and anomaly
     df_l1 = m_df[m_df["Label"] == 1]
@@ -94,14 +94,12 @@ def getBestByCV(cv, t_cv_label):
         m_pred[m_pred == -1] = 1
 
         m_f1 = f1_score(m_cv_label, m_pred, average="binary")
-        m_recall = recall_score(m_cv_label, m_pred, average="binary")
-        m_precision = precision_score(m_cv_label, m_pred, average="binary")
 
         if m_f1 > m_best_f1:
             m_best_contamination = m_contamination
             m_best_f1 = m_f1
-            m_best_precision = m_precision
-            m_best_recall = m_recall
+            m_best_precision = precision_score(m_cv_label, m_pred, average="binary")
+            m_best_recall = recall_score(m_cv_label, m_pred, average="binary")
 
     return m_best_contamination, m_best_f1, m_best_precision, m_best_recall
 
@@ -117,31 +115,27 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
     m_best_f1 = -1
     m_best_precision = -1
     m_best_recall = -1
+    m_pred = []
 
     for m_contamination in np.linspace(0.01, 0.2, 20):
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(t_normal)
         m_pred = m_ell_model.predict(cv)
-        m_pred[m_pred == -1] = 1
         m_pred[m_pred == 1] = 0
+        m_pred[m_pred == -1] = 1
 
         m_f1 = f1_score(m_cv_label, m_pred, average="binary")
-        m_recall = recall_score(m_cv_label, m_pred, average="binary")
-        m_precision = precision_score(m_cv_label, m_pred, average="binary")
 
         if m_f1 > m_best_f1:
             m_best_model = m_ell_model
             m_best_contamination = m_contamination
             m_best_f1 = m_f1
-            m_best_precision = m_precision
-            m_best_recall = m_recall
+            m_best_precision = precision_score(m_cv_label, m_pred, average="binary")
+            m_best_recall = recall_score(m_cv_label, m_pred, average="binary")
 
-    # unique, counts = np.unique(m_cv_label, return_counts=True)
-    # print(dict(zip(unique, counts)))
-    # unique, counts = np.unique(m_pred, return_counts=True)
-    # print(dict(zip(unique, counts)))
+    m_cm = confusion_matrix(t_cv_label, m_pred)
 
-    return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall
+    return m_best_model, m_best_contamination, m_best_f1, m_best_precision, m_best_recall, m_cm
 
 
 start_time = time.time()
@@ -164,19 +158,19 @@ column_types = {
     'Label': 'uint8'}
 
 drop_features = {
-    # 'drop_features00': []
-    'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
-    'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
-    'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features00': []
+    # 'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes', 'Proto'],
+    # 'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'TotBytes'],
+    # 'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'SrcBytes', 'Proto'],
+    # 'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-# raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_fast/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
+# raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_sum/')
 raw_directory = os.fsencode(raw_path)
 
-# pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
+# pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -207,22 +201,21 @@ for features_key, value in drop_features.items():
         norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_features[features_key])
 
         # Cross-Validation and model selection
-        ell_model, best_contamination, best_f1, best_precision, best_recall = getBestByNormalCV(norm_train_df, cv_df, cv_label)
-        print('###[mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision)
+        ell_model, best_contamination, best_f1, best_precision, best_recall, best_cm = getBestByNormalCV(norm_train_df, cv_df, cv_label)
+        print('###[mcd][', features_key, '] CV. Cont:', best_contamination,', F1:', best_f1, ', Recall:', best_recall, ', Precision:', best_precision, ', TN:', best_cm[0,0], ', FP:', best_cm[0,1], ', FN:', best_cm[1,0], ', TP:', best_cm[1,1])
 
         # Test
         test_label = test_label.astype(np.int8)
         pred_test_label = ell_model.predict(test_df)
-        pred_test_label[pred_test_label == -1] = 1
         pred_test_label[pred_test_label == 1] = 0
+        pred_test_label[pred_test_label == -1] = 1
 
         # print results
         f1, Recall, Precision = get_classification_report(test_label, pred_test_label)
-        print('###[mcd][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision)
-        # unique, counts = np.unique(test_label, return_counts=True)
-        # print(dict(zip(unique, counts)))
-        # unique, counts = np.unique(pred_test_label, return_counts=True)
-        # print(dict(zip(unique, counts)))
+        cm = confusion_matrix(test_label, pred_test_label)
+        true_unique, true_counts = np.unique(test_label, return_counts=True)
+        pred_unique, pred_counts = np.unique(pred_test_label, return_counts=True)
+        print('###[mcd][', features_key, '] Test. F1:', f1, ', Recall:', Recall, ', Precision:', Precision, ', TN:', cm[0,0], ', FP:', cm[0,1], ', FN:', cm[1,0], ', TP:', cm[1,1], ', True:', dict(zip(true_unique, true_counts)), ', Pred:', dict(zip(pred_unique, pred_counts)))
 
         # save results for total evaluation later
         ee_test_label.extend(test_label)
