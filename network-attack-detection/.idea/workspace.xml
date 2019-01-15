@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/pkl-to-csv.py" afterPath="$PROJECT_DIR$/botnet-detection-pkl-to-csv.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/to_pkl_csv.py" afterPath="$PROJECT_DIR$/botnet-detection-to-pkl-csv.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-etl.py" afterPath="$PROJECT_DIR$/botnet-detection-etl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-gmm.ipynb" afterPath="$PROJECT_DIR$/botnet-detection-gmm.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-gmm.py" afterPath="$PROJECT_DIR$/botnet-detection-gmm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-kmeans.py" afterPath="$PROJECT_DIR$/botnet-detection-kmeans.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" afterPath="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-mcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mgm.py" afterPath="$PROJECT_DIR$/botnet-detection-mgm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataset_statistics.py" afterPath="$PROJECT_DIR$/dataset_statistics.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-kmeans.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-kmeans.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mb-kmeans.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mb-kmeans.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/botnet-detection-mgm.txt" afterPath="$PROJECT_DIR$/results/botnet-detection-mgm.txt" />
-    </list>
+    <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +24,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scal</find>
       <find>dict</find>
       <find>m_cv_label</find>
       <find>m_pred</find>
@@ -74,6 +53,7 @@
       <find>get_classification_report</find>
       <find>drop_</find>
       <find>sgg</find>
+      <find>BinetflowTrainer-master</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -373,6 +353,11 @@
           <line>289</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/stats.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -381,33 +366,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="66" />
+      <option name="time" value="67" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6750">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="381" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5742">
-          <caret line="327" column="24" lean-forward="false" selection-start-line="326" selection-start-column="0" selection-end-line="327" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -700,6 +663,44 @@
           <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
           <folding>
             <element signature="e#15#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="11" column="79" lean-forward="true" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/summarizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
