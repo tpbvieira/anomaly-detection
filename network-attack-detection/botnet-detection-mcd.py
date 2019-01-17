@@ -106,7 +106,7 @@ raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botn
 # raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw_sum/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
 # pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
@@ -158,7 +158,7 @@ for features_key, value in drop_agg_features.items():
             # print results
             print('###[mcd][', features_key, '] Test. mF1:', np.median(m_f1), ', mRecall:', np.median(m_re), ', mPrecision:', np.median(m_pr))
 
-            df = pd.DataFrame(m_f1)
+            df = pd.DataFrame([m_f1,m_re,m_pr])
             df.to_pickle(result_file)
 
 print("--- %s seconds ---" % (time.time() - start_time))
