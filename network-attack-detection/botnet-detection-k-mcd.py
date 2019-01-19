@@ -19,7 +19,7 @@ def getBestBySemiSupervCV(t_normal_df, t_cv_df, t_cv_label):
     m_best_recall = -1
 
     # configure GridSearchCV
-    for m_contamination in np.linspace(0.01, 0.2, 20):
+    for m_contamination in np.linspace(0.01, 0.2, 10):
         m_ell_model = MEllipticEnvelope(contamination=m_contamination)
         m_ell_model.fit(t_normal_df)
         m_pred = m_ell_model.kurtosis_prediction(t_cv_df)

@@ -18,7 +18,7 @@ def getBestByCV(cv, t_cv_label):
     m_best_precision = -1
     m_best_recall = -1
 
-    for m_contamination in np.linspace(0.01, 0.1, 15):
+    for m_contamination in np.linspace(0.01, 0.2, 10):
         # configure GridSearchCV
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(cv, m_cv_label)
@@ -50,7 +50,7 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
     m_best_recall = -1
     m_pred = []
 
-    for m_contamination in np.linspace(0.01, 0.2, 20):
+    for m_contamination in np.linspace(0.01, 0.2, 10):
         m_ell_model = EllipticEnvelope(contamination = m_contamination)
         m_ell_model.fit(t_normal)
         m_pred = m_ell_model.predict(cv)
@@ -78,7 +78,7 @@ def getBesByCINormalCV(t_normal, cv, t_cv_label, n_it):
     m_best_contamination = -1
     m_best_f1 = -1
 
-    for m_contamination in np.linspace(0.01, 0.2, 20):
+    for m_contamination in np.linspace(0.01, 0.2, 10):
         t_f1 = []
         for i in range(n_it):
             m_ell_model = EllipticEnvelope(contamination = m_contamination)
