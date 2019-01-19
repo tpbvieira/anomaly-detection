@@ -116,7 +116,7 @@ for features_key, value in drop_agg_features.items():
 
     # for each file/case
     for sample_file in file_list:
-        result_file = "%d_%s" % (it,sample_file.decode('utf-8'))
+        result_file = "mcd_%d_%s" % (it,sample_file.decode('utf-8'))
         if not os.path.isfile(result_file):
 
             # read pickle file with pandas or...
