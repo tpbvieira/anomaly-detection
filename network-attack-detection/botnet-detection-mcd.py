@@ -72,10 +72,8 @@ def getBestByNormalCV(t_normal, cv, t_cv_label):
 
 
 def getBesByCINormalCV(t_normal, cv, t_cv_label, n_it):
-    # prepare data
-    m_cv_label = t_cv_label.astype(np.int8)
-
     # initialize
+    m_cv_label = t_cv_label.astype(np.int8)
     m_best_model = EllipticEnvelope()
     m_best_contamination = -1
     m_best_f1 = -1
@@ -111,7 +109,7 @@ pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botn
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
-it = 200
+it = 100
 
 # for each feature set
 for features_key, value in drop_agg_features.items():

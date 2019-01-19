@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dataset_statistics.py" afterPath="$PROJECT_DIR$/botnet-detection-eda.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/raw_files_results.ods" afterPath="$PROJECT_DIR$/results/raw_files_results.ods" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/sum_files_results.xlsx" afterPath="$PROJECT_DIR$/results/sum_files_results.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-pkl-to-csv.py" afterPath="$PROJECT_DIR$/botnet-detection-pkl-to-csv.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet_detection_utils.py" afterPath="$PROJECT_DIR$/botnet_detection_utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-mcd.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,12 +21,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="botnet-detection-eda.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-eda.py">
+      <file leaf-file-name="botnet-detection-mcd.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="8" column="102" lean-forward="false" selection-start-line="8" selection-start-column="102" selection-end-line="8" selection-end-column="102" />
-              <folding />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#15#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="botnet-detection-k-mcd.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="118" selection-end-column="37" />
+              <folding>
+                <element signature="e#15#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,8 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print</find>
-      <find>elli</find>
       <find>mcd</find>
       <find>predict</find>
       <find>predict(</find>
@@ -62,7 +71,6 @@
       <find>data_spli</find>
       <find>','stratosphere_botnet_2011/</find>
       <find>getBestBySemiSupervCV</find>
-      <find>getBestBySemiSupervKurtosisCV</find>
       <find>getBestBySupervCV</find>
       <find>drop_fe</find>
       <find>get_classification_report</find>
@@ -72,9 +80,12 @@
       <find>getBestConfidentByNormalCV</find>
       <find>print(i</find>
       <find>mean</find>
-      <find>m_f1</find>
       <find>m_best_model</find>
+      <find>getBestBySemiSupervKurtosisCV</find>
       <find>ee_test_label</find>
+      <find>ee_pred_test_label</find>
+      <find>result_file</find>
+      <find>m_f1</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -117,9 +128,9 @@
         <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-anom-type.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mb-kmeans.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-eda.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
       </list>
     </option>
   </component>
@@ -207,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.botnet-detection-eda">
+  <component name="RunManager" selected="Python.botnet-detection-k-mcd">
     <configuration name="botnet-detection-eda" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -302,9 +313,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-eda" />
-        <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
-        <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
+        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
+        <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-eda" />
+        <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
         <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-to-pkl-csv" />
         <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-mb-kmeans" />
       </list>
@@ -328,17 +339,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1928" y="56" width="1875" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.50186867" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997955" sideWeight="0.49813133" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997955" sideWeight="0.49813133" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -383,7 +395,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="67" />
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -410,13 +422,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.ipynb" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-adaptive-multivariate-gaussian.py" />
     <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -505,13 +511,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -519,13 +519,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataset_statistics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset_statistics.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-to-pkl-csv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -579,13 +573,6 @@
     <entry file="file://$PROJECT_DIR$/summarizer.py" />
     <entry file="file://$PROJECT_DIR$/stats.py" />
     <entry file="file://$PROJECT_DIR$/main.py" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="50" column="37" lean-forward="true" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -600,21 +587,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-eda.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="108" column="102" lean-forward="false" selection-start-line="108" selection-start-column="102" selection-end-line="108" selection-end-column="102" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#15#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-eda.py">
+    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="102" lean-forward="false" selection-start-line="8" selection-start-column="102" selection-end-line="8" selection-end-column="102" />
-          <folding />
+        <state relative-caret-position="341">
+          <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="118" selection-end-column="37" />
+          <folding>
+            <element signature="e#15#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
