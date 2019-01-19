@@ -109,7 +109,7 @@ pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botn
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
-it = 100
+it = 5
 
 # for each feature set
 for features_key, value in drop_agg_features.items():
