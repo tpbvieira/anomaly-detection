@@ -105,11 +105,11 @@ raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botn
 raw_directory = os.fsencode(raw_path)
 
 pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
-# pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_fast/')
+# pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
-it = 5
+it = 20
 
 # for each feature set
 for features_key, value in drop_agg_features.items():
@@ -135,16 +135,17 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            # Cross-Validation and model selection
-            ell_model, best_contamination, best_f1 = getBesByCINormalCV(norm_train_df, cv_df, cv_label, it)
-            print('###[mcd][', features_key, '] CV. Cont:', best_contamination,', F1:', best_f1)
-
             # Test
             m_f1 = []
             m_pr = []
             m_re = []
             test_label = test_label.astype(np.int8)
             for i in range(it):
+                # Cross-Validation and model selection
+                ell_model, best_contamination, best_f1 = getBesByCINormalCV(norm_train_df, cv_df, cv_label, 1)
+                print('###[mcd][', features_key, '] CV. Cont:', best_contamination, ', F1:', best_f1)
+
+                # Prediction test
                 pred_test_label = ell_model.predict(test_df)
                 pred_test_label[pred_test_label == 1] = 0
                 pred_test_label[pred_test_label == -1] = 1
@@ -153,8 +154,8 @@ for features_key, value in drop_agg_features.items():
                 m_pr.append(t_Precision)
                 m_re.append(t_Recall)
 
-            # print results
-            print('###[mcd][', features_key, '] Test. mF1:', np.median(m_f1), ', mRecall:', np.median(m_re), ', mPrecision:', np.median(m_pr))
+                # print results
+                print('###[mcd][', features_key, '] Test. mF1:', np.median(m_f1), ', mRecall:', np.median(m_re), ', mPrecision:', np.median(m_pr))
 
             df = pd.DataFrame([m_f1,m_re,m_pr])
             df.to_pickle(result_file)
