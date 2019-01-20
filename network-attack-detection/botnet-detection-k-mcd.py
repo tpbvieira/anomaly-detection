@@ -64,14 +64,14 @@ def getBestBySemiSupervCVWithCI(t_normal_df, t_cv_df, t_cv_label, n_it):
 
 start_time = time.time()
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
-it = 10
+it = 20
 
 # for each feature set
 for features_key, value in drop_agg_features.items():
@@ -97,24 +97,25 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            # Cross-Validation and model selection
-            ell_model, best_contamination, best_f1 = getBestBySemiSupervCVWithCI(norm_train_df, cv_df, cv_label, it)
-            print('###[k-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1)
-
-            # Test
             m_f1 = []
             m_pr = []
             m_re = []
-            test_label = test_label.astype(np.int8)
             for i in range(it):
+                # Cross-Validation and model selection
+                ell_model, best_contamination, best_f1 = getBestBySemiSupervCVWithCI(norm_train_df, cv_df, cv_label, 1)
+                print('###[k-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1)
+
+                # Prediction Test
+                test_label = test_label.astype(np.int8)
                 pred_test_label = ell_model.kurtosis_prediction(test_df)
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
+                print('###[k-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
+
+                # save results
                 m_f1.append(t_f1)
                 m_pr.append(t_Precision)
                 m_re.append(t_Recall)
 
-            # print results
-            print('###[k-mcd][', features_key, '] Test. mF1:', np.median(m_f1), ', mRecall:', np.median(m_re), ', mPrecision:', np.median(m_pr))
             df = pd.DataFrame([m_f1, m_re, m_pr])
             df.to_pickle(result_file)
 

@@ -135,7 +135,6 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            # Test
             m_f1 = []
             m_pr = []
             m_re = []
@@ -150,12 +149,13 @@ for features_key, value in drop_agg_features.items():
                 pred_test_label[pred_test_label == 1] = 0
                 pred_test_label[pred_test_label == -1] = 1
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
+                # print results
+                print('###[mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
+
+                # save results
                 m_f1.append(t_f1)
                 m_pr.append(t_Precision)
                 m_re.append(t_Recall)
-
-                # print results
-                print('###[mcd][', features_key, '] Test. mF1:', np.median(m_f1), ', mRecall:', np.median(m_re), ', mPrecision:', np.median(m_pr))
 
             df = pd.DataFrame([m_f1,m_re,m_pr])
             df.to_pickle(result_file)
