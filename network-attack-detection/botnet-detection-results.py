@@ -47,10 +47,13 @@ for sample_file in file_list:
 m_scenarios = result_df.scenarios.unique()
 
 for m_scenario in m_scenarios:
+    # select data
     result_scenario_df = result_df.loc[result_df['scenarios'] == m_scenario]
     result_scenario_df = result_scenario_df.sort_values(['windows', 'algs'], ascending=[True, False])
 
-    sns.boxplot(x="methods", y="F1", data=result_scenario_df, palette="PRGn")
-    fig_name = "%s.png" % m_scenario
+    # boxplot
+    plt.figure(figsize=(10, 5))
+    bp = sns.boxplot(x="methods", y="F1", data=result_scenario_df, palette="PRGn", width=0.8)
+    fig_name = "results/%s.png" % m_scenario
     plt.savefig(fig_name)
     plt.close()
