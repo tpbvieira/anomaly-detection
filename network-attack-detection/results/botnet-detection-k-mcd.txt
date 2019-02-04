@@ -6,7 +6,7 @@
 	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.12 , F1: 0.088646091462041 , Recall: 0.268994140625 , Precision: 0.05306708280352946
 	###[k-mcd][ drop_features01 ] Test. F1: 0.09183140454522044 , Recall: 0.304736328125 , Precision: 0.05406131164297532
 ## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.005586592178770949 , Recall: 0.06451612903225806 , Precision: 0.00291970802919708
+	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.005586592178770949 , Recall: 0.06451612903225806 , Precision: 0.00291970802919708	
 	###[k-mcd][ drop_features01 ] Test. F1: 0.008379888268156426 , Recall: 0.0967741935483871 , Precision: 0.004379562043795621
 ## Sample File:  /opt/data/pkl/capture20110819.binetflow
 	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.01 , F1: 0.14351320321469577 , Recall: 0.11531365313653137 , Precision: 0.1899696048632219
