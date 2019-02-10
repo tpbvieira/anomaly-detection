@@ -64,10 +64,10 @@ def getBestBySemiSupervCVWithCI(t_normal_df, t_cv_df, t_cv_label, n_it):
 
 start_time = time.time()
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -78,7 +78,7 @@ for features_key, value in drop_agg_features.items():
 
     # for each file/case
     for sample_file in file_list:
-        result_file = "results/pkl_sum/20/k-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
+        result_file = "results/pkl_sum_fast/20/k-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
         if not os.path.isfile(result_file):
 
             # read pickle file with pandas or...
@@ -111,12 +111,25 @@ for features_key, value in drop_agg_features.items():
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
                 print('###[k-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
-                # save results
-                m_f1.append(t_f1)
-                m_pr.append(t_Precision)
-                m_re.append(t_Recall)
+                # test access to variable
+                a = ell_model.raw_location_
+                a = ell_model.raw_covariance_
+                a = ell_model.raw_skew1_
+                a = ell_model.raw_kurt1_
+                a = ell_model.location_
+                a = ell_model.covariance_
+                a = ell_model.precision_
+                a = ell_model.support_
+                a = ell_model.dist_
+                a = ell_model.raw_skew1_dist_
+                a = ell_model.raw_kurt1_dist_
 
-            df = pd.DataFrame([m_f1, m_re, m_pr])
-            df.to_pickle(result_file)
+            #     # save results
+            #     m_f1.append(t_f1)
+            #     m_pr.append(t_Precision)
+            #     m_re.append(t_Recall)
+            #
+            # df = pd.DataFrame([m_f1, m_re, m_pr])
+            # df.to_pickle(result_file)
 
 print("--- %s seconds ---" % (time.time() - start_time))

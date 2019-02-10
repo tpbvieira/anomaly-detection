@@ -108,8 +108,6 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
 
     X_support = X[support]
     location = X_support.mean(0)
-    skew1 = skew(X_support, axis=0, bias=True)
-    kurt1 = kurtosis(X_support, axis=0, fisher=True, bias=True)
     covariance = cov_computation_method(X_support)
 
     # Iterative procedure for Minimum Covariance Determinant computation
@@ -134,12 +132,14 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
         support[np.argsort(dist)[:n_support]] = True
         X_support = X[support]
         location = X_support.mean(axis=0)
-        skew1 = skew(X_support, axis=0, bias=True)
-        kurt1 = kurtosis(X_support, axis=0, fisher=True, bias=True)
         covariance = cov_computation_method(X_support)
         det = fast_logdet(covariance)
         # update remaining iterations for early stopping
         remaining_iterations -= 1
+
+    # compute skewness and kurtosis from the final version of X_support (robust estimation)
+    skew1 = skew(X_support, axis=0, bias=True)
+    kurt1 = kurtosis(X_support, axis=0, fisher=True, bias=True)
 
     previous_dist = dist
     dist = (np.dot(X - location, precision) * (X - location)).sum(axis=1)
@@ -556,6 +556,12 @@ class MMinCovDet(EmpiricalCovariance):
         the raw robust estimates of location and shape, before correction
         and re-weighting.
 
+    raw_skew1_ : array-like, shape (n_features,)
+        The raw robust estimated skewness
+
+    raw_kurt1_ : array-like, shape (n_features,)
+        The raw robust estimated kurtosis
+
     location_ : array-like, shape (n_features,)
         Estimated robust location
 
@@ -571,8 +577,13 @@ class MMinCovDet(EmpiricalCovariance):
         the robust estimates of location and shape.
 
     dist_ : array-like, shape (n_samples,)
-        Mahalanobis distances of the training set (on which `fit` is called)
-        observations.
+        Mahalanobis distances of the training set (on which `fit` is called) observations.
+
+    raw_skew1_dist_ : array-like, shape (n_samples,)
+        Mahalanobis distances of the training set (on which `fit` is called) observations for skewness.
+
+    raw_kurt1_dist_ : array-like, shape (n_samples,)
+        Mahalanobis distances of the training set (on which `fit` is called) observations for kurtosis.
 
     References
     ----------

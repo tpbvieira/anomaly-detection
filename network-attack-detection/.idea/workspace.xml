@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/k_mcd_robust_moments.py" afterPath="$PROJECT_DIR$/k_mcd_robust_moments.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/notes.txt" afterPath="$PROJECT_DIR$/results/notes.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +23,8 @@
       <file leaf-file-name="botnet-detection-k-mcd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="66" column="102" lean-forward="false" selection-start-line="66" selection-start-column="102" selection-end-line="66" selection-end-column="102" />
+            <state relative-caret-position="538">
+              <caret line="132" column="39" lean-forward="true" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
               <folding>
                 <element signature="e#15#44#0" expanded="true" />
               </folding>
@@ -36,8 +35,8 @@
       <file leaf-file-name="k_mcd_outlier_detection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="230" column="18" lean-forward="false" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="18" />
+            <state relative-caret-position="-421">
+              <caret line="169" column="0" lean-forward="true" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -46,8 +45,8 @@
       <file leaf-file-name="k_mcd_robust_moments.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-708">
-              <caret line="646" column="35" lean-forward="true" selection-start-line="646" selection-start-column="35" selection-end-line="646" selection-end-column="35" />
+            <state relative-caret-position="551">
+              <caret line="140" column="17" lean-forward="false" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -64,19 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sgg</find>
-      <find>BinetflowTrainer-master</find>
-      <find>getBestConfidentByNormalCV</find>
-      <find>print(i</find>
-      <find>mean</find>
-      <find>m_best_model</find>
-      <find>getBestBySemiSupervKurtosisCV</find>
-      <find>ee_test_label</find>
-      <find>ee_pred_test_label</find>
-      <find>result_file</find>
-      <find>m_f1</find>
-      <find>100</find>
-      <find>linspace</find>
       <find>alg</find>
       <find>windo</find>
       <find>plt</find>
@@ -90,10 +76,23 @@
       <find>order</find>
       <find>_c_step</find>
       <find>fit(</find>
-      <find>kurtosis_prediction</find>
       <find>/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/</find>
       <find>skew2</find>
+      <find>skew1</find>
+      <find>raw_</find>
+      <find>prediction</find>
+      <find>kur</find>
+      <find>elli</find>
+      <find>ellip</find>
+      <find>self.</find>
+      <find>raw_location_</find>
+      <find>raw_sk</find>
+      <find>precision</find>
+      <find>kurtosis_prediction</find>
+      <find>pinvh</find>
+      <find>covariance_</find>
       <find>skew</find>
+      <find>skew(</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -141,8 +140,8 @@
         <option value="$PROJECT_DIR$/botnet-detection-results.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-s-mcd.py" />
-        <option value="$PROJECT_DIR$/k_mcd_robust_moments.py" />
         <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+        <option value="$PROJECT_DIR$/k_mcd_robust_moments.py" />
       </list>
     </option>
   </component>
@@ -614,31 +613,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-s-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-708">
-          <caret line="646" column="35" lean-forward="true" selection-start-line="646" selection-start-column="35" selection-end-line="646" selection-end-column="35" />
+        <state relative-caret-position="72">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="230" column="18" lean-forward="false" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="18" />
+        <state relative-caret-position="-421">
+          <caret line="169" column="0" lean-forward="true" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="140" column="17" lean-forward="false" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="66" column="102" lean-forward="false" selection-start-line="66" selection-start-column="102" selection-end-line="66" selection-end-column="102" />
+        <state relative-caret-position="538">
+          <caret line="132" column="39" lean-forward="true" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
           <folding>
             <element signature="e#15#44#0" expanded="true" />
           </folding>
