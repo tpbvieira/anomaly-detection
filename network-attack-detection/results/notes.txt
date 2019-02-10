@@ -59,3 +59,28 @@ raw_normal     		normal traffic
 	Training and cross-validation: 3,4,5,7,10,11,12,13
  - The Botnet traffic comes from the infected hosts, the Normal traffic from the verified normal hosts and the Background traffic is all the rest of traffic that we don’t know what it is for sure.
  - The CTU-13 dataset consists in thirteen captures (called scenarios) of different botnet samples. On each scenario we executed a specific malware, which used several protocols and performed different actions.
+
+
+Pending...
+results/pkl_sum/20/k-mcd_20_0.15s_12.pk1
+results/pkl_sum/20/k-mcd_20_0.15s_16-3.pk1
+results/pkl_sum/20/k-mcd_20_0.25s_12.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_12.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_15-2.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_15-3.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_16-2.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_16-3.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_18-2.pk1
+results/pkl_sum/20/s-mcd_20_0.25s_18.pk1
+results/pkl_sum/20/s-mcd_20_1s_12.pk1
+results/pkl_sum/20/s-mcd_20_1s_15-3.pk1
+results/pkl_sum/20/s-mcd_20_1s_16-2.pk1
+results/pkl_sum/20/s-mcd_20_1s_16-3.pk1
+results/pkl_sum/20/s-mcd_20_1s_16.pk1
+results/pkl_sum/20/s-mcd_20_1s_18-2.pk1
+results/pkl_sum/20/s-mcd_20_2s_10.pk1
+results/pkl_sum/20/s-mcd_20_2s_12.pk1
+results/pkl_sum/20/s-mcd_20_2s_15-3.pk1
+results/pkl_sum/20/s-mcd_20_2s_15.pk1
+results/pkl_sum/20/s-mcd_20_2s_16-2.pk1
+results/pkl_sum/20/s-mcd_20_2s_16.pk1
