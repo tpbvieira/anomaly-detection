@@ -78,7 +78,7 @@ for features_key, value in drop_agg_features.items():
 
     # for each file/case
     for sample_file in file_list:
-        result_file = "results/pkl_sum_dict/20/k-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
+        result_file = "results/pkl_sum_dict/20/c-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
         if not os.path.isfile(result_file):
 
             # read pickle file with pandas or...
@@ -97,16 +97,14 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            # m_f1 = []
-            # m_pr = []
-            # m_re = []
-            result_dict = {}
+            k_mcd_result_dict = {}
+            s_mcd_result_dict = {}
             for i in range(it):
                 # Cross-Validation and model selection
                 ell_model, best_contamination, best_f1 = getBestBySemiSupervCVWithCI(norm_train_df, cv_df, cv_label, 1)
                 print('###[k-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1)
 
-                # Prediction Test
+                # K-MCD Prediction Test
                 test_label = test_label.astype(np.int8)
                 pred_test_label = ell_model.kurtosis_prediction(test_df)
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
@@ -128,16 +126,40 @@ for features_key, value in drop_agg_features.items():
                     "pred_test_label": pred_test_label
                 }
 
-                result_dict[i] = c_mcd_pred
+                k_mcd_result_dict[i] = c_mcd_pred
 
-                # # save results
-                # m_f1.append(t_f1)
-                # m_pr.append(t_Precision)
-                # m_re.append(t_Recall)
+                # S-MCD Prediction Test
+                test_label = test_label.astype(np.int8)
+                pred_test_label = ell_model.skewness_prediction(test_df)
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
+                print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:',
+                      t_Precision)
+
+                c_mcd_pred = {
+                    "raw_location_": ell_model.raw_location_,
+                    "raw_covariance_": ell_model.raw_covariance_,
+                    "raw_skew1_": ell_model.raw_skew1_,
+                    "raw_kurt1_": ell_model.raw_kurt1_,
+                    "location_": ell_model.location_,
+                    "covariance_": ell_model.covariance_,
+                    "precision_": ell_model.precision_,
+                    "support_": ell_model.support_,
+                    "dist_": ell_model.dist_,
+                    "raw_skew1_dist_": ell_model.raw_skew1_dist_,
+                    "raw_kurt1_dist_": ell_model.raw_kurt1_dist_,
+                    "test_label": test_label,
+                    "pred_test_label": pred_test_label
+                }
+
+                s_mcd_result_dict[i] = c_mcd_pred
+
+            c_mcd_result_dict = {}
+            c_mcd_result_dict['k_mcd'] = k_mcd_result_dict
+            c_mcd_result_dict['s_mcd'] = s_mcd_result_dict
 
             # write python dict to a file
             output = open(result_file, 'wb')
-            pickle.dump(result_dict, output)
+            pickle.dump(c_mcd_result_dict, output)
             output.close()
 
             # df = pd.DataFrame([m_f1, m_re, m_pr])
