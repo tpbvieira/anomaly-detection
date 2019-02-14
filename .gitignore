@@ -17,4 +17,5 @@ igovti_fcs/results/
 
 network-attack-detection/*.jpg
 network-attack-detection/*.png
-network-attack-detection/results/mcd/
+/home/thiago/dev/anomaly-detection/network-attack-detection/results/pkl_sum/
+/home/thiago/dev/anomaly-detection/network-attack-detection/results/pkl_sum_dict/
