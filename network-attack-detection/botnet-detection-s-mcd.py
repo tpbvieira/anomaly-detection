@@ -1,5 +1,5 @@
 # coding=utf-8
-import os, gc, time, warnings
+import os, gc, time, warnings, pickle
 import pandas as pd
 import numpy as np
 from sklearn.metrics import f1_score, recall_score, precision_score
@@ -78,7 +78,7 @@ for features_key, value in drop_agg_features.items():
 
     # for each file/case
     for sample_file in file_list:
-        result_file = "results/pkl_sum/20/s-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
+        result_file = "results/pkl_sum_dict/20/s-mcd_%d_%s" % (it, sample_file.decode('utf-8'))
         if not os.path.isfile(result_file):
 
             # read pickle file with pandas or...
@@ -97,9 +97,10 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            m_f1 = []
-            m_pr = []
-            m_re = []
+            # m_f1 = []
+            # m_pr = []
+            # m_re = []
+            result_dict = {}
             for i in range(it):
                 # Cross-Validation and model selection
                 ell_model, best_contamination, best_f1 = getBestBySemiSupervCVWithCI(norm_train_df, cv_df, cv_label, 1)
@@ -111,12 +112,35 @@ for features_key, value in drop_agg_features.items():
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
                 print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
-                # save results
-                m_f1.append(t_f1)
-                m_pr.append(t_Precision)
-                m_re.append(t_Recall)
+                c_mcd_pred = {
+                    "raw_location_": ell_model.raw_location_,
+                    "raw_covariance_": ell_model.raw_covariance_,
+                    "raw_skew1_": ell_model.raw_skew1_,
+                    "raw_kurt1_": ell_model.raw_kurt1_,
+                    "location_": ell_model.location_,
+                    "covariance_": ell_model.covariance_,
+                    "precision_": ell_model.precision_,
+                    "support_": ell_model.support_,
+                    "dist_": ell_model.dist_,
+                    "raw_skew1_dist_": ell_model.raw_skew1_dist_,
+                    "raw_kurt1_dist_": ell_model.raw_kurt1_dist_,
+                    "test_label": test_label,
+                    "pred_test_label": pred_test_label
+                }
 
-            df = pd.DataFrame([m_f1, m_re, m_pr])
-            df.to_pickle(result_file)
+                result_dict[i] = c_mcd_pred
+
+                # # save results
+                # m_f1.append(t_f1)
+                # m_pr.append(t_Precision)
+                # m_re.append(t_Recall)
+
+            # write python dict to a file
+            output = open(result_file, 'wb')
+            pickle.dump(result_dict, output)
+            output.close()
+
+            # df = pd.DataFrame([m_f1, m_re, m_pr])
+            # df.to_pickle(result_file)
 
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -5,10 +5,172 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/botnet-detection-k-mcd.py" afterPath="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/AR_EigenFace.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/AR_EigenFace.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/demo.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/demo.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/Eigenface_f.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/Eigenface_f.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_Class_Energy.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_Class_Energy.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_FDL_Energy.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_FDL_Energy.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_Gradient_Comp.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_Gradient_Comp.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_INIC.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_INIC.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_INID.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_INID.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_SpaCoef.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_SpaCoef.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_UpdateDi.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/FDDL_UpdateDi.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/IPM_SC.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/IPM_SC.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../discriminative-dl/utilies/soft.m" beforeDir="false" afterPath="$PROJECT_DIR$/../discriminative-dl/utilies/soft.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-tensor-dictionary-learning/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-tensor-dictionary-learning/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016JNCA/2016JNCA.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016JNCA/2016JNCA.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016JNCA/2016JNCA.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016JNCA/2016JNCA.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE-Final-figures.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE-Final-figures.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/2016MONE.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.graphml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.graphml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/feature_engineering.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.graphml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.graphml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.graphml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.graphml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenario2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenarios_and_features.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2016MONE-Final/scenarios_and_features.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2017SBSEG/2017sbseg.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2017SBSEG/2017sbseg.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.blg" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/2018icassp.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/IEEEbib.bst" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/IEEEbib.bst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image1.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image1.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image3.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image3.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image4.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/figures/image4.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/papers/2018ICASSP/spconf.sty" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/papers/2018ICASSP/spconf.sty" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/.goutputstream-5XFAOW" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/.goutputstream-5XFAOW" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/20180403_cronograma.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/20180403_cronograma.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/algorithms.dtx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/algorithms.dtx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/algorithms.ins" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/algorithms.ins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/1_introduction/introduction.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/1_introduction/introduction.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/2_eigen_similarity/eigen_similarity.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/2_eigen_similarity/eigen_similarity.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/3_mobile/mobile.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/3_mobile/mobile.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/4_tensor_dl/tensor_dl.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/4_tensor_dl/tensor_dl.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/5_conclusion_future_work/conclusion.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/5_conclusion_future_work/conclusion.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/abstract.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/abstract.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/acronyms.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/acronyms.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/a_mos/a_mos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/a_mos/a_mos.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/.texlipse" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/.texlipse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/pca_svm_cfa.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/b_pca_svm_cfa/pca_svm_cfa.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/c_tensor_denoising/c_tensor_denoising.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/c_tensor_denoising/c_tensor_denoising.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/c_tensor_denoising/tensor_denoising.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/appendix/c_tensor_denoising/tensor_denoising.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/chapters/resumo.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/chapters/resumo.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/capa_fundo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/capa_fundo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/ch2/raw_igovti_ranking_pc2.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/ch2/raw_igovti_ranking_pc2.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/ch2/raw_variance_ecdf.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/ch2/raw_variance_ecdf.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/ch4/s=5_snr=20_L=2000_noIt=100_N=20_K=50.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/ch4/s=5_snr=20_L=2000_noIt=100_N=20_K=50.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/departmentlogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/departmentlogo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/image1.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/image1.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/image3.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/image3.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/image4.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/image4.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/institutionlogo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/institutionlogo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/logo_unb.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/logo_unb.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/figures/unb.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/figures/unb.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/natbib.bst" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/natbib.bst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/natbib.sty" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/natbib.sty" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/references.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/references.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/reviews/qualification.ods" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/reviews/qualification.ods" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/reviews/qualification.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/reviews/qualification.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/reviews/thesis_todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/reviews/thesis_todo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/risethesis.cls" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/risethesis.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/alg.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/alg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo-blx.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo-blx.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.nav" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.nav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.snm" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.snm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_grupo.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb-blx.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb-blx.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.bcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.nav" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.nav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.snm" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.snm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.vrb" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/apresentacao_unb.vrb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/beamercolorthemesthlm.sty" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/beamercolorthemesthlm.sty" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/beamerfontthemesthlm.sty" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/beamerfontthemesthlm.sty" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/beamerthemesthlm.sty" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/beamerthemesthlm.sty" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/slides/overleaf.png" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/slides/overleaf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/thesis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/thesis.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../faceRecognition/FDDL/FDDL.log" beforeDir="false" afterPath="$PROJECT_DIR$/../faceRecognition/FDDL/FDDL.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../faceRecognition/FDDL/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../faceRecognition/FDDL/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../faceRecognition/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/../faceRecognition/face_recognition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/GMM-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/GMM-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Logistic Regression-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Logistic Regression-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian and Neural Network-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian and Neural Network-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/Multivariate Gaussian-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/SVM-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/.ipynb_checkpoints/SVM-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/GMM.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/GMM.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Isolation Forest, KMeans, Local Outlier Factor, One-Class SVM.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Logistic Regression.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Logistic Regression.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian and Neural Network.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian and Neural Network.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian, Histogram, GMM, SVM, IsolationForest, Autoencoder.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/Multivariate Gaussian.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/SVM.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/code/SVM.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/credit_card_fraud_detection.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/credit_card_fraud_detection/credit_card_fraud_detection.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/featureSelection/__notebook__.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/featureSelection/__notebook__.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/featureSelection/__notebook__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/featureSelection/__notebook__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/fraud_detection_notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/fraud_detection_notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/feature_ranking.ods" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/feature_ranking.ods" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_cv.ods" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_cv.ods" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_cv.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_cv.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_reconstruction_dl_cv_normalized_under_under.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_reconstruction_dl_cv_normalized_under_under.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_reconstruction_dl_cv_under_complete.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/fraud_detection_reconstruction_dl_cv_under_complete.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/results/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/results/results.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/three_features_with_kneighbors/__notebook__.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/three_features_with_kneighbors/__notebook__.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/three_features_with_kneighbors/__notebook__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/three_features_with_kneighbors/__notebook__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/xgboost/__notebook__.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/xgboost/__notebook__.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fraudDetection/xgboost/__notebook__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fraudDetection/xgboost/__notebook__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../igovti_fcs/data/org" beforeDir="false" afterPath="$PROJECT_DIR$/../igovti_fcs/data/org" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../igovti_fcs/norm_eigenvalues.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../igovti_fcs/norm_eigenvalues.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../igovti_fcs/norm_eigenvalues_ratio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../igovti_fcs/norm_eigenvalues_ratio.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../igovti_fcs/results/raw_eigenvalues.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../igovti_fcs/results/raw_eigenvalues.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../igovti_fcs/results/raw_eigenvalues_ratio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../igovti_fcs/results/raw_eigenvalues_ratio.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/.idea/imageDenoising.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/.idea/imageDenoising.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/plot_gray_image_denoising.py" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/plot_gray_image_denoising.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/plot_gray_image_denoising_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/plot_gray_image_denoising_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/results/image_denoising.ods" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/results/image_denoising.ods" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/results/print_gray_192_512_image_denoising_DL_CV.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/results/print_gray_192_512_image_denoising_DL_CV.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../imageDenoising/rgbImageDenoising.m" beforeDir="false" afterPath="$PROJECT_DIR$/../imageDenoising/rgbImageDenoising.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/adaptive-multivariate-gaussian.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/adaptive-multivariate-gaussian.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botnet-detection-results.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botnet-detection-s-mcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-s-mcd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/noisy.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/noisy.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/normal_and_mean.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/normal_and_mean.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/normal_mean_sine.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/normal_mean_sine.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/rank3_CPD.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/rank3_CPD.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/rank3_CPD.r" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/rank3_CPD.r" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tensor/tensor_decomposition_cp.r" beforeDir="false" afterPath="$PROJECT_DIR$/../tensor/tensor_decomposition_cp.r" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,12 +180,12 @@
     <favorites_list name="network-attack-detection" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="botnet-detection-k-mcd.py" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1492">
-              <caret line="142" column="51" lean-forward="true" selection-start-line="142" selection-start-column="51" selection-end-line="142" selection-end-column="51" />
+            <state relative-caret-position="636">
+              <caret line="145" column="56" lean-forward="true" selection-start-line="145" selection-start-column="56" selection-end-line="145" selection-end-column="56" />
               <folding>
                 <element signature="e#15#52#0" expanded="true" />
               </folding>
@@ -31,22 +193,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="k_mcd_outlier_detection.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-s-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="240" column="22" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="k_mcd_robust_moments.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="129" column="31" lean-forward="false" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="501">
+              <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+              <folding>
+                <element signature="e#15#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,17 +292,17 @@
         <option value="$PROJECT_DIR$/botnet-detection-eda.py" />
         <option value="$PROJECT_DIR$/botnet-detection-results.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-s-mcd.py" />
         <option value="$PROJECT_DIR$/k_mcd_robust_moments.py" />
         <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-s-mcd.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1928" />
-    <option name="y" value="56" />
-    <option name="width" value="1873" />
-    <option name="height" value="1028" />
+    <option name="x" value="67" />
+    <option name="y" value="25" />
+    <option name="width" value="1853" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -193,23 +347,13 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -228,8 +372,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.botnet-detection-k-mcd">
+  <component name="RunManager" selected="Python.botnet-detection-results">
     <configuration name="botnet-detection-eda" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -240,13 +385,17 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-eda.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="botnet-detection-k-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -257,13 +406,17 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="botnet-detection-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -274,13 +427,17 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-mcd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="botnet-detection-results" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -291,13 +448,17 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-results.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="botnet-detection-s-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -308,31 +469,31 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="adaptive-multivariate-gaussian" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-s-mcd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
-      <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
-      <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-eda" />
-      <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-results" />
-      <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-s-mcd" />
+    <list>
+      <item itemvalue="Python.botnet-detection-mcd" />
+      <item itemvalue="Python.botnet-detection-k-mcd" />
+      <item itemvalue="Python.botnet-detection-eda" />
+      <item itemvalue="Python.botnet-detection-results" />
+      <item itemvalue="Python.botnet-detection-s-mcd" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.botnet-detection-k-mcd" />
-        <item index="1" class="java.lang.String" itemvalue="Python.botnet-detection-s-mcd" />
-        <item index="2" class="java.lang.String" itemvalue="Python.botnet-detection-mcd" />
-        <item index="3" class="java.lang.String" itemvalue="Python.botnet-detection-results" />
-        <item index="4" class="java.lang.String" itemvalue="Python.botnet-detection-eda" />
+      <list>
+        <item itemvalue="Python.botnet-detection-results" />
+        <item itemvalue="Python.botnet-detection-k-mcd" />
+        <item itemvalue="Python.botnet-detection-s-mcd" />
+        <item itemvalue="Python.botnet-detection-mcd" />
+        <item itemvalue="Python.botnet-detection-eda" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -347,52 +508,98 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="1928" y="56" width="1875" height="1092" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.50186867" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21676892" sideWeight="0.49813133" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23171383" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49813133" weight="0.38343558" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997955" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32948583" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50186867" side_tool="true" weight="0.3997955" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.32843652" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32843652" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.15982722" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" weight="0.32995194" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.50186867" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997955" sideWeight="0.49813133" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23171383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23171383" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" weight="0.32995194" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49813133" visible="true" weight="0.3997955" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997955" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50186867" side_tool="true" weight="0.3997955" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32924336" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" weight="0.32995194" />
     </layout-to-restore>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -425,62 +632,29 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="70" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.ipynb" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-adaptive-multivariate-gaussian.py" />
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="1039" column="0" lean-forward="false" selection-start-line="1039" selection-start-column="0" selection-end-line="1039" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/classification.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-oneClassSVM.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-multivariate-gaussian-adaptive.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pkl-to-mat.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-MCD.py" />
     <entry file="file://$PROJECT_DIR$/binet_features.py" />
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/outlier_detection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="200" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/robust_covariance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="507" column="6" lean-forward="false" selection-start-line="507" selection-start-column="6" selection-end-line="507" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/pairwise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-496">
-          <caret line="1195" column="10" lean-forward="true" selection-start-line="1195" selection-start-column="4" selection-end-line="1195" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/outlier_detection.py" />
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/robust_covariance.py" />
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/metrics/pairwise.py" />
     <entry file="file://$PROJECT_DIR$/teste.py" />
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/empirical_covariance_.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="219" column="28" lean-forward="false" selection-start-line="219" selection-start-column="28" selection-end-line="219" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/covariance/empirical_covariance_.py" />
     <entry file="file://$PROJECT_DIR$/raw-to-pkl.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-data_cleasing.py" />
     <entry file="file://$PROJECT_DIR$/outlier_detection.py" />
@@ -508,14 +682,14 @@
     <entry file="file://$PROJECT_DIR$/botnet-detection-etl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="56" />
+          <caret line="8" selection-end-line="31" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="97" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="97" />
         </state>
       </provider>
     </entry>
@@ -523,7 +697,7 @@
     <entry file="file://$PROJECT_DIR$/botnet-detection-kmeans.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="95" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="95" />
+          <caret line="6" column="95" lean-forward="true" selection-start-line="6" selection-end-line="6" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -531,7 +705,7 @@
     <entry file="file://$PROJECT_DIR$/botnet-detection-to-pkl-csv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
@@ -559,21 +733,21 @@
     <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans-train-test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="9" column="108" lean-forward="false" selection-start-line="9" selection-start-column="108" selection-end-line="9" selection-end-column="108" />
+          <caret line="9" column="108" selection-start-line="9" selection-start-column="108" selection-end-line="9" selection-end-column="108" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-mb-kmeans.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="124" lean-forward="false" selection-start-line="6" selection-start-column="124" selection-end-line="6" selection-end-column="124" />
+          <caret line="6" column="124" selection-start-line="6" selection-start-column="124" selection-end-line="6" selection-end-column="124" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
-          <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+          <caret line="249" lean-forward="true" selection-start-line="249" selection-end-line="249" />
         </state>
       </provider>
     </entry>
@@ -582,27 +756,8 @@
     <entry file="file://$PROJECT_DIR$/stats.py" />
     <entry file="file://$PROJECT_DIR$/main.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-eda.py" />
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/utils/extmath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="74" column="4" lean-forward="false" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.4/dist-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="1181" column="68" lean-forward="false" selection-start-line="1181" selection-start-column="63" selection-end-line="1181" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/sklearn/utils/extmath.py" />
+    <entry file="file:///usr/local/lib/python3.4/dist-packages/numpy/core/fromnumeric.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -610,34 +765,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-s-mcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="129" column="31" lean-forward="false" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="1830">
+          <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="240" column="22" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="92">
+          <caret line="209" column="85" selection-start-line="209" selection-start-column="82" selection-end-line="209" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#15#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-s-mcd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+          <folding>
+            <element signature="e#15#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1492">
-          <caret line="142" column="51" lean-forward="true" selection-start-line="142" selection-start-column="51" selection-end-line="142" selection-end-column="51" />
+        <state relative-caret-position="636">
+          <caret line="145" column="56" lean-forward="true" selection-start-line="145" selection-start-column="56" selection-end-line="145" selection-end-column="56" />
           <folding>
             <element signature="e#15#52#0" expanded="true" />
           </folding>
