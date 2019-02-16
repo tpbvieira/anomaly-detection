@@ -171,6 +171,36 @@ class MEllipticEnvelope(MMinCovDet):
         return is_inlier
 
 
+    def mcd_prediction(self, X):
+        """Outlyingness of observations in X according to the fitted model.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outliers : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered
+            as an outlier according to the fitted model.
+
+        threshold : float,
+            The values of the less outlying point's decision function.
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        is_inlier = -np.ones(X.shape[0], dtype=int)
+        if self.contamination is not None:
+            mahal_dist = self.mahalanobis(X)
+            self.prediction_dist_ = mahal_dist
+            is_inlier[mahal_dist <= self.threshold_] = 1
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return is_inlier
+
+
     def kurtosis_prediction(self, X):
         """Outlyingness of observations in X according to the fitted model, using kurtosis intead of location.
 
@@ -197,9 +227,9 @@ class MEllipticEnvelope(MMinCovDet):
             mahal_dist = pairwise_distances(X_kurt1, self.raw_kurt1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
             mahal_dist = np.reshape(mahal_dist, (len(X_kurt1),)) ** 2
             mahal_dist = -mahal_dist
+            self.prediction_dist_ = mahal_dist
             contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
             pred_label[mahal_dist <= contamination_threshold] = 1
-            self.prediction_dist_ = mahal_dist
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 
@@ -232,9 +262,44 @@ class MEllipticEnvelope(MMinCovDet):
             mahal_dist = pairwise_distances(X_skew1, self.raw_skew1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
             mahal_dist = np.reshape(mahal_dist, (len(X_skew1),)) ** 2
             mahal_dist = -mahal_dist
+            self.prediction_dist_ = mahal_dist
             contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
             pred_label[mahal_dist <= contamination_threshold] = 1
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return pred_label
+
+
+    def raw_prediction(self, X):
+        """Outlyingness of observations in X according to the fitted model, using kurtosis intead of location.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outliers : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered
+            as an outlier according to the fitted model.
+
+        threshold : float,
+            The values of the less outlying point's decision function.
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        pred_label = np.full(X.shape[0], 0, dtype=int)
+        if self.contamination is not None:
+            inv_cov = linalg.pinvh(self.covariance_)
+            X_raw = X - X.mean(axis=0)
+            mahal_dist = pairwise_distances(X_raw, self.location_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
+            mahal_dist = np.reshape(mahal_dist, (len(X_raw),)) ** 2
+            mahal_dist = -mahal_dist
             self.prediction_dist_ = mahal_dist
+            contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
+            pred_label[mahal_dist <= contamination_threshold] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 

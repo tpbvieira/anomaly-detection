@@ -11,7 +11,7 @@ pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
 # initialize the dataframe
-columns = ['dist_', 'raw_skew1_dist_', 'raw_kurt1_dist_', 'prediction_dist_', 'test_label', 'methods', 'algs', 'windows', 'scenarios']
+columns = ['prediction_dist_', 'test_label', 'methods', 'algs', 'windows', 'scenarios']
 result_df = pd.DataFrame(columns=columns)
 
 # for each file/case
@@ -34,19 +34,16 @@ for sample_file in file_list:
     scenario_df = pd.DataFrame(columns=columns)
     for key, value in result_dict.items():
 
-        dist_ = result_dict.get(key).get('dist_')
-        raw_skew1_dist_ = result_dict.get(key).get('raw_skew1_dist_')
-        raw_kurt1_dist_ = result_dict.get(key).get('raw_kurt1_dist_')
         prediction_dist_ = result_dict.get(key).get('prediction_dist_')
         test_label = result_dict.get(key).get('test_label')
 
-        methods = [method] * len(dist_)
-        algs = [alg] * len(dist_)
-        windows = [window] * len(dist_)
-        scenarios = [scenario] * len(dist_)
+        methods = [method] * len(test_label)
+        algs = [alg] * len(test_label)
+        windows = [window] * len(test_label)
+        scenarios = [scenario] * len(test_label)
 
         # generate a new dataframe with F1 and variables from the file name
-        values_list = list(zip(dist_, raw_skew1_dist_, raw_kurt1_dist_, prediction_dist_, test_label, methods, algs, windows, scenarios))
+        values_list = list(zip(prediction_dist_, test_label, methods, algs, windows, scenarios))
         df = pd.DataFrame(values_list,columns= columns)
 
         # append into result file
@@ -61,33 +58,6 @@ for m_scenario in m_scenarios:
     result_scenario_df = result_df.loc[result_df['scenarios'] == m_scenario]
     result_scenario_df = result_scenario_df.sort_values(['windows', 'algs'], ascending=[True, False])
 
-    # boxplot dist_
-    plt.figure(figsize=(15, 5))
-    bp = sns.boxplot(x="test_label", y="dist_", data=result_scenario_df, palette="PRGn", width=0.4)
-    bp.set(yscale="log")
-    fig_name = "results/figures/dist_%s.png" % m_scenario
-    plt.savefig(fig_name)
-    print(fig_name)
-    plt.close()
-
-    # boxplot raw_skew1_dist_
-    plt.figure(figsize=(15, 5))
-    bp = sns.boxplot(x="test_label", y="raw_skew1_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
-    # bp.set(yscale="log")
-    fig_name = "results/figures/raw_skew1_dist_%s.png" % m_scenario
-    plt.savefig(fig_name)
-    print(fig_name)
-    plt.close()
-
-    # boxplot raw_kurt1_dist_
-    plt.figure(figsize=(15, 5))
-    bp = sns.boxplot(x="test_label", y="raw_kurt1_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
-    # bp.set(yscale="log")
-    fig_name = "results/figures/raw_kurt1_dist_%s.png" % m_scenario
-    plt.savefig(fig_name)
-    print(fig_name)
-    plt.close()
-
     # boxplot prediction_dist_
     plt.figure(figsize=(15, 5))
     bp = sns.boxplot(x="test_label", y="prediction_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
@@ -97,7 +67,7 @@ for m_scenario in m_scenarios:
     print(fig_name)
     plt.close()
 
-    plot_features = ['dist_', 'raw_skew1_dist_', 'raw_kurt1_dist_', 'prediction_dist_']
-    sns_plot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label')
-    fig_name = "results/figures/distances_%s_pairplot.png" % m_scenario
-    sns_plot.savefig(fig_name)
+    # plot_features = ['dist_', 'raw_skew1_dist_', 'raw_kurt1_dist_', 'prediction_dist_']
+    # sns_plot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label')
+    # fig_name = "results/figures/distances_%s_pairplot.png" % m_scenario
+    # sns_plot.savefig(fig_name)

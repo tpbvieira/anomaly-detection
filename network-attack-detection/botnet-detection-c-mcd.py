@@ -22,12 +22,35 @@ def getBestBySemiSupervCV(t_normal_df, t_cv_df, t_cv_label):
     for m_contamination in np.linspace(0.01, 0.2, 10):
         m_ell_model = MEllipticEnvelope(contamination=m_contamination)
         m_ell_model.fit(t_normal_df)
-        m_pred = m_ell_model.kurtosis_prediction(t_cv_df)
 
+        m_pred = m_ell_model.mcd_prediction(t_cv_df)
+        m_pred[m_pred == 1] = 0
+        m_pred[m_pred == -1] = 1
         m_f1 = f1_score(m_cv_label, m_pred, average="binary")
         m_recall = recall_score(m_cv_label, m_pred, average="binary")
         m_precision = precision_score(m_cv_label, m_pred, average="binary")
+        if m_f1 > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_contamination = m_contamination
+            m_best_f1 = m_f1
+            m_best_precision = m_precision
+            m_best_recall = m_recall
 
+        m_pred = m_ell_model.kurtosis_prediction(t_cv_df)
+        m_f1 = f1_score(m_cv_label, m_pred, average="binary")
+        m_recall = recall_score(m_cv_label, m_pred, average="binary")
+        m_precision = precision_score(m_cv_label, m_pred, average="binary")
+        if m_f1 > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_contamination = m_contamination
+            m_best_f1 = m_f1
+            m_best_precision = m_precision
+            m_best_recall = m_recall
+
+        m_pred = m_ell_model.skewness_prediction(t_cv_df)
+        m_f1 = f1_score(m_cv_label, m_pred, average="binary")
+        m_recall = recall_score(m_cv_label, m_pred, average="binary")
+        m_precision = precision_score(m_cv_label, m_pred, average="binary")
         if m_f1 > m_best_f1:
             m_best_model = m_ell_model
             m_best_contamination = m_contamination
@@ -45,20 +68,39 @@ def getBestBySemiSupervCVWithCI(t_normal_df, t_cv_df, t_cv_label, n_it):
     m_best_contamination = -1
     m_best_f1 = -1
 
-    for m_contamination in np.linspace(0.01, 0.2, 10):
-        t_f1 = []
+    for m_contamination in np.linspace(0.1, 0.4, 10):
+        mcd_f1 = []
+        k_f1 = []
+        s_f1 = []
         for i in range(n_it):
             m_ell_model = MEllipticEnvelope(contamination=m_contamination)
             m_ell_model.fit(t_normal_df)
-            m_pred = m_ell_model.kurtosis_prediction(t_cv_df)
-            t_f1.append(f1_score(m_cv_label, m_pred, average="binary"))
 
-        m_f1 = np.median(t_f1)
+            m_pred = m_ell_model.mcd_prediction(t_cv_df)
+            m_pred[m_pred == 1] = 0
+            m_pred[m_pred == -1] = 1
+            mcd_f1.append(f1_score(m_cv_label, m_pred, average="binary"))
 
-        if m_f1 > m_best_f1:
+            k_pred = m_ell_model.kurtosis_prediction(t_cv_df)
+            k_f1.append(f1_score(m_cv_label, k_pred, average="binary"))
+
+            s_pred = m_ell_model.skewness_prediction(t_cv_df)
+            s_f1.append(f1_score(m_cv_label, s_pred, average="binary"))
+
+        if np.median(mcd_f1) > m_best_f1:
             m_best_model = m_ell_model
             m_best_contamination = m_contamination
-            m_best_f1 = m_f1
+            m_best_f1 = mcd_f1
+
+        if np.median(k_f1) > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_contamination = m_contamination
+            m_best_f1 = k_f1
+
+        if np.median(s_f1) > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_contamination = m_contamination
+            m_best_f1 = s_f1
 
     return m_best_model, m_best_contamination, m_best_f1
 
@@ -97,72 +139,50 @@ for features_key, value in drop_agg_features.items():
             # data splitting
             norm_train_df, cv_df, test_df, cv_label, test_label = data_splitting(df, drop_agg_features[features_key])
 
-            k_mcd_result_dict = {}
-            s_mcd_result_dict = {}
+            c_mcd_result_dict = {}
             for i in range(it):
                 # Cross-Validation and model selection
                 ell_model, best_contamination, best_f1 = getBestBySemiSupervCVWithCI(norm_train_df, cv_df, cv_label, 1)
-                print('###[k-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1)
+                print('###[c-mcd][', features_key, '] Cross-Validation. Contamination:', best_contamination,', F1:', best_f1)
+
+                test_label = test_label.astype(np.int8)
+
+                # MCD Prediction Test
+                mcd_pred_test_label = ell_model.mcd_prediction(test_df)
+                mcd_prediction_dist_ = ell_model.prediction_dist_
+                mcd_pred_test_label[mcd_pred_test_label == 1] = 0
+                mcd_pred_test_label[mcd_pred_test_label == -1] = 1
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, mcd_pred_test_label)
+                print('###[mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
                 # K-MCD Prediction Test
-                test_label = test_label.astype(np.int8)
-                pred_test_label = ell_model.kurtosis_prediction(test_df)
-                t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
+                k_pred_test_label = ell_model.kurtosis_prediction(test_df)
+                k_prediction_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, k_pred_test_label)
                 print('###[k-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
-                c_mcd_pred = {
-                    "raw_location_": ell_model.raw_location_,
-                    "raw_covariance_": ell_model.raw_covariance_,
-                    "raw_skew1_": ell_model.raw_skew1_,
-                    "raw_kurt1_":ell_model.raw_kurt1_,
-                    "location_":ell_model.location_,
-                    "covariance_":ell_model.covariance_,
-                    "precision_":ell_model.precision_,
-                    "support_":ell_model.support_,
-                    "dist_":ell_model.dist_,
-                    "raw_skew1_dist_":ell_model.raw_skew1_dist_,
-                    "raw_kurt1_dist_":ell_model.raw_kurt1_dist_,
-                    "test_label": test_label,
-                    "pred_test_label": pred_test_label
-                }
-
-                k_mcd_result_dict[i] = c_mcd_pred
-
                 # S-MCD Prediction Test
-                test_label = test_label.astype(np.int8)
-                pred_test_label = ell_model.skewness_prediction(test_df)
-                t_f1, t_Recall, t_Precision = get_classification_report(test_label, pred_test_label)
-                print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:',
-                      t_Precision)
+                s_pred_test_label = ell_model.skewness_prediction(test_df)
+                s_prediction_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_test_label)
+                print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
                 c_mcd_pred = {
-                    "raw_location_": ell_model.raw_location_,
-                    "raw_covariance_": ell_model.raw_covariance_,
-                    "raw_skew1_": ell_model.raw_skew1_,
-                    "raw_kurt1_": ell_model.raw_kurt1_,
-                    "location_": ell_model.location_,
-                    "covariance_": ell_model.covariance_,
-                    "precision_": ell_model.precision_,
-                    "support_": ell_model.support_,
-                    "dist_": ell_model.dist_,
-                    "raw_skew1_dist_": ell_model.raw_skew1_dist_,
-                    "raw_kurt1_dist_": ell_model.raw_kurt1_dist_,
-                    "test_label": test_label,
-                    "pred_test_label": pred_test_label
+                    "best_contamination": best_contamination,
+                    "training_f1": best_f1,
+                    "mcd_prediction_dist_": mcd_prediction_dist_,
+                    "k_prediction_dist_": k_prediction_dist_,
+                    "s_prediction_dist_": s_prediction_dist_,
+                    "mcd_test_label": mcd_pred_test_label,
+                    "k_test_label": k_pred_test_label,
+                    "s_test_label": s_pred_test_label,
+                    "test_label": test_label
                 }
-
-                s_mcd_result_dict[i] = c_mcd_pred
-
-            c_mcd_result_dict = {}
-            c_mcd_result_dict['k_mcd'] = k_mcd_result_dict
-            c_mcd_result_dict['s_mcd'] = s_mcd_result_dict
+                c_mcd_result_dict[i] = c_mcd_pred
 
             # write python dict to a file
             output = open(result_file, 'wb')
             pickle.dump(c_mcd_result_dict, output)
             output.close()
-
-            # df = pd.DataFrame([m_f1, m_re, m_pr])
-            # df.to_pickle(result_file)
 
 print("--- %s seconds ---" % (time.time() - start_time))
