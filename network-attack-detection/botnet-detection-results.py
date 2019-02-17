@@ -6,7 +6,7 @@ import seaborn as sns
 warnings.filterwarnings("ignore")
 
 # result file path
-pkl_path = os.path.join('results/pkl_sum/20/')
+pkl_path = os.path.join('results/pkl_sum/20/data/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -54,7 +54,7 @@ for m_scenario in m_scenarios:
     # boxplot
     plt.figure(figsize=(15, 5))
     bp = sns.boxplot(x="methods", y="F1", data=result_scenario_df, palette="PRGn", width=0.4)
-    fig_name = "results/figures/%s.png" % m_scenario
+    fig_name = "results/pkl_sum/20/figures/%s.png" % m_scenario
     plt.savefig(fig_name)
     print(fig_name)
     plt.close()
