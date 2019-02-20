@@ -148,34 +148,34 @@ for features_key, value in drop_agg_features.items():
                 test_label = test_label.astype(np.int8)
 
                 # MCD Prediction Test
-                mcd_pred_test_label = ell_model.mcd_prediction(test_df)
-                mcd_prediction_dist_ = ell_model.prediction_dist_
-                mcd_pred_test_label[mcd_pred_test_label == 1] = 0
-                mcd_pred_test_label[mcd_pred_test_label == -1] = 1
-                t_f1, t_Recall, t_Precision = get_classification_report(test_label, mcd_pred_test_label)
+                mcd_pred_label = ell_model.mcd_prediction(test_df)
+                mcd_pred_dist_ = ell_model.prediction_dist_
+                mcd_pred_label[mcd_pred_label == 1] = 0
+                mcd_pred_label[mcd_pred_label == -1] = 1
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, mcd_pred_label)
                 print('###[mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
                 # K-MCD Prediction Test
-                k_pred_test_label = ell_model.kurtosis_prediction(test_df)
-                k_prediction_dist_ = ell_model.prediction_dist_
-                t_f1, t_Recall, t_Precision = get_classification_report(test_label, k_pred_test_label)
+                k_pred_label = ell_model.kurtosis_prediction(test_df)
+                k_pred_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, k_pred_label)
                 print('###[k-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
                 # S-MCD Prediction Test
-                s_pred_test_label = ell_model.skewness_prediction(test_df)
-                s_prediction_dist_ = ell_model.prediction_dist_
-                t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_test_label)
+                s_pred_label = ell_model.skewness_prediction(test_df)
+                s_pred_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_label)
                 print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
                 c_mcd_pred = {
                     "best_contamination": best_contamination,
-                    "training_f1": best_f1,
-                    "mcd_prediction_dist_": mcd_prediction_dist_,
-                    "k_prediction_dist_": k_prediction_dist_,
-                    "s_prediction_dist_": s_prediction_dist_,
-                    "mcd_test_label": mcd_pred_test_label,
-                    "k_test_label": k_pred_test_label,
-                    "s_test_label": s_pred_test_label,
+                    "train_f1": best_f1,
+                    "mcd_pred_dist_": mcd_pred_dist_,
+                    "k_pred_dist_": k_pred_dist_,
+                    "s_pred_dist_": s_pred_dist_,
+                    "mcd_pred_label": mcd_pred_label,
+                    "k_pred_label": k_pred_label,
+                    "s_pred_label": s_pred_label,
                     "test_label": test_label
                 }
                 c_mcd_result_dict[i] = c_mcd_pred
