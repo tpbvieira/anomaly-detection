@@ -106,10 +106,10 @@ def getBestBySemiSupervCVWithCI(t_normal_df, t_cv_df, t_cv_label, n_it):
 
 start_time = time.time()
 
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 raw_directory = os.fsencode(raw_path)
 
-pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum/')
+pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl_sum_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
@@ -161,11 +161,25 @@ for features_key, value in drop_agg_features.items():
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, k_pred_label)
                 print('###[k-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
+                # K-MCD Prediction Test
+                k_pred_label = ell_model.kurtosis_prediction2(test_df)
+                k_pred_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, k_pred_label)
+                print('###[k-mcd2][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:',
+                      t_Precision)
+
                 # S-MCD Prediction Test
                 s_pred_label = ell_model.skewness_prediction(test_df)
                 s_pred_dist_ = ell_model.prediction_dist_
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_label)
                 print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
+
+                # S-MCD Prediction Test
+                s_pred_label = ell_model.skewness_prediction2(test_df)
+                s_pred_dist_ = ell_model.prediction_dist_
+                t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_label)
+                print('###[s-mcd2][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:',
+                      t_Precision)
 
                 c_mcd_pred = {
                     "best_contamination": best_contamination,
