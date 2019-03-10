@@ -428,8 +428,7 @@ def fast_mcd(X, support_fraction=None,
             low_bound = i * n_samples_subsets
             high_bound = low_bound + n_samples_subsets
             current_subset = X[samples_shuffle[low_bound:high_bound]]
-            best_locations_sub, best_covariances_sub, _, _, best_moments_sub = \
-                select_candidates(current_subset, h_subset, n_trials,select=n_best_sub, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
+            best_locations_sub, best_covariances_sub, _, _, best_moments_sub = select_candidates(current_subset, h_subset, n_trials,select=n_best_sub, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
             subset_slice = np.arange(i * n_best_sub, (i + 1) * n_best_sub)
             all_best_locations[subset_slice] = best_locations_sub
             all_best_covariances[subset_slice] = best_covariances_sub
@@ -465,8 +464,7 @@ def fast_mcd(X, support_fraction=None,
             kurt1_dist = kurt1_dist_merged[0]
         else:
             # select the best couple on the full dataset
-            locations_full, covariances_full, supports_full, d, moments_full = \
-                select_candidates(X, n_support,n_trials=(locations_merged, covariances_merged),select=1,cov_computation_method=cov_computation_method,random_state=random_state)
+            locations_full, covariances_full, supports_full, d, moments_full = select_candidates(X, n_support,n_trials=(locations_merged, covariances_merged),select=1,cov_computation_method=cov_computation_method,random_state=random_state)
             location = locations_full[0]
             covariance = covariances_full[0]
             support = supports_full[0]
@@ -482,12 +480,10 @@ def fast_mcd(X, support_fraction=None,
         # considering two iterations
         n_trials = 30
         n_best = 10
-        locations_best, covariances_best, _, _, moments_best = \
-            select_candidates(X, n_support, n_trials=n_trials, select=n_best, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
+        locations_best, covariances_best, _, _, moments_best = select_candidates(X, n_support, n_trials=n_trials, select=n_best, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
 
         # 2. Select the best couple on the full dataset amongst the 10
-        locations_full, covariances_full, supports_full, d, moments_full = \
-            select_candidates(X, n_support, n_trials=(locations_best, covariances_best),select=1, cov_computation_method=cov_computation_method,random_state=random_state)
+        locations_full, covariances_full, supports_full, d, moments_full = select_candidates(X, n_support, n_trials=(locations_best, covariances_best),select=1, cov_computation_method=cov_computation_method,random_state=random_state)
         location = locations_full[0]
         covariance = covariances_full[0]
         support = supports_full[0]
@@ -626,18 +622,19 @@ class MMinCovDet(EmpiricalCovariance):
         X = check_array(X, ensure_min_samples=2, estimator='MinCovDet')
         random_state = check_random_state(self.random_state)
         n_samples, n_features = X.shape
+
         # check that the empirical covariance is full rank
         if (linalg.svdvals(np.dot(X.T, X)) > 1e-8).sum() != n_features:
             warnings.warn("The covariance matrix associated to your dataset is not full rank")
         # compute and store raw estimates
-        raw_location, raw_covariance, raw_support, raw_dist, raw_moments = \
-            fast_mcd(X, support_fraction=self.support_fraction,cov_computation_method=self._nonrobust_covariance,random_state=random_state)
+        raw_location, raw_covariance, raw_support, raw_dist, raw_moments = fast_mcd(X, support_fraction=self.support_fraction,cov_computation_method=self._nonrobust_covariance,random_state=random_state)
         if self.assume_centered:
             raw_location = np.zeros(n_features)
             raw_covariance = self._nonrobust_covariance(X[raw_support],assume_centered=True)
             # get precision matrix in an optimized way
             precision = linalg.pinvh(raw_covariance)
             raw_dist = np.sum(np.dot(X, precision) * X, 1)
+
         self.raw_location_ = raw_location
         self.raw_covariance_ = raw_covariance
         self.raw_support_ = raw_support
@@ -688,6 +685,7 @@ class MMinCovDet(EmpiricalCovariance):
         correction = np.median(self.dist_) / chi2(data.shape[1]).isf(0.5)
         covariance_corrected = self.raw_covariance_ * correction
         self.dist_ /= correction
+
         return covariance_corrected
 
     def reweight_covariance(self, data):
@@ -727,10 +725,12 @@ class MMinCovDet(EmpiricalCovariance):
         """
         n_samples, n_features = data.shape
         mask = self.dist_ < chi2(n_features).isf(0.025)
+
         if self.assume_centered:
             location_reweighted = np.zeros(n_features)
         else:
             location_reweighted = data[mask].mean(0)
+
         covariance_reweighted = self._nonrobust_covariance(data[mask], assume_centered=self.assume_centered)
         support_reweighted = np.zeros(n_samples, dtype=bool)
         support_reweighted[mask] = True
@@ -739,4 +739,5 @@ class MMinCovDet(EmpiricalCovariance):
         self.support_ = support_reweighted
         X_centered = data - self.location_
         self.dist_ = np.sum(np.dot(X_centered, self.get_precision()) * X_centered, 1)
+
         return location_reweighted, covariance_reweighted, support_reweighted

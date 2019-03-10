@@ -13,6 +13,9 @@ def get_outliers(m_dist, m_best_contamination):
     m_best_contamination = np.percentile(m_dist, 100. * m_best_contamination)
     m_pred_label[m_dist <= m_best_contamination] = 1
 
+    # n, self.degrees_of_freedom_ = X.shape
+    # self.iextreme_values = (self.d2 > self.chi2.ppf(0.995, self.degrees_of_freedom_))
+
     return m_pred_label
 
 

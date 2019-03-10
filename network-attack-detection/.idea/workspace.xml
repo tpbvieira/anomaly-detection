@@ -8,9 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botnet-detection-c-mcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-c-mcd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botnet-detection-results-eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-results-eda.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k_mcd_outlier_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/k_mcd_outlier_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/botnet-detection-mcd.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botnet_detection_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet_detection_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k_mcd_robust_moments.py" beforeDir="false" afterPath="$PROJECT_DIR$/k_mcd_robust_moments.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="136" column="30" lean-forward="true" selection-start-line="103" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
+            <state relative-caret-position="165">
+              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
               <folding>
                 <element signature="e#15#48#0" expanded="true" />
               </folding>
@@ -38,17 +37,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="18" />
+            <state relative-caret-position="138">
+              <caret line="87" column="57" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
+              <folding>
+                <element signature="e#451#469#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="99" column="28" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+            <state relative-caret-position="180">
+              <caret line="114" column="102" selection-start-line="114" selection-start-column="102" selection-end-line="114" selection-end-column="102" />
               <folding>
                 <element signature="e#15#52#0" expanded="true" />
               </folding>
@@ -57,22 +59,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
+        <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="654" column="34" selection-start-line="654" selection-start-column="34" selection-end-line="654" selection-end-column="34" />
+            <state relative-caret-position="510">
+              <caret line="267" column="4" lean-forward="true" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot_mahalanobis_distances.py">
+        <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
-              <folding>
-                <element signature="e#2626#2644#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="495">
+              <caret line="384" column="42" selection-start-line="384" selection-start-column="42" selection-end-line="384" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -88,8 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>f1</find>
-      <find>F1</find>
       <find>pred_label</find>
       <find>f1_score</find>
       <find>print</find>
@@ -118,6 +115,8 @@
       <find>get_outliers</find>
       <find>sv-mcd</find>
       <find>0.29</find>
+      <find>getBestBySemiSupervCVWithCI</find>
+      <find>label</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -154,7 +153,6 @@
         <option value="$PROJECT_DIR$/.ipynb_checkpoints/botnet-detection-adaptive-multivariate-gaussian-checkpoint.ipynb" />
         <option value="$PROJECT_DIR$/botnet-detection-etl.py" />
         <option value="$PROJECT_DIR$/botnet-detection-gmm.py" />
-        <option value="$PROJECT_DIR$/botnet_detection_utils.py" />
         <option value="$PROJECT_DIR$/botnet-detection-k-mcd.ipynb" />
         <option value="$PROJECT_DIR$/botnet-detection-kmeans.py" />
         <option value="$PROJECT_DIR$/dataset_statistics.py" />
@@ -167,13 +165,14 @@
         <option value="$PROJECT_DIR$/botnet-detection-eda.py" />
         <option value="$PROJECT_DIR$/botnet-detection-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-s-mcd.py" />
-        <option value="$PROJECT_DIR$/k_mcd_robust_moments.py" />
         <option value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-results.py" />
         <option value="$PROJECT_DIR$/plot_mahalanobis_distances.py" />
         <option value="$PROJECT_DIR$/k_mcd_outlier_detection.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-c-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-results-eda.py" />
+        <option value="$PROJECT_DIR$/k_mcd_robust_moments.py" />
+        <option value="$PROJECT_DIR$/botnet_detection_utils.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-c-mcd.py" />
       </list>
     </option>
   </component>
@@ -264,7 +263,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.botnet-detection-results-eda">
+  <component name="RunManager" selected="Python.botnet-detection-c-mcd">
     <configuration name="botnet-detection-c-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -379,8 +378,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.botnet-detection-results-eda" />
         <item itemvalue="Python.botnet-detection-c-mcd" />
+        <item itemvalue="Python.botnet-detection-results-eda" />
         <item itemvalue="Python.plot_mahalanobis_distances" />
         <item itemvalue="Python.botnet-detection-results" />
         <item itemvalue="Python.botnet-detection-k-mcd" />
@@ -416,7 +415,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50186867" side_tool="true" weight="0.3997955" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.4600432" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22786178" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -558,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="249" lean-forward="true" selection-start-line="249" selection-end-line="249" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils.py" />
     <entry file="file://$PROJECT_DIR$/summarizer.py" />
     <entry file="file://$PROJECT_DIR$/stats.py" />
@@ -643,49 +635,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/pandas/core/dtypes/cast.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/plot_mahalanobis_distances.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        <state relative-caret-position="345">
+          <caret line="96" column="13" selection-start-line="96" selection-end-line="96" selection-end-column="13" />
           <folding>
             <element signature="e#2626#2644#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
+    <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="99" column="28" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+        <state relative-caret-position="165">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
           <folding>
-            <element signature="e#15#52#0" expanded="true" />
+            <element signature="e#15#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="654" column="34" selection-start-line="654" selection-start-column="34" selection-end-line="654" selection-end-column="34" />
+        <state relative-caret-position="495">
+          <caret line="384" column="42" selection-start-line="384" selection-start-column="42" selection-end-line="384" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="18" />
+        <state relative-caret-position="138">
+          <caret line="87" column="57" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
+          <folding>
+            <element signature="e#451#469#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/pandas/core/dtypes/cast.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
+    <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="136" column="30" lean-forward="true" selection-start-line="103" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
+        <state relative-caret-position="510">
+          <caret line="267" column="4" lean-forward="true" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="114" column="102" selection-start-line="114" selection-start-column="102" selection-end-line="114" selection-end-column="102" />
           <folding>
-            <element signature="e#15#48#0" expanded="true" />
+            <element signature="e#15#52#0" expanded="true" />
           </folding>
         </state>
       </provider>

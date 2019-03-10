@@ -198,24 +198,24 @@ def data_splitting(df, drop_features):
     gc.collect()
 
     # Length and indexes
-    anom_len = len(df_l1)    # total number of anomalous flows
-    anom_train_end = anom_len // 2    # 50% of anomalous for training
-    anom_cv_start = anom_train_end + 1    # 50% of anomalous for testing
-    norm_len = len(df_l0)    # total number of normal flows
-    norm_train_end = (norm_len * 60) // 100    # 60% of normal for training
-    norm_cv_start = norm_train_end + 1    # 20% of normal for cross validation
-    norm_cv_end = (norm_len * 80) // 100    # 20% of normal for cross validation
-    norm_test_start = norm_cv_end + 1    # 20% of normal for testing
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1              # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = (norm_len * 60) // 100         # 60% of normal for training
+    norm_cv_start = norm_train_end + 1              # 20% of normal for cross validation
+    norm_cv_end = (norm_len * 80) // 100            # 20% of normal for cross validation
+    norm_test_start = norm_cv_end + 1               # 20% of normal for testing
 
     # anomalies split data
-    anom_cv_df = df_l1[:anom_train_end]    # 50% of anomalies59452
+    anom_cv_df = df_l1[:anom_train_end]             # 50% of anomalies59452
     anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
     gc.collect()
 
     # normal split data
-    norm_train_df = df_l0[:norm_train_end]    # 60% of normal
-    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]    # 20% of normal
-    norm_test_df = df_l0[norm_test_start:norm_len]    # 20% of normal
+    norm_train_df = df_l0[:norm_train_end]          # 60% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]   # 20% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 20% of normal
     gc.collect()
 
     # CV and test data. train data is norm_train_df
@@ -239,6 +239,56 @@ def data_splitting(df, drop_features):
     gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label, test_label
+
+
+def unsupervised_data_splitting(df, drop_features):
+    # Data splitting
+
+    # drop non discriminant features
+    df.drop(drop_features, axis=1, inplace=True)
+
+    # split into normal and anomaly
+    df_l1 = df[df["Label"] == 1]
+    df_l0 = df[df["Label"] == 0]
+    gc.collect()
+
+    # Length and indexes
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_test_start = anom_train_end + 1            # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = norm_len // 2                  # 50% of normal for training
+    norm_test_start = norm_train_end + 1            # 50% of normal for testing
+
+    # anomalies split data
+    anom_train_df = df_l1[:anom_train_end]
+    anom_test_df = df_l1[anom_test_start:anom_len]
+    gc.collect()
+
+    # normal split data
+    norm_train_df = df_l0[:norm_train_end]
+    norm_test_df = df_l0[norm_test_start:norm_len]
+    gc.collect()
+
+    # CV and test data. train data is norm_train_df
+    train_df = pd.concat([norm_train_df, anom_train_df], axis=0)
+    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
+
+    # Sort data by index
+    train_df = norm_train_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    train_label_df = train_df["Label"]
+    test_label_df = test_df["Label"]
+    train_df = train_df.drop(labels=["Label"], axis=1)
+    test_df = test_df.drop(labels=["Label"], axis=1)
+
+    gc.collect()
+
+    return train_df, train_label_df, test_df, test_label_df
 
 
 def print_classification_report(y_test, y_predic):
