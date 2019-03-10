@@ -172,22 +172,22 @@ for features_key, value in drop_agg_features.items():
                 t_f1, t_Recall, t_Precision = get_classification_report(test_label, s_pred_label)
                 print('###[s-mcd][', features_key, '] Test. F1:', t_f1, ', Recall:', t_Recall, ', Precision:', t_Precision)
 
-            #     c_mcd_pred = {
-            #         "best_contamination": best_contamination,
-            #         "train_f1": best_f1,
-            #         "mcd_pred_dist_": mcd_pred_dist_,
-            #         "k_pred_dist_": k_pred_dist_,
-            #         "s_pred_dist_": s_pred_dist_,
-            #         "mcd_pred_label": mcd_pred_label,
-            #         "k_pred_label": k_pred_label,
-            #         "s_pred_label": s_pred_label,
-            #         "test_label": test_label
-            #     }
-            #     c_mcd_result_dict[i] = c_mcd_pred
-            #
-            # # write python dict to a file
-            # output = open(result_file, 'wb')
-            # pickle.dump(c_mcd_result_dict, output)
-            # output.close()
+                c_mcd_pred = {
+                    "best_contamination": best_contamination,
+                    "train_f1": best_f1,
+                    "mcd_pred_dist_": mcd_pred_dist_,
+                    "k_pred_dist_": k_pred_dist_,
+                    "s_pred_dist_": s_pred_dist_,
+                    "mcd_pred_label": mcd_pred_label,
+                    "k_pred_label": k_pred_label,
+                    "s_pred_label": s_pred_label,
+                    "test_label": test_label
+                }
+                c_mcd_result_dict[i] = c_mcd_pred
+
+            # write python dict to a file
+            output = open(result_file, 'wb')
+            pickle.dump(c_mcd_result_dict, output)
+            output.close()
 
 print("--- %s seconds ---" % (time.time() - start_time))
