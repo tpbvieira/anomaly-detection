@@ -5,28 +5,87 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.metrics import f1_score
+from scipy import stats
 warnings.filterwarnings("ignore")
+
+
+def get_best_distribution_fit(data):
+    # Set up list of candidate distributions to use
+    # See https://docs.scipy.org/doc/scipy/reference/stats.html for more
+    dist_names = ['beta',
+                  'expon',
+                  'gamma',
+                  'lognorm',
+                  'norm',
+                  'pearson3',
+                  'triang',
+                  'uniform',
+                  'weibull_min',
+                  'weibull_max']
+
+    # Set up empty lists to stroe results
+    chi_square = []
+    p_values = []
+
+    # Set up 50 bins for chi-square test
+    # Observed data will be approximately evenly distributed across all bins
+    percentile_bins = np.linspace(0, 100, 51)
+    percentile_cutoffs = np.percentile(data, percentile_bins)
+    observed_frequency, bins = (np.histogram(data, bins=percentile_cutoffs))
+    cum_observed_frequency = np.cumsum(observed_frequency)
+
+    # Loop through candidate distributions
+    for distribution in dist_names:
+        # Set up distribution and get fitted distribution parameters
+        dist = getattr(stats, distribution)
+        param = dist.fit(data)
+
+        # Obtain the KS test P statistic, round it to 5 decimal places
+        p = stats.kstest(data, distribution, args=param)[1]
+        p = np.around(p, 5)
+        p_values.append(p)
+
+        # Get expected counts in percentile bins
+        # This is based on a 'cumulative distrubution function' (cdf)
+        cdf_fitted = dist.cdf(percentile_cutoffs, *param[:-2], loc=param[-2], scale=param[-1])
+        expected_frequency = []
+        for bin in range(len(percentile_bins) - 1):
+            expected_cdf_area = cdf_fitted[bin + 1] - cdf_fitted[bin]
+            expected_frequency.append(expected_cdf_area)
+
+        # calculate chi-squared
+        expected_frequency = np.array(expected_frequency) * data.shape[0]
+        cum_expected_frequency = np.cumsum(expected_frequency)
+        ss = sum(((cum_expected_frequency - cum_observed_frequency) ** 2) / cum_observed_frequency)
+        chi_square.append(ss)
+
+    # Collate results and sort by goodness of fit (best at top)
+
+    results = pd.DataFrame()
+    results['Distribution'] = dist_names
+    results['chi_square'] = chi_square
+    results['p_value'] = p_values
+    results.sort_values(['chi_square'], inplace=True)
+
+    return results.iloc[0]
 
 
 def get_outliers(m_dist, m_best_contamination):
     m_pred_label = np.full(m_dist.shape[0], 0, dtype=int)
     m_best_contamination = np.percentile(m_dist, 100. * m_best_contamination)
     m_pred_label[m_dist <= m_best_contamination] = 1
-
-    # n, self.degrees_of_freedom_ = X.shape
-    # self.iextreme_values = (self.d2 > self.chi2.ppf(0.995, self.degrees_of_freedom_))
-
     return m_pred_label
 
+it = 10
 
 # result file path
-pkl_path = os.path.join('results/pkl_sum_dict/20/data/')
+pkl_path = os.path.join('results/pkl_sum_dict/%s/data/' % it)
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
 # initialize the dataframe
-columns = ['f1', 'approaches', 'algs', 'windows', 'scenarios']
-result_df = pd.DataFrame(columns=columns)
+result_columns = ['f1', 'approaches', 'algs', 'windows', 'scenarios']
+result_df = pd.DataFrame(columns=result_columns)
 
 # for each scenario (file name)
 for sample_file in file_list:
@@ -55,18 +114,21 @@ for sample_file in file_list:
           counts.get(1),'(', round((counts.get(1)/total_counts)*100, 2),'%), best_contamination:', best_cont,
           ', best_train_f1:', best_train_f1)
 
+    mcd_dist_list = []
+    mcd_anom_dist_list = []
+    mcd_norm_dist_list = []
     # for each iteration compute F1 and save the algorithm, window size, scenario and approach (window size and algorithm))
     for key, value in result_dict.items():
 
         # get saved data
-        best_contamination = result_dict.get(key).get('best_contamination')
-        mcd_pred_label = result_dict.get(key).get('mcd_test_label')
-        k_pred_label = result_dict.get(key).get('k_test_label')
-        s_pred_label = result_dict.get(key).get('s_test_label')
+        best_contamination = result_dict.get(key).get('train_best_cont')
+        m_label = result_dict.get(key).get('test_mcd_label')
+        k_label = result_dict.get(key).get('test_k_label')
+        s_label = result_dict.get(key).get('test_s_label')
         test_label = result_dict.get(key).get('test_label')
-        mcd_pred_dist_ = result_dict.get(key).get('mcd_prediction_dist_')
-        k_pred_dist_ = result_dict.get(key).get('k_prediction_dist_')
-        s_pred_dist_ = result_dict.get(key).get('s_prediction_dist_')
+        mcd_pred_dist_ = result_dict.get(key).get('test_mcd_dist_')
+        k_pred_dist_ = result_dict.get(key).get('test_k_dist_')
+        s_pred_dist_ = result_dict.get(key).get('test_s_dist_')
 
         # combine distances
         mks_dist_ = mcd_pred_dist_ - k_pred_dist_ - s_pred_dist_
@@ -74,69 +136,92 @@ for sample_file in file_list:
         ms_dist_ = mcd_pred_dist_ - s_pred_dist_
         ks_dist_ = k_pred_dist_ + s_pred_dist_
 
+        dists_columns = ['mcd_dist', 'k_dist', 's_dist', 'mks_dist', 'mk_dist', 'ms_dist', 'ks_dist', 'Label']
+        dists_df = pd.DataFrame(columns=dists_columns)
+        dists_df['mcd_dist'] = mcd_pred_dist_
+        dists_df['k_dist'] = k_pred_dist_
+        dists_df['s_dist'] = s_pred_dist_
+        dists_df['mks_dist'] = mks_dist_
+        dists_df['mk_dist'] = mk_dist_
+        dists_df['ms_dist'] = ms_dist_
+        dists_df['ks_dist'] = ks_dist_
+        dists_df['Label'] =  test_label.values
+        dists_l1_df = dists_df[dists_df["Label"] == 1]
+        dists_l0_df = dists_df[dists_df["Label"] == 0]
+
         # get outliers from new distances
-        m_label = get_outliers(-mcd_pred_dist_, best_contamination)
-        k_pred_label = get_outliers(k_pred_dist_, best_contamination)
-        s_pred_label = get_outliers(s_pred_dist_, best_contamination)
+        # k_label = get_outliers(k_pred_dist_, best_contamination)
+        # s_label = get_outliers(s_pred_dist_, best_contamination)
+
+        # mks_label = m_label
+        # mks_label.fill(0)
+        # mks_label[np.logical_or(m_label, k_label, s_label)] = 1
+        # mk_label = m_label
+        # mk_label.fill(0)
+        # mk_label[np.logical_or(m_label, k_label)] = 1
+        # ms_label = m_label
+        # ms_label.fill(0)
+        # ms_label[np.logical_or(m_label, s_label)] = 1
+
         mks_label = get_outliers(mks_dist_, best_contamination)
         mk_label = get_outliers(mk_dist_, best_contamination)
         ms_label = get_outliers(ms_dist_, best_contamination)
         ks_label = get_outliers(ks_dist_, best_contamination)
 
         # compute F1 score and append results into a mcd dataframe
-        m_pred_f1 = f1_score(mcd_pred_label, test_label, average="binary")
+        m_pred_f1 = f1_score(m_label, test_label, average="binary")
         alg = 'mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[m_pred_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[m_pred_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a k-mcd dataframe
-        k_pred_f1 = f1_score(k_pred_label, test_label, average="binary")
+        k_pred_f1 = f1_score(k_label, test_label, average="binary")
         alg = 'k-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[k_pred_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[k_pred_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a s-mcd dataframe
-        s_pred_f1 = f1_score(s_pred_label, test_label, average="binary")
+        s_pred_f1 = f1_score(s_label, test_label, average="binary")
         alg = 's-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[s_pred_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[s_pred_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a mcd dataframe
         m_f1 = f1_score(m_label, test_label, average="binary")
         alg = 'sv-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[m_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[m_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a s-mcd dataframe
         mks_f1 = f1_score(mks_label, test_label, average="binary")
         alg = 'mks-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[mks_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[mks_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a s-mcd dataframe
         mk_f1 = f1_score(mk_label, test_label, average="binary")
         alg = 'mk-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[mk_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[mk_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a s-mcd dataframe
         ms_f1 = f1_score(ms_label, test_label, average="binary")
         alg = 'ms-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[ms_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[ms_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # compute F1 score and append results into a s-mcd dataframe
         ks_f1 = f1_score(ks_label, test_label, average="binary")
         alg = 'ks-mcd'
         approach = "%s_%s" % (window, alg)
-        df = pd.DataFrame([[ks_f1, approach, alg, window, scenario]], columns=columns)
+        df = pd.DataFrame([[ks_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
         # # only for the first iteration, plot distances into boxplot and pairplot
@@ -151,7 +236,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="mcd_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_mcd_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_mcd_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t',fig_name)
@@ -160,7 +245,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="k_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_k_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_k_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t',fig_name)
@@ -169,7 +254,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="s_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_s_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_s_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t',fig_name)
@@ -178,7 +263,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="mks_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_mks_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_mks_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t', fig_name)
@@ -187,7 +272,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="mk_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_mk_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_mk_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t', fig_name)
@@ -196,7 +281,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="ms_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_ms_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_ms_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t', fig_name)
@@ -205,7 +290,7 @@ for sample_file in file_list:
         #     plt.figure(figsize=(15, 5))
         #     bp = sns.boxplot(x="test_label", y="ks_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
         #     bp.set(yscale="log")
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_ks_dist.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_ks_dist.png" % (it, scenario, window)
         #     plt.savefig(fig_name)
         #     plt.close()
         #     print('\t', fig_name)
@@ -214,14 +299,14 @@ for sample_file in file_list:
         #     plot_features = [ 'mks_dist_', 'mk_dist_', 'ms_dist_', 'ks_dist_']
         #     sns_distplot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label', diag_kind = 'kde',
         #      plot_kws = {'alpha': 0.1, 's': 80, 'edgecolor': 'k'}, size = 4)
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_distances_new.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_distances_new.png" % (it, scenario, window)
         #     sns_distplot.savefig(fig_name)
         #     print('\t',fig_name)
         #
         #     plot_features = ['mcd_dist_', 'k_dist_', 's_dist_']
         #     sns_distplot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label', diag_kind='kde',
         #                                 plot_kws={'alpha': 0.1, 's': 80, 'edgecolor': 'k'}, size=4)
-        #     fig_name = "results/pkl_sum_dict/20/figures/%s_%s_distances.png" % (scenario, window)
+        #     fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_distances.png" % (it, scenario, window)
         #     sns_distplot.savefig(fig_name)
         #     print('\t', fig_name)
 
@@ -233,12 +318,13 @@ for m_scenario in m_scenarios:
     result_scenario_df = result_df.loc[result_df['scenarios'] == m_scenario]
     result_scenario_df = result_scenario_df.sort_values(['windows', 'algs'], ascending=[True, False])
 
-    # boxplot F1 score by approaches for this scenario
-    plt.figure(figsize=(15, 5))
-    bp = sns.boxplot(x="approaches", y="f1", data=result_scenario_df, palette="PRGn", width=0.4)
-    fig_name = "results/pkl_sum_dict/20/figures/%s.png" % m_scenario
-    plt.savefig(fig_name)
-    plt.close()
+    # # boxplot F1 score by approaches for this scenario
+    # plt.figure(figsize=(15, 5))
+    # plt.xticks(rotation=90)
+    # bp = sns.boxplot(x="approaches", y="f1", data=result_scenario_df, palette="PRGn", width=0.4)
+    # fig_name = "results/pkl_sum_dict/%s/figures/%s.png" % (it, m_scenario)
+    # plt.savefig(fig_name)
+    # plt.close()
 
     # get median F1 from each approach
     m1 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.15s_s-mcd'].median().get('f1')
