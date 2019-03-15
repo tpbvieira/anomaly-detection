@@ -7,7 +7,6 @@
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botnet-detection-results-eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-results-eda.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/.~lock.sum_files_results.xlsx#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/results/botnet-detection-k-mcd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/botnet-detection-k-mcd.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="155" column="29" lean-forward="true" selection-start-line="155" selection-start-column="29" selection-end-line="163" selection-end-column="32" />
+            <state relative-caret-position="485">
+              <caret line="79" column="6" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
               <folding>
                 <element signature="e#15#48#0" expanded="true" />
               </folding>
@@ -36,8 +35,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2760">
-              <caret line="191" column="35" selection-start-line="191" selection-start-column="21" selection-end-line="191" selection-end-column="35" />
+            <state>
               <folding>
                 <element signature="e#15#52#0" expanded="true" />
               </folding>
@@ -56,23 +54,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>m_dist</find>
-      <find>chi</find>
-      <find>sqr</find>
-      <find>distances</find>
-      <find>print</find>
-      <find>blue</find>
-      <find>qqplot</find>
-      <find>plotkwargs</find>
-      <find>alpha</find>
-      <find>qqplot(</find>
-      <find>dist=</find>
-      <find>stats</find>
-      <find>chi2</find>
-      <find>arg</find>
-      <find>other</find>
-      <find>logn</find>
-      <find>fig</find>
       <find>color</find>
       <find>_dist_</find>
       <find>col</find>
@@ -82,10 +63,27 @@
       <find>append</find>
       <find>20</find>
       <find>figure</find>
-      <find>boxplot</find>
       <find>k_pred_label</find>
       <find>or</find>
       <find>s-mcd</find>
+      <find>sv</find>
+      <find>dists_l1_df</find>
+      <find>90</find>
+      <find>widt</find>
+      <find>if not</find>
+      <find>figu</find>
+      <find>fig_name =</find>
+      <find>savefig</find>
+      <find>show</find>
+      <find>scenario</find>
+      <find>windows</find>
+      <find>%s</find>
+      <find>window,</find>
+      <find>.loc</find>
+      <find>boxplot</find>
+      <find>approach</find>
+      <find>hue</find>
+      <find>approaches</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -377,14 +375,14 @@
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32995194" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49813133" visible="true" weight="0.30669546" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.56587476" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49813133" weight="0.30669546" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3088553" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50186867" side_tool="true" weight="0.3997955" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.18574513" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.19006479" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -439,11 +437,6 @@
           <url>file://$PROJECT_DIR$/plot_mahalanobis_distances.py</url>
           <line>98</line>
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/botnet-detection-results-eda.py</url>
-          <line>127</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -675,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="155" column="29" lean-forward="true" selection-start-line="155" selection-start-column="29" selection-end-line="163" selection-end-column="32" />
+        <state relative-caret-position="485">
+          <caret line="79" column="6" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
           <folding>
             <element signature="e#15#48#0" expanded="true" />
           </folding>
@@ -685,8 +678,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2760">
-          <caret line="191" column="35" selection-start-line="191" selection-start-column="21" selection-end-line="191" selection-end-column="35" />
+        <state>
           <folding>
             <element signature="e#15#52#0" expanded="true" />
           </folding>

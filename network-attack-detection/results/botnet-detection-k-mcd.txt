@@ -1,384 +1,156 @@
 ==============================================================================================================================================================================================================================
-## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.217328727691422 , Recall: 0.7394711067580804 , Precision: 0.1273831618019234
-	###[k-mcd][ drop_features01 ] Test. F1: 0.2136849483090941 , Recall: 0.7962781586679726 , Precision: 0.1233999494055148
-## Sample File:  /opt/data/pkl/capture20110810.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.12 , F1: 0.088646091462041 , Recall: 0.268994140625 , Precision: 0.05306708280352946
-	###[k-mcd][ drop_features01 ] Test. F1: 0.09183140454522044 , Recall: 0.304736328125 , Precision: 0.05406131164297532
-## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.005586592178770949 , Recall: 0.06451612903225806 , Precision: 0.00291970802919708	
-	###[k-mcd][ drop_features01 ] Test. F1: 0.008379888268156426 , Recall: 0.0967741935483871 , Precision: 0.004379562043795621
-## Sample File:  /opt/data/pkl/capture20110819.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.01 , F1: 0.14351320321469577 , Recall: 0.11531365313653137 , Precision: 0.1899696048632219
-	###[k-mcd][ drop_features01 ] Test. F1: 0.027570361860999423 , Recall: 0.0221606648199446 , Precision: 0.0364741641337386
-## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.864475579416001 , Recall: 0.8086722195002449 , Precision: 0.9285513361462728
-	###[k-mcd][ drop_features01 ] Test. F1: 0.8926736955934037 , Recall: 0.8091154128889978 , Precision: 0.9954778414229726
-## Sample File:  /opt/data/pkl/capture20110812.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.04 , F1: 0.45003695204014166 , Recall: 0.8627246290358661 , Precision: 0.30441760728286893
-	###[k-mcd][ drop_features01 ] Test. F1: 0.4928720073127565 , Recall: 0.9448918717375093 , Precision: 0.3333859552187755
-## Sample File:  /opt/data/pkl/capture20110815-3.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.2757456130342514 , Recall: 0.30208489575521225 , Precision: 0.25363109730501215
-	###[k-mcd][ drop_features01 ] Test. F1: 0.7465486160235493 , Recall: 0.8178591070446478 , Precision: 0.6866761816807992
-## Sample File:  /opt/data/pkl/capture20110811.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.03 , F1: 0.633438720476102 , Recall: 0.6506208213944603 , Precision: 0.6171407863743432
-	###[k-mcd][ drop_features01 ] Test. F1: 0.5134833550306863 , Recall: 0.5274116523400191 , Precision: 0.5002717883674579
-## Sample File:  /opt/data/pkl/capture20110815.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.13 , F1: 0.08035626575853826 , Recall: 0.9511627906976744 , Precision: 0.04195015214195357
-	###[k-mcd][ drop_features01 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
-## Sample File:  /opt/data/pkl/capture20110816.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.15000000000000002 , F1: 0.2289150381006687 , Recall: 0.95377969762419 , Precision: 0.13006597549481622
-	###[k-mcd][ drop_features01 ] Test. F1: 0.2288639536687523 , Recall: 0.956352636127917 , Precision: 0.12998531571218797
-## Sample File:  /opt/data/pkl/capture20110817.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.11 , F1: 0.38962656462985135 , Recall: 0.30440141416107164 , Precision: 0.5411301172400538
-	###[k-mcd][ drop_features01 ] Test. F1: 0.3104280979498073 , Recall: 0.24252646146194848 , Precision: 0.4311358831443398
-## Sample File:  /opt/data/pkl/capture20110815-2.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.02 , F1: 0.24000000000000002 , Recall: 0.26 , Precision: 0.22285714285714286
-	###[k-mcd][ drop_features01 ] Test. F1: 0.12923076923076923 , Recall: 0.14 , Precision: 0.12
-## Sample File:  /opt/data/pkl/capture20110818.binetflow
-	###[k-mcd][ drop_features01 ] Cross-Validation. Contamination: 0.17 , F1: 0.9603640236228095 , Recall: 0.93271400631864 , Precision: 0.98970347607455
-	###[k-mcd][ drop_features01 ] Test. F1: 0.9572103469640645 , Recall: 0.9297226140103432 , Precision: 0.9863729773947049
-###[k-mcd][ drop_features01 ] Test Full. F1: 0.4133965327104724 , Recall: 0.5428892686875956 , Precision: 0.33378130253959826
-==============================================================================================================================================================================================================================
-## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.06999999999999999 , F1: 0.10121883037012189 , Recall: 0.7388181521384264 , Precision: 0.05433112455584366
-	###[k-mcd][ drop_features02 ] Test. F1: 0.10908602992150637 , Recall: 0.7962781586679726 , Precision: 0.058553800355308015
-## Sample File:  /opt/data/pkl/capture20110810.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.2231778346306679 , Recall: 0.30029296875 , Precision: 0.17757630006063582
-	###[k-mcd][ drop_features02 ] Test. F1: 0.23674995010251668 , Recall: 0.3185546875 , Precision: 0.18837524903993302
-## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.02 , F1: 0.004098360655737704 , Recall: 0.03225806451612903 , Precision: 0.002188183807439825
-	###[k-mcd][ drop_features02 ] Test. F1: 0.004098360655737704 , Recall: 0.03225806451612903 , Precision: 0.002188183807439825
-## Sample File:  /opt/data/pkl/capture20110819.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.06999999999999999 , F1: 0.07420432565500264 , Recall: 0.19464944649446494 , Precision: 0.04583966978057789
-	###[k-mcd][ drop_features02 ] Test. F1: 0.10026385224274405 , Recall: 0.2631578947368421 , Precision: 0.06192959582790091
-## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.15000000000000002 , F1: 0.8584844137211427 , Recall: 0.8062224399804018 , Precision: 0.9179916317991632
-	###[k-mcd][ drop_features02 ] Test. F1: 0.8568090354407373 , Recall: 0.8086253369272237 , Precision: 0.9110988404196576
-## Sample File:  /opt/data/pkl/capture20110812.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.03 , F1: 0.4155831762769282 , Recall: 0.6494668555663261 , Precision: 0.3055497088332281
-	###[k-mcd][ drop_features02 ] Test. F1: 0.36768775646531154 , Recall: 0.5746457867263236 , Precision: 0.2703290535325896
-## Sample File:  /opt/data/pkl/capture20110815-3.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.08 , F1: 0.2552739355536667 , Recall: 0.33033348332583373 , Precision: 0.20800931901898434
-	###[k-mcd][ drop_features02 ] Test. F1: 0.03651186152538444 , Recall: 0.04724763761811909 , Precision: 0.029751597770991404
-## Sample File:  /opt/data/pkl/capture20110811.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.03 , F1: 0.633438720476102 , Recall: 0.6506208213944603 , Precision: 0.6171407863743432
-	###[k-mcd][ drop_features02 ] Test. F1: 0.510786684024549 , Recall: 0.5246418338108882 , Precision: 0.4976445008153651
-## Sample File:  /opt/data/pkl/capture20110815.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.05 , F1: 0.11672779461011004 , Recall: 0.5674418604651162 , Precision: 0.06505510131532172
-	###[k-mcd][ drop_features02 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
-## Sample File:  /opt/data/pkl/capture20110816.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.09999999999999999 , F1: 0.11845669521926935 , Recall: 0.3494600431965443 , Precision: 0.07131523272214386
-	###[k-mcd][ drop_features02 ] Test. F1: 0.13976291526415924 , Recall: 0.41270527225583403 , Precision: 0.0841261451726568
-## Sample File:  /opt/data/pkl/capture20110817.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.09999999999999999 , F1: 0.4028098688775547 , Recall: 0.30440141416107164 , Precision: 0.5952431289640592
-	###[k-mcd][ drop_features02 ] Test. F1: 0.3209316632449407 , Recall: 0.24252646146194848 , Precision: 0.4742494714587738
-## Sample File:  /opt/data/pkl/capture20110815-2.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.01 , F1: 0.32538569424964936 , Recall: 0.2577777777777778 , Precision: 0.44106463878326996
-	###[k-mcd][ drop_features02 ] Test. F1: 0.16830294530154277 , Recall: 0.13333333333333333 , Precision: 0.22813688212927757
-## Sample File:  /opt/data/pkl/capture20110818.binetflow
-	###[k-mcd][ drop_features02 ] Cross-Validation. Contamination: 0.19 , F1: 0.972406201265939 , Recall: 0.9967090416729352 , Precision: 0.9492603073396139
-	###[k-mcd][ drop_features02 ] Test. F1: 0.9709407352388288 , Recall: 0.995618241654913 , Precision: 0.9474569598052901
-###[k-mcd][ drop_features02 ] Test Full. F1: 0.4085222071184842 , Recall: 0.46362327966177924 , Precision: 0.36512726783272764
-==============================================================================================================================================================================================================================
-## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.11714766403520123 , Recall: 0.7388181521384264 , Precision: 0.06361745192848307
-	###[k-mcd][ drop_features03 ] Test. F1: 0.12625530593229112 , Recall: 0.7962781586679726 , Precision: 0.06856323616225789
-## Sample File:  /opt/data/pkl/capture20110810.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.08 , F1: 0.19724564193345137 , Recall: 0.32099609375 , Precision: 0.14236216380094419
-	###[k-mcd][ drop_features03 ] Test. F1: 0.19505535719643555 , Recall: 0.317431640625 , Precision: 0.14078132444020963
-## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.02 , F1: 0.02459016393442623 , Recall: 0.1935483870967742 , Precision: 0.01312910284463895
-	###[k-mcd][ drop_features03 ] Test. F1: 0.008196721311475409 , Recall: 0.06451612903225806 , Precision: 0.00437636761487965
-## Sample File:  /opt/data/pkl/capture20110819.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.09 , F1: 0.11884016569061563 , Recall: 0.3837638376383764 , Precision: 0.070305898259253
-	###[k-mcd][ drop_features03 ] Test. F1: 0.12657142857142856 , Recall: 0.4090489381348107 , Precision: 0.07486902146357952
-## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.9499415204678363 , Recall: 0.9948554630083293 , Precision: 0.9089077887197852
-	###[k-mcd][ drop_features03 ] Test. F1: 0.9400996408295679 , Recall: 0.9941190884587111 , Precision: 0.8916483516483517
-## Sample File:  /opt/data/pkl/capture20110812.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.05 , F1: 0.0018384766907419568 , Recall: 0.004175676683319663 , Precision: 0.0011787240312361867
-	###[k-mcd][ drop_features03 ] Test. F1: 0.0002298133587222377 , Recall: 0.0005219985085756898 , Precision: 0.00014734050390452334
-## Sample File:  /opt/data/pkl/capture20110815-3.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.11 , F1: 0.37809320437131017 , Recall: 0.6019699015049248 , Precision: 0.27559685947764784
-	###[k-mcd][ drop_features03 ] Test. F1: 0.5662012971716631 , Recall: 0.9013049347532623 , Precision: 0.4127438410110816
-## Sample File:  /opt/data/pkl/capture20110811.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.04 , F1: 0.11815619168618734 , Recall: 0.14212034383954156 , Precision: 0.10110756268261195
-	###[k-mcd][ drop_features03 ] Test. F1: 0.02715686663755112 , Recall: 0.032664756446991405 , Precision: 0.023238431745600325
-## Sample File:  /opt/data/pkl/capture20110815.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.1379265518362041 , Recall: 0.8224806201550388 , Precision: 0.07527492018446258
-	###[k-mcd][ drop_features03 ] Test. F1: 0.07167489350192711 , Recall: 0.41117145073700545 , Precision: 0.03925925925925926
-## Sample File:  /opt/data/pkl/capture20110816.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.05 , F1: 0.5242036619011787 , Recall: 0.9028077753779697 , Precision: 0.36932320197914825
-	###[k-mcd][ drop_features03 ] Test. F1: 0.5541201555248966 , Recall: 0.9546240276577356 , Precision: 0.39035165223537727
-## Sample File:  /opt/data/pkl/capture20110817.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.17 , F1: 0.34528030167203577 , Recall: 0.32272712529596836 , Precision: 0.3712224847655764
-	###[k-mcd][ drop_features03 ] Test. F1: 0.3767277774564803 , Recall: 0.35213475614370815 , Precision: 0.40501386522750166
-## Sample File:  /opt/data/pkl/capture20110815-2.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.09999999999999999 , F1: 0.13142485361093037 , Recall: 0.4488888888888889 , Precision: 0.07698170731707317
-	###[k-mcd][ drop_features03 ] Test. F1: 0.06831489915419647 , Recall: 0.23333333333333334 , Precision: 0.040015243902439025
-## Sample File:  /opt/data/pkl/capture20110818.binetflow
-	###[k-mcd][ drop_features03 ] Cross-Validation. Contamination: 0.12 , F1: 0.9098454846766765 , Recall: 0.9008199187603431 , Precision: 0.9190537403349898
-	###[k-mcd][ drop_features03 ] Test. F1: 0.1989087155286831 , Recall: 0.12682651622002822 , Precision: 0.4608131192347113
-###[k-mcd][ drop_features03 ] Test Full. F1: 0.2751305434475372 , Recall: 0.3327156606998291 , Precision: 0.23453768404499512
-==============================================================================================================================================================================================================================
-## Sample File:  /opt/data/pkl/capture20110816-3.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.05 , F1: 0.13847941770138847 , Recall: 0.7391446294482533 , Precision: 0.076396153197233
-	###[k-mcd][ drop_features04 ] Test. F1: 0.14918343629579792 , Recall: 0.7962781586679726 , Precision: 0.08230133288341489
-## Sample File:  /opt/data/pkl/capture20110810.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.08 , F1: 0.2564733415343995 , Recall: 0.4173828125 , Precision: 0.18510979254190307
-	###[k-mcd][ drop_features04 ] Test. F1: 0.3581565603528459 , Recall: 0.582861328125 , Precision: 0.2584997184806618
-## Sample File:  /opt/data/pkl/capture20110816-2.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.08 , F1: 0.011840688912809472 , Recall: 0.3548387096774194 , Precision: 0.0060207991242474
-	###[k-mcd][ drop_features04 ] Test. F1: 0.007534983853606028 , Recall: 0.22580645161290322 , Precision: 0.0038314176245210726
-## Sample File:  /opt/data/pkl/capture20110819.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.03 , F1: 0.09224730127576053 , Recall: 0.13007380073800737 , Precision: 0.07146477445514444
-	###[k-mcd][ drop_features04 ] Test. F1: 0.06479057591623037 , Recall: 0.09141274238227147 , Precision: 0.050177394830207805
-## Sample File:  /opt/data/pkl/capture20110818-2.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.19 , F1: 0.9187246376811594 , Recall: 0.9706026457618814 , Precision: 0.8721109399075501
-	###[k-mcd][ drop_features04 ] Test. F1: 0.9238084193436159 , Recall: 0.9759862778730704 , Precision: 0.8769264641127257
-## Sample File:  /opt/data/pkl/capture20110812.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.19 , F1: 0.138101720084148 , Recall: 0.9985832525538737 , Precision: 0.07418034375986662
-	###[k-mcd][ drop_features04 ] Test. F1: 0.13825711678173486 , Recall: 0.9997762863534676 , Precision: 0.07426343106246504
-## Sample File:  /opt/data/pkl/capture20110815-3.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.15000000000000002 , F1: 0.10616421137312082 , Recall: 0.2111394430278486 , Precision: 0.07090924355637646
-	###[k-mcd][ drop_features04 ] Test. F1: 0.0061089044195283835 , Recall: 0.012149392530373481 , Precision: 0.004080261942742003
-## Sample File:  /opt/data/pkl/capture20110811.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.11 , F1: 0.02858264625049077 , Recall: 0.06953199617956064 , Precision: 0.017988633555720286
-	###[k-mcd][ drop_features04 ] Test. F1: 0.07926972909305065 , Recall: 0.19283667621776504 , Precision: 0.04988880652335063
-## Sample File:  /opt/data/pkl/capture20110815.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.06999999999999999 , F1: 0.05845070422535211 , Recall: 0.386046511627907 , Precision: 0.031619047619047616
-	###[k-mcd][ drop_features04 ] Test. F1: 0.053876401197253364 , Recall: 0.3560899922420481 , Precision: 0.029142857142857144
-## Sample File:  /opt/data/pkl/capture20110816.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.11 , F1: 0.29815768084529937 , Recall: 0.9507559395248381 , Precision: 0.17680134950598442
-	###[k-mcd][ drop_features04 ] Test. F1: 0.2993971415024047 , Recall: 0.9550561797752809 , Precision: 0.17752429914049322
-## Sample File:  /opt/data/pkl/capture20110817.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.09999999999999999 , F1: 0.44983654403296297 , Recall: 0.3399392386450866 , Precision: 0.6647357293868922
-	###[k-mcd][ drop_features04 ] Test. F1: 0.3970012804646871 , Recall: 0.30001189279188695 , Precision: 0.5866596194503171
-## Sample File:  /opt/data/pkl/capture20110815-2.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.060000000000000005 , F1: 0.16493827160493826 , Recall: 0.3711111111111111 , Precision: 0.10603174603174603
-	###[k-mcd][ drop_features04 ] Test. F1: 0.08888888888888888 , Recall: 0.2 , Precision: 0.05714285714285714
-## Sample File:  /opt/data/pkl/capture20110818.binetflow
-	###[k-mcd][ drop_features04 ] Cross-Validation. Contamination: 0.14 , F1: 0.7382896159799825 , Recall: 0.6547502632766662 , Precision: 0.8462641582810753
-	###[k-mcd][ drop_features04 ] Test. F1: 0.8097459603884812 , Recall: 0.718119417019276 , Precision: 0.9281738411803311
-###[k-mcd][ drop_features04 ] Test Full. F1: 0.2915997890163739 , Recall: 0.46248088513088065 , Precision: 0.21292615048205943
-==============================================================================================================================================================================================================================
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_11.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.4271123491179202 , Recall: 0.27744270205066346 , Precision: 0.9274193548387096
-	###[Kurtosis-MCD] Test. F1: 0.4561077566186716 , Recall: 0.29631864815932407 , Precision: 0.9899193548387096
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_11.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.08188882247459654 , Recall: 0.07111341811575396 , Precision: 0.09651285663966186
-	###[Kurtosis-MCD] Test. F1: 0.07949790794979078 , Recall: 0.0690371139371918 , Precision: 0.09369496301514618
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_18.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.5637614678899082 , Recall: 0.8112211221122112 , Precision: 0.4319859402460457
-	###[Kurtosis-MCD] Test. F1: 0.09678899082568808 , Recall: 0.13927392739273928 , Precision: 0.07416520210896309
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_16-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.3377281947261664 , Recall: 0.2358356940509915 , Precision: 0.5946428571428571
-	###[Kurtosis-MCD] Test. F1: 0.23935091277890466 , Recall: 0.1671388101983003 , Precision: 0.42142857142857143
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_15.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.0006224712107065049 , Recall: 0.0013908205841446453 , Precision: 0.00040096230954290296
-	###[Kurtosis-MCD] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_10.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.0829475673122343 , Recall: 0.06963832487309644 , Precision: 0.10254613408082223
-	###[Kurtosis-MCD] Test. F1: 0.07294028722600152 , Recall: 0.06124067904172616 , Precision: 0.09016584910067742
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_15.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
-	###[Kurtosis-MCD] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_16-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.020187454938716654 , Recall: 0.0343980343980344 , Precision: 0.014285714285714285
-	###[Kurtosis-MCD] Test. F1: 0.017784186493631334 , Recall: 0.030303030303030304 , Precision: 0.012585034013605442
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_16-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.42857142857142855 , Recall: 0.2727272727272727 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.14285714285714288 , Recall: 0.09090909090909091 , Precision: 0.3333333333333333
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_16.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.06372934697088907 , Recall: 0.1694560669456067 , Precision: 0.03924418604651163
-	###[Kurtosis-MCD] Test. F1: 0.0007870916961826052 , Recall: 0.0020964360587002098 , Precision: 0.00048449612403100775
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_18-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.09621993127147765 , Recall: 0.05054151624548736 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.09621993127147765 , Recall: 0.05054151624548736 , Precision: 1.0
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_16.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.9006622516556292 , Recall: 0.845771144278607 , Precision: 0.9631728045325779
-	###[Kurtosis-MCD] Test. F1: 0.9033112582781457 , Recall: 0.8482587064676617 , Precision: 0.9660056657223796
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_16-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.1115414407436096 , Recall: 0.13610586011342155 , Precision: 0.09448818897637795
-	###[Kurtosis-MCD] Test. F1: 0.09604957397366382 , Recall: 0.11720226843100189 , Precision: 0.08136482939632546
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_16-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.17391304347826086 , Recall: 0.15384615384615385 , Precision: 0.2
-	###[Kurtosis-MCD] Test. F1: 0.0909090909090909 , Recall: 0.08333333333333333 , Precision: 0.1
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_12.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.8287060529177238 , Recall: 0.712451701358594 , Precision: 0.9902979902979903
-	###[Kurtosis-MCD] Test. F1: 0.8283311584746992 , Recall: 0.7121665420094739 , Precision: 0.9897782397782398
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_11.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.0575139146567718 , Recall: 0.03945693678404752 , Precision: 0.10604332953249715
-	###[Kurtosis-MCD] Test. F1: 0.2517785338694711 , Recall: 0.1727504244482173 , Precision: 0.4640820980615735
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_17.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.024455611390284755 , Recall: 0.01565180102915952 , Precision: 0.055895865237366005
-	###[Kurtosis-MCD] Test. F1: 0.0016753224995811693 , Recall: 0.001072271070126528 , Precision: 0.0038284839203675345
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_15.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.6203473945409429 , Recall: 0.6918819188191881 , Precision: 0.5622188905547226
-	###[Kurtosis-MCD] Test. F1: 0.891645988420182 , Recall: 0.9944649446494465 , Precision: 0.808095952023988
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_15-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.2630069148775553 , Recall: 0.2622704004817826 , Precision: 0.2637475775193798
-	###[Kurtosis-MCD] Test. F1: 0.1401612367523174 , Recall: 0.13977717554953328 , Precision: 0.14054741431512657
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_16.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.41785918717801945 , Recall: 0.7716701902748414 , Precision: 0.28649921507064363
-	###[Kurtosis-MCD] Test. F1: 0.27147766323024053 , Recall: 0.5021186440677966 , Precision: 0.18602825745682888
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_11.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.046944198405668734 , Recall: 0.04680945020975933 , Precision: 0.04707972462802576
-	###[Kurtosis-MCD] Test. F1: 0.04871567759078831 , Recall: 0.048575844557297417 , Precision: 0.048856318010215415
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_10.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.4858425414364641 , Recall: 0.320866590649943 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.008288723881885684 , Recall: 0.005474452554744526 , Precision: 0.017057569296375266
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_18-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.6181818181818182 , Recall: 0.5151515151515151 , Precision: 0.7727272727272727
-	###[Kurtosis-MCD] Test. F1: 0.7636363636363637 , Recall: 0.6363636363636364 , Precision: 0.9545454545454546
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_19.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.5061082024432809 , Recall: 0.8770161290322581 , Precision: 0.35568274734260014
-	###[Kurtosis-MCD] Test. F1: 0.40512223515715956 , Recall: 0.703030303030303 , Precision: 0.28454619787408014
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_16-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.22404844290657436 , Recall: 0.18048780487804877 , Precision: 0.2953249714937286
-	###[Kurtosis-MCD] Test. F1: 0.03028991778450887 , Recall: 0.024407252440725245 , Precision: 0.039908779931584946
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_16-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.12903225806451615 , Recall: 0.14285714285714285 , Precision: 0.11764705882352941
-	###[Kurtosis-MCD] Test. F1: 0.06666666666666667 , Recall: 0.07692307692307693 , Precision: 0.058823529411764705
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_17.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.0006463527239150508 , Recall: 0.0004197901049475262 , Precision: 0.0014042126379137413
-	###[Kurtosis-MCD] Test. F1: 0.0009234036659125538 , Recall: 0.0005997361161089121 , Precision: 0.0020060180541624875
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_15.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.6007702182284982 , Recall: 0.5480093676814989 , Precision: 0.6647727272727273
-	###[Kurtosis-MCD] Test. F1: 0.07702182284980744 , Recall: 0.0702576112412178 , Precision: 0.08522727272727272
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_15-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.8361581920903954 , Recall: 0.7893333333333333 , Precision: 0.8888888888888888
-	###[Kurtosis-MCD] Test. F1: 0.9265536723163842 , Recall: 0.8746666666666667 , Precision: 0.984984984984985
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_10.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.1585949973390101 , Recall: 0.10060769750168805 , Precision: 0.3743718592964824
-	###[Kurtosis-MCD] Test. F1: 0.40990151716795314 , Recall: 0.26004728132387706 , Precision: 0.9673366834170855
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_16-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.5142857142857142 , Recall: 1.0 , Precision: 0.34615384615384615
-	###[Kurtosis-MCD] Test. F1: 0.3529411764705882 , Recall: 0.75 , Precision: 0.23076923076923078
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_15-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.8636363636363636 , Recall: 1.0 , Precision: 0.76
-	###[Kurtosis-MCD] Test. F1: 0.8463203463203464 , Recall: 0.9799498746867168 , Precision: 0.7447619047619047
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_19.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.2537067545304778 , Recall: 0.33698030634573306 , Precision: 0.20343461030383092
-	###[Kurtosis-MCD] Test. F1: 0.09218106995884773 , Recall: 0.12253829321663019 , Precision: 0.07387862796833773
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_19.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.6401590457256462 , Recall: 0.5513698630136986 , Precision: 0.7630331753554502
-	###[Kurtosis-MCD] Test. F1: 0.5617529880478088 , Recall: 0.4845360824742268 , Precision: 0.6682464454976303
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_10.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.6603025407548833 , Recall: 0.6501807664497469 , Precision: 0.6707444427868119
-	###[Kurtosis-MCD] Test. F1: 0.5095101711096424 , Recall: 0.5017356089094591 , Precision: 0.5175294644189169
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_15-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 7.386615452799527e-05 , Recall: 6.291286568103177e-05 , Precision: 8.943743851176102e-05
-	###[Kurtosis-MCD] Test. F1: 7.386888273314867e-05 , Recall: 6.291682395872656e-05 , Precision: 8.943743851176102e-05
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_18-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.8514851485148515 , Recall: 0.7413793103448276 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.8514851485148515 , Recall: 0.7413793103448276 , Precision: 1.0
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_15-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.45185185185185184 , Recall: 0.291866028708134 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.39405204460966536 , Recall: 0.2548076923076923 , Precision: 0.8688524590163934
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_18.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.8528072837632776 , Recall: 0.9790940766550522 , Precision: 0.7553763440860215
-	###[Kurtosis-MCD] Test. F1: 0.8543247344461304 , Recall: 0.980836236933798 , Precision: 0.7567204301075269
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_17.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.028673835125448032 , Recall: 0.018280016618196927 , Precision: 0.06646525679758308
-	###[Kurtosis-MCD] Test. F1: 0.0019550342130987292 , Recall: 0.0012463647694225177 , Precision: 0.004531722054380665
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_19.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.5864197530864198 , Recall: 0.45023696682464454 , Precision: 0.8407079646017699
-	###[Kurtosis-MCD] Test. F1: 0.6006191950464397 , Recall: 0.46190476190476193 , Precision: 0.8584070796460177
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_16.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.4368600682593857 , Recall: 0.330749354005168 , Precision: 0.6432160804020101
-	###[Kurtosis-MCD] Test. F1: 0.5972696245733787 , Recall: 0.45219638242894056 , Precision: 0.8793969849246231
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_15-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.33152100040777494 , Recall: 0.2018204385601986 , Precision: 0.9277291745910993
-	###[Kurtosis-MCD] Test. F1: 0.3433464727470436 , Recall: 0.20901944559371122 , Precision: 0.9608216051730696
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_12.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.12227695296239767 , Recall: 0.2789207153030543 , Precision: 0.078302012528322
-	###[Kurtosis-MCD] Test. F1: 0.26991587893504465 , Recall: 0.6157315818627839 , Precision: 0.17284197432138257
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_17.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.4808161054437122 , Recall: 0.31660920223516825 , Precision: 0.9988747186796699
-	###[Kurtosis-MCD] Test. F1: 0.45943668753009154 , Recall: 0.30254032417865495 , Precision: 0.9543692961620203
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_15-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.5706371191135734 , Recall: 0.3992248062015504 , Precision: 1.0
-	###[Kurtosis-MCD] Test. F1: 0.5706371191135734 , Recall: 0.3992248062015504 , Precision: 1.0
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_2s_18.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.1953232462173315 , Recall: 0.20461095100864554 , Precision: 0.1868421052631579
-	###[Kurtosis-MCD] Test. F1: 0.01925722145804677 , Recall: 0.020172910662824207 , Precision: 0.018421052631578946
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_15-3.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.43322122784016415 , Recall: 0.28025665609558226 , Precision: 0.9538152610441767
-	###[Kurtosis-MCD] Test. F1: 0.048113099988598786 , Recall: 0.031125534739637115 , Precision: 0.10592369477911646
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_1s_12.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.16148183329375446 , Recall: 0.16599941411971486 , Precision: 0.15720362493064546
-	###[Kurtosis-MCD] Test. F1: 0.06982046166999145 , Recall: 0.07177734375 , Precision: 0.06796744960236731
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.15s_18.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.1323918799646955 , Recall: 0.2077562326869806 , Precision: 0.09715025906735751
-	###[Kurtosis-MCD] Test. F1: 0.5613415710503089 , Recall: 0.8808864265927978 , Precision: 0.4119170984455959
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_18-2.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.01 , F1: 0.0 , Recall: 0.0 , Precision: 0.0
-	###[Kurtosis-MCD] Test. F1: 0.03125 , Recall: 0.01639344262295082 , Precision: 0.3333333333333333
-## Sample File:  /home/thiago/dev/projects/discriminative-sensing/network-attack-detection/BinetflowTrainer-master/saved_data/saved_0.25s_12.pk1
-	###[Kurtosis-MCD] Cross-Validation. Contamination: 0.2 , F1: 0.2098201478539115 , Recall: 0.3874174883872545 , Precision: 0.14386878101924708
-	###[Kurtosis-MCD] Test. F1: 0.2490566037735849 , Recall: 0.45986472170157283 , Precision: 0.1707723035952064
-==============================================================================================================================================================================================================================
-
 it = 10
-10 = 0.9383347708060351 1s_mcd
-11 = 0.9114405307346085 1s_mcd
-12 = 0.608665217103827 1s_ms-mcd
-15 = 0.8584987941871072 2s_s-mcd
-15-2 = 0.8819421012104065 0.25s_k-mcd
-15-3 = 0.9319420157711598 1s_mcd
-16 = 0.9174311926605505 1s_k-mcd
-16-2 = 0.6399999999999999 2s_s-mcd
-16-3 = 0.506584043377227 2s_ms-mcd
-17 = 0.9593423728490668 1s_mcd
-18 = 0.8647281921618204 2s_mks-mcd
-18-2 = 0.9217391304347825 1s_k-mcd
-19 = 0.8933587427557041 1s_s-mcd
+	without ensemble
+		15-2 = 0.8819421012104065 0.25s_k-mcd
+		18-2 = 0.9217391304347825 1s_k-mcd
+		16-3 = 0.39011112533970776 1s_mcd
+		18 = 0.730059936331927 2s_s-mcd
+		15-3 = 0.9319420157711598 1s_mcd
+		17 = 0.9593423728490668 1s_mcd
+		10 = 0.9383347708060351 1s_mcd
+		19 = 0.8933587427557041 1s_s-mcd
+		16 = 0.9174311926605505 1s_k-mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+		12 = 0.4308997345933072 2s_mcd
+		11 = 0.9114405307346085 1s_mcd
+		15 = 0.8584987941871072 2s_s-mcd
+	ensemble = distance sum
+		15-2 = 0.8819421012104065 0.25s_k-mcd
+		18-2 = 0.9217391304347825 1s_k-mcd
+			16-3 = 0.506584043377227 2s_ms-mcd
+			18 = 0.8647281921618204 2s_mks-mcd
+		15-3 = 0.9319420157711598 1s_mcd
+		17 = 0.9593423728490668 1s_mcd
+		10 = 0.9383347708060351 1s_mcd
+		19 = 0.8933587427557041 1s_s-mcd
+		16 = 0.9174311926605505 1s_k-mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+			12 = 0.608665217103827 1s_ms-mcd
+		11 = 0.9114405307346085 1s_mcd
+		15 = 0.8584987941871072 2s_s-mcd
+	ensemble = logical OR
+		15-2 = 0.8819421012104065 0.25s_k-mcd
+		18-2 = 0.9217391304347825 1s_k-mcd
+		16-3 = 0.39011112533970776 1s_mcd
+		18 = 0.730059936331927 2s_s-mcd
+		15-3 = 0.9319420157711598 1s_mcd
+		17 = 0.9593423728490668 1s_mcd
+		10 = 0.9383347708060351 1s_mcd
+		19 = 0.8933587427557041 1s_s-mcd
+		16 = 0.9174311926605505 1s_k-mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+		12 = 0.43759621485070355 2s_ms-mcd
+		11 = 0.9114405307346085 1s_mcd
+		15 = 0.8584987941871072 2s_s-mcd
+it = 20
+	without ensemble
+		18-2 = 0.9217391304347825 1s_k-mcd
+		10 = 0.9319700439205676 1s_mcd
+		12 = 0.42739464449771825 2s_mcd
+		16-3 = 0.4441434659384921 1s_mcd
+		15 = 0.8703982426880363 1s_k-mcd
+		11 = 0.9037207518220176 1s_mcd
+		18 = 0.700284632339537 2s_s-mcd
+		15-3 = 0.9208877420257282 1s_mcd
+		16 = 0.941031941031941 1s_k-mcd
+		19 = 0.897196261682243 1s_k-mcd
+		15-2 = 0.8959008412936209 1s_mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+		17 = 0.9536873309843694 1s_mcd
+	ensemble = distance sum
+		18-2 = 0.9217391304347825 1s_k-mcd
+		10 = 0.9319700439205676 1s_mcd
+		12 = 0.6717852026802662 1s_ms-mcd
+			16-3 = 0.5412844036697249 2s_mks-mcd
+		15 = 0.8703982426880363 1s_k-mcd
+		11 = 0.9037207518220176 1s_mcd
+			18 = 0.9081325301204819 2s_mks-mcd
+		15-3 = 0.9208877420257282 1s_mcd
+		16 = 0.941031941031941 1s_k-mcd
+			19 = 0.898351013872423 1s_ks-mcd
+		15-2 = 0.8959008412936209 1s_mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+		17 = 0.9536873309843694 1s_mcd
+	ensemble = logical OR
+		18-2 = 0.9217391304347825 1s_k-mcd
+		10 = 0.9319700439205676 1s_mcd
+		12 = 0.4353413955799086 2s_mk-mcd
+		16-3 = 0.4441434659384921 1s_mcd
+		15 = 0.8703982426880363 1s_k-mcd
+		11 = 0.9037207518220176 1s_mcd
+		18 = 0.700284632339537 2s_s-mcd
+		15-3 = 0.9208877420257282 1s_mcd
+		16 = 0.941031941031941 1s_k-mcd
+		19 = 0.897196261682243 1s_k-mcd
+		15-2 = 0.8959008412936209 1s_mcd
+		16-2 = 0.6399999999999999 2s_s-mcd
+		17 = 0.9536873309843694 1s_mcd
+it = 40
+	without ensemble
+		
+	ensemble = distance sum
+		
+	ensemble = logical OR
+		
+==============================================================================================================================================================================================================================
+it=10_median
+		mcd_1s_0.557255
+	mcd_0.15s_0.320750
+	mcd_2s_0.545091
+	mcd_0.25s_0.462240
+	k-mcd_1s_0.408129
+	k-mcd_0.15s_0.146923
+		k-mcd_2s_0.527002
+	k-mcd_0.25s_0.161651
+	s-mcd_1s_0.455016
+	s-mcd_0.15s_0.056961
+		s-mcd_2s_0.573214
+	s-mcd_0.25s_0.165517
+	mks-mcd_1s_0.094709
+	mks-mcd_0.15s_0.129137
+	mks-mcd_2s_0.191895
+	mks-mcd_0.25s_0.134763
+	mk-mcd_1s_0.103952
+	mk-mcd_0.15s_0.129137
+	mk-mcd_2s_0.190476
+	mk-mcd_0.25s_0.134763
+	ms-mcd_1s_0.098947
+	ms-mcd_0.15s_0.120631
+	ms-mcd_2s_0.167932
+	ms-mcd_0.25s_0.122601
+	ks-mcd_1s_0.408173
+	ks-mcd_0.15s_0.146760
+	ks-mcd_2s_0.536778
+	ks-mcd_0.25s_0.161651
+it=20_median
+	mcd_2s_0.534474
+		mcd_1s_0.566461
+	mcd_0.15s_0.313164
+	mcd_0.25s_0.466375
+		k-mcd_2s_0.548543
+	k-mcd_1s_0.432432
+	k-mcd_0.15s_0.178053
+	k-mcd_0.25s_0.080411
+		s-mcd_2s_0.599743
+	s-mcd_1s_0.476740
+	s-mcd_0.15s_0.149172
+	s-mcd_0.25s_0.107052
+	mks-mcd_2s_0.200908
+	mks-mcd_1s_0.106199
+	mks-mcd_0.15s_0.116086
+	mks-mcd_0.25s_0.249876
+	mk-mcd_2s_0.196774
+	mk-mcd_1s_0.106545
+	mk-mcd_0.15s_0.116086
+	mk-mcd_0.25s_0.249941
+	ms-mcd_2s_0.171823
+	ms-mcd_1s_0.078379
+	ms-mcd_0.15s_0.111111
+	ms-mcd_0.25s_0.194004
+	ks-mcd_2s_0.560000
+	ks-mcd_1s_0.432432
+	ks-mcd_0.15s_0.175096
+	ks-mcd_0.25s_0.080185
+it=10_mean
 
-
-
-it = 10 - logical OR
-10 = 0.5846795191279821 0.25s_mks-mcd
-11 = 0.7422661082979822 0.15s_ms-mcd
-12 = 0.608665217103827 1s_ms-mcd
-15 = 0.8159090909090909 1s_s-mcd
-15-2 = 0.8819421012104065 0.25s_s-mcd
-15-3 = 0.7777914737948268 0.25s_ms-mcd
-16 = 0.9174311926605505 1s_s-mcd
-16-2 = 0.48 2s_s-mcd
-16-3 = 0.506584043377227 2s_ms-mcd
-17 = 0.5378658542293591 0.25s_mks-mcd
-18 = 0.8647281921618204 2s_mks-mcd
-18-2 = 0.9217391304347825 1s_s-mcd
-19 = 0.8786680609110515 1s_s-mcd
-
-
-15-2 = 0.8819421012104065 0.25s_s-mcd
-18-2 = 0.9217391304347825 1s_s-mcd
-16-3 = 0.506584043377227 2s_ms-mcd
-18 = 0.8647281921618204 2s_mks-mcd
-15-3 = 0.7777914737948268 0.25s_ms-mcd
-17 = 0.5378658542293591 0.25s_mks-mcd
-10 = 0.5846795191279821 0.25s_mks-mcd
-19 = 0.8786680609110515 1s_s-mcd
-16 = 0.9174311926605505 1s_s-mcd
-16-2 = 0.48 2s_s-mcd
-12 = 0.608665217103827 1s_ms-mcd
-11 = 0.7422661082979822 0.15s_ms-mcd
-15 = 0.8159090909090909 1s_s-mcd
-
-
-15-2 = 0.8819421012104065 0.25s_s-mcd
-18-2 = 0.9217391304347825 1s_s-mcd
-16-3 = 0.506584043377227 2s_ms-mcd
-18 = 0.8647281921618204 2s_mks-mcd
-15-3 = 0.7777914737948268 0.25s_ms-mcd
-17 = 0.5378658542293591 0.25s_mks-mcd
-10 = 0.5846795191279821 0.25s_mks-mcd
-19 = 0.8786680609110515 1s_s-mcd
-16 = 0.9174311926605505 1s_s-mcd
-16-2 = 0.48 2s_s-mcd
-12 = 0.608665217103827 1s_ms-mcd
-11 = 0.7422661082979822 0.15s_ms-mcd
-15 = 0.8159090909090909 1s_s-mcd
+it=20_mean
