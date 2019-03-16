@@ -4,6 +4,7 @@ _
 *.jpg
 *.png
 output
+data/
 results/figures/
 results/pkl_sum/
 results/pkl_sum_dict/
