@@ -77,7 +77,7 @@ def get_outliers(m_dist, m_best_contamination):
     return m_pred_label
 
 # init variables
-it = 10
+it = 20
 
 # result file path
 pkl_path = os.path.join('results/pkl_sum_dict/%s/data/' % it)
@@ -331,9 +331,10 @@ for m_scenario in m_scenarios:
     # boxplot F1 score by approaches for this scenario
     fig_name = "results/pkl_sum_dict/%s/figures/%s.png" % (it, m_scenario)
     if not os.path.isfile(fig_name):
-        plt.figure(figsize=(15, 6))
+        plt.figure(figsize=(15, 5))
         bp = sns.boxplot(x="approaches", y="f1", data=result_scenario_df, palette="PRGn", width=0.4)
-        bp.set_xticklabels(bp.get_xticklabels(),rotation=60)
+        bp.set_xticklabels(bp.get_xticklabels(),rotation=90)
+        plt.subplots_adjust(bottom=0.15)
         plt.savefig(fig_name)
         plt.close()
 
@@ -457,27 +458,25 @@ for m_scenario in m_scenarios:
 
     print(m_scenario,'=', f1_max, best_method)
 
-
-# for each algorithm
+# for each algorithm, group by window (k-mcd_1s, for exemple), and print the median of global F1 score
 m_algs = result_df.algs.unique()
 for m_alg in m_algs:
     # get data by alg
     result_alg_df = result_df.loc[result_df['algs'] == m_alg]
 
-    # for each window
     m_windows = result_alg_df.windows.unique()
+    # for each window
     for m_window in m_windows:
-
-        alg_window_f1 = result_alg_df.loc[result_alg_df['windows'] == m_window].mean().get('f1')
+        alg_window_f1 = result_alg_df.loc[result_alg_df['windows'] == m_window].median().get('f1')
         alg_window_f1_str = "%s_%s_%f" % (m_alg, m_window, alg_window_f1)
         print(alg_window_f1_str)
 
-
-# boxplot F1 score by approaches for this scenario
+# boxplot global F1 grouped by approaches (window_algorithm)
 fig_name = "results/pkl_sum_dict/%s/figures/all_f1_boxplot.png" % it
 if not os.path.isfile(fig_name):
-    plt.figure(figsize=(15, 6))
-    bp = sns.boxplot(x="approaches", y="f1", hue='windows', data=result_df, palette="PRGn", width=0.4)
-    bp.set_xticklabels(bp.get_xticklabels(),rotation=60)
+    plt.figure(figsize=(25, 5))
+    bp = sns.boxplot(x="approaches", y="f1", data=result_df, palette="PRGn", width=0.6)
+    bp.set_xticklabels(bp.get_xticklabels(),rotation=90)
+    plt.subplots_adjust(bottom=0.15)
     plt.savefig(fig_name)
     plt.close()
