@@ -61,16 +61,3 @@ raw_normal     		normal traffic
  - The CTU-13 dataset consists in thirteen captures (called scenarios) of different botnet samples. On each scenario we executed a specific malware, which used several protocols and performed different actions.
  - predict compare to train dist or to new dist? Compare to new dist. if it uses the train dist to get threshold the result is very poor, such as classifing all as outlier
 ===============================================================================================================================================================================================================================
-18-2 = 0.9217391304347825 1s_s-mcd
-10 = 0.917586792964185 1s_mcd
-12 = 0.4275155088248506 2s_mcd
-16-3 = 0.4489467798938681 1s_mcd
-15 = 0.8159090909090909 1s_k-mcd
-11 = 0.8691692809029694 2s_mcd
-18 = 0.7062256437187966 2s_ms-mcd
-15-3 = 0.927677071277075 1s_mcd
-16 = 0.9174311926605505 1s_k-mcd
-19 = 0.8513986013986015 1s_k-mcd
-15-2 = 0.886203585623025 1s_mcd
-16-2 = 0.6399999999999999 2s_s-mcd
-17 = 0.9543106278157207 1s_mcd
