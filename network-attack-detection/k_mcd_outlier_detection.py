@@ -107,6 +107,7 @@ class MEllipticEnvelope(MMinCovDet):
         self.prediction_dist_ = None
         return self
 
+
     def decision_function(self, X, raw_values=False):
         """Compute the decision function of the given observations.
 
@@ -138,6 +139,7 @@ class MEllipticEnvelope(MMinCovDet):
             decision = self.threshold_ ** 0.33 - transformed_mahal_dist
 
         return decision
+
 
     def predict(self, X):
         """Outlyingness of observations in X according to the fitted model.
@@ -237,44 +239,6 @@ class MEllipticEnvelope(MMinCovDet):
         return pred_label
 
 
-    def kurtosis_prediction2(self, X):
-        """Outlyingness of observations in X according to the fitted model, using kurtosis instead of location.
-
-        Parameters
-        ----------
-        X : array-like, shape = (n_samples, n_features)
-
-        Returns
-        -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
-
-        """
-        check_is_fitted(self, 'threshold_')
-        X = check_array(X)
-        pred_label = np.full(X.shape[0], 0, dtype=int)
-        if self.contamination is not None:
-            # precision
-            inv_cov = linalg.pinvh(self.covariance_)
-            # kurtosis of the data
-            X_kurt1 = X - kurtosis(X, axis=0, fisher=True, bias=True)
-            # malhalanobis distance
-            mahal_dist = pairwise_distances(X_kurt1, self.raw_kurt1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
-            mahal_dist = np.reshape(mahal_dist, (len(X_kurt1),)) ** 2  #MD squared
-            mahal_dist = -mahal_dist
-            self.prediction_dist_ = mahal_dist
-            # detect outliers
-            contamination_threshold = np.percentile(self.raw_kurt1_dist_, 100. * self.contamination)
-            pred_label[mahal_dist <= contamination_threshold] = 1
-        else:
-            raise NotImplementedError("You must provide a contamination rate.")
-
-        return pred_label
-
     def skewness_prediction(self, X):
         """Outlyingness of observations in X according to the fitted model, using skewness instead of location.
 
@@ -303,41 +267,6 @@ class MEllipticEnvelope(MMinCovDet):
             mahal_dist = -mahal_dist
             self.prediction_dist_ = mahal_dist
             contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
-            pred_label[mahal_dist <= contamination_threshold] = 1
-        else:
-            raise NotImplementedError("You must provide a contamination rate.")
-
-        return pred_label
-
-
-    def skewness_prediction2(self, X):
-        """Outlyingness of observations in X according to the fitted model, using skewness instead of location.
-
-        Parameters
-        ----------
-        X : array-like, shape = (n_samples, n_features)
-
-        Returns
-        -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
-
-        """
-        check_is_fitted(self, 'threshold_')
-        X = check_array(X)
-        pred_label = np.full(X.shape[0], 0, dtype=int)
-        if self.contamination is not None:
-            inv_cov = linalg.pinvh(self.covariance_)
-            X_skew1 = X - skew(X, axis=0, bias=True)
-            mahal_dist = pairwise_distances(X_skew1, self.raw_skew1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
-            mahal_dist = np.reshape(mahal_dist, (len(X_skew1),)) ** 2 #MD squared
-            mahal_dist = -mahal_dist
-            self.prediction_dist_ = mahal_dist
-            contamination_threshold = np.percentile(self.raw_skew1_dist_, 100. * self.contamination)
             pred_label[mahal_dist <= contamination_threshold] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
