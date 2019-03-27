@@ -1,5 +1,4 @@
 =================================================================================================================================================================================================================================
-
 train_data.csv 					(1939286x7)(13575002)	## Image = 46500x49)(2278500)
 train_target.csv 				(1939286x1)
 fraud_train_data.csv 			(5748x7)
@@ -8,7 +7,6 @@ normal_train_data.csv 			(1933538x7)
 normal_train_target.csv 		(1933538x1)
 test_data.csv 					(831123x7)
 test_target.csv 				(831123x1)
-
 train_under_data.csv 			(11498x7)
 train_under_target.csv 			(11498x1)
 fraud_train_under_data.csv 		(5775x7)
@@ -19,7 +17,6 @@ test_under_data.csv 			(4928x7)
 test_under_target.csv 			(4928x1)
 
 =================================================================================================================================================================================================================================
-
 Recall: 					also known as sensitivity, means TP/(TN+FN) or TP(Expected True)
 ROC_AUC: 					A ROC curve is the True Positive Rate (TPR) against False Positive Rate (FPR).
 AP: 						Average Precision (AP) is the Area under Precision-Recall Curve (AUC of PR-curve)
@@ -34,7 +31,6 @@ PSNR:						The bigger the better
 Cos_Similarity				The bigger the better
 
 =================================================================================================================================================================================================================================
-
 Facts:
 	Dataset: 
 		E. A. Lopez-Rojas , A. Elmir, and S. Axelsson. "PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
@@ -46,7 +42,6 @@ Facts:
 	PSNR appears not fit for comparisons of not image data
 
 =================================================================================================================================================================================================================================
-
 ToDo:
 	recalculate normal_train_under_data_dictionary_a*
 	verify if data of undersample is in whole data
@@ -59,6 +54,5 @@ ToDo:
 	testar MOS com entropy
 
 =================================================================================================================================================================================================================================
-
 Distorted_image:	norm:	16.6980		MSE:	0.0028	NRMSE:	0.1043	PSNR:	25.4724
 Original Data: 		norm:	314.0661	MSE:	1.2255	NRMSE:	0.7421	PSNR: 	0.0000

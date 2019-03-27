@@ -1,16 +1,16 @@
 # coding: utf-8
-###########################################################################################################################################
-## This code implements:
-##		Feature extraction based on dictionaries and sparse coding via MiniBatchDictionaryLearning
-##		PR_AUC and ROC_AUC evaluation of original data and extracted features for fraud detection by logistic regression, SVM and LinearSVM
-###########################################################################################################################################
+"""
+This code implements:
+	Feature extraction based on dictionaries and sparse coding via MiniBatchDictionaryLearning
+	PR_AUC and ROC_AUC evaluation of original data and extracted features for fraud detection by logistic regression, SVM and LinearSVM
+"""
 
 from __future__ import division
 import os.path
 import warnings
 import datetime
-import numpy as np  # linear algebra
-import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import seaborn as sns
@@ -33,7 +33,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore")
 sns.set_style("dark")
 
-fraud_data_path = '/media/thiago/ubuntu/datasets/fraudDetection/'
+fraud_data_path = '/media/thiago/ubuntu/datasets/fraud/'
 results_file = open('results/fraud_detection_cv.txt', 'w')
 
 
@@ -107,7 +107,7 @@ def plot_confusion_matrix(_cm, classes, normalize=False, title='Confusion matrix
 
 
 ## Read CSV file into a Panda DataFrame and print some information
-print >> results_file, "## Loading data"
+print("## Loading data", file=results_file)
 
 ## complete
 data = pd.read_csv(fraud_data_path + 'orig.csv', index_col=0) 							# selected features of raw data

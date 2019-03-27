@@ -200,6 +200,37 @@ class MEllipticEnvelope(MMinCovDet):
         return is_inlier
 
 
+    def mcd_prediction2(self, X):
+        """Outlyingness of observations in X according to the fitted model.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outliers : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered
+            as an outlier according to the fitted model.
+
+        threshold : float,
+            The values of the less outlying point's decision function.
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        is_inlier = -np.ones(X.shape[0], dtype=int)
+        if self.contamination is not None:
+            mahal_dist = self.mahalanobis(X)
+            self.prediction_dist_ = mahal_dist
+            threshold_ = sp.stats.scoreatpercentile(self.prediction_dist_, 100. * (1. - self.contamination))
+            is_inlier[mahal_dist <= threshold_] = 1
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return is_inlier
+
+
     def kurtosis_prediction(self, X):
         """Outlyingness of observations in X according to the fitted model, using kurtosis instead of location.
 

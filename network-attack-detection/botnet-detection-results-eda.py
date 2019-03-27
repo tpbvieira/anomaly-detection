@@ -77,7 +77,7 @@ def get_outliers(m_dist, m_best_contamination):
     return m_pred_label
 
 # init variables
-it = 20
+it = 3
 
 # result file path
 pkl_path = os.path.join('results/pkl_sum_dict/%s/data/' % it)
@@ -115,18 +115,17 @@ for sample_file in file_list:
           counts.get(1),'(', round((counts.get(1)/total_counts)*100, 2),'%), best_contamination:', best_cont,
           ', best_train_f1:', best_train_f1)
 
-    mcd_dist_list = []
-    mcd_anom_dist_list = []
-    mcd_norm_dist_list = []
     # for each iteration compute F1 and save the algorithm, window size, scenario and approach (window size and algorithm))
     for key, value in result_dict.items():
 
         # get saved contamination, labels and distances
         best_contamination = result_dict.get(key).get('train_best_cont')
         mcd_pred_dist_ = result_dict.get(key).get('test_mcd_dist_')
+        mcd2_pred_dist_ = result_dict.get(key).get('test_mcd2_dist_')
         k_pred_dist_ = result_dict.get(key).get('test_k_dist_')
         s_pred_dist_ = result_dict.get(key).get('test_s_dist_')
         m_label = result_dict.get(key).get('test_mcd_label')
+        m2_label = result_dict.get(key).get('test_mcd2_label')
         k_label = result_dict.get(key).get('test_k_label')
         s_label = result_dict.get(key).get('test_s_label')
         test_label = result_dict.get(key).get('test_label')
@@ -135,12 +134,16 @@ for sample_file in file_list:
         mks_dist_ = mcd_pred_dist_ - k_pred_dist_ - s_pred_dist_
         mk_dist_ = mcd_pred_dist_ - k_pred_dist_
         ms_dist_ = mcd_pred_dist_ - s_pred_dist_
+        m2ks_dist_ = mcd2_pred_dist_ - k_pred_dist_ - s_pred_dist_
+        m2k_dist_ = mcd2_pred_dist_ - k_pred_dist_
+        m2s_dist_ = mcd2_pred_dist_ - s_pred_dist_
         ks_dist_ = k_pred_dist_ + s_pred_dist_
 
         # save distances and label into a dataframe
-        dists_columns = ['mcd_dist', 'k_dist', 's_dist', 'mks_dist', 'mk_dist', 'ms_dist', 'ks_dist', 'Label']
+        dists_columns = ['mcd_dist', 'mcd2_dist', 'k_dist', 's_dist', 'mks_dist', 'mk_dist', 'ms_dist', 'ks_dist', 'Label']
         dists_df = pd.DataFrame(columns=dists_columns)
         dists_df['mcd_dist'] = mcd_pred_dist_
+        dists_df['mcd2_dist'] = mcd2_pred_dist_
         dists_df['k_dist'] = k_pred_dist_
         dists_df['s_dist'] = s_pred_dist_
         dists_df['mks_dist'] = mks_dist_
@@ -171,12 +174,21 @@ for sample_file in file_list:
         mks_label = get_outliers(mks_dist_, best_contamination)
         mk_label = get_outliers(mk_dist_, best_contamination)
         ms_label = get_outliers(ms_dist_, best_contamination)
+        m2ks_label = get_outliers(m2ks_dist_, best_contamination)
+        m2k_label = get_outliers(m2k_dist_, best_contamination)
+        m2s_label = get_outliers(m2s_dist_, best_contamination)
         ks_label = get_outliers(ks_dist_, best_contamination)
 
         # compute F1 score and append results into a mcd dataframe
         m_pred_f1 = f1_score(m_label, test_label, average="binary")
         alg = 'mcd'
+        approach = "%s_%s" % (window, alg)
+        df = pd.DataFrame([[m_pred_f1, approach, alg, window, scenario]], columns=result_columns)
+        result_df = result_df.append(df)
 
+        # compute F1 score and append results into a mcd2 dataframe
+        m_pred_f1 = f1_score(m2_label, test_label, average="binary")
+        alg = 'mcd2'
         approach = "%s_%s" % (window, alg)
         df = pd.DataFrame([[m_pred_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
@@ -195,28 +207,49 @@ for sample_file in file_list:
         df = pd.DataFrame([[s_pred_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
-        # compute F1 score and append results into a s-mcd dataframe
+        # compute F1 score and append results into a mks-mcd dataframe
         mks_f1 = f1_score(mks_label, test_label, average="binary")
         alg = 'mks-mcd'
         approach = "%s_%s" % (window, alg)
         df = pd.DataFrame([[mks_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
-        # compute F1 score and append results into a s-mcd dataframe
+        # compute F1 score and append results into a mk-mcd dataframe
         mk_f1 = f1_score(mk_label, test_label, average="binary")
         alg = 'mk-mcd'
         approach = "%s_%s" % (window, alg)
         df = pd.DataFrame([[mk_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
-        # compute F1 score and append results into a s-mcd dataframe
+        # compute F1 score and append results into a ms-mcd dataframe
         ms_f1 = f1_score(ms_label, test_label, average="binary")
         alg = 'ms-mcd'
         approach = "%s_%s" % (window, alg)
         df = pd.DataFrame([[ms_f1, approach, alg, window, scenario]], columns=result_columns)
         result_df = result_df.append(df)
 
-        # compute F1 score and append results into a s-mcd dataframe
+        # compute F1 score and append results into a m2ks-mcd dataframe
+        m2ks_f1 = f1_score(m2ks_label, test_label, average="binary")
+        alg = 'm2ks-mcd'
+        approach = "%s_%s" % (window, alg)
+        df = pd.DataFrame([[m2ks_f1, approach, alg, window, scenario]], columns=result_columns)
+        result_df = result_df.append(df)
+
+        # compute F1 score and append results into a m2k-mcd dataframe
+        m2k_f1 = f1_score(m2k_label, test_label, average="binary")
+        alg = 'm2k-mcd'
+        approach = "%s_%s" % (window, alg)
+        df = pd.DataFrame([[m2k_f1, approach, alg, window, scenario]], columns=result_columns)
+        result_df = result_df.append(df)
+
+        # compute F1 score and append results into a m2s-mcd dataframe
+        m2s_f1 = f1_score(m2s_label, test_label, average="binary")
+        alg = 'm2s-mcd'
+        approach = "%s_%s" % (window, alg)
+        df = pd.DataFrame([[m2s_f1, approach, alg, window, scenario]], columns=result_columns)
+        result_df = result_df.append(df)
+
+        # compute F1 score and append results into a ks-mcd dataframe
         ks_f1 = f1_score(ks_label, test_label, average="binary")
         alg = 'ks-mcd'
         approach = "%s_%s" % (window, alg)
@@ -225,11 +258,10 @@ for sample_file in file_list:
 
         # only for the first iteration, plot distances into boxplot and pairplot
         if key == 0:
+            m_columns = ['mcd_dist_', 'mc2d_dist_', 'k_dist_', 's_dist_', 'mks_dist_', 'mk_dist_', 'ms_dist_', 'ks_dist_',
+                     'm2ks_dist_', 'm2k_dist_', 'm2s_dist_', 'ks_dist_', 'test_label']
+            result_scenario_df = pd.DataFrame(list(zip(mcd_pred_dist_, mcd2_pred_dist_, k_pred_dist_, s_pred_dist_, mks_dist_, mk_dist_, ms_dist_, ks_dist_, m2ks_dist_, m2k_dist_, m2s_dist_, ks_dist_, test_label)), columns=m_columns)
 
-            m_columns = ['mcd_dist_', 'k_dist_', 's_dist_', 'mks_dist_', 'mk_dist_',
-                         'ms_dist_', 'ks_dist_', 'test_label']
-            result_scenario_df = pd.DataFrame(list(zip(mcd_pred_dist_, k_pred_dist_, s_pred_dist_, mks_dist_, mk_dist_,
-                                                       ms_dist_, ks_dist_, test_label)), columns=m_columns)
 
             # boxplot mcd_dist_
             fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_mcd_dist.png" % (it, scenario, window)
@@ -240,6 +272,16 @@ for sample_file in file_list:
                 plt.savefig(fig_name)
                 plt.close()
                 print('\t',fig_name)
+
+            # boxplot mcd2_dist_
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_mcd2_dist.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plt.figure(figsize=(15, 5))
+                bp = sns.boxplot(x="test_label", y="mcd2_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
+                bp.set(yscale="log")
+                plt.savefig(fig_name)
+                plt.close()
+                print('\t', fig_name)
 
             # boxplot k_dist_
             fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_k_dist.png" % (it, scenario, window)
@@ -291,6 +333,36 @@ for sample_file in file_list:
                 plt.close()
                 print('\t', fig_name)
 
+            # boxplot mks_dist_
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_m2ks_dist.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plt.figure(figsize=(15, 5))
+                bp = sns.boxplot(x="test_label", y="m2ks_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
+                bp.set(yscale="log")
+                plt.savefig(fig_name)
+                plt.close()
+                print('\t', fig_name)
+
+            # boxplot mk_dist_
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_m2k_dist.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plt.figure(figsize=(15, 5))
+                bp = sns.boxplot(x="test_label", y="m2k_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
+                bp.set(yscale="log")
+                plt.savefig(fig_name)
+                plt.close()
+                print('\t', fig_name)
+
+            # boxplot ms_dist_
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_m2s_dist.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plt.figure(figsize=(15, 5))
+                bp = sns.boxplot(x="test_label", y="m2s_dist_", data=result_scenario_df, palette="PRGn", width=0.4)
+                bp.set(yscale="log")
+                plt.savefig(fig_name)
+                plt.close()
+                print('\t', fig_name)
+
             # boxplot ks_dist_
             fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_ks_dist.png" % (it, scenario, window)
             if not os.path.isfile(fig_name):
@@ -310,10 +382,30 @@ for sample_file in file_list:
                 sns_distplot.savefig(fig_name)
                 print('\t', fig_name)
 
+            # pairplot 'mcd2_dist_', 'k_dist_', 's_dist_'
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_distances2.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plot_features = ['mcd2_dist_', 'k_dist_', 's_dist_']
+                sns_distplot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label',
+                                            diag_kind='kde',
+                                            plot_kws={'alpha': 0.1, 's': 80, 'edgecolor': 'k'}, size=4)
+                sns_distplot.savefig(fig_name)
+                print('\t', fig_name)
+
             # pairplot of ensemble 'mks_dist_', 'mk_dist_', 'ms_dist_', 'ks_dist_'
             fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_distances_new.png" % (it, scenario, window)
             if not os.path.isfile(fig_name):
                 plot_features = ['mks_dist_', 'mk_dist_', 'ms_dist_', 'ks_dist_']
+                sns_distplot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label',
+                                            diag_kind='kde',
+                                            plot_kws={'alpha': 0.1, 's': 80, 'edgecolor': 'k'}, size=4)
+                sns_distplot.savefig(fig_name)
+                print('\t', fig_name)
+
+            # pairplot of ensemble 'm2ks_dist_', 'm2k_dist_', 'm2s_dist_', 'ks_dist_'
+            fig_name = "results/pkl_sum_dict/%s/figures/%s_%s_distances_new2.png" % (it, scenario, window)
+            if not os.path.isfile(fig_name):
+                plot_features = ['m2ks_dist_', 'm2k_dist_', 'm2s_dist_', 'ks_dist_']
                 sns_distplot = sns.pairplot(result_scenario_df, vars=plot_features, hue='test_label',
                                             diag_kind='kde',
                                             plot_kws={'alpha': 0.1, 's': 80, 'edgecolor': 'k'}, size=4)
@@ -367,6 +459,22 @@ for m_scenario in m_scenarios:
     m26 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.25s_ks-mcd'].median().get('f1')
     m27 = result_scenario_df.loc[result_scenario_df['approaches'] == '1s_ks-mcd'].median().get('f1')
     m28 = result_scenario_df.loc[result_scenario_df['approaches'] == '2s_ks-mcd'].median().get('f1')
+    m29 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.15s_mcd2'].median().get('f1')
+    m30 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.25s_mcd2'].median().get('f1')
+    m31 = result_scenario_df.loc[result_scenario_df['approaches'] == '1s_mcd2'].median().get('f1')
+    m32 = result_scenario_df.loc[result_scenario_df['approaches'] == '2s_mcd2'].median().get('f1')
+    m33 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.15s_m2ks-mcd'].median().get('f1')
+    m34 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.25s_m2ks-mcd'].median().get('f1')
+    m35 = result_scenario_df.loc[result_scenario_df['approaches'] == '1s_m2ks-mcd'].median().get('f1')
+    m36 = result_scenario_df.loc[result_scenario_df['approaches'] == '2s_m2ks-mcd'].median().get('f1')
+    m37 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.15s_m2k-mcd'].median().get('f1')
+    m38 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.25s_m2k-mcd'].median().get('f1')
+    m39 = result_scenario_df.loc[result_scenario_df['approaches'] == '1s_m2k-mcd'].median().get('f1')
+    m40 = result_scenario_df.loc[result_scenario_df['approaches'] == '2s_m2k-mcd'].median().get('f1')
+    m41 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.15s_m2s-mcd'].median().get('f1')
+    m42 = result_scenario_df.loc[result_scenario_df['approaches'] == '0.25s_m2s-mcd'].median().get('f1')
+    m43 = result_scenario_df.loc[result_scenario_df['approaches'] == '1s_m2s-mcd'].median().get('f1')
+    m44 = result_scenario_df.loc[result_scenario_df['approaches'] == '2s_m2s-mcd'].median().get('f1')
 
     # detect the approach with the largest F1 score for the current scenario and print it
     f1_max = 0
@@ -455,6 +563,55 @@ for m_scenario in m_scenarios:
     if not math.isnan(m28) and m28 > f1_max:
         f1_max = m28
         best_method = '2s_ks-mcd'
+    if not math.isnan(m29) and m29 > f1_max:
+        f1_max = m29
+        best_method = '0.15s_mcd2'
+    if not math.isnan(m30) and m30 > f1_max:
+        f1_max = m30
+        best_method = '0.25s_mcd2'
+    if not math.isnan(m31) and m31 > f1_max:
+        f1_max = m31
+        best_method = '1s_mcd2'
+    if not math.isnan(m32) and m32 > f1_max:
+        f1_max = m32
+        best_method = '2s_mcd2'
+    if not math.isnan(m33) and m33 > f1_max:
+        f1_max = m33
+        best_method = '0.15s_m2ks-mcd'
+    if not math.isnan(m34) and m34 > f1_max:
+        f1_max = m34
+        best_method = '0.25s_m2ks-mcd'
+    if not math.isnan(m35) and m35 > f1_max:
+        f1_max = m35
+        best_method = '1s_m2ks-mcd'
+    if not math.isnan(m36) and m36 > f1_max:
+        f1_max = m36
+        best_method = '2s_m2ks-mcd'
+    if not math.isnan(m37) and m37 > f1_max:
+        f1_max = m37
+        best_method = '0.15s_m2k-mcd'
+    if not math.isnan(m38) and m38 > f1_max:
+        f1_max = m38
+        best_method = '0.25s_m2k-mcd'
+    if not math.isnan(m39) and m39 > f1_max:
+        f1_max = m39
+        best_method = '1s_m2k-mcd'
+    if not math.isnan(m40) and m40 > f1_max:
+        f1_max = m40
+        best_method = '2s_m2k-mcd'
+    if not math.isnan(m41) and m41 > f1_max:
+        f1_max = m41
+        best_method = '0.15s_m2s-mcd'
+    if not math.isnan(m42) and m42 > f1_max:
+        f1_max = m42
+        best_method = '0.25s_m2s-mcd'
+    if not math.isnan(m43) and m43 > f1_max:
+        f1_max = m43
+        best_method = '1s_m2s-mcd'
+    if not math.isnan(m44) and m44 > f1_max:
+        f1_max = m44
+        best_method = '2s_m2s-mcd'
+
 
     print(m_scenario,'=', f1_max, best_method)
 

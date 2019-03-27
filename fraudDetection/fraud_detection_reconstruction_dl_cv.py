@@ -1,10 +1,10 @@
 # coding: utf-8
-####################################################################################################################################################################
-## Cross-Validation for evaluating the reconstruction performance by dictionary learning methods and parameter configurations applied to a fraud detection dataset
-####################################################################################################################################################################
+"""
+Cross-Validation for evaluating the reconstruction performance by dictionary learning methods and parameter configurations applied to a fraud detection dataset
+"""
 
 import numpy as np
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import pandas as pd
 # import matlab.engine
 import warnings
 from time import time
@@ -18,9 +18,9 @@ from scipy.sparse.linalg import svds
 
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
     
-## Prints a comparison of matrices
+# Prints a comparison of matrices
 def print_vector_comparison(X, Y, comparison_name=None):
-	difference = X - Y
+    difference = X - Y
 	norm = np.sqrt(np.sum(difference ** 2))
 	mse = compare_mse(X, Y)
 	nrmse = compare_nrmse(X, Y)
@@ -28,11 +28,10 @@ def print_vector_comparison(X, Y, comparison_name=None):
 	if comparison_name is not None:
 		printing_text = comparison_name + ':Norm:%(NORM).4f\tMSE:%(MSE).4f\tNRMSE:%(NRMSE).4f\tCos:%(COS).4f' % {'NORM': norm, 'MSE': mse, 'NRMSE': nrmse, 'COS': cos}
 		print(printing_text)
-		# print >> results, printing_text
 	return norm, mse, nrmse, cos
 
 ## settings
-file_path = '/media/thiago/ubuntu/datasets/fraudDetection/'
+file_path = '/media/thiago/ubuntu/datasets/fraud/'
 results = open('results/fraud_detection_reconstruction_dl_cv.txt', 'w')
 # matlab = matlab.engine.start_matlab()
 
@@ -48,18 +47,18 @@ test_target = pd.read_csv(file_path + 'test_target.csv', index_col=0)
 # matlab.cd(r'/home/thiago/dev/projects/anomaly-detection/distributed-tensor-dictionary-learning', nargout=0)
 # matlab.project(nargout=0)
 
-## parameters
+# parameters
 L = test_data.shape[0]
 N = test_data.shape[1]
 tnz_range = [1, 2, 3, 5]
 K_range = [2, 6, 10, 20, 40, 100]
 noIt_range = [100]
 
-## discard hearder and index
+# discard hearder and index
 test_data = test_data.values
 test_target = test_target.values
 
-## Load previously calculated data and evaluates their reconstruction performance for each parameter configuration
+# Load previously calculated data and evaluates their reconstruction performance for each parameter configuration
 for K in K_range:
 	for tnz in tnz_range:
 		if tnz > K:
