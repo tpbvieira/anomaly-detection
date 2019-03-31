@@ -61,3 +61,58 @@ raw_normal     		normal traffic
  - The CTU-13 dataset consists in thirteen captures (called scenarios) of different botnet samples. On each scenario we executed a specific malware, which used several protocols and performed different actions.
  - predict compare to train dist or to new dist? Compare to new dist. if it uses the train dist to get threshold the result is very poor, such as classifing all as outlier
 ==============================================================================================================================================================================================================================
+
+
+a diferença está que tradicional mcd define o self.threshold_ e a contaminação a partir do treinamento, nós definimos apenas a contaminação a partir do treinamento, o threshold_ é definido para cada teste a partir do threshold. isto torna a avaliação mais adaptativa
+
+
+/usr/bin/python3 /home/thiago/dev/anomaly-detection/network-attack-detection/botnet-detection-c-mcd.py
+## Sample File:  data/ctu_13/pkl_sum_fast/2s_18-2.pk1
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.2 , F1: 0.8 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.5238095238095238 , Recall: 1.0 , Precision: 0.3548387096774194
+###[k-mcd][ drop_features00 ] Test. F1: 0.8 , Recall: 0.6666666666666666 , Precision: 1.0
+###[s-mcd][ drop_features00 ] Test. F1: 0.8 , Recall: 0.6666666666666666 , Precision: 1.0
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.23333333333333336 , F1: 0.8620689655172413 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.5238095238095238 , Recall: 1.0 , Precision: 0.3548387096774194
+###[k-mcd][ drop_features00 ] Test. F1: 0.8620689655172413 , Recall: 0.7575757575757576 , Precision: 1.0
+###[s-mcd][ drop_features00 ] Test. F1: 0.8275862068965517 , Recall: 0.7272727272727273 , Precision: 0.96
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.3666666666666667 , F1: 0.821917808219178 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.5076923076923077 , Recall: 1.0 , Precision: 0.3402061855670103
+###[k-mcd][ drop_features00 ] Test. F1: 0.7671232876712328 , Recall: 0.8484848484848485 , Precision: 0.7
+###[s-mcd][ drop_features00 ] Test. F1: 0.7397260273972603 , Recall: 0.8181818181818182 , Precision: 0.675
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.2666666666666667 , F1: 0.8709677419354839 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.515625 , Recall: 1.0 , Precision: 0.3473684210526316
+###[k-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+###[s-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.30000000000000004 , F1: 0.8181818181818182 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.5116279069767442 , Recall: 1.0 , Precision: 0.34375
+###[k-mcd][ drop_features00 ] Test. F1: 0.7878787878787878 , Recall: 0.7878787878787878 , Precision: 0.7878787878787878
+###[s-mcd][ drop_features00 ] Test. F1: 0.7575757575757576 , Recall: 0.7575757575757576 , Precision: 0.7575757575757576
+--- 5.339690446853638 seconds ---
+
+
+/usr/bin/python3 /home/thiago/dev/anomaly-detection/network-attack-detection/botnet-detection-c-mcd.py
+## Sample File:  data/ctu_13/pkl_sum_fast/2s_18-2.pk1
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.30000000000000004 , F1: 0.9090909090909091 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.7272727272727273 , Recall: 0.7272727272727273 , Precision: 0.7272727272727273
+###[k-mcd][ drop_features00 ] Test. F1: 0.7575757575757576 , Recall: 0.7575757575757576 , Precision: 0.7575757575757576
+###[s-mcd][ drop_features00 ] Test. F1: 0.7575757575757576 , Recall: 0.7575757575757576 , Precision: 0.7575757575757576
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.4 , F1: 0.8421052631578948 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.736842105263158 , Recall: 0.8484848484848485 , Precision: 0.6511627906976745
+###[k-mcd][ drop_features00 ] Test. F1: 0.7631578947368421 , Recall: 0.8787878787878788 , Precision: 0.6744186046511628
+###[s-mcd][ drop_features00 ] Test. F1: 0.7631578947368421 , Recall: 0.8787878787878788 , Precision: 0.6744186046511628
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.3666666666666667 , F1: 0.8767123287671234 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.7397260273972603 , Recall: 0.8181818181818182 , Precision: 0.675
+###[k-mcd][ drop_features00 ] Test. F1: 0.7945205479452054 , Recall: 0.8787878787878788 , Precision: 0.725
+###[s-mcd][ drop_features00 ] Test. F1: 0.7397260273972603 , Recall: 0.8181818181818182 , Precision: 0.675
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.2666666666666667 , F1: 0.8709677419354839 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.7741935483870968 , Recall: 0.7272727272727273 , Precision: 0.8275862068965517
+###[k-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+###[s-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+###[c-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.2666666666666667 , F1: 0.8709677419354839 , Alg: k-mcd
+###[mcd][ drop_features00 ] Test. F1: 0.7741935483870968 , Recall: 0.7272727272727273 , Precision: 0.8275862068965517
+###[k-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+###[s-mcd][ drop_features00 ] Test. F1: 0.8064516129032258 , Recall: 0.7575757575757576 , Precision: 0.8620689655172413
+--- 6.1850221157073975 seconds ---
+
+Process finished with exit code 0

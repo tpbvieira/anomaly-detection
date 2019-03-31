@@ -135,7 +135,7 @@ raw_directory = os.fsencode(raw_path)
 pkl_path = os.path.join('data/ctu_13/pkl_sum/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
-it = 3
+it = 1
 
 start_time = time.time()
 # for each feature set
