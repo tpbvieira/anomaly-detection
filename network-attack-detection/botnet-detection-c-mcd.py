@@ -220,9 +220,9 @@ for features_key, value in drop_agg_features.items():
                 }
                 c_mcd_result_dict[i] = c_mcd_pred
 
-            # write python dict to a file
-            output = open(result_file, 'wb')
-            pickle.dump(c_mcd_result_dict, output)
-            output.close()
+            # # write python dict to a file
+            # output = open(result_file, 'wb')
+            # pickle.dump(c_mcd_result_dict, output)
+            # output.close()
 
 print("--- %s seconds ---" % (time.time() - start_time))

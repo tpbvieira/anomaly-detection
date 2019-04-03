@@ -77,7 +77,7 @@ def get_outliers(m_dist, m_best_contamination):
     return m_pred_label
 
 # init variables
-it = 5
+it = 20
 
 # result file path
 pkl_path = os.path.join('results/pkl_sum_dict/%s/data/' % it)
