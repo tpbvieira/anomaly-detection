@@ -72,3 +72,11 @@ compared with the normal distribution. For normally distributed data the kurtosi
 is 0. Positive kurtosis indicates a relatively peaked distribution. Negative kurtosis
 indicates a relatively flat distribution. 
  - https://codeburst.io/2-important-statistics-terms-you-need-to-know-in-data-science-skewness-and-kurtosis-388fef94eeaa
+
+
+ compute skewness and kurtosis inside c-step, so we need to change the c-step.
+ 	get X_support after iterative min det covariance
+ 	compute kurtosis and skewness for X_support
+ 	compute distances as (np.dot(X - kurt1, precision) * (X - kurt1)).sum(axis=1)
+ 	c-step escolhe algumas observacoes, calcula mean e cov, e computa a distância do X_centered em relacao a este mean e cov. As menores distâncias serão utilizados para computar o próximo mean e cov a partir de X, se o minimum determinant não for alcançado. Se foi alcançado, O mean e conv das observações de menor distância do X_centered vai ser entregue por c-step
+ 	therefore, we compute skewness and kurtosis from the selected observations with minumum covariance determinant, where this means that this subset has a largest eigenvalue near of the second and that the variance of the dataset is minimal

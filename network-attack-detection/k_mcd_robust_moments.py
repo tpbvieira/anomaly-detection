@@ -7,6 +7,13 @@ Here are implemented estimators that are resistant to outliers.
 # Author: Virgile Fritsch <virgile.fritsch@inria.fr>
 #
 # License: BSD 3 clause
+
+# Minimum Covariance Determinant
+#   Implementing of an algorithm by Rousseeuw & Van Driessen described in
+#   (A Fast Algorithm for the Minimum Covariance Determinant Estimator,
+#   1999, American Statistical Association and the American Society
+#   for Quality, TECHNOMETRICS)
+
 import warnings
 import numbers
 import numpy as np
@@ -17,13 +24,6 @@ from sklearn.utils.extmath import fast_logdet
 from sklearn.utils import check_random_state, check_array
 
 
-# Minimum Covariance Determinant
-#   Implementing of an algorithm by Rousseeuw & Van Driessen described in
-#   (A Fast Algorithm for the Minimum Covariance Determinant Estimator,
-#   1999, American Statistical Association and the American Society
-#   for Quality, TECHNOMETRICS)
-# XXX Is this really a public function? It's not listed in the docs or
-# exported by sklearn.covariance. Deprecate?
 def c_step(X, n_support, remaining_iterations=30, initial_estimates=None, verbose=False, cov_computation_method=empirical_covariance, random_state=None):
     """C_step procedure described in [Rouseeuw1984]_ aiming at computing MCD.
 
@@ -70,9 +70,17 @@ def c_step(X, n_support, remaining_iterations=30, initial_estimates=None, verbos
     covariance : array-like, shape (n_features, n_features)
         Robust covariance estimates.
 
+    det : scalar. minimum determinant
+
     support : array-like, shape (n_samples,)
         A mask for the `n_support` observations whose scatter matrix has
         minimum determinant.
+
+    dist : array-like, shape (n_features,), with distances of the data centered to location and scatter
+
+    moments : array of array containing array-like, shape (n_features,)
+        The skewness, kurtosis, skewness distance and kurtosis distance to the original data subtracted of skewness or
+        kurtosis
 
     References
     ----------
@@ -137,15 +145,14 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
         # update remaining iterations for early stopping
         remaining_iterations -= 1
 
-    # compute skewness and kurtosis from the final version of X_support (robust estimation)
-    skew1 = skew(X_support, axis=0, bias=True)
-    kurt1 = kurtosis(X_support, axis=0, fisher=True, bias=True)
-
     previous_dist = dist
     dist = (np.dot(X - location, precision) * (X - location)).sum(axis=1)
-    skew1_dist = (np.dot(X - skew1, precision) * (X - skew1)).sum(axis=1)
-    kurt1_dist = (np.dot(X - kurt1, precision) * (X - kurt1)).sum(axis=1)
 
+    # after the minimum convariance determinant, compute skewness and kurtosis from X_support, which is the original X observations with minimum covariance determinant
+    skew1 = skew(X_support, axis=0, bias=True)
+    skew1_dist = (np.dot(X - skew1, precision) * (X - skew1)).sum(axis=1)
+    kurt1 = kurtosis(X_support, axis=0, fisher=True, bias=True)
+    kurt1_dist = (np.dot(X - kurt1, precision) * (X - kurt1)).sum(axis=1)
     moments = skew1, kurt1, skew1_dist, kurt1_dist
 
     # Check if best fit already found (det => 0, logdet => -inf)
@@ -156,13 +163,11 @@ def _c_step(X, n_support, random_state, remaining_iterations=30, initial_estimat
     if np.allclose(det, previous_det):
         # c_step procedure converged
         if verbose:
-            print("Optimal couple (location, covariance) found before"
-                  " ending iterations (%d left)" % (remaining_iterations))
+            print("Optimal couple (location, covariance) found before ending iterations (%d left)" % (remaining_iterations))
         results = location, covariance, det, support, dist, moments
     elif det > previous_det:
         # determinant has increased (should not happen)
-        warnings.warn("Warning! det > previous_det (%.15f > %.15f)"
-                      % (det, previous_det), RuntimeWarning)
+        warnings.warn("Warning! det > previous_det (%.15f > %.15f)" % (det, previous_det), RuntimeWarning)
         results = previous_location, previous_covariance, previous_det, previous_support, previous_dist, moments
 
     # Check early stopping
@@ -244,6 +249,11 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     best_supports : array-like, shape (select, n_samples)
         The `select` best supports found in the data set (`X`).
 
+    best_moments : array of array containing array-like, shape (n_features,)
+        The `select` best moments skewness, kurtosis, skewness distance and kurtosis distance to the original data
+        subtracted of skewness or kurtosis,found in the data set (`X`).
+
+
     References
     ----------
     .. [RV] A Fast Algorithm for the Minimum Covariance Determinant
@@ -269,7 +279,7 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     if not run_from_estimates:
         # perform `n_trials` computations from random initial supports
         for j in range(n_trials):
-            all_estimates.append(_c_step(X, n_support, remaining_iterations=n_iter, verbose=verbose,cov_computation_method=cov_computation_method,random_state=random_state))
+            all_estimates.append(_c_step(X, n_support, remaining_iterations=n_iter, verbose=verbose, cov_computation_method=cov_computation_method, random_state=random_state))
     else:
         # perform computations from every given initial estimates
         for j in range(n_trials):
@@ -277,7 +287,6 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
             all_estimates.append(_c_step(X, n_support, remaining_iterations=n_iter, initial_estimates=initial_estimates, verbose=verbose, cov_computation_method=cov_computation_method, random_state=random_state))
 
     all_locs_sub, all_covs_sub, all_dets_sub, all_supports_sub, all_ds_sub, all_moments_sub = zip(*all_estimates)
-
     all_skew1_sub, all_kurt1_sub, all_skew1_dist_sub, all_kurt1_dist_sub = zip(*all_moments_sub)
 
     # find the `n_best` best results among the `n_trials` ones
@@ -286,7 +295,7 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     best_covariances = np.asarray(all_covs_sub)[index_best]
     best_supports = np.asarray(all_supports_sub)[index_best]
     best_ds = np.asarray(all_ds_sub)[index_best]
-
+    # find the `n_best` best results for moments among the `n_trials` ones
     best_skew1 = np.asarray(all_skew1_sub)[index_best]
     best_kurt1 = np.asarray(all_kurt1_sub)[index_best]
     best_skew1_dist = np.asarray(all_skew1_dist_sub)[index_best]
@@ -296,9 +305,7 @@ def select_candidates(X, n_support, n_trials, select=1, n_iter=30, verbose=False
     return best_locations, best_covariances, best_supports, best_ds, best_moments
 
 
-def fast_mcd(X, support_fraction=None,
-             cov_computation_method=empirical_covariance,
-             random_state=None):
+def fast_mcd(X, support_fraction=None, cov_computation_method=empirical_covariance, random_state=None):
     """Estimates the Minimum Covariance Determinant matrix.
 
     Read more in the :ref:`User Guide <robust_covariance>`.
@@ -361,6 +368,9 @@ def fast_mcd(X, support_fraction=None,
     support : array-like, type boolean, shape (n_samples,)
         A mask of the observations that have been used to compute
         the robust location and covariance estimates of the data set.
+
+    moments : array of array containing array-like, shape (n_features,), robust skewness, robust kurtosis, skewness
+        distance and kurtosis distance to the original data subtracted of skewness or kurtosis.
 
     """
     random_state = check_random_state(random_state)
@@ -428,13 +438,12 @@ def fast_mcd(X, support_fraction=None,
             low_bound = i * n_samples_subsets
             high_bound = low_bound + n_samples_subsets
             current_subset = X[samples_shuffle[low_bound:high_bound]]
-            best_locations_sub, best_covariances_sub, _, _, best_moments_sub = select_candidates(current_subset, h_subset, n_trials,select=n_best_sub, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
+            best_locations_sub, best_covariances_sub, _, _, _ = select_candidates(current_subset, h_subset, n_trials,select=n_best_sub, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
             subset_slice = np.arange(i * n_best_sub, (i + 1) * n_best_sub)
             all_best_locations[subset_slice] = best_locations_sub
             all_best_covariances[subset_slice] = best_covariances_sub
 
-        # 2. Pool the candidate supports into a merged set
-        # (possibly the full dataset)
+        # 2. Pool the candidate supports into a merged set (possibly the full dataset)
         n_samples_merged = min(1500, n_samples)
         h_merged = int(np.ceil(n_samples_merged * (n_support / float(n_samples))))
         if n_samples > 1500:
@@ -456,7 +465,7 @@ def fast_mcd(X, support_fraction=None,
             dist = np.zeros(n_samples)
             support[selection] = supports_merged[0]
             dist[selection] = d[0]
-
+            # moments
             skew1_merged, kurt1_merged, skew1_dist_merged, kurt1_dist_merged = moments_merged
             skew1 = skew1_merged[0]
             kurt1 = kurt1_merged[0]
@@ -469,7 +478,7 @@ def fast_mcd(X, support_fraction=None,
             covariance = covariances_full[0]
             support = supports_full[0]
             dist = d[0]
-
+            # moments
             skew1_full, kurt1_full, skew1_dist_full, kurt1_dist_full = moments_full
             skew1 = skew1_full[0]
             kurt1 = kurt1_full[0]
@@ -480,7 +489,7 @@ def fast_mcd(X, support_fraction=None,
         # considering two iterations
         n_trials = 30
         n_best = 10
-        locations_best, covariances_best, _, _, moments_best = select_candidates(X, n_support, n_trials=n_trials, select=n_best, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
+        locations_best, covariances_best, _, _, _ = select_candidates(X, n_support, n_trials=n_trials, select=n_best, n_iter=2,cov_computation_method=cov_computation_method,random_state=random_state)
 
         # 2. Select the best couple on the full dataset amongst the 10
         locations_full, covariances_full, supports_full, d, moments_full = select_candidates(X, n_support, n_trials=(locations_best, covariances_best),select=1, cov_computation_method=cov_computation_method,random_state=random_state)
@@ -488,7 +497,7 @@ def fast_mcd(X, support_fraction=None,
         covariance = covariances_full[0]
         support = supports_full[0]
         dist = d[0]
-
+        # moments
         skew1_full, kurt1_full, skew1_dist_full, kurt1_dist_full = moments_full
         skew1 = skew1_full[0]
         kurt1 = kurt1_full[0]
@@ -500,7 +509,7 @@ def fast_mcd(X, support_fraction=None,
     return location, covariance, support, dist, moments
 
 
-class MMinCovDet(EmpiricalCovariance):
+class MomentMinCovDet(EmpiricalCovariance):
     """Minimum Covariance Determinant (MCD): robust estimator of covariance.
 
     The Minimum Covariance Determinant covariance estimator is to be applied
@@ -559,39 +568,34 @@ class MMinCovDet(EmpiricalCovariance):
         The raw robust estimated kurtosis
 
     location_ : array-like, shape (n_features,)
-        Estimated robust location
+        Estimated robust location (corrected for consistency)
 
     covariance_ : array-like, shape (n_features, n_features)
-        Estimated robust covariance matrix
+        Estimated robust covariance matrix (corrected for consistency)
 
     precision_ : array-like, shape (n_features, n_features)
-        Estimated pseudo inverse matrix.
-        (stored only if store_precision is True)
+        Estimated pseudo inverse matrix. (stored only if store_precision is True)
 
     support_ : array-like, shape (n_samples,)
-        A mask of the observations that have been used to compute
-        the robust estimates of location and shape.
+        A mask of the observations that have been used to compute the robust estimates of location and shape.
 
     dist_ : array-like, shape (n_samples,)
         Mahalanobis distances of the training set (on which `fit` is called) observations.
 
     raw_skew1_dist_ : array-like, shape (n_samples,)
-        Mahalanobis distances of the training set (on which `fit` is called) observations for skewness.
+        Mahalanobis Skewness distances of the training set (on which `fit` is called) observations.
 
     raw_kurt1_dist_ : array-like, shape (n_samples,)
-        Mahalanobis distances of the training set (on which `fit` is called) observations for kurtosis.
+        Mahalanobis Kurtosis distances of the training set (on which `fit` is called) observations.
 
     References
     ----------
 
-    .. [Rouseeuw1984] `P. J. Rousseeuw. Least median of squares regression.
-        J. Am Stat Ass, 79:871, 1984.`
-    .. [Rousseeuw] `A Fast Algorithm for the Minimum Covariance Determinant
-        Estimator, 1999, American Statistical Association and the American
-        Society for Quality, TECHNOMETRICS`
-    .. [ButlerDavies] `R. W. Butler, P. L. Davies and M. Jhun,
-        Asymptotics For The Minimum Covariance Determinant Estimator,
-        The Annals of Statistics, 1993, Vol. 21, No. 3, 1385-1400`
+    .. [Rouseeuw1984] `P. J. Rousseeuw. Least median of squares regression. J. Am Stat Ass, 79:871, 1984.`
+    .. [Rousseeuw] `A Fast Algorithm for the Minimum Covariance Determinant Estimator, 1999, American Statistical
+        Association and the American Society for Quality, TECHNOMETRICS`
+    .. [ButlerDavies] `R. W. Butler, P. L. Davies and M. Jhun, Asymptotics For The Minimum Covariance Determinant
+        Estimator, The Annals of Statistics, 1993, Vol. 21, No. 3, 1385-1400`
 
     """
     _nonrobust_covariance = staticmethod(empirical_covariance)

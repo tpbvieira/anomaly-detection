@@ -18,10 +18,10 @@ from scipy import linalg
 from scipy.stats import skew,kurtosis
 from sklearn.utils.validation import check_is_fitted, check_array
 from sklearn.metrics import accuracy_score, pairwise_distances
-from k_mcd_robust_moments import MMinCovDet
+from k_mcd_robust_moments import MomentMinCovDet
 
 
-class MEllipticEnvelope(MMinCovDet):
+class MEllipticEnvelope(MomentMinCovDet):
     """An object for detecting outliers in a Gaussian distributed dataset.
 
     Read more in the :ref:`User Guide <outlier_detection>`.
@@ -58,29 +58,53 @@ class MEllipticEnvelope(MMinCovDet):
 
     Attributes
     ----------
+    raw_location_ : array-like, shape (n_features,)
+        The raw robust estimated location before correction and re-weighting.
+
+    raw_covariance_ : array-like, shape (n_features, n_features)
+        The raw robust estimated covariance before correction and re-weighting.
+
+    raw_support_ : array-like, shape (n_samples,)
+        A mask of the observations that have been used to compute
+        the raw robust estimates of location and shape, before correction
+        and re-weighting.
+
+    raw_skew1_ : array-like, shape (n_features,)
+        The raw robust estimated skewness
+
+    raw_kurt1_ : array-like, shape (n_features,)
+        The raw robust estimated kurtosis
+
     location_ : array-like, shape (n_features,)
-        Estimated robust location
+        Estimated robust location (corrected for consistency)
 
     covariance_ : array-like, shape (n_features, n_features)
-        Estimated robust covariance matrix
+        Estimated robust covariance matrix (corrected for consistency)
 
     precision_ : array-like, shape (n_features, n_features)
-        Estimated pseudo inverse matrix.
-        (stored only if store_precision is True)
+        Estimated pseudo inverse matrix. (stored only if store_precision is True)
 
     support_ : array-like, shape (n_samples,)
-        A mask of the observations that have been used to compute the
-        robust estimates of location and shape.
+        A mask of the observations that have been used to compute the robust estimates of location and shape.
+
+    dist_ : array-like, shape (n_samples,)
+        Mahalanobis distances of the training set (on which `fit` is called) observations.
+
+    raw_skew1_dist_ : array-like, shape (n_samples,)
+        Mahalanobis Skewness distances of the training set (on which `fit` is called) observations.
+
+    raw_kurt1_dist_ : array-like, shape (n_samples,)
+        Mahalanobis Kurtosis distances of the training set (on which `fit` is called) observations.
+
 
     See Also
     --------
-    EmpiricalCovariance, MMinCovDet
+    EmpiricalCovariance, MomentMinCovDet
 
     Notes
     -----
-    Outlier detection from covariance estimation may break or not
-    perform well in high-dimensional settings. In particular, one will
-    always take care to work with ``n_samples > n_features ** 2``.
+    Outlier detection from covariance estimation may break or not perform well in high-dimensional settings.
+    In particular, one will always take care to work with ``n_samples > n_features ** 2``.
 
     References
     ----------

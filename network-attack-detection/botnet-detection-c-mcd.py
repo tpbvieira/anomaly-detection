@@ -130,9 +130,9 @@ def unsupervisedCV(t_cv_df, t_cv_label, n_it):
     return m_best_model, m_best_contamination, m_best_f1, m_best_alg
 
 
-raw_path = os.path.join('data/ctu_13/pkl_sum/')
+raw_path = os.path.join('data/ctu_13/pkl_sum_fast/')
 raw_directory = os.fsencode(raw_path)
-pkl_path = os.path.join('data/ctu_13/pkl_sum/')
+pkl_path = os.path.join('data/ctu_13/pkl_sum_fast/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 it = 1
