@@ -155,9 +155,9 @@ for sample_file in file_list:
         dists_df['ks_dist'] = ks_dist_.copy()
         dists_df['Label'] =  test_label.values
 
-        # get outliers from new distances, however the labels should be the same of saved labels
-        k_label = get_outliers(k_pred_dist_, best_contamination)
-        s_label = get_outliers(s_pred_dist_, best_contamination)
+        # # get outliers from new distances, however the labels should be the same of saved labels
+        # k_label = get_outliers(k_pred_dist_, best_contamination)
+        # s_label = get_outliers(s_pred_dist_, best_contamination)
 
         # # ensemble with labels
         # mks_label = m_label.copy()

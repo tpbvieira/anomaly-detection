@@ -167,7 +167,7 @@ class MomentAnomalyDetector(MomentMinCovDet):
 
 
     def predict(self, X):
-        """Outlyingness of observations in X according to the fitted model.
+        """Outlyingness of observations in X according to the fitted robust location and covariance by fast MCD
 
         Parameters
         ----------
@@ -175,28 +175,54 @@ class MomentAnomalyDetector(MomentMinCovDet):
 
         Returns
         -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
+        is_outlier : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered as an outlier according to the
+            fitted model. Values with -1 means outlier and 1 means inlier
 
         """
         check_is_fitted(self, 'threshold_')
         X = check_array(X)
-        is_inlier = -np.ones(X.shape[0], dtype=int)
+        is_outlier = -np.ones(X.shape[0], dtype=int)
         if self.contamination is not None:
             values = self.decision_function(X, raw_values=True)
-            is_inlier[values <= self.threshold_] = 1
+            is_outlier[values <= self.threshold_] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 
-        return is_inlier
+        return is_outlier
+
+
+    def fitted_mcd_prediction(self, X):
+        """Outlyingness of observations in X according to the fitted robust location and covariance by fast MCD
+        It is based on self.threshold_, which is a decision function computed during fit.
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+
+        Returns
+        -------
+        is_outlier : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered as an outlier according to the
+            fitted model. Values with -1 means outlier and 1 means inlier
+
+        """
+        check_is_fitted(self, 'threshold_')
+        X = check_array(X)
+        is_outlier = -np.ones(X.shape[0], dtype=int)
+        if self.contamination is not None:
+            self.prediction_dist_ = self.mahalanobis(X)
+            is_outlier[self.prediction_dist_ <= self.threshold_] = 1
+        else:
+            raise NotImplementedError("You must provide a contamination rate.")
+
+        return is_outlier
 
 
     def mcd_prediction(self, X):
-        """Outlyingness of observations in X according to the fitted model.
+        """Outlyingness of observations in X according to the fitted robust location and covariance by fast MCD
+        The contamination_threshold is defined by the largest distances between X and the fitted robust location and
+        covariance, and the contamination defines the number of largest distances that are predicted as outliers.
 
         Parameters
         ----------
@@ -208,56 +234,24 @@ class MomentAnomalyDetector(MomentMinCovDet):
             For each observation, tells whether or not it should be considered
             as an outlier according to the fitted model.
 
-        threshold : float,
-            The values of the less outlying point's decision function.
-
         """
         check_is_fitted(self, 'threshold_')
         X = check_array(X)
-        is_inlier = -np.ones(X.shape[0], dtype=int)
+        is_outlier = -np.ones(X.shape[0], dtype=int) # fill with -1 (outliers)
         if self.contamination is not None:
-            mahal_dist = self.mahalanobis(X)
-            self.prediction_dist_ = mahal_dist
-            is_inlier[mahal_dist <= self.threshold_] = 1
+            self.prediction_dist_ = self.mahalanobis(X)
+            contamination_threshold = sp.stats.scoreatpercentile(self.prediction_dist_, 100. * (1. - self.contamination))
+            is_outlier[self.prediction_dist_ <= contamination_threshold] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 
-        return is_inlier
-
-
-    def mcd_prediction2(self, X):
-        """Outlyingness of observations in X according to the fitted model.
-
-        Parameters
-        ----------
-        X : array-like, shape = (n_samples, n_features)
-
-        Returns
-        -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
-
-        """
-        check_is_fitted(self, 'threshold_')
-        X = check_array(X)
-        is_inlier = -np.ones(X.shape[0], dtype=int)
-        if self.contamination is not None:
-            mahal_dist = self.mahalanobis(X)
-            self.prediction_dist_ = mahal_dist
-            threshold_ = sp.stats.scoreatpercentile(self.prediction_dist_, 100. * (1. - self.contamination))
-            is_inlier[mahal_dist <= threshold_] = 1
-        else:
-            raise NotImplementedError("You must provide a contamination rate.")
-
-        return is_inlier
+        return is_outlier
 
 
     def kurtosis_prediction(self, X):
-        """Outlyingness of observations in X according to the fitted model, using kurtosis instead of location.
+        """Outlyingness of observations in X according to the fitted robust kurtosis and covariance by fast MCD.
+        The contamination_threshold is defined by the largest distances between X and the fitted robust kurtosis and
+        covariance, and the contamination defines the number of largest distances that are predicted as outliers.
 
         Parameters
         ----------
@@ -265,12 +259,9 @@ class MomentAnomalyDetector(MomentMinCovDet):
 
         Returns
         -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
+        pred_label : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered as an outlier according, where 0 means
+            inliers and 1 means outlisers.
 
         """
         check_is_fitted(self, 'threshold_')
@@ -279,16 +270,18 @@ class MomentAnomalyDetector(MomentMinCovDet):
         if self.contamination is not None:
             # precision
             inv_cov = linalg.pinvh(self.covariance_)
+
             # kurtosis of the data
             X_kurt1 = X - kurtosis(X, axis=0, fisher=True, bias=True)
+
             # malhalanobis distance
             mahal_dist = pairwise_distances(X_kurt1, self.raw_kurt1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
             mahal_dist = np.reshape(mahal_dist, (len(X_kurt1),)) ** 2  #MD squared
-            mahal_dist = -mahal_dist
-            self.prediction_dist_ = mahal_dist
+            self.prediction_dist_ = -mahal_dist
+
             # detect outliers
-            contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
-            pred_label[mahal_dist <= contamination_threshold] = 1
+            contamination_threshold = np.percentile(self.prediction_dist_, 100. * self.contamination)
+            pred_label[self.prediction_dist_ <= contamination_threshold] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 
@@ -296,7 +289,9 @@ class MomentAnomalyDetector(MomentMinCovDet):
 
 
     def skewness_prediction(self, X):
-        """Outlyingness of observations in X according to the fitted model, using skewness instead of location.
+        """Outlyingness of observations in X according to the fitted robust skewness and covariance by fast MCD.
+        The contamination_threshold is defined by the largest distances between X and the fitted robust skewness and
+        covariance, and the contamination defines the number of largest distances that are predicted as outliers.
 
         Parameters
         ----------
@@ -304,26 +299,29 @@ class MomentAnomalyDetector(MomentMinCovDet):
 
         Returns
         -------
-        is_outliers : array, shape = (n_samples, ), dtype = bool
-            For each observation, tells whether or not it should be considered
-            as an outlier according to the fitted model.
-
-        threshold : float,
-            The values of the less outlying point's decision function.
+        pred_label : array, shape = (n_samples, ), dtype = bool
+            For each observation, tells whether or not it should be considered as an outlier according, where 0 means
+            inliers and 1 means outlisers.
 
         """
         check_is_fitted(self, 'threshold_')
         X = check_array(X)
         pred_label = np.full(X.shape[0], 0, dtype=int)
         if self.contamination is not None:
+            # precision
             inv_cov = linalg.pinvh(self.covariance_)
+
+            # skewness of the data
             X_skew1 = X - skew(X, axis=0, bias=True)
+
+            # malhalanobis distance
             mahal_dist = pairwise_distances(X_skew1, self.raw_skew1_[np.newaxis, :], metric='mahalanobis', VI=inv_cov)
             mahal_dist = np.reshape(mahal_dist, (len(X_skew1),)) ** 2 #MD squared
-            mahal_dist = -mahal_dist
-            self.prediction_dist_ = mahal_dist
-            contamination_threshold = np.percentile(mahal_dist, 100. * self.contamination)
-            pred_label[mahal_dist <= contamination_threshold] = 1
+            self.prediction_dist_ = -mahal_dist
+
+            # detect outliers
+            contamination_threshold = np.percentile(self.prediction_dist_, 100. * self.contamination)
+            pred_label[self.prediction_dist_ <= contamination_threshold] = 1
         else:
             raise NotImplementedError("You must provide a contamination rate.")
 
