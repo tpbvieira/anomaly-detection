@@ -1,18 +1,16 @@
 """
-Robust skewness, kurtosis, location and covariance estimators.
+Robust moments (skewness, kurtosis, location and covariance) estimators.
 
 Here are implemented estimators that are resistant to outliers.
 
 """
-# Author: Virgile Fritsch <virgile.fritsch@inria.fr>
+# Author: Thiago Vieira <tpbvieira@gmail.com>
 #
 # License: BSD 3 clause
-
-# Minimum Covariance Determinant
-#   Implementing of an algorithm by Rousseeuw & Van Driessen described in
-#   (A Fast Algorithm for the Minimum Covariance Determinant Estimator,
-#   1999, American Statistical Association and the American Society
-#   for Quality, TECHNOMETRICS)
+#
+# This is a fork of MinCovDet class of Virgile Fritsch, which implements Fast Minimum Covariance Determinant (Fast MCD).
+# Fast NCD is an algorithm by Rousseeuw & Van Driessen described in (A Fast Algorithm for the Minimum Covariance
+# Determinant Estimator, 1999, American Statistical Association and the American Society for Quality, TECHNOMETRICS)
 
 import warnings
 import numbers

@@ -1,16 +1,19 @@
 """
-Class for outlier detection.
+Outlier detection based on robust moments.
 
-This class provides a framework for outlier detection. It consists in
-several methods that can be added to a covariance estimator in order to
-assess the outlying-ness of the observations of a data set.
-Such a "outlier detector" object is proposed constructed from a robust
-covariance estimator (the Minimum Covariance Determinant).
+This class provides a framework for outlier detection based on robust momentos. It consists in methods that can be
+added to a covariance estimator in order to assess the outlying-ness of the observations of a data set. The proposed
+"outlier detector" is based on robust skewness, kurtosis, location and covariance estimates.
 
 """
-# Author: Virgile Fritsch <virgile.fritsch@inria.fr>
+# Author: Thiago Vieira <tpbvieira@gmail.com>
 #
 # License: BSD 3 clause
+#
+# This is a fork of EllipticEnvelope class of Virgile Fritsch, which implements an anomaly detector based on classical
+# Fast Minimum Covariance Determinant (Fast MCD). Fast NCD is an algorithm by Rousseeuw & Van Driessen described in
+# (A Fast Algorithm for the Minimum Covariance Determinant Estimator, 1999, American Statistical Association and the
+# American Society for Quality, TECHNOMETRICS)
 
 import numpy as np
 import scipy as sp
@@ -18,13 +21,11 @@ from scipy import linalg
 from scipy.stats import skew,kurtosis
 from sklearn.utils.validation import check_is_fitted, check_array
 from sklearn.metrics import accuracy_score, pairwise_distances
-from k_mcd_robust_moments import MomentMinCovDet
+from robust_moments import MomentMinCovDet
 
 
-class MEllipticEnvelope(MomentMinCovDet):
-    """An object for detecting outliers in a Gaussian distributed dataset.
-
-    Read more in the :ref:`User Guide <outlier_detection>`.
+class MomentAnomalyDetector(MomentMinCovDet):
+    """An object for detecting outliers in a skewed distributed and imbalanced dataset.
 
     Parameters
     ----------
@@ -113,12 +114,12 @@ class MEllipticEnvelope(MomentMinCovDet):
 
     """
     def __init__(self, store_precision=True, assume_centered=False, support_fraction=None, contamination=0.1, random_state=None):
-        super(MEllipticEnvelope, self).__init__(store_precision=store_precision, assume_centered=assume_centered, support_fraction=support_fraction, random_state=random_state)
+        super(MomentAnomalyDetector, self).__init__(store_precision=store_precision, assume_centered=assume_centered, support_fraction=support_fraction, random_state=random_state)
         self.contamination = contamination
 
 
     def fit(self, X, y=None):
-        """Fit the MEllipticEnvelope model with X.
+        """Fit the MomentAnomalyDetector model with X.
 
         Parameters
         ----------
@@ -126,7 +127,7 @@ class MEllipticEnvelope(MomentMinCovDet):
             Training data
         y : (ignored)
         """
-        super(MEllipticEnvelope, self).fit(X)
+        super(MomentAnomalyDetector, self).fit(X)
         self.threshold_ = sp.stats.scoreatpercentile(self.dist_, 100. * (1. - self.contamination))
         self.prediction_dist_ = None
         return self
