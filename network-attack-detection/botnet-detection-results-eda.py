@@ -7,70 +7,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from scipy import stats
 from sklearn.metrics import f1_score
 warnings.filterwarnings("ignore")
-
-
-def get_best_distribution_fit(data):
-    # Set up list of candidate distributions to use
-    # See https://docs.scipy.org/doc/scipy/reference/stats.html for more
-    dist_names = ['beta',
-                  'expon',
-                  'gamma',
-                  'lognorm',
-                  'norm',
-                  'pearson3',
-                  'triang',
-                  'uniform',
-                  'weibull_min',
-                  'weibull_max']
-
-    # Set up empty lists to stroe results
-    chi_square = []
-    p_values = []
-
-    # Set up 50 bins for chi-square test
-    # Observed data will be approximately evenly distributed across all bins
-    percentile_bins = np.linspace(0, 100, 51)
-    percentile_cutoffs = np.percentile(data, percentile_bins)
-    observed_frequency, bins = (np.histogram(data, bins=percentile_cutoffs))
-    cum_observed_frequency = np.cumsum(observed_frequency)
-
-    # Loop through candidate distributions
-    for distribution in dist_names:
-        # Set up distribution and get fitted distribution parameters
-        dist = getattr(stats, distribution)
-        param = dist.fit(data)
-
-        # Obtain the KS test P statistic, round it to 5 decimal places
-        p = stats.kstest(data, distribution, args=param)[1]
-        p = np.around(p, 5)
-        p_values.append(p)
-
-        # Get expected counts in percentile bins
-        # This is based on a 'cumulative distrubution function' (cdf)
-        cdf_fitted = dist.cdf(percentile_cutoffs, *param[:-2], loc=param[-2], scale=param[-1])
-        expected_frequency = []
-        for bin in range(len(percentile_bins) - 1):
-            expected_cdf_area = cdf_fitted[bin + 1] - cdf_fitted[bin]
-            expected_frequency.append(expected_cdf_area)
-
-        # calculate chi-squared
-        expected_frequency = np.array(expected_frequency) * data.shape[0]
-        cum_expected_frequency = np.cumsum(expected_frequency)
-        ss = sum(((cum_expected_frequency - cum_observed_frequency) ** 2) / cum_observed_frequency)
-        chi_square.append(ss)
-
-    # Collate results and sort by goodness of fit (best at top)
-
-    results = pd.DataFrame()
-    results['Distribution'] = dist_names
-    results['chi_square'] = chi_square
-    results['p_value'] = p_values
-    results.sort_values(['chi_square'], inplace=True)
-
-    return results.iloc[0]
 
 
 def get_outliers(m_dist, m_best_contamination):
