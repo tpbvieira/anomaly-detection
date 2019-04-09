@@ -9,11 +9,9 @@ __pycache_/
 venv/
 
 _/
-output/
 data/
-results/agg/
-results/pkl_sum_dict/
-results/raw/
+output/eda/
+output/results/pkl_sum_dict/
 
 BinetflowTrainer-master/.idea/
 BinetflowTrainer-master/__pycache__/
