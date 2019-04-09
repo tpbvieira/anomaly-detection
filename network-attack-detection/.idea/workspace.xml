@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc709098-1f61-4965-8382-51a1863261ef" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/botnet-detection-results-eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-results-eda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/thesis/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/thesis/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Accuracy_on_Bots.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Accuracy_on_Bots.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Binet_roc_curves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Binet_roc_curves.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Evaluating_Models.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Evaluating_Models.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/FeaturePlotting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/FeaturePlotting.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/RandomForest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/RandomForest.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Step Ahead Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Step Ahead Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Table_Comparisons.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Table_Comparisons.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/Tuning_Parameters.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/Tuning_Parameters.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/eigensim_fi_score.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/eigensim_fi_score.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinetflowTrainer-master/scramble_feature_mlp_keras.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/BinetflowTrainer-master/scramble_feature_mlp_keras.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botnet-detection-c-mcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-c-mcd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botnet-detection-eda-view.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/botnet-detection-eda-view.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/botnet-detection-k-mcd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/botnet-detection-k-mcd.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/sum_files_results.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/results/sum_files_results.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,20 +34,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="97">
+              <caret line="189" selection-start-line="189" selection-end-line="200" selection-end-column="24" />
+              <folding>
+                <element signature="e#15#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="802">
-              <caret line="194" column="49" lean-forward="true" selection-start-line="194" selection-start-column="49" selection-end-line="194" selection-end-column="49" />
+            <state relative-caret-position="442">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#15#24#0" expanded="true" />
               </folding>
@@ -40,10 +59,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/moment_anomaly_detector.py">
+        <entry file="file://$PROJECT_DIR$/botnet-detection-data-eda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1957">
-              <caret line="321" column="29" selection-start-line="321" selection-start-column="29" selection-end-line="321" selection-end-column="29" />
+            <state relative-caret-position="382">
+              <caret line="295" column="36" lean-forward="true" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
+              <folding>
+                <element signature="e#15#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,23 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Elliptic</find>
-      <find>shuffle</find>
-      <find>it</find>
-      <find>k_pred_label</find>
-      <find>iter</find>
-      <find>bin</find>
-      <find>cv(</find>
-      <find>mcd_prediction(</find>
-      <find>mcd2</find>
-      <find>c-mcd</find>
-      <find>c_mcd</find>
-      <find>is_inlier</find>
-      <find>self.prediction_dist_</find>
-      <find>prediction_dist_ =</find>
-      <find>mahal_dist</find>
-      <find>inlier</find>
-      <find>mcd_prediction</find>
       <find>fitted</find>
       <find>pairwise_distances</find>
       <find>classical</find>
@@ -85,10 +90,27 @@
       <find>predict</find>
       <find>s_pred_label</find>
       <find>test_pred_</find>
-      <find>kurt</find>
       <find>s_mcd</find>
       <find>get_best_distribution_fit</find>
       <find>get_outliers</find>
+      <find>kurt</find>
+      <find>semiSupervisedCV</find>
+      <find>lime</find>
+      <find>.show</find>
+      <find>data_cleasing</find>
+      <find>classify_ip</find>
+      <find>results/data/figures/</find>
+      <find>n_dports_gt1024</find>
+      <find>agg</find>
+      <find>ipaddress</find>
+      <find>avg_duration</find>
+      <find>scenario</find>
+      <find>% (</find>
+      <find>head</find>
+      <find>column_types</find>
+      <find>fast</find>
+      <find>saved_data</find>
+      <find>heat</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -108,6 +130,9 @@
       <replace>pred_s_label</replace>
       <replace>pred_</replace>
       <replace>mcd_prediction</replace>
+      <replace>%s</replace>
+      <replace>results/raw/figures/</replace>
+      <replace>raw_features_names</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -151,8 +176,10 @@
         <option value="$PROJECT_DIR$/robust_moments.py" />
         <option value="$PROJECT_DIR$/k_mcd_outlier_detection.py" />
         <option value="$PROJECT_DIR$/moment_anomaly_detector.py" />
-        <option value="$PROJECT_DIR$/botnet-detection-c-mcd.py" />
         <option value="$PROJECT_DIR$/botnet-detection-results-eda.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-c-mcd.py" />
+        <option value="$PROJECT_DIR$/botnet-detection-eda-view.ipynb" />
+        <option value="$PROJECT_DIR$/botnet-detection-data-eda.py" />
       </list>
     </option>
   </component>
@@ -230,7 +257,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.botnet-detection-c-mcd">
+  <component name="RunManager" selected="Python.botnet-detection-results-eda">
     <configuration name="botnet-detection-c-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -252,7 +279,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="botnet-detection-k-mcd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="botnet-detection-data-eda" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="adaptive-multivariate-gaussian" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -264,7 +291,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-k-mcd.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/botnet-detection-data-eda.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -337,19 +364,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.botnet-detection-k-mcd" />
       <item itemvalue="Python.botnet-detection-results-eda" />
       <item itemvalue="Python.botnet-detection-c-mcd" />
       <item itemvalue="Python.botnet-detection-results" />
       <item itemvalue="Python.plot_mahalanobis_distances" />
+      <item itemvalue="Python.botnet-detection-data-eda" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.botnet-detection-c-mcd" />
         <item itemvalue="Python.botnet-detection-results-eda" />
+        <item itemvalue="Python.botnet-detection-data-eda" />
+        <item itemvalue="Python.botnet-detection-c-mcd" />
         <item itemvalue="Python.plot_mahalanobis_distances" />
         <item itemvalue="Python.botnet-detection-results" />
-        <item itemvalue="Python.botnet-detection-k-mcd" />
       </list>
     </recent_temporary>
   </component>
@@ -368,7 +395,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.18924618" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -382,7 +408,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50186867" side_tool="true" weight="0.3997955" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3336933" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3336933" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -438,6 +464,11 @@
           <line>98</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/botnet-detection-results-eda.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -449,27 +480,11 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/botnet-detection-k-mcd-cicids2017.py" />
-    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-EllipticEnvelope.py" />
     <entry file="file://$PROJECT_DIR$/pkl-to-csv.py" />
     <entry file="file://$PROJECT_DIR$/to_pkl_csv.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-multivariate-gaussian.py" />
     <entry file="file://$PROJECT_DIR$/botnet-detection-lof.py" />
     <entry file="file://$PROJECT_DIR$/.ipynb_checkpoints/botnet-detection-adaptive-multivariate-gaussian-checkpoint.ipynb" />
-    <entry file="file://$PROJECT_DIR$/botnet-detection-etl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" selection-end-line="31" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-gmm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -544,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="26" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-eda-view.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="4" />
         </state>
       </provider>
     </entry>
@@ -637,13 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="175" column="42" lean-forward="true" selection-start-line="175" selection-start-column="42" selection-end-line="175" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/numpy/lib/shape_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -658,30 +659,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="518" column="35" lean-forward="true" selection-start-line="518" selection-start-column="35" selection-end-line="518" selection-end-column="35" />
-          <folding>
-            <element signature="e#497#512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robust_moments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/k_mcd_robust_moments.py" />
+    <entry file="file://$PROJECT_DIR$/k_mcd_outlier_detection.py" />
     <entry file="file:///usr/local/lib/python3.6/dist-packages/sklearn/covariance/empirical_covariance_.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -689,27 +668,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
+    <entry file="file://$PROJECT_DIR$/robust_moments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="194" column="49" lean-forward="true" selection-start-line="194" selection-start-column="49" selection-end-line="194" selection-end-column="49" />
+        <state relative-caret-position="525">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding>
+            <element signature="e#573#588#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moment_anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-etl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-eda-view.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet_detection_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2903">
+          <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BinetflowTrainer-master/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="75" column="50" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/botnet-detection-data-eda.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="295" column="36" lean-forward="true" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
           <folding>
             <element signature="e#15#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moment_anomaly_detector.py">
+    <entry file="file://$PROJECT_DIR$/botnet-detection-c-mcd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1957">
-          <caret line="321" column="29" selection-start-line="321" selection-start-column="29" selection-end-line="321" selection-end-column="29" />
+        <state relative-caret-position="97">
+          <caret line="189" selection-start-line="189" selection-end-line="200" selection-end-column="24" />
+          <folding>
+            <element signature="e#15#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botnet-detection-results-eda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        <state relative-caret-position="442">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#15#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

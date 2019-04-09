@@ -11,6 +11,56 @@ from moment_anomaly_detector import MomentAnomalyDetector
 from botnet_detection_utils import data_splitting, drop_agg_features, get_classification_report, data_cleasing, column_types
 warnings.filterwarnings("ignore")
 
+def semiSupervisedCV2(t_normal_df, t_cv_df, t_cv_label, n_it):
+    # initialize
+    m_best_model = MomentAnomalyDetector()
+    m_best_f1 = -1
+    m_best_alg = ''
+
+    n_anom = np.count_nonzero(t_cv_label)
+    n_norm = t_cv_label.size - n_anom
+    m_best_contamination = (n_anom * 1.0) / (n_norm * 1.0)
+    print(m_best_contamination)
+
+    # suffle cv data
+    t_cv_df['Labels'] = t_cv_label
+    t_cv_df = shuffle(t_cv_df)
+    m_cv_label = t_cv_df['Labels'].astype(np.int8)
+    t_cv_df = t_cv_df.drop('Labels', 1)
+
+    for j in range(n_it):
+        # fit
+        m_ell_model = MomentAnomalyDetector(contamination=m_best_contamination)
+        m_ell_model.fit(t_normal_df)
+
+        # mcd prediction
+        m_pred = m_ell_model.mcd_prediction(t_cv_df)
+        m_pred[m_pred == 1] = 0
+        m_pred[m_pred == -1] = 1
+        mcd_f1 = f1_score(m_cv_label, m_pred, average="binary")
+        if mcd_f1 > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_f1 = mcd_f1
+            m_best_alg = 'mcd'
+
+        # kurtosis prediction
+        k_pred = m_ell_model.kurtosis_prediction(t_cv_df)
+        k_f1 = f1_score(m_cv_label, k_pred, average="binary")
+        if k_f1 > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_f1 = k_f1
+            m_best_alg = 'k-mcd'
+
+        # skewness prediction
+        s_pred = m_ell_model.skewness_prediction(t_cv_df)
+        s_f1 = f1_score(m_cv_label, s_pred, average="binary")
+        if s_f1 > m_best_f1:
+            m_best_model = m_ell_model
+            m_best_f1 = s_f1
+            m_best_alg = 's-mcd'
+
+    return m_best_model, m_best_contamination, m_best_f1, m_best_alg
+
 
 def semiSupervisedCV(t_normal_df, t_cv_df, t_cv_label, n_it):
     # initialize
@@ -118,12 +168,13 @@ def unsupervisedCV(t_cv_df, t_cv_label, n_it):
     return m_best_model, m_best_contamination, m_best_f1, m_best_alg
 
 
-raw_path = os.path.join('data/ctu_13/pkl_sum_fast/')
+raw_path = os.path.join('data/ctu_13/pkl_sum/')
 raw_directory = os.fsencode(raw_path)
-pkl_path = os.path.join('data/ctu_13/pkl_sum_fast/')
+pkl_path = os.path.join('data/ctu_13/pkl_sum/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 it = 1
+cv_it = 1
 
 start_time = time.time()
 # for each feature set
@@ -157,7 +208,7 @@ for features_key, value in drop_agg_features.items():
             for i in range(it):
 
                 # Cross-Validation and model selection
-                train_best_model, train_best_cont, train_best_f1, train_best_alg = semiSupervisedCV(norm_train_df, cv_df, cv_label_df, 1)
+                train_best_model, train_best_cont, train_best_f1, train_best_alg = semiSupervisedCV2(norm_train_df, cv_df, cv_label_df, cv_it)
                 test_label = test_label_df.astype(np.int8)
 
                 # train_best_model, train_best_cont, train_best_f1, train_best_alg = unsupervisedCV(train_df, train_label_df, 1)

@@ -1,5 +1,5 @@
 num name                            types               malware 	type    Total    	Malicious 	C&C 	Botnet 	Data Status
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 01  capture20110810.binetflow       IRC,Spam,CF       	neris		test    2824636		40961   	341		40620	OK|NO|NO|NO	
 02  capture20110811.binetflow       IRC,Spam,CF       	neris		test    1808122 	20941   	673		20268	OK|NO|NI|NO
 03  capture20110812.binetflow       IRC,PS,US         	rbot		train   4710638 	26822   	63		26759	OK|OK|OK|OK
@@ -13,7 +13,9 @@ num name                            types               malware 	type    Total  
 11  capture20110818-2.binetflow     IRC,DDoS,US        	rbot		train   107251 		8164   		2 		8162	OK|NO|NO|OK data cleasing problem (21 instead of 8164)
 12  capture20110819.binetflow       P2P                 nsys.ay		train   325471  	2168    	25		2143 	OK|OK|OK|OK
 13  capture20110815-3.binetflow     Spam,PS,HTTP      	virut		train   1925149 	40003   	536		39467	OK|NO|NO|NO
-==============================================================================================================================================================================================================================
+
+=============================================================================================================================================================================================================================
+
 pkl                 raw in pkl format
 pkl_all             raw_all in pkl format
 pkl_all_test        raw_all_test in pkl format
@@ -28,21 +30,40 @@ raw_all_train       train raw data selected according to original paper
 raw_attack          attack traffic from raw data (labeled as "botnet" but excluding cases with "-cc")
 raw_cc              attack traffic from raw data (labeled as "botnet" and "-cc")
 raw_normal     		normal traffic
-==============================================================================================================================================================================================================================
- - Features
-	StartTime,Dur,Proto,SrcAddr,Sport,Dir,DstAddr,Dport,State,sTos,dTos,TotPkts,TotBytes,SrcBytes,Label
- - Attack Types
+
+=============================================================================================================================================================================================================================
+
+Features
+	StartTime	Start Time
+	Dur	Duration
+	Proto	Protocol
+	SrcAddr	Source Address
+	Sport	Source Port
+	Dir	Direction
+	DstAddr	Destination Address
+	Dport	Destination Port
+	State	State
+	sTos	Type of service from source to destination
+	dTos	Type of service from destination to source
+	TotPkts	Total of Packets
+	TotBytes	Total of bytes
+	SrcBytes	Total bytes from source to destination
+	Label	Label as normal or anomalous
+
+Attack Types
 	CF: Click Fraud; 
 	PS: Port Scan; 
 	FF: FastFlux; 
 	US: Compiled and Controled by Authors
 	SPAM
 	DDOS
- - C&C Types
+
+C&C Types
 	IRC
 	P2P
 	HTTP
- - File Types:
+
+File Types:
 	*.pcap.netflow.labeled
 		Has more lines than the description in https://mcfp.weebly.com/the-ctu-13-dataset-a-labeled-dataset-with-botnet-normal-and-background-traffic.html 
 		Clear labels for Ligitimate, Background and Botnet, but without indicate C&C traffic
@@ -53,6 +74,9 @@ raw_normal     		normal traffic
 	*.binetflow.2format
 		The amount of lines match with the description in https://mcfp.weebly.com/the-ctu-13-dataset-a-labeled-dataset-with-botnet-normal-and-background-traffic.html 
 		More features than .binetflow format
+
+=============================================================================================================================================================================================================================
+ 
  - we consider botnet traffic the attacks and c&c
  - Original paper: An empirical comparison of botnet detection - computer and security - 2014
 	Testing: 1,2,6,8,9
@@ -60,7 +84,6 @@ raw_normal     		normal traffic
  - The Botnet traffic comes from the infected hosts, the Normal traffic from the verified normal hosts and the Background traffic is all the rest of traffic that we don’t know what it is for sure.
  - The CTU-13 dataset consists in thirteen captures (called scenarios) of different botnet samples. On each scenario we executed a specific malware, which used several protocols and performed different actions.
  - predict compare to train dist or to new dist? Compare to new dist. if it uses the train dist to get threshold the result is very poor, such as classifing all as outlier
-==============================================================================================================================================================================================================================
  - a diferença está que tradicional mcd define o self.threshold_ e a contaminação a partir do treinamento, nós definimos apenas a contaminação a partir do treinamento, o threshold_ é definido para cada teste a partir do threshold. isto torna a avaliação mais adaptativa
  - Skewness characterizes the degree of asymmetry of a given distribution around its
 mean. If the distribution of the data are symmetric then skewness will be close to
@@ -80,3 +103,6 @@ indicates a relatively flat distribution.
  	compute distances as (np.dot(X - kurt1, precision) * (X - kurt1)).sum(axis=1)
  	c-step escolhe algumas observacoes, calcula mean e cov, e computa a distância do X_centered em relacao a este mean e cov. As menores distâncias serão utilizados para computar o próximo mean e cov a partir de X, se o minimum determinant não for alcançado. Se foi alcançado, O mean e conv das observações de menor distância do X_centered vai ser entregue por c-step
  	therefore, we compute skewness and kurtosis from the selected observations with minumum covariance determinant, where this means that this subset has a largest eigenvalue near of the second and that the variance of the dataset is minimal
+
+ mcd is a minimization of covariance matrix determinant
+ can we suppose that if MCD is affine equivariant then the skewness of the minumum convariant determinant is a robust skewness of the entire data?
