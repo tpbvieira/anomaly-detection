@@ -1,5 +1,7 @@
 _
+.idea/
 .ipynb_checkpoints
+*.pyc
 *.out
 *.jpg
 *.png
