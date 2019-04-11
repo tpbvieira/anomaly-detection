@@ -4,96 +4,17 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score, precision_score, recall_score
 from datetime import datetime
-from utils import save_results, get_classifier, get_file_num, pickle_summarized_data, get_saved_data, get_feature_labels, to_tf_label, get_start_time_for, \
+from utils import save_results, get_classifier, get_file_num, pickle_summarized_data, get_saved_data, \
+    get_feature_labels, to_tf_label, get_start_time_for, \
     TIME_FORMAT
 from summarizer import Summarizer
 from binet_keras import keras_train_and_test
-
-
-def train_and_test_with(features, labels, classifier, feat_test=None, label_test=None):
-    """
-        classifier: the str rep machine learning algorithm being used
-
-        :return A dictionary mapping a metric to it's value
-    """
-    clf = get_classifier(classifier)
-
-    if feat_test is None and label_test is None:
-        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5, random_state=42)
-    else:
-        feat_train = features
-        label_train = labels
-
-    clf.fit(feat_train, label_train)
-
-    predicted_labels = clf.predict(feat_test)
-    attack_train = sum(label_train)
-    attack_test = sum(label_test)
-    result = {}
-    result['recall'] = recall_score(label_test, predicted_labels)
-    # result['accuracy'] = accuracy_score(label_test, predicted_labels)
-    result['precision'] = precision_score(label_test, predicted_labels)
-    result['f1 score'] = f1_score(label_test, predicted_labels)
-    result['attacks'] = sum(labels)
-    result['normal count'] = len(labels) - result['attacks']
-    result['training size'] = len(feat_train)
-    result['1'] = '%s, %s' % (attack_train, attack_test)
-    result['0'] = '%s, %s' % (len(label_train)-attack_train,
-                              len(label_test) - attack_test)
-    return result
 
 
 def get_file_stats(features, labels, classifier, feat_test=None, label_test=None):
     attacks = sum(label)
     nonattacks = len(label) - attacks
     return attacks, nonattacks
-
-
-def test_and_train_bots(features, labels, classifier, feat_test=None, label_test=None):
-    """
-        classifier: the str rep machine learning algorithm being used
-
-        :return A dictionary mapping a metric to it's value
-    """
-    clf = get_classifier(classifier)
-
-    if feat_test is None and label_test is None:
-        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5, random_state=42)
-    else:
-        feat_train = features
-        label_train = labels
-
-    clf.fit(feat_train, label_train)
-
-    predicted_labels = clf.predict(feat_test)
-    result = {}
-    # result['accuracy'] = accuracy_score(label_test, predicted_labels)
-    result['f1_score'] = f1_score(label_test, predicted_labels)
-    result['recall'] = recall_score(label_test, predicted_labels, average='weighted')
-    result['precision'] = precision_score(label_test, predicted_labels, average='weighted')
-    return result
-
-
-def train_and_test_step(features, labels, classifier, step):
-    if classifier != 'tf':
-        clf = get_classifier(classifier)
-    last = 0
-    f1 = 0
-    count = 0
-    for i in range(step, len(features), step):
-        if classifier == 'tf':
-            # @Performance: This takes way too long to run.
-            feat_test = np.array([features[i]])
-            label_test = np.array([labels[i]])
-            _f1, _, _ = keras_train_and_test(features[last:i], labels[last:i], feat_test, label_test, dimension=17)
-            f1 += _f1
-        else:
-            clf.fit(features[last:i], labels[last:i])
-            predicted = clf.predict([features[i]])
-            f1 += f1_score([labels[i]], predicted)
-        last = i
-        count += 1
-    return f1 / math.ceil(len(features) / step)
 
 
 def aggregate_file(interval, file_name, start=None):
@@ -134,10 +55,93 @@ def aggregate_and_pickle(interval, file_name, start=None, v2=False):
     return summary
 
 
+def train_and_test_with(features, labels, classifier, feat_test=None, label_test=None):
+    """
+        classifier: the str rep machine learning algorithm being used
+
+        :return A dictionary mapping a metric to it's value
+    """
+    clf = get_classifier(classifier)
+
+    if feat_test is None and label_test is None:
+        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5,
+                                                                          random_state=42)
+    else:
+        feat_train = features
+        label_train = labels
+
+    clf.fit(feat_train, label_train)
+
+    predicted_labels = clf.predict(feat_test)
+    attack_train = sum(label_train)
+    attack_test = sum(label_test)
+    result = {}
+    result['recall'] = recall_score(label_test, predicted_labels)
+    # result['accuracy'] = accuracy_score(label_test, predicted_labels)
+    result['precision'] = precision_score(label_test, predicted_labels)
+    result['f1 score'] = f1_score(label_test, predicted_labels)
+    result['attacks'] = sum(labels)
+    result['normal count'] = len(labels) - result['attacks']
+    result['training size'] = len(feat_train)
+    result['1'] = '%s, %s' % (attack_train, attack_test)
+    result['0'] = '%s, %s' % (len(label_train)-attack_train,
+                              len(label_test) - attack_test)
+    return result
+
+
+def test_and_train_bots(features, labels, classifier, feat_test=None, label_test=None):
+    """
+        classifier: the str rep machine learning algorithm being used
+
+        :return A dictionary mapping a metric to it's value
+    """
+    clf = get_classifier(classifier)
+
+    if feat_test is None and label_test is None:
+        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5,
+                                                                          random_state=42)
+    else:
+        feat_train = features
+        label_train = labels
+
+    clf.fit(feat_train, label_train)
+
+    predicted_labels = clf.predict(feat_test)
+    result = {}
+    # result['accuracy'] = accuracy_score(label_test, predicted_labels)
+    result['f1_score'] = f1_score(label_test, predicted_labels)
+    result['recall'] = recall_score(label_test, predicted_labels, average='weighted')
+    result['precision'] = precision_score(label_test, predicted_labels, average='weighted')
+    return result
+
+
+def train_and_test_step(features, labels, classifier, step):
+    if classifier != 'tf':
+        clf = get_classifier(classifier)
+    last = 0
+    f1 = 0
+    count = 0
+    for i in range(step, len(features), step):
+        if classifier == 'tf':
+            # @Performance: This takes way too long to run.
+            feat_test = np.array([features[i]])
+            label_test = np.array([labels[i]])
+            _f1, _, _ = keras_train_and_test(features[last:i], labels[last:i], feat_test, label_test, dimension=17)
+            f1 += _f1
+        else:
+            clf.fit(features[last:i], labels[last:i])
+            predicted = clf.predict([features[i]])
+            f1 += f1_score([labels[i]], predicted)
+        last = i
+        count += 1
+    return f1 / math.ceil(len(features) / step)
+
+
 def train_with_tensorflow(feat_train, label_train, feat_test=None, label_test=None):
     correctness = 0
     if feat_test is None or label_test is None:
-        feat_train, feat_test, label_train, label_test = train_test_split(feat_train, label_train, test_size=0.5, random_state=42)
+        feat_train, feat_test, label_train, label_test = train_test_split(feat_train, label_train, test_size=0.5,
+                                                                          random_state=42)
 
     label_train = to_tf_label(label_train)
     label_test = to_tf_label(label_test)

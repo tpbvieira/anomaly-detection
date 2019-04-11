@@ -37,7 +37,8 @@ def get_classifier(classifier):
 
 
 def get_file_num(file_name):
-    """ Get the ending file number in the files, these are all that is really needed to distinguish between files at a glance """
+    """ Get the ending file number in the files, these are all that is really needed to distinguish between files at a
+     glance """
     base = file_name.split('.')[0]
     dash_split = base.split('-')
 
@@ -91,6 +92,7 @@ def get_binetflow_files():
     files = []
     with open('binet_files.txt', 'r+') as f:
         files = f.readline().strip().split(',')
+
     return files
 
 
@@ -115,17 +117,18 @@ def get_files_with_bot(bot):
 def get_feature_order():
     # 19 features
     return ['n_dports>1024',
-            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_sports>1024', 'n_conn',
-            'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address',
-            'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
+            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
+            'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
+            'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
 
 
 def get_v2_order():
     # 22 features
     return ['n_dports>1024',
-            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_sports>1024', 'n_conn',
-            'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address',
-            'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp', 'end_tcp', 'end_udp', 'end_icmp']
+            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
+            'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
+            'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp',
+            'end_tcp', 'end_udp', 'end_icmp']
 
 
 def get_feature_labels(summaries, v2=False):
@@ -150,12 +153,14 @@ def get_start_time_for(file_name):
     with open(file_name, 'r+') as f:
         f.readline()
         time = f.readline().strip().split(',')[0]
+
     return time
 
 
 def mask_features(features):
     # computed from grid search
-    feature_mask = [True,  True, True, True, True, True, True, True, False, True, True, False, True, True, True, True, True, True,  True]
+    feature_mask = [True,  True, True, True, True, True, True, True, False, True, True, False, True, True, True, True,
+                    True, True,  True]
     other_features = []
     for i in range(len(features)):
         good_features = []

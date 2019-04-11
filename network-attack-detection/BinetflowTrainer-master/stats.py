@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_curve, auc, f1_score
 from sklearn.model_selection import KFold, train_test_split
 from main import train_and_test_step, aggregate_and_pickle, train_and_test_with, test_and_train_bots
-from utils import get_feature_labels, get_binetflow_files, get_saved_data, mask_features, get_classifier, get_feature_order, exist_summarized_data
-from joblib import Parallel, delayed
+from utils import get_feature_labels, get_binetflow_files, get_saved_data, mask_features, get_classifier, \
+    get_feature_order, exist_summarized_data
 from binet_keras import keras_train_and_test
 
 
@@ -41,7 +41,8 @@ def window_shift(window):
         values = []
         feature, label = get_feature_labels(get_saved_data(window, file_name))
         feature = mask_features(feature)
-        values += [file_name, '{0:.4f}'.format(train_and_test_step(feature, label, 'dt', 1000)), '{0:.4f}'.format(train_and_test_step(feature, label, 'rf', 1000))]
+        values += [file_name, '{0:.4f}'.format(train_and_test_step(feature, label, 'dt', 1000)),
+                   '{0:.4f}'.format(train_and_test_step(feature, label, 'rf', 1000))]
         values.append('{0:.4f}'.format(train_and_test_step(feature, label, 'tf', 1000)))
         value_matrix.append(values)
     writer.value_matrix = value_matrix
@@ -53,8 +54,7 @@ def file_stats():
     for window in windows:
         writer = pytablewriter.MarkdownTableWriter()
         writer.table_name = 'File f1 for {}s'.format(window)
-        writer.header_list = ['File', 'Decision Tree', 'Random Forest',
-                              'Tensorflow']
+        writer.header_list = ['File', 'Decision Tree', 'Random Forest', 'Tensorflow']
         value_matrix = []
         for name in binet_files:
             values = [name]
@@ -63,19 +63,12 @@ def file_stats():
             feat_train, feat_test, label_train, label_test = train_test_split(
                 feature, label, test_size=0.3, random_state=42)
             for ml in mls:
-                r = train_and_test_with(feat_train, label_train, ml, feat_test,
-                                        label_test)
-                values.append('{0:.4f}, {1:.4f}, {2:.4f}'.format(
-                              r['f1'],
-                              r['precision'],
-                              r['recall']))
+                r = train_and_test_with(feat_train, label_train, ml, feat_test, label_test)
+                values.append('{0:.4f}, {1:.4f}, {2:.4f}'.format(r['f1'], r['precision'], r['recall']))
                 print(values)
             correctness, precision, recall = \
-                keras_train_and_test(feat_train, label_train,
-                                     feat_test, label_test, dimension=22)
-            values.append('{0:.4f}, {1:.4f}, {2:.4f}'.format(correctness,
-                                                               precision,
-                                                               recall))
+                keras_train_and_test(feat_train, label_train, feat_test, label_test, dimension=22)
+            values.append('{0:.4f}, {1:.4f}, {2:.4f}'.format(correctness, precision, recall))
             print(values)
             value_matrix.append(values)
 
@@ -114,11 +107,11 @@ def kfold_test():
                     proba = clf.predict_proba(xtest)
 
                     precision, recall, pr_thresholds = precision_recall_curve(
-                            ytest, proba[:, 1])
+                        ytest, proba[:, 1])
                     pr_scores.append(auc(recall, precision))
                 values.append('{0:.4f}, {1:.4f}, {2:.4f}, {3:.4f}'.format(
-                                    np.mean(scores), np.std(scores),
-                                    np.mean(pr_scores), np.std(pr_scores)))
+                    np.mean(scores), np.std(scores),
+                    np.mean(pr_scores), np.std(pr_scores)))
             kf = KFold(n_splits=10)
             f1 = []  # , precision, recall = [], [], []
             for train_index, test_index in kf.split(feature):
@@ -238,7 +231,7 @@ def feature_plotting():
     zeroes = zeroes.difference(ones)
     plt.scatter(*zip(*zeroes), s=1, c='gray')
     del zeroes
-    plt.scatter(*zip(*ones), s=10, c='lightgreen')
+    plt.scatter(*zip(*ones), s=10, c='red')
     plt.show()
 
 
@@ -247,19 +240,25 @@ def feature_plotting(binet_file):
     plt.figure()
     rng = range(len(feature))
     zp = zip(rng, feature[:, 9])
+    del feature
+
     zeroes = set(zp)
     ones = set(z for z in zeroes if label[z[0]] == 1)
-    del label
-    del feature
     zeroes = zeroes.difference(ones)
+    del label
+
     plt.scatter(*zip(*zeroes), s=1, c='gray')
     del zeroes
-    plt.scatter(*zip(*ones), s=10, c='lightgreen')
+
+    plt.scatter(*zip(*ones), s=10, c='red')
+    del ones
+
     plt.show()
 
 
 if __name__ == '__main__':
-    feature_plotting('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/capture20110818-2.binetflow')
+    file_path = '/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/capture20110818-2.binetflow'
+    feature_plotting(file_path)
     # v2 = False
     # Parallel(n_jobs=3)(delayed(run_files)(name, 1, v2) for name in binet_files)
     # Parallel(n_jobs=2)(delayed(window_shift)(i) for i in windows)

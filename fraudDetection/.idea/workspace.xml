@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9425c803-01dc-4019-a058-987acc6741fd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/fraudDetection.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fraud_detection_cv.py" beforeDir="false" afterPath="$PROJECT_DIR$/fraud_detection_cv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fraud_detection_notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fraud_detection_notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fraud_detection_reconstruction_dl_cv.py" beforeDir="false" afterPath="$PROJECT_DIR$/fraud_detection_reconstruction_dl_cv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/fraud_detection_cv.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fraud_detection_cv.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../network-attack-detection/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Accuracy_on_Bots.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Accuracy_on_Bots.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Binet_roc_curves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Binet_roc_curves.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Evaluating_Models.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Evaluating_Models.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/FeaturePlotting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/FeaturePlotting.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/RandomForest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/RandomForest.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Step Ahead Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Step Ahead Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Tuning_Parameters.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/Tuning_Parameters.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/scramble_feature_mlp_keras.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/BinetflowTrainer-master/scramble_feature_mlp_keras.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/botnet-detection-data-eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/botnet-detection-data-eda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../network-attack-detection/output/results/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../network-attack-detection/output/results/notes.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,26 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fraud_detection_reconstruction_dl_cv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="40" column="54" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fraud_detection_cv.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-795">
-              <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -117,11 +98,6 @@
             <path>
               <item name="fraudDetection" type="b2602c69:ProjectViewProjectNode" />
               <item name="fraudDetection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fraudDetection" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fraudDetection" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -231,8 +207,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.botnet-detection-kmeans" />
       <item itemvalue="Python.botnet-detection-adaptive-multivariate-gaussian" />
+      <item itemvalue="Python.botnet-detection-kmeans" />
       <item itemvalue="Python.fraud_detection_cv" />
       <item itemvalue="Python.fraud_detection_reconstruction_dl_cv" />
     </list>
@@ -260,9 +236,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15409836" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15409836" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -333,17 +308,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../network-attack-detection/adaptive-multivariate-gaussian/botnet-detection-adaptive-multivariate-gaussian.py" />
     <entry file="file://$PROJECT_DIR$/../network-attack-detection/adaptive-multivariate-gaussian/botnet-detection-kmeans.py" />
+    <entry file="file://$PROJECT_DIR$/fraud_detection_cv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fraud_detection_reconstruction_dl_cv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="40" column="54" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fraud_detection_cv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-795">
-          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="55" />
         </state>
       </provider>
     </entry>

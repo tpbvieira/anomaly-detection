@@ -28,16 +28,21 @@ class Summarizer:
 
     def add(self, item):
         self.used = True
+
+        # n_conn
         self.data['n_conn'] += 1
 
+        # 'n_udp, 'n_tcp' and 'n_icmp'
         proto = 'n_%s' % item['proto']
         if proto in self.data:
             self.data[proto] += 1
 
+        # 'avg_duration'
         self._duration += float(item['dur'])
         self.data['avg_duration'] = self._duration / self.data['n_conn']
 
-        # sometimes ports are in a weird format so exclude them for now
+        # sometimes ports are in a weird format so exclude them for now (Exception: pass)
+        # 'n_sports>1024' and 'n_sports<1024'
         try:
             if int(item['sport']) < 1024:
                 self.data['n_sports<1024'] += 1
@@ -46,6 +51,8 @@ class Summarizer:
         except Exception:
             pass
 
+        # sometimes ports are in a weird format so exclude them for now (Exception: pass)
+        # 'n_dports>1024' and 'n_dports<1024'
         try:
             if int(item['dport']) < 1024:
                 self.data['n_dports<1024'] += 1
@@ -54,6 +61,7 @@ class Summarizer:
         except Exception:
             pass
 
+        # Label, 'normal_flow_count' and 'background_flow_count'
         if 'Botnet' in item['label']:
             self.is_attack = 1
         elif 'Normal' in item['label']:
@@ -61,6 +69,8 @@ class Summarizer:
         elif 'Background' in item['label']:
             self.data['background_flow_count'] += 1
 
+        # 'n_s_a_p_address','n_d_a_p_address','n_s_b_p_address','n_d_b_p_address','n_s_c_p_address','n_d_c_p_address',
+        # 'n_s_na_p_address','n_d_na_p_address'
         self.data['n_s_%s_p_address' % classify(item['srcaddr'])] += 1
         self.data['n_d_%s_p_address' % classify(item['dstaddr'])] += 1
 
