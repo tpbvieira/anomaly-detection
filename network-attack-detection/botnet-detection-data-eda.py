@@ -240,7 +240,7 @@ raw_directory = os.fsencode(raw_path)
 pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
-result_figures_path = 'results/raw/figures/'
+result_figures_path = 'output/eda/raw/figures/'
 
 # for each file (scenario)
 for sample_file in file_list:
@@ -307,7 +307,7 @@ agg_directory = os.fsencode(agg_path)
 pkl_path = os.path.join('/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/pkl_sum')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
-result_figures_path = 'results/agg/figures/'
+result_figures_path = 'output/eda/agg/figures/'
 
 # for each file (scenario)
 for sample_file in file_list:
@@ -369,13 +369,13 @@ for sample_file in file_list:
         figure.savefig(fig_name, dpi=400)
         plt.close()
 
-    # # Create a pairplot for interesting features from heatmatp to
-    # fig_name = '%sagg_pairplot_%s.png' % (result_figures_path, file_name)
-    # if not os.path.isfile(fig_name):
-    #     plot_features = ['Dur','Proto','Dir','Sport','State','TotPkts','TotBytes']
-    #     sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
-    #     sns_plot.savefig(fig_name)
-    #     plt.close()
+    # Create a pairplot for interesting features from heatmatp to
+    fig_name = '%sagg_pairplot_%s.png' % (result_figures_path, file_name)
+    if not os.path.isfile(fig_name):
+        plot_features = ['Dur','Proto','Dir','Sport','State','TotPkts','TotBytes']
+        sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
+        sns_plot.savefig(fig_name)
+        plt.close()
 
 # # The datastructure to hold our feature extraction functions,
 # # which will get applied to each aggregation of the datasets.
