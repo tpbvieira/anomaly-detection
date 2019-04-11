@@ -1,4 +1,4 @@
-num name                            types               malware 	type    Total    	Malicious 	C&C 	Botnet 	Data Status
+id	name                            types               malware 	type    Total    	Malicious 	C&C 	Botnet 	Data Status
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 01  capture20110810.binetflow       IRC,Spam,CF       	neris		test    2824636		40961   	341		40620	OK|NO|NO|NO	
 02  capture20110811.binetflow       IRC,Spam,CF       	neris		test    1808122 	20941   	673		20268	OK|NO|NI|NO
@@ -33,22 +33,42 @@ raw_normal     		normal traffic
 
 =============================================================================================================================================================================================================================
 
-Features
-	StartTime	Start Time
-	Dur	Duration
-	Proto	Protocol
-	SrcAddr	Source Address
-	Sport	Source Port
-	Dir	Direction
-	DstAddr	Destination Address
-	Dport	Destination Port
-	State	State
-	sTos	Type of service from source to destination
-	dTos	Type of service from destination to source
-	TotPkts	Total of Packets
-	TotBytes	Total of bytes
-	SrcBytes	Total bytes from source to destination
-	Label	Label as normal or anomalous
+Features - Raw
+	StartTime = Start Time
+	Dur = Duration
+	Proto = Protocol
+	SrcAddr = Source Address
+	Sport = Source Port
+	Dir = Direction
+	DstAddr = Destination Address
+	Dport = Destination Port
+	State = State
+	sTos = Type of service from source to destination
+	dTos = Type of service from destination to source
+	TotPkts = Total of Packets
+	TotBytes = Total of bytes
+	SrcBytes = Total bytes from source to destination
+	Label = Label as normal or anomalous
+
+Features - Aggregated
+	normal_flow_count 		= count of normal (known) flow
+	background_flow_count 	= count of background (unknown) flows
+	avg_duration 			= average duration time of flows
+	n_conn 					= count of flows
+	n_s_a_p_address 		= count of class A source address
+	n_d_a_p_address 		= count of class A destination address
+	n_s_b_p_address 		= count of class B source address
+	n_d_b_p_address 		= count of class B destination address
+	n_s_c_p_address 		= count of class C source address
+	n_d_c_p_address 		= count of class C destination address
+	n_s_na_p_address 		= count of class D* source address. IPs that arent class A, B and C are 'na'. Consirering only public IPs, not A,B,C classes are D. However, internal address will also be classified as 'na'
+	n_d_na_p_address 		= count of class D* destination address
+	n_icmp 					= count of ICMP packets
+	n_tcp 					= count of TCP packets
+	n_udp 					= count of UDP packets
+	n_dports<1024 			= count of destinations ports lower than 1024
+	n_sports<1024 			= count of source ports lower than 1024
+	n_sports>1024 			= count of source ports higher than 1024
 
 Attack Types
 	CF: Click Fraud; 
@@ -76,7 +96,42 @@ File Types:
 		More features than .binetflow format
 
 =============================================================================================================================================================================================================================
- 
+
+BinetflowTrainer-master
+	Accuracy_on_Bots
+		An analysis on detecting various bots. Select scenario by bot, change the interval (1s) and machine learning algorithm (Decision Tree, Random Forest and Tensorflow) to see how well each algorithm does.
+		Select files with one target bot and analyse the merged dataset
+	Binet_roc_curves
+		Evaluate ROC-AUC of algorithms for selected good files and for all files, changing the frame time (0.15, 0.25, 1 and 2 seconds) and the slice for testing
+	eigensim_fi_score
+		????
+	Evaluating_Models
+		Point of this notebook is to compare how different algorithms perform on all the files. 
+		Change the interval to see how it does in other intervals. But you should leave the machine learning algorithm the same for each section.
+		Only implemented for 1s, but it is very easy to change it
+		Evaluate the numbers of normal, anomalies, trainging, testing. Also evaluate predicted normal, predicted attack, precision, recall and F1
+		*** Sounds like there is some erro for 17.pk1 scenarion since the predicted number of attack and normal are quite similar to the total of cases ***
+	FeaturePlotting
+		Scatter plot of feature 9 for each scenario with 0.15s, where normal entries are gray and anomalies green
+		Intersting scatter plot. Should be better understud?
+		we can change it for plotting all features and files
+	RandomForest
+		Evaluate results and feature importance according to random forest algorithm for all scenarios with aggregation of 0.15s
+		Intersting histogram plot with standard deviation 
+		We can use this feature importance to select what use in our work. We can sum the importance of each feature for each scenario and use the best
+	scramble_feature_mlp_keras
+		summirize selected files and run tensorflow keras
+	Step Ahead Analysis
+		Evaluate the step ahead approach, but it is not important
+	Table_Comparisons
+		Summary of all important results
+	Tuning_Parameters
+		Fit with tunned parameters but nod predict
+	summarizer
+		Implements the data aggregation
+
+=============================================================================================================================================================================================================================
+
  - we consider botnet traffic the attacks and c&c
  - Original paper: An empirical comparison of botnet detection - computer and security - 2014
 	Testing: 1,2,6,8,9
@@ -95,7 +150,6 @@ compared with the normal distribution. For normally distributed data the kurtosi
 is 0. Positive kurtosis indicates a relatively peaked distribution. Negative kurtosis
 indicates a relatively flat distribution. 
  - https://codeburst.io/2-important-statistics-terms-you-need-to-know-in-data-science-skewness-and-kurtosis-388fef94eeaa
-
 
  compute skewness and kurtosis inside c-step, so we need to change the c-step.
  	get X_support after iterative min det covariance
