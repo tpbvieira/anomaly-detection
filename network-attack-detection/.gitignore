@@ -10,8 +10,8 @@ venv/
 
 _/
 data/
-output/eda/
-output/results/pkl_sum_dict/
+output/ctu_13/eda/
+output/ctu_13/results/pkl_sum_dict/
 
 BinetflowTrainer-master/.idea/
 BinetflowTrainer-master/__pycache__/
