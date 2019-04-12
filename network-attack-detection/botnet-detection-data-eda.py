@@ -145,7 +145,6 @@ for sample_file in file_list:
     raw_pkl_file_path = os.path.join(raw_pkl_directory, sample_file).decode('utf-8')
     if os.path.isfile(raw_pkl_file_path):
         print("## Sample File: %s" % raw_pkl_file_path, file=raw_eda_file)
-
         df = pd.read_pickle(raw_pkl_file_path)
     else:  # load raw file and save clean data into pickles
         raw_eda_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
@@ -154,6 +153,7 @@ for sample_file in file_list:
         df = data_cleasing(raw_df)
         df.to_pickle(raw_pkl_file_path)
     gc.collect()
+    raw_eda_file.flush()
 
     print("\n", df.head(), file=raw_eda_file)
     print("\nData Types: ", df.dtypes, file=raw_eda_file)
@@ -166,11 +166,14 @@ for sample_file in file_list:
     print("\nState:\n", df['State'].value_counts(), file=raw_eda_file)
     print("\nsTos:\n", df['sTos'].value_counts(), file=raw_eda_file)
     print("\ndTos:\n", df['dTos'].value_counts(), file=raw_eda_file)
+    raw_eda_file.flush()
 
     # Print the distribution fitting for each feature
     for i, cn in enumerate(df[raw_features_names]):
         best_dist_fitting = get_best_distribution_fit(df[cn])
+        print('###', cn, file=raw_eda_file)
         print(best_dist_fitting, file=raw_eda_file)
+        raw_eda_file.flush()
 
     # Plot the distribution of each feature
     for i, cn in enumerate(df[raw_features_names]):
@@ -231,6 +234,7 @@ for sample_file in file_list:
         df = data_cleasing(agg_df)
         df.to_pickle(agg_pkl_file_path)
     gc.collect()
+    agg_eda_file.flush()
 
     print("\n", df.head(), file=agg_eda_file)
     print("\nData Types: ", df.dtypes, file=agg_eda_file)
@@ -254,12 +258,14 @@ for sample_file in file_list:
     print("\nn_dports<1024:\n", df['n_dports<1024'].value_counts(), file=agg_eda_file)
     print("\nn_d_b_p_address:\n", df['n_d_b_p_address'].value_counts(), file=agg_eda_file)
     print("\nn_tcp:\n", df['n_tcp'].value_counts(), file=agg_eda_file)
+    agg_eda_file.flush()
 
     # Print the distribution fitting for each feature
     for i, cn in enumerate(df[agg_features_names]):
         best_dist_fitting = get_best_distribution_fit(df[cn])
         print('###', cn, file=agg_eda_file)
         print(best_dist_fitting, file=agg_eda_file)
+        agg_eda_file.flush()
 
     # Plot the distribution of each feature
     for i, cn in enumerate(df[agg_features_names]):
@@ -483,7 +489,6 @@ def extract_fuature():
 
     n_df.columns = n_df.columns.droplevel(0)  # get rid of the heirarchical columns
     pd.options.display.max_columns = 99
-
 
     print('New nData Types: ', n_df.dtypes)
     print(n_df.head())
