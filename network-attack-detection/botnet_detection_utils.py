@@ -186,7 +186,172 @@ def data_cleasing(m_df):
     return m_df
 
 
-def data_splitting(df, drop_features):
+def data_splitting20(df, drop_features):
+    # Data splitting
+
+    # drop non discriminant features
+    df.drop(drop_features, axis=1, inplace=True)
+
+    # split into normal and anomaly
+    df_l1 = df[df["Label"] == 1]
+    df_l0 = df[df["Label"] == 0]
+    gc.collect()
+
+    # Length and indexes
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1              # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = (norm_len * 20) // 100         # 20% of normal for training
+    norm_cv_start = norm_train_end + 1              # 40% of normal for cross validation
+    norm_cv_end = (norm_len * 60) // 100            # 40% of normal for cross validation
+    norm_test_start = norm_cv_end + 1               # 40% of normal for testing
+
+    # anomalies split data
+    anom_cv_df = df_l1[:anom_train_end]             # 50% of anomalies59452
+    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
+    gc.collect()
+
+    # normal split data
+    norm_train_df = df_l0[:norm_train_end]          # 20% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]   # 40% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 40% of normal
+    gc.collect()
+
+    # CV and test data. train data is norm_train_df
+    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
+    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
+
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    cv_label = cv_df["Label"]
+    test_label = test_df["Label"]
+    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
+    cv_df = cv_df.drop(labels=["Label"], axis=1)
+    test_df = test_df.drop(labels=["Label"], axis=1)
+
+    gc.collect()
+
+    return norm_train_df, cv_df, test_df, cv_label, test_label
+
+
+def data_splitting34(df, drop_features):
+    # Data splitting
+
+    # drop non discriminant features
+    df.drop(drop_features, axis=1, inplace=True)
+
+    # split into normal and anomaly
+    df_l1 = df[df["Label"] == 1]
+    df_l0 = df[df["Label"] == 0]
+    gc.collect()
+
+    # Length and indexes
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1              # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = (norm_len * 34) // 100         # 34% of normal for training
+    norm_cv_start = norm_train_end + 1              # 33% of normal for cross validation
+    norm_cv_end = (norm_len * 67) // 100            # 33% of normal for cross validation
+    norm_test_start = norm_cv_end + 1               # 33% of normal for testing
+
+    # anomalies split data
+    anom_cv_df = df_l1[:anom_train_end]             # 50% of anomalies59452
+    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
+    gc.collect()
+
+    # normal split data
+    norm_train_df = df_l0[:norm_train_end]          # 20% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]   # 40% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 40% of normal
+    gc.collect()
+
+    # CV and test data. train data is norm_train_df
+    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
+    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
+
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    cv_label = cv_df["Label"]
+    test_label = test_df["Label"]
+    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
+    cv_df = cv_df.drop(labels=["Label"], axis=1)
+    test_df = test_df.drop(labels=["Label"], axis=1)
+
+    gc.collect()
+
+    return norm_train_df, cv_df, test_df, cv_label, test_label
+
+
+def data_splitting40(df, drop_features):
+    # Data splitting
+
+    # drop non discriminant features
+    df.drop(drop_features, axis=1, inplace=True)
+
+    # split into normal and anomaly
+    df_l1 = df[df["Label"] == 1]
+    df_l0 = df[df["Label"] == 0]
+    gc.collect()
+
+    # Length and indexes
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1              # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = (norm_len * 40) // 100         # 40% of normal for training
+    norm_cv_start = norm_train_end + 1              # 30% of normal for cross validation
+    norm_cv_end = (norm_len * 70) // 100            # 30% of normal for cross validation
+    norm_test_start = norm_cv_end + 1               # 30% of normal for testing
+
+    # anomalies split data
+    anom_cv_df = df_l1[:anom_train_end]             # 50% of anomalies59452
+    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
+    gc.collect()
+
+    # normal split data
+    norm_train_df = df_l0[:norm_train_end]          # 40% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]   # 30% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 30% of normal
+    gc.collect()
+
+    # CV and test data. train data is norm_train_df
+    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
+    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
+
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    cv_label = cv_df["Label"]
+    test_label = test_df["Label"]
+    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
+    cv_df = cv_df.drop(labels=["Label"], axis=1)
+    test_df = test_df.drop(labels=["Label"], axis=1)
+
+    gc.collect()
+
+    return norm_train_df, cv_df, test_df, cv_label, test_label
+
+
+def data_splitting50(df, drop_features):
     # Data splitting
 
     # drop non discriminant features

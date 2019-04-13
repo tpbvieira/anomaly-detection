@@ -8,10 +8,20 @@ import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.metrics import f1_score
 from moment_anomaly_detector import MomentAnomalyDetector
-from botnet_detection_utils import data_splitting, drop_agg_features, get_classification_report, data_cleasing, column_types
+from botnet_detection_utils import data_splitting34, drop_agg_features, get_classification_report, data_cleasing, column_types
 warnings.filterwarnings("ignore")
 
 def semiSupervisedCV2(t_normal_df, t_cv_df, t_cv_label, n_it):
+    """
+    Semi Supervised Cross Validation where contamination is estimated from the number of anomalies in the cross
+    validation data set.
+
+    :param t_normal_df:
+    :param t_cv_df:
+    :param t_cv_label:
+    :param n_it:
+    :return:
+    """
     # initialize
     m_best_model = MomentAnomalyDetector()
     m_best_f1 = -1
@@ -20,7 +30,6 @@ def semiSupervisedCV2(t_normal_df, t_cv_df, t_cv_label, n_it):
     n_anom = np.count_nonzero(t_cv_label)
     n_norm = t_cv_label.size - n_anom
     m_best_contamination = (n_anom * 1.0) / (n_norm * 1.0)
-    print(m_best_contamination)
 
     # suffle cv data
     t_cv_df['Labels'] = t_cv_label
@@ -201,14 +210,14 @@ for features_key, value in drop_agg_features.items():
             gc.collect()
 
             # data splitting
-            norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting(df, drop_agg_features[features_key])
+            norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting34(df, drop_agg_features[features_key])
             # train_df, train_label_df, test_df, test_label_df = unsupervised_data_splitting(df, drop_agg_features[features_key])
 
             m_mcd_result_dict = {}
             for i in range(it):
 
                 # Cross-Validation and model selection
-                train_best_model, train_best_cont, train_best_f1, train_best_alg = semiSupervisedCV2(norm_train_df, cv_df, cv_label_df, cv_it)
+                train_best_model, train_best_cont, train_best_f1, train_best_alg = semiSupervisedCV(norm_train_df, cv_df, cv_label_df, cv_it)
                 test_label = test_label_df.astype(np.int8)
 
                 # train_best_model, train_best_cont, train_best_f1, train_best_alg = unsupervisedCV(train_df, train_label_df, 1)

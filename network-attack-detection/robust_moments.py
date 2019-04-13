@@ -630,6 +630,7 @@ class MomentMinCovDet(EmpiricalCovariance):
             warnings.warn("The covariance matrix associated to your dataset is not full rank")
         # compute and store raw estimates
         raw_location, raw_covariance, raw_support, raw_dist, raw_moments = fast_mcd(X, support_fraction=self.support_fraction,cov_computation_method=self._nonrobust_covariance,random_state=random_state)
+
         if self.assume_centered:
             raw_location = np.zeros(n_features)
             raw_covariance = self._nonrobust_covariance(X[raw_support],assume_centered=True)
