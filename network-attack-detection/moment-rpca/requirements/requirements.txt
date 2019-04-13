@@ -1,0 +1,11 @@
+fbpca==1.0
+hyperspy==1.4.1
+ipdb==0.12
+numpy==1.15.2
+pytest==3.9.3
+matplotlib==3.0.0
+pandas==0.24.2
+scikit-learn==0.20.0
+scipy==1.2.1
+sklearn==0.0
+tensorly==0.4.3

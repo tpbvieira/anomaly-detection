@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+pkl_sum/
+env
+plots/confusion_matrices
+plots/precision_recall_curve
+plots/__pycache__
