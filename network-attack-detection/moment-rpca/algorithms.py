@@ -39,7 +39,7 @@ def fit(data, m_reg_J=1):
     rob_mean = L.mean(axis=0)
     rob_cov = pd.DataFrame(L).cov()
     rob_precision = linalg.pinvh(rob_cov)
-    rob_dist = (np.dot(L, rob_precision) * (L)).sum(axis=1)
+    rob_dist = (np.dot(L, rob_precision) * L).sum(axis=1)
 
     rob_skew = skew(L, axis=0, bias=True)
     rob_skew_dist = (np.dot(L - rob_skew, rob_precision) * (L - rob_skew)).sum(axis=1)
@@ -50,23 +50,25 @@ def fit(data, m_reg_J=1):
     return L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist
 
 
-def cv_location_contamination(df, location, precision):
+def cv_location_contamination(cv_df, cv_labels, location, precision):
     """
 
-    :param df: cross-validation data frame
-    :param location:
-    :param precision:
+    :param cv_df: cross-validation data frame
+    :param cv_labels: labels to evaluate prediction performance by contamination
+    :param location: mean vector
+    :param precision: inverse of covariance matrix
     :return: For all tested contamination rates, returns the rate in which the best F1-score were achieved.
     """
 
     contamination = round(0.00, 2)
     contamination_prediction_list = []
-    actual_anomalies = np.array(df['Label'])
+    labels = np.array(cv_labels)
+
     for i in range(40):
         contamination += 0.01
         contamination = round(contamination, 2)
-        pred_label, mahal_dist = predict_by_location_contamination(df, location, precision, contamination)
-        contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label)))
+        pred_label = predict_by_location_contamination(cv_df, location, precision, contamination)
+        contamination_prediction_list.append((contamination, f1_score(labels, pred_label)))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     contamination_best_f1 = contamination_prediction_list[0][0]
@@ -74,20 +76,24 @@ def cv_location_contamination(df, location, precision):
     return contamination_best_f1
 
 
-def cv_location_threshold(df, location, precision, dist):
+def cv_location_threshold(cv_df, cv_labels, location, precision, dist):
     """
 
-    :param df: cross-validation data frame
+    :param cv_df: cross-validation data frame
+    :param cv_labels: labels to evaluate prediction performance by contamination
     :param location:
     :param precision:
     :return: For all tested contamination rates, returns the rate in which the best F1-score were achieved.
     """
 
     threshold_prediction_list = []
-    actual_anomalies = np.array(df['Label'])
-    for m_threshold in np.linspace(min(dist), max(dist), 10):
-        pred_label, mahal_dist = predict_by_location_threshold(df, location, precision, m_threshold)
-        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label)))
+    labels = np.array(cv_labels)
+    min_dist = min(dist)
+    max_dist = max(dist)
+
+    for m_threshold in np.linspace(min_dist, max_dist, 40):
+        pred_label = predict_by_location_threshold(cv_df, location, precision, m_threshold)
+        threshold_prediction_list.append((m_threshold, f1_score(labels, pred_label)))
 
     threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_threshold = threshold_prediction_list[0][0]
@@ -95,22 +101,23 @@ def cv_location_threshold(df, location, precision, dist):
     return best_threshold
 
 
-def cv_skewness_contamination(df, skewness, precision):
+def cv_skewness_contamination(cv_df, cv_labels, skewness, precision):
     """
 
-    :param df: cross-validation data frame
-    :param location:
+    :param cv_df: cross-validation data frame
+    :param cv_labels: labels to evaluate prediction performance by contamination
+    :param skewness:
     :param precision:
     :return: For all tested contamination rates, returns the rate in which the best F1-score were achieved.
     """
 
     contamination = round(0.00, 2)
     contamination_prediction_list = []
-    actual_anomalies = np.array(df['Label'])
+    actual_anomalies = np.array(cv_labels)
     for i in range(40):
         contamination += 0.01
         contamination = round(contamination, 2)
-        pred_label = predict_by_skewness_contamination(df, precision, skewness, contamination)
+        pred_label = predict_by_skewness_contamination(cv_df, precision, skewness, contamination)
         contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label)))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
@@ -119,10 +126,11 @@ def cv_skewness_contamination(df, skewness, precision):
     return best_contamination
 
 
-def cv_skewness_threshold(df, skewness, precision, skew_dist):
+def cv_skewness_threshold(cv_df, cv_labels, skewness, precision, skew_dist):
     """
 
-    :param df:
+    :param cv_df:
+    :param cv_labels: labels to evaluate prediction performance by contamination
     :param skewness:
     :param precision:
     :param skew_dist:
@@ -130,9 +138,12 @@ def cv_skewness_threshold(df, skewness, precision, skew_dist):
     """
 
     threshold_prediction_list = []
-    actual_anomalies = np.array(df['Label'])
-    for m_threshold in np.linspace(min(skew_dist), max(skew_dist), 10):
-        pred_label = predict_by_skewness_threshold(df, precision, skewness, m_threshold)
+    actual_anomalies = np.array(cv_labels)
+    min_dist = min(skew_dist)
+    max_dist = max(skew_dist)
+
+    for m_threshold in np.linspace(min_dist, max_dist, 40):
+        pred_label = predict_by_skewness_threshold(cv_df, precision, skewness, m_threshold)
         threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label)))
 
     threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
@@ -141,7 +152,7 @@ def cv_skewness_threshold(df, skewness, precision, skew_dist):
     return best_threshold
 
 
-def cv_kurtosis_contamination(df, m_kurtosis, precision):
+def cv_kurtosis_contamination(cv_df, cv_labels, m_kurtosis, precision):
     """
 
     :param df: cross-validation data frame
@@ -152,11 +163,11 @@ def cv_kurtosis_contamination(df, m_kurtosis, precision):
 
     contamination = round(0.00, 2)
     contamination_prediction_list = []
-    actual_anomalies = np.array(df['Label'])
+    actual_anomalies = np.array(cv_labels)
     for i in range(40):
         contamination += 0.01
         contamination = round(contamination, 2)
-        pred_label = predict_by_kurtosis_contamination(df, precision, m_kurtosis, contamination)
+        pred_label = predict_by_kurtosis_contamination(cv_df, precision, m_kurtosis, contamination)
         contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label)))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
@@ -165,50 +176,54 @@ def cv_kurtosis_contamination(df, m_kurtosis, precision):
     return best_contamination
 
 
-def predict_by_location_contamination(X, location, precision, contamination):
+def cv_kurtosis_threshold(cv_df, cv_labels, kurtosis, precision, kurt_dist):
     """
 
-    :param X:
+    :param cv_df:
+    :param cv_labels: labels to evaluate prediction performance by contamination
+    :param kurtosis:
+    :param precision:
+    :param kurt_dist:
+    :return:
+    """
+
+    threshold_prediction_list = []
+    actual_anomalies = np.array(cv_labels)
+    min_dist = min(kurt_dist)
+    max_dist = max(kurt_dist)
+
+    for m_threshold in np.linspace(min_dist, max_dist, 40):
+        pred_label = predict_by_kurtosis_threshold(cv_df, precision, kurtosis, m_threshold)
+        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label)))
+
+    threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
+    best_threshold = threshold_prediction_list[0][0]
+
+    return best_threshold
+
+
+def predict_by_location_contamination(test_df, location, precision, contamination):
+    """
+
+    :param test_df:
     :param location:
     :param precision:
     :param contamination:
     :return:
     """
 
-    pred_label = np.full(X.shape[0], 0, dtype=int)
+    pred_label = np.full(test_df.shape[0], 0, dtype=int)
     if contamination is not None:
         # malhalanobis distance
-        # X = X - mean_vector # test with and without this line
-        mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
-        mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
+        mahal_dist = pairwise_distances(test_df, location[np.newaxis, :], metric='mahalanobis', VI=precision)
+        mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2  #MD squared
         # detect outliers
         contamination_threshold = np.percentile(mahal_dist,  100. * (1. - contamination))
         pred_label[mahal_dist > contamination_threshold] = 1
     else:
         raise NotImplementedError("You must provide a contamination rate.")
 
-    return pred_label, mahal_dist
-
-
-def predict_by_location_threshold(X, location, precision, threshold):
-    """
-
-    :param X:
-    :param location:
-    :param precision:
-    :param contamination:
-    :return:
-    """
-
-    pred_label = np.full(X.shape[0], 0, dtype=int)
-
-    # malhalanobis distance
-    mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
-    mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
-    # detect outliers
-    pred_label[mahal_dist > threshold] = 1
-
-    return pred_label, mahal_dist
+    return pred_label
 
 
 def predict_by_location_centered_contamination(X, location, precision, contamination):
@@ -224,7 +239,7 @@ def predict_by_location_centered_contamination(X, location, precision, contamina
     pred_label = np.full(X.shape[0], 0, dtype=int)
     if contamination is not None:
         # malhalanobis distance
-        X = X - location # test with and without this line
+        X = X - location
         mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
         mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
         # detect outliers
@@ -233,7 +248,28 @@ def predict_by_location_centered_contamination(X, location, precision, contamina
     else:
         raise NotImplementedError("You must provide a contamination rate.")
 
-    return pred_label, mahal_dist
+    return pred_label
+
+
+def predict_by_location_threshold(X, location, precision, threshold):
+    """
+
+    :param X:
+    :param location:
+    :param precision:
+    :param threshold:
+    :return:
+    """
+
+    pred_label = np.full(X.shape[0], 0, dtype=int)
+
+    # malhalanobis distance
+    mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
+    mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
+    # detect outliers
+    pred_label[mahal_dist > threshold] = 1
+
+    return pred_label
 
 
 def predict_by_skewness_contamination(X, precision, skewness, contamination):
@@ -335,6 +371,7 @@ def predict_by_skewness_centered_threshold(X, precision, skewness, threshold):
 
     return pred_label
 
+
 def predict_by_kurtosis_contamination(X, precision, m_kurtosis, contamination):
     """
 
@@ -398,12 +435,9 @@ def predict_by_kurtosis_threshold(X, precision, m_kurtosis, threshold):
 
     pred_label = np.full(X.shape[0], 0, dtype=int)
 
-    # m_kurtosis	 of the data
-    X_kurt = kurtosis(X, axis=0, bias=True)
-
     # malhalanobis distance
-    mahal_dist = pairwise_distances(X_kurt, m_kurtosis[np.newaxis, :], metric='mahalanobis', VI=precision)
-    mahal_dist = np.reshape(mahal_dist, (len(X_kurt),)) ** 2  # MD squared
+    mahal_dist = pairwise_distances(X, m_kurtosis[np.newaxis, :], metric='mahalanobis', VI=precision)
+    mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  # MD squared
     pred_kurt_dist = -mahal_dist
 
     # detect outliers
@@ -436,5 +470,3 @@ def predict_by_kurtosis_centered_threshold(X, precision, m_kurtosis, threshold):
     pred_label[pred_kurt_dist <= threshold] = 1
 
     return pred_label
-
-

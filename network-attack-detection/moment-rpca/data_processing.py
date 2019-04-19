@@ -3,12 +3,34 @@ import pandas as pd
 
 
 def get_dataset(prefix):
-    file_list = [open('../data/ctu_13/pkl_sum/%ss_10.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_11.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_12.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/pkl_sum/%ss_15.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_15-2.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/pkl_sum/%ss_15-3.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_16.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/pkl_sum/%ss_16-2.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_16-3.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/pkl_sum/%ss_17.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_18.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/pkl_sum/%ss_18-2.pk1' % prefix, 'rb'), open('../data/ctu_13/pkl_sum/%ss_19.pk1' % prefix, 'rb')]
+    file_list = [open('../data/ctu_13/pkl_sum/%ss_10.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_11.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_12.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_15.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_15-2.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_15-3.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_16.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_16-2.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_16-3.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_17.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_18.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_18-2.pk1' % prefix, 'rb'),
+                 open('../data/ctu_13/pkl_sum/%ss_19.pk1' % prefix, 'rb')]
+
+    # file_list = [
+    #     # open('../data/ctu_13/pkl_sum/%ss_10.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_11.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_12.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_15.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_15-2.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_15-3.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_16.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_16-2.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_16-3.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_17.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_18.pk1' % prefix, 'rb'),
+    # #              open('../data/ctu_13/pkl_sum/%ss_19.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/pkl_sum/%ss_18-2.pk1' % prefix, 'rb')]
 
     return [pickle.load(file) for file in file_list], file_list
 
