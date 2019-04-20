@@ -1,0 +1,318 @@
+A multi-level intrusion detection method for abnormal network behaviors - jnca - 2016
+================================================================================================================================================================================
+	Abnormal network traffic analysis has become an increasingly important research topic to protect computing infrastructures from intruders.
+	(1) understanding hidden underlying patterns from network traffic data by creating reliable rules to identify network abnormality, (2) generating a predictive model to determine exact attack categories, and (3) integrating a visual analytics tool to conduct an interactive visual analysis and validate the identified intrusions with transparent reasons.
+	a broadly known intrusion dataset (i.e. NSL-KDD) is used
+	The anomaly detection identifies abnormal behaviors on hosts or networks based on the assumption that each attack shows different behaviors compared to normal activity.
+	the anomaly detection method may provide a high false alarm rate, and require extensive training sets to achieve a reliable performance result (Chandola et al., 2009; Eskin et al., 2002).
+	(1) generating simple and reliable rules to identify intrusions, (2) building a predictive model to determine exact attack categories by utilizing a signal processing technique (i.e. DWT) and Support Vector Machine (SVM), and (3) visually representing the input data to support an interactive visual analysis. For the visual analysis, a visual analytics tool called iPCA (Jeong et al., 2009) was used. With this tool, an interactive visual analysis was conducted to understand the intrusions and their relationships.
+	usar para comparar resultados
+	Rule-based anomaly detection techniques are introduced to capture rules that can identify network behaviors using Fuzzy (Chadha and Jain, 2015; Amini et al., 2015) or decision trees (Lee et al., 2008; Kruegel and Toth, 2003; Stein et al., 2005; Jain and Abouzakhar, 2013). Also, clustering technique (Lin et al., 2015) and SVM (Kuang et al., 2015; Wang et al., 2015; Aslahi-Shahri et al., 2015; Sani and Gha- semi, 2015)
+	Xiang et al. (2008) introduced a multiple-level hybrid classifiers combining tree classifiers and Bayesian clustering to detect network anomaly. Kuang et al. (2015) presented a hybrid classifier by integrating SVM and principal component analysis. Golmah (2014) proposed an hybrid intrusion detection method integrating both C5.0 and SVM.
+	To generate a reliable ID system model, feature selection and extraction are considered as critical tasks for saving computational cost as well as for discovering data patterns. The feature selection is used to select a subset of most meaningful features from the original feature. The feature extraction is necessary for converting input data to reduce dimensions.
+	Genetic Algorithm (GA) (Aslahi-Shahri et al., 2015), entropy of network features (Agarwal and Mittal, 2012), Partial Least Square (PLS) (Gan et al., 2013), Kernel Principal Component Analysis (KPCA) (Kuang et al., 2015), and cuttlefish optimization algorithm (Eesa et al., 2015).
+	it is important to note that the generated new feature set may not maintain the same or similar patterns compared to the original input data (Yang et al., 2011). Sanei et al. (2015) addressed the potential capability of discovering important features from input data by utilizing signal processing techniques.
+	To address this limitation, the categorical variables are converted to dummy variables. In addition, a visual analytics approach is integrated to identify transparent reasons about detected abnormal activities.
+	NSL-KDD dataset is the refined version of the KDD cup'99 dataset that redundant data records are removed
+	the approach consists of three steps: (1) generating rules to detect outcome (normal/abnormal), (2) building an abnormal network behavior model to detect exact attack categories (i.e. DoS,
+Probe, R2L), and (3) conducting an interactive visual analysis to provide transparent reasons.
+	To determine exact attack categories, an extraction of significant DWT features from the numerical variables is performed. Furthermore, an interactive visual analysis is conducted to find the relationship between the raw and the DWT features and to present transparent reasons about the results.
+	To determine exact attack categories, an extraction of significant DWT features from the numerical variables is performed. Furthermore, an interactive visual analysis is conducted to find the relationship between the raw and the DWT features and to present transparent reasons about the results.
+	CART expression forms explicit and transparent grammatical rules
+	a software application (called TreeParser) is designed to extract rules from the trees by navigating all branches of the generated trees. With the extracted rules, the performance of each rule is measured with a distinctive testing dataset.
+	Since signal processing technique has a capability of discovering hidden patterns from input data, discrete wavelet transform (DWT) is used. DWT is a promising technique for time-frequency analysis by decomposing the input data until pre-determined level. By decomposing the input data, further detailed information (e.g. any pattern changes) can be represented. we used DWT to extract new features representing hidden but significant patterns.
+	Three ML algorithms such as SVM, Neural Network (NN), and Naïve Bayes are compared.
+	In general, SVM (Vapnik, 1998) is simple, fast in operation, and has good robustness than Bayes and Neural Network.
+	In this study, SVM is used to generate a classifier. Also, a performance comparison with NN and Naïve Bayes is conducted.
+	iPCA is designed to represent the results of Principal Component Analysis (PCA) using multiple coordinated views and a rich set of user interactions to support interactive analysis of multivariate datasets.
+	A statistical analysis (i.e. ANOVA) is performed to determine statistically significant features
+	Then, the 22 significant features are used to generate decision trees.
+	A total number of 54,275 data for the DoS attack, 14,077 for the Probe
+	2167 for DoS, 559 for Probe
+	As shown in Fig. 2, we found that the DWT features clearly separate the attack categories while the raw features maintain similar patterns.
+	thus an approximation method based on SVD called Online SVD (Brand, 2006) is used to perform the PCA computation and maintain real-time user interactions when interacting with large scale datasets.
+	clear separation among the attacks in the projection of the DWT features (see Fig. 3(B)). The DoS attack is forming two clusters that are completed separated from other attacks. Since there is a similarity between Probe and R2L even in the DWT features, an additional analysis is conducted to determine common features appeared in both categories.
+	To investigate the relationship among the features, Pearson-correlation analysis is conducted.
+	there was no clear separation among the attacks using the raw features (see Fig. 3(A)). This might be because a half of the features maintain neutral correlations (Fig. 5(A)). However, positive and negative correlations are easily discovered in the DWT features (Fig. 5(B)). When looking at the scatterplots having highly positive correlation coefficients ( γ 1⁄4 0:99) in Fig. 5(C) and (D),
+	The performance of three ML techniques (i.e. SVM, Naïve Byes, and NN) is compared and presented in Table 3. The average accuracy to detect exact attack categories with SVM, Naïve Bayes, and NN were 95.5471%, 89.024%, and 96.67%, respectively.
+	Although DWT was often used by researchers to detect network abnormal behaviors, it was simply used to determine a threshold or to reconstruct data by removing noise. Unlike other studies, this study emphasizes the importance of using DWT to extract significant features for detecting network abnormal behaviors.
+	we identified that the true positive for the R2L with the raw feature is 59.8% and 75% for the DWT features.
+	In our study, the FP rate for the raw and the DWT features were 7.9% and 2.3%, respectively there was no clear separation of the raw features among DOS, Probe, and R2L. However, when using the DWT features, we identified a clear separation among the attack categories.
+	we only focused on utilizing supervised learning algorithms.
+	our method can be applied to other research domains that require to detect abnormal behaviors (or activities) with providing meaningful information.
+	O objetivo principal do artigo é a extração de features significantes que ajudam a tornar classificadores mais eficientes
+
+
+
+An empirical evaluation of information metrics for low-rate and high-rate DDoS attack detection - 2015
+================================================================================================================================================================================
+
+
+A novel PCA-based Network Anomaly Detection - icc - 2011
+================================================================================================================================================================================
+	by means of the Kullback-
+Leibler divergence we are able to obtain great improvements with
+respect to the performance of the “classical” approach.
+	First of all we have introduced a novel method for identifying the anomalous flows inside the aggregates, once an anomaly has been detected
+	we have applied, together with the entropy, the
+Kullback-Leibler divergence for detecting anomalous behav-
+ior, showing that our choice results in better performance and
+more stability for the system.
+	PCA is the most commonly used technique to analyze
+high dimensional data structures. Originally applied in the
+framework of image compression, in the last years it has been
+widely used in the domain of intrusion detection to solve the
+problem of high dimension of typical IDS datasets. In more
+detail, recent papers in networking literature have applied PCA
+to the problem of traffic anomaly detection with promising
+initial results [4], [5], [1], [2], and [3].
+In [4] the author proposed an anomaly detection scheme
+where PCA was used as an anomaly detector and was applied
+to reduce the dimensionality of the data.
+	A recent work by Ringberg et al. provides important insights
+on the difficulties in tuning network-wide PCA-based detectors
+in practice [6].
+	measuring the traffic gone through a given router
+over given time-bins
+	sketches that are data-structures used to map a given
+set of data onto a smaller set [14]
+	we have taken into consid-
+eration the number of bytes sent by each IP source address.
+	the entropy provides a computationally efficient metric for
+estimating the degree of dispersion or concentration of a dis-
+tribution.
+	this module will output a matrix
+for each type of aggregation, in which, for all the aggregates,
+the values of the metric (entropy or K-L divergence) evaluated
+in each time-bin are reported.
+	In our approach the set of dominant PCs is selected by
+means of the scree-plot method
+	The method is based on the assumption that these PCs are
+sufficient to describe the normal behavior of traffic.
+	Once the matrix P has been constructed, we can partition
+ˆ spanned by the dom-
+the space into a normal subspace ( S),
+ ̃ spanned by the
+inant PCs, and an anomalous subspace ( S),
+remaining PCs.
+	when anomalous traffic crosses the net-
+work, a large change in the anomalous component ( Y  ̃ t ) occurs.
+Thus, an efficient method to detect traffic anomalies is to
+compare Y  ̃ t 2 (where · 2 is the L 2 norm) with a given
+threshold (ξ). In more detail, if Y  ̃ t 2 exceeds ξ, the traffic
+is considered anomalous, and we mark the time-bin (t) as an
+anomalous time-bin.
+	the identification method consists of
+searching the particular aggregate that, if removed from the
+aforementioned statistics, would bring it under threshold. In
+this way we identify an element y tn of the vector Y t that
+corresponds to a set A of candidate IP flows responsible for the
+detected anomaly. For this analysis we can use the information
+stored inside the {Y j } dj=1 data matrices that contain d analysis
+of the same traffic data using different hash functions. At this
+point, for each of these matrices we can detect the anomalous
+time-bin and the anomalous aggregate, so we can identify
+j d
+} j=1 of each matrix. Each of these elements
+an element {y tn
+correspond to an aggregate (A j ) of candidate anomalous IP
+flows. Given that, the responsible IP addresses can be found
+by simply evaluating the intersection of all these aggregates
+d
+I = j=1 A j .
+	we have synthetically added some anomalies in the
+data, so as to be able to correctly interpret the offered results,
+at least partially.
+	In more detail we have added several anomalous traf-
+fic flows of different shapes (e.g., constant rate, increas-
+ing/decreasing rate). The anomalies we have added consist of
+1.2 · 10 5 packets (155 anomalous flows in total), and could be
+associated to a DoS attack.
+
+	PCs são selecionados de maneira visual, não automática, enquanto nosso método é automático, através de MOS e eigenanalysis
+
+
+
+A survey of network anomaly detection techniques - jnca - 2016
+================================================================================================================================================================================
+	This paper presents an in-depth analysis of four major categories of anomaly detection techniques which include classification, statistical, information theory and clustering.
+	Classification based network anomaly detection	
+		Support vector machine
+		Bayesian network
+		Neural network
+		Rule-based
+	Statistical anomaly detection
+		Mixture model
+		Signal processing technique
+		Principal component analysis (PCA)
+	Information theory
+		Correlation analysis
+	Clustering-based
+		Regular clustering
+		Co-clustering
+	individuals with malicious intent and large botnets (Papalexakis et al., 2012). According to Symantecs Internet Security Threat Report, there were more than three billion malware attacks reported in 2010 and the number of denial of service attacks increased dramatically by 2013
+	It has been widely studied in statistics and machine learning (Ahmed et al., 2014), and also synonymously termed as outlier detection, novelty detection, deviation detection and exception mining
+	Anomaly detection has been widely applied in countless application domains such as medical and public health, fraud detection, intrusion detection, industrial damage, image processing, sensor networks, robots behavior and astronomical data
+	the anomaly detection techniques (broadly categorized in two: supervised and unsupervised)
+	supervised techniques are based on knowledge provided by an external agent, they require labeled data and are unable to detect zero-day vulnerabilities.
+	Network anomaly detection techniques are generally tested using datasets (such as DARPA/KDD) developed at the end of last century (Creech and Hu, 2013), justified by the need for publicly available test data and the lack of any other alternative datasets.
+	testing of network anomaly detection techniques using these datasets does not provide an effective performance metric, and contributes to erroneous efficacy claims. We consider this phenomenon as ‘Data Issue’
+	A simple example of a DoS attack is denying legitimate users access to a web service when the server is flooded with numerous connection requests. As performing a DoS attack requires no prior access to the target, it is considered a dreaded attack. The DoS attack characteristics match with the collective anomaly (Ahmed and Mahmood, 2014a, 2015, 2014b). As stated in Section 2.1, when a collection of data instances behave anomalously, it is called collective anomaly but a single data instance from that group is not anomalous. In case of a DoS attack, numerous connection request to a web server is a collective anomaly but a single request is legitimate. So, we can consider the DoS attack as collective anomaly.
+	A Probe attack is considered the first step in an actual attack to compromise a host or network. Probe attacks are based on specific intention to attain information and reconnaissance. The authors of this paper map them with contextual anomaly.
+	The classification based approaches rely on the normal traffic activity profile that builds the knowledge base and consider activities deviate from baseline profile as anomalous. The advantage lies in their capability to detect attacks which are completely novel, assuming that they exhibit ample deviations from the normal profile. Additionally, as normal traffic not included in the knowledge base is considered an attack, there will be inadvertent false alarms. Therefore, training is required for anomaly detection techniques to build a normal activity profile which is time-consuming and also depends on the availability of completely normal traffic datasets.
+	An anomaly detection technique based on PCA (Shyu et al.,2003) has the benefits of: being free from any assumption of statistical distribution; being able to reduce the dimension of the data without losing any important information; and
+	Limitations of DARPA/KDD datasets Among the anomaly detection techniques discussed in the scope of this paper, more than 50% of them uses the DARPA/KDD datasets due to their availability. However, these datasets are criticized by Testing intrusion detection systems (2000) for the generation procedure and the analysis by Mahoney and Chan (2003) found evidence of simulation artifacts that could result in over-estimations of anomaly detection performances. 
+	as repetições e redundância podem influenciar learning based algorithms, mas o nosso é blind e não depende de conhecimento prévio ou aprendizado
+	it is important to create intrusion detection datasets in modern-day computing to address the issues of DARPA/KDD. The next section discusses one such contemporary dataset for network traffic analysis.
+	NSL-KDD (NSL-KDD, 2014): It is a dataset suggested as a means of solving some of the inherent problems of the KDD dataset
+	the anomaly detection techniques which only have the labelled output are more efficient than the score based outputs. In this scenario, clustering and information theory based techniques are better than the classification and statistical techniques.
+	DoS attacks are the most easily launched attacks and yet they have detrimental impact on any network. Therefore, the techniques dealing with identifying DoS attacks are more demanding than others.
+
+
+
+Denial of Service Attack Detection using Multivariate Correlation Analysis - 2016
+================================================================================================================================================================================
+	Attackers often generate attack traffic that behaves similar to normal network traffic using sophisticated attacking tools. Many intrusion detection systems fail to detect anomalous packets in real time. In this paper, we use a Multivariate Correlation Analysis (MCA) approach to distinguish attack traffic from normal traffic
+	Since DDoS attack traffic behaves differently from legitimate network traffic, statistical properties of various parameters reflect the changed behavior of network traffic. We extract three basic parameters of network traffic, viz., entropy of source IPs, variation of source IPs and packet rate to analyze the behavior of network traffic during attack detection
+	Network intrusion detection systems fall into two categories, viz., misuse detection and anomaly detection. Misuse detection, also referred to as signature-based detection, detects only known attacks if the traffic pattern matches already created attack signatures. On the other hand, anomaly detection generates a profile for the normal network traffic and if the observed network traffic profile deviates from the normal profile significantly, the traffic is marked anomalous
+	In this paper, we use Multivariate Correlation Analysis (MCA) using three distinct attributes, viz., entropy of source IPs, variation index of source IPs and packet rate to identify anomalous traffic in near real-time 
+	interessante para comparação, por usar packet rate
+	We validate our method using three datasets, viz., (i) CAIDA DDoS 2007 (ii) KDD CUP 99 and (iii) TU-IDS.
+	The detection approach consists of three steps, viz., (i) sampling of network traffic into multiple time windows (ii) computing entropy of source IPs, variation index of source IPs and packetrate for each window, and (iii) analyzing correlation among source IPs, variations of source IPs and packet rate for each time window.
+	The proposed method assumes the following. Assumption 1: If the entropy of source IPs is very high and the packet rate is also very high, the attack probability is high. Assumption 2: If variations among source IPs are very high and the packet rate is also high, the attack probability is high.
+	Our method gives 98.85% detection rate with 0.015% false positive rate whereas the MCA-based method gives 95.11% detection rate with 1.26% false positive rate. Moreover, our method gives higher detection rate as compared to NFBoost with Cost Minimization method [13] that gives 98.2% detection rate with 1.7% false positive rate.
+	The proposed DoS/DDoS detection method detects at- tacks based on the deviation of the attack profile from the normal profile. The method detects attacks when the deviation is greater than a user defined threshold value α.
+	In this paper we describe a DoS/DDoS attack detection method using multivariate correlation analysis. The method uses a Triangular Area Matrix (TAM) to store correlation values among the features. We split the original network traffic into multiple time windows, preprocess the captured data and then extract three features, viz., entropy of source IPs, variation index of source IPs and packet rate from each time sample. We generate a normal profile from the normal data during the training period and a test profile from the testing samples during the testing period. If the test profile deviates from the normal profile with a value greater than the threshold value, an attack is declared. The method shows high detection accuracy for the CAIDA and TUIDS datasets.
+	Baseado em training para definição de comportamentos normais e avaliações de similaridade com a normalidade	
+	paper suspeito
+
+
+
+Discriminating DDoS Attacks from Flash Crowds Using Flow Correlation Coefficient - transaction - 2012
+================================================================================================================================================================================
+
+
+Distributed denial of service (DDoS) resilience in cloud: Review and conceptual cloud DDoS mitigation framework - jnca - 2016
+================================================================================================================================================================================
+	During the evaluation phase, it is apparent that evaluating the proposed solutions remains a challenge due to the lack of up-to-date real-world datasets for training. Commonly used datasets (see Table 3) in the literature include the UNB ISCX 2012 dataset, CAIDA DDoS 2007 dataset, DARPA 2000 LL-DDoS from Lincoln laboratory, MIT and KDD’99 dataset. As an example, CAIDA DDoS dataset (one of the most current datasets) is made up of an hour of anonymized trace from DDoS attack on August 4, 2007 between the hours of 20:50:80 UTC to 21:56:16 UTC split into 5 min pcap files. Another key issue is the dearth in the availability of labeled datasets; this is evident as KDD’99 represents one of the few publicly available labeled datasets currently in use today by researchers.
+
+
+
+
+Monitoring the Application-Layer DDoS Attacks for Popular Websites - transaction - 2009
+================================================================================================================================================================================
+
+
+Network Anomaly Detection Based on Wavelet Analysis - eurasip - 2009
+=================================================================================================================================================================================
+	signal processing techniques have been successfully applied to the network anomaly detection due to their ability in point change detection and data transforming
+	wavelet analysis has been used for intrusion detection in the recent literatures [13–27], due to its inherent time-frequency property that allows splitting signals into different components at several frequencies [13–25].
+	To address some limitations of wavelet analysis-based anomaly detection, such as, scale sensitive during anomaly detection, high computation complexity of wavelet transformation. Chang et al. proposed a network anomaly detection method based on wavelet packet transform, which can adjust the decomposition process adaptively, and thus improving the detection capability on the middle and high frequency anomalies that cannot be detected by multi-resolution analysis [14].
+	Kim et al. proposed a technique for traffic anomaly detection through analyzing correlation of destination IP addresses in outgoing traffic at an egress router. They hypothesize that the destination IP addresses will have a high correlation degree for a number of reasons and the changes in the correlation of outgoing addresses can be used to identify network traffic anomalies. Based on this, they apply discrete wavelet transform on the address and port number correlation data over several time scales. Any deviation from historical regular norms will alter the network administrator of the potential anomalies in the traffic. [important]
+	In [18] Wavelet transform is applied on traffic signals and the variance of corresponding wavelet coefficients is used to estimate the attack points. 
+	In [19], Li and Lee found that aggregated traffic has strong bursty across a wide range of time scales and based on this they applied wavelet analysis to capture complex temporal correlation across multiple time scales with very low computational complexity. The energy distribution variance changes always cause a spike when traffic behaviors affected by DDoS attacks while normal traffic exhibits a remarkably stationary energy distribution. [important]
+	In [20], Dainotti et al. presented an automated system to detect volume-based anomalies in network traffic caused by DoS attacks. The system combines the traditional approaches, such as adaptive threshold and cumulative sum, with a novel approach based on the continuous wavelet transform
+	This work proposes a new network anomaly detection model based on wavelet approximation and system identification theory. Architecture: feature analysis, normal network traffic modeling based on wavelet approximation and prediction by ARX(AutoRegressive with eXogenous) model, and intrusion decision. 
+	The input signal is a 15-dimensional feature vector, which is defined to characterize the behavior of the network flows. A prediction model for normal daily traffic is established, in which wavelet coefficients play an important role since we use these normal wavelet coefficients as an external input to an ARX model that predicts the approximation coefficient of the signal yet to be seen. The outputs of this traffic prediction model are called residuals that measure the difference between normal and anomalous activities. The empirical observations show that the peaks of residuals always stand for the location where attacks occur. As a result, an outlier detection algorithm based on GMM is implemented in order to detect peaks from a set of residuals. Decisions are made based on the results of the proposed outlier detection algorithm
+	Uses 1999 DARPA intrusion detection dataset, we convert all of them into flow-based [important]
+	The best detection rates in terms of attack types and attack instances are 100% and 94.67%, respectively
+	propõe uma abordagem de detecção de anomalias baseado em wavelet e teoria de identificação de sistemas, onde é executada uma análise das variáveis que serão utilizadas, uma modelagem do tráfego baseado em wavelet, predições por ARX e a detecção de intrusão, baseada em Gaussian Mixture Model (GMM). utiliza o dataset DARPA para sua validação, obtendo uma taxa de 94.67% de identificação de ataques. 
+	utiliza uma abordagem baseada em fluxos, requerendo mais processamento, além disto, não trata da detecção de ataques que não representam outliers significativos, como portscan. Também seria interessante comparar os resultados de getv com, principlamente considerando o processamento do dataset DARPA.
+
+
+
+
+Network Anomaly Detection: Methods, Systems and Tools - 2014
+================================================================================================================================================================================
+	We present attacks normally encountered by network intrusion detection systems. We categorize existing network anomaly detection methods and systems based on the underlying computational techniques used
+	and datasets that researchers in network anomaly detection can use
+	Denial of ser-vice (DoS) = (i) Attempts to block access to system or network resources. (ii) The loss of service is the inability of a particular network or a host service, such as e-mail to function. (iii) It is implemented by either forcing the targeted computer(s) to reset, or consuming resources. (iv) Intended users can no longer communicate adequately due to non-availability of service or because of obstructed communication media.
+	Probe = (i) Scans the networks to identify valid IP addresses and to collect information about host (e.g., what services they offer, operating system used). (ii) Provides information to an attacker with the list of potential vulnerabilities that can later be used to launch an attack against selected systems and services.
+	(a) KDDcup99 dataset: Since 1999, the KDDcup99 dataset [205] has been the most widely used dataset for the evaluation of network-based anomaly detection methods and systems. This dataset was prepared by Stolfo et al. [206] and is built on the data captured in the DARPA98 IDS evaluation program. The KDD training dataset consists of approximately 4, 900, 000 single connection vectors, each of which contains 41 features and is labeled as either normal or attack with a specific attack type. The test dataset contains about 300, 000 samples with 24 training attack types, with an additional 14 attack types in the test set only. The names and descriptions of the attack types are available in [205].
+	(b) NSL-KDD dataset: Analysis of the KDD dataset showed that there were two important issues in the dataset, which highly affect the performance of evaluated systems resulting in poor evaluation of anomaly detection methods [207]. To solve these issues, a new dataset known as NSL-KDD [208], consisting of selected records of the complete KDD dataset was introduced. This dataset is publicly available for researchers 5 and has the following advantages over the original KDD dataset. It does not include redundant records in the training set, so that the classifiers will not be biased towards more frequent records. There are no duplicate records in the test set. Therefore, the performance of the learners is not biased by the methods which have better detection rates on the frequent records. The number of selected records from each difficulty level is inversely proportional to the percentage of records in the original KDD dataset. As a result, the classification rates of various machine learning methods vary in a wide range, which makes it more efficient to have an accurate evaluation of various learning techniques. The number of records in the training and testing sets are reasonable, which makes it affordable to run experiments on the complete set without the need to randomly select a small portion. Consequently, evaluation results of different research groups are consistent and comparable.
+	(c) DARPA 2000 dataset: A DARPA 6 evaluation project [209] targeted the detection of complex attacks that contain multiple steps. Two attack scenarios were simulated in the 2000 evaluation contest, namely, LLDOS (Lincoln Laboratory scenario DDoS) 1.0 and LLDOS 2.0. To achieve the necessary variations, these two attack scenarios were carried out over several network and audit scenarios. These sessions were grouped into four attack phases: (a) probing, (b) breaking into the system by exploiting vulnerability, (c) installing DDoS software for the compromised system and (d) launching DDoS attack against another target. LLDOS 2.0 is different from LLDOS 1.0 in the sense that attacks are more stealthy and thus harder to detect. Since this dataset contains multi-stage attack scenarios, it is also commonly used for evaluation of alert correlation methods.
+	Misclassification rate: This measure attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed, i.e., (TP+FP+FN+TN). In other words, misclassification rate is defined as (FN+FP)/(TP+FP+FN+TN).
+	a hybridization of these (e.g., protocol level analysis followed by flow level traffic analysis) may give better performance in terms of known (with high detection rate) as well as unknown attack detection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[A multi-level intrusion detection method for abnormal network behaviors - jnca - 2016]
+	NSL-KDD dataset is the refined version of the KDD cup'99 dataset that redundant data records are removed
+	rule based, normal model definition and classification 
+	Since signal processing technique has a capability of discovering hidden patterns from input data, discrete wavelet transform (DWT) is used. DWT is a promising technique for time-frequency analysis by decomposing the input data until pre-determined level. By decomposing the input data, further detailed information (e.g. any pattern changes) can be represented. we used DWT to extract new features representing hidden but significant patterns.
+
+
+[A survey of network anomaly detection techniques] 
+	signal processing pode ser classificado como parte de statistical, em conjunto com pca, podendo então ser alvo de comparação com uma tecnica baseada em PCA, dado que a nossa é baseada em PCA e métodos complementares
+	Network anomaly detection techniques are generally tested using datasets (such as DARPA/KDD) developed at the end of last century (Creech and Hu, 2013), justified by the need for publicly available test data and the lack of any other alternative datasets.
+	The classification based approaches rely on the normal traffic activity profile that builds the knowledge base and consider activities deviate from baseline profile as anomalous. The advantage lies in their capability to detect attacks which are completely novel, assuming that they exhibit ample deviations from the normal profile. Additionally, as normal traffic not included in the knowledge base is considered an attack, there will be inadvertent false alarms. Therefore, training is required for anomaly detection techniques to build a normal activity profile which is time-consuming and also depends on the availability of completely normal traffic datasets.
+	An anomaly detection technique based on PCA (Shyu et al.,2003) has the benefits of: being free from any assumption of statistical distribution; being able to reduce the dimension of the data without losing any important information; and
+	Limitations of DARPA/KDD datasets Among the anomaly detection techniques discussed in the scope of this paper, more than 50% of them uses the DARPA/KDD datasets due to their availability. However, these datasets are criticized by Testing intrusion detection systems (2000) for the generation procedure and the analysis by Mahoney and Chan (2003) found evidence of simulation artifacts that could result in over-estimations of anomaly detection performances. 
+	as repetições e redundância podem influenciar learning based algorithms, mas o nosso é blind e não depende de conhecimento prévio ou aprendizado
+	NSL-KDD (NSL-KDD, 2014): It is a dataset suggested as a means of solving some of the inherent problems of the KDD dataset
+
+
+[Distributed denial of service (DDoS) resilience in cloud: Review and conceptual cloud DDoS mitigation framework]
+	During the evaluation phase, it is apparent that evaluating the proposed solutions remains a challenge due to the lack of up-to-date real-world datasets for training. Commonly used datasets (see Table 3) in the literature include the UNB ISCX 2012 dataset, CAIDA DDoS 2007 dataset, DARPA 2000 LL-DDoS from Lincoln laboratory, MIT and KDD’99 dataset. As an example, CAIDA DDoS dataset (one of the most current datasets) is made up of an hour of anonymized trace from DDoS attack on August 4, 2007 between the hours of 20:50:80 UTC to 21:56:16 UTC split into 5 min pcap files. Another key issue is the dearth in the availability of labeled datasets; this is evident as KDD’99 represents one of the few publicly available labeled datasets currently in use today by researchers.
+	outro fator para a escolha de DARPA é que ele oferece casos de probe, que não é disponibilizado em muitos datasets
+	fala sobre DoS que não é flooding: In carrying out application-bug level attacks, attackers exploit system vulnerabilities or weaknesses to render cloud resources unavailable for users. Among the common attack vectors are protocol vulnerability, system weakness, outdated patches and misconfigura tion. For example, vulnerabilities in protocol used by target applications can be exploited by attackers, by sending specially crafted packets to overload the application thereby crashing it. Dantas et al. (2014) discussed two types of such attacks, namely: HTTP PRAGMA and HTTP POST attacks. Beitollahi and Deconinck (2012) also described the ping-of-death attack, which uses a ping packet size of 65,535 bytes. The latter exceeds the maximum IPv4 packet size. When most modern operating systems try to handle such packets, they generally freeze, crash or reboot due to buffer overflow.
+	Infrastructure attacks (also known as flooding attacks) target cloud components, such as storage, network bandwidth, CPU circles and TCP buffers, to make them unavailable to legitimate cloud users. In infrastructural level DDoS attacks, the attackers only need the IP address of the target without the need to exploit any vulnerability. DDoS flooding attack can be carried out in two different forms, namely a direct attack and a reflector attack.
+	DDoS attack taxonomy in cloud.
+
+
+[Network Anomaly Detection: Methods, Systems and Tools - 2014]
+	Denial of ser-vice (DoS) = (i) Attempts to block access to system or network resources. (ii) The loss of service is the inability of a particular network or a host service, such as e-mail to function. (iii) It is implemented by either forcing the targeted computer(s) to reset, or consuming resources. (iv) Intended users can no longer communicate adequately due to non-availability of service or because of obstructed communication media.
+	Probe = (i) Scans the networks to identify valid IP addresses and to collect information about host (e.g., what services they offer, operating system used). (ii) Provides information to an attacker with the list of potential vulnerabilities that can later be used to launch an attack against selected systems and services.
+	(a) KDDcup99 dataset: Since 1999, the KDDcup99 dataset [205] has been the most widely used dataset for the evaluation of network-based anomaly detection methods and systems. This dataset was prepared by Stolfo et al. [206] and is built on the data captured in the DARPA98 IDS evaluation program. The KDD training dataset consists of approximately 4, 900, 000 single connection vectors, each of which contains 41 features and is labeled as either normal or attack with a specific attack type. The test dataset contains about 300, 000 samples with 24 training attack types, with an additional 14 attack types in the test set only. The names and descriptions of the attack types are available in [205].
+	(b) NSL-KDD dataset: Analysis of the KDD dataset showed that there were two important issues in the dataset, which highly affect the performance of evaluated systems resulting in poor evaluation of anomaly detection methods [207]. To solve these issues, a new dataset known as NSL-KDD [208], consisting of selected records of the complete KDD dataset was introduced. This dataset is publicly available for researchers 5 and has the following advantages over the original KDD dataset. It does not include redundant records in the training set, so that the classifiers will not be biased towards more frequent records. There are no duplicate records in the test set. Therefore, the performance of the learners is not biased by the methods which have better detection rates on the frequent records. The number of selected records from each difficulty level is inversely proportional to the percentage of records in the original KDD dataset. As a result, the classification rates of various machine learning methods vary in a wide range, which makes it more efficient to have an accurate evaluation of various learning techniques. The number of records in the training and testing sets are reasonable, which makes it affordable to run experiments on the complete set without the need to randomly select a small portion. Consequently, evaluation results of different research groups are consistent and comparable.
+
+
+[Network Anomaly Detection Based on Wavelet Analysis]
+	relies on data prediction for attack detection, therefore is based on normal behavior modeling for prediction and attack detection it is flow based, while we are packet based
+
+
+[meu artigo de mapredue]
+	falar que o data modeling não vai ser avaliado por ser algo muito simples e paralelizável com high thoughput usando mapreduce [] ou outras técnicas
+
+
+[icc]
+	The anomalies we have added consist of 1.2 · 10 5 packets (155 anomalous flows in total), and could be associated to a DoS attack.
+	detecção entre 70% e 82% para DoS attacks
