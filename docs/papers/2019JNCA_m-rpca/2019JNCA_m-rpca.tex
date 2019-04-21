@@ -4,7 +4,7 @@
 \usepackage{lineno,hyperref}
 \usepackage[mathletters]{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage{algorithm,algorithmic}% http://ctan.org/pkg/algorithms
+\usepackage[linesnumbered, ruled, vlined]{algorithm2e}
 \usepackage{natbib}
 \usepackage{supertabular}
 \usepackage{fancybox}
@@ -14,7 +14,6 @@
 \usepackage{graphicx}
 \usepackage{rotating}
 \usepackage{tabularx}
-\usepackage{colortbl}
 \usepackage{multirow}
 \usepackage{hhline}
 \usepackage{setspace}
@@ -30,33 +29,9 @@
 \usepackage{lipsum}
 \usepackage{amsthm,amsmath}
 
-% declarations
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\newcommand*\justify{%
-	\fontdimen2\font=0.4em% interword space
-	\fontdimen3\font=0.2em% interword stretch
-	\fontdimen4\font=0.1em% interword shrink
-	\fontdimen7\font=0.1em% extra space
-	%\hyphenchar\font=`\-% allowing hyphenation
-}
-
 % table
 \usepackage{color, colortbl}
 \definecolor{Gray}{gray}{0.9}
-
-% Algorithmic modifications
-\makeatletter
-\newcommand{\ALOOP}[1]{\ALC@it\algorithmicloop\ #1%
-  \begin{ALC@loop}}
-\newcommand{\ENDALOOP}{\end{ALC@loop}\ALC@it\algorithmicendloop}
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
-\renewcommand{\algorithmicensure}{\textbf{Output:}}
-\newcommand{\algorithmicbreak}{\textbf{break}}
-\newcommand{\BREAK}{\STATE \algorithmicbreak}
-\makeatother
 
 % appendix
 \usepackage[titletoc,title]{appendix}
@@ -144,6 +119,39 @@ Anomalies can be hard to identify and separate from normal data.
 
 Considering that anomalies are rare in comparison to normal events, anomaly detection algorithms have to deal with problems imposed by imbalanced data.
 
+Some techniques can make the data discriminative for better anomaly detection: Data engineering (i.e. sampling \cite{??}, aggregation \cite{acarali2016survey}); Feature extraction (i.e. decomposition \cite{??}, robust estimates \cite{??}).
+
+Robust statistics produce methods that are not unduly affected by outliers.
+
+Robust statistical methods have been developed for estimating location, scale, and regression parameters.
+
+Robust estimates from contaminated data can denoise, remove anomalies or even separate them.
+
+Anomaly detection based on robust estimates has been adopted for network anomaly detection, due to good results and its adaptability.
+
+The distance between robust estimates and new observations can reveal anomalies.
+
+Mahalanobis Distance (MD) is a generalized distance which is useful for determining the similarity between an unknown sample and a collection of known samples by, considering the correlations between the variables and their mean values.
+
+\textbf{MD has been used for distance based anomaly detection with robust estimates} in many areas, and is commonly combined to Fast Minimum Covariance Determinant (Fast-MCD) algorithm \cite{rousseeuw1999fast} for robust estimates.
+
+Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority}.
+
+Learning algorithms for imbalanced data has been a relevant research topic. 
+
+The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}.
+
+Skewness and the kurtosis tests are very sensitive outlier detectors. The properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2008outlier}.
+
+We propose a network anomaly detection approach based on robust moment estimates and distance analysis.
+
+Considering that Fast-MCD is a widely adopted robust estimator of location and scatter for anomaly detection, we propose to extend Fast-MCD for computing robust skewness and kurtosis.
+
+We also propose to use Mahalanobis Distance for detecting anomalies based on robust skewness and kurtosis, instead of the location-based usage of classical approaches.
+
+Considering that it is hard to have labeled data in real problems \cite{osanaiye2016distributed}, such as for network attacks or frauds, also considering that known anomalies are constantly changing due to adversarial models or due to lack of regular patterns, we propose a Semi-Supervised approach based on robust moments for network anomaly detection.
+
+
 In the context of anomaly-based schemes, this work proposes a statistical approach based on cumulants and Mimimum Covariance Determinant (MCD) for network attack detection. To the best of our knowledge there is no similar model in the literature. We evaluate the accuracy of the proposed framework applied to CTU-13 dataset ??, which is a well known network traffic dataset.
 
 The main contributions of the proposed framework are a semi-supervised method for network attack detection, wich does not depend on knowledge of previous attacks and consider only normal network traffic for robust estimates normal traffic...
@@ -164,6 +172,198 @@ Besides being prone to higher errors and false positives, such human interventio
 
 Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. We propose to adopt CTU-13...
 
+
+
+\cite{gu2007bothunter} (Bothunter: Detecting malware infection through ids-driven dialog correlation)
+
+\cite{gu2008botminer} (Botminer: Clustering analysis of network traffic for protocol-and structure-independent botnet detection)
+
+\cite{hubert2008outlier} (Outlier detection for skewed data)
+
+\cite{garcia2014empirical} (An empirical comparison of botnet detection methods)
+
+\cite{khattak2015botflex} (BotFlex: A community-driven tool for botnet detection)
+
+\cite{wang2017botnet} (Botnet detection based on anomaly and community detection)
+
+\cite{da2018online} (Online detection of Botnets on Network Flows using Stream Mining)
+
+\cite{moustafa2019holistic} (A holistic review of Network Anomaly Detection Systems: A comprehensive survey). Network anomaly detection approaches are classified by \cite{moustafa2019holistic} in six categories: classification, clustering, deep learning, knowledge, combination and statistical-based.
+
+\cite{Phua2004minority} (Minority Report in Fraud Detection: Classification of Skewed Data)
+
+\cite{acarali2016survey} (Survey of approaches and features for the identification of HTTP-based botnet traffic)
+
+\cite{lakhina2005mining} (Mining anomalies using traffic feature distributions)
+
+\cite{goldberg2015importance} (The importance of features for statistical anomaly detection)
+
+Clustering methods for anomaly detection rely on three key assumptions: legitimate data instances often fall into a cluster whereas attacks do not, legitimate data instances are usually located near the closest cluster centroid while anomaly ones are often far away from it, legitimate data instances fall into vast and dense clusters and anomalies into small or spare ones \cite{moustafa2019holistic}.
+
+GMM is a statistical-based and parametric approach algorithm that estimates the distribution of the normal class from a training set and is typically based on a set of kernels \cite{moustafa2019holistic}.
+
+The Mahalanobis Distance is a measure of the distance between a vector $\boldsymbol{x}$ and a distribution $\boldsymbol{X}$, introduced by P. C. Mahalanobis in 1936 \cite{mahalanobis1936generalized}. It is a multi-dimensional generalization for measuring how many standard deviations away $\boldsymbol{x}$ is from the mean $\boldsymbol{\bar{x}}$ and covariance $\boldsymbol{\hat{S}}$ of $\boldsymbol{X}$.
+
+Mahalanobis Distance is defined as		
+	\begin{equation}\label{eq:eq01}
+		d(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime}.
+	\end{equation}
+$\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector, also referred as location, of known observations and $\boldsymbol{\hat{S}}$ is the covariance matrix, also referred as scatter, of known observations.
+
+Classical estimates can be so strongly affected by contamination that diagnostic tools, such as the Mahalanobis Distances, become unable to detect the outliers. Therefore, we need reliable and robust estimators that can resist outliers contaminated data. Minimum Covariance Determinant (MCD) \cite{rousseeuw1984least} is a robust estimator commonly used for computing Mahalanobis Distance in order to detect anomalies.
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[width=11cm]{figures/mahalanobis_robust.png}
+     \caption{Mahalanobis Distance for non-robust and robust estimates.}
+     \label{fig:fig04}
+\end{figure}
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[width=8cm]{figures/mahalanobis_distances01.png}
+     \caption{Mahalanobis Distance for non-robust and robust estimates.}
+     \label{fig:fig05}
+\end{figure}
+
+The MCD estimator is one of the first affine equivariant and highly robust estimators of multivariate location and scatter.
+		
+Affine equivariant means that when the data are translated or subjected to a linear transformation, the resulting location and scatter will transform accordingly \cite{rousseeuw1984least,rousseeuw1999fast}.
+
+Its objective is to find $h$ observations (out of $n$) whose covariance matrix has the lowest determinant.
+
+The lowest determinant means the lowest distance generalized variance and high distance between the largest eigenvalue and the remaining [ref?].
+
+MCD depends on random sampling, therefore it is not deterministic.
+
+MCD has been applied in numerous fields (medicine, finance, image analysis, and chemistry) and been used to develop many robust multivariate techniques (such as Robust Principal Component Analysis (RPCA), factor analysis, and multiple regression).
+
+The classical MCD has rarely been applied because it is hard to compute, since it requires the evaluation of all $\binom{n}{h}$ subsets of size $h$. % binomial of n over p
+
+Its main use has started since the construction of the computationally efficient Fast-MCD algorithm \cite{rousseeuw1999fast}.
+
+Fast-MCD is an iterative, approximate and resampling algorithm for the MCD.
+
+It starts by random initial subset of size $p+1$ and performs concentration steps (C-steps) yielding consecutive h-subsets with decreasing covariance matrix determinant.
+
+Only two C-steps are applied to each initial subset, and the 10 results with lowest determinant are kept.
+
+C-steps are carried out until convergence and the best solution is kept.
+
+Fast-MCD also is affine equivariant and not deterministic.
+	
+\textbf{Theorem 1: C-Step.} 
+
+Consider a data set $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ where $\boldsymbol{X} = \{\boldsymbol{x}_1,...,\boldsymbol{x}_n\}$ of $p$-variate observations. Let $\boldsymbol{h} \subset \{1,...,n\}$ with $|\boldsymbol{h}| = h$, where $\boldsymbol{h}$ is a subset of $h$ indexes from $n$ observations.
+
+Let the mean $\bar{\boldsymbol{x}} \in \mathbb{R}^{1 \times p}$ be
+
+\begin{equation}\label{eq:eq02}
+	\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} \boldsymbol{x}_j, 
+\end{equation}
+
+the covariance matrix $\boldsymbol{\hat{S}} \in \mathbb{R}^{p \times p}$ be
+
+\begin{equation}\label{eq:eq03}
+	\boldsymbol{\hat{S}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} (\boldsymbol{x}_j - \bar{\boldsymbol{x}})(\boldsymbol{x}_j - \bar{\boldsymbol{x}})^\prime,
+\end{equation}
+
+and the relative distance be 	
+
+\begin{equation}\label{eq:eq04}
+	\boldsymbol{d}(i) = \sqrt{(\boldsymbol{x}_i - \bar{\boldsymbol{x}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime}, 
+\end{equation}
+
+for $i = 1,...,n$.
+
+Let $\boldsymbol{h}_1, \bar{\boldsymbol{x}}_1$ and $\boldsymbol{\hat{S}}_1$ and be the selected observations, the location and scatter of the initial subset, and $\boldsymbol{d}_1(i)$ be the initial distances for $i = 1,...,n$. 
+
+Now take $\boldsymbol{h}_2$ containing the indexes of lowest distances, such that $\{\boldsymbol{d}_1(i); i \in \boldsymbol{h}_2\} = \{(\boldsymbol{d}_1)_{1:n},...,(\boldsymbol{d}_1)_{h:n}\}$, where $(\boldsymbol{d}_1)_{1:n} \leq (\boldsymbol{d}_1)_{2:n} \leq ... \leq (\boldsymbol{d}_1)_{n:n}$ are the ordered distances, and compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$.
+	
+Then, $det(\boldsymbol{\hat{S}}_2) \leq det(\boldsymbol{\hat{S}}_1)$ with equality if and only if $\boldsymbol{\bar{x}}_2 = \boldsymbol{\bar{x}}_1$ and $\boldsymbol{\bar{S}}_2 = \boldsymbol{\hat{S}}_1$
+
+The proof is given by Rousseeuw and Driessen \cite{rousseeuw1999fast}.
+	
+\textbf{The C-step can be algorithmically described as follows:}
+\begin{algorithm}[H]\label{alg:alg01}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$}
+	Given the initial $h-$subset $\boldsymbol{h}_1$ of indexes or the pair $(\boldsymbol{\bar{x}}_1, \boldsymbol{\hat{S}}_1)$\;
+	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
+		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
+			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
+		}
+		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
+		Sort $\boldsymbol{d}_1( i )$, which yields a index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
+		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
+		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
+		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
+	}
+	\caption{C-Step}
+\end{algorithm}
+
+\textbf{Theorem 1} thus provides a partial idea for an algorithm: 
+
+\textit{Take many initial choices of $\boldsymbol{h}_1$ and apply C-steps to each until convergence (don't have determinant decreasing), and keep the result with lowest determinant}.
+
+\textbf{Initial subset can be algorithmically described as:}
+\begin{algorithm}[H]\label{alg:alg02}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{h}_1$}
+	Given a data set $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $p$-variate observations\;
+	Draw a random $(p + 1)$-subset $\boldsymbol{L}$\;
+	Compute $\boldsymbol{\bar{x}}_1$ and $\boldsymbol{\hat{S}}_1$ of $\boldsymbol{L}$ and $det(\boldsymbol{\hat{S}}_1)$\;
+	\If{$det(\boldsymbol{\hat{S}}_1) \leq 0$}{
+		Add another random observation into $\boldsymbol{L}$\;
+		Compute $\boldsymbol{\bar{x}}_1$ and $\boldsymbol{\hat{S}}_1$ of $\boldsymbol{L}$ and $det(\boldsymbol{\hat{S}}_1)$\;
+	}
+	Compute $\boldsymbol{d}_1^2(i) = (\boldsymbol{x}_i - \boldsymbol{\bar{x}}_1)^\prime \boldsymbol{\hat{S}}_1^{-1}(\boldsymbol{X}_i - \boldsymbol{\bar{x}}_0)$ for $i = 1, ..., n$\;
+	Sort them into $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_0(\pi(n))$\;
+	Put $\boldsymbol{h}_1 = \{\pi(1), ..., \pi(h)\}$\;
+	\caption{Constructing the initial subset}
+\end{algorithm}
+
+\begin{algorithm}[H]\label{alg:alg03}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$}
+	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n \leq 600$\;
+	\For{500 times}{
+		Construct initial $h$-subset $\boldsymbol{h}_1$ (Algorithm \ref{alg:alg02})\;
+		Carry out two C-steps (Algorithm \ref{alg:alg01}) resulting $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$\;
+	}		
+	Put $\boldsymbol{h}_1$ as the 10 lowest $det(\boldsymbol{\hat{S}_2})$ computed above\;
+	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
+		Carry out C-steps (Algorithm \ref{alg:alg01})\;
+	}
+	\caption{Fast-MCD when $n \leq 600$}
+\end{algorithm}
+
+\begin{algorithm}[H]\label{alg:alg04}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$}
+	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n > 600$\;
+	Construct up to 5 disjoint random subsets of size $n_{sub} = 300$\;
+	\For{each subset, repeat 100 times}{
+		Construct initial $\boldsymbol{h}_1$ of size $h_{sub} = [n_{sub}(h/n)]$\;
+		Carry out two C-steps of $n_{sub}$ and $h_{sub}$\;
+		Keep the 10 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub})$\;
+	}		
+	Pool the subsets, yielding the merged set of $n_{merged} = 1500$\;
+	\For{50 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub})$}{
+		Carry out two C-steps of $n_{merged}$ and $h_{merged} = [n_{merged}(h/n)]$\;
+		Keep the 10 best $(\boldsymbol{\bar{x}}_{merged}, \boldsymbol{\hat{S}}_{merged})$\;
+	}
+	\For{the full data set and $m_{full}$ best results}{
+		Take several C-steps, using $n$ and $h$\;
+		Keep the best final result $(\boldsymbol{\bar{x}}_{full}, \boldsymbol{\hat{S}}_{full})$\;
+	}
+	\caption{Fast-MCD when $n > 600$}
+\end{algorithm}
+
 Our proposal is ...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,7 +377,117 @@ This section also presents a description of the data model and data aggregation 
 \subsection{The CTU-13 Dataset}
 \label{sec:CTU-13}
 
-...
+
+Evaluating network anomaly detection solutions remains a challenge due to the lack of up-to-date real-world data sets for training and testing \cite{osanaiye2016distributed}. 
+
+We propose to use CTU-13 \cite{garcia2014empirical} to evaluate our proposal, considering that the CTU-13 is a data set that aims to have a large capture of real botnet attacks and C\&C traffic mixed with normal and background traffic.
+
+The CTU-13 data set consists in thirteen captures (called scenarios) of different botnet samples. 
+
+On each scenario it was executed a specific malware, which used several protocols and performed different actions.		
+
+The botnet traffic is divided into attacks and Command and Control (C\&C) traffic.
+
+\textbf{Attacks:} Click Fraud, Port Scan, FastFlux, Compiled and Controled by Authors, SPAM and DDOS.
+
+\textbf{C\&C:} IRC, P2P and HTTP.
+
+The data set contains the following features:
+
+Start Time, Duration, Protocol, Source Address, Source Port, Direction, Destination Address, Destination Port, State, Type of service from source to destination, Type of service from destination to source, Total of Packets, Total of bytes, Total bytes from source to destination, Label as normal or anomalous
+
+\begin{table}[h!]
+	\tiny
+	\caption{CTU-13 Dataset Description}
+	\label{tab:tab01}
+	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | }
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Scenario\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Malware\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Type\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Total Flows\end{tabular} & \begin{tabular}[x]{@{}l@{}}Malicious\end{tabular} & \begin{tabular}[x]{@{}l@{}}C\&C\end{tabular} & \begin{tabular}[x]{@{}l@{}}Botnet\end{tabular}\\ \hline
+			10 & neris & IRC, Spam, CF & 2,824,636 & 40,961 (1.45\%) & 341 (0.01\%) & 40,620 (1.44\%) \\ \hline
+			11 & neris & IRC, Spam, CF & 1,808,122 & 20,941 (1.16\%) & 673 (0.04\%) & 20,268 (1.12\%) \\ \hline
+			12 & rbot & IRC, PS, US & 4,710,638 & 26,822 (0.57\%) & 63 (0.00\%) & 26,759 (0.57\%) \\ \hline
+			15 & rbot & IRC, DDoS, US & 1,121,076 & 2,580 (0.23\%) & 52 (0.00\%) & 2,528 (0.23\%) \\ \hline
+			15-2 & virut & Spam, PS,HTTP & 129,832 & 901 (0.69\%) & 24 (0.02\%) & 877 (0.68\%) \\ \hline
+			16 & menti & PS & 558,919 & 4,630 (0.83\%) & 199 (0.04\%) & 4,431 (0.79\%) \\ \hline
+			16-2 & sogou & HTTP & 114,077 & 63 (0.06\%) & 26 (0.02\%) & 37 (0.03\%) \\ \hline
+			16-3 & murlo & PS & 2,954,230 & 6,127 (0.21\%) & 1,074 (0.04\%) & 5,053 (0.17\%) \\ \hline
+			17 & neris & IRC, Spam, CF,PS & 2,087,508 & 184,987 (8.86\%) & 2,973 (0.14\%) & 182,014 (8.72\%) \\ \hline
+			18 & rbot & IRC, DDoS, US & 1,309,791 & 106,352 (8.12\%) & 33 (0.00\%) & 106,319 (8.12\%) \\ \hline
+			18-2 & rbot & IRC, DDoS, US & 107,251 & 8,164 (7.61\%) & 2 (0.00\%) & 8,162 (7.61\%) \\ \hline
+			19 & nsys.ay & P2P & 325,471 & 2,168 (0.67\%) & 25 (0.01\%) & 2,143 (0.66\%) \\ \hline
+			15-3 & virut & Spam, PS, HTTP & 1,925,149 & 40,003 (2.08\%) & 536 (0.03\%) & 39,467 (2.05\%) \\ \hline
+	\end{tabular}
+\end{table}
+
+Table \ref{tab:tab01} presents the malwares used for botnet attacks, the attack and C\&C types, the total number of flows, the number of malicious flows, which includes the C\&C and botnet flows. Table \ref{tab:tab01} also shows the ratio of C\&C and botnet flows.
+
+Table \ref{tab:tab01} shows that CTU-13 is very imbalanced data set, when comparing the amount of malicious to normal traffic.
+
+Malicious observations are beteeen $0.06\%$ up to $8.86\%$ of all flows.
+
+The scenarios have between $107,251$ and $4,710,638$ flows.
+
+The CTU-13 data set is also very skewed. Figure \ref{fig:fig06} exemplifies the skewed distribution of normal and anomalous flows, showing the flow duration of scenario 12.
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[width=8cm]{figures/raw_distplot_capture20110812_Dur.png}
+     \caption{Distribution of flow duration for scenario 12.}
+     \label{fig:fig06}
+\end{figure}
+	
+Methods for imbalance learning has attracted growing attention from both academia and industry, due to the restrictions imposed by imbalanced data to machine learning algorithms.
+
+He and Garcia \cite{he2008learning} present a classification of imbalanced learning methods as sampling, cost-sensitive learning, kernel-based, and active learning.
+
+Data aggregation is a widely adoted approach for feature engineering \cite{chandrashekar2014survey,acarali2016survey}.
+
+Lakhina et al. \cite{lakhina2005mining} argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies.
+
+To deal with the data imbalance of CTU-13 data set, we adopt a sampling method based on data aggragation \cite{acarali2016survey} for feature generation, in order to obtain less imbalanced and more discrimnative data.	
+
+Based on related works \cite{lakhina2005mining,chandrashekar2014survey,acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
+The features are generated by a data aggregation into a selected window size. We evalute our proposal for windows with 0.15, 0.25, 1 and 2 seconds, for each scenario of the CTU-13 data set.
+	
+Following (2 slides) are the selected features:
+\textbf{normal-flow-count:} count of normal (known) flow.
+\textbf{background-flow-count :} count of background (unknown) flows.
+\textbf{avg-duration:} average duration time of flows.
+\textbf{n-conn:} count of flows.
+\textbf{n-icmp:} count of ICMP packets.
+\textbf{n-tcp:} count of TCP packets.
+\textbf{n-udp:} count of UDP packets.
+\textbf{n-dports<1024:} count of destinations ports lower than 1024.
+\textbf{n-sports<1024:} count of source ports lower than 1024.
+\textbf{n-sports>1024:} count of source ports higher than 1024.
+
+Following are the remaining selected features:
+	\textbf{n-s-a-p-address:} count of class A source address.
+	\textbf{n-d-a-p-address:} count of class A destination address.
+	\textbf{n-s-b-p-address:} count of class B source address.
+	\textbf{n-d-b-p-address:} count of class B destination address.
+	\textbf{n-s-c-p-address:} count of class C source address.
+	\textbf{n-d-c-p-address:} count of class C destination address.
+	\textbf{n-s-na-p-address:} count of class D* source address.
+	\textbf{n-d-na-p-address:} count of class D* destination address.
+
+Figures \ref{fig:fig07} and \ref{fig:fig08} show the distribution of average flow duration, for scenario 12, aggregated by windows of 0.15 and 2 seconds.
+
+In comparison to Figure \ref{fig:fig06}, that shows the distribution of flow duration for the same scenario, we can see that the feature based on the average is more discriminative.
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[width=8cm]{figures/agg_distplot_0_15s_12_avg_duration.png}
+     \caption{Distribution of average flow duration for scenario 12, aggregated by windows of 0.15 seconds.}
+     \label{fig:fig07}
+\end{figure}
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[width=8cm]{figures/agg_distplot_2s_12_avg_duration.png}
+     \caption{Distribution of average flow duration for scenario 12, aggregated by windows of 2 seconds.}
+     \label{fig:fig08}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Robust PCA and Higher Moments Distances for Botnet Detection}
@@ -195,205 +505,143 @@ This section describes the proposed technique to detect synflood, fraggle and po
 \subsection{Largest Eigenvalue by Time Frames}
 \label{sec:prop_LargestEigenvaluebyTimeFrames}
 
-The proposed attack detection algorithm starts by the data pre-processing of a network traffic log containing IP, ports and timestamp of senders and receivers. During this step, the desired information is extracted in order to classify and count packets according to the origin and destination ports, and subsequently this information is grouped by minutes and by time frames.
+We propose to extend Fast-MCD for computing robust moments (skewness and kurtosis), in order to improve the anomaly detection in a skewed and imbalanced data set of network traffic with normal and botnet traffic.
+	    
+Moments are a set of statistical parameters to measure a distribution. The arithmetic mean is the first general moment, the second is the variance, while skewness (asymmetry) is the third moment and kurtosis (excess) is the fourth moment.
 
-With the data grouped into $Q$ time frames, the framework considers the time variations of the matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the attack. 
-
-According to flood and port scan attacks' behavior, flood attacks and port scan attacks can be characterized as covariance aware attack \citep{jin2004covariance} and correlation aware attack \citep{lakhina2005mining}, respectively. These characteristics are substantiated by the results obtained through the analysis based on sample covariation of zero mean variables and on covariance of zero mean and unitary standard deviation variables, described in Section \ref{sec:experimentalresults}, which shows that the main components of flood attacks are dominated by the variables with more variance and that the traffic associated with port scan attack does not generate many logs, however, it presents high covariance of zero mean and unitary standard deviation variables.
-
-Therefore, to detect flood attacks, it is necessary to calculate the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
-
-\begin{equation}\label{eq:eq02}
-\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
-\end{equation}
-
-The set of obtained vectors $\boldsymbol{y}_{m}^{(q)}$ composes the zero mean matrix $\boldsymbol{Y}^{(q)}$, then the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
-
-\begin{equation}\label{eq:eq03}
-\boldsymbol{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^{\rm T}}.
-\end{equation}
-
-For the detection of the port scan attack, the main components are not dominated by the variables with large variance. Moreover, the portscan traffic presents a highly correlated network traffic. In order to exploit such structure, we compute the sample covariance $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have zero mean and unitary standard deviation as follows
-
-\begin{equation}\label{eq:eq04}
-\boldsymbol{z}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}.
-\end{equation}
-
-The set of vectors $\boldsymbol{z}_{m}^{(q)}$ composes the matrix $\boldsymbol{Z}^{(q)}$, then the sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)}$ can be calculated via 
-
+The general formula of the $r$-th moment can be expressed as:
 \begin{equation}\label{eq:eq05}
-\boldsymbol{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\boldsymbol{Z}^{(q)}\boldsymbol{Z}^{(q)^{\rm T}}.
+	m_r = \displaystyle\frac{1}{n}\displaystyle\sum_{i = 1}^{n}( x_i - \bar{x})^r. 
 \end{equation}
 
-Once the $\boldsymbol{\hat{R}}_{yy}^{(q)}$ and $\boldsymbol{\hat{R}}_{zz}^{(q)}$ have been obtained for flood and port scan attack detection, respectively, and since the next steps are the same for both sample covariance matrices, we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{C}$. Therefore, the following step of the algorithm is the eigenvalue decomposition (EVD), calculated according to (\ref{eq:eq06}), in order to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix, according to (\ref{eq:eq060}).
-
+Therefore, the Skewness is calculated as
 \begin{equation}\label{eq:eq06}
-\boldsymbol{C}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
+	\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}},
 \end{equation}
 
-\begin{equation}\label{eq:eq060}
-\boldsymbol{e}^{(q)} = \rm diag(\boldsymbol{\Lambda}^{(q)}),
-\end{equation}
-
-where the operator diag$(\cdot)$ extracts the main diagonal of a matrix.
-
-The eigenvalues should be sorted in descending order, i.e., $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > ... > \lambda_{m}^{(q)}$. Therefore, the largest eigenvalue of the $q$-th time frame evaluated for the attack detect is given by $\lambda_{1}^{(q)}$.
-
-The concatenation of the eigenvalues vector $\boldsymbol{e}^{(q)}$ for $q = 1, \ldots, Q$ is represented by
-
+and Kurtosis as
 \begin{equation}\label{eq:eq07}
-\boldsymbol{E} =
-\begin{bmatrix}
-  \lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
-  \lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
-  \lambda_3^{(1)} & \lambda_3^{(2)} & \lambda_3^{(3)} & \cdots & \lambda_3^{(Q)} \\
-  \vdots & \vdots & \ddots & \vdots  \\
-  \lambda_m^{(1)} & \lambda_m^{(2)} & \lambda_m^{(3)} & \cdots & \lambda_m^{(Q)} \\
-\end{bmatrix}.
+	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2} 
 \end{equation}
 
-Note that since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\boldsymbol{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the Greatest Eigenvalue Time
-Vector (GETV) \cite{tenorio2013greatest}, denoted as 
+For extending Fast-MCD, We initially modify the C-step Algorithm \ref{alg:alg01} to calculate Skewness and Kurtosis after to minimize $det(\boldsymbol{\hat{S}})$, accordingly to Algorithm \ref{alg:alg05}.
+
+\begin{algorithm}[H]\label{alg:alg05}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
+	Given the initial $h-$subset $\boldsymbol{h}_1$ of indexes or the pair $(\boldsymbol{\bar{x}}_1, \boldsymbol{\hat{S}}_1)$\;
+	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
+		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
+			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
+		}
+		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
+		Sort $\boldsymbol{d}_1( i )$, which yields a index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
+		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
+		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
+		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
+	}
+	Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
+	\caption{C-Step with higher moments}
+\end{algorithm}
+
+The Algorithm \ref{alg:alg06} describes the Fast-MCD with higher moments when $n \leq 600$, through the modification of the original Fast-MCD for computing Skewness and Kurtosis from the robust estimate.
+    
+\begin{algorithm}[H]\label{alg:alg06}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
+	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n \leq 600$\;
+	\For{500 times}{
+		Construct initial $h$-subset $\boldsymbol{h}_1$ (Algorithm \ref{alg:alg02})\;
+		Carry out two C-steps with higher moments (Algorithm \ref{alg:alg05}) resulting $\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$\;
+	}		
+	Put $\boldsymbol{h}_1$ as the 10 lowest $det(\boldsymbol{\hat{S}_2})$ computed above\;
+	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
+		Carry out C-steps with higher moments (Algorithm \ref{alg:alg05})\;
+	}
+	\caption{Fast-MCD with higher moments when $n \leq 600$}
+\end{algorithm}
+
+The Algorithm \ref{alg:alg07} presents the Fast-MCD with higher moments when $n > 600$, which modifies the original Fast-MCD for computing of Skewness and Kurtosis from the robust estimate data, through the adoption of the C-Step with higher moments. The Algorithm \ref{alg:alg07} is described below.
+
+\begin{algorithm}[H]\label{alg:alg07}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
+	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n > 600$\;
+	Construct up to 5 disjoint random subsets of size $n_{sub} = 300$\;
+	\For{each subset, repeat 100 times}{
+		Construct initial $\boldsymbol{h}_1$ of size $h_{sub} = [n_{sub}(h/n)]$\;
+		Carry out two C-steps with higher moments of $n_{sub}$ and $h_{sub}$\;
+		Keep the 10 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub}, \boldsymbol{\bar{s}}_{sub}, \boldsymbol{\bar{k}}_{sub})$\;
+	}		
+	Pool the subsets, yielding the merged set of $n_{merged} = 1500$\;
+	\For{50 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub})$}{
+		Carry out two C-steps with higher moments of $n_{merged}$ and $h_{merged} = [n_{merged}(h/n)]$\;
+		Keep the 10 best $(\boldsymbol{\bar{x}}_{merged}, \boldsymbol{\hat{S}}_{merged}, \boldsymbol{\bar{s}}_{merged}, \boldsymbol{\bar{k}}_{merged})$\;
+	}
+	\For{the full data set and $m_{full}$ best results}{
+		Take several C-steps, using $n$ and $h$\;
+		Keep the best final result $(\boldsymbol{\bar{x}}_{full}, \boldsymbol{\hat{S}}_{full}, \boldsymbol{\bar{s}}_{full}, \boldsymbol{\bar{k}}_{full})$\;
+	}
+	\caption{Fast-MCD with higher moments when $n > 600$}
+\end{algorithm}
+
+We also propose to use Mahalanobis Distance for detecting anomalies through an approach based on robust Skewness and Kurtosis, instead of the location and scatter that are used by classical approaches.
+
+We propose to modify the Equation \ref{eq:eq01} to implement a Skewness-based Mahalanobis Distance, as follows:
 
 \begin{equation}\label{eq:eq08}
-\boldsymbol{e}_{\rm max} = \boldsymbol{E}\{:,1\} = [ \lambda_1^{(1)}, \lambda_1^{(2)} ... \lambda_1^{(Q)}]
+	\boldsymbol{d}(\boldsymbol{s}_{\boldsymbol{x}}, \bar{\boldsymbol{s}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{s}_{\boldsymbol{x}} - \bar{\boldsymbol{s}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{s}_{\boldsymbol{x}} - \bar{\boldsymbol{s}})^\prime}, 
 \end{equation}
+
+where $\boldsymbol{s}_{\boldsymbol{x}} = \boldsymbol{x} - \boldsymbol{\bar{s}}(\boldsymbol{x})$ and $\boldsymbol{\bar{s}}(\boldsymbol{x})$ is the Skewness of $\boldsymbol{x}$.
+
+We also propose to modify the Equation \ref{eq:eq04} to implement a Kurtosis-based Mahalanobis Distance, as follows:
+
+\begin{equation}\label{eq:eq09}
+	\boldsymbol{d}(\boldsymbol{k}_{\boldsymbol{x}}, \bar{\boldsymbol{k}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{k}_{\boldsymbol{x}} - \bar{\boldsymbol{k}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{k}_{\boldsymbol{x}} - \bar{\boldsymbol{k}})^\prime}, 
+\end{equation}
+
+where $\boldsymbol{k}_{\boldsymbol{x}} = \boldsymbol{x} - \boldsymbol{\bar{k}}(\boldsymbol{x})$ and $\boldsymbol{\bar{k}}(\boldsymbol{x})$ is the Kurtosis of $\boldsymbol{x}$.
+
+Fast-MCD is commonly used as \textbf{supervised} or \textbf{unsupervised} algorithm for anomaly detection.
+		
+\textbf{Supervised} approach:
+
+Compute Fast-MCD for training data with known normal and anomalous data.
+Select the best threshold $t$ for detecting known anomalies according to largest distances $\boldsymbol{d}(i)$.
+Save the best $t, \boldsymbol{\bar{x}}$ and $\boldsymbol{\hat{S}}$.
+Compute $d(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\hat{S}})$ for new observations.
+Classify observations with $\boldsymbol{d}(i)$ higher than $t$ as anomalous.
+
+\textbf{Unsupervised} approach:
+
+Given a known contamination $c$, which is the percentage of anomalies in a data set.
+Compute Fast-MCD and $d(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\hat{S}})$ for new observations.
+Classify the $c$ observations with largest distances as anomalous.
+
+Finally, We propose the following \textbf{Semi Supervised} approach for Fast-MCD based anomaly detection:
+
+Compute Fast-MCD for training data containing only known normal observations.
+Save the fitted $\boldsymbol{\bar{x}}_{normal}$ and $\boldsymbol{\hat{S}}_{normal}$.
+Carry out cross validation on known contaminated data in order to identify the contamination $c$ that best classify anomalies and normal data.
+Compute $d(\boldsymbol{x},\bar{\boldsymbol{x}}_{normal}, \boldsymbol{\hat{S}}_{normal})$ for new observations.
+The $c$ observations with largest $\boldsymbol{d}(i)$ are classified as anomalous.
+
 
 \subsection{MOS Schemes}
 \label{sec:prop_MOSSchemes}
 
-Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$. However, the goal here is to detect the variations of the eigenvalues for different values of $q$. Therefore, instead of using a certain $q$, the proposed approach applies MOS schemes for a vector of the largest eigenvalues of each $q$-th time frame, in order to identify variations and estimate the model order $\hat{d}$, which is the estimated number of time frames under attack. Therefore, $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$. Note that some MOS schemes may also require the number of minutes that compose a time frame, as $\hat{d} = \rm{MOS}(\boldsymbol{e}_{\rm max},\emph{Q})$. For more information about MOS, we refer to \ref{sec:mos}.
-
-In our previous work \cite{tenorio2013greatest}, the accuracy of AIC, MDL, EDC, RADOI, EFT and SURE schemes are evaluated for synflood and port scan attack detection, showing that EDC and EFT are effective for detecting this kind of attacks. The present work extends that evaluation to also analyze the effectiveness of the listed MOS schemes for fraggle attack detection, as shown in Section \ref{sec:experimentalresults}.
-
-\subsection{Eigenvalue Analysis}
-\label{sec:prop_EigenvalueAnalysis}
-
-After applying the MOS schemes to the vector $\sim\boldsymbol{e}_{\rm max}$, we obtain the estimate of the $\#\boldsymbol{A}$. For instance, in the case of fraggle, synflood and portscan, if $\hat{d} = 1$, , then $\#\boldsymbol{A} = 1$, which means that during the during the $Q$ time frames one attack is present. However, if $\hat{d} = 0$, then $\#\boldsymbol{A} = 0$, and this means that none of these attacks are present. Note that $\hat{d}$ can be greater than 1, indicating the presence of more than one attack.
-
-In Subsection \ref{sec:prop_MOSSchemes}, we obtained only if $\hat{d} = 1$ or $\hat{d} = 0$. However, if $\hat{d} = 1$, the MOS schemes do not provide any information about the $q$-th time frame under attack. The identification of the $q$-th time frame under attack can be carried out through a eigenvalues analysis.
-
-The largest eigenvalue analysis for estimating the $q$-th time frames that are under attack can be expressed according to Algorithm \ref{alg:alg01}, where $\rm{\boldsymbol{\hat{q}}}_{\rm max} \in \mathbb{R}^{\hat{d}}$ denotes a vector of the $q$-th time frames under attack, which is the $q$-th indexes corresponding to the $\hat{d}$ largest eigenvalues of $\boldsymbol{e}_{\rm max}$. Algorithm \ref{alg:alg01} initially identifies the largest value of $\boldsymbol{e}_{\rm max}$, according to Line 2 of Algorithm \ref{alg:alg01}, and its correspondent index, according to Lines 4 and 5 of Algorithm \ref{alg:alg01}. Subsequently, the largest value is removed of $\boldsymbol{e}_{\rm max}$, according to Line 8 of Algorithm \ref{alg:alg01}, and a new iteration is performed until $\boldsymbol{e}_{\rm max} = \{\}$.
-
-\begin{algorithm}[h!]
-	\caption{Detection of Time Frames Under Attack}
-  	\label{alg:alg01}
-	\begin{algorithmic}[1]
-		\show\LOOP
-	    \ALOOP {$f = 1$ until $f == \hat{d}$} 
-	    	    \STATE $q_{\rm value} = \argmax\limits_{\lambda}  \hspace{1 mm} \boldsymbol{e}_{\rm max}$
-    	    	    \ALOOP {$i = 1$ until $i == Q$} 
-				\IF {$\boldsymbol{e}_{\rm max}^{(i)} == q_{\rm value}$}
-				    \STATE $\boldsymbol{\hat{q}}_{\rm max}^{(f)} = i$
-				\ENDIF
-        		\ENDALOOP
-	    		\STATE $\boldsymbol{e}_{\rm max} \rightarrow \boldsymbol{\hat{q}}_{\rm max}^{(f)}$
-    		\ENDALOOP
-	\end{algorithmic}
-\end{algorithm}
-
-After the estimation of the $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analysing the effectiveness of cosine similarity to highlight abnormalies inserted by network traffic attacks. 
-
 \subsection{Eigen Similarity Analysis}
 \label{sec:prop_EigenSimilarityAnalysis}
-
-Cosine similarity calculates the cosine of the angle between two vectors, which represents the similarity of values between the selected vectors. Therefore, cosine similarity can be used to evaluate the variation of the most significant eigenvectors of $\boldsymbol{V}^{(q)}$ against the the most significant eigenvectors of time frame detected as under attack, to analyze similarity changes into the most significant eigenvectors caused by the insertion of anomalous traffic \cite{Lee2013}. 
-
-This subsection describes the proposed eigen similarity analysis for detailed attack identification, in complement to the attack estimation carried out through MOS schemes and eigenvalue analysis. In Subsection \ref{sec:prop_TimeSimilarityAnalysis} we present the eigen similarity analysis for identification of time under attack. Next, in Subsection \ref{sec:prop_PortSimilarityAnalysis}, we show how to apply the eigen similarity analysis in order to identify network ports under attack.
 
 \subsubsection{Time Similarity Analysis}
 \label{sec:prop_TimeSimilarityAnalysis}
 
-For eigen similarity analyis, we evaluate the cosine similarity in order to identify lacks of similarity between legitimate and malicious traffic, as follows
-
-\begin{equation}\label{eq:eq11}
-s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}}},
-\end{equation}
-where $s_n$ denotes the absolute similarity degree of the $n$-th minute, $\boldsymbol{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack, and $\boldsymbol{v}_{(n)}$ is the most significant eigenvectors obtained after append the target $n$-th minute of traffic to be performed the flood and port scan attack identification.
-
-The most significant eigenvector $\boldsymbol{v}^{(q)}$, of a time frame $q$ without attack, can be derivated from (\ref{eq:eq06}) and selected according to the eigenvector of the largest eigenvalue $\lambda_1^{(q)}$, which is the principal component of the evaluated matrix. The same calculation shall be performed in order to obtain the target eigenvectors $\boldsymbol{v}_{(n)}$, calculated from a time frame without attack plus minutes of a time frame estimated as under attack, to evaluate the occurrence of network attacks. 
-
-The reference eigenvectors $\boldsymbol{v}^{(q)}$ is calculated from the traffic whithout attack, from a time frame $q$ composed of $Q$ minutes of legitimate network traffic. For the detailed attack identification, each $\boldsymbol{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames shall be individually appended into $\boldsymbol{X}^{(q)}$, as represented by
-
-\begin{equation}\label{eq:eq12}
-\boldsymbol{X}_{n} = \{\boldsymbol{X}^{(q)} | \boldsymbol{x}^{(\hat{q})}_{(n)}\}.
-\end{equation}
-
-The resultant $\boldsymbol{X}_{(n)}$ is necessary to obtain $\boldsymbol{v}_{(n)}$, through (\ref{eq:eq06}), for calculating the similarity degree $s_n$, ranging from 0 to 1, for each $n$-th minute. The $s_n$ denotes the absolute similarity degree of the $n$-th minute in comparison to a well-known traffic without attack, detected through MOS schemes and eigenvalue analysis.
-
-The incremental approach for similarity analysis is based on the incremental appending of network traffic into $\boldsymbol{X}^{(q)}$, where the first evaluation is based on (\ref{eq:eq12}) and the subsequent evaluations is based on (\ref{eq:eq13}), incrementally appending each $n$-th minute until $n=N$.
-
-\begin{equation}\label{eq:eq13}
-\boldsymbol{X}_{n} = \{\boldsymbol{X}_{n} | \boldsymbol{x}^{(\hat{q})}_{(n)}\},
-\end{equation}
-
-Figure \ref{fig:fig8} ilustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\boldsymbol{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected. 
-
-\begin{figure}[h!]
-     % \includegraphics[height=4cm, width=12.4cm]{results/figures/incremental.eps}
-     \caption{Traffic selection for incremental approach.}
-     \label{fig:fig8}
-\end{figure}
-
-The eigen similarity analysis starts at $\boldsymbol{x}^{(3)}_{(41)}$ and is incrementally performed until $\boldsymbol{x}^{(\hat{3})}_{(60)}$, in order to calculate the $s_n$. We assume that $s_n < l$ means an attack identification, according the anomaly on similiarity of $s_n$ to a defined limiar $l$. Therefore, after obtaining the most significant eigenvector $\boldsymbol{v}^{(q)}$ and the target eigenvectors $\boldsymbol{v}_{(n)}$ for eigen similarity analyis, the $s_n$ is calculated according to~(\ref{eq:eq11}).
-
-If $s_n = 1$, then the two eigenvectors are completely similar and no anomaly is detected. Smaller values of $s_n$ mean less similarity and can indicate an anomaly, according to a defined 
-threshold $l$, assuming that if $s_n < l$, then a network attack is identified during the $n$-th minute. Therefore, the $s_n$ of each $n$-th minute shall be compared with the threshold $l$ to evaluate if a attack is identified, according to
-
-\begin{equation}\label{eq:eq14}
-  \boldsymbol{\hat{n}_{(n)}}=\left\{
-  \begin{array}{@{}ll@{}}
-    1, & \text{if}\ s_n < l \\
-    0, & \text{otherwise}
-  \end{array}\right.
-\end{equation}
-where $\boldsymbol{\hat{n}}_{(n)}$ denotes a vector of $n$-th minutes detected as under attack.
-
-The eigen similarity analysis can also be applied in an individual fashion, where each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, as shown by Figure \ref{fig:fig9}.
-
-\begin{figure}[h!]
-     % \includegraphics[height=4cm, width=12.4cm]{results/figures/individualized.eps}
-     \caption{Traffic selection for individual approach.}
-     \label{fig:fig9}
-\end{figure}
-
-The incremental and the individual approaches can be combined to obtain the incremental individualized approach, where each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ becomes the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated, as shown in Figure \ref{fig:fig2}.
-
-\begin{figure}[h!]
-     % \includegraphics[height=4cm, width=12.4cm]{results/figures/incremental_individualized.eps}
-     \caption{Traffic selection for incremental individualized approach.}
-     \label{fig:fig2}
-\end{figure}
-
-This approach of incremental similarity analysis followed by individual analysis after an attack detection allows to identify the attack period, highlighting the first and last time under attack. This identification is possible due to the variation of the most significant eigenvectors, which becomes more significant when compared a traffic under attack against a traffic with no attack, according to results which are discussed in Section \ref{sec:experimentalresults}.
-
 \subsubsection{Port Similarity Analysis}
 \label{sec:prop_PortSimilarityAnalysis}
-
-Given $\boldsymbol{\hat{n}}$, which is the set of $n$-th minutes under attack, it is still necessary to obtain more details about the identified network attack, such as the network ports that are attacked during each $n$-th minute identified as under attack. Hence, it is also applied the cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port during a $n$-th minute. 
-
-For detection of ports under attack, the $\boldsymbol{v}^{(q)}$ last most significant eigenvectors without attack shall be used as reference for similarity analysis against the $\boldsymbol{v}_{(n)}$ identified as under attack, individually evaluating the cosine similarity of each $m$-th port of all $\boldsymbol{\hat{n}}$ minutes.
-
-Therefore, $\boldsymbol{v}^{(q)}$ should be calculated from the last $\boldsymbol{X}^{(q)}$ time frame without attack, and $\boldsymbol{v}_{(m,\hat{n})}$ should be calculated from the same traffic appened of all $n$-th minutes until the identified minute under attack, denoted as $\boldsymbol{X}_n$. 
-
-For similarity analyis, each $m$-th port of the last $n$-th minute of $\boldsymbol{X}_n$, denoted as $x_{(m,n)}$, shall be individually replaced by the traffic of the evaluated $m$-th port of the $\hat{n}$-th minute under attack, denoted as $x^{(\hat{q})}_{(m,\hat{n})}$, in order to identify significant variation on similarity caused by the traffic of the $m$-th port. 
-
-This approach for detection of ports under attack via similarity analysis is given by
-
-\begin{equation}\label{eq:eq15}
-  \left\{
-  \begin{array}{@{}ll@{}}
-    x_{(m,n)} = x^{(\hat{q})}_{(m,\hat{n})} \\
-    \\
-    s_{m,\hat{n}} = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(m,\hat{n})}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(m,\hat{n})}}},
-  \end{array}\right.
-\end{equation}
-
-where $x^{(\hat{q})}_{(m,\hat{n})}$ denotes the $m$-th port of the selected $n$-th minute identified as under attack and $x_{(m,n)}$ denotes the $m$-th port of the last $n$-th minute of $\boldsymbol{X}_n$, which is used to calculate the $\boldsymbol{v}_{(m,\hat{n})}$ most significant eigenvectors that contains the traffic of the $m$-th port of the $\hat{n}$-th minute identified as under attack.
-
-Once $\boldsymbol{v}^{(q)}$ and $\boldsymbol{v}_{(m,\hat{n})}$ are obtained, then the $s_{m,\hat{n}}$ similarity degree can be calculated in order to identify if the traffic replacement highlights the adition of anomalous traffic by the evaluated $m$-th port during the $\hat{n}$-th minute previously identified as under attack. 
-
-This procedure should be repeated for each $m$-th target port of $\boldsymbol{\hat{n}}$, in order to individually identify the network ports under attack during each $\hat{q}$-th time frame.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
@@ -404,424 +652,125 @@ This section presents the performed experiments and the acquired results. First,
 \subsection{Experimental Scenario}
 \label{sec:AnalyzedScenario}
 
-The experiment time is 120 minutes, separated into six time frames, with each time frame corresponding to twenty minutes. Therefore, as the time of each sampling period is one minute, then $N = 20$. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ was obtained, as well as a covariance $\boldsymbol{\hat{R}}_{yy}^{(q)} \in \mathbb{R}^{17 \times 17}$ (calculated via (\ref{eq:eq03})) and a sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)} \in \mathbb{R}^{17x17}$, assuming that $q = 1, 2, 3, 4, 5$ and $6$. 
+\textbf{Experiment Plan:}
 
-The simulation started at 21:00h, the first time frame was from 21:00h until 21:20h ($q = 1$), the second was from 21:20h until 21:40h ($q = 2$), the third was from 21:40h to 22:00h ($q = 3$), the fourth was from 22:00h until 22:20h ($q = 4$), the fifth was from 22:20h until 22:40h ($q = 5$), and finally, the sixth was from 22:40h until 23.00h ($q = 6$). During the simulation, the victim made legitimate access, and the attacker performed the following attacks: at 21:54h ($q = 3$) was performed a port scan, at the interval ranging from 22:10h to 22:20h ($q = 4$) a synflood attack was simulated, and at the interval from 22:30h to 22:40h ($q = 5$) a fraggle attack was performed.
+	Given a contaminated data set, split it into normal (60\%), cross validation (20\% normal + 50\% anomalous) and test (20\% normal + 50\% anomalous).
+	Select the range of contamination that shall be evaluated and perform cross validation for each contamination. 
+	For each contamination $c$:
+	
+		Estimate $\boldsymbol{\bar{x}}_{normal}$ and $\boldsymbol{\hat{S}}_{normal}$ from normal data.
+		Predict anomalies for cross validation data using the $c$, $\boldsymbol{\bar{x}}_{normal}$ and $\boldsymbol{\hat{S}}_{normal}$.
+		Select the best F-measure by cross validation and get the best $c$.
+	
+	Test the F-measure of anomaly detection for new observations through $d(\boldsymbol{x},\bar{\boldsymbol{x}}_0, \boldsymbol{\hat{S}}_0)$ and $c$.
 
-\subsection{Largest Eigenvalues Analysis}
-\label{sec:largesteigenvaluesanalysis}
 
-For the evaluation of MOS Schemes accuracy for flood and port scan detection, the framework defines that it is necessary to obtain the largest eigenvalue of each time frame, through eigen decomposition from a covariance of zero mean variables or covariance matrix of zero mean and unitary standard deviation variables, calculated from the evaluated traffic, as described in Section \ref{sec:prop_getv}. Through eigenvalue analysis of traffic with flood or port scan attacks, it is possible to visualize a significant difference between the largest eigenvalues and the remain eigenvalues, which can indicate a relationship between an outlier and time frames under attack.
+\textbf{Experiment Plan:}
 
-\begin{figure}[h!]
-	\centering
-     % \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_synflood.eps} 
-     \caption{Eigenvalues of the sample covariance matrix (synflood).}
-     \label{fig:fig10}
-\end{figure}
+    Evaluation Measure:
+	
+		In anomalous detection problems, where anomalies are rare events, if we classify all observations as normal and apply a accuracy evaluation, we would have high accuracy but poor true-positive detection.
+		Due to the importance given by F-measure to true-positive detection \cite{moustafa2019holistic}, the F-measure is the preferable measure for imbalanced data sets.
+	
 
-Figure \ref{fig:fig10} depicts the eigenvalues calculated from sample covariance matrix of the network traffic used to evaluate the synflood attack identification. In Figure \ref{fig:fig10}, the largest eigenvalue related to the simulated synflood attack ($q = 4$) stands out significantly from the other eigenvalues.
 
-Figure \ref{fig:fig11} illustrates the eigenvalues calculated from sample covariance matrix of the matrix used for fraggle attack detection. In Figure \ref{fig:fig10}, the largest eigenvalue related to the simulated synflood attack ($q = 5$) stands out significantly from the other eigenvalues, in accordance with the result shown in Figure \ref{fig:fig10} for the synflood attack analysis.
+\textbf{Experiment Plan:}
 
-\begin{figure}[h!]
-	\centering
-     % \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_fraggle.eps}
-     \caption{Eigenvalues of the sample covariance matrix (fraggle).}
-     \label{fig:fig11}
-\end{figure}
+	The F-measure is the harmonic mean of precision and recall and is defined by 
+	\begin{equation}\label{eq:eq10}
+		F-measure = 2 * \frac{PR * RC}{PR + RC},				
+	\end{equation}
+	where $PR$ is the precision, defined by 
+	\begin{equation}\label{eq:eq11}
+		PR = \frac{True Positive}{True Positive + False Positive}
+	\end{equation}
+	and $RC$ is the recall, defined by 
+	\begin{equation}\label{eq:eq12}
+		RC = \frac{True Positive}{True Positive + False Negative}.
+	\end{equation}
 
-Figure \ref{fig:fig12} depicts the eigenvalues calculated from covariance matrix of zero mean and unitary standard deviation variables, of the network traffic matrix evaluated for port scan detection. 
 
-\begin{figure}[h!]
-	\centering
-     % \includegraphics[height=6cm, width=8cm]{results/figures/eigenvalues_portscan.eps}
-     \caption{Eigenvalues of the covariance matrix of zero mean and unitary standard deviation (port scan).}
-     \label{fig:fig12}
-\end{figure}
+\textbf{Data splitting for training, cross validation and testing}
 
-As analyzed for the synflood and fraggle attacks, note that the largest eigenvalue, related to this attack ($q = 3$), stands out significantly from the others eigenvalues.
+	Gargia et al. \cite{garcia2014empirical} propose a division of CTU-13's scearios into train and test, for evaluation of network attack detection algorithms. 
+	However, we decide to evaluate our proposed approach for each scenario individually, considering that in the division proposed by Gargia et al. some bots are present only for training and not for testing. 
+	Although our proposal does not rely on anomalous data for training, we desire to evaluate our proposal to detect all types of bots captured by CTU-13 data set.
 
-Table \ref{tab:tab3} presents the values of the largest eigenvalues of each time frame $q$-th for port scan, synflood and fraggle detection. 
 
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Largest Eigenvalue related to attacks detection}
-  \label{tab:tab3}
-  \begin{tabular}{ c c c c c }
-	\toprule
-	\multirow{3}{*}{\textbf{Time Frame} $q$} &\multicolumn{4}{c }{\textbf{Vectors GETV}}\\ 
-			\hhline{~----}
-		&\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}	 &\textbf{Detection of}\\
-		&\textbf{\emph{synflood/fraggle}}	 &\textbf{\emph{synflood}}	 &\textbf{\emph{fraggle}}	 &\textbf{\emph{port scan}}\\
-	\midrule
-	1 &1887545 &1887545 &1887545 &2,0734 \\
-	2 &2341327 &2341327 &2341327 &2,1451 \\
-	3 &3213867 &3213867 &3213867 &10,0718 \\
-	4 &133238294 &133238294 &731229 &2,1620 \\
-	5 &92384021611 &6367983 &92384021611 &2,4253 \\
-	6 &708335 &708335 &708335 &1,7948 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+We propose to compare our approach to clustering and statisctical based approaches (K-means and Gaussian Mixture Model (GMM), respectively).
 
-In Table \ref{tab:tab3}, note the significant variation of the eigenvalues associated with attacks, in comparison to the others. At $q = 4$, where the synflood attack occurred, the maximum eigenvalue obtained is approximately 21 times larger than the second one. At $q = 5$, where the fraggle attack occurred, the maximum eigenvalue obtained is about 29,000 times larger than the second one. At $q = 3$, where the port scan attack occurred, the maximum eigenvalue obtained is approximately 4 times larger than the second one. In the last case, for port scan attack detection, although the largest eigenvalue presented no too large variance to the second one, if compared to synflood or fraggle attacks, it clearly deviates from the remaining largest eigenvalues.
+	As clustering-based method, we selected K-means, which is the clustering algorithm most adopted for general purposes and for network anomaly detection \cite{gaddam2007k,moustafa2019holistic}.
+	It is observed that network traffic do not belong to a Gaussian distribution \cite{benson2010network,moustafa2019holistic}, algorithms based on non-Gaussian distributions, such as GMM, has been adopted for network anomaly detection \cite{moustafa2019holistic}.
 
-These results highlight that all $q$-th time frames where a network attack was simulated, present high significant variance between the largest eigenvalue and the remaining eigenvalues, obtained from sample covariance matrix, for flood detection, or from covariance matrix of zero mean and unitary standard deviation variables, for port scan detection. Therefore, we propose to apply the vector of the largest eigenvalues to MOS schemes in order to evaluate their accuracy for identification of time frames under attack, motivated by the fact that it is relevant to apply MOS schemes to automate the attack detection process, taking into account the characteristics of the evaluated eigenvalues.
 
-\subsection{MOS Schemes Evaluation}
-\label{sec:MOSSchemesEvaluation}
-
-In \cite{tenorio2013greatest}, we evaluate the accuracy of AIC, MDL, EDC, RADOI, EFT and SURE MOS schemes \cite{da2009comparison,tenorio2013greatest} for synflood and port scan attack detection. In this work we extend that evaluation for fraggle attack detection, applying the same schemes to fraggle attack detection over the traffic presented in Section \ref{sec:datamodel}, as results shown in Table \ref{tab:tab4}.
+\subsection{Results}
+\label{sec:results}
 
 \begin{table}[h!]
   \centering
   \scriptsize
-  \caption{MOS schemes applied to port scan and flood detection}
-  \label{tab:tab4}
-  \begin{tabular}{ c c c c c c c c }
+  \caption{Results grouped by algorithm and scenario}
+  \label{tab:tab02}
+  \begin{tabular}{ c|c c|c c|c c|c c|c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} &{\textbf{(d)}}\\ 
-			\hhline{~------~}
-		&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
+	\multirow{2}{*}{\textbf{Scenario}}   &\multicolumn{2}{c}{\textbf{S-MCD}} &\multicolumn{2}{c}{\textbf{K-MCD}} &\multicolumn{2}{c}{\textbf{MCD}} &\multicolumn{2}{c}{\textbf{GMM}} &\multicolumn{2}{c}{\textbf{K-Means}}\\ 
+			\hhline{~----------}
+			&\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25}\\
 	\midrule
-	Detection of synflood \\(presence of attack) &2 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-	Detection of synflood \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
-	\midrule
-	Detection of fraggle \\(presence of attack) &1 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-	Detection of fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
-	\midrule
-	Detection of port scan \\(presence of attack) &1 &1 &\textbf{1} &1 &\textbf{1} &9 &\textbf{1} \\
-	Detection of port scan \\(absence of attack) &0 &0 &\textbf{0} &1 &\textbf{0} &1 &\textbf{0} \\
-	\midrule
-	Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{2} &5 &\textbf{2} &5 &\textbf{2} \\
-	Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+		10 &\color{red} 0.71 & 0.03 & 0.66 & 0.02 & 0.34 & 0.52 & 0.34 & 0.46 & 0.20 & 0.25 \\ \hline
+		11 & 0.03 & 0.54 & 0.00 & 0.54 & 0.71 &\color{red} 0.73 & 0.35 & 0.48 & 0.13 & 0.15 \\ \hline
+		12 & 0.19 & 0.02 & 0.20 & 0.05 & 0.06 &\color{red} 0.31 & 0.01 & 0.01 & 0.09 & 0.11 \\ \hline
+		15 & 0.00 & 0.00 & 0.00 & 0.00 & 0.24 &\color{red} 0.32 & 0.14 & 0.22 & 0.09 & 0.11 \\ \hline
+		15-2 & 0.04 & 0.85 & 0.67 &\color{red} 0.86 & 0.36 & 0.28 & 0.32 & 0.14 & 0.18 & 0.26 \\ \hline
+		15-3 & 0.00 & 0.01 & 0.00 & 0.01 &\color{red} 0.55 & 0.48 & 0.00 & 0.01 & 0.22 & 0.29 \\ \hline
+		16 & 0.45 & 0.36 & 0.42 & 0.33 & 0.27 & 0.41 &\color{red} 0.51 & 0.49 & 0.07 & 0.16 \\ \hline
+		16-2 & 0.00 & 0.16 & 0.00 &\color{red} 0.20 & 0.04 & 0.04 & 0.02 & 0.08 & 0.04 & 0.03 \\ \hline
+		16-3 & 0.00 & 0.05 & 0.00 & 0.07 &\color{red} 0.15 & 0.10 & 0.01 & 0.01 & 0.03 & 0.04 \\ \hline
+		17 & 0.03 & 0.03 & 0.07 & 0.03 &\color{red} 0.59 & 0.53 & 0.16 & 0.47 & 0.35 & 0.39 \\ \hline
+		18 & 0.63 & 0.10 & 0.63 & 0.08 & 0.70 &\color{red} 0.72 & 0.21 & 0.17 & 0.13 & 0.20 \\ \hline
+		18-2 & 0.83 & 0.69 & 0.85 & 0.43 & 0.84 &\color{red} 0.91 & 0.50 & 0.55 & 0.62 & 0.70 \\ \hline
+		19 &\color{red} 0.71 & 0.00 & 0.68 & 0.00 & 0.11 & 0.42 & 0.17 & 0.20 & 0.20 & 0.17 \\ \hline
+		\rowcolor{Gray} \textbf{avg} & \textbf{0.28} & \textbf{0.22} & \textbf{0.32} & \textbf{0.20} & \textbf{0.38} &\color{red} \textbf{0.44} & \textbf{0.21} & \textbf{0.25} & \textbf{0.18} & \textbf{0.22} \\ 
     \bottomrule
   \end{tabular}
 \end{table}
-
-Note that $\hat{d} = 1$, if there is attack, while $\hat{d} > 1$ indicates more than one attack. An example of this could be seen for attack detection via EFT for traffic containing synflood and fraggle attacks, showing $\hat{d} = 2$, which indicates the presence of two attacks, as expected by the $d$ real values of Table \ref{tab:tab4}. 
-
-In Table \ref{tab:tab4}, two MOS schemes outperforms from the others, EDC and EFT. Efficient Detection Criterion (EDC) and Exponential Fitting Test (EFT) are the most effective schemes, correctly estimating the number of attacks in comparison to the expected values for effetctive attack detection, as defined by the column of real values in Table \ref{tab:tab4}. The AIC and MDL schemes are satisfactory only for port scan detection, however SURE and RADOI schemes did not show effective results for port scan or flood detection.
-
-Although EDC and EFT presented the same accuracy on the evaluation, the EDC scheme requires less processing time than EFT, which is an important criteria to select EDC as the MOS scheme for flood and port scan detection on the remain experiments.
-
-According to Table \ref{tab:tab4}, EDC and EFT estimated correctly the number of attacks of a time frame vector, indicating that ocurred $\hat{d}$ network attacks, but not providing additional details, what highlights the necessity of complementary approaches in order to estimate the time and ports under attack. Hence, we propose apply eigen analysis to estimate the $q$-th time frames under attack and eigen similarity analysis to estimate the minutes and ports under attack.
-
-\subsection{Eigenvalue Analysis}
-\label{sec:EigenvalueAnalysis}
-
-According to the results presented in Section \ref{sec:largesteigenvaluesanalysis}, the largest eigenvalue stands out significantly from the others eigenvalues of an evaluated $q$-th time frame. This behavior can also be observed in the largest eigenvalues analysis, according to results presented in Table \ref{tab:tab3}, where it is possible to observe that the $\hat{d}$ largest eigen values of the time frames under attacks stand out significantly from the others largest eigenvalues. 
-
-Therefore, we conclude that the $\hat{d}$ largest eigenvalues correspond to the respectives $q$-th time frames under attack, which is denoted by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ and can be calculated according to Algorithm \ref{alg:alg01}.
-
-\subsection{Eigen Similarity Analysis}
-\label{sec:EigenSimilarityAnalysis}
-
-This paper proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
-
-\subsubsection{Time Analysis}
-\label{sec:TimeAnalysis}
-
-Three approaches were evaluated for eigen similarity analysis: incremental, individual and incremental individualized approaches. For the incremental individualized approach, each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ became the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated. For the incremental approach, each $n$-th minute must be incrementally appended into $\boldsymbol{X}^{(q)}$, for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual time similarity analyis. For the individual approach, each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, without incremental append, but doing individual appended into $\boldsymbol{X}^{(q)}$ for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}$ for individual similarity analyis.
-
-Table \ref{tab:tab5} presents the results of the evaluation of three approaches for similarity analysis of eigenvectors for port scan detection.
 
 \begin{table}[h!]
   \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Port Scan Detection}
-  \label{tab:tab5}
-  \begin{tabular}{ c c c c c c }
+  \scriptsize
+  \caption{Results grouped by algorithm and scenario}
+  \label{tab:tab03}
+  \begin{tabular}{ c|c c|c c|c c|c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+	\multirow{2}{*}{\textbf{Scenario}}   &\multicolumn{2}{c}{\textbf{RPCA}} &\multicolumn{2}{c}{\textbf{S-RPCA}} &\multicolumn{2}{c}{\textbf{S-RPCA2}} &\multicolumn{2}{c}{\textbf{MCD}}\\ 
+			\hhline{~--------}
+			&\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25}\\
 	\midrule
-	3 &1 &0.9946 &0.9946 &0.9946 &no \\
-	3 &2 &0.9934 &0.9934 &0.9999 &no \\
-	3 &3 &0.9912 &0.9912 &0.9999 &no \\
-	3 &4 &0.9888 &0.9888 &0.9999 &no \\
-	3 &5 &0.9856 &0.9856 &0.9998 &no \\
-	3 &6 &0.9840 &0.9840 &0.9999 &no \\
-	3 &7 &0.9824 &0.9824 &1.0000 &no \\
-	3 &8 &0.9794 &0.9794 &0.9999 &no \\
-	3 &9 &0.9673 &0.9673 &0.9926 &no \\
-	3 &10 &0.9674 &0.9674 &0.9997 &no \\
-	3 &11 &0.9733 &0.9733 &0.9993 &no \\
-	3 &12 &0.9702 &0.9702 &0.9993 &no \\
-	3 &13 &0.9677 &0.9677 &0.9999 &no \\
-	3 &14 &0.9646 &0.9646 &0.9998 &no \\
-	3 &15 &0.0216 &0.0216 &0.0276 &yes \\
-	3 &16 &0.9621 &0.0209 &1.0000 &no \\
-	3 &17 &0.9611 &0.0199 &0.9998 &no \\
-	3 &18 &0.9612 &0.0191 &0.9999 &no \\
-	3 &19 &0.9613 &0.0186 &0.9998 &no \\
-	3 &20 &0.9638 &0.0190 &1.0000 &no \\
+		10 & 0.93 & 0.93 &\color{red} 0.98 &\color{red} 0.98 &\color{red} 0.99 &\color{red} 1.00 & 0.34 & 0.52 \\ \hline
+		11 & 0.96 & 0.94 &\color{red} 0.99 &\color{red} 0.98 &\color{red} 0.99 &\color{red} 1.00 & 0.71 & 0.73 \\ \hline
+		12 & 0.32 & 0.19 & 0.00 & 0.00 &\color{red} 0.81 & 0.01 & 0.06 & 0.31 \\ \hline
+		15 & 0.75 & 0.73 & 0.86 &\color{red} 0.96 &\color{red} 1.00 &\color{red} 0.96 & 0.24 & 0.32 \\ \hline
+		15-2 & 0.40 & 0.57 &\color{red} 0.95 &\color{red} 0.94 & 0.25 & 0.93 & 0.36 & 0.28 \\ \hline
+		15-3 & 0.68 & 0.68 &\color{red} 0.96 & 0.70 &\color{red} 0.96 &\color{red} 0.96 & 0.55 & 0.48 \\ \hline
+		16 &\color{red} 0.47 &\color{red} 0.47 & 0.01 & 0.01 & 0.01 & 0.00 & 0.27 & 0.41 \\ \hline
+		16-2 & 0.07 & 0.10 &\color{red} 0.80 & 0.68 & 0.00 & 0.00 & 0.04 & 0.04 \\ \hline
+		16-3 & 0.29 & 0.29 & 0.01 & 0.46 &\color{red} 0.79 & 0.76 & 0.15 & 0.10 \\ \hline
+		17 &\color{red} 0.82 & 0.79 &\color{red} 0.81 & 0.78 &\color{red} 0.82 & 0.79 & 0.59 & 0.53 \\ \hline
+		18 & 0.87 & 0.89 & 0.97 &\color{red} 0.98 &\color{red} 0.98 &\color{red} 0.98 & 0.70 & 0.72 \\ \hline
+		18-2 &\color{red} 0.94 &\color{red} 0.94 &\color{red} 0.91 & 0.86 & 0.09 & 0.10 & 0.84 & 0.91 \\ \hline
+		19 & 0.27 & 0.31 &\color{red} 0.95 &\color{red} 0.95 & 0.02 & 0.02 & 0.11 & 0.42 \\ \hline
+		\rowcolor{Gray} \textbf{Avg} & \textbf{0.60} & \textbf{0.60} &\color{red} \textbf{0.71} &\color{red} \textbf{0.71} & \textbf{0.59} & \textbf{0.58} & \textbf{0.38} & \textbf{0.44} \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-Table \ref{tab:tab5} shows the evaluation of the time frame $q=3$, when the port scan attack was simulated, considering the incremental individualized, incremental and individual approaches for eigen similarity analysis. According to the presented results, it is possible to observe the high similarity between network traffic without attack, which was larger than 0.9610 for all evaluated cases, and emphasize the expressive low similarity when evaluated the traffic with the simulated port scan attack ($n=15$), which was lower than 0.0276 for all evaluated approaches.
+Results grouped by algorithm for full CTU-13.
 
-Comparing the approaches for similarity analysis, it is possible to observe that all approaches highlight the low similarity when evaluated the traffic under attack. However, the incremental approach figured out low similarity for times without attack, where $n=16, 17, 18, 19, 20$, what indicates that the incremental approach can produce false posive results. This behavior occurs because the incremental approaches appends all selected traffic into the reference traffic for comparison against the original reference traffic, what makes more evident the first lack of similarity but reduces the changing detection capability after an attack detection.
+\subsection{Discussion}
+\label{sec:discussion}
 
-Table \ref{tab:tab6} presents the results of the evaluation of the similarity analysis of eigenvectors for synflood detection. It shows the evaluation of the time frame $q=4$, when the synflood attack is simulated, considering the incremental individualized, incremental and individual approaches for eigen similarity analysis. According to the results, it is possible to observe the high similarity between network traffic without attack, which is larger than 0.9907 for all evaluated cases, and emphasize the expressive low similarity when evaluated the traffic with synflood attack (between $n=11$ and $n=20$), which is lower than 0.1244 for all evaluated approaches.
-
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Synflood Detection}
-  \label{tab:tab6}
-  \begin{tabular}{ c c c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
-	\midrule
-	4 &1 &1.0000 &1.0000 &1.0000 &no \\
-	4 &2 &0.9999 &0.9999 &1.0000 &no \\
-	4 &3 &0.9997 &0.9997 &0.9999 &no \\
-	4 &4 &0.9998 &0.9998 &1.0000 &no \\
-	4 &5 &0.9965 &0.9965 &0.9908 &no \\
-	4 &6 &0.9975 &0.9975 &1.0000 &no \\
-	4 &7 &0.9977 &0.9977 &1.0000 &no \\
-	4 &8 &0.9980 &0.9980 &1.0000 &no \\
-	4 &9 &0.9987 &0.9987 &0.9999 &no \\
-	4 &10 &0.9991 &0.9991 &1.0000 &no \\
-	4 &11 &0.0085 &0.0085 &0.0284 &yes \\
-	4 &12 &0.0162 &0.0120 &0.0343 &yes \\
-	4 &13 &0.0248 &0.0158 &0.0427 &yes \\
-	4 &14 &0.1243 &0.0185 &0.1041 &yes \\
-	4 &15 &0.0082 &0.0162 &0.0103 &yes \\
-	4 &16 &0.0404 &0.0070 &0.0580 &yes \\
-	4 &17 &0.0397 &0.0007 &0.0573 &yes \\
-	4 &18 &0.0408 &0.0042 &0.0584 &yes \\
-	4 &19 &0.0408 &0.0079 &0.0584 &yes \\
-	4 &20 &0.0477 &0.0092 &0.0757 &yes \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-The incremental approach produces better results if compared with other evaluated approaches, with lower values and maximum of 0.0185 for times under attack, but this approach presents change detection limitation after the first outlier of similarity, as shown in Table \ref{tab:tab5} for port scan detection. 
-
-Comparing the incremental individualized and the individual approaches for eigen similarity analysis, it is possible to observe that the incremental individualized approach obtain lowest values for almost all cases, except for the time $n=14$, where incremental individualized approach identified a larger similarity than the individual approach. The incremental individualized appends information about each evaluated traffic, therefore it incorporates traffic behaviors that can reduce the outlier capability detection, as ocurred for the time $n=14$.
-
-Table \ref{tab:tab7} presents the results of the eigen similarity analysis evaluation for fraggle detection.
-
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Fraggle Detection}
-  \label{tab:tab7}
-  \begin{tabular}{ c c c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
-	\midrule
-	5 &1 &1.0000 &1.0000 &1.0000 &no \\
-	5 &2 &0.9999 &0.9999 &1.0000 &no \\
-	5 &3 &1.0000 &1.0000 &1.0000 &no \\
-	5 &4 &0.9999 &0.9999 &1.0000 &no \\
-	5 &5 &0.9993 &0.9993 &0.9997 &no \\
-	5 &6 &0.9993 &0.9993 &0.9997 &no \\
-	5 &7 &0.9994 &0.9994 &1.0000 &no \\
-	5 &8 &0.9995 &0.9995 &1.0000 &no \\
-	5 &9 &0.9995 &0.9995 &1.0000 &no \\
-	5 &10 &0.9995 &0.9995 &1.0000 &no \\
-	5 &11 &0.0031 &0.0031 &0.0021 &yes \\
-	5 &12 &0.0019 &0.0025 &0.0009 &yes \\
-	5 &13 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &14 &0.0030 &0.0027 &0.0020 &yes \\
-	5 &15 &0.0030 &0.0028 &0.0020 &yes \\
-	5 &16 &0.0012 &0.0025 &0.0002 &yes \\
-	5 &17 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &18 &0.0030 &0.0026 &0.0020 &yes \\
-	5 &19 &0.0030 &0.0027 &0.0020 &yes \\
-	5 &20 &0.0069 &0.0023 &0.0083 &yes \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-For fraggle attack detection, the lack of similarity between legitimate and malicious traffic was more evident than for the evaluation of synflood and port scan detecion. This behavior can be explained by the number of packets generated through the fraggle attack simulation, that was significative larger than the number of packets generated during the synflood simulation. Considering the three approaches, the largest value for times under attack was 0.0083, while the shortest value for times without attacks was 0.9993. 
-
-Therefore, considering the evaluation for port scan, synflood and fraggle detection, the incremental approach can produce false positive results, while the individual and incremental individualized approaches produce quite similar results, even though the individual approach be more simple and require less memory and processing time.
-
-These results highlight the capability of change detection based on similarity between legitimate and malicious traffic from flood or port scan attacks, endorsing the effectiveness and safety for adoption of threshold for attack detection through eigen similarity analysis.
-
-\subsubsection{Port Analysis}
-\label{sec:PortAnalysis}
-
-Given $\hat{N}$, which is the set of estimated $n$-th minutes under attack, it is possible to apply cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port, during a $n$-th minute. Therefore, the incremental individualized and individual approaches of eigen similarity analysis were evaluated, for detection of ports under flood and port scan attacks, according to results presented in following tables. For this evaluation, the $v$ last most significant eigenvectors without attack was used as reference for similarity analysis against each target port $m$-th.
-
-Table \ref{tab:tab8} presents the results of the evaluation of eigen similarity analysis for detection of ports under port scan attack, showing only the time frame $q=3$ and minute $n=15$, due to the simulated port scan attack occurred only at this time, although the remain time frame has been completely evaluated and presented high similarity to the reference of traffic without network attack.
-
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Port Scan Attack (q=3 and n=15)}
-  \label{tab:tab8}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &0.9999 &0.9999 &no \\
-	443 &0.9999 &0.9999 &no \\
-	53 &0.9999 &0.9999 &no \\
-	21 &0.9999 &0.9997 &yes \\
-	22 &0.0298 &0.9997 &yes \\
-	23 &0.0298 &0.9997 &yes \\
-	25 &0.0298 &0.9997 &yes \\
-	110 &0.0298 &0.9997 &yes \\
-	143 &0.0298 &0.9997 &yes \\
-	161 &0.0298 &0.9997 &yes \\
-	69 &0.0298 &0.9997 &yes \\
-	123 &0.0298 &0.9997 &yes \\
-	445 &0.0298 &0.9997 &yes \\
-	600 &0.9999 &0.9999 &no \\
-	19 &0.9999 &0.9999 &no \\
-	67 &0.9999 &0.9999 &no \\
-	68 &0.9999 &0.9999 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-The incremental individualized approach presented more sensibility to anomaly detection than the individual approach, the former produced the identification of a low similarity of 0.0298 for almost all ports under attack, unless the port 21, although the simulation has attacked this port. The individual approach was not able to identify low similarity for ports under attack, resunting in values of 0.9997 for ports with anomalous traffic and 0.9999 for ports without network attack.
-
-For the evaluation of the proposed approaches for identification of ports under synflood and fraggle attack, all minutes of each time frame, in which one attack location was estimated, were analyzed. Even though, due to space limitations, only the results of the firt minute where a low similarity was idenfified will be shown such as where $n=11$. Nevertheless, the results obtained for the evaluation of traffic without attack presented high similarity to the reference traffic, with similarities close to 0.9999, and the evaluation of the other minutes under attack presented results quite similar to the resuts shown in the Tables \ref{tab:tab9} and \ref{tab:tab10}.
-
-Table \ref{tab:tab9} presents the results of the evaluation of eigen similarity analysis for detection of ports under synflood attack, showing only the time frame $q=4$ and minute $n=11$.
-
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Synflood Attack (q=4 and n=11)}
-  \label{tab:tab9}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &1.0000 &1.0000 &no \\
-	443 &1.0000 &1.0000 &no \\
-	53 &1.0000 &1.0000 &no \\
-	21 &1.0000 &1.0000 &nos \\
-	22 &1.0000 &1.0000 &no \\
-	23 &1.0000 &1.0000 &no \\
-	25 &1.0000 &1.0000 &no \\
-	110 &1.0000 &1.0000 &no \\
-	143 &1.0000 &1.0000 &no \\
-	161 &1.0000 &1.0000 &no \\
-	69 &1.0000 &1.0000 &no \\
-	123 &1.0000 &1.0000 &no \\
-	445 &1.0000 &1.0000 &no \\
-	600 &0.0077 &0.0427 &yes \\
-	19 &1.0000 &1.0000 &no \\
-	67 &1.0000 &1.0000 &no \\
-	68 &1.0000 &1.0000 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-According to results presented in Table \ref{tab:tab9}, both approches identifies low similarity for the traffic of port 600, which is the target port of the simulated synflood attack, but the incremental individualized approach identifies the lowest similarity and presents better sensibility to identification of synflood attack through eigen similarity analysis assisted by threshold definition.
-
-Table \ref{tab:tab10} presents the results of the evaluation of eigen similarity analysis for detection of ports under fraggle attack, showing only the time frame $q=5$ and minute $n=11$.
-
-\begin{table}[h!]
-  \centering
-  \footnotesize
-  \caption{Eigen Similarity Analysis for Detection of Ports Under Fraggle Attack (q=5 and t=11)}
-  \label{tab:tab10}
-  \begin{tabular}{ c c c c }
-	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Attack?}}\\ 
-			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
-	\midrule
-	80 &1.0000 &1.0000 &no \\
-	443 &1.0000 &1.0000 &no \\
-	53 &1.0000 &1.0000 &no \\
-	21 &1.0000 &1.0000 &no \\
-	22 &1.0000 &1.0000 &no \\
-	23 &1.0000 &1.0000 &no \\
-	25 &1.0000 &1.0000 &no \\
-	110 &1.0000 &1.0000 &no \\
-	143 &1.0000 &1.0000 &no \\
-	161 &1.0000 &1.0000 &no \\
-	69 &1.0000 &1.0000 &no \\
-	123 &1.0000 &1.0000 &no \\
-	445 &1.0000 &1.0000 &no \\
-	600 &1.0000 &1.0000 &no \\
-	19 &0.0031 &0.0004 &yes \\
-	67 &1.0000 &1.0000 &no \\
-	68 &1.0000 &1.0000 &no \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-The results for the avaluation of ports under fraggle attack, shown in Table \ref{tab:tab10}, were similar to the results obtained for synflood analysis, with the identification of low similarity for traffic of the port under attack. Nevertheless, for fraggle analysis, the individual approach identified the lowest similarity, that is 0.0004 while the incremental individualized approach obtained a similarity of 0.0031.
-
-The incremental individualized approach was able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches presented false positives or low sensibility to eigen similarity analyis for network attack detection. This approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
-
-According to the shown significant lack of similarity between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
-
-\subsection{DARPA Scenario}
-\label{sec:DarpaEvaluation}
-
-This subsection presents a summarized view of results obtained from the application of the proposed framework, focusing on the largest eigenvalue analysis, model order selection and the eigenvalue analysis, for flood and probe attack detection in the DARPA 1998 dataset. Since the proposed framework is detailed in Section \ref{sec:prop_getv} and in Subsections \ref{sec:AnalyzedScenario}, \ref{sec:largesteigenvaluesanalysis}, \ref{sec:MOSSchemesEvaluation}, \ref{sec:EigenvalueAnalysis} and \ref{sec:EigenSimilarityAnalysis}, here the focus is on the parameter selection, dataset evaluation and results for flood and probe attack identification.
-
-The DARPA dataset includes 7 weeks of sniffed traffic saved into raw packet data. The traffic and the labeled attacks are grouped by week and day, with information of the number and types of attacks per day, but also providing the start time for each labeled attack. For this evaluation, an evaluation per day was performed, considering the network traffic of 24 hours split into $Q$ time frames of 60 minutes ($N = 60$) and aggregate by minute and by port number. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ is obtained, considering the ports 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389 and 443.
-
-Since the proposed framework focus on flood and probe attack detection, only the attacks with behavior similar to flood or probe attack were evaluated. Initially all DoS and probe attacks were selected, but it was observed that the most cases of DoS focus on exploit system vulnerabilities instead of flooding attack, and most of probe attacks focus on ICMP intead of port scanning. Therefore, for evaluation of the proposed approach for flood and probe attack detection, it is necessary to select cases that implements flood or port scan behaviors. The following week-day-attack cases  were selected: 
-
-\begin{enumerate}
-	\item week3-thursday-neptune;
-	\item week4-friday-portsweep;
-	\item week5-thursday-neptune;
-	\item week5-thursday-portsweep;
-	\item week5-friday-portsweep;
-	\item week6-wednesday-neptune;
-	\item week6-thursday-neptune;
-	\item week7-wednesday-portsweep.
-\end{enumerate}
-
-\begin{table*}[!t]
-	\caption{Results of the attack detection evaluation}
-	\label{tab:tab12}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Solution\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Attack Type\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Metric\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Result\end{tabular} \\ \hline
-	Proposed Work	&Flooding	&True Positive	&100.00 \%\\ \hline
-	Proposed Work	&Flooding	&False Positive	&60.00 \%\\ \hline
-	Proposed Work	&Flooding	&Misclassification	&50.00 \%\\ \hline
-	Proposed Work	&Probe	&True Positive	&76.92 \%\\ \hline
-	Proposed Work	&Probe	&False Positive	&18.52 \%\\ \hline
-	Proposed Work	&Probe	&Misclassification	&32.73 \%\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&True Positive	&82.00 \%\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&False Positive	&-\\ \hline
-	Callegari \emph{et al} \cite{Zonglin2009}	&Flooding	&Misclassification	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&True Positive	&94.67 \%\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&False Positive	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Overall	&Misclassification	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&True Positive	&50.00 \%\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&False Positive	&-\\ \hline
-	Lu and Ghorbani \cite{Lu2009}	&Portsweep	&Misclassification	&-\\ \hline
-	\end{tabular}
-\end{table*}
-
-Table \ref{tab:tab12} presents the evaluated results for attack detection, considering rates of TP, FP \cite{fleiss2013statistical} and misclassification, which is defined as $\frac{(FN+FP)}{(TP+FP+FN+TN)}$ \cite{bhuyan2014network}. The analysis based on sample covariation of zero mean variables is evaluated for flooding behavior of netpune attacks, obtaining rates of 100.00 \% for true positive (TP) detection and 60.00 \% for false positive (FP) detection from 30 time frames. The results also show 50.00 \% of misclassification rate , which attempts to estimate the probability of disagreement between the true and predicted cases by dividing the sum of FN and FP by the total number of pairs observed. 
-The result for FP and misclassification analysis is poor due to the legitimate traffic of DARPA dataset presents high number of packets per time  from one source to one target, with no variation on IP source or target port. This observation corroborates with previous evaluations of the DARPA dataset that highlight issues regarding traffic redundancy. 
-
-The analysis based on covariance of zero mean and unitary standard deviation variables was evaluated for port scan attacks, including probe attacks and DoS attacks that send few packets for several ports in order to exploit some vulnerability. The results show rates of 76.92 \% for TP detection and 18.52 \% for FP detection from 94 time frames. The observed misclassification rate for this scenario is 32.73 \%. It was observed that all FN cases are probe attacks with a time delay between scanning one port and start scanning the next port, what can be called as sparse probe attacks. Cases with a delay of one minute or more were not detected by the proposed approach.
-
-The performance of detection rate of flooding attacks is compared with the method proposed by Callegari \emph{et al} \cite{Zonglin2009}. This work is a statistical method, based on PCA, without training or learning methods, even though it relies on visual analysis for principal components selection. The best detection rate of \cite{Zonglin2009} was 82.00 \% for detection of synthetically added flood attacks, while this current proposal obtains 100.00 \% of detection rate for detection of flood attacks of DARPA dataset.
-
-Due to the lack of statistical techniques without training or learning methods for detection of probe attacks, this proposed approach is compared to the Lu and Ghorbani's \cite{Lu2009} proposal, which is a network anomaly detection model based on signal processing techniques that uses DARPA dataset for evaluation. The results of \cite{Lu2009} show the best detection rate of 94.67 \% in terms of general attack instance detection, but shows a case case with 50.00 \% of attack instance detection for the portsweep attack. The proposed approach presents 76.92 \% of detection rate measured specifically for probe attacks, without the requirement of learning or training methods, in contrast to Lu and Ghorbani's \cite{Lu2009} work.
+		there are no lots of researches using CTU-13, although it is been growing
+		poor results for GMM, K-Means and MGM are ok and in accordance to \cite{wang2017botnet}, which also evaluate \cite{gu2007bothunter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion and Future Works}
@@ -838,6 +787,15 @@ The incremental individualized approach of eigen similarity analysis, is able to
 According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
 
 Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets. Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high thoughput network traffic. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
+
+
+Say that the data is lognormal \cite{benson2010network} and link it to skewness https://www.weibull.com/hotwire/issue47/relbasics47.htm
+Test distribution fit again e present results
+Conclude this presentation.
+Evaluate eigensim for CTU-13 and others algorithms for Danilo's data set.
+Compare to vanilla RPCA (Eduardo is working on it).
+Write a paper for JNCA (April).
+Write the thesis (May and June).
 
 
 \section*{References}
