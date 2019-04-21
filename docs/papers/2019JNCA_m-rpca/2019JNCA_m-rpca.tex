@@ -78,7 +78,7 @@
 
 \begin{frontmatter}
 
-\title{Robust PCA and Higher Moments Distances for Botnet Detection}
+\title{Robust Subspace and Higher Moments Distances for Botnet Detection}
 
 %% Group authors per affiliation:
 \author[unbaddress]{Thiago P. B. Vieira}
@@ -119,7 +119,7 @@ Anomalies can be hard to identify and separate from normal data.
 
 Considering that anomalies are rare in comparison to normal events, anomaly detection algorithms have to deal with problems imposed by imbalanced data.
 
-Some techniques can make the data discriminative for better anomaly detection: Data engineering (i.e. sampling \cite{??}, aggregation \cite{acarali2016survey}); Feature extraction (i.e. decomposition \cite{??}, robust estimates \cite{??}).
+Some techniques can make the data discriminative for better anomaly detection: Data engineering (i.e. sampling \cite{??}, aggregation \cite{callegari2011novel, acarali2016survey}); Feature extraction (i.e. decomposition \cite{??}, robust estimates \cite{??}).
 
 Robust statistics produce methods that are not unduly affected by outliers.
 
@@ -143,6 +143,8 @@ The fundamental issue with the imbalanced learning problem is the ability of imb
 
 Skewness and the kurtosis tests are very sensitive outlier detectors. The properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2008outlier}.
 
+PCA is very sensitive to anomalies, thus outliers can corrupt the entire data or can be explored to highlight unespected changes and indicate attacks or frauds \cite{callegari2011novel,Lee2013,vieira2017model}. However, PCA is not precise to reveal flows, time or detailed information for each anomlies, and sometimes relies into visual analysis for pricipal component selection.
+
 We propose a network anomaly detection approach based on robust moment estimates and distance analysis.
 
 Considering that Fast-MCD is a widely adopted robust estimator of location and scatter for anomaly detection, we propose to extend Fast-MCD for computing robust skewness and kurtosis.
@@ -151,6 +153,7 @@ We also propose to use Mahalanobis Distance for detecting anomalies based on rob
 
 Considering that it is hard to have labeled data in real problems \cite{osanaiye2016distributed}, such as for network attacks or frauds, also considering that known anomalies are constantly changing due to adversarial models or due to lack of regular patterns, we propose a Semi-Supervised approach based on robust moments for network anomaly detection.
 
+We believe that the distribution of anomalous and normal traffic are skewed but with differences that permit separate anomalous of normal traffic. (Assumption and hitotesis). We also believe that aggregated traffic and new features can make the data more discriminative for anomaly detection algorithms. We algo believe that normal traffic presents significant distance to anomalous traffic, which permit a distance based sepparation, that can be augmented by means of robust estimation of normal traffic, that can discard noise or irrelevant outliers and can highlight higher outliers when comparing to new observations
 
 In the context of anomaly-based schemes, this work proposes a statistical approach based on cumulants and Mimimum Covariance Determinant (MCD) for network attack detection. To the best of our knowledge there is no similar model in the literature. We evaluate the accuracy of the proposed framework applied to CTU-13 dataset ??, which is a well known network traffic dataset.
 
@@ -158,21 +161,19 @@ The main contributions of the proposed framework are a semi-supervised method fo
 
 This paper is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model and the evaluated datasets. Section \ref{sec:c_mcd} describes the proposed framework for blind and automatic detection of flood and probe attacks. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work.
 
+Our approach train from normal traffic and have significant computational cost during training. For prediction, the cost is basically the cost for Mahalanobis distance computation
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Works}
 \label{sec:relatedworks}
 
-Principal Component Analysis (PCA) is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA has been used in attack detection \cite{almotairi2009technique}. However, PCA requires human intervention in order to identify abnormalities based on the eigenvalues profiles, if used without complementary techniques.
+Principal Component Analysis (PCA) is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA has been used in attack detection \cite{almotairi2009technique}. However, PCA requires human intervention in order to identify abnormalities based on the eigenvalues profiles, if used without complementary techniques. Callegari \emph{et al} \cite{callegari2011novel} propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. CAllegari separate normal of anomalies according to principal components (normal) and remaining (anomalies), based on PCA. It relies in the assumption that anomalies will cause a large change into anomalous components. This is similar to our previous work, but we rely on change into principal eigenvectors.
 
-Callegari \emph{et al} \cite{Zonglin2009} propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. 
-
-Lee \emph{et al.} \cite{Lee2013} propose OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. In contrast to Lee \emph{et al.}, the framework applies MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack. Additionally, Lee \emph{et al.} only evaluate their proposed scheme for covariance analysis, while we adopt an analysis based on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, for flood and probe attacks, respectively. 
+Use to justify the sensitivity of pca to outliers, only. Lee \emph{et al.} \cite{Lee2013} propose OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. In contrast to Lee \emph{et al.}, the framework applies MOS for detection of time frames under attack and similarity analysis to extract details for detection of time and ports under attack. Additionally, Lee \emph{et al.} only evaluate their proposed scheme for covariance analysis, while we adopt an analysis based on sample covariance of zero mean variables and sample covariance of zero mean and unitary standard deviation variables, for flood and probe attacks, respectively. 
 
 Besides being prone to higher errors and false positives, such human intervention makes PCA not useful for real time applications. Therefore, in order to automate the analysis of eigenvalues profile, model order selection (MOS) schemes should be incorporated. Vieira .... (The proposed framework does not require either a significant amount of logs to detect attacks, nor prior data collection, in order to make comparisons and evaluate the existence of malicious traffic. The proposed solution is automatic and blind for detection of time frames under probe and flood attacks through MOS and eigen analysis. Moreover, we apply eigen similarity analysis to identify details of time and ports under network attacks.)
 
-Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. We propose to adopt CTU-13...
-
-
+Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. Considering that it is important to create intrusion detection datasets in modern-day computing to address the issues of DARPA/KDD. The next section discusses ne such contemporary dataset for network traffic analysis \cite{ahmed2016survey}, we propose to adopt CTU-13...
 
 \cite{gu2007bothunter} (Bothunter: Detecting malware infection through ids-driven dialog correlation)
 
@@ -194,11 +195,11 @@ Several approaches for network attack detections uses the KDD 99 \cite{ji2016mul
 
 \cite{acarali2016survey} (Survey of approaches and features for the identification of HTTP-based botnet traffic)
 
-\cite{lakhina2005mining} (Mining anomalies using traffic feature distributions)
+\cite{lakhina2005mining} (Mining anomalies using traffic feature distributions).  -Argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Using entropy as a summarization tool, we show that the analysis of feature distributions leads to significant advances on two fronts: (1) it enables highly sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, and (2) it enables automatic classification of anomalies via unsupervised learning. Anomaly diagnosis framework, comprising both an extension of the subspace method [23] to accommodate multiple data types, and an unsupervised classification technique using simple clustering algorithms. \textbf{To explain feature selection and aggregation}.
 
 \cite{goldberg2015importance} (The importance of features for statistical anomaly detection)
 
-Clustering methods for anomaly detection rely on three key assumptions: legitimate data instances often fall into a cluster whereas attacks do not, legitimate data instances are usually located near the closest cluster centroid while anomaly ones are often far away from it, legitimate data instances fall into vast and dense clusters and anomalies into small or spare ones \cite{moustafa2019holistic}.
+Clustering methods for anomaly detection rely on three key assumptions: legitimate data instances often fall into a cluster whereas attacks do not, legitimate data instances are usually located near the closest cluster centroid while anomaly ones are often far away from it, legitimate data instances fall into vast and dense clusters and anomalies into small or spare ones \cite{ahmed2016survey, moustafa2019holistic}. We rely on this for our implementation
 
 GMM is a statistical-based and parametric approach algorithm that estimates the distribution of the normal class from a training set and is typically based on a set of kernels \cite{moustafa2019holistic}.
 
@@ -445,7 +446,7 @@ Lakhina et al. \cite{lakhina2005mining} argue that the distributions of packet f
 
 To deal with the data imbalance of CTU-13 data set, we adopt a sampling method based on data aggragation \cite{acarali2016survey} for feature generation, in order to obtain less imbalanced and more discrimnative data.	
 
-Based on related works \cite{lakhina2005mining,chandrashekar2014survey,acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
+Based on related works \cite{lakhina2005mining, callegari2011novel, chandrashekar2014survey, acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
 The features are generated by a data aggregation into a selected window size. We evalute our proposal for windows with 0.15, 0.25, 1 and 2 seconds, for each scenario of the CTU-13 data set.
 	
 Following (2 slides) are the selected features:
@@ -461,14 +462,14 @@ Following (2 slides) are the selected features:
 \textbf{n-sports>1024:} count of source ports higher than 1024.
 
 Following are the remaining selected features:
-	\textbf{n-s-a-p-address:} count of class A source address.
-	\textbf{n-d-a-p-address:} count of class A destination address.
-	\textbf{n-s-b-p-address:} count of class B source address.
-	\textbf{n-d-b-p-address:} count of class B destination address.
-	\textbf{n-s-c-p-address:} count of class C source address.
-	\textbf{n-d-c-p-address:} count of class C destination address.
-	\textbf{n-s-na-p-address:} count of class D* source address.
-	\textbf{n-d-na-p-address:} count of class D* destination address.
+\textbf{n-s-a-p-address:} count of class A source address.
+\textbf{n-d-a-p-address:} count of class A destination address.
+\textbf{n-s-b-p-address:} count of class B source address.
+\textbf{n-d-b-p-address:} count of class B destination address.
+\textbf{n-s-c-p-address:} count of class C source address.
+\textbf{n-d-c-p-address:} count of class C destination address.
+\textbf{n-s-na-p-address:} count of class D* source address.
+\textbf{n-d-na-p-address:} count of class D* destination address.
 
 Figures \ref{fig:fig07} and \ref{fig:fig08} show the distribution of average flow duration, for scenario 12, aggregated by windows of 0.15 and 2 seconds.
 
