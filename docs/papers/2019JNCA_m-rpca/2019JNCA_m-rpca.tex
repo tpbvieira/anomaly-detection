@@ -133,7 +133,7 @@ The distance between robust estimates and new observations can reveal anomalies.
 
 Mahalanobis Distance (MD) is a generalized distance which is useful for determining the similarity between an unknown sample and a collection of known samples by, considering the correlations between the variables and their mean values.
 
-\textbf{MD has been used for distance based anomaly detection with robust estimates} in many areas, and is commonly combined to Fast Minimum Covariance Determinant (Fast-MCD) algorithm \cite{rousseeuw1999fast} for robust estimates.
+\textbf{MD has been used for distance based anomaly detection with robust estimates} in many areas, and is commonly combined to Fast Minimum Covariance Determinant (Fast-MCD) algorithm \cite{rousseeuw1999fastmcd} for robust estimates.
 
 Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority}.
 
@@ -141,7 +141,7 @@ Learning algorithms for imbalanced data has been a relevant research topic.
 
 The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}.
 
-Skewness and the kurtosis tests are very sensitive outlier detectors. The properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2008outlier}.
+Skewness and the kurtosis tests are very sensitive outlier detectors. The properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2009robustskewed}.
 
 PCA is very sensitive to anomalies, thus outliers can corrupt the entire data or can be explored to highlight unespected changes and indicate attacks or frauds \cite{callegari2011novel,Lee2013,vieira2017model}. However, PCA is not precise to reveal flows, time or detailed information for each anomlies, and sometimes relies into visual analysis for pricipal component selection.
 
@@ -179,7 +179,7 @@ Several approaches for network attack detections uses the KDD 99 \cite{ji2016mul
 
 \cite{gu2008botminer} (Botminer: Clustering analysis of network traffic for protocol-and structure-independent botnet detection)
 
-\cite{hubert2008outlier} (Outlier detection for skewed data)
+ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA to reduce the data dimensions and plot the orthogonal distances versus the score distances, to flag outliers using an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. To overcome that issue, \cite{hubert2009robustskewed} propose ROBPCA-AO, which relies on an adjusted outlyingness based on robust skewness for flagging outliers....
 
 \cite{garcia2014empirical} (An empirical comparison of botnet detection methods)
 
@@ -203,7 +203,7 @@ Clustering methods for anomaly detection rely on three key assumptions: legitima
 
 GMM is a statistical-based and parametric approach algorithm that estimates the distribution of the normal class from a training set and is typically based on a set of kernels \cite{moustafa2019holistic}.
 
-The Mahalanobis Distance is a measure of the distance between a vector $\boldsymbol{x}$ and a distribution $\boldsymbol{X}$, introduced by P. C. Mahalanobis in 1936 \cite{mahalanobis1936generalized}. It is a multi-dimensional generalization for measuring how many standard deviations away $\boldsymbol{x}$ is from the mean $\boldsymbol{\bar{x}}$ and covariance $\boldsymbol{\hat{S}}$ of $\boldsymbol{X}$.
+The Mahalanobis Distance is a measure of the distance between a vector $\boldsymbol{x}$ and a distribution $\boldsymbol{X}$, introduced by P. C. Mahalanobis in 1936 \cite{mahalanobis1936md}. It is a multi-dimensional generalization for measuring how many standard deviations away $\boldsymbol{x}$ is from the mean $\boldsymbol{\bar{x}}$ and covariance $\boldsymbol{\hat{S}}$ of $\boldsymbol{X}$.
 
 Mahalanobis Distance is defined as		
 	\begin{equation}\label{eq:eq01}
@@ -211,7 +211,7 @@ Mahalanobis Distance is defined as
 	\end{equation}
 $\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector, also referred as location, of known observations and $\boldsymbol{\hat{S}}$ is the covariance matrix, also referred as scatter, of known observations.
 
-Classical estimates can be so strongly affected by contamination that diagnostic tools, such as the Mahalanobis Distances, become unable to detect the outliers. Therefore, we need reliable and robust estimators that can resist outliers contaminated data. Minimum Covariance Determinant (MCD) \cite{rousseeuw1984least} is a robust estimator commonly used for computing Mahalanobis Distance in order to detect anomalies.
+Classical estimates can be so strongly affected by contamination that diagnostic tools, such as the Mahalanobis Distances, become unable to detect the outliers. Therefore, we need reliable and robust estimators that can resist outliers contaminated data. Minimum Covariance Determinant (MCD) \cite{rousseeuw1984mcd} is a robust estimator commonly used for computing Mahalanobis Distance in order to detect anomalies.
 
 \begin{figure}[h!]
      \centering
@@ -229,7 +229,7 @@ Classical estimates can be so strongly affected by contamination that diagnostic
 
 The MCD estimator is one of the first affine equivariant and highly robust estimators of multivariate location and scatter.
 		
-Affine equivariant means that when the data are translated or subjected to a linear transformation, the resulting location and scatter will transform accordingly \cite{rousseeuw1984least,rousseeuw1999fast}.
+Affine equivariant means that when the data are translated or subjected to a linear transformation, the resulting location and scatter will transform accordingly \cite{rousseeuw1984mcd,rousseeuw1999fastmcd}.
 
 Its objective is to find $h$ observations (out of $n$) whose covariance matrix has the lowest determinant.
 
@@ -241,7 +241,7 @@ MCD has been applied in numerous fields (medicine, finance, image analysis, and 
 
 The classical MCD has rarely been applied because it is hard to compute, since it requires the evaluation of all $\binom{n}{h}$ subsets of size $h$. % binomial of n over p
 
-Its main use has started since the construction of the computationally efficient Fast-MCD algorithm \cite{rousseeuw1999fast}.
+Its main use has started since the construction of the computationally efficient Fast-MCD algorithm \cite{rousseeuw1999fastmcd}.
 
 Fast-MCD is an iterative, approximate and resampling algorithm for the MCD.
 
@@ -283,7 +283,7 @@ Now take $\boldsymbol{h}_2$ containing the indexes of lowest distances, such tha
 	
 Then, $det(\boldsymbol{\hat{S}}_2) \leq det(\boldsymbol{\hat{S}}_1)$ with equality if and only if $\boldsymbol{\bar{x}}_2 = \boldsymbol{\bar{x}}_1$ and $\boldsymbol{\bar{S}}_2 = \boldsymbol{\hat{S}}_1$
 
-The proof is given by Rousseeuw and Driessen \cite{rousseeuw1999fast}.
+The proof is given by Rousseeuw and Driessen \cite{rousseeuw1999fastmcd}.
 	
 \textbf{The C-step can be algorithmically described as follows:}
 \begin{algorithm}[H]\label{alg:alg01}
@@ -798,6 +798,7 @@ Compare to vanilla RPCA (Eduardo is working on it).
 Write a paper for JNCA (April).
 Write the thesis (May and June).
 
+say that more studies about skewness and subspace learning can be done in order to explore it inside algorithms and non gaussian data
 
 \section*{References}
 
