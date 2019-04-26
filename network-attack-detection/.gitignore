@@ -12,6 +12,7 @@ _/
 data/
 output/ctu_13/eda/
 output/ctu_13/results/pkl_sum_dict/
+output/ctu_13/results/m-rpca_r/
 
 BinetflowTrainer-master/.idea/
 BinetflowTrainer-master/__pycache__/

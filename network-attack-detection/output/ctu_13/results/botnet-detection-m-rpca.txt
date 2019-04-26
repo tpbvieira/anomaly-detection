@@ -1,0 +1,57 @@
+K=2
+    [Finished in 6784.0s]
+
+    ../data/ctu_13/pkl_sum/0.15s_10.pk1 - robpca_k2_datactu_13pkl_sum015s_10pk1_test_df - F1: 0.282293
+    ../data/ctu_13/pkl_sum/0.15s_11.pk1 - robpca_k2_datactu_13pkl_sum015s_11pk1_test_df - F1: 0.280741
+    ../data/ctu_13/pkl_sum/0.15s_12.pk1 - robpca_k2_datactu_13pkl_sum015s_12pk1_test_df - F1: 0.087302
+    ../data/ctu_13/pkl_sum/0.15s_15.pk1 - robpca_k2_datactu_13pkl_sum015s_15pk1_test_df - F1: 0.055987
+    ../data/ctu_13/pkl_sum/0.15s_15-2.pk1 - robpca_k2_datactu_13pkl_sum015s_15-2pk1_test_df - F1: 0.222485
+    ../data/ctu_13/pkl_sum/0.15s_15-3.pk1 - robpca_k2_datactu_13pkl_sum015s_15-3pk1_test_df - F1: 0.289063
+    ../data/ctu_13/pkl_sum/0.15s_16.pk1 - robpca_k2_datactu_13pkl_sum015s_16pk1_test_df - F1: 0.052164
+    ../data/ctu_13/pkl_sum/0.15s_16-2.pk1 - robpca_k2_datactu_13pkl_sum015s_16-2pk1_test_df - F1: 0.008239
+    ../data/ctu_13/pkl_sum/0.15s_16-3.pk1 - robpca_k2_datactu_13pkl_sum015s_16-3pk1_test_df - F1: 0.025412
+    ../data/ctu_13/pkl_sum/0.15s_17.pk1 - robpca_k2_datactu_13pkl_sum015s_17pk1_test_df - F1: 0.710317
+    ../data/ctu_13/pkl_sum/0.15s_18.pk1 - robpca_k2_datactu_13pkl_sum015s_18pk1_test_df - F1: 0.092456
+    ../data/ctu_13/pkl_sum/0.15s_18-2.pk1 - robpca_k2_datactu_13pkl_sum015s_18-2pk1_test_df - F1: 0.183882
+    ../data/ctu_13/pkl_sum/0.15s_19.pk1 - robpca_k2_datactu_13pkl_sum015s_19pk1_test_df - F1: 0.102118
+    ../data/ctu_13/pkl_sum/0.25s_10.pk1 - robpca_k2_datactu_13pkl_sum025s_10pk1_test_df - F1: 0.388546
+    ../data/ctu_13/pkl_sum/0.25s_11.pk1 - robpca_k2_datactu_13pkl_sum025s_11pk1_test_df - F1: 0.366161
+    ../data/ctu_13/pkl_sum/0.25s_12.pk1 - robpca_k2_datactu_13pkl_sum025s_12pk1_test_df - F1: 0.114947
+    ../data/ctu_13/pkl_sum/0.25s_15.pk1 - robpca_k2_datactu_13pkl_sum025s_15pk1_test_df - F1: 0.087015
+    ../data/ctu_13/pkl_sum/0.25s_15-2.pk1 - robpca_k2_datactu_13pkl_sum025s_15-2pk1_test_df - F1: 0.314545
+    ../data/ctu_13/pkl_sum/0.25s_15-3.pk1 - robpca_k2_datactu_13pkl_sum025s_15-3pk1_test_df - F1: 0.391556
+    ../data/ctu_13/pkl_sum/0.25s_16.pk1 - robpca_k2_datactu_13pkl_sum025s_16pk1_test_df - F1: 0.101574
+    ../data/ctu_13/pkl_sum/0.25s_16-2.pk1 - robpca_k2_datactu_13pkl_sum025s_16-2pk1_test_df - F1: 0.006861
+    ../data/ctu_13/pkl_sum/0.25s_16-3.pk1 - robpca_k2_datactu_13pkl_sum025s_16-3pk1_test_df - F1: 0.039880
+    ../data/ctu_13/pkl_sum/0.25s_17.pk1 - robpca_k2_datactu_13pkl_sum025s_17pk1_test_df - F1: 0.740881
+    ../data/ctu_13/pkl_sum/0.25s_18.pk1 - robpca_k2_datactu_13pkl_sum025s_18pk1_test_df - F1: 0.104743
+    ../data/ctu_13/pkl_sum/0.25s_18-2.pk1 - robpca_k2_datactu_13pkl_sum025s_18-2pk1_test_df - F1: 0.216514
+    ../data/ctu_13/pkl_sum/0.25s_19.pk1 - robpca_k2_datactu_13pkl_sum025s_19pk1_test_df - F1: 0.150311
+
+K=10
+    ../data/ctu_13/pkl_sum/0.15s_10.pk1 - robpca_k10_datactu_13pkl_sum015s_10pk1_test_df - F1: 0.282360
+    ../data/ctu_13/pkl_sum/0.15s_11.pk1 - robpca_k10_datactu_13pkl_sum015s_11pk1_test_df - F1: 0.287191
+    ../data/ctu_13/pkl_sum/0.15s_12.pk1 - robpca_k10_datactu_13pkl_sum015s_12pk1_test_df - F1: 0.086815
+    ../data/ctu_13/pkl_sum/0.15s_15.pk1 - robpca_k10_datactu_13pkl_sum015s_15pk1_test_df - F1: 0.035581
+    ../data/ctu_13/pkl_sum/0.15s_15-2.pk1 - robpca_k10_datactu_13pkl_sum015s_15-2pk1_test_df - F1: 0.224802
+    ../data/ctu_13/pkl_sum/0.15s_15-3.pk1 - robpca_k10_datactu_13pkl_sum015s_15-3pk1_test_df - F1: 0.285166
+    ../data/ctu_13/pkl_sum/0.15s_16.pk1 - robpca_k10_datactu_13pkl_sum015s_16pk1_test_df - F1: 0.041660
+    ../data/ctu_13/pkl_sum/0.15s_16-2.pk1 - robpca_k10_datactu_13pkl_sum015s_16-2pk1_test_df - F1: 0.000000
+    ../data/ctu_13/pkl_sum/0.15s_16-3.pk1 - robpca_k10_datactu_13pkl_sum015s_16-3pk1_test_df - F1: 0.000000
+    ../data/ctu_13/pkl_sum/0.15s_17.pk1 - robpca_k10_datactu_13pkl_sum015s_17pk1_test_df - F1: 0.704052
+    ../data/ctu_13/pkl_sum/0.15s_18.pk1 - robpca_k10_datactu_13pkl_sum015s_18pk1_test_df - F1: 0.080983
+    ../data/ctu_13/pkl_sum/0.15s_18-2.pk1 - robpca_k10_datactu_13pkl_sum015s_18-2pk1_test_df - F1: 0.241284
+    ../data/ctu_13/pkl_sum/0.15s_19.pk1 - robpca_k10_datactu_13pkl_sum015s_19pk1_test_df - F1: 0.080158
+    ../data/ctu_13/pkl_sum/0.25s_10.pk1 - robpca_k10_datactu_13pkl_sum025s_10pk1_test_df - F1: 0.388988
+    ../data/ctu_13/pkl_sum/0.25s_11.pk1 - robpca_k10_datactu_13pkl_sum025s_11pk1_test_df - F1: 0.366787
+    ../data/ctu_13/pkl_sum/0.25s_12.pk1 - robpca_k10_datactu_13pkl_sum025s_12pk1_test_df - F1: 0.113723
+    ../data/ctu_13/pkl_sum/0.25s_15.pk1 - robpca_k10_datactu_13pkl_sum025s_15pk1_test_df - F1: 0.069387
+    ../data/ctu_13/pkl_sum/0.25s_15-2.pk1 - robpca_k10_datactu_13pkl_sum025s_15-2pk1_test_df - F1: 0.317031
+    ../data/ctu_13/pkl_sum/0.25s_15-3.pk1 - robpca_k10_datactu_13pkl_sum025s_15-3pk1_test_df - F1: 0.387400
+    ../data/ctu_13/pkl_sum/0.25s_16.pk1 - robpca_k10_datactu_13pkl_sum025s_16pk1_test_df - F1: 0.080182
+    ../data/ctu_13/pkl_sum/0.25s_16-2.pk1 - robpca_k10_datactu_13pkl_sum025s_16-2pk1_test_df - F1: 0.000000
+    ../data/ctu_13/pkl_sum/0.25s_16-3.pk1 - robpca_k10_datactu_13pkl_sum025s_16-3pk1_test_df - F1: 0.037580
+    ../data/ctu_13/pkl_sum/0.25s_17.pk1 - robpca_k10_datactu_13pkl_sum025s_17pk1_test_df - F1: 0.740054
+    ../data/ctu_13/pkl_sum/0.25s_18.pk1 - robpca_k10_datactu_13pkl_sum025s_18pk1_test_df - F1: 0.075686
+    ../data/ctu_13/pkl_sum/0.25s_18-2.pk1 - robpca_k10_datactu_13pkl_sum025s_18-2pk1_test_df - F1: 0.206072
+    ../data/ctu_13/pkl_sum/0.25s_19.pk1 - robpca_k10_datactu_13pkl_sum025s_19pk1_test_df - F1: 0.160816
