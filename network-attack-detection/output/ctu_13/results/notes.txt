@@ -160,3 +160,40 @@ indicates a relatively flat distribution.
 
  mcd is a minimization of covariance matrix determinant
  can we suppose that if MCD is affine equivariant then the skewness of the minumum convariant determinant is a robust skewness of the entire data?
+
+
+
+
+
+
+ 
+Review to write the thesis (PCA part)
+	Abnormal Subspace Sparse PCA for Anomaly Detectionand Interpretation - oddx3 - 2015
+	An Application of Principal Component Analysis to the Detection and Visualization of Computer Network Attacks - sar - 2004
+	Anomaly Detection via Online Over-Sampling Principal Component Analysis - transaction - 2012
+	A novel PCA-based Network Anomaly Detection - icc - 2011
+	A Parallel Approach to PCA Based Malicious Activity Detection in Distributed Honeypot Data - lustosa - 2011
+	A PCA-based Similarity Measure for Multivariate Time Series - mmdb - 2004
+	Applying PCA for Traffic Anomaly Detection: Problems and Solutions - infocom - 2009
+	Detecting Denial-of-Service And Network Probe Attacks Using Principal Component Analysis - 2004
+	Detection of Cyber-attacks with Zone Dividing and PCA - KES 2013
+	Distributed Anomaly Detection Using Minimum Volume Elliptical Principal Component Analysis - transaction - 2016
+	Evaluation of Anomaly Detection Based on Sketch and PCA - globecom - 2010
+	In-Network PCA and Anomaly Detection - 2006
+	Sensitivity of PCA for Traffic Anomaly Detection - sigmetrics - 2007
+
+
+
+
+Joint Reconstruction and Anomaly Detection From Compressive Hyperspectral Images Using Mahalanobis Distance-Regularized Tensor RPCA - transaction - 2018
+Robust Subspace Learning: Robust PCA, Robust Subspace Tracking, and Robust Subspace Recovery - 2018
+Robust Feature Selection and Robust PCA for Internet Traffic Anomaly Detection - infocom - 2012
+Robust PCA for skewed data and its outlier map - 2009
+
+
+Robust PCA for skewed data and its outlier map - 2009
+Robust Feature Selection and Robust PCA for Internet Traffic Anomaly Detection - infocom - 2012
+Robust Subspace Learning: Robust PCA, Robust Subspace Tracking, and Robust Subspace Recovery - 2018
+Joint Reconstruction and Anomaly Detection From Compressive Hyperspectral Images Using Mahalanobis Distance-Regularized Tensor RPCA - transaction - 2018
+
+
