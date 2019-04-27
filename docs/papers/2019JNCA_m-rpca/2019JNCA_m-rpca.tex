@@ -107,7 +107,7 @@ Botnet Detection \sep Network Anomaly Detection \sep Skewness \sep Kurtosis \sep
 \section{Introduction}
 \label{sec:introduction}
 
-Botnets have emerging as a key threat for cyber security, considering that Botnets are the key platform for many Internet attacks (i.e. spam, distributed denial-of-service (DDoS), identity theft, and phishing). Most of the current botnet detection approaches work only on specific botnet command and control (. Lots of efforts are directed to avoid attacks from known attackers, however attacks from one source is not real nowadays, since the attacks are usualy from distributed botnets that change their approaches frequently, in order to avoid behavioral or pattern based detecions. This changing behavior is known as adversarial model \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,da2018online,Wang2018ddosbotnetssurvey}.
+Botnets have emerging as a key threat for cyber security, considering that Botnets are the key platform for many Internet attacks (i.e. spam, distributed denial-of-service (DDoS), identity theft, and phishing). Most of the current botnet detection approaches work only on specific botnet command and control (. Lots of efforts are directed to avoid attacks from known attackers, however attacks from one source is not real nowadays, since the attacks are usualy from distributed botnets that change their approaches frequently, in order to avoid behavioral or pattern based detecions. This changing behavior is known as adversarial model \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,Wang2018ddosbotnetssurvey}.
 
 Anomaly detection is the identification of rare and suspicions observations by differing the normal or majority of the data.
 
@@ -133,9 +133,12 @@ Mahalanobis Distance (MD) is a generalized distance which is useful for determin
 
 \textbf{MD has been used for distance based anomaly detection with robust estimates} in many areas, and is commonly combined to Fast Minimum Covariance Determinant (Fast-MCD) algorithm \cite{rousseeuw1999fastmcd} for robust estimates.
 
-Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority,he2008learning}. Learning algorithms for imbalanced data has been a challenging research topic. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}. He and Garcia \cite{he2008learning} present a classification of imbalanced learning methods as sampling, cost-sensitive learning, kernel-based, and active learning. Some techniques can make the data discriminative for better discriminative analytics: Data engineering (i.e. sampling \cite{he2008learning,gu2008botminer}, aggregation \cite{lakhina2005mining,gu2008botminer,callegari2011novel, garcia2014empirical, acarali2016survey}); Feature extraction (i.e. decomposition \cite{vaswani2018robust}, robust estimates \cite{zhou2017anomaly}). To face a high imbalanced data set, we adopt a sampling method based on data aggregation for discriminative feature generation, considering that data aggregation is a widely adoted approach for feature engineering \cite{garcia2014empirical, chandrashekar2014survey,acarali2016survey} and network anomaly detection \cite{lakhina2005mining, callegari2011novel, vieira2017model}.
+Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority,he2008learning,benson2010network}. Learning algorithms for imbalanced data has been a challenging research topic. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}. He and Garcia \cite{he2008learning} present a classification of imbalanced learning methods as sampling, cost-sensitive learning, kernel-based, and active learning. Some techniques can make the data discriminative for better discriminative analytics: Data engineering (i.e. sampling \cite{he2008learning,gu2008botminer}, aggregation \cite{lakhina2005mining,gu2008botminer,callegari2011novel, garcia2014empirical, acarali2016survey}); Feature extraction (i.e. decomposition \cite{vaswani2018robust}, robust estimates \cite{zhou2017anomaly}). To face a high imbalanced data set, we adopt a sampling method based on data aggregation for discriminative feature generation, considering that data aggregation is a widely adoted approach for feature engineering \cite{garcia2014empirical, chandrashekar2014survey,acarali2016survey} and network anomaly detection \cite{lakhina2005mining, callegari2011novel, vieira2017model}. For more information about learning methods from imbalanced data, we refer to He and Garcia \cite{he2008learning}.
 
-Some approaches assume a gaussian distribute data, hoever it is not true in real world for many fields....Data skewness...
+\cite{lakhina2005mining} (Mining anomalies using traffic feature distributions).  -Argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Using entropy as a summarization tool, we show that the analysis of feature distributions leads to significant advances on two fronts: (1) it enables highly sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, and (2) it enables automatic classification of anomalies via unsupervised learning. Anomaly diagnosis framework, comprising both an extension of the subspace method [23] to accommodate multiple data types, and an unsupervised classification technique using simple clustering algorithms. \textbf{To explain feature selection and aggregation}. Goldberg and Shan \cite{goldberg2015importance} argue that processing monitored signals into features is a more fruitful way to build anomaly detection systems than devising ever more complex statistical tests, based on experience and  on putblished real-life examples of anomaly detectors in use at eBay. 
+
+% Say that the data is lognormal \cite{benson2010network} and link it to skewness https://www.weibull.com/hotwire/issue47/relbasics47.htm
+Some approaches assume a gaussian distribute data, hoever it is not true in real world for many types of network traffic, wich usually is more related to skewed and heavy-tailed distributions. Benson \emph{et al} \cite{benson2010network} conducted an empirical study of the network traffic in 10 data centers belonging to three different types of organizations, including university, enterprise, and cloud data centers. Findings of Benson \emph{et al} indicate that certain positive skewed and heavy-tailed distributions can model data center switch traffic, and highlights a difference between the data center environment and the wide area network, where the long-tailed Pareto distribution typically shows the best fit \cite{benson2010network}. This findings highligh that the skeweness and heavy-tailed distributions can impact algorithms that assum a guassian distributed data, as well as can indicate characteristics that can be exploited in order to obtain accurate classifiers for network traffic analysis.
 
 Skewness and the kurtosis tests are very sensitive outlier detectors. The properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2009robustskewed}.
 
@@ -168,11 +171,11 @@ Talk about network anomaly detection...
 
 Bhuyan \emph{et al} \cite{acarali2016survey} provide an overview of facets of network anomaly detection, present attacks normally encountered by network intrusion detection systems, and categorize existing network anomaly detection methods and systems based on the underlying techniques. Ahmed Bhuyan \emph{et al} \cite{acarali2016survey} present an analysis of four major categories of anomaly detection techniques which include classification, statistical, information theory and clustering. Recently, Moustafa \emph{et al} \cite{moustafa2019holistic} discuss aspects of anomaly-based Network Intrusion Detection Systems (NIDSs), explains cyber-attacks and new solutions for anomaly detection, and provides a benchmark datasets for training and validating approaches for detection. 
 
-Botnets are becoming one of the most serious threats to Internet security. A botnet is a network of compromised machines under the influence of malware (bot) code. The botnet is commandeered by a “botmaster” and utilized as “resource” or “platform” for attacks such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. In order for a botmaster to command a botnet, there needs to be a command and control (C&C) channel through which bots receive commands and coordinate attacks and fraudulent activities. The C&C channel is the means by which individual bots form a botnet. Centralized C&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time. In this architecture, each bot logs into an IRC channel, and seeks commands from the botmaster. Even today, many botnets are still designed this way. Quite a few botnets, though, have begun to use other protocols such as HTTP [8, 14, 24, 39], probably because HTTP-based C&C communications are more stealthy given that Web traffic is generally allowed in most networks \cite{gu2008botminer}.
+Botnets are becoming one of the most serious threats to Internet security. A botnet is a network of compromised machines under the influence of malware (bot) code. The botnet is commandeered by a “botmaster” and utilized as “resource” or “platform” for attacks such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. In order for a botmaster to command a botnet, there needs to be a command and control (C\&C) channel through which bots receive commands and coordinate attacks and fraudulent activities. The C\&C channel is the means by which individual bots form a botnet. Centralized C\&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time. In this architecture, each bot logs into an IRC channel, and seeks commands from the botmaster. Even today, many botnets are still designed this way. Quite a few botnets, though, have begun to use other protocols such as HTTP [8, 14, 24, 39], probably because HTTP-based C\&C communications are more stealthy given that Web traffic is generally allowed in most networks \cite{gu2008botminer}.
 
 Acarali \emph{et al} \cite{acarali2016survey} surveys recent network-based detection approaches for HTTP-based botnets, surveys traffic-based features used to detect bot traffic and presents an abstraction of the main types of features in relation to protocols and OSI layers. Wang \emph{et al} \cite{Wang2018ddosbotnetssurvey} present an analysis based on 50,704 different Internet DDoS attacks originated of 674 botnets from 23 different botnet families with a total of 9,026 victim belonging to 1,074 organizations in 186 countries. Their analysis reveals that geolocation of the attacking sources follows patterns and enables source prediction, and highlight that multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, also presents that there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
 
-The BotHunter method was proposed by Gu \emph{et al} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
+The BotHunter method was proposed by Gu \emph{et al} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C\&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
 
 Khattak \emph{et al} \cite{khattak2015botflex} proposed BotFlex, which is a network-based tool for botnet detection, based on a Complex Event Processing (CEP) engine and on a correlation framework that continuously receives events and correlates them according to rule(s). BotFlex's results are compared to BotHunter, but the evaluation relies in a own and not public data set.
 
@@ -182,12 +185,7 @@ Several approaches for network attack detections uses the KDD 99 \cite{ji2016mul
 
 Wang and Paschalidis \cite{wang2017botnet} propose an botnet detection approach based on anomaly and community detection, aiming for detecting botnets and identifying bots before the botnet becomes active. The first stage detects anomalies by leveraging large deviations of an empirical distribution. The second stage detects the bots using ideas from social network community detection in a graph that captures correlations of interactions among nodes over time. This work is compared with the BotHunter \cite{gu2007bothunter} on the CTU-13 botnet dataset \cite{garcia2014empirical}.
 
-\cite{da2018online} (Online detection of Botnets on Network Flows using Stream Mining) Ver se podemos calcular o F1 e comparar os resutados, mas não seria justo dado que a abordagem deles nao implementa o mesmo sampling e é supervisionado
-
-
-
-
-
+% \cite{da2018online} proposes an approach using the Very Fast Decision Tree, a classification algorithm used on stream mining that can learn incrementally when needed, to identify botnets by observing network flows. When evaluating the approach on multiple scenarios with different botnets, we were able to achieve high performance metrics on the majority of scenarios, while using a significantly low number of labelled instances. It discard scenarios 5 and 6. They does not compute F1, but it is easy to compute it from precision and recall provided.
 
 Principal Component Analysis (PCA) is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA has been used in attack detection \cite{almotairi2009technique}. However, PCA requires human intervention in order to identify abnormalities based on the eigenvalues profiles, if used without complementary techniques. Callegari \emph{et al} \cite{callegari2011novel} propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. Callegari separate normal of anomalies according to principal components (normal) and remaining (anomalies), based on PCA. It relies in the assumption that anomalies will cause a large change into anomalous components. This is similar to our previous work, but we rely on change into principal eigenvectors.
 
@@ -197,17 +195,9 @@ Besides being prone to higher errors and false positives, such human interventio
 
 ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA from robust estimates of location and scatter matrix, to reduce the data dimensions and plotting the orthogonal distances versus the robust score distances, to flag an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. To overcome that issue, \cite{hubert2009robustskewed} propose ROBPCA-AO, which improve ROBPCA by means of an adjusted outlyingness based on robust skewness. In contrast to our proposal, ROBPCA and ROBPCA-AO rely on a previously defined cutoff value for classify anomalous observations, and does not require training.
 
-
- 
-
+\cite{zhou2017anomaly} (Anomaly detection with robust deep autoencoders)
 
 
-
-\cite{Phua2004minority} (Minority Report in Fraud Detection: Classification of Skewed Data)
-
-\cite{lakhina2005mining} (Mining anomalies using traffic feature distributions).  -Argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Using entropy as a summarization tool, we show that the analysis of feature distributions leads to significant advances on two fronts: (1) it enables highly sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, and (2) it enables automatic classification of anomalies via unsupervised learning. Anomaly diagnosis framework, comprising both an extension of the subspace method [23] to accommodate multiple data types, and an unsupervised classification technique using simple clustering algorithms. \textbf{To explain feature selection and aggregation}.
-
-\cite{goldberg2015importance} (The importance of features for statistical anomaly detection)
 
 Clustering methods for anomaly detection rely on three key assumptions: legitimate data instances often fall into a cluster whereas attacks do not, legitimate data instances are usually located near the closest cluster centroid while anomaly ones are often far away from it, legitimate data instances fall into vast and dense clusters and anomalies into small or spare ones \cite{ahmed2016survey, moustafa2019holistic}. We rely on this for our implementation
 
@@ -408,10 +398,10 @@ spam for almost 6.5 hours.
 Mail Transfer Protocol) servers for 2 hours and connected
 to several RDP (Remote Desktop Protocol) services. Dif-
 ferent with Scenarios 1 and 2, this botnet neither sent
-spam nor did it attack. It’s C&C server used a proprietary
+spam nor did it attack. It’s C\&C server used a proprietary
 protocol.
 • Scenario 8 is from a botnet that contacted a lot of Chinese
-C&C hosts and received large amounts of encrypted data.
+C\&C hosts and received large amounts of encrypted data.
 The botnet also cracked the passwords of machines during
 the 19-hour attack.
 • Scenario 9 corresponds to a case where 10 local hosts
@@ -717,7 +707,7 @@ Evaluation Measure:
 
 In anomalous detection problems, where anomalies are rare events, if we classify all observations as normal and apply an accuracy evaluation, we would have high accuracy but poor true-positive detection.
 
-Due to the importance given by F-measure to true-positive detection \cite{moustafa2019holistic}, the F-measure is the preferable measure for imbalanced data sets.
+Due to the importance given by F-measure to true-positive detection \cite{powers2011evaluation,moustafa2019holistic}, the F-measure is the preferable measure for imbalanced data sets.
 
 \textbf{Experiment Plan:}
 
@@ -744,8 +734,9 @@ Due to the importance given by F-measure to true-positive detection \cite{mousta
 
 We propose to compare our approach to clustering and statisctical based approaches (K-means and Gaussian Mixture Model (GMM), respectively).
 
-	As clustering-based method, we selected K-means, which is the clustering algorithm most adopted for general purposes and for network anomaly detection \cite{gaddam2007k,moustafa2019holistic}.
-	It is observed that network traffic do not belong to a Gaussian distribution \cite{benson2010network,moustafa2019holistic}, algorithms based on non-Gaussian distributions, such as GMM, has been adopted for network anomaly detection \cite{moustafa2019holistic}.
+Why GMM?
+As clustering-based method, we selected K-means, which is the clustering algorithm most adopted for general purposes and for network anomaly detection \cite{gaddam2007k,moustafa2019holistic}.
+It is observed that network traffic do not belong to a Gaussian distribution \cite{benson2010network,moustafa2019holistic}, algorithms based on non-Gaussian distributions, such as GMM, has been adopted for network anomaly detection \cite{moustafa2019holistic}.
 
 
 \subsection{Results}
@@ -832,8 +823,6 @@ According to the significant similarity difference between legitimate and malici
 
 Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel datasets. Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring high thoughput network traffic. Additionally, future research can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
 
-
-Say that the data is lognormal \cite{benson2010network} and link it to skewness https://www.weibull.com/hotwire/issue47/relbasics47.htm
 Test distribution fit again e present results 
 Conclude this presentation.
 Evaluate eigensim for CTU-13 and others algorithms for Danilo's data set.
