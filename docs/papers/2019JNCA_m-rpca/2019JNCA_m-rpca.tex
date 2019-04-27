@@ -173,19 +173,22 @@ Several approaches for network attack detections uses the KDD 99 \cite{ji2016mul
 
 Botnets are becoming one of the most serious threats to Internet security. A botnet is a network of compromised machines under the influence of malware (bot) code. The botnet is commandeered by a “botmaster” and utilized as “resource” or “platform” for attacks such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. In order for a botmaster to command a botnet, there needs to be a command and control (C&C) channel through which bots receive commands and coordinate attacks and fraudulent activities. The C&C channel is the means by which individual bots form a botnet. Centralized C&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time. In this architecture, each bot logs into an IRC channel, and seeks commands from the botmaster. Even today, many botnets are still designed this way. Quite a few botnets, though, have begun to use other protocols such as HTTP [8, 14, 24, 39], probably because HTTP-based C&C communications are more stealthy given that Web traffic is generally allowed in most networks \cite{gu2008botminer}.
 
-\cite{gu2007bothunter} (Bothunter: Detecting malware infection through ids-driven dialog correlation)
+The BotHunter method was proposed by Gu \emph{et al} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
 
-\cite{gu2008botminer} (Botminer: Clustering analysis of network traffic for protocol-and structure-independent botnet detection). The objective of BotMiner is to detect groups of compromised machines within a monitored network that are part of a botnet. This framework monitors both who is talking to whom that may suggest C&C communication activities and who is doing what that may suggest malicious activities, and finds a coordinated group pattern in both kinds of activities. The detection framework clusters similar communication activities in the C-plane (C&C communication traffic), clusters similar malicious activities in the A-plane (activity traffic), and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
+\cite{garcia2014empirical} (An empirical comparison of botnet detection methods). The goal of this paper is to compare three botnet detection methods using a simple and reproducible methodology, a good dataset and a new error metric. This paper evaluates some data sets for network anomaly detection and classify the availability of labels and the presesence of background, normal and botnet traffic. The paper also survey some approaches for botnet detection. The paper proposes two methods (BClus and CAMNEP) and compare results to BotHunter. Considering the lack of available labeled datasets, the paper proposes the CTU-13 dataset, which is composed by normal and background labeled data, with the balance of the dataset like in a real network. The training and cross-validation datasets should be approximately 80\% of the dataset.The testing dataset should be approximately 20\% of the dataset. None of the botnet families used in the training and crossvalidation dataset should be used in the testing dataset. This ensures that the methods can generalize and detect new behaviors. \cite{garcia2014empirical} uses a time window separation and an aggregation method. Thei compare the output of three different botnet detection methods by executing them over a new, real, labeled and large botnet dataset.
+
+Khattak \emph{et al} \cite{khattak2015botflex} proposed BotFlex, which is a network-based tool for botnet detection, based on a decision module as a Complex Event Processing (CEP) engine and based on a correlation framework that continuously receives events from the sensor module and correlates them according to rule(s). 
+
+
+
 
 ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA from robust estimates of location and scatter matrix, to reduce the data dimensions and plotting the orthogonal distances versus the robust score distances, to flag an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. To overcome that issue, \cite{hubert2009robustskewed} propose ROBPCA-AO, which improve ROBPCA by means of an adjusted outlyingness based on robust skewness. In contrast to our proposal, ROBPCA and ROBPCA-AO rely on a previously defined cutoff value for classify anomalous observations, and does not require training.
 
-\cite{gu2007bothunter} (Bothunter: Detecting malware infection through ids-driven dialog correlation). The BotHunter method was proposed by Gu et al. (2007) to detect the infection and coordination dialog of botnets by matching a state-based infection sequence model. It consists of a correlation engine that aims at detecting specific stages of the malware infection process, such as inbound scanning, exploit usage, egg downloading, outbound bot coordination dialog and outbound attack propagation.
 
-\cite{garcia2014empirical} (An empirical comparison of botnet detection methods)
 
 \cite{Wang2018ddosbotnets} present an in-depth analysis based on 50,704 different Internet DDoS attacks launched by 674 botnets from 23 different botnet families. Geospatial distribution of the attacking sources follows certain patterns, multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
 
-\cite{khattak2015botflex} (BotFlex: A community-driven tool for botnet detection)
+
 
 \cite{wang2017botnet} (Botnet detection based on anomaly and community detection)
 
@@ -399,9 +402,11 @@ The botnet traffic is divided into attacks and Command and Control (C\&C) traffi
 
 \textbf{C\&C:} IRC, P2P and HTTP.
 
-The data set contains the following features:
+The data set contains the following features:  Start Time, End Time, Duration, Source IP address, Source Port, Direction, Destination IP address, Destination Port, State, SToS, Total Packets and Total Bytes.
 
 Start Time, Duration, Protocol, Source Address, Source Port, Direction, Destination Address, Destination Port, State, Type of service from source to destination, Type of service from destination to source, Total of Packets, Total of bytes, Total bytes from source to destination, Label as normal or anomalous
+
+Our labeling strategy assigns three different labels: back-ground, botnet and normal. The priority to assign the labels is the following: 1. Assign the Background label to the whole traffic. 2. Assign the Normal label to the traffic that matches certain filters. 3. Assign the Botnet label to all the traffic that comes from or to any of the known infected IP addresses.
 
 \begin{table}[h!]
 	\tiny
