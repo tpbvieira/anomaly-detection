@@ -126,7 +126,7 @@ for prefix in prefixes:
         #         print('###',best_f1_scenario, best_cols_scenario, file=result_file)
 
         # test ROBPCA-AO from saved files
-        robpca_result_file = 'robpca_k10_%s_test_df' % file_name
+        robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/ctu_13/results/m-rpca_r/robpca_k19_%s_test_df' % file_name
         if os.path.isfile(robpca_result_file):
             # print(robpca_result_file)
             robpca_test_pred = pd.read_csv(robpca_result_file, header=None)
@@ -135,7 +135,7 @@ for prefix in prefixes:
             robpca_test_pred[robpca_test_pred == True] = -1
             robpca_test_pred[robpca_test_pred == False] = 0
             robpca_test_pred[robpca_test_pred == -1] = 1
-            print('%s - robpca_k10_%s_test_df - F1: %f' % (
+            print('%s - robpca_k19_%s_test_df - F1: %f' % (
                 files_list[dataset].name, file_name, f1_score(test_labels, robpca_test_pred)))
 
                 # # Save Confusion Matrix

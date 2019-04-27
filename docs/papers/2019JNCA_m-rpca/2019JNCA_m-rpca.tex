@@ -92,7 +92,7 @@
 
 
 \begin{abstract}
-Botnets... In this context, signal processing techniques have been applied to attack detection due to their capability to detect anomalies that are previously unknown, i.e. blind detection, in contaminated or imbalanced data.... This paper proposes a cumulant-based robust estimates for network attack detection, by combining kurtosis and skewess with Minimum Covariance Determinant. In order to validate the proposed framework, we consider CTU-13 dataset. The experiments show that the proposed method achieves satisfactory levels of precisio, recall and F1 score for network attack detection.
+Botnets... In this context, signal processing techniques have been applied to attack detection due to their capability to detect anomalies that are previously unknown, i.e. blind detection, in contaminated or imbalanced data.... This paper proposes a cumulant-based robust estimates for network attack detection, by combining kurtosis and skewess with Minimum Covariance Determinant. In order to validate the proposed framework, we consider CTU-13 dataset. The experiments show that the proposed method achieves satisfactory levels of precisio, recall and F1 score for network attack detection. We apply our method to real-world botnet traffic and compare its performance with other methods.
 \end{abstract}
 
 \begin{keyword}
@@ -107,7 +107,7 @@ Botnet Detection \sep Network Anomaly Detection \sep Skewness \sep Kurtosis \sep
 \section{Introduction}
 \label{sec:introduction}
 
-Botnets have emerging as a key threat for cyber security, considering that Botnets are the key platform for many Internet attacks (i.e. spam, distributed denial-of-service (DDoS), identity theft, and phishing). Most of the current botnet detection approaches work only on specific botnet command and control (. Lots of efforts are directed to avoid attacks from known attackers, however attacks from one source is not real nowadays, since the attacks are usualy from distributed botnets that change their approaches frequently, in order to avoid behavioral or pattern based detecions. This changing behavior is known as adversarial model \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,da2018online,Wang2018ddosbotnets}.
+Botnets have emerging as a key threat for cyber security, considering that Botnets are the key platform for many Internet attacks (i.e. spam, distributed denial-of-service (DDoS), identity theft, and phishing). Most of the current botnet detection approaches work only on specific botnet command and control (. Lots of efforts are directed to avoid attacks from known attackers, however attacks from one source is not real nowadays, since the attacks are usualy from distributed botnets that change their approaches frequently, in order to avoid behavioral or pattern based detecions. This changing behavior is known as adversarial model \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,da2018online,Wang2018ddosbotnetssurvey}.
 
 Anomaly detection is the identification of rare and suspicions observations by differing the normal or majority of the data.
 
@@ -133,7 +133,7 @@ Mahalanobis Distance (MD) is a generalized distance which is useful for determin
 
 \textbf{MD has been used for distance based anomaly detection with robust estimates} in many areas, and is commonly combined to Fast Minimum Covariance Determinant (Fast-MCD) algorithm \cite{rousseeuw1999fastmcd} for robust estimates.
 
-Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority,he2008learning}. Learning algorithms for imbalanced data has been a challenging research topic. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}. He and Garcia \cite{he2008learning} present a classification of imbalanced learning methods as sampling, cost-sensitive learning, kernel-based, and active learning. Some techniques can make the data discriminative for better discriminative analytics: Data engineering (i.e. sampling \cite{he2008learning,gu2008botminer}, aggregation \cite{lakhina2005mining,gu2008botminer,callegari2011novel, acarali2016survey}); Feature extraction (i.e. decomposition \cite{vaswani2018robust}, robust estimates \cite{zhou2017anomaly}). To face a high imbalanced data set, we adopt a sampling method based on data aggregation for discriminative feature generation, considering that data aggregation is a widely adoted approach for feature engineering \cite{chandrashekar2014survey,acarali2016survey} and network anomaly detection \cite{lakhina2005mining, callegari2011novel, vieira2017model}.
+Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority,he2008learning}. Learning algorithms for imbalanced data has been a challenging research topic. The fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}. He and Garcia \cite{he2008learning} present a classification of imbalanced learning methods as sampling, cost-sensitive learning, kernel-based, and active learning. Some techniques can make the data discriminative for better discriminative analytics: Data engineering (i.e. sampling \cite{he2008learning,gu2008botminer}, aggregation \cite{lakhina2005mining,gu2008botminer,callegari2011novel, garcia2014empirical, acarali2016survey}); Feature extraction (i.e. decomposition \cite{vaswani2018robust}, robust estimates \cite{zhou2017anomaly}). To face a high imbalanced data set, we adopt a sampling method based on data aggregation for discriminative feature generation, considering that data aggregation is a widely adoted approach for feature engineering \cite{garcia2014empirical, chandrashekar2014survey,acarali2016survey} and network anomaly detection \cite{lakhina2005mining, callegari2011novel, vieira2017model}.
 
 Some approaches assume a gaussian distribute data, hoever it is not true in real world for many fields....Data skewness...
 
@@ -160,8 +160,34 @@ This paper is organized as follows. In Section \ref{sec:relatedworks}, related w
 Our approach train from normal traffic and have significant computational cost during training. For prediction, the cost is basically the cost for Mahalanobis distance computation
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related Works}
+% network anomaly detectiom, botnet detection, botnet detection approaches, approaches based on subspace learning, sampling and aggregation, about the methodos to compare and metrics
+\section{Literature Review}
 \label{sec:relatedworks}
+
+Talk about network anomaly detection... 
+
+Bhuyan \emph{et al} \cite{acarali2016survey} provide an overview of facets of network anomaly detection, present attacks normally encountered by network intrusion detection systems, and categorize existing network anomaly detection methods and systems based on the underlying techniques. Ahmed Bhuyan \emph{et al} \cite{acarali2016survey} present an analysis of four major categories of anomaly detection techniques which include classification, statistical, information theory and clustering. Recently, Moustafa \emph{et al} \cite{moustafa2019holistic} discuss aspects of anomaly-based Network Intrusion Detection Systems (NIDSs), explains cyber-attacks and new solutions for anomaly detection, and provides a benchmark datasets for training and validating approaches for detection. 
+
+Botnets are becoming one of the most serious threats to Internet security. A botnet is a network of compromised machines under the influence of malware (bot) code. The botnet is commandeered by a “botmaster” and utilized as “resource” or “platform” for attacks such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. In order for a botmaster to command a botnet, there needs to be a command and control (C&C) channel through which bots receive commands and coordinate attacks and fraudulent activities. The C&C channel is the means by which individual bots form a botnet. Centralized C&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time. In this architecture, each bot logs into an IRC channel, and seeks commands from the botmaster. Even today, many botnets are still designed this way. Quite a few botnets, though, have begun to use other protocols such as HTTP [8, 14, 24, 39], probably because HTTP-based C&C communications are more stealthy given that Web traffic is generally allowed in most networks \cite{gu2008botminer}.
+
+Acarali \emph{et al} \cite{acarali2016survey} surveys recent network-based detection approaches for HTTP-based botnets, surveys traffic-based features used to detect bot traffic and presents an abstraction of the main types of features in relation to protocols and OSI layers. Wang \emph{et al} \cite{Wang2018ddosbotnetssurvey} present an analysis based on 50,704 different Internet DDoS attacks originated of 674 botnets from 23 different botnet families with a total of 9,026 victim belonging to 1,074 organizations in 186 countries. Their analysis reveals that geolocation of the attacking sources follows patterns and enables source prediction, and highlight that multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, also presents that there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
+
+The BotHunter method was proposed by Gu \emph{et al} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
+
+Khattak \emph{et al} \cite{khattak2015botflex} proposed BotFlex, which is a network-based tool for botnet detection, based on a Complex Event Processing (CEP) engine and on a correlation framework that continuously receives events and correlates them according to rule(s). BotFlex's results are compared to BotHunter, but the evaluation relies in a own and not public data set.
+
+\cite{garcia2014empirical} (An empirical comparison of botnet detection methods). The goal of this paper is to compare three botnet detection methods using a simple and reproducible methodology, a good dataset and a new error metric. This paper evaluates some data sets for network anomaly detection and classify the availability of labels and the presesence of background, normal and botnet traffic. The paper also survey some approaches for botnet detection. The paper proposes two methods (BClus and CAMNEP) and compare results to BotHunter. Considering the lack of available labeled datasets, the paper proposes the CTU-13 dataset, which is composed by normal and background labeled data, with the balance of the dataset like in a real network. The training and cross-validation datasets should be approximately 80\% of the dataset.The testing dataset should be approximately 20\% of the dataset. None of the botnet families used in the training and crossvalidation dataset should be used in the testing dataset. This ensures that the methods can generalize and detect new behaviors. \cite{garcia2014empirical} uses a time window separation and an aggregation method. Thei compare the output of three different botnet detection methods by executing them over a new, real, labeled and large botnet dataset.
+
+Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. Considering that it is important to create intrusion detection datasets in modern-day computing to address the issues of DARPA/KDD. The next section discusses ne such contemporary dataset for network traffic analysis \cite{ahmed2016survey}, we propose to adopt CTU-13...
+
+Wang and Paschalidis \cite{wang2017botnet} propose an botnet detection approach based on anomaly and community detection, aiming for detecting botnets and identifying bots before the botnet becomes active. The first stage detects anomalies by leveraging large deviations of an empirical distribution. The second stage detects the bots using ideas from social network community detection in a graph that captures correlations of interactions among nodes over time. This work is compared with the BotHunter \cite{gu2007bothunter} on the CTU-13 botnet dataset \cite{garcia2014empirical}.
+
+\cite{da2018online} (Online detection of Botnets on Network Flows using Stream Mining) Ver se podemos calcular o F1 e comparar os resutados, mas não seria justo dado que a abordagem deles nao implementa o mesmo sampling e é supervisionado
+
+
+
+
+
 
 Principal Component Analysis (PCA) is a statistical technique commonly used for dimensionality reduction. It uses an orthogonal transformation to convert a set of correlated variables into a set of linearly uncorrelated variables, where the first principal components have the largest variance. PCA has been used in attack detection \cite{almotairi2009technique}. However, PCA requires human intervention in order to identify abnormalities based on the eigenvalues profiles, if used without complementary techniques. Callegari \emph{et al} \cite{callegari2011novel} propose a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level and evaluated their proposal through a dataset with synthetic anomalies added in the data. However, Callegari \emph{et al} focus on flood attack detection, not addressing probe attack detection, and their approach relies on visual analysis. Callegari separate normal of anomalies according to principal components (normal) and remaining (anomalies), based on PCA. It relies in the assumption that anomalies will cause a large change into anomalous components. This is similar to our previous work, but we rely on change into principal eigenvectors.
 
@@ -169,36 +195,15 @@ Use to justify the sensitivity of pca to outliers, only. Lee \emph{et al.} \cite
 
 Besides being prone to higher errors and false positives, such human intervention makes PCA not useful for real time applications. Therefore, in order to automate the analysis of eigenvalues profile, model order selection (MOS) schemes should be incorporated. Vieira .... (The proposed framework does not require either a significant amount of logs to detect attacks, nor prior data collection, in order to make comparisons and evaluate the existence of malicious traffic. The proposed solution is automatic and blind for detection of time frames under probe and flood attacks through MOS and eigen analysis. Moreover, we apply eigen similarity analysis to identify details of time and ports under network attacks.)
 
-Several approaches for network attack detections uses the KDD 99 \cite{ji2016multi,ahmed2016survey,osanaiye2016distributed,bhuyan2014network} datasets for accuracy and performance evaluation, due to their availability and labeled attacks. Even though the KDD 99 dataset are criticized by for the generation procedure and the risk of over-estimations of anomaly detection due to data redundancy, it still represents one of the few publicly available labeled datasets currently in use today by researchers \cite{osanaiye2016distributed,bhuyan2014network}. NSL-KDD \cite{tavallaee2009detailed} dataset is the refined version of the KDD 99 dataset that redundant data records are removed, in order to avoid biased classifications. Additionally, some approaches uses simulated \cite{callegari2011novel} scenarios or non-public datasets their evaluations. Considering that it is important to create intrusion detection datasets in modern-day computing to address the issues of DARPA/KDD. The next section discusses ne such contemporary dataset for network traffic analysis \cite{ahmed2016survey}, we propose to adopt CTU-13...
-
-Botnets are becoming one of the most serious threats to Internet security. A botnet is a network of compromised machines under the influence of malware (bot) code. The botnet is commandeered by a “botmaster” and utilized as “resource” or “platform” for attacks such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. In order for a botmaster to command a botnet, there needs to be a command and control (C&C) channel through which bots receive commands and coordinate attacks and fraudulent activities. The C&C channel is the means by which individual bots form a botnet. Centralized C&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time. In this architecture, each bot logs into an IRC channel, and seeks commands from the botmaster. Even today, many botnets are still designed this way. Quite a few botnets, though, have begun to use other protocols such as HTTP [8, 14, 24, 39], probably because HTTP-based C&C communications are more stealthy given that Web traffic is generally allowed in most networks \cite{gu2008botminer}.
-
-The BotHunter method was proposed by Gu \emph{et al} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
-
-\cite{garcia2014empirical} (An empirical comparison of botnet detection methods). The goal of this paper is to compare three botnet detection methods using a simple and reproducible methodology, a good dataset and a new error metric. This paper evaluates some data sets for network anomaly detection and classify the availability of labels and the presesence of background, normal and botnet traffic. The paper also survey some approaches for botnet detection. The paper proposes two methods (BClus and CAMNEP) and compare results to BotHunter. Considering the lack of available labeled datasets, the paper proposes the CTU-13 dataset, which is composed by normal and background labeled data, with the balance of the dataset like in a real network. The training and cross-validation datasets should be approximately 80\% of the dataset.The testing dataset should be approximately 20\% of the dataset. None of the botnet families used in the training and crossvalidation dataset should be used in the testing dataset. This ensures that the methods can generalize and detect new behaviors. \cite{garcia2014empirical} uses a time window separation and an aggregation method. Thei compare the output of three different botnet detection methods by executing them over a new, real, labeled and large botnet dataset.
-
-Khattak \emph{et al} \cite{khattak2015botflex} proposed BotFlex, which is a network-based tool for botnet detection, based on a decision module as a Complex Event Processing (CEP) engine and based on a correlation framework that continuously receives events from the sensor module and correlates them according to rule(s). 
-
-
-
-
 ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA from robust estimates of location and scatter matrix, to reduce the data dimensions and plotting the orthogonal distances versus the robust score distances, to flag an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. To overcome that issue, \cite{hubert2009robustskewed} propose ROBPCA-AO, which improve ROBPCA by means of an adjusted outlyingness based on robust skewness. In contrast to our proposal, ROBPCA and ROBPCA-AO rely on a previously defined cutoff value for classify anomalous observations, and does not require training.
 
 
-
-\cite{Wang2018ddosbotnets} present an in-depth analysis based on 50,704 different Internet DDoS attacks launched by 674 botnets from 23 different botnet families. Geospatial distribution of the attacking sources follows certain patterns, multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
-
+ 
 
 
-\cite{wang2017botnet} (Botnet detection based on anomaly and community detection)
 
-\cite{da2018online} (Online detection of Botnets on Network Flows using Stream Mining)
-
-\cite{moustafa2019holistic} (A holistic review of Network Anomaly Detection Systems: A comprehensive survey). Network anomaly detection approaches are classified by \cite{moustafa2019holistic} in six categories: classification, clustering, deep learning, knowledge, combination and statistical-based.
 
 \cite{Phua2004minority} (Minority Report in Fraud Detection: Classification of Skewed Data)
-
-\cite{acarali2016survey} (Survey of approaches and features for the identification of HTTP-based botnet traffic)
 
 \cite{lakhina2005mining} (Mining anomalies using traffic feature distributions).  -Argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Using entropy as a summarization tool, we show that the analysis of feature distributions leads to significant advances on two fronts: (1) it enables highly sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, and (2) it enables automatic classification of anomalies via unsupervised learning. Anomaly diagnosis framework, comprising both an extension of the subspace method [23] to accommodate multiple data types, and an unsupervised classification technique using simple clustering algorithms. \textbf{To explain feature selection and aggregation}.
 
@@ -388,6 +393,38 @@ This section also presents a description of the data model and data aggregation 
 \label{sec:CTU-13}
 
 
+\cite{garcia2014empirical} proposed CTU-13 dataset and argues that for evaluations of anomaly detection, none of the botnet families used in the training and crossvalidation dataset should be used in the testing dataset, considering that this ensures that the methods can generalize and detect new behaviors. However, hour proposal is semi-supervised and does not rely on training data with anomalies. Adopting the training and testing approach of \cite{garcia2014empirical}, some botnets malware wouldnt be evaluated, since in Garcia's proposal some botnets are present only for training. Therefore, we evaluate each scenario individually.
+
+
+A. Description of CTU-13 Dataset
+The CTU-13 is a dataset of botnet traffic that was captured
+in the Czech Technical University [24]. It contains 13 scenarios
+with various botnet types. We consider scenarios 1, 2, 6, 8, and
+9 of the dataset.
+• Scenario 1 corresponds to an IRC-based botnet that sent
+spam for almost 6.5 hours.
+• Scenario 2 (2.5-hours) is from the same botnet.
+• Scenario 6 is from a botnet that scanned SMTP (Simple
+Mail Transfer Protocol) servers for 2 hours and connected
+to several RDP (Remote Desktop Protocol) services. Dif-
+ferent with Scenarios 1 and 2, this botnet neither sent
+spam nor did it attack. It’s C&C server used a proprietary
+protocol.
+• Scenario 8 is from a botnet that contacted a lot of Chinese
+C&C hosts and received large amounts of encrypted data.
+The botnet also cracked the passwords of machines during
+the 19-hour attack.
+• Scenario 9 corresponds to a case where 10 local hosts
+were infected by a spamming botnet. More than 600 spams
+were sent over 5 hours.
+For all the scenarios, the authors of the CTU-13 dataset
+convert the captured pcap files to NetFlows and release the
+processed flows. The dataset contains ground-truth labels for
+flows as follows: flows from or to the infected machines
+are labeled as “botnet”; flows from or to noninfected ma-
+chines are labeled as “normal”; all other flows are labeled as
+“background.”
+
 Evaluating network anomaly detection solutions remains a challenge due to the lack of up-to-date real-world data sets for training and testing \cite{osanaiye2016distributed}. 
 
 We propose to use CTU-13 \cite{garcia2014empirical} to evaluate our proposal, considering that the CTU-13 is a data set that aims to have a large capture of real botnet attacks and C\&C traffic mixed with normal and background traffic.
@@ -451,10 +488,8 @@ Methods for imbalance learning has attracted growing attention from both academi
 
 Lakhina et al. \cite{lakhina2005mining} argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies.
 
-To deal with the data imbalance of CTU-13 data set, we adopt a sampling method based on data aggragation \cite{acarali2016survey} for feature generation, in order to obtain less imbalanced and more discrimnative data.	
-
-Based on related works \cite{lakhina2005mining,gu2008botminer,callegari2011novel,chandrashekar2014survey,acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
-The features are generated by a data aggregation into a selected window size. We evalute our proposal for windows with 0.15, 0.25, 1 and 2 seconds, for each scenario of the CTU-13 data set.
+To deal with the data imbalance of CTU-13 data set, we adopt a sampling method based on data aggragation for feature generation, in order to obtain less imbalanced and more discrimnative data. Based on related works \cite{lakhina2005mining,gu2008botminer,callegari2011novel,chandrashekar2014survey,garcia2014empirical,acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
+The features are generated by a data aggregation into a selected window size. We evalute our proposal for windows with 0.15 and 0.25 seconds, for each scenario of the CTU-13 data set.
 	
 Following (2 slides) are the selected features:
 \textbf{normal-flow-count:} count of normal (known) flow.
@@ -678,12 +713,11 @@ This section presents the performed experiments and the acquired results. First,
 
 \textbf{Experiment Plan:}
 
-    Evaluation Measure:
-	
-		In anomalous detection problems, where anomalies are rare events, if we classify all observations as normal and apply an accuracy evaluation, we would have high accuracy but poor true-positive detection.
-		Due to the importance given by F-measure to true-positive detection \cite{moustafa2019holistic}, the F-measure is the preferable measure for imbalanced data sets.
-	
+Evaluation Measure:
 
+In anomalous detection problems, where anomalies are rare events, if we classify all observations as normal and apply an accuracy evaluation, we would have high accuracy but poor true-positive detection.
+
+Due to the importance given by F-measure to true-positive detection \cite{moustafa2019holistic}, the F-measure is the preferable measure for imbalanced data sets.
 
 \textbf{Experiment Plan:}
 
@@ -780,8 +814,7 @@ Results grouped by algorithm for full CTU-13.
 \subsection{Discussion}
 \label{sec:discussion}
 
-		there are no lots of researches using CTU-13, although it is been growing
-		poor results for GMM, K-Means and MGM are ok and in accordance to \cite{wang2017botnet}, which also evaluate \cite{gu2007bothunter}
+there are no lots of researches using CTU-13, although it is been growing poor results for GMM, K-Means and MGM are ok and in accordance to \cite{wang2017botnet}, which also evaluate \cite{gu2007bothunter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion and Future Works}
@@ -801,7 +834,7 @@ Future research is directed to improvements for obtaining better false positive 
 
 
 Say that the data is lognormal \cite{benson2010network} and link it to skewness https://www.weibull.com/hotwire/issue47/relbasics47.htm
-Test distribution fit again e present results
+Test distribution fit again e present results 
 Conclude this presentation.
 Evaluate eigensim for CTU-13 and others algorithms for Danilo's data set.
 Compare to vanilla RPCA (Eduardo is working on it).
