@@ -107,15 +107,9 @@ Botnet Detection \sep Network Anomaly Detection \sep Skewness \sep Kurtosis \sep
 \section{Introduction}
 \label{sec:introduction}
 
-Botnets have emerging as a key threat for cyber security, considering that Botnets are the key platform for many Internet attacks (i.e. spam, distributed denial-of-service (DDoS), identity theft, and phishing). Most of the current botnet detection approaches work only on specific botnet command and control (. Lots of efforts are directed to avoid attacks from known attackers, however attacks from one source is not real nowadays, since the attacks are usualy from distributed botnets that change their approaches frequently, in order to avoid behavioral or pattern based detecions. This changing behavior is known as adversarial model \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,Wang2018ddosbotnetssurvey}.
+Several efforts and reasearches aim to avoid network attacks based on known attackers, fingerprints or other kind of pattern. However, distributed attacks organized by botnet has increasing and demanding the development of counter measures in oder to detect and avoid unkown attacks or even to deal with adversarial changes of behavior, location and patterns, in order to avoid behavioral or pattern based detecion systems \cite{gu2008botminer, garcia2014empirical,khattak2015botflex,acarali2016survey,wang2017botnet,Wang2018ddosbotnetssurvey}. To face this problem, it is possible to adopt unsupervised or semi-pervised approches, where it is not necessary known anomalies for trannning models.
 
-Anomaly detection is the identification of rare and suspicions observations by differing the normal or majority of the data.
-
-Anomalies can be related to network attack, fraud, defect or medical problems, for examples.
-
-Anomalies are also referred to as outliers, novelties, noise, deviations and exceptions.
-
-Anomalies can be hard to identify and separate from normal data.
+Anomaly detection is the identification of rare and suspicions observations by differing the normal or majority of the data. Anomalies can be related to network attack, fraud, defect or medical problems, for examples. Anomalies are also referred to as outliers, novelties, noise, deviations and exceptions. Anomalies can be hard to identify and separate from normal data.
 
 Considering that anomalies are rare in comparison to normal events, anomaly detection algorithms have to deal with problems imposed by imbalanced data.
 
@@ -156,16 +150,16 @@ We believe that the distribution of anomalous and normal traffic are skewed but 
 
 In the context of anomaly-based schemes, this work proposes a statistical approach based on cumulants and Mimimum Covariance Determinant (MCD) for network attack detection. To the best of our knowledge there is no similar model in the literature. We evaluate the accuracy of the proposed framework applied to CTU-13 dataset ??, which is a well known network traffic dataset.
 
+Our approach train from normal traffic and have significant computational cost during training. For prediction, the cost is basically the cost for Mahalanobis distance computation
+
 The main contributions of the proposed framework are a semi-supervised method for network attack detection, wich does not depend on knowledge of previous attacks and consider only normal network traffic for robust estimates normal traffic...
 
-This paper is organized as follows. In Section \ref{sec:relatedworks}, related works are discussed. Section \ref{sec:datamodel} presents the data model and the evaluated datasets. Section \ref{sec:c_mcd} describes the proposed framework for blind and automatic detection of flood and probe attacks. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work.
-
-Our approach train from normal traffic and have significant computational cost during training. For prediction, the cost is basically the cost for Mahalanobis distance computation
+This paper is organized as follows. In Section \ref{sec:review}, it is conducted a literature review of network anomaly detection, botnet detection, sampling and aggregation for imbalanced learning and robust based anomaly detection. Section \ref{sec:datamodel} presents the data model and the evaluated datasets. Section \ref{sec:m_rpca} describes the proposed framework for botnet detection based on robust subspace and skewness distance. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % network anomaly detectiom, botnet detection, botnet detection approaches, approaches based on subspace learning, sampling and aggregation, about the methodos to compare and metrics
 \section{Literature Review}
-\label{sec:relatedworks}
+\label{sec:review}
 
 Talk about network anomaly detection... 
 
