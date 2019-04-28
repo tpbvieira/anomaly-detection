@@ -38,23 +38,22 @@ result_file = open(result_file_path, 'w') # 'w' = clear all and write
 #     print(mean_list.mean())
 
 start_time = time.time()
-prefixes = ['0.15','0.25']
+prefixes = ['0.25']
 for prefix in prefixes:
     print('### Dataset Version: %s' % prefix, file=result_file)
     result_file.flush()
     dataset_list, files_list = get_dataset(prefix)
     pre_processed_dataset = split_dataset(dataset_list)
 
-    col_list = ['n_dports>1024', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
-                'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address',
-                'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024',
-                'n_d_b_p_address', 'n_tcp']
+    col_list = ['n_dports>1024', 'background_flow_count', 'n_tcp']
 
     best_global_f1 = 0
     best_global_cols = None
+    best_global_alg = None
     while len(col_list) > 2:
         best_f1 = 0
         best_cols = None
+        best_alg = None
         for col in col_list:
             l_f1_list = []
             s_f1_list = []
@@ -131,18 +130,23 @@ for prefix in prefixes:
             if np.mean(l_f1_list) > best_f1:
                 best_f1 = np.mean(l_f1_list)
                 best_cols = n_col_list.copy()
+                best_alg = 'l-rpca'
             if np.mean(s_f1_list) > best_f1:
                 best_f1 = np.mean(s_f1_list)
                 best_cols = n_col_list.copy()
+                best_alg = 's-rpca'
             if np.mean(k_f1_list) > best_f1:
                 best_f1 = np.mean(k_f1_list)
                 best_cols = n_col_list.copy()
+                best_alg = 'k-rpca'
+
+        print('### :', prefix, best_f1, best_alg, best_cols, file=result_file)
 
         col_list = best_cols
         if best_f1 >= best_global_f1:
             best_global_f1 = best_f1
             best_global_cols = best_cols.copy()
-            print('###-Improved_Global_Mean:',prefix, best_global_f1, best_global_cols, file=result_file)
+            print('### Improved_Global_Mean:',prefix, best_global_f1, best_alg, best_global_cols, file=result_file)
 
         # # test ROBPCA-AO from saved files
         # robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/ctu_13/results/m-rpca_r/robpca_k19_%s_test_df' % file_name
