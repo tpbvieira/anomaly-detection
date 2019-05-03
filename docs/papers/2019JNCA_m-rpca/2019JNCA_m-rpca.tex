@@ -143,7 +143,7 @@ Bhuyan \emph{et al.} \cite{bhuyan2014network} provide an overview of facets of n
 % botnet detection
 A botnet is a network of bots, that are compromised machines under the influence of malware (bot). The botnet is commandeered by a botmaster and used as resource for attacks, such as distributed denial-of-service (DDoS) attacks, and fraudulent activities such as spam, phishing, identity theft, and information exfiltration. We refer to \cite{ahmed2016survey,moustafa2019holistic} for an overview of network attacks. The botmaster coordenate a botnet through a command and control (C\&C) channel where bots receive commands and syncronize attacks and fraudulent activities. Centralized C\&C structures using the Internet Relay Chat (IRC) protocol have been utilized by botmasters for a long time, but other protocols, such as HTTP, and achitectures, such as Peer-To-Peer, have also been adopted \cite{gu2008botminer}.
 
-Acarali \emph{et al.} \cite{acarali2016survey} surveys network-based detection approaches for HTTP-based botnets, surveys traffic-based features used to detect bot traffic and presents an abstraction of the main types of features related to protocols and OSI layers. Wang \emph{et al.} \cite{Wang2018ddosbotnetssurvey} present an analysis based on 50,704 different Internet DDoS attacks originated of 674 botnets from 23 different botnet families with a total of 9,026 victim belonging to 1,074 organizations in 186 countries. Their analysis reveals that geolocation of the attacking sources follows patterns and enables source prediction, and highlight that multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, also presents that there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
+Acarali \emph{et al.} \cite{acarali2016survey} surveys network-based detection approaches for HTTP-based botnets, surveys traffic-based features used to detect bot traffic and presents an abstraction of the main types of features related to protocols and OSI layers. Wang \emph{et al.} \cite{Wang2018ddosbotnetssurvey} present an analysis based on 50,704 different Internet DDoS attacks originated of 674 botnets from 23 different botnet families with a total of 9,026 victim belonging to 1,074 organizations in 186 countries. Their analysis reveals that geolocation of the attacking sources follows patterns and enables source prediction, and highlights that multiple attacks to the same target also exhibit strong patterns of inter-attack time interval, also presents that there is a trend for different botnets to launch DDoS attacks targeting the same victim, simultaneously or in turn.
 
 The BotHunter was proposed by Gu \emph{et al.} \cite{gu2007bothunter} to detect the infection and coordination of botnets by matching sequence model, through a correlation approach for detecting stages of the infection process.  Gu \emph{et al.} \cite{gu2008botminer} presented the BotMiner, which aims to detect groups of compromised machines that are part of a botnet. BotMiner monitors communications that may suggest C\&C or malicious activities, and finds a coordinated group pattern by means of clusters of similar communication activities, clusters of similar malicious activities, and performs cross cluster correlation to identify the hosts that share both similar communication patterns and similar malicious activity patterns.
 
@@ -154,26 +154,28 @@ Several approaches for network attack detections uses the KDD 99 \cite{ahmed2016
 
 The objective of Garcia \emph{et al.} \cite{garcia2014empirical} is to compare three botnet detection methods using a simple and reproducible methodology, a good data set and a new error metric. This paper evaluates some data sets for network anomaly detection, surveys some approaches for botnet detection, proposes two methods (BClus and CAMNEP) for botnet detection and compare results to BotHunter \cite{gu2007bothunter}. Considering the lack of available labeled data sets, Garcia \emph{et al.} \cite{garcia2014empirical} proposes the CTU-13 data set, which is composed by normal and background labeled data, in an imbalanced distribution like in a real network. The autors recommend that none of the botnet families used in the training and crossvalidation data set should be used in the testing data set, aiming to ensure that the evaluated methods can generalize and detect new behaviors. Adopting the training and testing approach of \cite{garcia2014empirical}, some botnet malwares wouldn't be tested, since in the author's proposal some botnets are present only for training. 
 
-Wang and Paschalidis \cite{wang2017botnet} propose a botnet detection approach based on anomaly and community detection, aiming for detecting botnets and identifying bots before the botnet becomes active. The first stage detects anomalies by leveraging large deviations of an empirical distribution. The second stage detects the bots using ideas from social network community detection in a graph that captures correlations of interactions among nodes over time. This work is compared with the BotHunter \cite{gu2007bothunter} on the CTU-13 botnet data set \cite{garcia2014empirical}.
+Wang and Paschalidis \cite{wang2017botnet} proposed a botnet detection approach based on anomaly and community detection, aiming for detecting botnets and identifying bots before the botnet becomes active. The first stage detects anomalies by leveraging large deviations of an empirical distribution. The second stage detects the bots using ideas from social network community detection in a graph that captures correlations of interactions among nodes over time. This work is compared with the BotHunter \cite{gu2007bothunter} on the CTU-13 botnet data set \cite{garcia2014empirical}.
 
 % \cite{da2018online} proposes an approach using the Very Fast Decision Tree, a classification algorithm used on stream mining that can learn incrementally when needed, to identify botnets by observing network flows. When evaluating the approach on multiple scenarios with different botnets, we were able to achieve high performance metrics on the majority of scenarios, while using a significantly low number of labelled instances. It discard scenarios 5 and 6. They does not compute F1, but it is easy to compute it from precision and recall provided.
 
 % Anomaly detection by subspace larning
-Traditional PCA-based anomaly detection models are not suitable for anomaly interpretation, as they judge whether a data instance is an anomaly or not based on the length of its projection on the abnormal subspace spanned by the less significant principal components, and there is no direct mapping between PCA’s dimensionality-reduced subspace and the original feature space \cite{ringberg2007sensitivity}. However, to overcome the above mentioned limitations, some approaches based on PCA have been proposed for anomaly detection. Callegari \emph{et al.} \cite{callegari2011novel} proposed a PCA-based method for identifying the traffic flows responsible for an anomaly detected at the aggregate level, by means of a separation of normal and anomalies according to principal components (normal) and remaining (anomalies). Lee \emph{et al.} \cite{Lee2013} presented OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. Vieira \emph{et al.} \cite{vieira2017model} proposed a framework that applies Model Order Selection (MOS) for detection of time frames under attack and uses similarity analysis to extract details and detect the time and ports under attack. 
+Traditional PCA-based anomaly detection models are not suitable for anomaly interpretation, as they judge whether a data instance is an anomaly or not based on the length of its projection on the abnormal subspace spanned by the less significant principal components, and there is no direct mapping between PCA’s dimensionality-reduced subspace and the original feature space \cite{ringberg2007sensitivity}. However, to overcome the above mentioned limitations, some approaches based on PCA have been proposed for network anomaly detection. Callegari \emph{et al.} \cite{callegari2011novel} proposed a PCA-based method for identifying the network traffic flows responsible for an anomaly detected at the aggregate level, by means of a separation of normal and anomalies according to principal components (normal) and remaining (anomalies). Lee \emph{et al.} \cite{Lee2013} presented OverSampling PCA (osPCA), which allows one to determine the anomaly of the target instance according to the variation of the resulting dominant eigenvector obtained by similarity analysis and over sampling. Vieira \emph{et al.} \cite{vieira2017model} proposed a framework that applies Model Order Selection (MOS) for detection of time frames under attack and uses similarity analysis to extract details and detect the time and ports under attack. 
 
 % Anomaly detection by robust subspace larning
-Robust subspace learning has receiving a growing atention of researchers aiming the development of anomlay detection systems \cite{rousseeuw1984mcd, rousseeuw1999fastmcd}, considering outlier-robust methods and sparse-corruption methods \cite{lerman2018overview}. The problem of PCA or subspace learning for outlier corrupted data is called robust PCA (RPCA) or robust subspace learning \cite{vaswani2018robust}, which can be defined as the decomposition of a given data matrix $\textbf{M}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. This definition is also referred to as the sparse + low rank (S + LR) formulation \cite{vaswani2018robust}. We refer to \cite{lerman2018overview} and \cite{vaswani2018robust} for more details regarding robust subspace learning.
+The problem of PCA or subspace learning for outlier corrupted data is called robust PCA (RPCA) or robust subspace learning \cite{vaswani2018robust}, which can be defined as the decomposition of a given data matrix $\textbf{M}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. This definition is also referred to as the sparse + low rank (S + LR) formulation \cite{vaswani2018robust}. We refer to \cite{lerman2018overview} and \cite{vaswani2018robust} for more details regarding robust subspace learning. Robust subspace learning has receiving a growing atention of researchers aiming the development of anomlay detection systems \cite{rousseeuw1984mcd, rousseeuw1999fastmcd}, considering outlier-robust methods and sparse-corruption methods \cite{lerman2018overview}.
 
-RPCA is been mainly applied to computer vision, in problems of robust subspace tracking and robust subspace recovery. However, RPCA has also been adoted for general outlier detection \cite{hubert2005robpca,hubert2009robustskewed,cherapanamjeri2017thresholding,zhou2017anomaly,NetflixSurus} and for anomaly detection on network traffic \cite{pascoal2012robust}. ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA from robust estimates of location and scatter matrix, to reduce the data dimensions and plotting the orthogonal distances versus the robust score distances, to flag an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. Therefore, Hubert \emph{et al.} \cite{hubert2009robustskewed} proposed ROBPCA-AO, which improves ROBPCA for problems with skewed data, by means of an adjusted outlyingness based on robust skewness. Pascoal \emph{et al.} \cite{pascoal2012robust} proposed an approach based on a robust mutual information estimator for feature selection and based on RPCA for outlier detection in internet traffic. The anomaly detection proposed by Pascoal \emph{et al.} is an unsupervised approach that estimate the first $k$ robust principal components, calculate the score and the orthogonal distances, calculate the thresholds and classify new observations accordingly. 
+RPCA is been mainly applied to computer vision, in problems of robust subspace tracking and robust subspace recovery. However, RPCA has also been adoted for general outlier detection \cite{hubert2005robpca,hubert2009robustskewed,cherapanamjeri2017thresholding,zhou2017anomaly,NetflixSurus} and for anomaly detection on network traffic \cite{pascoal2012robust}. ROBPCA \cite{hubert2005robpca} intends to identify outliers using PCA from robust estimates of location and scatter matrix, to reduce the data dimensions and plotting the orthogonal distances versus the robust score distances, to flag an outlier map. However, ROBPCA flags many points as outlying when the original data is skewed. Therefore, Hubert \emph{et al.} \cite{hubert2009robustskewed} proposed ROBPCA-AO, which improves ROBPCA for problems with skewed data, by means of an adjusted outlyingness based on robust skewness. 
 
-Zhou and Paffenroth \cite{zhou2017anomaly} proposed the Robust Deep Autoencoders (RDA), which the central idea is that a RDA inherits the non-linear representation capabilities of autoencoders combined with the anomaly detection capabilities of RPCA. Considering that outliers and noise may reduce the quality of representations discovered by deep autoencoders, the proposed model isolates noise and outliers in the input by means of a RPCA approach, and the autoencoder is trained after this isolation. RDA was evaluated by the authors for the MNIST data set.
+Pascoal \emph{et al.} \cite{pascoal2012robust} proposed an approach based on a robust mutual information estimator for feature selection and based on RPCA for outlier detection in internet traffic. The anomaly detection proposed by Pascoal \emph{et al.} is an unsupervised approach that estimate the first $k$ robust principal components, calculate the score and the orthogonal distances, calculate the thresholds and classify new observations accordingly. 	Zhou and Paffenroth \cite{zhou2017anomaly} proposed the Robust Deep Autoencoders (RDA), which the central idea is that a RDA inherits the non-linear representation capabilities of autoencoders combined with the anomaly detection capabilities of RPCA. Considering that outliers and noise may reduce the quality of representations discovered by deep autoencoders, the proposed model isolates noise and outliers in the input by means of a RPCA approach, and the autoencoder is trained after this isolation. RDA was evaluated by the authors for the MNIST data set.
 
 % feature engineering and aggregation
-Lakhina \emph{et al.} \cite{lakhina2005mining} argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Lakhina \emph{et al.} show that the analysis of feature distributions leads to significant advances on sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, and leads gains on automatic classification of anomalies via unsupervised learning. Goldberg and Shan \cite{goldberg2015importance} argue that processing monitored signals into features is a more fruitful way to build anomaly detection systems than devising ever more complex statistical tests, based on experience and on putblished real-life examples of anomaly detectors in use at eBay. 
+Lakhina \emph{et al.} \cite{lakhina2005mining} argue that the distributions of packet features (IP addresses and ports) observed in flow traces reveals both the presence and the structure of a wide range of anomalies. Lakhina \emph{et al.} show that the analysis of feature distributions leads to significant advances on sensitive detection of a wide range of anomalies, augmenting detections by volume-based methods, while the anomaly detection approach leads gains on automatic classification of anomalies via unsupervised learning. Goldberg and Shan \cite{goldberg2015importance} argue, based on experience and on putblished real-life examples of anomaly detectors in use at eBay, that processing monitored signals into features is a more fruitful for anomaly detection systems than devising complex statistical tests.
 
-Benson \emph{et al.} \cite{benson2010network} conducted an empirical study of the network traffic in 10 data centers belonging to three different types of organizations, including university, enterprise, and cloud data centers. Findings of Benson \emph{et al.} indicate that certain positive skewed and heavy-tailed distributions can model data center switch traffic, and highlights a difference between the data center environment and the wide area network, where the long-tailed Pareto distribution typically shows the best fit \cite{benson2010network}. This findings highligh that the skeweness and heavy-tailed distributions can impact algorithms that rely on guassian distributed data, as well as it can reveal characteristics that can be exploited in order to obtain accurate classifiers for network traffic analysis. Considering that learning methods for imbalanced and skewed data have been atracted attention of researchers \cite{Phua2004minority,hubert2009robustskewed}, higher moments have been adopted for outlier detection and discriminative analysis. Skewness and the kurtosis are higher moments that can contribute to sensitive outlier detectors, taking into account that the properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection \cite{hubert2009robustskewed}.
+Benson \emph{et al.} \cite{benson2010network} conducted an empirical study of the network traffic in 10 data centers belonging to three different types of organizations, including university, enterprise, and cloud data centers. Findings of Benson \emph{et al.} indicate that certain positive skewed and heavy-tailed distributions can model data center switch traffic, and highlights a difference between the data center environment and the wide area network, where the long-tailed Pareto distribution typically shows the best fit \cite{benson2010network}. This findings highligh that the skeweness and heavy-tailed distributions can impact algorithms that rely on guassian distributed data, as well as it can reveal characteristics that can be exploited in order to obtain accurate classifiers for network traffic analysis. 
 
-We propose an approach based on higher moments distances from robust subspace for botnet detection, applied to new features generated by flow aggretation from the CTU-13 data set. The proposed approach relies on a robust subspace of normal traffic for estimating higher moments. The anomaly detection for new observations evaluate the Mahalanobis distance between the robust higher moments and the higher moments of new observations, in a semi-supervisioned fashion and without the computational cost of new robust subspace learning for new observations. 
+Considering that learning methods for imbalanced and skewed data have been atracted attention of researchers \cite{Phua2004minority,hubert2009robustskewed}, higher moments can be used for outlier detection and discriminative analysis of skewed data. Skewness and the kurtosis are higher moments that can contribute to sensitive outlier detectors, taking into account that the properties of the kurtosis can be used to identify clusters or outliers \cite{pena2010eigenvectors}, while skewness has been used as adjust factor for outlier detection in skewed data sets \cite{hubert2009robustskewed}.
+
+We propose an approach based on higher moments distances from robust subspace for botnet detection, applied to new features generated by flow aggretation from the CTU-13 data set. The proposed approach relies on a robust subspace of normal traffic for estimating higher moments. Thus, we propose that the anomaly detection for new observations should evaluate the Mahalanobis distance between the robust higher moments and the higher moments of new observations, in a semi-supervisioned fashion and without the computational cost of new robust subspace learning for new observations. 
 
 We adopt a sampling method based on data aggregation for discriminative feature engineering, considering that data aggregation is a widely adoted approach for feature engineering \cite{garcia2014empirical, chandrashekar2014survey,acarali2016survey} and network anomaly detection \cite{lakhina2005mining, callegari2011novel, vieira2017model}. Finally, We evaluate the accuracy of the proposed approach for botnet detecion on the CTU-13 data set \cite{garcia2014empirical}, which is a large data set of normal, background and botnet traffic that has been adopted to deal with the lack of up-to-date real-world data sets for anomaly detection systems \cite{osanaiye2016distributed}. 
 
@@ -188,58 +190,19 @@ This section also presents a description of the data model in Subsection \ref{se
 \subsection{The CTU-13 data set}
 \label{sec:CTU-13}
 
+The CTU-13 is a data set of botnet traffic that was captured in the Czech Technical University \cite{garcia2014empirical}. It contains 13 scenarios with network traffic of botnet malwares, that are: neris, rbot, virut, menti, sogou, nsys.ay and murlo. 
 
-\cite{garcia2014empirical} proposed CTU-13 data set and argues that for evaluations of anomaly detection, none of the botnet families used in the training and crossvalidation data set should be used in the testing data set, considering that this ensures that the methods can generalize and detect new behaviors. However, hour proposal is semi-supervised and does not rely on training data with anomalies. Adopting the training and testing approach of \cite{garcia2014empirical}, some botnets malware wouldnt be evaluated, since in Garcia's proposal some botnets are present only for training. Therefore, we evaluate each scenario individually.
+The types of attacks and C\&C present in CTU-13 data set are:
+\begin{itemize}
+	\item \textbf{Attacks:} Click Fraud (CF), Port Scan (PS), Compiled and Controled by Authors (US), SPAM and DDOS;
+	\item \textbf{C\&C:} IRC, P2P and HTTP.
+\end{itemize}
 
+For all the scenarios, the authors of the CTU-13 data set convert the captured pcap files to NetFlows and release the processed flows. The data set contains ground-truth labels for flows as follows: flows from or to the infected machines are labeled as “botnet”; flows from or to noninfected machines are labeled as “normal”; all other flows are labeled as “background.”
 
-A. Description of CTU-13 data set
-The CTU-13 is a data set of botnet traffic that was captured
-in the Czech Technical University [24]. It contains 13 scenarios
-with various botnet types. We consider scenarios 1, 2, 6, 8, and
-9 of the data set.
-• Scenario 1 corresponds to an IRC-based botnet that sent
-spam for almost 6.5 hours.
-• Scenario 2 (2.5-hours) is from the same botnet.
-• Scenario 6 is from a botnet that scanned SMTP (Simple
-Mail Transfer Protocol) servers for 2 hours and connected
-to several RDP (Remote Desktop Protocol) services. Dif-
-ferent with Scenarios 1 and 2, this botnet neither sent
-spam nor did it attack. It’s C\&C server used a proprietary
-protocol.
-• Scenario 8 is from a botnet that contacted a lot of Chinese
-C\&C hosts and received large amounts of encrypted data.
-The botnet also cracked the passwords of machines during
-the 19-hour attack.
-• Scenario 9 corresponds to a case where 10 local hosts
-were infected by a spamming botnet. More than 600 spams
-were sent over 5 hours.
-For all the scenarios, the authors of the CTU-13 data set
-convert the captured pcap files to NetFlows and release the
-processed flows. The data set contains ground-truth labels for
-flows as follows: flows from or to the infected machines
-are labeled as “botnet”; flows from or to noninfected ma-
-chines are labeled as “normal”; all other flows are labeled as
-“background.”
+The data set orignally contains the following features:  Start Time, End Time, Duration, Source IP address, Source Port, Direction, Destination IP address, Destination Port, State, SToS, Total of Packets and Total of Bytes.
 
-Evaluating network anomaly detection solutions remains a challenge due to the lack of up-to-date real-world data sets for training and testing \cite{osanaiye2016distributed}. 
-
-We propose to use CTU-13 \cite{garcia2014empirical} to evaluate our proposal, considering that the CTU-13 is a data set that aims to have a large capture of real botnet attacks and C\&C traffic mixed with normal and background traffic.
-
-The CTU-13 data set consists in thirteen captures (called scenarios) of different botnet samples. 
-
-On each scenario it was executed a specific malware, which used several protocols and performed different actions.		
-
-The botnet traffic is divided into attacks and Command and Control (C\&C) traffic.
-
-\textbf{Attacks:} Click Fraud, Port Scan, FastFlux, Compiled and Controled by Authors, SPAM and DDOS.
-
-\textbf{C\&C:} IRC, P2P and HTTP.
-
-The data set contains the following features:  Start Time, End Time, Duration, Source IP address, Source Port, Direction, Destination IP address, Destination Port, State, SToS, Total Packets and Total Bytes.
-
-Start Time, Duration, Protocol, Source Address, Source Port, Direction, Destination Address, Destination Port, State, Type of service from source to destination, Type of service from destination to source, Total of Packets, Total of bytes, Total bytes from source to destination, Label as normal or anomalous
-
-Our labeling strategy assigns three different labels: back-ground, botnet and normal. The priority to assign the labels is the following: 1. Assign the Background label to the whole traffic. 2. Assign the Normal label to the traffic that matches certain filters. 3. Assign the Botnet label to all the traffic that comes from or to any of the known infected IP addresses.
+Table \ref{tab:tab01} presents the malwares used for botnet attacks, the attack and C\&C types, the total number of flows, the number of malicious flows, which includes the C\&C and botnet flows. Table \ref{tab:tab01} also shows the ratio of C\&C and botnet flows.
 
 \begin{table}[h!]
 	\tiny
@@ -251,19 +214,17 @@ Our labeling strategy assigns three different labels: back-ground, botnet and no
 			11 & neris & IRC, Spam, CF & 1,808,122 & 20,941 (1.16\%) & 673 (0.04\%) & 20,268 (1.12\%) \\ \hline
 			12 & rbot & IRC, PS, US & 4,710,638 & 26,822 (0.57\%) & 63 (0.00\%) & 26,759 (0.57\%) \\ \hline
 			15 & rbot & IRC, DDoS, US & 1,121,076 & 2,580 (0.23\%) & 52 (0.00\%) & 2,528 (0.23\%) \\ \hline
-			15-2 & virut & Spam, PS,HTTP & 129,832 & 901 (0.69\%) & 24 (0.02\%) & 877 (0.68\%) \\ \hline
+			15-2 & virut & Spam, PS, HTTP & 129,832 & 901 (0.69\%) & 24 (0.02\%) & 877 (0.68\%) \\ \hline
 			16 & menti & PS & 558,919 & 4,630 (0.83\%) & 199 (0.04\%) & 4,431 (0.79\%) \\ \hline
 			16-2 & sogou & HTTP & 114,077 & 63 (0.06\%) & 26 (0.02\%) & 37 (0.03\%) \\ \hline
 			16-3 & murlo & PS & 2,954,230 & 6,127 (0.21\%) & 1,074 (0.04\%) & 5,053 (0.17\%) \\ \hline
-			17 & neris & IRC, Spam, CF,PS & 2,087,508 & 184,987 (8.86\%) & 2,973 (0.14\%) & 182,014 (8.72\%) \\ \hline
+			17 & neris & IRC, Spam, CF, PS & 2,087,508 & 184,987 (8.86\%) & 2,973 (0.14\%) & 182,014 (8.72\%) \\ \hline
 			18 & rbot & IRC, DDoS, US & 1,309,791 & 106,352 (8.12\%) & 33 (0.00\%) & 106,319 (8.12\%) \\ \hline
 			18-2 & rbot & IRC, DDoS, US & 107,251 & 8,164 (7.61\%) & 2 (0.00\%) & 8,162 (7.61\%) \\ \hline
 			19 & nsys.ay & P2P & 325,471 & 2,168 (0.67\%) & 25 (0.01\%) & 2,143 (0.66\%) \\ \hline
 			15-3 & virut & Spam, PS, HTTP & 1,925,149 & 40,003 (2.08\%) & 536 (0.03\%) & 39,467 (2.05\%) \\ \hline
 	\end{tabular}
 \end{table}
-
-Table \ref{tab:tab01} presents the malwares used for botnet attacks, the attack and C\&C types, the total number of flows, the number of malicious flows, which includes the C\&C and botnet flows. Table \ref{tab:tab01} also shows the ratio of C\&C and botnet flows.
 
 \subsection{feature engineering}
 \label{sec:feat_eng}
@@ -290,27 +251,26 @@ Lakhina et al. \cite{lakhina2005mining} argue that the distributions of packet f
 To deal with the data imbalance of CTU-13 data set, we adopt a sampling method based on data aggragation for feature generation, in order to obtain less imbalanced and more discrimnative data. Based on related works \cite{lakhina2005mining,gu2008botminer,callegari2011novel,chandrashekar2014survey,garcia2014empirical,acarali2016survey} and experience \cite{vieira2017model, galibus2017offline}, we selected some features for improving the anomaly detection.
 The features are generated by a data aggregation into a selected window size. We evalute our proposal for windows with 0.15 and 0.25 seconds, for each scenario of the CTU-13 data set.
 	
-Following (2 slides) are the selected features:
-\textbf{normal-flow-count:} count of normal (known) flow.
-\textbf{background-flow-count :} count of background (unknown) flows.
-\textbf{avg-duration:} average duration time of flows.
-\textbf{n-conn:} count of flows.
-\textbf{n-icmp:} count of ICMP packets.
-\textbf{n-tcp:} count of TCP packets.
-\textbf{n-udp:} count of UDP packets.
-\textbf{n-dports<1024:} count of destinations ports lower than 1024.
-\textbf{n-sports<1024:} count of source ports lower than 1024.
-\textbf{n-sports>1024:} count of source ports higher than 1024.
-
-Following are the remaining selected features:
-\textbf{n-s-a-p-address:} count of class A source address.
-\textbf{n-d-a-p-address:} count of class A destination address.
-\textbf{n-s-b-p-address:} count of class B source address.
-\textbf{n-d-b-p-address:} count of class B destination address.
-\textbf{n-s-c-p-address:} count of class C source address.
-\textbf{n-d-c-p-address:} count of class C destination address.
-\textbf{n-s-na-p-address:} count of class D* source address.
-\textbf{n-d-na-p-address:} count of class D* destination address.
+\begin{itemize}
+	\item \textbf{normal-flow-count:} count of normal (known) flow.
+	\item \textbf{background-flow-count :} count of background (unknown) flows.
+	\item \textbf{avg-duration:} average duration time of flows.
+	\item \textbf{n-conn:} count of flows.
+	\item \textbf{n-icmp:} count of ICMP packets.
+	\item \textbf{n-tcp:} count of TCP packets.
+	\item \textbf{n-udp:} count of UDP packets.
+	\item \textbf{n-dports<1024:} count of destinations ports lower than 1024.
+	\item \textbf{n-sports<1024:} count of source ports lower than 1024.
+	\item \textbf{n-sports>1024:} count of source ports higher than 1024.
+	\item \textbf{n-s-a-p-address:} count of class A source address.
+	\item \textbf{n-d-a-p-address:} count of class A destination address.
+	\item \textbf{n-s-b-p-address:} count of class B source address.
+	\item \textbf{n-d-b-p-address:} count of class B destination address.
+	\item \textbf{n-s-c-p-address:} count of class C source address.
+	\item \textbf{n-d-c-p-address:} count of class C destination address.
+	\item \textbf{n-s-na-p-address:} count of class D* source address.
+	\item \textbf{n-d-na-p-address:} count of class D* destination address.
+\end{itemize}
 
 Figures \ref{fig:fig07} and \ref{fig:fig08} show the distribution of average flow duration, for scenario 12, aggregated by windows of 0.15 and 2 seconds.
 
@@ -826,3 +786,17 @@ say that more studies about skewness and subspace learning can be done in order 
 % 	}
 % 	\caption{Fast-MCD when $n > 600$}
 % \end{algorithm}
+
+% \cite{garcia2014empirical} proposed CTU-13 data set and argues that for evaluations of anomaly detection, none of the botnet families used in the training and crossvalidation data set should be used in the testing data set, considering that this ensures that the methods can generalize and detect new behaviors. However, hour proposal is semi-supervised and does not rely on training data with anomalies. Adopting the training and testing approach of \cite{garcia2014empirical}, some botnets malware wouldnt be evaluated, since in Garcia's proposal some botnets are present only for training. Therefore, we evaluate each scenario individually.
+
+% \cite{wang2017botnet}
+% A. Description of CTU-13 data set
+% The CTU-13 is a data set of botnet traffic that was captured
+% in the Czech Technical University [24]. It contains 13 scenarios
+% with various botnet types. We consider scenarios 1, 2, 6, 8, and
+% 9 of the data set.
+% • Scenario 1 corresponds to an IRC-based botnet that sent spam for almost 6.5 hours.
+% • Scenario 2 (2.5-hours) is from the same botnet.
+% • Scenario 6 is from a botnet that scanned SMTP (Simple Mail Transfer Protocol) servers for 2 hours and connected to several RDP (Remote Desktop Protocol) services. Dif-erent with Scenarios 1 and 2, this botnet neither sent spam nor did it attack. It’s C\&C server used a proprietary protocol.
+% • Scenario 8 is from a botnet that contacted a lot of Chinese C\&C hosts and received large amounts of encrypted data. The botnet also cracked the passwords of machines during the 19-hour attack.
+% • Scenario 9 corresponds to a case where 10 local hosts were infected by a spamming botnet. More than 600 spams were sent over 5 hours.
