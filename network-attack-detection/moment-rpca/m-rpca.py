@@ -25,7 +25,9 @@ for prefix in prefixes:
     dataset_list, files_list = get_dataset(prefix)
     pre_processed_dataset = split_dataset(dataset_list)
     num_datasets = len(dataset_list)
-    col_list = ['n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_s_na_p_address', 'n_s_c_p_address', 'normal_flow_count', 'n_dports<1024']
+    col_list = ['n_dports>1024', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
+                'n_sports<1024', 'n_s_na_p_address', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address',
+                'n_d_c_p_address', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
 
     for dataset in range(num_datasets):
         file_name = files_list[dataset].name.replace('/', '').replace('.', '')

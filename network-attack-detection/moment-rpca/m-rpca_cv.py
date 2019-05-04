@@ -23,14 +23,10 @@ for prefix in prefixes:
     dataset_list, files_list = get_dataset(prefix)
     pre_processed_dataset = split_dataset(dataset_list)
 
-    # col_list = ['n_dports>1024', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
-    #             'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address',
-    #             'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024',
-    #             'n_d_b_p_address', 'n_tcp']
-
     col_list = ['n_dports>1024', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
-                'n_sports<1024', 'n_s_na_p_address', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address',
-                'n_d_c_p_address', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
+                'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address',
+                'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024',
+                'n_d_b_p_address', 'n_tcp']
 
     best_global_f1 = 0
     best_global_cols = None
@@ -89,20 +85,23 @@ for prefix in prefixes:
                 # k_f1_list.append(k_f1)
                 # result_file.flush()
 
-            # if np.mean(l_f1_list) > best_f1:
+            # l_f1 = np.mean(l_f1_list)
+            # if l_f1 > best_f1:
             #     best_f1 = np.mean(l_f1_list)
             #     best_cols = n_col_list.copy()
             #     best_alg = 'l-rpca'
-            if np.mean(s_f1_list) > best_f1:
+            s_f1 = np.mean(s_f1_list)
+            if s_f1 > best_f1:
                 best_f1 = np.mean(s_f1_list)
                 best_cols = n_col_list.copy()
                 best_alg = 's-rpca'
-            # if np.mean(k_f1_list) > best_f1:
+            # k_f1_list = np.mean(k_f1_list)
+            # if k_f1_list > best_f1:
             #     best_f1 = np.mean(k_f1_list)
             #     best_cols = n_col_list.copy()
             #     best_alg = 'k-rpca'
 
-            print(n_col_list, best_f1, file=result_file)
+            print(n_col_list, s_f1, file=result_file)
         print('### :', prefix, best_f1, best_alg, best_cols, file=result_file)
 
         col_list = best_cols
