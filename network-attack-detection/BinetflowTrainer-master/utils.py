@@ -54,7 +54,7 @@ def pickle_summarized_data(interval, file_name, summary, v2=False):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    f_name = 'saved_%ss_%s.pk1' % (interval, get_file_num(file_name))
+    f_name = '%ss_%s.pk1' % (interval, get_file_num(file_name))
     f_path = '%s%s' % (directory, f_name)
 
     if not os.path.isfile(f_path):
@@ -67,7 +67,7 @@ def pickle_summarized_data(interval, file_name, summary, v2=False):
 
 def exist_summarized_data(interval, file_name, v2):
     directory = 'saved_v2/' if v2 else 'saved_data/'
-    f_name = 'saved_%ss_%s.pk1' % (interval, get_file_num(file_name))
+    f_name = '%ss_%s.pk1' % (interval, get_file_num(file_name))
     f_path = '%s%s' % (directory, f_name)
 
     return os.path.isfile(f_path)
@@ -75,7 +75,7 @@ def exist_summarized_data(interval, file_name, v2):
 
 def get_saved_data(interval, file_name, v2=False):
     directory = 'saved_v2/' if v2 else 'saved_data/'
-    f_name = 'saved_%ss_%s.pk1' % (interval, get_file_num(file_name))
+    f_name = '%ss_%s.pk1' % (interval, get_file_num(file_name))
     pickled_data_path = '%s%s' % (directory, f_name)
     print(pickled_data_path)
     

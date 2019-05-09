@@ -64,8 +64,7 @@ def train_and_test_with(features, labels, classifier, feat_test=None, label_test
     clf = get_classifier(classifier)
 
     if feat_test is None and label_test is None:
-        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5,
-                                                                          random_state=42)
+        feat_train, feat_test, label_train, label_test = train_test_split(features, labels, test_size=0.5, random_state=42)
     else:
         feat_train = features
         label_train = labels
@@ -84,8 +83,7 @@ def train_and_test_with(features, labels, classifier, feat_test=None, label_test
     result['normal count'] = len(labels) - result['attacks']
     result['training size'] = len(feat_train)
     result['1'] = '%s, %s' % (attack_train, attack_test)
-    result['0'] = '%s, %s' % (len(label_train)-attack_train,
-                              len(label_test) - attack_test)
+    result['0'] = '%s, %s' % (len(label_train)-attack_train, len(label_test) - attack_test)
     return result
 
 
@@ -140,8 +138,7 @@ def train_and_test_step(features, labels, classifier, step):
 def train_with_tensorflow(feat_train, label_train, feat_test=None, label_test=None):
     correctness = 0
     if feat_test is None or label_test is None:
-        feat_train, feat_test, label_train, label_test = train_test_split(feat_train, label_train, test_size=0.5,
-                                                                          random_state=42)
+        feat_train, feat_test, label_train, label_test = train_test_split(feat_train, label_train, test_size=0.5, random_state=42)
 
     label_train = to_tf_label(label_train)
     label_test = to_tf_label(label_test)
@@ -210,3 +207,13 @@ def run_analysis_with(interval, file_name, start_time=None, use_pickle=True):
         result = train_and_test_with(features, labels, ml)
         path = '%srun_%s_%s.txt' % (directory, file_num, ml)
         save_results(path, file_name, start_time, interval, result)
+
+
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
+raw_directory = os.fsencode(raw_path)
+file_list = os.listdir(raw_directory)
+
+# for each file/scenario
+for sample_file in file_list:
+    file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
+    aggregate_and_pickle(0.15, file_path)

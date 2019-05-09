@@ -19,6 +19,7 @@ class Summarizer:
             'n_d_b_p_address': 0,
             'n_d_c_p_address': 0,
             'n_d_na_p_address': 0,
+            'flow_count': 0,
             'normal_flow_count': 0,
             'background_flow_count': 0
         }
@@ -68,6 +69,8 @@ class Summarizer:
             self.data['normal_flow_count'] += 1
         elif 'Background' in item['label']:
             self.data['background_flow_count'] += 1
+
+        self.data['flow_count'] += 1
 
         # 'n_s_a_p_address','n_d_a_p_address','n_s_b_p_address','n_d_b_p_address','n_s_c_p_address','n_d_c_p_address',
         # 'n_s_na_p_address','n_d_na_p_address'
