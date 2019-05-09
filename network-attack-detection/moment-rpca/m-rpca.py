@@ -46,6 +46,7 @@ for prefix in prefixes:
         raw_test_df = raw_test_df.drop(['Label'], axis=1)
 
         # select columns
+        col_list = raw_train_df.columns
         training_df = raw_train_df[col_list]
         cv_df = raw_cv_df[col_list]
         testing_df = raw_test_df[col_list]
@@ -54,21 +55,27 @@ for prefix in prefixes:
         L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(np.array(training_df, dtype=float))
 
         # Location CV and prediction
-        best_contamination = cv_location_contamination(cv_df, cv_labels, rob_mean, rob_precision)
+        # best_contamination = cv_location_contamination(cv_df, cv_labels, rob_mean, rob_precision)
+
+        test_label_vc = testing_df.value_counts()
+        ones = test_label_vc.get(1)
+        zeros = test_label_vc.get(0)
+        best_contamination = ones/(ones + zeros)
+
         pred_label = predict_by_location_contamination(testing_df, rob_mean, rob_precision, best_contamination)
         l_f1 = f1_score(actual_labels, pred_label)
         print('%s - predict_by_location_contamination - F1: %f' % (files_list[dataset].name, l_f1), file=result_file)
         result_file.flush()
 
         # Skewness CV and prediction
-        best_contamination = cv_skewness_contamination(cv_df, cv_labels, rob_skew, rob_precision)
+        # best_contamination = cv_skewness_contamination(cv_df, cv_labels, rob_skew, rob_precision)
         pred_label = predict_by_skewness_contamination(testing_df, rob_precision, rob_skew, best_contamination)
         s_f1 = f1_score(actual_labels, pred_label)
         print('%s - predict_by_skewness_contamination - F1: %f' % (files_list[dataset].name, s_f1), file=result_file)
         result_file.flush()
 
         # Kurtosis CV and prediction
-        best_contamination = cv_kurtosis_contamination(cv_df, cv_labels, rob_kurt, rob_precision)
+        # best_contamination = cv_kurtosis_contamination(cv_df, cv_labels, rob_kurt, rob_precision)
         pred_label = predict_by_kurtosis_contamination(testing_df, rob_precision, rob_kurt, best_contamination)
         k_f1 = f1_score(actual_labels, pred_label)
         print('%s - predict_by_kurtosis_contamination - F1: %f' % (files_list[dataset].name, k_f1), file=result_file)

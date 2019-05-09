@@ -8,7 +8,8 @@ import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.metrics import f1_score
 from moment_anomaly_detector import MomentAnomalyDetector
-from botnet_detection_utils import data_splitting34, drop_agg_features, get_classification_report, data_cleasing, column_types
+from botnet_detection_utils import data_splitting34, ctu13_drop_agg_features, get_classification_report, ctu13_data_cleasing, \
+    ctu13_column_types
 warnings.filterwarnings("ignore")
 
 def semiSupervisedCV2(t_normal_df, t_cv_df, t_cv_label, n_it):
@@ -87,6 +88,11 @@ def semiSupervisedCV(t_normal_df, t_cv_df, t_cv_label, n_it):
 
     for m_contamination in np.linspace(0.1, 0.4, 10):
 
+        cv_label_vc = m_cv_label.value_counts()
+        ones = cv_label_vc.get(1)
+        zeros = cv_label_vc.get(0)
+        m_contamination = ones / (ones + zeros)
+
         for j in range(n_it):
             # fit
             m_ell_model = MomentAnomalyDetector(contamination=m_contamination)
@@ -120,6 +126,8 @@ def semiSupervisedCV(t_normal_df, t_cv_df, t_cv_label, n_it):
                 m_best_contamination = m_contamination
                 m_best_f1 = s_f1
                 m_best_alg = 's-mcd'
+
+        break
 
     return m_best_model, m_best_contamination, m_best_f1, m_best_alg
 
@@ -177,9 +185,9 @@ def unsupervisedCV(t_cv_df, t_cv_label, n_it):
     return m_best_model, m_best_contamination, m_best_f1, m_best_alg
 
 
-raw_path = os.path.join('data/ctu_13/pkl_sum/')
+raw_path = os.path.join('data/cicids2017/raw/pkl/')
 raw_directory = os.fsencode(raw_path)
-pkl_path = os.path.join('data/ctu_13/pkl_sum/')
+pkl_path = os.path.join('data/cicids2017/raw/pkl/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 it = 1
@@ -187,7 +195,7 @@ cv_it = 1
 
 start_time = time.time()
 # for each feature set
-for features_key, value in drop_agg_features.items():
+for features_key, value in ctu13_drop_agg_features.items():
 
     # for each file/case
     for sample_file in file_list:
@@ -204,14 +212,14 @@ for features_key, value in drop_agg_features.items():
             else:  # load raw file and save clean data into pickles
                 raw_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
                 print("## Sample File: ", raw_file_path)
-                raw_df = pd.read_csv(raw_file_path, header=0, dtype=column_types)
-                df = data_cleasing(raw_df)
+                raw_df = pd.read_csv(raw_file_path, header=0, dtype=ctu13_column_types)
+                df = ctu13_data_cleasing(raw_df)
                 df.to_pickle(pkl_file_path)
             gc.collect()
 
             # data splitting
-            norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting34(df, drop_agg_features[features_key])
-            # train_df, train_label_df, test_df, test_label_df = unsupervised_data_splitting(df, drop_agg_features[features_key])
+            norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting34(df, ctu13_drop_agg_features[features_key])
+            # train_df, train_label_df, test_df, test_label_df = unsupervised_data_splitting(df, ctu13_drop_agg_features[features_key])
 
             m_mcd_result_dict = {}
             for i in range(it):

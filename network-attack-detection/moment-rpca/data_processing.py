@@ -3,19 +3,28 @@ import pandas as pd
 
 
 def get_dataset(prefix):
-    file_list = [open('../data/ctu_13/agg_pkl/%ss_10.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_11.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_12.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_15.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_15-2.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_15-3.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_16.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_16-2.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_16-3.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_17.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_18.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_18-2.pk1' % prefix, 'rb'),
-                 open('../data/ctu_13/agg_pkl/%ss_19.pk1' % prefix, 'rb')]
+    # file_list = [open('../data/ctu_13/agg_pkl/%ss_10.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_11.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_12.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_15.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_15-2.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_15-3.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_16.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_16-2.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_16-3.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_17.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_18.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_18-2.pk1' % prefix, 'rb'),
+    #              open('../data/ctu_13/agg_pkl/%ss_19.pk1' % prefix, 'rb')]
+
+    file_list = [open('../data/ctu_13/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Monday-WorkingHours.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Tuesday-WorkingHours.pcap_ISCX.csv', 'rb'),
+                 open('../data/ctu_13/agg_pkl/Wednesday-workingHours.pcap_ISCX.csv', 'rb')]
 
     # file_list = [
     #     # open('../data/ctu_13/agg_pkl/%ss_10.pk1' % prefix, 'rb'),
