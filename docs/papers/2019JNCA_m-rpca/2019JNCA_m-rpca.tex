@@ -30,6 +30,7 @@
 \usepackage{amsthm,amsmath}
 
 % table
+\usepackage{makecell}
 \usepackage{color, colortbl}
 \definecolor{Gray}{gray}{0.9}
 
@@ -190,45 +191,46 @@ This section also presents a description of the data model in Subsection \ref{se
 \subsection{The CTU-13 data set}
 \label{sec:CTU-13}
 
-The CTU-13 is a data set of botnet traffic that was captured in the Czech Technical University \cite{garcia2014empirical}. It contains 13 scenarios with network traffic of botnet malwares, that are: neris, rbot, virut, menti, sogou, nsys.ay and murlo. 
+The CTU-13 is a data set of botnet traffic that was captured in the Czech Technical University \cite{garcia2014empirical}, by means of a testbed and execution of malwares in a real network. The CTU-13 data set contains 13 scenarios with network traffic of botnet malwares, that are: neris, rbot, virut, menti, sogou, nsys.ay and murlo. The types of C\&C and attack traffic present in CTU-13 data set are:
 
-The types of network attacks and C\&C present in CTU-13 data set are:
 \begin{itemize}
 	\item \textbf{Attacks:} Click Fraud (CF), Port Scan (PS), Compiled and Controlled by Authors (US), SPAM and DDOS;
 	\item \textbf{C\&C:} IRC, P2P and HTTP.
 \end{itemize}
 
-For all the scenarios, the authors of the CTU-13 data set convert the captured pcap files to NetFlows and release the processed flows. The data set contains ground-truth labels for flows as follows: flows from or to the infected machines are labeled as “botnet”; flows from or to non infected machines are labeled as “normal”; all other flows are labeled as “background.”
+We refer to Garcia \cite{garcia2014identifying} and Garcia \emph{et al.} \cite{garcia2014empirical} for a detailed description of the performed attacks and C\&C flows, also including the topology of the adopted testbed, rules for classifing normal flows, and an analysis of behaviors or patterns of the malware's traffic.
+
+For all the scenarios, the authors of the CTU-13 data set convert the captured pcap files to NetFlows and release the processed flows. The data set contains ground-truth labels for flows as follows: flows from or to the infected machines are labeled as “botnet”; flows from or to well known and controlled machines are labeled as “normal”; all other flows are labeled as “background.”
 
 The data set originally contains the following features by flows:  Start Time, End Time, Duration, Source IP Address, Source Port, Direction, Destination IP Address, Destination Port, State, Type of service from source to destination, Type of service from destination to source, Total of Packets and Total of Bytes.
 
-Table \ref{tab:tab01} presents an overview organized by scenario and shows the malwares used for botnet attacks, the types of attacks and C\&C types, the total number of flows, the number of malicious flows, which includes the C\&C, and finally shows the number of C\&C and attack flows separately.
+Table \ref{tab:tab01} presents an overview organized by scenario and shows the malwares used for botnet attacks, the types of attacks and C\&C types, the total number of flows, the number of malicious flows, which includes flows of C\&C and attacks, and finally shows the number of normal flows.
 
 \begin{table}[h!]
 	\tiny
 	\caption{CTU-13 data set Description}
 	\label{tab:tab01}
-	\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l | }
-		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}Scenario\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Malware\end{tabular}	 & \begin{tabular}[x]{@{}l@{}}Type\end{tabular}	& \begin{tabular}[x]{@{}l@{}}Total Flows\end{tabular} & \begin{tabular}[x]{@{}l@{}}Malicious\end{tabular} & \begin{tabular}[x]{@{}l@{}}C\&C\end{tabular} & \begin{tabular}[x]{@{}l@{}}Attack\end{tabular}\\ \hline
-			10 & neris & IRC, Spam, CF & 2,824,636 & 40,961 (1.45\%) & 341 (0.01\%) & 40,620 (1.44\%) \\ \hline
-			11 & neris & IRC, Spam, CF & 1,808,122 & 20,941 (1.16\%) & 673 (0.04\%) & 20,268 (1.12\%) \\ \hline
-			12 & rbot & IRC, PS, US & 4,710,638 & 26,822 (0.57\%) & 63 (0.00\%) & 26,759 (0.57\%) \\ \hline
-			15 & rbot & IRC, DDoS, US & 1,121,076 & 2,580 (0.23\%) & 52 (0.00\%) & 2,528 (0.23\%) \\ \hline
-			15-2 & virut & Spam, PS, HTTP & 129,832 & 901 (0.69\%) & 24 (0.02\%) & 877 (0.68\%) \\ \hline
-			16 & menti & PS & 558,919 & 4,630 (0.83\%) & 199 (0.04\%) & 4,431 (0.79\%) \\ \hline
-			16-2 & sogou & HTTP & 114,077 & 63 (0.06\%) & 26 (0.02\%) & 37 (0.03\%) \\ \hline
-			16-3 & murlo & PS & 2,954,230 & 6,127 (0.21\%) & 1,074 (0.04\%) & 5,053 (0.17\%) \\ \hline
-			17 & neris & IRC, Spam, CF, PS & 2,087,508 & 184,987 (8.86\%) & 2,973 (0.14\%) & 182,014 (8.72\%) \\ \hline
-			18 & rbot & IRC, DDoS, US & 1,309,791 & 106,352 (8.12\%) & 33 (0.00\%) & 106,319 (8.12\%) \\ \hline
-			18-2 & rbot & IRC, DDoS, US & 107,251 & 8,164 (7.61\%) & 2 (0.00\%) & 8,162 (7.61\%) \\ \hline
-			19 & nsys.ay & P2P & 325,471 & 2,168 (0.67\%) & 25 (0.01\%) & 2,143 (0.66\%) \\ \hline
-			15-3 & virut & Spam, PS, HTTP & 1,925,149 & 40,003 (2.08\%) & 536 (0.03\%) & 39,467 (2.05\%) \\ \hline
+	\begin{tabular}{| l | l | l | r | r | r | r | r | r | r | r | }
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}l@{}}\textbf{ID}\end{tabular}	&\begin{tabular}[x]{@{}l@{}}\textbf{Bot}\end{tabular}	 &\begin{tabular}[x]{@{}l@{}}\textbf{Type}\end{tabular}	&\begin{tabular}[x]{@{}l@{}}\textbf{Total}\end{tabular} &\begin{tabular}[x]{@{}l@{}}\textbf{Malicious}\end{tabular} &\begin{tabular}[x]{@{}l@{}}\textbf{C\&C}\end{tabular} &\begin{tabular}[x]{@{}l@{}}\textbf{Attack}\end{tabular} &\begin{tabular}[x]{@{}l@{}}\textbf{Normal}\end{tabular}\\ \hline
+			10 & neris &\makecell[l]{IRC, Spam,\\CF} & 2,824,636 & 40,961 (1.45\%) & 341 (0.01\%) & 40,620 (1.44\%) &30,387 (1.07\%)\\ \hline
+			11 & neris &\makecell[l]{IRC, Spam,\\CF} & 1,808,122 & 20,941 (1.16\%) & 673 (0.04\%) & 20,268 (1.12\%) &9,120 (0.5\%)\\ \hline
+			12 & rbot &\makecell[l]{IRC, PS,\\US} & 4,710,638 & 26,822 (0.57\%) & 63 (0.00\%) & 26,759 (0.57\%) &116,887 (2.48\%)\\ \hline
+			15 & rbot &\makecell[l]{IRC, DDoS,\\US} & 1,121,076 & 2,580 (0.23\%) & 52 (0.00\%) & 2,528 (0.23\%) &25,268 (2.25\%)\\ \hline
+			15-2 & virut &\makecell[l]{Spam, PS,\\HTTP} & 129,832 & 901 (0.69\%) & 24 (0.02\%) & 877 (0.68\%) &4,679 (3.6\%)\\ \hline
+			16 & menti &PS & 558,919 & 4,630 (0.83\%) & 199 (0.04\%) & 4,431 (0.79\%) &7,494 (1.34\%)\\ \hline
+			16-2 & sogou &HTTP & 114,077 & 63 (0.06\%) & 26 (0.02\%) & 37 (0.03\%) &1,677 (1.47\%)\\ \hline
+			16-3 & murlo &PS & 2,954,230 & 6,127 (0.21\%) & 1,074 (0.04\%) & 5,053 (0.17\%) &72,822 (2.46\%)\\ \hline
+			17 & neris &\makecell[l]{IRC, Spam,\\CF, PS} & 2,087,508 & 184,987 (8.86\%) & 2,973 (0.14\%) & 182,014 (8.72\%) &43,340 (1.57\%)\\ \hline
+			18 & rbot &\makecell[l]{IRC, DDoS,\\US} & 1,309,791 & 106,352 (8.12\%) & 33 (0.00\%) & 106,319 (8.12\%) &15,847 (1.2\%)\\ \hline
+			18-2 & rbot &\makecell[l]{IRC, DDoS,\\US} & 107,251 & 8,164 (7.61\%) & 2 (0.00\%) & 8,162 (7.61\%) &2,718 (2.53\%)\\ \hline
+			19 & nsys.ay &P2P & 325,471 & 2,168 (0.67\%) & 25 (0.01\%) & 2,143 (0.66\%) &7,628 (2.35\%)\\ \hline
+			15-3 & virut &\makecell[l]{Spam, PS,\\HTTP} & 1,925,149 & 40,003 (2.08\%) & 536 (0.03\%) & 39,467 (2.05\%) &31,939 (1.65)\\ \hline
 	\end{tabular}
 \end{table}
 
 The CTU-13 aims to reproduce the percentage of C\&C and attack flows according to real cases, where the number of malicious flows are very low in comparison to normal and background flows, resulting into a very imbalanced and challenging data set for botnet detection. 
 
-An Exploratory Data Analysis (EDA) reveals that distributions of original features of the CTU-13 are skewed and presents an overlapping between normal and anomalous flows. Following we present the Figure \ref{fig:fig01}, that presents the distribution of flow duration for scenario 12, and exemplifies the data skewness and overlapping. 
+An Exploratory Data Analysis (EDA) reveals that distributions of original features of the CTU-13 are skewed and present an overlapping between normal and anomalous flows. Following we present the Figure \ref{fig:fig01}, that presents the distribution of flow duration for scenario 12, and exemplifies the data skewness and overlapping. 
 
 \begin{figure}[h!]
      \centering
@@ -237,46 +239,37 @@ An Exploratory Data Analysis (EDA) reveals that distributions of original featur
      \label{fig:fig01}
 \end{figure}
 
-Figure \ref{fig:fig02} shows a boxplot of flow duration on scenario 12, for normal and anomalous classes, in order to highlight the overlapping between classes.
-
-\begin{figure}[h!]
-     \centering
-     \includegraphics[width=8cm]{figures/agg_boxplot_0_15s_12_avg_duration.png}
-     \caption{Flow duration for scenario 12, aggregated by 0.15 seconds.}
-     \label{fig:fig02}
-\end{figure}
-
-We adopt a sampling method based on data aggregation for obtaining more discriminative features, in accordance to important approaches for network anomaly detection \cite{lakhina2005mining, callegari2011novel, garcia2014empirical, chandrashekar2014survey,acarali2016survey, vieira2017model}.
+To face data imbalance and skewness, we adopt a feature engineering by means of a sampling method based on data aggregation for obtaining more discriminative features, in accordance to important approaches for network anomaly detection \cite{lakhina2005mining, callegari2011novel, garcia2014empirical, chandrashekar2014survey,acarali2016survey, vieira2017model}.
 
 \subsection{feature engineering}
 \label{sec:feat_eng}
 
-Based on related works \cite{lakhina2005mining,gu2008botminer,callegari2011novel,chandrashekar2014survey,garcia2014empirical,acarali2016survey}, previous experience \cite{vieira2017model, galibus2017offline} and cross validation  of our proposal for botnet detection, we selected the following features for improving the anomaly detection by means of a method based on higher moments distances from robust subspace.
+Related works proposed some features for improving network attack detection in various scenarios and approaches\cite{lakhina2005mining,gu2008botminer,callegari2011novel,chandrashekar2014survey,garcia2014empirical,acarali2016survey}. Inpired by these proposals and based on previous experience \cite{vieira2017model, galibus2017offline} and cross validation, we propose the following features for improving the anomaly detection by means of a method based on higher moments distances from robust subspace.
 	
 \begin{itemize}
-	\item \textbf{background-flow-count :} Count of unknown flows.
-	\item \textbf{normal-flow-count:} Count of known flows.
+	\item \textbf{total-flow-count :} Count of all flows.
+	\item \textbf{normal-flow-count:} Count of known flows, from controlled assets of the network, such routers, proxies, switches or machines that are part of the monitoring \cite{garcia2014identifying}.
 	\item \textbf{avg-duration:} Average time of flows.
-	\item \textbf{n-dports<1024:} Count of destinations ports lower than 1024.
-	\item \textbf{n-sports<1024:} Count of source ports lower than 1024.
+	\item \textbf{n-dports$<$1024:} Count of destinations ports lower than 1024.
+	\item \textbf{n-sports$<$1024:} Count of source ports lower than 1024.
 	\item \textbf{n-s-a-p-address:} Count of class A source address.
 	\item \textbf{n-s-b-p-address:} Count of class B source address.
 	\item \textbf{n-s-c-p-address:} Count of class C source address.
-	\item \textbf{n-s-na-p-address:} Count of source address that are not class A, B or C.
+	\item \textbf{n-s-na-p-address:} Count of source address that are not class A, B or C, such as reserved class D and E addresses, IPV6 or internal address.
 \end{itemize}
 
-Since the selected features are counting and average calculations, the features are generated through a data aggregation by time window. We evaluate time windows of 0.15 and 0.25 seconds, taking into account that lower windows reduce the meantime between the data collection and results of the botnet detection approach.
+The proposed features are counting and average calculations, therefore it is necessary to adopt time windows to aggragate flows and calculate the features. We evaluate windows of 0.15 and 0.25 seconds, considering account that lower windows reduce the meantime between the data collection and results of the botnet detection approach, as well as permit to have more details to exactly identify malicious flows and attackers.
 
-Figure \ref{fig:fig03} shows the distribution of average flow duration, for scenario 12, aggregated by windows of 0.15 seconds. In comparison to Figure \ref{fig:fig01}, that shows the distribution of flow duration for the same scenario, we can see that the feature based on the average flow duration is more discriminative and shows a better separation between normal and anomalous classes.
+Figure \ref{fig:fig02} shows the distribution of average flow duration, for scenario 12, aggregated by windows of 0.15 seconds. In comparison to Figure \ref{fig:fig01}, that shows the distribution of flow duration for the same scenario, we can see that the feature based on aggration and on average flow duration is more discriminative and shows a better separation between normal and anomalous classes. Therefore, such data can improve the anomaly detection by learning algorithms.
 
 \begin{figure}[h!]
      \centering
      \includegraphics[width=8cm]{figures/agg_distplot_0_15s_12_avg_duration.png}
      \caption{Average flow duration for scenario 12, aggregated by 0.15 seconds.}
-     \label{fig:fig03}
+     \label{fig:fig02}
 \end{figure}
 
-The data is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features. Each scenario 
+The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features, and is divided into scenarios, where each $i$-th scenario, presented by ID column in Table \ref{tab:tab01}, are represented as $\boldsymbol{X}_i$ and can be denoted as $\boldsymbol{X}_{18-2}$, for example.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Robust PCA and Higher Moments Distances for Botnet Detection}
