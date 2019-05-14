@@ -293,59 +293,91 @@ Initially, the data $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ is split into n
 
 Moments are a set of statistical parameters to measure a distribution. The arithmetic mean is the first general moment, the second is the variance, while skewness (asymmetry) is the third moment and kurtosis (excess) is the fourth moment.
 
-The general formula of the $r$-th moment can be expressed as:
+Let the mean $\bar{\boldsymbol{x}} \in \mathbb{R}^{1 \times p}$ be
+
 \begin{equation}\label{eq:eq02}
-	m_r = \displaystyle\frac{1}{n}\displaystyle\sum_{i = 1}^{n}( x_i - \bar{x})^r. 
+	\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} \boldsymbol{x}_i, 
 \end{equation}
 
-Therefore, the Skewness is calculated as
+and the covariance matrix $\boldsymbol{\bar{\Sigma}} \in \mathbb{R}^{p \times p}$ be
+
+\begin{equation}\label{eq:eq03}
+	\boldsymbol{\bar{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} (\boldsymbol{x}_i - \bar{\boldsymbol{x}})(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime,
+\end{equation}
+
+The general formula of the $u$-th moment can be expressed as
+\begin{equation}\label{eq:eq02}
+	m_u = \displaystyle\frac{1}{n}\displaystyle\sum_{i = 1}^{n}( x_i - \bar{x})^u.
+\end{equation}
+
+Therefore, the skewness is calculated by
 \begin{equation}\label{eq:eq03}
 	\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}},
 \end{equation}
 
-and Kurtosis as
+and the kurtosis as
 \begin{equation}\label{eq:eq04}
 	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2} .
 \end{equation}
 
-We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:eq01} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies betweem new observations and moments computed from a robust subspace computed by RPCA. The classical equation of we modify 
+We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:eq01} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies betweem new observations and the moments calculated from a robust subspace computed by RPCA. 
 
-The classifical MD relies on robust mean and robust covariace matrix, here our contribution is compute the MD based on mean and covariance matrix computed from a robust subspace learned by RPCA, instead of classifical approach, that relies on MCD or Fast-MCD.
-
-We propose to modify the Equation \ref{eq:eq01} to implement a Skewness-based Mahalanobis Distance, as follows:
+The classical Mahalanobis Distance is defined as		
+	\begin{equation}\label{eq:eq05}
+		\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime},
+	\end{equation}
+where $\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector of known observations, also referred as location, and $\boldsymbol{\bar{\Sigma}}$ is the covariance matrix of known observations, also referred as scatter. The classifical MD is usually relies on robust mean and robust covariace matrix for outlier detection, which are commonly computed by Fast-MCD \cite{rousseeuw1984mcd, rousseeuw1999fastmcd}. Here we propose to calculate the MD based on mean and covariance matrix computed from a robust subspace learned by RPCA. We also propose to extend the Equation \ref{eq:eq05} to implement a Skewness-based Mahalanobis Distance, as follows:
 
 \begin{equation}\label{eq:eq08}
-	\boldsymbol{d}(\boldsymbol{s}_{\boldsymbol{x}}, \bar{\boldsymbol{s}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{s}_{\boldsymbol{x}} - \bar{\boldsymbol{s}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{s}_{\boldsymbol{x}} - \bar{\boldsymbol{s}})^\prime}, 
+	\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{s}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{s}})^\prime}.
 \end{equation}
 
-where $\boldsymbol{s}_{\boldsymbol{x}} = \boldsymbol{x} - \boldsymbol{\bar{s}}(\boldsymbol{x})$ and $\boldsymbol{\bar{s}}(\boldsymbol{x})$ is the Skewness of $\boldsymbol{x}$.
-
-We also propose to modify the Equation \ref{eq:eq04} to implement a Kurtosis-based Mahalanobis Distance, as follows:
+We finally propose to extend the Equation \ref{eq:eq05} to implement a Kurtosis-based Mahalanobis Distance, as follows:
 
 \begin{equation}\label{eq:eq09}
-	\boldsymbol{d}(\boldsymbol{k}_{\boldsymbol{x}}, \bar{\boldsymbol{k}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{k}_{\boldsymbol{x}} - \bar{\boldsymbol{k}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{k}_{\boldsymbol{x}} - \bar{\boldsymbol{k}})^\prime}, 
+	\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{k}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{k}})^\prime}.
 \end{equation}
 
-where $\boldsymbol{k}_{\boldsymbol{x}} = \boldsymbol{x} - \boldsymbol{\bar{k}}(\boldsymbol{x})$ and $\boldsymbol{\bar{k}}(\boldsymbol{x})$ is the Kurtosis of $\boldsymbol{x}$.
+The distances shall be computed and evaluated separatelly for botnet detection, in order to verify if the scenarios have different patterns that can be explored differently by distances of each moment individually.
+
+The Algorithmm \ref{alg:alg01} presents a overview the experiment
+\begin{algorithm}
+	\label{alg:alg01}
+	\scriptsize
+	\SetAlgoLined
+	\KwResult{$\boldsymbol{\bar{t}}$}
+	Given the data set $\boldsymbol{X}$ split into 13 scenarios $\boldsymbol{X}_i$, and susequently split into normal observations $\boldsymbol{X}_i^n$ and contaminated observations $\boldsymbol{X}_i^t$\;
+	\For{$eacch scenario$}{
+		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
+			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
+		}
+		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
+		Sort $\boldsymbol{d}_1( i )$, which yields an index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
+		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
+		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
+		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
+	}
+	Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
+	\caption{C-Step with higher moments}
+\end{algorithm}
+
+The expected result $\boldsymbol{\bar{t}}$ refers to the predicted classification of the new observations as normal or anomalous.
 
 % \begin{algorithm}
-% 	\label{alg:alg01}
+% 	\label{alg:alg03}
 % 	\scriptsize
 % 	\SetAlgoLined
-% 	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
-% 	Given the initial $h-$subset $\boldsymbol{h}_1$ of indexes or the pair $(\boldsymbol{\bar{x}}_1, \boldsymbol{\hat{S}}_1)$\;
+% 	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$}
+% 	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n \leq 600$\;
+% 	\For{500 times}{
+% 		Construct initial $h$-subset $\boldsymbol{h}_1$ (Algorithm \ref{alg:alg02})\;
+% 		Carry out two C-steps (Algorithm \ref{alg:alg01}) resulting $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$\;
+% 	}		
+% 	Put $\boldsymbol{h}_1$ as the 10 lowest $det(\boldsymbol{\hat{S}_2})$ computed above\;
 % 	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
-% 		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
-% 			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
-% 		}
-% 		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
-% 		Sort $\boldsymbol{d}_1( i )$, which yields an index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
-% 		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
-% 		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
-% 		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
+% 		Carry out C-steps (Algorithm \ref{alg:alg01})\;
 % 	}
-% 	Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
-% 	\caption{C-Step with higher moments}
+% 	\caption{Fast-MCD when $n \leq 600$}
 % \end{algorithm}
 
 
@@ -389,18 +421,6 @@ Carry out cross validation on known contaminated data in order to identify the c
 Compute $d(\boldsymbol{x},\bar{\boldsymbol{x}}_{normal}, \boldsymbol{\hat{S}}_{normal})$ for new observations.
 The $c$ observations with largest $\boldsymbol{d}(i)$ are classified as anomalous.
 
-
-\subsection{MOS Schemes}
-\label{sec:prop_MOSSchemes}
-
-\subsection{Eigen Similarity Analysis}
-\label{sec:prop_EigenSimilarityAnalysis}
-
-\subsubsection{Time Similarity Analysis}
-\label{sec:prop_TimeSimilarityAnalysis}
-
-\subsubsection{Port Similarity Analysis}
-\label{sec:prop_PortSimilarityAnalysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
@@ -575,11 +595,7 @@ say that more studies about skewness and subspace learning can be done in order 
 
 
 
-% Mahalanobis Distance is defined as		
-% 	\begin{equation}\label{eq:eq01}
-% 		d(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\hat{S}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\hat{S}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime}.
-% 	\end{equation}
-% $\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector, also referred as location, of known observations and $\boldsymbol{\hat{S}}$ is the covariance matrix, also referred as scatter, of known observations.
+
 
 % Classical estimates can be so strongly affected by contamination that diagnostic tools, such as the Mahalanobis Distances, become unable to detect the outliers. Therefore, we need reliable and robust estimators that can resist outliers contaminated data. Minimum Covariance Determinant (MCD) \cite{rousseeuw1984mcd} is a robust estimator commonly used for computing Mahalanobis Distance in order to detect anomalies.
 
@@ -627,17 +643,7 @@ say that more studies about skewness and subspace learning can be done in order 
 
 % Consider a data set $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ where $\boldsymbol{X} = \{\boldsymbol{x}_1,...,\boldsymbol{x}_n\}$ of $p$-variate observations. Let $\boldsymbol{h} \subset \{1,...,n\}$ with $|\boldsymbol{h}| = h$, where $\boldsymbol{h}$ is a subset of $h$ indexes from $n$ observations.
 
-% Let the mean $\bar{\boldsymbol{x}} \in \mathbb{R}^{1 \times p}$ be
 
-% \begin{equation}\label{eq:eq02}
-% 	\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} \boldsymbol{x}_j, 
-% \end{equation}
-
-% the covariance matrix $\boldsymbol{\hat{S}} \in \mathbb{R}^{p \times p}$ be
-
-% \begin{equation}\label{eq:eq03}
-% 	\boldsymbol{\hat{S}} = \displaystyle\frac{1}{h}\displaystyle\sum_{j\in \boldsymbol{h}} (\boldsymbol{x}_j - \bar{\boldsymbol{x}})(\boldsymbol{x}_j - \bar{\boldsymbol{x}})^\prime,
-% \end{equation}
 
 % and the relative distance be 	
 
