@@ -19,7 +19,6 @@
 \usepackage{setspace}
 \usepackage{placeins}
 \usepackage{longtable}
-\usepackage{mathtools}
 \usepackage{listings}
 \usepackage{epstopdf}
 \usepackage{subfigure}
@@ -27,6 +26,7 @@
 \usepackage{amsfonts}
 \usepackage{morefloats}
 \usepackage{lipsum}
+\usepackage{mathtools}
 \usepackage{amsthm,amsmath}
 
 % table
@@ -38,6 +38,9 @@
 \usepackage[titletoc,title]{appendix}
 \usepackage{hyperref}
 \usepackage{cleveref}
+
+% norm
+
 
 \modulolinenumbers[5]
 
@@ -131,7 +134,7 @@ Experimental evaluation compares our proposal to widely adopted algorithms for a
 
 The main contribution of this work is a novel semi-supervised method for botnet detection that obtain results with high rates of attack detection in an imbalanced and skewed data set.
 
-This paper is organized as follows. In Section \ref{sec:review}, it is conducted a literature review of network anomaly detection, botnet detection, sampling and aggregation for imbalanced learning and robust based anomaly detection methods. Section \ref{sec:datamodel} presents the data model and the evaluated data set. Section \ref{sec:m_rpca} describes the proposed approach for botnet detection. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work.
+This paper is organized as follows. In Section \ref{sec:review}, it is conducted a literature review of network anomaly detection, botnet detection, sampling and aggregation for imbalanced learning and robust based anomaly detection methods. Section \ref{sec:datamodel} presents the data model and the evaluated data set. Section \ref{sec:mdrs} describes the proposed approach for botnet detection. Section \ref{sec:experimentalresults} discusses the experimental validation and presents the results, and Section \ref{sec:conclusionandfutureworks} draws the conclusions and the suggestions for future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % network anomaly detectiom, botnet detection, botnet detection approaches, approaches based on subspace learning, feature generation and aggregation, about the methodos to compare and metrics
@@ -184,7 +187,7 @@ We propose a sampling method based on data aggregation for discriminative featur
 \section{Data Model}
 \label{sec:datamodel}
 
-In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively.
+In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. The Frobenius norm is denoted as $\left\| \mathord{\cdot} \right\|_F$, while $\left\| \mathord{\cdot} \right\|_*$ denotes the nuclear norm of a matrix and $\left\| \mathord{\cdot} \right\|_1$ means the sum of the absolute values of matrix entries.
 
 This section also presents a description of the data model in Subsection \ref{sec:CTU-13} and in Subsection \ref{sec:feat_eng} we describe the data aggregation and feature engineering adopted for the CTU-13.
 
@@ -248,7 +251,7 @@ Related works proposed some features for improving network attack detection in v
 	
 \begin{itemize}
 	\item \textbf{total-flow-count :} Count of all flows.
-	\item \textbf{normal-flow-count:} Count of known flows, from controlled assets of the network, such routers, proxies, switches or machines that are part of the monitoring \cite{garcia2014identifying}.
+	\item \textbf{known-flow-count:} Count of known flows, from controlled assets of the network, such routers, proxies, switches or machines that are part of the monitoring \cite{garcia2014identifying}.
 	\item \textbf{avg-duration:} Average time of flows.
 	\item \textbf{n-dports$<$1024:} Count of destinations ports lower than 1024.
 	\item \textbf{n-sports$<$1024:} Count of source ports lower than 1024.
@@ -269,107 +272,45 @@ Figure \ref{fig:fig02} shows the distribution of average flow duration, for scen
      \label{fig:fig02}
 \end{figure}
 
-The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features, and is divided into scenarios, where each $i$-th scenario, presented by ID column in Table \ref{tab:tab01}, are represented as $\boldsymbol{X}_i$ and can be denoted as $\boldsymbol{X}_{18-2}$, for example.
+The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features, and is divided into scenarios, where each $i$-th scenario, presented by ID column in Table \ref{tab:tab01}, are represented as $\boldsymbol{X}_i$ and can be denoted as $\boldsymbol{X}_{18-2}$, for example. The normal traffic, required for trainning the semi-supervised approach, is denoted as $\boldsymbol{X}_i^r$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Robust PCA and Higher Moments Distances for Botnet Detection}
-\label{sec:m_rpca}
+\section{Moment Distances from Robust Subspace for Botnet Detection}
+\label{sec:mdrs}
 
-This section describes the proposed approach for botnet detection by means of moment distances from robust estimates. We propose to learn a robust subspace $\textbf{L}$ from normal traffic $\textbf{X}_n$ for computing robust moments, i.e. the mean $\textbf{l}$, skewness $\textbf{s}$ and kurtosis $\textbf{k}$, in order to evaluate the distance $\textbf{d}$ of new observations $\textbf{X}_o$ of these moments and classify as anomalous the observations with the largest distances.
+This section describes the proposed approach for botnet detection by means of a disntance analysis between moments computed from a robust subspace and new observations of network traffic. 
+
+Robust subspace learning can be defined as the decomposition of a given data matrix $\textbf{X}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. We propose to learn a robust subspace $\textbf{L}$ from the normal traffic $\textbf{X}_i^r$ for computing robust moments, i.e. the mean $\boldsymbol{\bar{x}}$, skewness $\boldsymbol{\bar{s}}$ and kurtosis $\boldsymbol{\bar{k}}$, in order to evaluate the distance $\boldsymbol{d}$ of new observations $\boldsymbol{X}^t$ of these moments and classify as anomalous the observations with the largest distances.
+
+Robust PCA is a well known method to recover a low-rank matrix $\textbf{L}$ and sparce matrix $\textbf{S}$ from corrupted measurements modeled as $\textbf{X} = \textbf{L} + \textbf{S}$. This decomposition in low-rank and sparse matrices can be achieved by techniques such as Principal Component Pursuit method (PCP), and by optimization methods, such as the Augmented Lagrange Multiplier Method (ALM), Alternating Direction Method (ADM), Fast Alternating Minimization (FAM) or Iteratively Reweighted Least Squares (IRLS) \cite{candes2011robust,vaswani2018robust,lerman2018overview}. We adotp RPCA with ALM, which can be formulated as 
+
+\begin{equation}\label{eq:eq01}
+	\min_{\boldsymbol{L,S}}\left\|\boldsymbol{L}\right\|_* + \lambda\left\|\boldsymbol{S}\right\|_1 + \langle \boldsymbol{Y, X - L - S}  \rangle + \frac{\mu}{2}\left\|\boldsymbol{X - L - S}\right\|_F^2,
+\end{equation}
+where $\boldsymbol{Y}$ are the Lagrange multipliers and have the constraing $\boldsymbol{C = D - A - E}$...
 	    
-Initially, the data $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ is split into normal data $\textbf{X}_n$ for training from normal data, and for $\textbf{X}_v$ and $\textbf{X}_t$ for respectively cross-validation and testing from contaminated data
+Initially, the data $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ is split into normal data $\textbf{X}^r$ for rosbust subspace learning, and into $\textbf{X}^t$ for testing the anomaly detection on contaminated data, that can also be viewed as new observations of a production environment. 
 
-It was shown that the RPCA problem can be solved via convex optimization that minimizes a combination of the nuclear norm and the $l_1$-norm, and that the method of augmented Lagrange multipliers (ALM) has been adopted to solve this convex problem.
-
-Robust PCA aims to recover a low-rank matrix $\textbf{L}$ from corrupted measurements $\textbf{M} = \textbf{L} + \textbf{S}$. This decomposition in low-rank and sparse matrices can be achieved by techniques such as Principal Component Pursuit method (PCP),[1] Stable PCP,[2] Quantized PCP,[3] Block based PCP,[4] and Local PCP.[5] Then, optimization methods are used such as the Augmented Lagrange Multiplier Method (ALM[6]), Alternating Direction Method (ADM[7]), Fast Alternating Minimization (FAM[8]) or Iteratively Reweighted Least Squares (IRLS [9][10][11]).
-
-Therefore we have $\textbf{L}$...
-	    
 Moments are a set of statistical parameters to measure a distribution. The arithmetic mean is the first general moment, the second is the variance, while skewness (asymmetry) is the third moment and kurtosis (excess) is the fourth moment.
 
 The general formula of the $r$-th moment can be expressed as:
-\begin{equation}\label{eq:eq05}
+\begin{equation}\label{eq:eq02}
 	m_r = \displaystyle\frac{1}{n}\displaystyle\sum_{i = 1}^{n}( x_i - \bar{x})^r. 
 \end{equation}
 
 Therefore, the Skewness is calculated as
-\begin{equation}\label{eq:eq06}
+\begin{equation}\label{eq:eq03}
 	\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}},
 \end{equation}
 
 and Kurtosis as
-\begin{equation}\label{eq:eq07}
-	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2} 
+\begin{equation}\label{eq:eq04}
+	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2} .
 \end{equation}
 
-For extending Fast-MCD, We initially modify the C-step Algorithm \ref{alg:alg01} to calculate Skewness and Kurtosis after to minimize $det(\boldsymbol{\hat{S}})$, accordingly to Algorithm \ref{alg:alg05}.
+We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:eq01} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies betweem new observations and moments computed from a robust subspace computed by RPCA. The classical equation of we modify 
 
-\begin{algorithm}
-	\label{alg:alg05}
-	\scriptsize
-	\SetAlgoLined
-	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
-	Given the initial $h-$subset $\boldsymbol{h}_1$ of indexes or the pair $(\boldsymbol{\bar{x}}_1, \boldsymbol{\hat{S}}_1)$\;
-	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
-		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
-			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
-		}
-		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
-		Sort $\boldsymbol{d}_1( i )$, which yields an index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
-		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
-		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
-		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
-	}
-	Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
-	\caption{C-Step with higher moments}
-\end{algorithm}
-
-The Algorithm \ref{alg:alg06} describes the Fast-MCD with higher moments when $n \leq 600$, through the modification of the original Fast-MCD for computing Skewness and Kurtosis from the robust estimate.
-    
-\begin{algorithm}
-	\label{alg:alg06}
-	\scriptsize
-	\SetAlgoLined
-	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
-	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n \leq 600$\;
-	\For{500 times}{
-		Construct initial $h$-subset $\boldsymbol{h}_1$ (Algorithm \ref{alg:alg02})\;
-		Carry out two C-steps with higher moments (Algorithm \ref{alg:alg05}) resulting $\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$\;
-	}		
-	Put $\boldsymbol{h}_1$ as the 10 lowest $det(\boldsymbol{\hat{S}_2})$ computed above\;
-	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
-		Carry out C-steps with higher moments (Algorithm \ref{alg:alg05})\;
-	}
-	\caption{Fast-MCD with higher moments when $n \leq 600$}
-\end{algorithm}
-
-The Algorithm \ref{alg:alg07} presents the Fast-MCD with higher moments when $n > 600$, which modifies the original Fast-MCD for computing of Skewness and Kurtosis from the robust estimate data, through the adoption of the C-Step with higher moments. The Algorithm \ref{alg:alg07} is described below.
-
-\begin{algorithm}
-	\label{alg:alg07}
-	\scriptsize
-	\SetAlgoLined
-	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
-	Given $\boldsymbol{X} \in \mathbb{R}^{n \times p}$, $h < n$, $p \geq 2$ and $n > 600$\;
-	Construct up to 5 disjoint random subsets of size $n_{sub} = 300$\;
-	\For{each subset, repeat 100 times}{
-		Construct initial $\boldsymbol{h}_1$ of size $h_{sub} = [n_{sub}(h/n)]$\;
-		Carry out two C-steps with higher moments of $n_{sub}$ and $h_{sub}$\;
-		Keep the 10 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub}, \boldsymbol{\bar{s}}_{sub}, \boldsymbol{\bar{k}}_{sub})$\;
-	}		
-	Pool the subsets, yielding the merged set of $n_{merged} = 1500$\;
-	\For{50 best $(\boldsymbol{\bar{x}}_{sub}, \boldsymbol{\hat{S}}_{sub})$}{
-		Carry out two C-steps with higher moments of $n_{merged}$ and $h_{merged} = [n_{merged}(h/n)]$\;
-		Keep the 10 best $(\boldsymbol{\bar{x}}_{merged}, \boldsymbol{\hat{S}}_{merged}, \boldsymbol{\bar{s}}_{merged}, \boldsymbol{\bar{k}}_{merged})$\;
-	}
-	\For{the full data set and $m_{full}$ best results}{
-		Take several C-steps, using $n$ and $h$\;
-		Keep the best final result $(\boldsymbol{\bar{x}}_{full}, \boldsymbol{\hat{S}}_{full}, \boldsymbol{\bar{s}}_{full}, \boldsymbol{\bar{k}}_{full})$\;
-	}
-	\caption{Fast-MCD with higher moments when $n > 600$}
-\end{algorithm}
-
-We also propose to use Mahalanobis Distance for detecting anomalies through an approach based on robust Skewness and Kurtosis, instead of the location and scatter that are used by classical approaches.
+The classifical MD relies on robust mean and robust covariace matrix, here our contribution is compute the MD based on mean and covariance matrix computed from a robust subspace learned by RPCA, instead of classifical approach, that relies on MCD or Fast-MCD.
 
 We propose to modify the Equation \ref{eq:eq01} to implement a Skewness-based Mahalanobis Distance, as follows:
 
@@ -386,6 +327,43 @@ We also propose to modify the Equation \ref{eq:eq04} to implement a Kurtosis-bas
 \end{equation}
 
 where $\boldsymbol{k}_{\boldsymbol{x}} = \boldsymbol{x} - \boldsymbol{\bar{k}}(\boldsymbol{x})$ and $\boldsymbol{\bar{k}}(\boldsymbol{x})$ is the Kurtosis of $\boldsymbol{x}$.
+
+% \begin{algorithm}
+% 	\label{alg:alg01}
+% 	\scriptsize
+% 	\SetAlgoLined
+% 	\KwResult{$\boldsymbol{\bar{x}}_2$, $\boldsymbol{\hat{S}}_2$, $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$}
+% 	Given the initial $h-$subset $\boldsymbol{h}_1$ of indexes or the pair $(\boldsymbol{\bar{x}}_1, \boldsymbol{\hat{S}}_1)$\;
+% 	\While{$det(\boldsymbol{\hat{S}}_2) < det(\boldsymbol{\hat{S}}_1)$}{
+% 		\If{$\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ exist}{
+% 			Put $\boldsymbol{\bar{x}}_1 = \boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_1 = \boldsymbol{\hat{S}}_2$\;
+% 		}
+% 		Compute the distances $\boldsymbol{d}_1( i )$ for $i = 1,..., n$\;
+% 		Sort $\boldsymbol{d}_1( i )$, which yields an index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
+% 		Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
+% 		Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
+% 		Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;			
+% 	}
+% 	Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
+% 	\caption{C-Step with higher moments}
+% \end{algorithm}
+
+
+
+Only for evaluation pourpose, we use part of the contaminated data, denoted as $\textbf{X}^v$, for cross-validation, in order to evaluate the contamination rate $c$ of the target data. The contamination rate parameter is widely adopted for well stablished outlier detection algorithms \cite{zhao2019pyod}, and refers to the percentage of observations that are classified as anomalous, which can be well known for some areas, or can be computed by cross-validation or can be assumed according to previous observations. 
+
+Therefore we have $\textbf{L}$...
+	    
+
+
+
+
+
+
+
+
+
+
 
 Fast-MCD is commonly used as \textbf{supervised} or \textbf{unsupervised} algorithm for anomaly detection.
 		
