@@ -187,7 +187,7 @@ We propose a sampling method based on data aggregation for discriminative featur
 \section{Data Model}
 \label{sec:datamodel}
 
-In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. The Frobenius norm is denoted as $\left\| \mathord{\cdot} \right\|_F$, while $\left\| \mathord{\cdot} \right\|_*$ denotes the nuclear norm of a matrix and $\left\| \mathord{\cdot} \right\|_1$ means the sum of the absolute values of matrix entries. We define the operator $[ \mathord{\cdot} ]^n$, which denotes the $n$ largest values of a vector.
+In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $α$, $β$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. The Frobenius norm is denoted as $\left\| \mathord{\cdot} \right\|_F$, while $\left\| \mathord{\cdot} \right\|_*$ denotes the nuclear norm of a matrix and $\left\| \mathord{\cdot} \right\|_1$ means the sum of the absolute values of matrix entries. We also define the operator $\langle \mathord{\cdot} \rangle$, that is the standard trace inner product, and $[ \mathord{\cdot} ]^n$, which denotes the $n$ largest values of a vector.
 
 This section also presents a description of the data model in Subsection \ref{sec:CTU-13} and in Subsection \ref{sec:feat_eng} we describe the data aggregation and feature engineering adopted for the CTU-13.
 
@@ -237,7 +237,7 @@ An Exploratory Data Analysis (EDA) reveals that distributions of original featur
 
 \begin{figure}[h!]
      \centering
-     \includegraphics[width=8cm]{figures/raw_distplot_capture20110812_Dur.png}
+     \includegraphics[width=10cm]{figures/raw_distplot_capture20110812_Dur.png}
      \caption{Distribution of flow duration for scenario 12.}
      \label{fig:fig01}
 \end{figure}
@@ -267,12 +267,12 @@ Figure \ref{fig:fig02} shows the distribution of average flow duration, for scen
 
 \begin{figure}[h!]
      \centering
-     \includegraphics[width=8cm]{figures/agg_distplot_0_15s_12_avg_duration.png}
+     \includegraphics[width=10cm]{figures/agg_distplot_0_15s_12_avg_duration.png}
      \caption{Average flow duration for scenario 12, aggregated by 0.15 seconds.}
      \label{fig:fig02}
 \end{figure}
 
-The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features, and is divided into scenarios, where each $i$-th scenario, presented by ID column in Table \ref{tab:tab01}, are represented as $\boldsymbol{X}_i$ and can be denoted as $\boldsymbol{X}_{18-2}$, for example. The normal traffic, required for training the semi-supervised approach, is denoted as $\boldsymbol{X}_i^r$
+The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ with $n$ rows as observations and $p$ columns of features, and is divided into scenarios, where each $i$-th scenario, presented by ID column in Table \ref{tab:tab01}, are represented as $\boldsymbol{X}_i$ and can be denoted as $\boldsymbol{X}_{18-2}$, for example. The normal traffic, required for training the semi-supervised approach, is denoted as $\boldsymbol{X}^r$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Moment Distances from Robust Subspace for Botnet Detection}
@@ -280,49 +280,45 @@ The resulting data set is modeled into the matrix $\boldsymbol{X} \in \mathbb{R}
 
 This section describes the proposed approach for botnet detection by means of a distance analysis between moments computed from a robust subspace and new observations of network traffic. 
 
-Robust subspace learning can be defined as the decomposition of a given data matrix $\textbf{X}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. We propose to learn a robust subspace $\textbf{L}$ from the normal traffic $\textbf{X}_i^r$ for computing $\textbf{L}_i^r$, $\textbf{S}_i^r$ and the robust moments, i.e. the mean $\boldsymbol{\bar{x}}$, skewness $\boldsymbol{\bar{s}}$ and kurtosis $\boldsymbol{\bar{k}}$, in order to evaluate the distance $\boldsymbol{d}$ of new observations $\boldsymbol{X}^t$ to these moments and classify as anomalous the observations with the largest distances.
+Robust subspace learning can be defined as the decomposition of a given data matrix $\textbf{X}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. We propose to learn a robust subspace $\textbf{L}$ from the normal traffic $\textbf{X}^r$ for computing $\textbf{L}^r$, $\textbf{S}^r$ and the robust moments, i.e. the mean $\boldsymbol{\bar{x}}$, skewness $\boldsymbol{\bar{s}}$ and kurtosis $\boldsymbol{\bar{k}}$, in order to evaluate the distance $\boldsymbol{d}$ of new observations $\boldsymbol{X}^t$ to these moments and classify as anomalous the observations with the largest distances.
 
 Robust PCA is a well known method to recover a low-rank matrix $\textbf{L}$ and sparse matrix $\textbf{S}$ from corrupted measurements modeled as $\textbf{X} = \textbf{L} + \textbf{S}$. This decomposition in low-rank and sparse matrices can be achieved by techniques such as Principal Component Pursuit method (PCP), and by optimization methods, such as the Augmented Lagrange Multiplier Method (ALM), Alternating Direction Method (ADM), Fast Alternating Minimization (FAM) or Iteratively Reweighted Least Squares (IRLS) \cite{candes2011robust,vaswani2018robust,lerman2018overview}.
 
-According to Wright et al. \cite{rpca_convex_opt}, under rather broad conditions, as long as the error matrix S is sufficiently sparse, it is possible to recover a low-rank matrix by solving the following convex optimization problem:
-
-\begin{equation}\label{eq:pcp}
-	(\boldsymbol{\hat{L}}, \boldsymbol{\hat{S}})\leftarrow min_{L,S}\left \| \boldsymbol{L} \right \|_{*} + \lambda \left \| \boldsymbol{S} \right \|_{1}
+According to Wright et al. \cite{wright2009robust}, under rather broad conditions, as long as the error matrix S is sufficiently sparse, it is possible to recover a low-rank matrix by solving the following convex optimization problem:
+\begin{equation}\label{eq:eq01}
+	(\boldsymbol{\hat{L}}, \boldsymbol{\hat{S}})\leftarrow \min_{L,S}\left \| \boldsymbol{L} \right \|_{*} + \lambda \left \| \boldsymbol{S} \right \|_{1}
 \end{equation}
 \begin{center} subject to: $\boldsymbol{X} = \boldsymbol{L} + \boldsymbol{S}$ \end{center}
-
-\begin{equation}\label{eq:nuclear_norm}
+\begin{equation}\label{eq:eq02}
     \left \| \boldsymbol{L} \right \|_{*} = \sum_{i} \sigma_{i}(\boldsymbol{L})
 \end{equation}
-
-\begin{equation}\label{eq:l1_norm}
+\begin{equation}\label{eq:eq03}
     \left \| \boldsymbol{S} \right \|_{1} = \sum_{ij} \left | \boldsymbol{S}_{ij} \right |
 \end{equation}
-where $\lambda$ a positive weighting parameter, which determines the sparsity of $\boldsymbol{S}$. 
+where $\lambda$ is a positive weighting parameter, which determines the sparsity of $\boldsymbol{S}$, $\sigma$ denotes the singular values of a matrix. 
 
- Before ALM, some methods were proposed to solve that convex optimization problem, such as Iterative Thresholding (IT) and Accelerated Proximal Gradient (APG). However, according to \cite{alm} both have scalability problems and require a large number of iterations to converge. The Augmented Lagrange Multiplier is proven to have a \emph{Q-linear} convergence speed and experimental results show that ALM is five times faster than APG, which in theory is sub-linear \cite{alm}. Furthermore, ALM reaches more accurate results with less iterations.
+Before ALM, some methods were proposed to solve that convex optimization problem, such as Iterative Thresholding (IT) and Accelerated Proximal Gradient (APG). However, according to \cite{lin2010augmented}, both approaches have scalability problems and require a large number of iterations to converge. The Augmented Lagrange Multiplier is proven to have a \emph{Q-linear} convergence speed and experimental results show that ALM is five times faster than APG, which in theory is sub-linear \cite{lin2010augmented}. Furthermore, ALM reaches more accurate results with less iterations.
 
-% We adopt RPCA with ALM, which can be formulated as 
-
-Augmented Lagrange Multiplier formula is given by:
-\begin{equation}\label{eq:eq01}
+The RPCA with ALM can be formulated:
+\begin{equation}\label{eq:eq04}
 	l(\boldsymbol{L}, \boldsymbol{S}, \boldsymbol{Y}) = \left\|\boldsymbol{L}\right\|_* + \lambda\left\|\boldsymbol{S}\right\|_1 + \langle \boldsymbol{Y, X - L - S}  \rangle + \frac{\mu}{2}\left\|\boldsymbol{X - L - S}\right\|_F^2,
 \end{equation}
-%where $\boldsymbol{Y}$ are the Lagrange multipliers and have the constraint %$\boldsymbol{C = D - A - E}$...
-
-where 
-
-\begin{equation}\label{eq:y_cond}
-	\left\{\begin{matrix} \boldsymbol{Y}_{k+1} = \boldsymbol{Y}_{k} + \mu(\boldsymbol{X} - \boldsymbol{L}_{k} - \boldsymbol{S}_{k}) \\ \boldsymbol{Y}_{k+1} \in argmin_{\boldsymbol{L,S} \in R^{m \times n}} \{l(\boldsymbol{L}, \boldsymbol{S}, \boldsymbol{Y}_{k})\} \end{matrix}\right. 
+where $\boldsymbol{Y}$ is the multiplier of the linear constraint, $\mu$ is the penalty parameter for the violation of the linear constraint \cite{yuan2009sparse}. Thus, an iterative scheme can be presented as:
+\begin{equation}\label{eq:eq05}
+	\left\{
+		\begin{matrix} 
+			(\boldsymbol{L}_{k+1}, \boldsymbol{S}_{k+1}) \in \operatorname*{argmin}_{\boldsymbol{L,S} \in \mathbb{R}^{m \times n}} \{l(\boldsymbol{L}, \boldsymbol{S}, \boldsymbol{Y}_{k})\}, \\ 
+			\boldsymbol{Y}_{k+1} = \boldsymbol{Y}_{k} + \mu(\boldsymbol{X} - \boldsymbol{L}_{k} - \boldsymbol{S}_{k}),
+		\end{matrix}
+	\right.
 \end{equation}
-$\boldsymbol{Y}$ the multiplier of the linear constraint and $\mu$ the parameter for the violation of the linear constraint \cite{adm}.
 
-We adopt RPCA with ADM, which, generally speaking, is a practical improvement of the classical Augmented Lagrangian method for solving convex programming problem with linear constraints, by fully taking advantage of its high-level separable structure \cite{adm}. ADM minimizes $\boldsymbol{L}$ and $\boldsymbol{S}$ variables serially by solving the following problems to generate the new iterate:
+We adopt RPCA with ADM, which, generally speaking, is a practical improvement of the classical Augmented Lagrangian method for solving convex programming problem with linear constraints, by fully taking advantage of its high-level separable structure \cite{yuan2009sparse}. ADM minimizes $\boldsymbol{L}$ and $\boldsymbol{S}$ variables serially by solving the following problems to generate the new iterate:
 
-\begin{equation}\label{eq:adm_eq}
+\begin{equation}\label{eq:eq06}
 	\left\{\begin{matrix}
-	\boldsymbol{L}_{k+1} \in argmin_{\boldsymbol{L} \in R^{m \times n}}\{l(\boldsymbol{L}, \boldsymbol{S}_{k}, \boldsymbol{Y}_{k})\}\\ 
-	\boldsymbol{S}_{k+1} \in argmin_{\boldsymbol{S} \in R^{m \times n}}\{l(\boldsymbol{L}_{k+1}, \boldsymbol{S}, \boldsymbol{Y}_{k})\}\\ 
+	\boldsymbol{L}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{L} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}, \boldsymbol{S}_{k}, \boldsymbol{Y}_{k})\}\\ 
+	\boldsymbol{S}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{S} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}_{k+1}, \boldsymbol{S}, \boldsymbol{Y}_{k})\}\\ 
 	\boldsymbol{Y}_{k+1} = \boldsymbol{Y}_{k} + \mu(\boldsymbol{X} - \boldsymbol{L}_{k} - \boldsymbol{S}_{k})
 	\end{matrix}\right.
 \end{equation}
@@ -331,79 +327,78 @@ Moments are a set of statistical parameters to measure a distribution. The arith
 
 Let the mean $\bar{\boldsymbol{x}} \in \mathbb{R}^{1 \times p}$ be
 
-\begin{equation}\label{eq:eq02}
+\begin{equation}\label{eq:eq07}
 	\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} \boldsymbol{x}_i, 
 \end{equation}
 
 and the covariance matrix $\boldsymbol{\bar{\Sigma}} \in \mathbb{R}^{p \times p}$ be
 
-\begin{equation}\label{eq:eq03}
+\begin{equation}\label{eq:eq08}
 	\boldsymbol{\bar{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} (\boldsymbol{x}_i - \bar{\boldsymbol{x}})(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime,
 \end{equation}
 
 The general formula of the $u$-th moment can be expressed as
-\begin{equation}\label{eq:eq02}
+\begin{equation}\label{eq:eq09}
 	m_u = \displaystyle\frac{1}{n}\displaystyle\sum_{i = 1}^{n}( x_i - \bar{x})^u.
 \end{equation}
 
 Therefore, the skewness is calculated by
-\begin{equation}\label{eq:eq03}
+\begin{equation}\label{eq:eq10}
 	\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}},
 \end{equation}
 
 and the kurtosis as
-\begin{equation}\label{eq:eq04}
+\begin{equation}\label{eq:eq11}
 	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2}.
 \end{equation}
 
-We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from the robust subspace $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:eq01} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies between new observations and the moments calculated from a robust subspace computed by RPCA. 
+We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from the robust subspace $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:eq06} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies between new observations and the moments calculated from a robust subspace computed by RPCA. 
 
 The classical Mahalanobis Distance is defined as		
-\begin{equation}\label{eq:eq05}
+\begin{equation}\label{eq:eq12}
 	\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime},
 \end{equation}
-where $\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector of known observations, also referred as location, and $\boldsymbol{\bar{\Sigma}}$ is the covariance matrix of known observations, also referred as scatter. The classical MD usually relies on robust mean and robust covariance matrix for outlier detection, which are commonly computed by Fast-MCD \cite{rousseeuw1984mcd, rousseeuw1999fastmcd}. Here we propose to calculate the MD based on mean and covariance matrix computed from a robust subspace learned by RPCA. We also propose to extend the Equation \ref{eq:eq05} to implement a Skewness-based Mahalanobis Distance, as follows:
+where $\boldsymbol{x}$ is a vector of a new observation, $\bar{\boldsymbol{x}}$ is the mean vector of known observations, also referred as location, and $\boldsymbol{\bar{\Sigma}}$ is the covariance matrix of known observations, also referred as scatter. The classical MD usually relies on robust mean and robust covariance matrix for outlier detection, which are commonly computed by Fast-MCD \cite{rousseeuw1984mcd, rousseeuw1999fastmcd}. Here we propose to calculate the MD based on mean and covariance matrix computed from a robust subspace learned by RPCA. We also propose to extend the Equation \ref{eq:eq12} to implement a Skewness-based Mahalanobis Distance, as follows:
 
-\begin{equation}\label{eq:eq08}
+\begin{equation}\label{eq:eq13}
 	\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{s}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{s}})^\prime}.
 \end{equation}
 
-We finally propose to extend the Equation \ref{eq:eq05} to implement a Kurtosis-based Mahalanobis Distance, as follows:
+We finally propose to extend the Equation \ref{eq:eq12} to implement a Kurtosis-based Mahalanobis Distance, as follows:
 
-\begin{equation}\label{eq:eq09}
+\begin{equation}\label{eq:eq14}
 	\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{k}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{k}})^\prime}.
 \end{equation}
 
-The distances $\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}})$, $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}})$ and $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}})$ shall be computed and evaluated separately for botnet detection. Therefore, the robust subspace learning from normal data combined to MD can be called md-RPCA when using mean-based MD, sd-RPCA when using skewness-based MD, and kd-RPCA when using kurtosis-based MD.
+The distances $\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}})$, $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}})$ and $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}})$ shall be computed and evaluated separately for botnet detection. Therefore, the robust subspace learning from normal data combined to MD can be called mmd-RPCA when using mean-based MD, smd-RPCA when using skewness-based MD, and kmd-RPCA when using kurtosis-based MD.
 
-The contamination rate parameter is widely adopted for well established outlier detection algorithms \cite{zhao2019pyod}, and refers to the percentage of observations that are classified as anomalous. The contamination rate can be well known for some areas, or can be computed by cross-validation or can be assumed according to previous observations. In our proposal, the contamination define the rate of highest distances $\boldsymbol{d}$ that shall be classified as anomalous. Finally, the resulting $\boldsymbol{\bar{t}}$ refers to the estimated classification of new observations, as normal or anomalous, according to $c$.
+The contamination rate parameter is widely adopted for well established outlier detection algorithms \cite{zhao2019pyod}, and refers to the percentage of observations that are classified as anomalous. The contamination rate can be well known for some areas, or can be computed by cross-validation or can be assumed according to previous observations. In our proposal, the contamination define the rate of highest distances $\boldsymbol{d}$ that shall be classified as anomalous. Therefore, the resulting $\boldsymbol{\bar{t}}$ refers to observations classified as anomalous according to $c$.
 
 The Algorithm \ref{alg:alg01} presents how the proposed Moment Distances from Robust Subspace for Botnet Detection can be algorithmically described.
 \begin{algorithm}
 	\label{alg:alg01}
-	\scriptsize
 	\SetAlgoLined
-	\KwResult{$\boldsymbol{\bar{t}}$}
-	Given $\boldsymbol{X}$ split into $\boldsymbol{X}^n$ and $\boldsymbol{X}_i^t$\;
-	$\min_{\boldsymbol{L}^n, \boldsymbol{S}^n}\left\|\boldsymbol{L}^n\right\|_* + \lambda\left\|\boldsymbol{S}^n\right\|_1 + \langle \boldsymbol{Y}^n, \boldsymbol{X}^n - \boldsymbol{L}^n - \boldsymbol{S}^n  \rangle + \frac{\mu}{2}\left\|\boldsymbol{X}^n - \boldsymbol{L}^n - \boldsymbol{S}^n\right\|_F^2$\;
+	\KwResult{$\boldsymbol{\bar{t}}_{\bar{\boldsymbol{x}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{s}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{k}}}$}
+	Given $\boldsymbol{X}$ split into $\boldsymbol{X}^n$ and $\boldsymbol{X}^t$\;
+	\While{not $\min_{L,S}\left \| \boldsymbol{L} \right \|_{*} + \lambda \left \| \boldsymbol{S} \right \|_{1}$ of $\boldsymbol{X}^n$}{
+		$\boldsymbol{L}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{L} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}, \boldsymbol{S}_{k}, \boldsymbol{Y}_{k})\}$\;
+		$\boldsymbol{S}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{S} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}_{k+1}, \boldsymbol{S}, \boldsymbol{Y}_{k})\}$\;
+		$\boldsymbol{Y}_{k+1} = \boldsymbol{Y}_{k} + \mu(\boldsymbol{X} - \boldsymbol{L}_{k} - \boldsymbol{S}_{k})$\;
+	}	
 	$\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} \boldsymbol{x}_i$, for $\boldsymbol{L}^n$\;
 	$\boldsymbol{\bar{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} (\boldsymbol{x}_i - \bar{\boldsymbol{x}})(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime$, for $\boldsymbol{L}^n$\;
 	$\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}}$, for $\boldsymbol{L}^n$\;
 	$\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2}$, for $\boldsymbol{L}^n$\;
-
 	$\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime}$\;
 	$\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{s}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{s}})^\prime}$\;
 	$\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{k}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{k}})^\prime}$\;
-
-	% Sort $\boldsymbol{d}_1( i )$, which yields an index $\boldsymbol{d}_1(\pi(1)) \leq ... \leq \boldsymbol{d}_1(\pi(n))$\;
-	% Put $\boldsymbol{h}_2 = \{ \pi(1), \pi(2), ..., \pi(h)\}$\;
-	% Compute $\boldsymbol{\bar{x}}_2$ and $\boldsymbol{\hat{S}}_2$ for $\boldsymbol{h}_2$\;
-	% Compute $det(\boldsymbol{\hat{S}}_2)$ and $det(\boldsymbol{\hat{S}}_1)$\;	
-	% Compute $\boldsymbol{\bar{s}}_2$ and $\boldsymbol{\bar{k}}_2$ for last $\boldsymbol{h}_2$\;
-	\caption{Moment Distances from Robust Subspace for Botnet Detection}
+	$\boldsymbol{\bar{t}}_{\bar{\boldsymbol{x}}} = [\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}})]^c$\;
+	$\boldsymbol{\bar{t}}_{\bar{\boldsymbol{s}}} = [\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}})]^c$\;
+	$\boldsymbol{\bar{t}}_{\bar{\boldsymbol{k}}} = [\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}})]^c$\;
+	\caption{Moment Distances from Robust Subspace}
 \end{algorithm}
 
-The steps between 1 and 6 of the Algorithm \ref{alg:alg01} are the training from normal data $\boldsymbol{X}^n$, while the steps between 7 and 12 aim the anomaly detection on new contamianted observations. Note that the steps 7 and 10 refers to the md-RPCA, while the steps 8 and 11 refers to the sd-RPCA, and the steps 9 and 12 refers to the kd-RPCA. It is also important to observe that the anomaly detection from new observations does not require new robust subspace learning, it is only necessary to compute a moment-based Mahalanobis distance to classify the $c$ largest distances as anomalous.
+The steps between 1 and 10 of the Algorithm \ref{alg:alg01} are the training from normal data $\boldsymbol{X}^n$, while the steps between 11 and 16 aim the anomaly detection on new contamianted observations. Note that the steps 11 and 14 refers to the mmd-RPCA, while the steps 12 and 15 refers to the smd-RPCA, and the steps 13 and 16 refers to the kmd-RPCA. It is also important to observe that the anomaly detection from new observations does not require new robust subspace learning, it is only necessary to compute a moment-based Mahalanobis distance to classify the $c$ largest distances as anomalous.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and Results}
@@ -424,7 +419,7 @@ Clustering methods for anomaly detection rely on three key assumptions: legitima
 
 This experimental evaluation compares our proposal to widely adopted algorithms for anomaly detection based on clustering and statistical approaches. As clustering-based method, we compare to K-means, which is the clustering algorithm most adopted for general purposes and for network anomaly detection \cite{gaddam2007kmeans,moustafa2019holistic}. It is observed that network traffic do not belong to a Gaussian distribution \cite{benson2010network,moustafa2019holistic}, and that algorithms based on non-Gaussian distributions, such as GMM, has been adopted for network anomaly detection \cite{moustafa2019holistic}. Therefore, we compare our proposal to GMM. We also evaluate the results of ROBPCA \cite{hubert2005robpca}, which is a method that also relies on robust estimates with adjusted outlyingness based on robust skewness. 
 
-In contrast to Garcia \emph{et al.} \cite{garcia2014empirical}, we propose to evaluate each scenario of the CTU-13 data set individually, in a semi-supervised approach that does not rely on training data with labeled anomalies, in order to evaluate our proposed approach for all botnet malwares of the CTU-13. Therefore, the data set and scenarios for our evaluation can be denoted as $\boldsymbol{X} = \{\boldsymbol{X}_{10}, \boldsymbol{X}_{11}, ... , \boldsymbol{X}_{18-2}, \boldsymbol{X}_{19}\}$, in accordance to Table \ref{tab:tab01}.
+In contrast to Garcia \emph{et al.} \cite{garcia2014empirical}, we propose to evaluate each scenario of the CTU-13 data set individually, in a semi-supervised approach that does not rely on training data with labeled anomalies, in order to evaluate our proposed approach for all botnet malwares of the CTU-13. Therefore, the data set and scenarios for our evaluation can be denoted as $\boldsymbol{X} = \{\boldsymbol{X}_{10}, \boldsymbol{X}_{11}, ... , \boldsymbol{X}_{18-2}, \boldsymbol{X}_{19}\}$, in accordance to IDs presented in Table \ref{tab:tab01}.
 
 Given a contaminated data set $\boldsymbol{X}$, split it into $\boldsymbol{X}^n$ containing 60\% of the the normal data, and into cross validation $\boldsymbol{X}^v$, composed by 20\% of the normal and 50\% of the anomalous data, and into test $\boldsymbol{X}^t$ containing 20\% of the normal and 50\% of the anomalous data.
 
@@ -470,15 +465,15 @@ Due to the importance given by F-measure to true-positive detection \cite{powers
 \textbf{Experiment Plan:}
 
 	The F-measure is the harmonic mean of precision and recall and is defined by 
-	\begin{equation}\label{eq:eq10}
+	\begin{equation}\label{eq:eq15}
 		F-measure = 2 * \frac{PR * RC}{PR + RC},				
 	\end{equation}
 	where $PR$ is the precision, defined by 
-	\begin{equation}\label{eq:eq11}
+	\begin{equation}\label{eq:eq16}
 		PR = \frac{True Positive}{True Positive + False Positive}
 	\end{equation}
 	and $RC$ is the recall, defined by 
-	\begin{equation}\label{eq:eq12}
+	\begin{equation}\label{eq:eq17}
 		RC = \frac{True Positive}{True Positive + False Negative}.
 	\end{equation}
 
@@ -635,8 +630,6 @@ say that more studies about skewness and subspace learning can be done in order 
 % \textbf{Theorem 1: C-Step.} 
 
 % Consider a data set $\boldsymbol{X} \in \mathbb{R}^{n \times p}$ where $\boldsymbol{X} = \{\boldsymbol{x}_1,...,\boldsymbol{x}_n\}$ of $p$-variate observations. Let $\boldsymbol{h} \subset \{1,...,n\}$ with $|\boldsymbol{h}| = h$, where $\boldsymbol{h}$ is a subset of $h$ indexes from $n$ observations.
-
-
 
 % and the relative distance be 	
 
