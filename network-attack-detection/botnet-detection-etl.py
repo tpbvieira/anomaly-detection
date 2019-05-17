@@ -5,7 +5,7 @@ import time
 import warnings
 import pandas as pd
 from botnet_detection_utils import ctu13_data_cleasing, ctu13_raw_column_types
-from BinetflowTrainer-master.main import aggregate_and_pickle
+from BinetflowTrainer.main import aggregate_and_pickle
 warnings.filterwarnings("ignore")
 
 
