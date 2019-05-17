@@ -493,6 +493,14 @@ It is possible to observe that the results of md-RPCA, kd-RPCA and sd-RPCA overc
 % 19: moment are better
 % there are no lots of researches using CTU-13, although it is been growing poor results for GMM, K-Means and MGM are ok and in accordance to \cite{wang2017botnet}, which also evaluate \cite{gu2007bothunter}
 
+% a questão é diferenciar aquilo que é malicioso ou não, dentre os outliers ou novelties (esses termos são sinônimos para alguns autores)
+% como eu posso diferenciar isto? Eu suponho que a partir de um modelo de tráfego normal eu possa detectar grandes deviations e classificar estas como ataques
+% a hipotese é esta
+% em outra área (compressive sensing), se utiliza dicionários, que são representações compactas de todas as caracteristicas de um dado
+% no nosso caso, o treinamento nos gera uma especie de dicionário, em que os dados normais são representados de forma robusta
+% onde uma forma robusta seria uma forma menos sensível a outliers. Isso pode ser visto como a diferenca entre calcular a média e a mediana de um conjunto. A presença de um outlier no conjunto irá corromper a média de uma forma maior que a mediana. Desta forma, se considera a mediana como sendo robusta
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion and Future Works}
 \label{sec:conclusionandfutureworks}
