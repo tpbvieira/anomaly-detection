@@ -1,11 +1,12 @@
 import os, math
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score, precision_score, recall_score
 from datetime import datetime
 from utils import save_results, get_classifier, get_file_num, pickle_summarized_data, get_saved_data, \
-    get_feature_labels, to_tf_label, get_start_time_for, \
+    get_binetflow_files, get_feature_labels, to_tf_label, get_start_time_for, get_feature_order, \
     TIME_FORMAT
 from summarizer import Summarizer
 from binet_keras import keras_train_and_test
@@ -207,3 +208,33 @@ def run_analysis_with(interval, file_name, start_time=None, use_pickle=True):
         result = train_and_test_with(features, labels, ml)
         path = '%srun_%s_%s.txt' % (directory, file_num, ml)
         save_results(path, file_name, start_time, interval, result)
+
+
+raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
+raw_directory = os.fsencode(raw_path)
+file_list = os.listdir(raw_directory)
+
+
+agg_pkl_path = os.path.join('/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_pkl/')
+agg_directory = os.fsencode(agg_pkl_path)
+
+interval = 0.10
+# from raw to summirized_pkl
+for sample_file in file_list:
+    file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
+    aggregate_and_pickle(interval, file_path)
+
+# from summirized_pkl to agg_pkl
+for sample_file in file_list:
+    binet_files = get_binetflow_files()
+    saved_data = get_saved_data(interval, binet_files[-1])
+    feature, label = get_feature_labels(saved_data)
+
+    cols = get_feature_order()
+    df = pd.DataFrame(feature, columns=cols)
+    df['Label'] = label
+    f_name = os.fsencode('%ss_%s.pk1' % (interval, get_file_num(sample_file.decode("utf-8"))))
+    agg_file_path = os.path.join(agg_directory, f_name).decode('utf-8')
+    if not os.path.isfile(agg_file_path):
+        print("## agg_pkl: %s" % agg_file_path)
+        df.to_pickle(agg_file_path)

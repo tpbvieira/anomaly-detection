@@ -14,18 +14,18 @@ output/ctu_13/eda/
 output/ctu_13/results/pkl_sum_dict/
 output/ctu_13/results/m-rpca_r/
 
-BinetflowTrainer-master/.idea/
-BinetflowTrainer-master/__pycache__/
-BinetflowTrainer-master/_/
-BinetflowTrainer-master/runs_of_1s/
-BinetflowTrainer-master/runs_of_5s/
-BinetflowTrainer-master/saved_data/
-BinetflowTrainer-master/saved_data_fast/
-BinetflowTrainer-master/saved_v2/
-BinetflowTrainer-master/csv/
-BinetflowTrainer-master/pkl/
-BinetflowTrainer-master/15/
-BinetflowTrainer-master/saved_data (copy)/
+BinetflowTrainer/.idea/
+BinetflowTrainer/__pycache__/
+BinetflowTrainer/_/
+BinetflowTrainer/runs_of_1s/
+BinetflowTrainer/runs_of_5s/
+BinetflowTrainer/saved_data/
+BinetflowTrainer/saved_data_fast/
+BinetflowTrainer/saved_v2/
+BinetflowTrainer/csv/
+BinetflowTrainer/pkl/
+BinetflowTrainer/15/
+BinetflowTrainer/saved_data (copy)/
 output/ctu_13/results/.~*
 output/ctu_13/results/agg_dict_pkl/
 output/ctu_13/results/agg_robpca/

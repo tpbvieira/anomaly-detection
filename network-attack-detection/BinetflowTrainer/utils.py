@@ -116,19 +116,18 @@ def get_files_with_bot(bot):
 
 def get_feature_order():
     # 19 features
-    return ['n_dports>1024',
-            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-            'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
-            'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
+    return ['n_dports>1024', 'flow_count','background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 
+            'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 
+            'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 
+            'n_d_b_p_address', 'n_tcp']
 
 
 def get_v2_order():
     # 22 features
-    return ['n_dports>1024',
-            'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-            'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
-            'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp',
-            'end_tcp', 'end_udp', 'end_icmp']
+    return ['n_dports>1024', 'flow_count', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 
+            'n_s_b_p_address', 'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 
+            'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 
+            'n_dports<1024', 'n_d_b_p_address', 'n_tcp', 'end_tcp', 'end_udp', 'end_icmp']
 
 
 def get_feature_labels(summaries, v2=False):

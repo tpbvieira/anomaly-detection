@@ -9,7 +9,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats
 from functools import reduce
-from botnet_detection_utils import data_cleasing
+from botnet_detection_utils import ctu13_data_cleasing
 warnings.filterwarnings(action='once')
 
 
@@ -126,9 +126,9 @@ agg_features_names = [
 
 
 # raw data
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl')
+raw_path = os.path.join('data/ctu_13/raw_fast/')
 raw_directory = os.fsencode(raw_path)
-raw_pkl_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/pkl')
+raw_pkl_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
 raw_pkl_directory = os.fsencode(raw_pkl_path)
 file_list = os.listdir(raw_pkl_directory)
 result_figures_path = 'output/ctu_13/eda/raw/figures/'
@@ -150,7 +150,7 @@ for sample_file in file_list:
         raw_eda_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
         print("## Sample File: %s" % raw_eda_file_path, file=raw_eda_file)
         raw_df = pd.read_csv(raw_eda_file_path, header=0, dtype=raw_column_types)
-        df = data_cleasing(raw_df)
+        df = ctu13_data_cleasing(raw_df)
         df.to_pickle(raw_pkl_file_path)
     gc.collect()
     raw_eda_file.flush()
@@ -168,22 +168,22 @@ for sample_file in file_list:
     print("\ndTos:\n", df['dTos'].value_counts(), file=raw_eda_file)
     raw_eda_file.flush()
 
-    # Print the distribution fitting for each feature
-    for i, cn in enumerate(df[raw_features_names]):
-        best_dist_fitting = get_best_distribution_fit(df[cn])
-        print('###', cn, file=raw_eda_file)
-        print(best_dist_fitting, file=raw_eda_file)
-        raw_eda_file.flush()
-
-    # Plot the distribution of each feature
-    for i, cn in enumerate(df[raw_features_names]):
-        fig_name = '%sraw_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
-        if not os.path.isfile(fig_name):
-            sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
-            sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
-            plt.legend()
-            plt.savefig(fig_name)
-            plt.close()
+    # # Print the distribution fitting for each feature
+    # for i, cn in enumerate(df[raw_features_names]):
+    #     best_dist_fitting = get_best_distribution_fit(df[cn])
+    #     print('###', cn, file=raw_eda_file)
+    #     print(best_dist_fitting, file=raw_eda_file)
+    #     raw_eda_file.flush()
+    #
+    # # Plot the distribution of each feature
+    # for i, cn in enumerate(df[raw_features_names]):
+    #     fig_name = '%sraw_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
+    #     if not os.path.isfile(fig_name):
+    #         sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
+    #         sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
+    #         plt.legend()
+    #         plt.savefig(fig_name)
+    #         plt.close()
 
     # Plot a correlation heatmap of all features, including the label
     fig_name = '%sraw_corr_heatmap_%s.png' % (result_figures_path, file_name)
@@ -206,9 +206,9 @@ for sample_file in file_list:
 raw_eda_file.close()
 
 # agg data
-agg_path = os.path.join('/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/pkl_sum')
+agg_path = os.path.join('data/ctu_13/agg_pkl_fast/')
 agg_directory = os.fsencode(agg_path)
-agg_pkl_path = os.path.join('/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/pkl_sum')
+agg_pkl_path = os.path.join('data/ctu_13/agg_pkl_fast/')
 agg_pkl_directory = os.fsencode(agg_pkl_path)
 file_list = os.listdir(agg_pkl_directory)
 result_figures_path = 'output/ctu_13/eda/agg/figures/'
@@ -231,7 +231,7 @@ for sample_file in file_list:
         agg_file_path = os.path.join(agg_directory, sample_file).decode('utf-8')
         print("## Sample File: %s" % agg_file_path, file=agg_eda_file)
         agg_df = pd.read_csv(agg_file_path, header=0)
-        df = data_cleasing(agg_df)
+        df = ctu13_data_cleasing(agg_df)
         df.to_pickle(agg_pkl_file_path)
     gc.collect()
     agg_eda_file.flush()
@@ -260,22 +260,22 @@ for sample_file in file_list:
     print("\nn_tcp:\n", df['n_tcp'].value_counts(), file=agg_eda_file)
     agg_eda_file.flush()
 
-    # Print the distribution fitting for each feature
-    for i, cn in enumerate(df[agg_features_names]):
-        best_dist_fitting = get_best_distribution_fit(df[cn])
-        print('###', cn, file=agg_eda_file)
-        print(best_dist_fitting, file=agg_eda_file)
-        agg_eda_file.flush()
-
-    # Plot the distribution of each feature
-    for i, cn in enumerate(df[agg_features_names]):
-        fig_name = '%sagg_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
-        if not os.path.isfile(fig_name):
-            sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
-            sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
-            plt.legend()
-            plt.savefig(fig_name)
-            plt.close()
+    # # Print the distribution fitting for each feature
+    # for i, cn in enumerate(df[agg_features_names]):
+    #     best_dist_fitting = get_best_distribution_fit(df[cn])
+    #     print('###', cn, file=agg_eda_file)
+    #     print(best_dist_fitting, file=agg_eda_file)
+    #     agg_eda_file.flush()
+    #
+    # # Plot the distribution of each feature
+    # for i, cn in enumerate(df[agg_features_names]):
+    #     fig_name = '%sagg_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
+    #     if not os.path.isfile(fig_name):
+    #         sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
+    #         sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
+    #         plt.legend()
+    #         plt.savefig(fig_name)
+    #         plt.close()
 
     # Plot a correlation heatmap of all features, including the label
     fig_name = '%sagg_corr_heatmap_%s.png' % (result_figures_path, file_name)
