@@ -207,13 +207,3 @@ def run_analysis_with(interval, file_name, start_time=None, use_pickle=True):
         result = train_and_test_with(features, labels, ml)
         path = '%srun_%s_%s.txt' % (directory, file_num, ml)
         save_results(path, file_name, start_time, interval, result)
-
-
-raw_path = os.path.join('/media/thiago/ubuntu/datasets/network/stratosphere_botnet_2011/ctu_13/raw/')
-raw_directory = os.fsencode(raw_path)
-file_list = os.listdir(raw_directory)
-
-# for each file/scenario
-for sample_file in file_list:
-    file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
-    aggregate_and_pickle(0.15, file_path)

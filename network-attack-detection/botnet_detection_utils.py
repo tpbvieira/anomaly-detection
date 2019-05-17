@@ -1,14 +1,16 @@
 # coding=utf-8
-import pandas as pd
+import gc
+import sys
+import warnings
 import numpy as np
-import sys, gc, warnings
+import pandas as pd
 from sklearn import preprocessing
 from sklearn.metrics import f1_score, recall_score, precision_score
 warnings.filterwarnings("ignore")
 
 
 # features
-column_types = {
+ctu13_raw_column_types = {
     'StartTime': 'str',
     'Dur': 'float32',
     'Proto': 'str',
@@ -25,39 +27,39 @@ column_types = {
     'SrcBytes': 'uint32',
     'Label': 'str'}
 
-# feature selection
-drop_raw_features = {
+ctu13_drop_raw_features = {
     'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
     'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
     'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
     'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
 }
 
-drop_agg_features = {
+ctu13_drop_agg_features = {
     'drop_features00': []
 }
 
-def data_cleasing(m_df):
+
+def ctu13_data_cleasing(m_df):
 
     # data cleasing, feature engineering and save clean data into pickles
     print('### Data Cleasing and Feature Engineering')
-    le = preprocessing.LabelEncoder()
+    label_encoder = preprocessing.LabelEncoder()
 
-    # dropping ipv6 and icmp
-    try:
-        print('dropping ipv6 and icmp')
-        m_df = m_df[m_df.Proto != 'ipv6']
-        m_df = m_df[m_df.Proto != 'ipv6-icmp']
-        m_df = m_df[m_df.Proto != 'icmp']
-        gc.collect()
-    except:
-        print(">>> Unexpected error:", sys.exc_info()[0])
+    # # dropping ipv6 and icmp
+    # try:
+    #     print('dropping ipv6 and icmp')
+    #     m_df = m_df[m_df.Proto != 'ipv6']
+    #     m_df = m_df[m_df.Proto != 'ipv6-icmp']
+    #     m_df = m_df[m_df.Proto != 'icmp']
+    #     gc.collect()
+    # except:
+    #     print(">>> Unexpected error:", sys.exc_info()[0])
 
     try:
         print('Proto')
         m_df['Proto'] = m_df['Proto'].fillna('-')
-        m_df['Proto'] = le.fit_transform(m_df['Proto'])
-        # le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+        m_df['Proto'] = label_encoder.fit_transform(m_df['Proto'])
+        # le_name_mapping = dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))
         gc.collect()
     except:
         print(">>> Unexpected error:", sys.exc_info()[0])
@@ -128,8 +130,8 @@ def data_cleasing(m_df):
     try:
         print('State')
         m_df['State'] = m_df['State'].fillna('-')
-        m_df['State'] = le.fit_transform(m_df['State'])
-        # le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+        m_df['State'] = label_encoder.fit_transform(m_df['State'])
+        # le_name_mapping = dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))
         gc.collect()
     except:
         print(">>> Unexpected error:", sys.exc_info()[0])
@@ -140,8 +142,8 @@ def data_cleasing(m_df):
     try:
         print('Dir')
         m_df['Dir'] = m_df['Dir'].fillna('-')
-        m_df['Dir'] = le.fit_transform(m_df['Dir'])
-        # le_name_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
+        m_df['Dir'] = label_encoder.fit_transform(m_df['Dir'])
+        # le_name_mapping = dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))
         gc.collect()
     except:
         print(">>> Unexpected error:", sys.exc_info()[0])
@@ -182,7 +184,6 @@ def data_cleasing(m_df):
         m_df['StartTime'].to_csv('error_starttime.csv', index=False)
 
     gc.collect()
-
     return m_df
 
 
@@ -407,7 +408,6 @@ def data_splitting50(df, drop_features):
 
 
 def unsupervised_data_splitting(df, drop_features):
-    # Data splitting
 
     # drop non discriminant features
     df.drop(drop_features, axis=1, inplace=True)
@@ -452,20 +452,18 @@ def unsupervised_data_splitting(df, drop_features):
     test_df = test_df.drop(labels=["Label"], axis=1)
 
     gc.collect()
-
     return train_df, train_label_df, test_df, test_label_df
 
 
 def print_classification_report(y_test, y_predic):
     f1 = f1_score(y_test, y_predic, average="binary")
-    Recall = recall_score(y_test, y_predic, average="binary")
-    Precision = precision_score(y_test, y_predic, average="binary")
-    print('\tF1 Score: ', f1, ', Recall: ', Recall, ', Precision: ,', Precision)
+    m_rc = recall_score(y_test, y_predic, average="binary")
+    m_pr = precision_score(y_test, y_predic, average="binary")
+    print('\tF1 Score: ', f1, ', Recall: ', m_rc, ', Precision: ,', m_pr)
 
 
 def get_classification_report(y_test, y_predic):
     f1 = f1_score(y_test, y_predic, average="binary")
-    Recall = recall_score(y_test, y_predic, average="binary")
-    Precision = precision_score(y_test, y_predic, average="binary")
-
-    return f1, Recall, Precision
+    m_rc = recall_score(y_test, y_predic, average="binary")
+    m_pr = precision_score(y_test, y_predic, average="binary")
+    return f1, m_rc, m_pr
