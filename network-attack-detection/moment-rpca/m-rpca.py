@@ -15,9 +15,9 @@ warnings.filterwarnings("ignore")
 
 result_file_path = 'moment_rpca.txt'
 result_file = open(result_file_path, 'w') # 'w' = clear all and write
-start_time = time.time()
-prefixes = ['0.15', '0.25']
+prefixes = ['0.15']
 
+start_time = time.time()
 for prefix in prefixes:
     print('### Dataset Version: %s' % prefix, file=result_file)
     result_file.flush()
@@ -57,7 +57,7 @@ for prefix in prefixes:
         # Location CV and prediction
         # best_contamination = cv_location_contamination(cv_df, cv_labels, rob_mean, rob_precision)
 
-        test_label_vc = testing_df.value_counts()
+        test_label_vc = test_labels.value_counts()
         ones = test_label_vc.get(1)
         zeros = test_label_vc.get(0)
         best_contamination = ones/(ones + zeros)
