@@ -126,9 +126,9 @@ agg_features_names = [
 
 
 # raw data
-raw_path = os.path.join('data/ctu_13/raw_fast/')
+raw_path = os.path.join('data/ctu_13/raw/')
 raw_directory = os.fsencode(raw_path)
-raw_pkl_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
+raw_pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 raw_pkl_directory = os.fsencode(raw_pkl_path)
 file_list = os.listdir(raw_pkl_directory)
 result_figures_path = 'output/ctu_13/eda/raw/figures/'
@@ -206,9 +206,9 @@ for sample_file in file_list:
 raw_eda_file.close()
 
 # agg data
-agg_path = os.path.join('data/ctu_13/agg_pkl_fast/')
+agg_path = os.path.join('data/ctu_13/agg_pkl/')
 agg_directory = os.fsencode(agg_path)
-agg_pkl_path = os.path.join('data/ctu_13/agg_pkl_fast/')
+agg_pkl_path = os.path.join('data/ctu_13/agg_pkl/')
 agg_pkl_directory = os.fsencode(agg_pkl_path)
 file_list = os.listdir(agg_pkl_directory)
 result_figures_path = 'output/ctu_13/eda/agg/figures/'
@@ -240,7 +240,7 @@ for sample_file in file_list:
     print("\nData Types: ", df.dtypes, file=agg_eda_file)
     print("\nData Shape: ", df.shape, file=agg_eda_file)
     print("\nLabel:\n", df['Label'].value_counts(), file=agg_eda_file)
-    print("\nbackground_flow_count:\n", df['background_flow_count'].value_counts(), file=agg_eda_file)
+    print("\nflow_count:\n", df['flow_count'].value_counts(), file=agg_eda_file)
     print("\nn_s_a_p_address:\n", df['n_s_a_p_address'].value_counts(), file=agg_eda_file)
     print("\navg_duration:\n", df['avg_duration'].value_counts(), file=agg_eda_file)
     print("\nn_s_b_p_address:\n", df['n_s_b_p_address'].value_counts(), file=agg_eda_file)
@@ -291,204 +291,9 @@ for sample_file in file_list:
     # Create scatter and histogram to show the relationship of interesting features (selected from heatmap)
     fig_name = '%sagg_pairplot_%s.png' % (result_figures_path, file_name)
     if not os.path.isfile(fig_name):
-        plot_features = ['avg_duration','background_flow_count','n_tcp','n_udp','n_icmp','n_d_c_p_address','n_conn']
+        plot_features = ['flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
+                         'n_s_na_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024']
         sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
         sns_plot.savefig(fig_name)
         plt.close()
 agg_eda_file.close()
-
-
-
-def classify_ip(ip):
-    """
-    str ip - ip address string to attempt to classify. treat ipv6 addresses as N/A
-    """
-    try:
-        ip_addr = ipaddress.ip_address(ip)
-        if isinstance(ip_addr, ipaddress.IPv6Address):
-            return 'ipv6'
-        elif isinstance(ip_addr, ipaddress.IPv4Address):
-            # split on .
-            octs = ip_addr.exploded.split('.')
-            if 0 < int(octs[0]) < 127:
-                return 'A'
-            elif 127 < int(octs[0]) < 192:
-                return 'B'
-            elif 191 < int(octs[0]) < 224:
-                return 'C'
-            else:
-                return 'N/A'
-    except ValueError:
-        return 'N/A'
-
-
-def avg_duration(x):
-    return np.average(x)
-
-
-def n_dports_gt1024(x):
-    if x.size == 0: return 0
-    return reduce((lambda a, b: a + b if b > 1024 else a), x)
-
-
-n_dports_gt1024.__name__ = 'n_dports>1024'
-
-
-def n_dports_lt1024(x):
-    if x.size == 0: return 0
-    return reduce((lambda a, b: a + b if b < 1024 else a), x)
-
-
-n_dports_lt1024.__name__ = 'n_dports<1024'
-
-
-def n_sports_gt1024(x):
-    if x.size == 0: return 0
-    return reduce((lambda a, b: a + b if b > 1024 else a), x)
-
-
-n_sports_gt1024.__name__ = 'n_sports>1024'
-
-
-def n_sports_lt1024(x):
-    if x.size == 0: return 0
-    return reduce((lambda a, b: a + b if b < 1024 else a), x)
-
-
-n_sports_lt1024.__name__ = 'n_sports<1024'
-
-
-def label_atk_v_norm(x):
-    for l in x:
-        if l == 1: return 1
-    return 0
-
-
-label_atk_v_norm.__name__ = 'label'
-
-
-def background_flow_count(x):
-    count = 0
-    for l in x:
-        if l == 0: count += 1
-    return count
-
-
-def normal_flow_count(x):
-    if x.size == 0: return 0
-    count = 0
-    for l in x:
-        if l == 0: count += 1
-    return count
-
-
-def n_conn(x):
-    return x.size
-
-
-def n_tcp(x):
-    count = 0
-    for p in x:
-        if p == 10: count += 1  # tcp == 10
-    return count
-
-
-def n_udp(x):
-    count = 0
-    for p in x:
-        if p == 11: count += 1  # udp == 11
-    return count
-
-
-def n_icmp(x):
-    count = 0
-    for p in x:
-        if p == 1: count += 1  # icmp == 1
-    return count
-
-
-def n_s_a_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'A': count += 1
-    return count
-
-
-def n_d_a_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'A': count += 1
-    return count
-
-
-def n_s_b_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'B': count += 1
-    return count
-
-
-def n_d_b_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'A': count += 1
-    return count
-
-
-def n_s_c_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'C': count += 1
-    return count
-
-
-def n_d_c_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'C': count += 1
-    return count
-
-
-def n_s_na_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'N/A': count += 1
-    return count
-
-
-def n_d_na_p_address(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'N/A': count += 1
-    return count
-
-
-def n_ipv6(x):
-    count = 0
-    for i in x:
-        if classify_ip(i) == 'ipv6': count += 1
-    return count
-
-
-def extract_fuature():
-    # The datastructure to hold our feature extraction functions,
-    # which will get applied to each aggregation of the datasets.
-    extractors = {
-        'Label': [label_atk_v_norm, background_flow_count, normal_flow_count, n_conn, ],
-        'Dport': [n_dports_gt1024, n_dports_lt1024],
-        'Sport': [n_sports_gt1024, n_sports_lt1024, ],
-        'Dur': [avg_duration, ],
-        'SrcAddr': [n_s_a_p_address, n_s_b_p_address, n_s_c_p_address, n_s_na_p_address, ],
-        'DstAddr': [n_d_a_p_address, n_d_b_p_address, n_d_c_p_address, n_d_na_p_address, ],
-        'Proto': [n_tcp, n_icmp, n_udp, ],
-    }
-
-    # resample grouped by 1 second bin. must have a datetime-like index.
-    r = df.resample('1S')
-    n_df = r.agg(extractors)  ## aggretation by data and functions specified by extractors
-
-    n_df.columns = n_df.columns.droplevel(0)  # get rid of the heirarchical columns
-    pd.options.display.max_columns = 99
-
-    print('New nData Types: ', n_df.dtypes)
-    print(n_df.head())

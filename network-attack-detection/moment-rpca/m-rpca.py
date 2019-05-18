@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 result_file_path = 'moment_rpca.txt'
 result_file = open(result_file_path, 'w') # 'w' = clear all and write
-prefixes = ['0.15']
+prefixes = ['0.25', '0.15', '0.1']
 
 start_time = time.time()
 for prefix in prefixes:
@@ -25,9 +25,12 @@ for prefix in prefixes:
     dataset_list, files_list = get_dataset(prefix)
     pre_processed_dataset = split_dataset(dataset_list)
     num_datasets = len(dataset_list)
-    col_list = ['n_dports>1024', 'background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
-                'n_sports<1024', 'n_s_na_p_address', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address',
+    col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
+                'n_s_na_p_address', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address',
                 'n_d_c_p_address', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
+
+    # col_list = ['flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_s_na_p_address',
+    #             'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024']
 
     for dataset in range(num_datasets):
         file_name = files_list[dataset].name.replace('/', '').replace('.', '')
@@ -46,7 +49,7 @@ for prefix in prefixes:
         raw_test_df = raw_test_df.drop(['Label'], axis=1)
 
         # select columns
-        col_list = raw_train_df.columns
+        # col_list = raw_train_df.columns
         training_df = raw_train_df[col_list]
         cv_df = raw_cv_df[col_list]
         testing_df = raw_test_df[col_list]
