@@ -216,23 +216,24 @@ file_list = os.listdir(raw_directory)
 agg_pkl_path = os.path.join('/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_pkl/')
 agg_directory = os.fsencode(agg_pkl_path)
 
-interval = 0.15
-# # from raw to summirized_pkl
-# for sample_file in file_list:
-#     file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
-#     aggregate_and_pickle(interval, file_path)
+interval = 2
+# from raw to summirized_pkl
+for sample_file in file_list:
+    file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
+    print(file_path)
+    aggregate_and_pickle(interval, file_path)
 
-# from summirized_pkl to agg_pkl
-binet_files = get_binetflow_files()
-for sample_file in binet_files:
-    saved_data = get_saved_data(interval, sample_file)
-    feature, label = get_feature_labels(saved_data)
-
-    cols = get_feature_order()
-    df = pd.DataFrame(feature, columns=cols)
-    df['Label'] = label
-    f_name = os.fsencode('%ss_%s.pk1' % (interval, get_file_num(sample_file)))
-    agg_file_path = os.path.join(agg_directory, f_name).decode('utf-8')
-    if not os.path.isfile(agg_file_path):
-        print("## agg_pkl: %s" % agg_file_path)
-        df.to_pickle(agg_file_path)
+# # from summirized_pkl to agg_pkl
+# binet_files = get_binetflow_files()
+# for sample_file in binet_files:
+#     saved_data = get_saved_data(interval, sample_file)
+#     feature, label = get_feature_labels(saved_data)
+#
+#     cols = get_feature_order()
+#     df = pd.DataFrame(feature, columns=cols)
+#     df['Label'] = label
+#     f_name = os.fsencode('%ss_%s.pk1' % (interval, get_file_num(sample_file)))
+#     agg_file_path = os.path.join(agg_directory, f_name).decode('utf-8')
+#     if not os.path.isfile(agg_file_path):
+#         print("## agg_pkl: %s" % agg_file_path)
+#         df.to_pickle(agg_file_path)

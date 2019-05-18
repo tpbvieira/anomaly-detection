@@ -31,7 +31,8 @@ ctu13_drop_raw_features = {
     'drop_features01': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'TotBytes', 'SrcBytes'],
     'drop_features02': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'TotBytes', 'SrcBytes'],
     'drop_features03': ['SrcAddr', 'DstAddr', 'sTos', 'Sport', 'Proto', 'SrcBytes'],
-    'drop_features04': ['SrcAddr', 'DstAddr', 'sTos', 'Proto']
+    'drop_features05': ['SrcAddr', 'DstAddr', 'sTos', 'Proto'],
+    'drop_features04': ['SrcAddr', 'DstAddr']
 }
 
 ctu13_drop_agg_features = {
@@ -193,6 +194,10 @@ def data_splitting20(df, drop_features):
     # drop non discriminant features
     df.drop(drop_features, axis=1, inplace=True)
 
+    df['PktsRate'] = df.TotPkts / df.Dur
+    df['BytesRate'] = df.TotBytes / df.Dur
+    df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
     df_l0 = df[df["Label"] == 0]
@@ -246,6 +251,22 @@ def data_splitting34(df, drop_features):
     # Data splitting
 
     # drop non discriminant features
+    df['PktsRate'] = df.TotPkts / df.Dur
+    df['BytesRate'] = df.TotBytes / df.Dur
+    df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+
+    df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+    df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+    df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+
+    df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+    df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+    df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+
+    df['PktsRate'] = df['PktsRate'].fillna(-1)
+    df['BytesRate'] = df['BytesRate'].fillna(-1)
+    df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
+
     df.drop(drop_features, axis=1, inplace=True)
 
     # split into normal and anomaly

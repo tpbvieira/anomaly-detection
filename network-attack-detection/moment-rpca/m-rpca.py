@@ -15,7 +15,8 @@ warnings.filterwarnings("ignore")
 
 result_file_path = 'moment_rpca.txt'
 result_file = open(result_file_path, 'w') # 'w' = clear all and write
-prefixes = ['0.25', '0.15', '0.1']
+# prefixes = ['2', '1', '0.25', '0.15', '0.1']
+prefixes = ['2']
 
 start_time = time.time()
 for prefix in prefixes:
@@ -25,12 +26,16 @@ for prefix in prefixes:
     dataset_list, files_list = get_dataset(prefix)
     pre_processed_dataset = split_dataset(dataset_list)
     num_datasets = len(dataset_list)
-    col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-                'n_s_na_p_address', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address',
-                'n_d_c_p_address', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
 
-    # col_list = ['flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_s_na_p_address',
-    #             'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024']
+    # col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
+    # 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
+    # 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
+
+    # col_list = ['n_s_b_p_address', 'n_sports<1024', 'n_conn', 'n_udp', 'n_d_na_p_address', 'n_d_a_p_address',
+    #             'n_d_c_p_address', 'n_d_b_p_address', 'n_tcp']
+
+    col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes',
+                'PktsRate', 'BytesRate', 'MeanPktsRate']
 
     for dataset in range(num_datasets):
         file_name = files_list[dataset].name.replace('/', '').replace('.', '')
@@ -47,6 +52,47 @@ for prefix in prefixes:
         raw_train_df = raw_train_df.drop(['Label'], axis=1)
         raw_cv_df = raw_cv_df.drop(['Label'], axis=1)
         raw_test_df = raw_test_df.drop(['Label'], axis=1)
+
+        # raw_train_df["diff_flow_count"] = raw_train_df['flow_count'] - raw_train_df['normal_flow_count']
+        # raw_cv_df["diff_flow_count"] = raw_cv_df['flow_count'] - raw_cv_df['normal_flow_count']
+        # raw_test_df["diff_flow_count"] = raw_test_df['flow_count'] - raw_test_df['normal_flow_count']
+
+        raw_train_df['PktsRate'] = raw_train_df.TotPkts / raw_train_df.Dur
+        raw_train_df['BytesRate'] = raw_train_df.TotBytes / raw_train_df.Dur
+        raw_train_df['MeanPktsRate'] = raw_train_df.TotBytes / raw_train_df.TotPkts
+        raw_train_df['PktsRate'] = raw_train_df['PktsRate'].replace(-np.inf, np.nan)
+        raw_train_df['BytesRate'] = raw_train_df['BytesRate'].replace(-np.inf, np.nan)
+        raw_train_df['MeanPktsRate'] = raw_train_df['MeanPktsRate'].replace(-np.inf, np.nan)
+        raw_train_df['PktsRate'] = raw_train_df['PktsRate'].replace(np.inf, np.nan)
+        raw_train_df['BytesRate'] = raw_train_df['BytesRate'].replace(np.inf, np.nan)
+        raw_train_df['MeanPktsRate'] = raw_train_df['MeanPktsRate'].replace(np.inf, np.nan)
+        raw_train_df['PktsRate'] = raw_train_df['PktsRate'].fillna(-1)
+        raw_train_df['BytesRate'] = raw_train_df['BytesRate'].fillna(-1)
+        raw_train_df['MeanPktsRate'] = raw_train_df['MeanPktsRate'].fillna(-1)
+        raw_cv_df['PktsRate'] = raw_cv_df.TotPkts / raw_cv_df.Dur
+        raw_cv_df['BytesRate'] = raw_cv_df.TotBytes / raw_cv_df.Dur
+        raw_cv_df['MeanPktsRate'] = raw_cv_df.TotBytes / raw_cv_df.TotPkts
+        raw_cv_df['PktsRate'] = raw_cv_df['PktsRate'].replace(-np.inf, np.nan)
+        raw_cv_df['BytesRate'] = raw_cv_df['BytesRate'].replace(-np.inf, np.nan)
+        raw_cv_df['MeanPktsRate'] = raw_cv_df['MeanPktsRate'].replace(-np.inf, np.nan)
+        raw_cv_df['PktsRate'] = raw_cv_df['PktsRate'].replace(np.inf, np.nan)
+        raw_cv_df['BytesRate'] = raw_cv_df['BytesRate'].replace(np.inf, np.nan)
+        raw_cv_df['MeanPktsRate'] = raw_cv_df['MeanPktsRate'].replace(np.inf, np.nan)
+        raw_cv_df['PktsRate'] = raw_cv_df['PktsRate'].fillna(-1)
+        raw_cv_df['BytesRate'] = raw_cv_df['BytesRate'].fillna(-1)
+        raw_cv_df['MeanPktsRate'] = raw_cv_df['MeanPktsRate'].fillna(-1)
+        raw_test_df['PktsRate'] = raw_test_df.TotPkts / raw_test_df.Dur
+        raw_test_df['BytesRate'] = raw_test_df.TotBytes / raw_test_df.Dur
+        raw_test_df['MeanPktsRate'] = raw_test_df.TotBytes / raw_test_df.TotPkts
+        raw_test_df['PktsRate'] = raw_test_df['PktsRate'].replace(-np.inf, np.nan)
+        raw_test_df['BytesRate'] = raw_test_df['BytesRate'].replace(-np.inf, np.nan)
+        raw_test_df['MeanPktsRate'] = raw_test_df['MeanPktsRate'].replace(-np.inf, np.nan)
+        raw_test_df['PktsRate'] = raw_test_df['PktsRate'].replace(np.inf, np.nan)
+        raw_test_df['BytesRate'] = raw_test_df['BytesRate'].replace(np.inf, np.nan)
+        raw_test_df['MeanPktsRate'] = raw_test_df['MeanPktsRate'].replace(np.inf, np.nan)
+        raw_test_df['PktsRate'] = raw_test_df['PktsRate'].fillna(-1)
+        raw_test_df['BytesRate'] = raw_test_df['BytesRate'].fillna(-1)
+        raw_test_df['MeanPktsRate'] = raw_test_df['MeanPktsRate'].fillna(-1)
 
         # select columns
         # col_list = raw_train_df.columns
