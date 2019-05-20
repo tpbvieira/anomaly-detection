@@ -2,13 +2,11 @@
 import os
 import gc
 import warnings
-import ipaddress
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats
-from functools import reduce
 from botnet_detection_utils import ctu13_data_cleasing
 warnings.filterwarnings(action='once')
 
@@ -104,106 +102,109 @@ raw_features_names = [
 ]
 
 agg_features_names = [
+    'flow_count',
+    'normal_flow_count',
     'background_flow_count',
-    'n_s_a_p_address',
     'avg_duration',
-    'n_s_b_p_address',
-    'n_sports<1024',
-    'n_sports>1024',
+    'mdn_duration',
+    'p95_duration',
     'n_conn',
-    'n_s_na_p_address',
+    'n_tcp',
     'n_udp',
     'n_icmp',
+    'n_s_a_p_address',
+    'n_s_b_p_address',
+    'n_s_c_p_address',
+    'n_s_na_p_address',
     'n_d_na_p_address',
     'n_d_a_p_address',
-    'n_s_c_p_address',
-    'n_d_c_p_address',
-    'normal_flow_count',
-    'n_dports<1024',
     'n_d_b_p_address',
-    'n_tcp'
+    'n_d_c_p_address',
+    'n_dports<1024',
+    'n_sports<1024',
+    'n_sports>1024'
 ]
 
-
-# raw data
-raw_path = os.path.join('data/ctu_13/raw/')
-raw_directory = os.fsencode(raw_path)
-raw_pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
-raw_pkl_directory = os.fsencode(raw_pkl_path)
-file_list = os.listdir(raw_pkl_directory)
-result_figures_path = 'output/ctu_13/eda/raw/figures/'
-raw_eda_file_path = 'output/ctu_13/eda/raw/raw_eda.txt'
-
-raw_eda_file = open(raw_eda_file_path, 'w') # 'w' = clear all and write
-# for each raw scenario
-for sample_file in file_list:
-
-    # extract values from the file name
-    file_name = os.path.splitext(sample_file.decode('utf-8'))[0]
-
-    # read pickle file with pandas or...
-    raw_pkl_file_path = os.path.join(raw_pkl_directory, sample_file).decode('utf-8')
-    if os.path.isfile(raw_pkl_file_path):
-        print("## Sample File: %s" % raw_pkl_file_path, file=raw_eda_file)
-        df = pd.read_pickle(raw_pkl_file_path)
-    else:  # load raw file and save clean data into pickles
-        raw_eda_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
-        print("## Sample File: %s" % raw_eda_file_path, file=raw_eda_file)
-        raw_df = pd.read_csv(raw_eda_file_path, header=0, dtype=raw_column_types)
-        df = ctu13_data_cleasing(raw_df)
-        df.to_pickle(raw_pkl_file_path)
-    gc.collect()
-    raw_eda_file.flush()
-
-    print("\n", df.head(), file=raw_eda_file)
-    print("\nData Types: ", df.dtypes, file=raw_eda_file)
-    print("\nData Shape: ", df.shape, file=raw_eda_file)
-    print("\nLabel:\n", df['Label'].value_counts(), file=raw_eda_file)
-    print("\nProto:\n", df['Proto'].value_counts(), file=raw_eda_file)
-    print("\nSrcAddr:\n", df['SrcAddr'].value_counts(), file=raw_eda_file)
-    print("\nDstAddr:\n", df['DstAddr'].value_counts(), file=raw_eda_file)
-    print("\nDport:\n", df['Dport'].value_counts(), file=raw_eda_file)
-    print("\nState:\n", df['State'].value_counts(), file=raw_eda_file)
-    print("\nsTos:\n", df['sTos'].value_counts(), file=raw_eda_file)
-    print("\ndTos:\n", df['dTos'].value_counts(), file=raw_eda_file)
-    raw_eda_file.flush()
-
-    # # Print the distribution fitting for each feature
-    # for i, cn in enumerate(df[raw_features_names]):
-    #     best_dist_fitting = get_best_distribution_fit(df[cn])
-    #     print('###', cn, file=raw_eda_file)
-    #     print(best_dist_fitting, file=raw_eda_file)
-    #     raw_eda_file.flush()
-    #
-    # # Plot the distribution of each feature
-    # for i, cn in enumerate(df[raw_features_names]):
-    #     fig_name = '%sraw_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
-    #     if not os.path.isfile(fig_name):
-    #         sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
-    #         sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
-    #         plt.legend()
-    #         plt.savefig(fig_name)
-    #         plt.close()
-
-    # Plot a correlation heatmap of all features, including the label
-    fig_name = '%sraw_corr_heatmap_%s.png' % (result_figures_path, file_name)
-    if not os.path.isfile(fig_name):
-        corr = df.corr()
-        fig, ax = plt.subplots(figsize=(15,10))
-        sns_plot = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, ax=ax, center=0,
-                               cmap="seismic")
-        figure = sns_plot.get_figure()
-        figure.savefig(fig_name, dpi=400)
-        plt.close()
-
-    # Create scatter and histogram to show the relationship of interesting features (selected from heatmap)
-    fig_name = '%sraw_pairplot_%s.png' % (result_figures_path, file_name)
-    if not os.path.isfile(fig_name):
-        plot_features = ['Dur','Proto','Dir','Sport','State','TotPkts','TotBytes']
-        sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
-        sns_plot.savefig(fig_name)
-        plt.close()
-raw_eda_file.close()
+#
+# # raw data
+# raw_path = os.path.join('data/ctu_13/raw/')
+# raw_directory = os.fsencode(raw_path)
+# raw_pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
+# raw_pkl_directory = os.fsencode(raw_pkl_path)
+# file_list = os.listdir(raw_pkl_directory)
+# result_figures_path = 'output/ctu_13/eda/raw/figures/'
+# raw_eda_file_path = 'output/ctu_13/eda/raw/raw_eda.txt'
+#
+# raw_eda_file = open(raw_eda_file_path, 'w') # 'w' = clear all and write
+# # for each raw scenario
+# for sample_file in file_list:
+#
+#     # extract values from the file name
+#     file_name = os.path.splitext(sample_file.decode('utf-8'))[0]
+#
+#     # read pickle file with pandas or...
+#     raw_pkl_file_path = os.path.join(raw_pkl_directory, sample_file).decode('utf-8')
+#     if os.path.isfile(raw_pkl_file_path):
+#         print("## Sample File: %s" % raw_pkl_file_path, file=raw_eda_file)
+#         df = pd.read_pickle(raw_pkl_file_path)
+#     else:  # load raw file and save clean data into pickles
+#         raw_eda_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
+#         print("## Sample File: %s" % raw_eda_file_path, file=raw_eda_file)
+#         raw_df = pd.read_csv(raw_eda_file_path, header=0, dtype=raw_column_types)
+#         df = ctu13_data_cleasing(raw_df)
+#         df.to_pickle(raw_pkl_file_path)
+#     gc.collect()
+#     raw_eda_file.flush()
+#
+#     print("\n", df.head(), file=raw_eda_file)
+#     print("\nData Types: ", df.dtypes, file=raw_eda_file)
+#     print("\nData Shape: ", df.shape, file=raw_eda_file)
+#     print("\nLabel:\n", df['Label'].value_counts(), file=raw_eda_file)
+#     print("\nProto:\n", df['Proto'].value_counts(), file=raw_eda_file)
+#     print("\nSrcAddr:\n", df['SrcAddr'].value_counts(), file=raw_eda_file)
+#     print("\nDstAddr:\n", df['DstAddr'].value_counts(), file=raw_eda_file)
+#     print("\nDport:\n", df['Dport'].value_counts(), file=raw_eda_file)
+#     print("\nState:\n", df['State'].value_counts(), file=raw_eda_file)
+#     print("\nsTos:\n", df['sTos'].value_counts(), file=raw_eda_file)
+#     print("\ndTos:\n", df['dTos'].value_counts(), file=raw_eda_file)
+#     raw_eda_file.flush()
+#
+#     # # Print the distribution fitting for each feature
+#     # for i, cn in enumerate(df[raw_features_names]):
+#     #     best_dist_fitting = get_best_distribution_fit(df[cn])
+#     #     print('###', cn, file=raw_eda_file)
+#     #     print(best_dist_fitting, file=raw_eda_file)
+#     #     raw_eda_file.flush()
+#     #
+#     # # Plot the distribution of each feature
+#     # for i, cn in enumerate(df[raw_features_names]):
+#     #     fig_name = '%sraw_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
+#     #     if not os.path.isfile(fig_name):
+#     #         sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
+#     #         sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
+#     #         plt.legend()
+#     #         plt.savefig(fig_name)
+#     #         plt.close()
+#
+#     # Plot a correlation heatmap of all features, including the label
+#     fig_name = '%sraw_corr_heatmap_%s.png' % (result_figures_path, file_name)
+#     if not os.path.isfile(fig_name):
+#         corr = df.corr()
+#         fig, ax = plt.subplots(figsize=(15,10))
+#         sns_plot = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values, ax=ax, center=0,
+#                                cmap="seismic")
+#         figure = sns_plot.get_figure()
+#         figure.savefig(fig_name, dpi=400)
+#         plt.close()
+#
+#     # Create scatter and histogram to show the relationship of interesting features (selected from heatmap)
+#     fig_name = '%sraw_pairplot_%s.png' % (result_figures_path, file_name)
+#     if not os.path.isfile(fig_name):
+#         plot_features = ['Dur','Proto','Dir','Sport','State','TotPkts','TotBytes']
+#         sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
+#         sns_plot.savefig(fig_name)
+#         plt.close()
+# raw_eda_file.close()
 
 # agg data
 agg_path = os.path.join('data/ctu_13/agg_pkl/')
@@ -266,16 +267,16 @@ for sample_file in file_list:
     #     print('###', cn, file=agg_eda_file)
     #     print(best_dist_fitting, file=agg_eda_file)
     #     agg_eda_file.flush()
-    #
-    # # Plot the distribution of each feature
-    # for i, cn in enumerate(df[agg_features_names]):
-    #     fig_name = '%sagg_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
-    #     if not os.path.isfile(fig_name):
-    #         sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
-    #         sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
-    #         plt.legend()
-    #         plt.savefig(fig_name)
-    #         plt.close()
+
+    # Plot the distribution of each feature
+    for i, cn in enumerate(df[agg_features_names]):
+        fig_name = '%sagg_distplot_%s_%s.png' % (result_figures_path, file_name,cn)
+        if not os.path.isfile(fig_name):
+            sns.distplot(df[cn][df.Label == 1], bins=10, label='anomaly', color='r')
+            sns.distplot(df[cn][df.Label == 0], bins=10, label='normal', color='b')
+            plt.legend()
+            plt.savefig(fig_name)
+            plt.close()
 
     # Plot a correlation heatmap of all features, including the label
     fig_name = '%sagg_corr_heatmap_%s.png' % (result_figures_path, file_name)
@@ -291,8 +292,8 @@ for sample_file in file_list:
     # Create scatter and histogram to show the relationship of interesting features (selected from heatmap)
     fig_name = '%sagg_pairplot_%s.png' % (result_figures_path, file_name)
     if not os.path.isfile(fig_name):
-        plot_features = ['flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-                         'n_s_na_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024']
+        plot_features = ['background_flow_count', 'normal_flow_count', 'avg_duration', 'n_dports<1024', 'n_sports<1024',
+                'n_s_a_p_address', 'n_s_b_p_address', 'n_s_c_p_address', 'n_s_na_p_address']
         sns_plot = sns.pairplot(df, vars=plot_features, hue='Label')
         sns_plot.savefig(fig_name)
         plt.close()

@@ -46,16 +46,6 @@ def ctu13_data_cleasing(m_df):
     print('### Data Cleasing and Feature Engineering')
     label_encoder = preprocessing.LabelEncoder()
 
-    # # dropping ipv6 and icmp
-    # try:
-    #     print('dropping ipv6 and icmp')
-    #     m_df = m_df[m_df.Proto != 'ipv6']
-    #     m_df = m_df[m_df.Proto != 'ipv6-icmp']
-    #     m_df = m_df[m_df.Proto != 'icmp']
-    #     gc.collect()
-    # except:
-    #     print(">>> Unexpected error:", sys.exc_info()[0])
-
     try:
         print('Proto')
         m_df['Proto'] = m_df['Proto'].fillna('-')
@@ -247,27 +237,25 @@ def data_splitting20(df, drop_features):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting34(df, drop_features):
-    # Data splitting
+def data_splitting34(df, m_col_list):
 
-    # drop non discriminant features
-    df['PktsRate'] = df.TotPkts / df.Dur
-    df['BytesRate'] = df.TotBytes / df.Dur
-    df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
 
-    df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
-    df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
-    df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
 
-    df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
-    df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
-    df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
-
-    df['PktsRate'] = df['PktsRate'].fillna(-1)
-    df['BytesRate'] = df['BytesRate'].fillna(-1)
-    df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
-
-    df.drop(drop_features, axis=1, inplace=True)
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
 
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
@@ -309,20 +297,34 @@ def data_splitting34(df, drop_features):
     # save labels and drop label from data
     cv_label = cv_df["Label"]
     test_label = test_df["Label"]
-    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
-    cv_df = cv_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
 
+    norm_train_df = norm_train_df[m_col_list]
+    cv_df = cv_df[m_col_list]
+    test_df = test_df[m_col_list]
     gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting40(df, drop_features):
-    # Data splitting
+def data_splitting40(df, m_col_list):
 
-    # drop non discriminant features
-    df.drop(drop_features, axis=1, inplace=True)
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
 
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
@@ -364,20 +366,34 @@ def data_splitting40(df, drop_features):
     # save labels and drop label from data
     cv_label = cv_df["Label"]
     test_label = test_df["Label"]
-    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
-    cv_df = cv_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
 
+    norm_train_df = norm_train_df[m_col_list]
+    cv_df = cv_df[m_col_list]
+    test_df = test_df[m_col_list]
     gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting50(df, drop_features):
-    # Data splitting
+def data_splitting50(df, m_col_list):
 
-    # drop non discriminant features
-    df.drop(drop_features, axis=1, inplace=True)
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
 
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
@@ -419,19 +435,34 @@ def data_splitting50(df, drop_features):
     # save labels and drop label from data
     cv_label = cv_df["Label"]
     test_label = test_df["Label"]
-    norm_train_df = norm_train_df.drop(labels=["Label"], axis=1)
-    cv_df = cv_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
 
+    norm_train_df = norm_train_df[m_col_list]
+    cv_df = cv_df[m_col_list]
+    test_df = test_df[m_col_list]
     gc.collect()
 
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def unsupervised_data_splitting(df, drop_features):
+def unsupervised_data_splitting(df, m_col_list):
 
-    # drop non discriminant features
-    df.drop(drop_features, axis=1, inplace=True)
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
 
     # split into normal and anomaly
     df_l1 = df[df["Label"] == 1]
@@ -451,28 +482,29 @@ def unsupervised_data_splitting(df, drop_features):
     anom_test_df = df_l1[anom_test_start:anom_len]
     gc.collect()
 
-    # normal split data
+    # training with normal and anomalous data
     norm_train_df = df_l0[:norm_train_end]
     norm_test_df = df_l0[norm_test_start:norm_len]
     gc.collect()
 
-    # CV and test data. train data is norm_train_df
+    # testing with normal and anomalous data
     train_df = pd.concat([norm_train_df, anom_train_df], axis=0)
     test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
     gc.collect()
 
     # Sort data by index
-    train_df = norm_train_df.sort_index()
+    train_df = train_df.sort_index()
     test_df = test_df.sort_index()
     gc.collect()
 
     # save labels and drop label from data
     train_label_df = train_df["Label"]
     test_label_df = test_df["Label"]
-    train_df = train_df.drop(labels=["Label"], axis=1)
-    test_df = test_df.drop(labels=["Label"], axis=1)
 
+    train_df = train_df[m_col_list]
+    test_df = test_df[m_col_list]
     gc.collect()
+
     return train_df, train_label_df, test_df, test_label_df
 
 

@@ -1,5 +1,5 @@
 Contamiantion: Calculated
-    ######################### ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes']
+    ######################### ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes'] Training: 50%
         ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_location_contamination - F1: 0.232020
         ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_skewness_contamination - F1: 0.000293
         ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_kurtosis_contamination - F1: 0.004345
@@ -39,10 +39,115 @@ Contamiantion: Calculated
         ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_location_contamination - F1: 0.003720
         ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_skewness_contamination - F1: 0.001845
         ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_kurtosis_contamination - F1: 0.019373
-
-    ######################### ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate']
-
-
+    ######################### ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] Training: 50%
+        ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_location_contamination - F1: 0.003808
+        ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_skewness_contamination - F1: 0.002734
+        ../data/ctu_13/raw_clean_pkl/capture20110810.binetflow - predict_by_kurtosis_contamination - F1: 0.002685
+        ../data/ctu_13/raw_clean_pkl/capture20110811.binetflow - predict_by_location_contamination - F1: 0.002579
+        ../data/ctu_13/raw_clean_pkl/capture20110811.binetflow - predict_by_skewness_contamination - F1: 0.000860
+        ../data/ctu_13/raw_clean_pkl/capture20110811.binetflow - predict_by_kurtosis_contamination - F1: 0.002197
+        ../data/ctu_13/raw_clean_pkl/capture20110812.binetflow - predict_by_location_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110812.binetflow - predict_by_skewness_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110812.binetflow - predict_by_kurtosis_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110815.binetflow - predict_by_location_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110815.binetflow - predict_by_skewness_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110815.binetflow - predict_by_kurtosis_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow - predict_by_location_contamination - F1: 0.008869
+        ../data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow - predict_by_skewness_contamination - F1: 0.008869
+        ../data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow - predict_by_kurtosis_contamination - F1: 0.050998
+        ../data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow - predict_by_location_contamination - F1: 0.004500
+        ../data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow - predict_by_skewness_contamination - F1: 0.004650
+        ../data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow - predict_by_kurtosis_contamination - F1: 0.004650
+        ../data/ctu_13/raw_clean_pkl/capture20110816.binetflow - predict_by_location_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816.binetflow - predict_by_skewness_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816.binetflow - predict_by_kurtosis_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow - predict_by_location_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow - predict_by_skewness_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow - predict_by_kurtosis_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow - predict_by_location_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow - predict_by_skewness_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow - predict_by_kurtosis_contamination - F1: 0.000000
+        ../data/ctu_13/raw_clean_pkl/capture20110817.binetflow - predict_by_location_contamination - F1: 0.434417
+        ../data/ctu_13/raw_clean_pkl/capture20110817.binetflow - predict_by_skewness_contamination - F1: 0.185536
+        ../data/ctu_13/raw_clean_pkl/capture20110817.binetflow - predict_by_kurtosis_contamination - F1: 0.074643
+        ../data/ctu_13/raw_clean_pkl/capture20110818.binetflow - predict_by_location_contamination - F1: 0.911377
+        ../data/ctu_13/raw_clean_pkl/capture20110818.binetflow - predict_by_skewness_contamination - F1: 0.880585
+        ../data/ctu_13/raw_clean_pkl/capture20110818.binetflow - predict_by_kurtosis_contamination - F1: 0.907776
+        ../data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow - predict_by_location_contamination - F1: 0.902254
+        ../data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow - predict_by_skewness_contamination - F1: 0.943655
+        ../data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow - predict_by_kurtosis_contamination - F1: 0.891720
+        ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_location_contamination - F1: 0.002768
+        ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_skewness_contamination - F1: 0.002768
+        ../data/ctu_13/raw_clean_pkl/capture20110819.binetflow - predict_by_kurtosis_contamination - F1: 0.011070
+    ######################### ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] Training: 34%
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow
+        ### Cross-Validation. Contamination: 0.0008232638427831629
+        b'capture20110816-2.binetflow' - md_rpca_prediction - F1: 0.000000
+        b'capture20110816-2.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110816-2.binetflow' - kd_rpca_prediction - F1: 0.000000
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818.binetflow
+        ### Cross-Validation. Contamination: 0.11808558123421917
+        b'capture20110818.binetflow' - md_rpca_prediction - F1: 0.894009
+        b'capture20110818.binetflow' - sd_rpca_prediction - F1: 0.867889
+        b'capture20110818.binetflow' - kd_rpca_prediction - F1: 0.881843
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow
+        ### Cross-Validation. Contamination: 0.010465846454403795
+        b'capture20110815-2.binetflow' - md_rpca_prediction - F1: 0.008889
+        b'capture20110815-2.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110815-2.binetflow' - kd_rpca_prediction - F1: 0.013333
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow
+        ### Cross-Validation. Contamination: 0.003138525477080464
+        b'capture20110816-3.binetflow' - md_rpca_prediction - F1: 0.000000
+        b'capture20110816-3.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110816-3.binetflow' - kd_rpca_prediction - F1: 0.000000
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110810.binetflow
+        ### Cross-Validation. Contamination: 0.021808299932275007
+        b'capture20110810.binetflow' - md_rpca_prediction - F1: 0.002930
+        b'capture20110810.binetflow' - sd_rpca_prediction - F1: 0.002295
+        b'capture20110810.binetflow' - kd_rpca_prediction - F1: 0.002734
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow
+        ### Cross-Validation. Contamination: 0.031149402194988622
+        b'capture20110815-3.binetflow' - md_rpca_prediction - F1: 0.003350
+        b'capture20110815-3.binetflow' - sd_rpca_prediction - F1: 0.004400
+        b'capture20110815-3.binetflow' - kd_rpca_prediction - F1: 0.004600
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815.binetflow
+        ### Cross-Validation. Contamination: 0.0034800967623490786
+        b'capture20110815.binetflow' - md_rpca_prediction - F1: 0.000000
+        b'capture20110815.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110815.binetflow' - kd_rpca_prediction - F1: 0.000000
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110811.binetflow
+        ### Cross-Validation. Contamination: 0.01744305185101268
+        b'capture20110811.binetflow' - md_rpca_prediction - F1: 0.002006
+        b'capture20110811.binetflow' - sd_rpca_prediction - F1: 0.001051
+        b'capture20110811.binetflow' - kd_rpca_prediction - F1: 0.000860
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow
+        ### Cross-Validation. Contamination: 0.1109600587291661
+        b'capture20110818-2.binetflow' - md_rpca_prediction - F1: 0.894879
+        b'capture20110818-2.binetflow' - sd_rpca_prediction - F1: 0.919481
+        b'capture20110818-2.binetflow' - kd_rpca_prediction - F1: 0.891448
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110817.binetflow
+        ### Cross-Validation. Contamination: 0.12840471787695537
+        b'capture20110817.binetflow' - md_rpca_prediction - F1: 0.377347
+        b'capture20110817.binetflow' - sd_rpca_prediction - F1: 0.016531
+        b'capture20110817.binetflow' - kd_rpca_prediction - F1: 0.037030
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110819.binetflow
+        ### Cross-Validation. Contamination: 0.010048992317113908
+        b'capture20110819.binetflow' - md_rpca_prediction - F1: 0.001847
+        b'capture20110819.binetflow' - sd_rpca_prediction - F1: 0.002770
+        b'capture20110819.binetflow' - kd_rpca_prediction - F1: 0.005540
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110812.binetflow
+        ### Cross-Validation. Contamination: 0.008601287050156215
+        b'capture20110812.binetflow' - md_rpca_prediction - F1: 0.000000
+        b'capture20110812.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110812.binetflow' - kd_rpca_prediction - F1: 0.000000
+        ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816.binetflow
+        ### Cross-Validation. Contamination: 0.012492644240372728
+        b'capture20110816.binetflow' - md_rpca_prediction - F1: 0.000000
+        b'capture20110816.binetflow' - sd_rpca_prediction - F1: 0.000000
+        b'capture20110816.binetflow' - kd_rpca_prediction - F1: 0.000000
+        l_mean: 0.16809659530087176
+        s_mean: 0.1395705067154511
+        k_mean: 0.14133755526740133
     ######################### ['n_dports>1024', 'flow_count','background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
         ../data/ctu_13/agg_pkl/0.25s_10.pk1 - predict_by_location_contamination - F1: 0.553934
         ../data/ctu_13/agg_pkl/0.25s_10.pk1 - predict_by_skewness_contamination - F1: 0.971605
@@ -335,39 +440,39 @@ Contamiantion: Calculated
         ../data/ctu_13/agg_pkl/2s_11.pk1 - predict_by_location_contamination - F1: 0.524729
         ../data/ctu_13/agg_pkl/2s_11.pk1 - predict_by_skewness_contamination - F1: 0.705066
         ../data/ctu_13/agg_pkl/2s_11.pk1 - predict_by_kurtosis_contamination - F1: 0.658022
-        ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_location_contamination - F1: 0.265113
-        ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_skewness_contamination - F1: 0.291163
-        ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_kurtosis_contamination - F1: 0.315219
-        ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_location_contamination - F1: 0.228972
-        ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_skewness_contamination - F1: 0.217290
-        ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_kurtosis_contamination - F1: 0.184579
+                    ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_location_contamination - F1: 0.265113
+                    ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_skewness_contamination - F1: 0.291163
+                    ../data/ctu_13/agg_pkl/2s_12.pk1 - predict_by_kurtosis_contamination - F1: 0.315219
+                    ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_location_contamination - F1: 0.228972
+                    ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_skewness_contamination - F1: 0.217290
+                    ../data/ctu_13/agg_pkl/2s_15.pk1 - predict_by_kurtosis_contamination - F1: 0.184579
         ../data/ctu_13/agg_pkl/2s_15-2.pk1 - predict_by_location_contamination - F1: 0.698565
         ../data/ctu_13/agg_pkl/2s_15-2.pk1 - predict_by_skewness_contamination - F1: 0.617225
         ../data/ctu_13/agg_pkl/2s_15-2.pk1 - predict_by_kurtosis_contamination - F1: 0.645933
         ../data/ctu_13/agg_pkl/2s_15-3.pk1 - predict_by_location_contamination - F1: 0.899636
         ../data/ctu_13/agg_pkl/2s_15-3.pk1 - predict_by_skewness_contamination - F1: 0.900215
         ../data/ctu_13/agg_pkl/2s_15-3.pk1 - predict_by_kurtosis_contamination - F1: 0.901291
-        ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_location_contamination - F1: 0.268041
-        ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_skewness_contamination - F1: 0.371134
-        ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_kurtosis_contamination - F1: 0.384021
-        ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_location_contamination - F1: 0.222222
-        ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_skewness_contamination - F1: 0.222222
-        ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_kurtosis_contamination - F1: 0.111111
-        ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_location_contamination - F1: 0.120869
-        ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_skewness_contamination - F1: 0.077432
-        ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_kurtosis_contamination - F1: 0.082153
+                    ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_location_contamination - F1: 0.268041
+                    ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_skewness_contamination - F1: 0.371134
+                    ../data/ctu_13/agg_pkl/2s_16.pk1 - predict_by_kurtosis_contamination - F1: 0.384021
+                    ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_location_contamination - F1: 0.222222
+                    ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_skewness_contamination - F1: 0.222222
+                    ../data/ctu_13/agg_pkl/2s_16-2.pk1 - predict_by_kurtosis_contamination - F1: 0.111111
+                    ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_location_contamination - F1: 0.120869
+                    ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_skewness_contamination - F1: 0.077432
+                    ../data/ctu_13/agg_pkl/2s_16-3.pk1 - predict_by_kurtosis_contamination - F1: 0.082153
         ../data/ctu_13/agg_pkl/2s_17.pk1 - predict_by_location_contamination - F1: 0.825997
         ../data/ctu_13/agg_pkl/2s_17.pk1 - predict_by_skewness_contamination - F1: 0.647841
         ../data/ctu_13/agg_pkl/2s_17.pk1 - predict_by_kurtosis_contamination - F1: 0.725498
-        ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_location_contamination - F1: 0.557471
-        ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_skewness_contamination - F1: 0.471264
-        ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_kurtosis_contamination - F1: 0.327586
-        ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_location_contamination - F1: 0.529412
-        ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_skewness_contamination - F1: 0.500000
-        ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_kurtosis_contamination - F1: 0.529412
-        ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_location_contamination - F1: 0.308057
-        ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_skewness_contamination - F1: 0.341232
-        ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_kurtosis_contamination - F1: 0.312796
+                    ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_location_contamination - F1: 0.557471
+                    ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_skewness_contamination - F1: 0.471264
+                    ../data/ctu_13/agg_pkl/2s_18.pk1 - predict_by_kurtosis_contamination - F1: 0.327586
+                    ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_location_contamination - F1: 0.529412
+                    ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_skewness_contamination - F1: 0.500000
+                    ../data/ctu_13/agg_pkl/2s_18-2.pk1 - predict_by_kurtosis_contamination - F1: 0.529412
+                    ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_location_contamination - F1: 0.308057
+                    ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_skewness_contamination - F1: 0.341232
+                    ../data/ctu_13/agg_pkl/2s_19.pk1 - predict_by_kurtosis_contamination - F1: 0.312796
 
 =============================================================================================================================================================================================================================
 

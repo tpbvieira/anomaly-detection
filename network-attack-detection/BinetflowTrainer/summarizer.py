@@ -11,24 +11,6 @@ class Summarizer:
             'mdn_duration': 0,
             'p95_duration': 0,
             'p05_duration': 0,
-            'avg_tot_pkts': 0,
-            'std_tot_pkts': 0,
-            'mdn_tot_pkts': 0,
-            'p95_tot_pkts': 0,
-            'p05_tot_pkts': 0,
-            'avg_tot_bytes': 0,
-            'std_tot_bytes': 0,
-            'mdn_tot_bytes': 0,
-            'p95_tot_bytes': 0,
-            'p05_tot_bytes': 0,
-            'avg_src_bytes': 0,
-            'std_src_bytes': 0,
-            'mdn_src_bytes': 0,
-            'p95_src_bytes': 0,
-            'p05_src_bytes': 0,
-            'PktsRate': 0,
-            'BytesRate': 0,
-            'MeanPktsRate': 0,
             'n_udp': 0,
             'n_tcp': 0,
             'n_icmp': 0,
@@ -44,7 +26,6 @@ class Summarizer:
             'n_d_b_p_address': 0,
             'n_d_c_p_address': 0,
             'n_d_na_p_address': 0,
-            'flow_count': 0,
             'normal_flow_count': 0,
             'background_flow_count': 0
         }
@@ -99,8 +80,6 @@ class Summarizer:
         elif 'Background' in item['label']:
             self.data['background_flow_count'] += 1
 
-        self.data['flow_count'] += 1
-
         # 'n_s_a_p_address','n_d_a_p_address','n_s_b_p_address','n_d_b_p_address','n_s_c_p_address','n_d_c_p_address',
         # 'n_s_na_p_address','n_d_na_p_address'
         self.data['n_s_%s_p_address' % classify(item['srcaddr'])] += 1
@@ -113,30 +92,6 @@ class Summarizer:
             self.data['avg_duration'] = statistics.mean(self.dur_list)
             self.data['p95_duration'] = np.percentile(self.dur_list, 95)
             self.data['p05_duration'] = np.percentile(self.dur_list, 5)
-
-        self.totPkts_list.append(float(item['totpkts']))
-        if len(self.totPkts_list) > 2:
-            self.data['mdn_tot_pkts'] = statistics.median(self.totPkts_list)
-            self.data['std_tot_pkts'] = statistics.stdev(self.totPkts_list)
-            self.data['avg_tot_pkts'] = statistics.mean(self.totPkts_list)
-            self.data['p95_tot_pkts'] = np.percentile(self.totPkts_list, 95)
-            self.data['p05_tot_pkts'] = np.percentile(self.totPkts_list, 5)
-
-        self.totBytes_list.append(float(item['totbytes']))
-        if len(self.totBytes_list) > 2:
-            self.data['mdn_tot_bytes'] = statistics.median(self.totBytes_list)
-            self.data['std_tot_bytes'] = statistics.stdev(self.totBytes_list)
-            self.data['avg_tot_pkts'] = statistics.mean(self.totBytes_list)
-            self.data['p95_tot_bytes'] = np.percentile(self.totBytes_list, 95)
-            self.data['p05_tot_bytes'] = np.percentile(self.totBytes_list, 5)
-
-        self.srcBytes_list.append(float(item['srcbytes']))
-        if len(self.srcBytes_list) > 2:
-            self.data['mdn_src_bytes'] = statistics.median(self.srcBytes_list)
-            self.data['std_src_bytes'] = statistics.stdev(self.srcBytes_list)
-            self.data['avg_src_bytes'] = statistics.mean(self.srcBytes_list)
-            self.data['p95_src_bytes'] = np.percentile(self.srcBytes_list, 95)
-            self.data['p05_src_bytes'] = np.percentile(self.srcBytes_list, 5)
 
 
 def classify(ip):

@@ -115,12 +115,10 @@ def get_files_with_bot(bot):
 
 
 def get_feature_order():
-    # 19 features
-    return ['n_dports>1024', 'flow_count','background_flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 
-            'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 
-            'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 
-            'n_d_b_p_address', 'n_tcp']
-
+    return ['n_conn', 'avg_duration', 'std_duration', 'mdn_duration', 'p95_duration', 'p05_duration', 'n_udp',
+            'n_tcp', 'n_icmp', 'n_sports>1024', 'n_sports<1024', 'n_dports>1024', 'n_dports<1024', 'n_s_a_p_address',
+            'n_s_b_p_address', 'n_s_c_p_address', 'n_s_na_p_address', 'n_d_a_p_address', 'n_d_b_p_address',
+            'n_d_c_p_address', 'n_d_na_p_address', 'normal_flow_count', 'background_flow_count']
 
 def get_v2_order():
     # 22 features
