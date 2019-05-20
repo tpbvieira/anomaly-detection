@@ -178,7 +178,7 @@ def ctu13_data_cleasing(m_df):
     return m_df
 
 
-def data_splitting20(df, drop_features):
+def data_splitting_20_40_40(df, drop_features):
     # Data splitting
 
     # drop non discriminant features
@@ -237,7 +237,7 @@ def data_splitting20(df, drop_features):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting34(df, m_col_list):
+def data_splitting_34_33_33(df, m_col_list):
 
     if 'PktsRate' in m_col_list:
         df['PktsRate'] = df.TotPkts / df.Dur
@@ -306,7 +306,7 @@ def data_splitting34(df, m_col_list):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting40(df, m_col_list):
+def data_splitting_40_30_30(df, m_col_list):
 
     if 'PktsRate' in m_col_list:
         df['PktsRate'] = df.TotPkts / df.Dur
@@ -375,7 +375,7 @@ def data_splitting40(df, m_col_list):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def data_splitting50(df, m_col_list):
+def data_splitting_60_20_20(df, m_col_list):
 
     if 'PktsRate' in m_col_list:
         df['PktsRate'] = df.TotPkts / df.Dur
@@ -444,7 +444,76 @@ def data_splitting50(df, m_col_list):
     return norm_train_df, cv_df, test_df, cv_label, test_label
 
 
-def unsupervised_data_splitting(df, m_col_list):
+def data_splitting_80_10_10(df, m_col_list):
+
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
+
+    # split into normal and anomaly
+    df_l1 = df[df["Label"] == 1]
+    df_l0 = df[df["Label"] == 0]
+    gc.collect()
+
+    # Length and indexes
+    anom_len = len(df_l1)                           # total number of anomalous flows
+    anom_train_end = anom_len // 2                  # 50% of anomalous for training
+    anom_cv_start = anom_train_end + 1              # 50% of anomalous for testing
+    norm_len = len(df_l0)                           # total number of normal flows
+    norm_train_end = (norm_len * 80) // 100         # 80% of normal for training
+    norm_cv_start = norm_train_end + 1              # 10% of normal for cross validation
+    norm_cv_end = (norm_len * 90) // 100            # 10% of normal for cross validation
+    norm_test_start = norm_cv_end + 1               # 10% of normal for testing
+
+    # anomalies split data
+    anom_cv_df = df_l1[:anom_train_end]             # 50% of anomalies59452
+    anom_test_df = df_l1[anom_cv_start:anom_len]    # 50% of anomalies
+    gc.collect()
+
+    # normal split data
+    norm_train_df = df_l0[:norm_train_end]          # 80% of normal
+    norm_cv_df = df_l0[norm_cv_start:norm_cv_end]   # 10% of normal
+    norm_test_df = df_l0[norm_test_start:norm_len]  # 10% of normal
+    gc.collect()
+
+    # CV and test data. train data is norm_train_df
+    cv_df = pd.concat([norm_cv_df, anom_cv_df], axis=0)
+    test_df = pd.concat([norm_test_df, anom_test_df], axis=0)
+    gc.collect()
+
+    # Sort data by index
+    norm_train_df = norm_train_df.sort_index()
+    cv_df = cv_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    cv_label = cv_df["Label"]
+    test_label = test_df["Label"]
+
+    norm_train_df = norm_train_df[m_col_list]
+    cv_df = cv_df[m_col_list]
+    test_df = test_df[m_col_list]
+    gc.collect()
+
+    return norm_train_df, cv_df, test_df, cv_label, test_label
+
+
+def data_splitting_50_50(df, m_col_list):
 
     if 'PktsRate' in m_col_list:
         df['PktsRate'] = df.TotPkts / df.Dur
