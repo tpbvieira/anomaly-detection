@@ -13,8 +13,7 @@ import sys
 
 # temporary solution for relative imports in case pyod is not installed
 # if pyod is installed, no need to use the following line
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname("__file__"), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname("__file__"), '..')))
 
 # supress warnings for clean output
 import warnings
@@ -39,8 +38,7 @@ from pyod.models.ocsvm import OCSVM
 from pyod.models.pca import PCA
 from pyod.models.sos import SOS
 from pyod.models.lscp import LSCP
-from botnet_detection_utils import data_splitting, unsupervised_data_splitting, drop_agg_features, get_classification_report, data_cleasing, column_types
-
+from botnet_detection_utils import data_splitting_60_20_20, get_classification_report
 
 raw_path = os.path.join('../../data/ctu_13/agg_pkl/0.15/')
 raw_directory = os.fsencode(raw_path)

@@ -72,8 +72,12 @@ for sample_file in file_list:
     # Cross-Validation for best_contamination
     test_label_vc = test_label_df.value_counts()
     ones = test_label_vc.get(1)
+    if ones == 0:
+        continue
     zeros = test_label_vc.get(0)
     best_contamination = ones/(ones + zeros)
+    if best_contamination > 0.5:
+        best_contamination = 0.5
     print('### Cross-Validation. Contamination:', best_contamination)
 
     # Testing md-rpca
