@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import f1_score
 from moment_rpca import fit, md_rpca_prediction, sd_rpca_prediction, kd_rpca_prediction
-from botnet_detection_utils import data_splitting50, ctu13_data_cleasing, ctu13_raw_column_types
+from botnet_detection_utils import data_splitting_80_10_10, ctu13_data_cleasing, ctu13_raw_column_types
 warnings.filterwarnings("ignore")
 
 # # Agg_2s_F1: 0.8601/0.7559
@@ -64,7 +64,7 @@ for sample_file in file_list:
     gc.collect()
 
     # data splitting
-    norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting50(df, col_list)
+    norm_train_df, cv_df, test_df, cv_label_df, test_label_df = data_splitting_80_10_10(df, col_list)
 
     # Train
     L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(
@@ -73,8 +73,12 @@ for sample_file in file_list:
     # Cross-Validation for best_contamination
     test_label_vc = test_label_df.value_counts()
     ones = test_label_vc.get(1)
+    if ones == 0:
+        continue
     zeros = test_label_vc.get(0)
     best_contamination = ones/(ones + zeros)
+    if best_contamination > 0.5:
+        best_contamination = 0.5
     print('### Cross-Validation. Contamination:', best_contamination)
 
     # Testing md-rpca
