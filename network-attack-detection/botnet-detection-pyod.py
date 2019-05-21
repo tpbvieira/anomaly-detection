@@ -42,11 +42,13 @@ from pyod.models.lscp import LSCP
 from botnet_detection_utils import data_splitting_50_25, get_classification_report
 
 
-col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration']
+# col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration']
+
+col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate']
 
 raw_path = os.path.join('data/ctu_13/agg_pkl/0.15/')
 raw_directory = os.fsencode(raw_path)
-pkl_path = os.path.join('data/ctu_13/agg_pkl/0.15/')
+pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
