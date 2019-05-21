@@ -34,7 +34,7 @@ warnings.filterwarnings("ignore")
 # col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes',
 #             'PktsRate', 'BytesRate', 'MeanPktsRate']
 
-col_list = ['Dur', 'Dir', 'Dport', 'State', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate']
+col_list = ['Dur', 'Dir', 'Dport', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate']
 
 start_time = time.time()
 raw_path = os.path.join('data/ctu_13/raw_clean_pkl/')
