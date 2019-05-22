@@ -1,0 +1,142 @@
+## Sample File:  ../../data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+	Contamination: 0.7661089568672507
+	Contamination: 0.5
+	Number of inliers: 41778
+	Number of outliers: 41778
+	Ground truth shape is (83556,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.5906725596072244 , Recall: 0.470794994766688 , Precision: 0.7924533263213253
+	2 fitting Average KNN
+	### F1: 0.5483962589519384 , Recall: 0.4222736006748629 , Precision: 0.7819433596574966
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.550646903896803 , Recall: 0.44745598550294474 , Precision: 0.715699257889608
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.4744259908687885 , Recall: 0.39202974395825846 , Precision: 0.6006749964095935
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.6788253536041147 , Recall: 0.5608079608829456 , Precision: 0.8597533229553347
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.4545755309998015 , Recall: 0.37562682580100915 , Precision: 0.5755421513715353
+	7 fitting Locally Selective Combination (LSCP)
+	### F1: 0.562225752761386 , Recall: 0.4643744239451361 , Precision: 0.7123241714792361
+
+## Sample File:  ../../data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+	Contamination: 0.7570090786979261
+	Contamination: 0.5
+	Number of inliers: 52485
+	Number of outliers: 52485
+	Ground truth shape is (104971,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.3718544237476345 , Recall: 0.29920467129769457 , Precision: 0.49109761639195276
+	2 fitting Average KNN
+	### F1: 0.3479889230085616 , Recall: 0.27594885734420616 , Precision: 0.4709318557653072
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.5689824928463739 , Recall: 0.46543088694251483 , Precision: 0.7317965967550455
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.4089155658625681 , Recall: 0.3394996476391825 , Precision: 0.5140135276745736
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.5779050996976105 , Recall: 0.47980217456961644 , Precision: 0.7264361246070306
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.410870866774284 , Recall: 0.34112302426255914 , Precision: 0.5164713727731733
+	7 fitting Locally Selective Combination (LSCP)
+
+### F1: 0.6161012343762129 , Recall: 0.4993456156246854 , Precision: 0.804117861630122
+	## Sample File:  ../../data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv
+	Contamination: 0.02531254027580874
+	Number of inliers: 37813
+	Number of outliers: 982
+	Ground truth shape is (38795,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.002206287920573635 , Recall: 0.002036659877800407 , Precision: 0.0024067388688327317
+	2 fitting Average KNN
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.047520661157024795 , Recall: 0.04684317718940937 , Precision: 0.04821802935010482
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.020376974019358125 , Recall: 0.020366598778004074 , Precision: 0.020387359836901122
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.016293279022403257 , Recall: 0.016293279022403257 , Precision: 0.016293279022403257
+	7 fitting Locally Selective Combination (LSCP)
+
+### F1: 0.022437531871494137 , Recall: 0.02240325865580448 , Precision: 0.02247191011235955
+	## Sample File:  ../../data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+	Contamination: 0.0002944742768058202
+	Number of inliers: 57713
+	Number of outliers: 17
+	Ground truth shape is (57730,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.14814814814814817 , Recall: 0.11764705882352941 , Precision: 0.2
+	2 fitting Average KNN
+	### F1: 0.14814814814814817 , Recall: 0.11764705882352941 , Precision: 0.2
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	7 fitting Locally Selective Combination (LSCP)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+
+## Sample File:  ../../data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+	Contamination: 0.03135978805505961
+	Number of inliers: 33637
+	Number of outliers: 1089
+	Ground truth shape is (34726,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.003956478733926806 , Recall: 0.0036730945821854912 , Precision: 0.004287245444801715
+	2 fitting Average KNN
+	### F1: 0.0042395336512983575 , Recall: 0.0036730945821854912 , Precision: 0.005012531328320802
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.00557361820715281 , Recall: 0.005509641873278237 , Precision: 0.005639097744360902
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.013818516812528788 , Recall: 0.013774104683195593 , Precision: 0.013863216266173753
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.015610651974288337 , Recall: 0.015610651974288337 , Precision: 0.015610651974288337
+	7 fitting Locally Selective Combination (LSCP)
+	### F1: 0.045977011494252866 , Recall: 0.04591368227731864 , Precision: 0.04604051565377532
+
+## Sample File:  ../../data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv
+	Contamination: 0.07411256709989178
+	Number of inliers: 86414
+	Number of outliers: 6917
+	Ground truth shape is (93331,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.4821205668551289 , Recall: 0.474627728784155 , Precision: 0.4898537749925395
+	2 fitting Average KNN
+	### F1: 0.4651478575739288 , Recall: 0.4457134595923088 , Precision: 0.48635431456065625
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.05449146250927988 , Recall: 0.053057683967037736 , Precision: 0.05600488325957577
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.5019517131704496 , Recall: 0.5019517131704496 , Precision: 0.5019517131704496
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.01648113343935232 , Recall: 0.01648113343935232 , Precision: 0.01648113343935232
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.34147751915570335 , Recall: 0.34147751915570335 , Precision: 0.34147751915570335
+	7 fitting Locally Selective Combination (LSCP)
+	### F1: 0.11810909090909091 , Recall: 0.11739193291889548 , Precision: 0.11883506512512805
+
+## Sample File:  ../../data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv
+	Contamination: 0.5894112652269048
+	Contamination: 0.5
+	Number of inliers: 107170
+	Number of outliers: 107170
+	Ground truth shape is (214341,). Outlier are 1 and inliers are 0.
+	1 fitting K Nearest Neighbors (KNN)
+	### F1: 0.6966211171496535 , Recall: 0.635144655083706 , Precision: 0.7712736814787047
+	2 fitting Average KNN
+	### F1: 0.7052697998067343 , Recall: 0.632587960580995 , Precision: 0.7968214086304538
+	3 fitting Local Outlier Factor (LOF)
+	### F1: 0.4920550663093042 , Recall: 0.44757984723156685 , Precision: 0.546344338483241
+	4 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.7186710405728333 , Recall: 0.6641627419163335 , Precision: 0.7829263513450467
+	5 fitting One-class SVM (OCSVM)
+	### F1: 0.47738349136195835 , Recall: 0.4411683223176475 , Precision: 0.5200761428424795
+	6 fitting Principal Component Analysis (PCA)
+	### F1: 0.6896469026359179 , Recall: 0.6373372382950093 , Precision: 0.7513110012130261
+	7 fitting Locally Selective Combination (LSCP)
+	### F1: 0.6146064865374156 , Recall: 0.56797403728183 , Precision: 0.6695812026426785

@@ -1,0 +1,22 @@
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.153243
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.153243
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.153243
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.070365
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.073197
+data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.071497
+data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.011552
+data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.011552
+data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.011552
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.005652
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.005652
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.005652
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.010171
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.010171
+data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.006916
+data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.200655
+data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.215579
+data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.201429
+data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv - predict_by_location_contamination - F1: 0.270505
+data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv - predict_by_skewness_contamination - F1: 0.270505
+data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv - predict_by_kurtosis_contamination - F1: 0.270477
+--- Tempo de execução 5048.021739959717 segundos ---

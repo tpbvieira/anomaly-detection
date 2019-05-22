@@ -1,136 +1,146 @@
 # coding=utf-8
+import os
+import gc
 import time
-import numpy as np
-from sklearn.metrics import f1_score
-from algorithms import fit, cv_skewness_contamination, predict_by_skewness_contamination
-from data_processing import get_dataset, split_dataset
 import warnings
+import numpy as np
+import pandas as pd
+from sklearn.metrics import f1_score
+from moment_rpca import fit, md_rpca_prediction, sd_rpca_prediction, kd_rpca_prediction
+from botnet_detection_utils import data_splitting_50_25, ctu13_data_cleasing, ctu13_raw_column_types
 warnings.filterwarnings("ignore")
 
-result_file_path = 'moment_rpca.txt'
+result_file_path = 'm_rpca_cv.txt'
 result_file = open(result_file_path, 'w') # 'w' = clear all and write
+col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 
+            'PktsRate', 'BytesRate', 'MeanPktsRate']
 
+raw_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
+raw_directory = os.fsencode(raw_path)
+pkl_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
+pkl_directory = os.fsencode(pkl_path)
+file_list = os.listdir(pkl_directory)
+
+best_global_f1 = 0
+best_global_cols = None
+best_global_alg = None
 start_time = time.time()
-prefixes = ['0.15']
-for prefix in prefixes:
-    print('### Dataset Version: %s' % prefix, file=result_file)
-    result_file.flush()
-    dataset_list, files_list = get_dataset(prefix)
-    pre_processed_dataset = split_dataset(dataset_list)
+while len(col_list) > 2:
+    best_f1 = 0
+    best_cols = None
+    best_alg = None
+    for col in col_list:
+        md_f1_list = []
+        sd_f1_list = []
+        kd_f1_list = []
+        n_col_list = col_list.copy()
+        n_col_list.remove(col)
 
-    col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address',
-                'n_sports<1024', 'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address',
-                'n_d_a_p_address', 'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024',
-                'n_d_b_p_address', 'n_tcp']
+        for sample_file in file_list:
 
-    best_global_f1 = 0
-    best_global_cols = None
-    best_global_alg = None
-    while len(col_list) > 2:
-        best_f1 = 0
-        best_cols = None
-        best_alg = None
-        for col in col_list:
-            l_f1_list = []
-            s_f1_list = []
-            k_f1_list = []
-            n_col_list = col_list.copy()
-            n_col_list.remove(col)
-            num_datasets = len(dataset_list)
-            for dataset in range(num_datasets):
-                raw_train_df = pre_processed_dataset['training'][dataset]
-                raw_cv_df = pre_processed_dataset['cross_validation'][dataset]
-                raw_test_df = pre_processed_dataset['testing'][dataset]
+            # read pickle file with pandas or...
+            pkl_file_path = os.path.join(pkl_directory, sample_file).decode('utf-8')
+            if os.path.isfile(pkl_file_path):
+                # print("## Sample File: ", pkl_file_path, file=result_file)
+                df = pd.read_pickle(pkl_file_path)
+            else:  # load raw file and save clean data into pickles
+                raw_file_path = os.path.join(raw_directory, sample_file).decode('utf-8')
+                # print("## Sample File: ", raw_file_path, file=result_file)
+                raw_df = pd.read_csv(raw_file_path, header=0, dtype=ctu13_raw_column_types)
+                df = ctu13_data_cleasing(raw_df)
+                df.to_pickle(pkl_file_path)
+            gc.collect()
 
-                actual_labels = np.array(raw_test_df['Label'])
-                file_name = files_list[dataset].name.replace('/', '').replace('.', '')
+            # data splitting
+            norm_train_df, test_df, test_label_df = data_splitting_50_25(df, col_list)
 
-                cv_labels = raw_cv_df['Label']
-                test_labels = raw_test_df['Label']
+            # Train
+            L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(
+                np.array(norm_train_df, dtype=float))
 
-                raw_train_df = raw_train_df.drop(['Label'], axis=1)
-                raw_cv_df = raw_cv_df.drop(['Label'], axis=1)
-                raw_test_df = raw_test_df.drop(['Label'], axis=1)
+            # Cross-Validation for best_contamination
+            test_label_vc = test_label_df.value_counts()
+            ones = test_label_vc.get(1)
+            if ones == 0:
+                continue
+            zeros = test_label_vc.get(0)
+            best_contamination = ones / (ones + zeros)
+            if best_contamination > 0.5:
+                best_contamination = 0.5
+            # print('### Cross-Validation. Contamination:', best_contamination, file=result_file)
 
-                training_df = raw_train_df[n_col_list]
-                cv_df = raw_cv_df[n_col_list]
-                testing_df = raw_test_df[n_col_list]
+            # Testing md-rpca
+            md_pred_label = md_rpca_prediction(test_df, rob_mean, rob_precision, best_contamination)
+            m_f1 = f1_score(test_label_df, md_pred_label)
+            md_f1_list.append(m_f1)
+            # print('%s - md_rpca_prediction - F1: %f' % (sample_file, m_f1), file=result_file)
+            result_file.flush()
 
-                # Training
-                L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(np.array(training_df, dtype=float))
+            # # Testing sd-rpca
+            # sd_pred_label = sd_rpca_prediction(test_df, rob_skew, rob_precision, best_contamination)
+            # s_f1 = f1_score(test_label_df, sd_pred_label)
+            # sd_f1_list.append(s_f1)
+            # # print('%s - sd_rpca_prediction - F1: %f' % (sample_file, s_f1), file=result_file)
+            # result_file.flush()
+            #
+            # # Testing kd-rpca
+            # kd_pred_label = kd_rpca_prediction(test_df, rob_kurt, rob_precision, best_contamination)
+            # k_f1 = f1_score(test_label_df, kd_pred_label)
+            # kd_f1_list.append(k_f1)
+            # # print('%s - kd_rpca_prediction - F1: %f' % (sample_file, k_f1), file=result_file)
+            # result_file.flush()
 
-                # # Location CV and prediction
-                # best_contamination = cv_location_contamination(cv_df, cv_labels, rob_mean, rob_precision)
-                # pred_label = predict_by_location_contamination(testing_df, rob_mean, rob_precision, best_contamination)
-                # l_f1 = f1_score(actual_labels, pred_label)
-                # l_f1_list.append(l_f1)
-                # result_file.flush()
-
-                # Skewness CV and prediction
-                best_contamination = cv_skewness_contamination(cv_df, cv_labels, rob_skew, rob_precision)
-                pred_label = predict_by_skewness_contamination(testing_df, rob_precision, rob_skew, best_contamination)
-                s_f1 = f1_score(actual_labels, pred_label)
-                s_f1_list.append(s_f1)
-                result_file.flush()
-
-                # # Kurtosis CV and prediction
-                # best_contamination = cv_kurtosis_contamination(cv_df, cv_labels, rob_kurt, rob_precision)
-                # pred_label = predict_by_kurtosis_contamination(testing_df, rob_precision, rob_kurt, best_contamination)
-                # k_f1 = f1_score(actual_labels, pred_label)
-                # k_f1_list.append(k_f1)
-                # result_file.flush()
-
-            # l_f1 = np.mean(l_f1_list)
-            # if l_f1 > best_f1:
-            #     best_f1 = np.mean(l_f1_list)
-            #     best_cols = n_col_list.copy()
-            #     best_alg = 'l-rpca'
-            s_f1 = np.mean(s_f1_list)
-            if s_f1 > best_f1:
-                best_f1 = np.mean(s_f1_list)
+            md_f1 = np.mean(md_f1_list)
+            if md_f1 > best_f1:
+                best_f1 = md_f1
                 best_cols = n_col_list.copy()
-                best_alg = 's-rpca'
-            # k_f1_list = np.mean(k_f1_list)
-            # if k_f1_list > best_f1:
-            #     best_f1 = np.mean(k_f1_list)
+                best_alg = 'md-rpca'
+            # sd_f1 = np.mean(sd_f1_list)
+            # if sd_f1 > best_f1:
+            #     best_f1 = sd_f1
             #     best_cols = n_col_list.copy()
-            #     best_alg = 'k-rpca'
+            #     best_alg = 'sd-rpca'
+            # kd_f1 = np.mean(kd_f1_list)
+            # if kd_f1 > best_f1:
+            #     best_f1 = kd_f1
+            #     best_cols = n_col_list.copy()
+            #     best_alg = 'kd-rpca'
 
-            print(n_col_list, s_f1, file=result_file)
-        print('### :', prefix, best_f1, best_alg, best_cols, file=result_file)
+        print(n_col_list, md_f1, file=result_file)
+    print('### :', best_f1, best_alg, best_cols, file=result_file)
 
-        col_list = best_cols
-        if best_f1 >= best_global_f1:
-            best_global_f1 = best_f1
-            best_global_cols = best_cols.copy()
-            print('### Improved_Global_Mean:',prefix, best_global_f1, best_alg, best_global_cols, file=result_file)
+    col_list = best_cols
+    if best_f1 >= best_global_f1:
+        best_global_f1 = best_f1
+        best_global_cols = best_cols.copy()
+        print('### Improved_Global_Mean:', best_global_f1, best_alg, best_global_cols, file=result_file)
 
-        # # test ROBPCA-AO from saved files
-        # robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/ctu_13/results/m-rpca_r/robpca_k19_%s_test_df' % file_name
-        # if os.path.isfile(robpca_result_file):
-        #     # print(robpca_result_file)
-        #     robpca_test_pred = pd.read_csv(robpca_result_file, header=None)
-        #     robpca_test_pred = robpca_test_pred[0]
-        #
-        #     robpca_test_pred[robpca_test_pred == True] = -1
-        #     robpca_test_pred[robpca_test_pred == False] = 0
-        #     robpca_test_pred[robpca_test_pred == -1] = 1
-        #     print('%s - robpca_k19_%s_test_df - F1: %f' % (
-        #         files_list[dataset].name, file_name, f1_score(test_labels, robpca_test_pred)))
+    # # test ROBPCA-AO from saved files
+    # robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/ctu_13/results/m-rpca_r/robpca_k19_%s_test_df' % file_name
+    # if os.path.isfile(robpca_result_file):
+    #     # print(robpca_result_file)
+    #     robpca_test_pred = pd.read_csv(robpca_result_file, header=None)
+    #     robpca_test_pred = robpca_test_pred[0]
+    #
+    #     robpca_test_pred[robpca_test_pred == True] = -1
+    #     robpca_test_pred[robpca_test_pred == False] = 0
+    #     robpca_test_pred[robpca_test_pred == -1] = 1
+    #     print('%s - robpca_k19_%s_test_df - F1: %f' % (
+    #         files_list[dataset].name, file_name, f1_score(test_labels, robpca_test_pred)))
 
-                # # Save Confusion Matrix
-                # conf_matrix = plot_confusion_matrix(actual_labels, pred_label,
-                #                                     np.array(['Normal Traffic', 'Anomaly']),
-                #                                     normalize=True, title='Normalized confusion matrix')
-                # np.set_printoptions(precision=2)
-                # plt.savefig('plots/confusion_matrices/%s/%s' % (prefix, file_name))
-                # plt.close()
-                # # Save precision-recall curve
-                # precision, recall, threshold = precision_recall_curve(actual_labels, pred_label)
-                # fig, ax = plt.subplots()
-                # ax.set(title='Precision-Recall Curve', ylabel='Recall', xlabel='Precision')
-                # plt.plot(precision, recall, marker='.')
-                # plt.savefig('plots/precision_recall_curve/%s/%s' % (prefix, file_name))
-                # plt.close()
-    print("--- Tempo de execução %s segundos ---" % (time.time() - start_time), file=result_file)
+            # # Save Confusion Matrix
+            # conf_matrix = plot_confusion_matrix(actual_labels, pred_label,
+            #                                     np.array(['Normal Traffic', 'Anomaly']),
+            #                                     normalize=True, title='Normalized confusion matrix')
+            # np.set_printoptions(precision=2)
+            # plt.savefig('plots/confusion_matrices/%s/%s' % (prefix, file_name))
+            # plt.close()
+            # # Save precision-recall curve
+            # precision, recall, threshold = precision_recall_curve(actual_labels, pred_label)
+            # fig, ax = plt.subplots()
+            # ax.set(title='Precision-Recall Curve', ylabel='Recall', xlabel='Precision')
+            # plt.plot(precision, recall, marker='.')
+            # plt.savefig('plots/precision_recall_curve/%s/%s' % (prefix, file_name))
+            # plt.close()
+print("--- Tempo de execução %s segundos ---" % (time.time() - start_time), file=result_file)
 result_file.close()

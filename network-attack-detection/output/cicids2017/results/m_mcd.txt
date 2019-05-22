@@ -1,0 +1,75 @@
+####################[]_34
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.6650079473088231 , F1: 0.8056488525768203 , Alg: k-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.8725258931779483 , Recall: 0.8725258931779483 , Precision: 0.8725258931779483
+	###[k-mcd][ drop_features00 ] Test. F1: 0.8728539515410932 , Recall: 0.8728539515410932 , Precision: 0.8728539515410932
+	###[s-mcd][ drop_features00 ] Test. F1: 0.8725258931779483 , Recall: 0.8725258931779483 , Precision: 0.8725258931779483
+## Sample File:  data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.6537585046605952 , F1: 0.7436607311394953 , Alg: k-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.7590559306356927 , Recall: 0.7590607067351254 , Precision: 0.7590511545963632
+	###[k-mcd][ drop_features00 ] Test. F1: 0.7948706655173063 , Recall: 0.7948756669686903 , Precision: 0.7948656641288617
+	###[s-mcd][ drop_features00 ] Test. F1: 0.7590936833428764 , Recall: 0.759098459679855 , Precision: 0.7590889070660038
+## Sample File:  data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.015511092877205163 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.00018898828272647097 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.019261353596041704 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.04626755852842809 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.4976145727916727 , Recall: 0.4976145727916727 , Precision: 0.4976145727916727
+	###[k-mcd][ drop_features00 ] Test. F1: 0.4981568485724612 , Recall: 0.4981928581755096 , Precision: 0.49812084417461694
+	###[s-mcd][ drop_features00 ] Test. F1: 0.4975786049873509 , Recall: 0.4976145727916727 , Precision: 0.49754264238219137
+## Sample File:  data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.4652488537811412 , F1: 0.7028954533941236 , Alg: k-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.6989484349213008 , Recall: 0.6989512011714885 , Precision: 0.6989456686930091
+	###[k-mcd][ drop_features00 ] Test. F1: 0.6378887961024415 , Recall: 0.6378913206949777 , Precision: 0.6378862715298885
+	###[s-mcd][ drop_features00 ] Test. F1: 0.6970487313542115 , Recall: 0.6970514900858827 , Precision: 0.697045972644377
+--- 692.2646417617798 seconds ---
+
+####################[]_60
+C:\Users\tpbvieira\AppData\Local\Programs\Python\Python37\python.exe C:/_thiago/anomaly-detection/network-attack-detection/botnet-detection-c-mcd.py
+## Sample File:  data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.7661089568672507 , F1: 0.8865386718322841 , Alg: k-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.8774936341055724 , Recall: 0.8774936341055724 , Precision: 0.8774936341055724
+	###[k-mcd][ drop_features00 ] Test. F1: 0.8774936341055724 , Recall: 0.8774936341055724 , Precision: 0.8774936341055724
+	###[s-mcd][ drop_features00 ] Test. F1: 0.8774780122787559 , Recall: 0.8774780122787559 , Precision: 0.8774780122787559
+## Sample File:  data/cicids2017/raw/pkl/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.7570186051385621 , F1: 0.8295350154155918 , Alg: s-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.8301568624983483 , Recall: 0.8301620859760395 , Precision: 0.8301516390863902
+	###[k-mcd][ drop_features00 ] Test. F1: 0.8725224941798276 , Recall: 0.8725334742776604 , Precision: 0.872511514358342
+	###[s-mcd][ drop_features00 ] Test. F1: 0.832686293879657 , Recall: 0.8326915332729287 , Precision: 0.8326810545523187
+## Sample File:  data/cicids2017/raw/pkl/Friday-WorkingHours-Morning.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.025338316793401212 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.0003117962930885155 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.03138858492196049 , F1: 0.0 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[k-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+	###[s-mcd][ drop_features00 ] Test. F1: 0.0 , Recall: 0.0 , Precision: 0.0
+## Sample File:  data/cicids2017/raw/pkl/Tuesday-WorkingHours.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.07411256709989178 , F1: 0.5000722856729796 , Alg: mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.5019517131704496 , Recall: 0.5019517131704496 , Precision: 0.5019517131704496
+	###[k-mcd][ drop_features00 ] Test. F1: 0.502819141246205 , Recall: 0.502819141246205 , Precision: 0.502819141246205
+	###[s-mcd][ drop_features00 ] Test. F1: 0.5019517131704496 , Recall: 0.5019517131704496 , Precision: 0.5019517131704496
+## Sample File:  data/cicids2017/raw/pkl/Wednesday-workingHours.pcap_ISCX.csv
+###[m-mcd][ drop_features00 ] Cross-Validation. Contamination: 0.589415930689882 , F1: 0.8904954183589934 , Alg: s-mcd
+	###[mcd][ drop_features00 ] Test. F1: 0.8395106680228439 , Recall: 0.8395139905805992 , Precision: 0.8395073454913881
+	###[k-mcd][ drop_features00 ] Test. F1: 0.6803630016899446 , Recall: 0.6803656943839791 , Precision: 0.6803603090172239
+	###[s-mcd][ drop_features00 ] Test. F1: 0.8373418397837503 , Recall: 0.837345153757866 , Precision: 0.8373385258358662
+--- 2034.9046185016632 seconds ---
