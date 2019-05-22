@@ -12,12 +12,12 @@ warnings.filterwarnings("ignore")
 
 result_file_path = 'm_rpca_cv.txt'
 result_file = open(result_file_path, 'w') # 'w' = clear all and write
-col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 
+col_list = ['State', 'sTos', 'dTos', 'Proto', 'Dport', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes',
             'PktsRate', 'BytesRate', 'MeanPktsRate']
 
-raw_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
+raw_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 raw_directory = os.fsencode(raw_path)
-pkl_path = os.path.join('data/ctu_13/raw_clean_pkl_fast/')
+pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 pkl_directory = os.fsencode(pkl_path)
 file_list = os.listdir(pkl_directory)
 
