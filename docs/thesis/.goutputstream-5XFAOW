@@ -1,0 +1,76 @@
+\documentclass[en,oneside,onehalfspacing]{risethesis}
+
+\usepackage{natbib}
+\usepackage{babel}
+\usepackage{supertabular}
+\usepackage{fancybox}
+\usepackage{acronym}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{placeins}
+\usepackage{supertabular}
+\usepackage{longtable}
+\usepackage{mathtools}
+
+\usepackage{listings}
+
+\lstset{numbers=left,
+stepnumber=1,
+firstnumber=1,
+numberstyle=\tiny,
+extendedchars=true,
+breaklines=true,
+frame=tb,
+basicstyle=\footnotesize,
+stringstyle=\ttfamily,
+showstringspaces=false
+}
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{Lista de Listagens}
+
+\definecolor{lightgray}{gray}{0.8}
+
+\usepackage[linkcolor=blue,citecolor=blue,urlcolor=blue,colorlinks,pdfpagelabels,pdftitle={ycc-msc},pdfauthor={Francisco Airton Pereira da Silva}]{hyperref}
+
+\address{RECIFE}
+
+\universitypt{Universidade Federal de Pernambuco}
+\universityen{Federal University of Pernambuco}
+
+\departmentpt{Centro de Informática}
+\departmenten{Center for Informatics}
+
+\programpt{Pós-graduação em Ciência da Computação}
+\programen{Graduate in Computer Science}
+
+\majorfieldpt{Ciência da Computação}
+\majorfielden{Computer Science}
+
+\title{Proffiling Distributed Applications Through Network Traffic Analysis}
+\date{DEC/2012}
+
+\author{Thiago Pereira de brito Vieira}
+\adviser{Vinicius Cardoso Garcia}
+\coadviser{Stênio Flávio de Lacerda Fernandes}
+
+\begin{document}
+
+\frontmatter
+\frontpage
+\presentationpage
+
+\begin{dedicatory}
+I dedicate this dissertation to...
+\end{dedicatory}
+
+\acknowledgements
+I would like to thank...
+\ldots
+
+\begin{epigraph}[O gato é preto]{Thiago Vieira}
+All difficult things have their origin in that which is easy, and great things in that which is small. 

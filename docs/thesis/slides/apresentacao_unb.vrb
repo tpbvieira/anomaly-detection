@@ -1,0 +1,66 @@
+\frametitle{Fragile Frames Not a Problem}
+\begin{tikzpicture}
+\begin{axis}[
+            domain=0:6, range=0:7,
+            ymin=-.2,ymax=7,
+            width=\textwidth,
+            height=7cm, %% Hard coded height! Moreover this effects the aspect ratio of the zoom--sort of BAD
+            axis lines=none,
+          ]
+          \only<3->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(.8,1.6) (2.834,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(2.834,5) (4.166,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(1.2,1.6) (4.166,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(.8,1.6) (1.2,1.6)} \closedcycle; %% zoom fill
+  }
+          \only<4->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.3,3.6) (5.334,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(5.334,5) (6.666,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(3.7,3.6) (6.666,5)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(3.3,3.6) (3.7,3.6)} \closedcycle; %% zoom fill
+  }
+          \only<4->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.7,2.4) (6.666,1)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(3.3,2.4) (3.7,2.4)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(3.3,2.4) (5.334,1)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(5.334,1) (6.666,1)} \closedcycle; %% zoom fill
+ }
+
+          \only<3->{\addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(.8,.4) (2.834,1)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=\cnDarkGrey!10!\cnGrey] plot coordinates {(2.834,1) (4.166,1)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(1.2,.4) (4.166,1)} \closedcycle; %% zoom fill
+          \addplot [draw=none, fill=white] plot coordinates {(.8,.4) (1.2,.4)} \closedcycle; %% zoom fill
+}
+          \addplot[very thick,\cnRed, smooth,domain=(0:1.833)] {-1/(x-2)};
+          \only<3->{\addplot[very thick,\cnRed, smooth,domain=(2.834:4.166)] {3.333/(2.050-.3*x)-0.333}; %% 2.5 to 4.333
+          %\addplot[very thick,\cnRed, smooth,domain=(5.334:6.666)] {11.11/(1.540-.09*x)-8.109}; %% 5 to 6.833
+          \only<4->\addplot[very thick,\cnRed, smooth,domain=(5.334:6.666)] {x-3}; %% 5 to 6.833
+ }
+         \only<2->{ \addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(1,1)};}  %% point to be zoomed
+          \only<3->{\addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(3.5,3)}; } %% zoomed pt 1
+          \only<4->{\addplot[color=\cnRed,fill=\cnRed,only marks,mark=*] coordinates{(6,3)}; } %% zoomed pt 2
+
+          \addplot [->,\cnDarkGrey] plot coordinates {(0,0) (0,6)}; %% axis
+          \addplot [->,\cnDarkGrey] plot coordinates {(0,0) (2,0)}; %% axis
+
+          \only<2->{\addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,.4) (.8,1.6)}; %% box around pt
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(1.2,.4) (1.2,1.6)}; %% box around pt
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,1.6) (1.2,1.6)}; %% box around pt
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(.8,.4) (1.2,.4)}; %% box around pt
+ }
+          \only<3->{\addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,1) (2.834,5)}; %% zoomed box 1
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(4.166,1) (4.166,5)}; %% zoomed box 1
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,1) (4.166,1)}; %% zoomed box 1
+          \addplot [\cnDarkGrey!50!\cnGrey] plot coordinates {(2.834,5) (4.166,5)}; %% zoomed box 1
+}
+          \only<4->{\addplot [\cnDarkGrey] plot coordinates {(3.3,2.4) (3.3,3.6)}; %% box around zoomed pt
+          \addplot [\cnDarkGrey] plot coordinates {(3.7,2.4) (3.7,3.6)}; %% box around zoomed pt
+          \addplot [\cnDarkGrey] plot coordinates {(3.3,3.6) (3.7,3.6)}; %% box around zoomed pt
+          \addplot [\cnDarkGrey] plot coordinates {(3.3,2.4) (3.7,2.4)}; %% box around zoomed pt
+}
+          \only<4->{\addplot [\cnDarkGrey] plot coordinates {(5.334,1) (5.334,5)}; %% zoomed box 2
+          \addplot [\cnDarkGrey] plot coordinates {(6.666,1) (6.666,5)}; %% zoomed box 2
+          \addplot [\cnDarkGrey] plot coordinates {(5.334,1) (6.666,1)}; %% zoomed box 2
+          \addplot [\cnDarkGrey] plot coordinates {(5.334,5) (6.666,5)}; %% zoomed box 2
+}
+          \node at (axis cs:2.4,0) [anchor=east] {$x$};
+          \node at (axis cs:0,6.9) [anchor=north] {$y$};
+        \end{axis}
+\end{tikzpicture}
