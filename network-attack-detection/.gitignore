@@ -29,3 +29,6 @@ BinetflowTrainer/saved_data (copy)/
 output/ctu_13/results/.~*
 output/ctu_13/results/agg_dict_pkl/
 output/ctu_13/results/agg_robpca/
+
+m_rpca.txt
+m_rpca_cv.txt
