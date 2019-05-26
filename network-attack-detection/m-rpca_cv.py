@@ -30,9 +30,10 @@ while len(col_list) > 2:
     best_cols = None
     best_alg = None
     for col in col_list:
-        md_f1_list = []
-        sd_f1_list = []
-        kd_f1_list = []
+
+        col_list_md_f1 = []
+        col_list_sd_f1 = []
+        col_list_kd_f1 = []
         n_col_list = col_list.copy()
         n_col_list.remove(col)
 
@@ -52,7 +53,7 @@ while len(col_list) > 2:
             gc.collect()
 
             # data splitting
-            norm_train_df, test_df, test_label_df = data_splitting_50_25(df, col_list)
+            norm_train_df, test_df, test_label_df = data_splitting_50_25(df, n_col_list)
 
             # Train
             L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(
@@ -69,51 +70,57 @@ while len(col_list) > 2:
                 best_contamination = 0.5
             # print('### Cross-Validation. Contamination:', best_contamination, file=result_file)
 
-            # Testing md-rpca
-            md_pred_label = md_rpca_prediction(test_df, rob_mean, rob_precision, best_contamination)
-            m_f1 = f1_score(test_label_df, md_pred_label)
-            md_f1_list.append(m_f1)
-            # print('%s - md_rpca_prediction - F1: %f' % (sample_file, m_f1), file=result_file)
+            # # Testing md-rpca
+            # md_pred_label = md_rpca_prediction(test_df, rob_mean, rob_precision, best_contamination)
+            # sample_md_f1 = f1_score(test_label_df, md_pred_label)
+            # col_list_md_f1.append(sample_md_f1)
+            # # print('%s - md_rpca_prediction - F1: %f' % (sample_file, m_f1), file=result_file)
+            # result_file.flush()
+
+            # Testing sd-rpca
+            sd_pred_label = sd_rpca_prediction(test_df, rob_skew, rob_precision, best_contamination)
+            sample_sd_f1 = f1_score(test_label_df, sd_pred_label)
+            col_list_sd_f1.append(sample_sd_f1)
+            # print('%s - sd_rpca_prediction - F1: %f' % (sample_file, s_f1), file=result_file)
             result_file.flush()
 
-            # # Testing sd-rpca
-            # sd_pred_label = sd_rpca_prediction(test_df, rob_skew, rob_precision, best_contamination)
-            # s_f1 = f1_score(test_label_df, sd_pred_label)
-            # sd_f1_list.append(s_f1)
-            # # print('%s - sd_rpca_prediction - F1: %f' % (sample_file, s_f1), file=result_file)
-            # result_file.flush()
-            #
             # # Testing kd-rpca
             # kd_pred_label = kd_rpca_prediction(test_df, rob_kurt, rob_precision, best_contamination)
-            # k_f1 = f1_score(test_label_df, kd_pred_label)
-            # kd_f1_list.append(k_f1)
+            # sample_kd_f1 = f1_score(test_label_df, kd_pred_label)
+            # col_list_kd_f1.append(sample_kd_f1)
             # # print('%s - kd_rpca_prediction - F1: %f' % (sample_file, k_f1), file=result_file)
             # result_file.flush()
 
-            md_f1 = np.mean(md_f1_list)
-            if md_f1 > best_f1:
-                best_f1 = md_f1
-                best_cols = n_col_list.copy()
-                best_alg = 'md-rpca'
-            # sd_f1 = np.mean(sd_f1_list)
-            # if sd_f1 > best_f1:
-            #     best_f1 = sd_f1
-            #     best_cols = n_col_list.copy()
-            #     best_alg = 'sd-rpca'
-            # kd_f1 = np.mean(kd_f1_list)
-            # if kd_f1 > best_f1:
-            #     best_f1 = kd_f1
-            #     best_cols = n_col_list.copy()
-            #     best_alg = 'kd-rpca'
+        # col_list_md_f1 = np.mean(col_list_md_f1)
+        # if col_list_md_f1 > best_f1:
+        #     best_f1 = col_list_md_f1
+        #     best_cols = n_col_list.copy()
+        #     best_alg = 'md-rpca'
 
-        print(n_col_list, md_f1, file=result_file)
+        col_list_sd_f1 = np.mean(col_list_sd_f1)
+        if col_list_sd_f1 > best_f1:
+            best_f1 = col_list_sd_f1
+            best_cols = n_col_list.copy()
+            best_alg = 'sd-rpca'
+
+        # col_list_kd_f1 = np.mean(col_list_kd_f1)
+        # if col_list_kd_f1 > best_f1:
+        #     best_f1 = col_list_kd_f1
+        #     best_cols = n_col_list.copy()
+        #     best_alg = 'kd-rpca'
+
+        print(n_col_list, np.mean(col_list_sd_f1), file=result_file)
+        result_file.flush()
+
     print('### :', best_f1, best_alg, best_cols, file=result_file)
+    result_file.flush()
 
     col_list = best_cols
     if best_f1 >= best_global_f1:
         best_global_f1 = best_f1
         best_global_cols = best_cols.copy()
-        print('### Improved_Global_Mean:', best_global_f1, best_alg, best_global_cols, file=result_file)
+        best_global_alg = best_alg
+        print('### Improved_Global_Mean:', best_global_f1, best_global_alg, best_global_cols, file=result_file)
 
     # # test ROBPCA-AO from saved files
     # robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/ctu_13/results/m-rpca_r/robpca_k19_%s_test_df' % file_name
