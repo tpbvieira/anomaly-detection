@@ -44,7 +44,7 @@ from botnet_detection_utils import data_splitting_50_25, get_classification_repo
 
 # col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration']
 
-col_list = ['State', 'dTos', 'Dport', 'Sport', 'Dir', 'TotPkts', 'TotBytes', 'SrcBytes']
+col_list = ['State', 'dTos', 'Dport', 'Sport', 'TotPkts', 'TotBytes', 'SrcBytes']
 
 raw_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 raw_directory = os.fsencode(raw_path)

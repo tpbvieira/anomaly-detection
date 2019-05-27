@@ -448,3 +448,391 @@
     9 fitting Local Outlier Factor (LOF) ### F1: 0.49386792452830186 , Recall: 0.48293357933579334 , Precision: 0.5053088803088803
     10 fitting Minimum Covariance Determinant (MCD) ### F1: 0.3219557195571956 , Recall: 0.3219557195571956 , Precision: 0.3219557195571956
     11 fitting Principal Component Analysis (PCA) ### F1: 0.5899446494464945 , Recall: 0.5899446494464945 , Precision: 0.5899446494464945
+
+
+
+['State', 'dTos', 'Dport', 'Sport', 'TotPkts', 'TotBytes', 'SrcBytes']
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 126
+	Number of outliers: 63
+	Ground truth shape is (189,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.2222222222222222 , Recall: 0.2222222222222222 , Precision: 0.2222222222222222
+	3 fitting Feature Bagging
+	### F1: 0.3548387096774194 , Recall: 0.3492063492063492 , Precision: 0.36065573770491804
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.576271186440678 , Recall: 0.5396825396825397 , Precision: 0.6181818181818182
+	5 fitting Isolation Forest
+	### F1: 0.3492063492063492 , Recall: 0.3492063492063492 , Precision: 0.3492063492063492
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.2542372881355932 , Recall: 0.23809523809523808 , Precision: 0.2727272727272727
+	7 fitting Average KNN
+	### F1: 0.2568807339449541 , Recall: 0.2222222222222222 , Precision: 0.30434782608695654
+	8 fitting Median KNN
+	### F1: 0.27522935779816515 , Recall: 0.23809523809523808 , Precision: 0.32608695652173914
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.384 , Recall: 0.38095238095238093 , Precision: 0.3870967741935484
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.5873015873015873 , Recall: 0.5873015873015873 , Precision: 0.5873015873015873
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.5079365079365079 , Recall: 0.5079365079365079 , Precision: 0.5079365079365079
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 212704
+	Number of outliers: 106352
+	Ground truth shape is (319056,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.05095891486563414 , Recall: 0.04881901609748759 , Precision: 0.053295011291315954
+	3 fitting Feature Bagging
+	### F1: 0.00734114861768749 , Recall: 0.0072307055814653225 , Precision: 0.007455017837753994
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.1665918381814315 , Recall: 0.09943395516774485 , Precision: 0.5132249454016016
+	5 fitting Isolation Forest
+	### F1: 0.12023281179479464 , Recall: 0.12023281179479464 , Precision: 0.12023281179479464
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.002471686636478619 , Recall: 0.002407100947795998 , Precision: 0.002539833720261127
+	7 fitting Average KNN
+	### F1: 0.002555499102053957 , Recall: 0.0023882954716413418 , Precision: 0.002747876886460756
+	8 fitting Median KNN
+	### F1: 0.0024691726778078124 , Recall: 0.0023318790431773734 , Precision: 0.0026236445384818833
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.004948366943380366 , Recall: 0.004870618324055965 , Precision: 0.005028637996311038
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.20772528960433279 , Recall: 0.20772528960433279 , Precision: 0.20772528960433279
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.8264884694535881 , Recall: 0.825109071761697 , Precision: 0.8278724869571781
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 1802
+	Number of outliers: 901
+	Ground truth shape is (2703,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.18312985571587126 , Recall: 0.18312985571587126 , Precision: 0.18312985571587126
+	3 fitting Feature Bagging
+	### F1: 0.1818181818181818 , Recall: 0.17647058823529413 , Precision: 0.1875
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.5213379469434833 , Recall: 0.5016648168701443 , Precision: 0.5426170468187275
+	5 fitting Isolation Forest
+	### F1: 0.4006659267480577 , Recall: 0.40066592674805773 , Precision: 0.40066592674805773
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.33587786259541985 , Recall: 0.3174250832408435 , Precision: 0.3566084788029925
+	7 fitting Average KNN
+	### F1: 0.3105134474327628 , Recall: 0.28190899001109876 , Precision: 0.345578231292517
+	8 fitting Median KNN
+	### F1: 0.3210900473933649 , Recall: 0.30077691453940064 , Precision: 0.3443456162642948
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.2988636363636364 , Recall: 0.29189789123196447 , Precision: 0.3061699650756694
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.7946725860155383 , Recall: 0.7946725860155383 , Precision: 0.7946725860155383
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.55826859045505 , Recall: 0.55826859045505 , Precision: 0.55826859045505
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 12254
+	Number of outliers: 6127
+	Ground truth shape is (18381,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.03998694303900767 , Recall: 0.03998694303900767 , Precision: 0.03998694303900767
+	3 fitting Feature Bagging
+	### F1: 0.2024534757573229 , Recall: 0.197976171046189 , Precision: 0.2071379781420765
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.7723663747237456 , Recall: 0.7700342745226049 , Precision: 0.774712643678161
+	5 fitting Isolation Forest
+	### F1: 0.34195026178010474 , Recall: 0.34111310592459604 , Precision: 0.3427915368213876
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.038762956096738854 , Recall: 0.037538762852945974 , Precision: 0.04006968641114982
+	7 fitting Average KNN
+	### F1: 0.034579018460153085 , Recall: 0.03133670638158968 , Precision: 0.038569706709521895
+	8 fitting Median KNN
+	### F1: 0.035619351408825085 , Recall: 0.0328056144932267 , Precision: 0.03896103896103896
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.2547897486937049 , Recall: 0.25069365105271746 , Precision: 0.2590219224283305
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.2053207116043741 , Recall: 0.2053207116043741 , Precision: 0.2053207116043741
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.7718296066590501 , Recall: 0.7718296066590501 , Precision: 0.7718296066590501
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110810.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 81922
+	Number of outliers: 40961
+	Ground truth shape is (122883,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.14161366327689134 , Recall: 0.14159810551500207 , Precision: 0.14162922445790194
+	3 fitting Feature Bagging
+	### F1: 0.13310669131605396 , Recall: 0.13095383413490883 , Precision: 0.13533151680290645
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.3759371788854073 , Recall: 0.3617343326578941 , Precision: 0.3913009031849152
+	5 fitting Isolation Forest
+	### F1: 0.36180757305729844 , Recall: 0.3618075730572984 , Precision: 0.3618075730572984
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.055712576070073586 , Recall: 0.053416664632211126 , Precision: 0.05821471331648264
+	7 fitting Average KNN
+	### F1: 0.05227903501280956 , Recall: 0.047825980811015356 , Precision: 0.05764647029397051
+	8 fitting Median KNN
+	### F1: 0.05020459553037457 , Recall: 0.046727374819950686 , Precision: 0.054240938589282174
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.15902489884070203 , Recall: 0.15639266619467299 , Precision: 0.16174725413457897
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.18700715314567515 , Recall: 0.18700715314567515 , Precision: 0.18700715314567515
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.3316569419691902 , Recall: 0.3316569419691902 , Precision: 0.3316569419691902
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 80006
+	Number of outliers: 40003
+	Ground truth shape is (120009,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.16643751718621103 , Recall: 0.16643751718621103 , Precision: 0.16643751718621103
+	3 fitting Feature Bagging
+	### F1: 0.20225666713520835 , Recall: 0.19783516236282278 , Precision: 0.20688032624039315
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.6671798611673825 , Recall: 0.6174786890983176 , Precision: 0.7255823517316335
+	5 fitting Isolation Forest
+	### F1: 0.44944185406952764 , Recall: 0.44939129565282604 , Precision: 0.4494924238635795
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.23424668048200167 , Recall: 0.22888283378746593 , Precision: 0.23986796258940032
+	7 fitting Average KNN
+	### F1: 0.23155921746261082 , Recall: 0.22235832312576556 , Precision: 0.2415544210297632
+	8 fitting Median KNN
+	### F1: 0.22785868216548033 , Recall: 0.2180586456015799 , Precision: 0.23858104042448444
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.22795345372344525 , Recall: 0.22183336249781266 , Precision: 0.2344208162726192
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.6239266027523969 , Recall: 0.6239032072594556 , Precision: 0.62395
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.6237032222583306 , Recall: 0.6237032222583306 , Precision: 0.6237032222583306
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 5160
+	Number of outliers: 2580
+	Ground truth shape is (7740,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.004263565891472868 , Recall: 0.004263565891472868 , Precision: 0.004263565891472868
+	3 fitting Feature Bagging
+	### F1: 0.19006479481641472 , Recall: 0.1875968992248062 , Precision: 0.19259848786311182
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.5392592592592592 , Recall: 0.4232558139534884 , Precision: 0.7428571428571429
+	5 fitting Isolation Forest
+	### F1: 0.2178716805582477 , Recall: 0.2178294573643411 , Precision: 0.2179139201240791
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.03394568690095847 , Recall: 0.03294573643410853 , Precision: 0.03500823723228995
+	7 fitting Average KNN
+	### F1: 0.030949393559180256 , Recall: 0.02868217054263566 , Precision: 0.03360581289736603
+	8 fitting Median KNN
+	### F1: 0.02991803278688525 , Recall: 0.028294573643410852 , Precision: 0.03173913043478261
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.17662132860240487 , Recall: 0.17364341085271318 , Precision: 0.17970316887284396
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.3484496124031008 , Recall: 0.3484496124031008 , Precision: 0.3484496124031008
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.6503875968992248 , Recall: 0.6503875968992248 , Precision: 0.6503875968992248
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110811.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 41882
+	Number of outliers: 20941
+	Ground truth shape is (62823,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.01141410764601939 , Recall: 0.011413017525428585 , Precision: 0.011415197974877013
+	3 fitting Feature Bagging
+	### F1: 0.16847457627118645 , Recall: 0.16613342247266127 , Precision: 0.17088265631907265
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.7686370391677453 , Recall: 0.7656272384317845 , Precision: 0.7716705972950859
+	5 fitting Isolation Forest
+	### F1: 0.3433865845213363 , Recall: 0.3433455899909269 , Precision: 0.3434275888421857
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.17295668549905838 , Recall: 0.16446206007353995 , Precision: 0.18237661512391443
+	7 fitting Average KNN
+	### F1: 0.1596823295830576 , Recall: 0.1440236855928561 , Precision: 0.1791612213377688
+	8 fitting Median KNN
+	### F1: 0.16988796605345546 , Recall: 0.15677379303758177 , Precision: 0.18539643099164219
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.14069284956093794 , Recall: 0.13924836445250943 , Precision: 0.1421676173760421
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.2965951960269328 , Recall: 0.2965951960269328 , Precision: 0.2965951960269328
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.6469914040114613 , Recall: 0.6469605080941694 , Precision: 0.6470223028797937
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 16328
+	Number of outliers: 8164
+	Ground truth shape is (24492,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.05793728564429202 , Recall: 0.057937285644292014 , Precision: 0.057937285644292014
+	3 fitting Feature Bagging
+	### F1: 0.044098411709747744 , Recall: 0.04336109750122489 , Precision: 0.044861234317576985
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.1639917695473251 , Recall: 0.09762371386575208 , Precision: 0.5122107969151671
+	5 fitting Isolation Forest
+	### F1: 0.16134873556041213 , Recall: 0.15825575698187164 , Precision: 0.1645650235638772
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.004741462164413404 , Recall: 0.004532092111709946 , Precision: 0.004971113798199651
+	7 fitting Average KNN
+	### F1: 0.004062838569880823 , Recall: 0.0036746692797648213 , Precision: 0.0045427013930950935
+	8 fitting Median KNN
+	### F1: 0.0026659557451346304 , Recall: 0.002449779519843214 , Precision: 0.0029239766081871343
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.04013961605584642 , Recall: 0.03944145026947575 , Precision: 0.04086294416243655
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.2072513473787359 , Recall: 0.2072513473787359 , Precision: 0.2072513473787359
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.015283628882139707 , Recall: 0.009554140127388535 , Precision: 0.0381791483113069
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110817.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 369974
+	Number of outliers: 184987
+	Ground truth shape is (554961,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.22663214171806667 , Recall: 0.22663214171806667 , Precision: 0.22663214171806667
+	3 fitting Feature Bagging
+	### F1: 0.2182252406896037 , Recall: 0.21338796780314293 , Precision: 0.2232869118595364
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.4266216126681244 , Recall: 0.41769421635033815 , Precision: 0.4359389545544303
+	5 fitting Isolation Forest
+	### F1: 0.41698605847978515 , Recall: 0.4169860584797851 , Precision: 0.4169860584797851
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.1283778109937356 , Recall: 0.12396546784368631 , Precision: 0.13311584654410782
+	7 fitting Average KNN
+	### F1: 0.12310996689959544 , Recall: 0.11309443366290604 , Precision: 0.13507179381230308
+	8 fitting Median KNN
+	### F1: 0.12448703175854611 , Recall: 0.11651088995442924 , Precision: 0.13363549559157253
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.24353719702158685 , Recall: 0.23833566683064214 , Precision: 0.2489708332156874
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.41570601097917953 , Recall: 0.41570488737046385 , Precision: 0.4157071345939693
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.3395644018228308 , Recall: 0.3395644018228308 , Precision: 0.3395644018228308
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110819.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 4336
+	Number of outliers: 2168
+	Ground truth shape is (6504,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.5138376383763837 , Recall: 0.5138376383763837 , Precision: 0.5138376383763837
+	3 fitting Feature Bagging
+	### F1: 0.43023798413439107 , Recall: 0.4252767527675277 , Precision: 0.43531633616619453
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.5137273150302466 , Recall: 0.5092250922509225 , Precision: 0.5183098591549296
+	5 fitting Isolation Forest
+	### F1: 0.46561604584527216 , Recall: 0.4497232472324723 , Precision: 0.48267326732673266
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.2446351931330472 , Recall: 0.23662361623616235 , Precision: 0.253208292201382
+	7 fitting Average KNN
+	### F1: 0.2226710426659934 , Recall: 0.20341328413284132 , Precision: 0.24595649749023982
+	8 fitting Median KNN
+	### F1: 0.2150698602794411 , Recall: 0.19880073800738007 , Precision: 0.23423913043478262
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.3870815652993871 , Recall: 0.378690036900369 , Precision: 0.3958534233365477
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.3695961995249406 , Recall: 0.35885608856088563 , Precision: 0.3809990205680705
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.6194649446494465 , Recall: 0.6194649446494465 , Precision: 0.6194649446494465
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110812.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 53644
+	Number of outliers: 26822
+	Ground truth shape is (80466,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.006301150239555563 , Recall: 0.006300797852509134 , Precision: 0.006301502666020358
+	3 fitting Feature Bagging
+	### F1: 0.13666863084263145 , Recall: 0.13403176496905525 , Precision: 0.13941133129096056
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.0015504877576070805 , Recall: 0.0008947878607113563 , Precision: 0.005802707930367505
+	5 fitting Isolation Forest
+	### F1: 0.09620404206130212 , Recall: 0.0961896950264708 , Precision: 0.09621839337659431
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.01858896427310875 , Recall: 0.017672060249049288 , Precision: 0.01960622104566512
+	7 fitting Average KNN
+	### F1: 0.01615582689592159 , Recall: 0.0145030199090299 , Precision: 0.0182338051935877
+	8 fitting Median KNN
+	### F1: 0.013861672064192745 , Recall: 0.012527030049958988 , Precision: 0.015514614212494806
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.13364990617699996 , Recall: 0.13011706807844306 , Precision: 0.13737994016690286
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.09525762433822982 , Recall: 0.09525762433822982 , Precision: 0.09525762433822982
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.6927651324497139 , Recall: 0.692752218328238 , Precision: 0.6927780470526826
+	## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816.binetflow
+	Contamination: 0.3333333333333333
+	Number of inliers: 9260
+	Number of outliers: 4630
+	Ground truth shape is (13890,). Outlier are 1 and inliers are 0.
+
+	1 fitting Angle-based Outlier Detector (ABOD)
+	Error!
+	2 fitting Cluster-based Local Outlier Factor (CBLOF)
+	### F1: 0.12289416846652268 , Recall: 0.12289416846652268 , Precision: 0.12289416846652268
+	3 fitting Feature Bagging
+	### F1: 0.2826566637246249 , Recall: 0.27667386609071276 , Precision: 0.2889039242219215
+	4 fitting Histogram-base Outlier Detection (HBOS)
+	### F1: 0.00038895371450797355 , Recall: 0.00021598272138228941 , Precision: 0.001953125
+	5 fitting Isolation Forest
+	### F1: 0.16946581428107055 , Recall: 0.16889848812095032 , Precision: 0.1700369645575125
+	6 fitting K Nearest Neighbors (KNN)
+	### F1: 0.01672800267648043 , Recall: 0.016198704103671708 , Precision: 0.01729305971869956
+	7 fitting Average KNN
+	### F1: 0.009337068160597572 , Recall: 0.008639308855291577 , Precision: 0.01015744032503809
+	8 fitting Median KNN
+	### F1: 0.010027347310847765 , Recall: 0.009503239740820735 , Precision: 0.010612638687891944
+	9 fitting Local Outlier Factor (LOF)
+	### F1: 0.29792376139734156 , Recall: 0.29287257019438445 , Precision: 0.30315224681421865
+	10 fitting Minimum Covariance Determinant (MCD)
+	### F1: 0.04989200863930886 , Recall: 0.04989200863930886 , Precision: 0.04989200863930886
+	11 fitting Principal Component Analysis (PCA)
+	### F1: 0.757451403887689 , Recall: 0.757451403887689 , Precision: 0.757451403887689
+
+	Process finished with exit code 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
