@@ -3,7 +3,7 @@
 %% RiSE's latex template for thesis and dissertations
 %% http://risetemplate.sourceforge.net
 %%
-%% (c) 2010 Yguaratã Cerqueira Cavalcanti (yguarata@gmail.com)
+%% (c) 2010 YguaratÃ£ Cerqueira Cavalcanti (yguarata@gmail.com)
 %%          Vinicius Cardoso Garcia (vinicius.garcia@gmail.com)
 %%
 %% This document was initially based on UFPEThesis template, from Paulo Gustavo
@@ -127,9 +127,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Language Independent
-% \gdef\@bachelordissertation{Trabalho de Graduação}
-% \gdef\@mastersdissertation{Dissertação de Mestrado}
-% \gdef\@phdqualifying{Monografia de Qualificação}
+% \gdef\@bachelordissertation{Trabalho de GraduaÃ§Ã£o}
+% \gdef\@mastersdissertation{DissertaÃ§Ã£o de Mestrado}
+% \gdef\@phdqualifying{Monografia de QualificaÃ§Ã£o}
 % \gdef\@phdproposal{Proposta de Tese de Doutorado}
 % \gdef\@phdthesis{Tese de Doutorado}
 % \gdef\@bachelordegree{Bacharel}
@@ -143,9 +143,9 @@
 
 % Portuguese
 \if\@language0
-  \gdef\@bachelordissertation{Trabalho de Graduação}
-  \gdef\@mastersdissertation{Dissertação de Mestrado}
-  \gdef\@phdqualifying{Monografia de Qualificação}
+  \gdef\@bachelordissertation{Trabalho de GraduaÃ§Ã£o}
+  \gdef\@mastersdissertation{DissertaÃ§Ã£o de Mestrado}
+  \gdef\@phdqualifying{Monografia de QualificaÃ§Ã£o}
   \gdef\@phdproposal{Proposta de Tese de Doutorado}
   \gdef\@phdthesis{Tese de Doutorado}
   \gdef\@bachelordegree{Bacharel}
@@ -155,26 +155,26 @@
   \gdef\@femaleadvisertitle{Orientadora}
   \gdef\@malecoadvisertitle{Co-Orientador}
   \gdef\@femalecoadvisertitle{Co-Orientadora}
-  \gdef\@notdefined{NÃO DEFINIDO}
+  \gdef\@notdefined{NÃƒO DEFINIDO}
   \gdef\acknowledgementsname{Agradecimentos}
   \gdef\agradecimentosname{Agradecimentos}
   \gdef\@axiomname{Axioma}
   \gdef\@conjecturename{Conjectura}
-  \gdef\@defname{Definição}
+  \gdef\@defname{DefiniÃ§Ã£o}
   \gdef\@lemmaname{Lema}
   \gdef\@theoname{Teorema}
-  \gdef\@propname{Proposição}
-  \gdef\@corname{Corolário}
+  \gdef\@propname{ProposiÃ§Ã£o}
+  \gdef\@corname{CorolÃ¡rio}
   \gdef\@proofname{Prova}
   \gdef\@figurename{Figura}
   \gdef\@tablename{Tabela}
-  \gdef\@equationame{equação}
-  \gdef\@chaptername{Capítulo}
+  \gdef\@equationame{equaÃ§Ã£o}
+  \gdef\@chaptername{CapÃ­tulo}
   \gdef\@textby{Por}
-  \gdef\@sectionname{Seção}
-  \gdef\@appendixname{Apêndice}
-  \gdef\@pagename{página}
-  \gdef\@listacronymname{Acrônimos}
+  \gdef\@sectionname{SeÃ§Ã£o}
+  \gdef\@appendixname{ApÃªndice}
+  \gdef\@pagename{pÃ¡gina}
+  \gdef\@listacronymname{AcrÃ´nimos}
   \gdef\@colophontext{%
   \urlstyle{rm}%
   Este volume foi tipografado em \LaTeX\ na classe \textsf{RiSEThesis}
@@ -186,7 +186,7 @@
   \else\if\@language1
   \gdef\@bachelordissertation{B.Sc. Dissertation}
   \gdef\@mastersdissertation{M.Sc. Dissertation}
-  \gdef\@phdqualifying{Ph.D. Thesis Qualification}
+  \gdef\@phdqualifying{Ph.D. Thesis}
   \gdef\@phdproposal{Ph.D. Proposal}
   \gdef\@phdthesis{Ph.D. Thesis}
   \gdef\@bachelordegree{Bachelor}
@@ -364,7 +364,7 @@
 \if\@language0
 Trabalho apresentado ao Programa de
 \@programpt\ do \if\@showdepartment1\@departmentpt\ \else\@institutept\ \fi
-da \@universitypt\ como requisito parcial para obtenção do
+da \@universitypt\ como requisito parcial para obtenÃ§Ã£o do
 grau de \@degree\ em \@majorfieldpt.
 \fi
 \if\@language1 %If language is English
@@ -810,7 +810,7 @@ requirements for the degree of \@degree\ in \@majorfielden.
 	{0pt}% Heading indent amount
 	{\bfseries}{.}% Heading font and punctuation after it
 	{1ex plus 0pt minus .2ex}% Space after heading 
-	{}% Head spec (empty = same as ‘plain’ style
+	{}% Head spec (empty = same as Â‘plainÂ’ style
 \theoremstyle{definition}
 \newtheorem{Def}{\@defname}[chapter]
 \theoremstyle{theo}
