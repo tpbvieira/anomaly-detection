@@ -7,34 +7,10 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import f1_score
 from moment_rpca import fit, md_rpca_prediction, sd_rpca_prediction, kd_rpca_prediction
-from botnet_detection_utils import data_splitting_50_25, ctu13_data_cleasing, ctu13_raw_column_types
+from botnet_detection_utils import data_splitting_50_10, ctu13_data_cleasing, ctu13_raw_column_types
 warnings.filterwarnings("ignore")
 
-# # Agg_2s_F1: 4621/0.4886
-# col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-#           'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
-#           'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp',
-#           'mdn_duration', 'p95_duration']
-
-# # Agg_2s_F1: 0.4649/0.4886
-# col_list = ['n_dports>1024', 'flow_count', 'n_s_a_p_address', 'avg_duration', 'n_s_b_p_address', 'n_sports<1024',
-#           'n_sports>1024', 'n_conn', 'n_s_na_p_address', 'n_udp', 'n_icmp', 'n_d_na_p_address', 'n_d_a_p_address',
-#           'n_s_c_p_address', 'n_d_c_p_address', 'normal_flow_count', 'n_dports<1024', 'n_d_b_p_address', 'n_tcp']
-
-# # Agg_2s_F1: 0.4910/0.4485
-# col_list = ['flow_count', 'n_s_a_p_address', 'n_s_b_p_address', 'n_s_c_p_address', 'n_s_na_p_address',
-#             'mdn_duration', 'p95_duration']
-
-# col_list = ['normal_flow_count', 'n_conn', 'mdn_duration', 'p95_duration', 'n_s_a_p_address', 'n_s_b_p_address',
-#             'std_duration', 'p05_duration', 'avg_duration']
-
-# col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address',
-#             'n_s_c_p_address', 'n_dports<1024', 'p95_duration']
-
-# col_list = ['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes',
-#             'PktsRate', 'BytesRate', 'MeanPktsRate']
-
-col_list = ['State', 'Sport', 'Dir', 'TotPkts', 'TotBytes', 'SrcBytes']
+col_list = ['State', 'dTos', 'Dport', 'Sport', 'TotPkts', 'TotBytes', 'SrcBytes']
 
 start_time = time.time()
 raw_path = os.path.join('data/ctu_13/raw_clean_pkl/')
@@ -63,11 +39,11 @@ for sample_file in file_list:
     gc.collect()
 
     # data splitting
-    norm_train_df, test_df, test_label_df = data_splitting_50_25(df, col_list)
+    norm_train_df, test_df, test_label_df = data_splitting_50_10(df, col_list)
 
     # Train
     L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(
-        np.array(norm_train_df, dtype=float))
+        np.array(test_df, dtype=float))
 
     # Cross-Validation for best_contamination
     test_label_vc = test_label_df.value_counts()

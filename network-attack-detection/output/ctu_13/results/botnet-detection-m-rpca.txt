@@ -1,489 +1,69 @@
-['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration']50_33
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_10.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_10.pk1' - md_rpca_prediction - F1: 0.396240
-    b'0.15s_10.pk1' - sd_rpca_prediction - F1: 0.280477
-    b'0.15s_10.pk1' - kd_rpca_prediction - F1: 0.286623
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_11.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_11.pk1' - md_rpca_prediction - F1: 0.344519
-    b'0.15s_11.pk1' - sd_rpca_prediction - F1: 0.346285
-    b'0.15s_11.pk1' - kd_rpca_prediction - F1: 0.341539
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_12.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_12.pk1' - md_rpca_prediction - F1: 0.382902
-    b'0.15s_12.pk1' - sd_rpca_prediction - F1: 0.456363
-    b'0.15s_12.pk1' - kd_rpca_prediction - F1: 0.151658
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-2.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_15-2.pk1' - md_rpca_prediction - F1: 0.345432
-    b'0.15s_15-2.pk1' - sd_rpca_prediction - F1: 0.324155
-    b'0.15s_15-2.pk1' - kd_rpca_prediction - F1: 0.324155
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-3.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_15-3.pk1' - md_rpca_prediction - F1: 0.399265
-    b'0.15s_15-3.pk1' - sd_rpca_prediction - F1: 0.328054
-    b'0.15s_15-3.pk1' - kd_rpca_prediction - F1: 0.326765
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_15.pk1' - md_rpca_prediction - F1: 0.280632
-    b'0.15s_15.pk1' - sd_rpca_prediction - F1: 0.251647
-    b'0.15s_15.pk1' - kd_rpca_prediction - F1: 0.252964
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-2.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_16-2.pk1' - md_rpca_prediction - F1: 0.464286
-    b'0.15s_16-2.pk1' - sd_rpca_prediction - F1: 0.464286
-    b'0.15s_16-2.pk1' - kd_rpca_prediction - F1: 0.428571
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-3.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_16-3.pk1' - md_rpca_prediction - F1: 0.340767
-    b'0.15s_16-3.pk1' - sd_rpca_prediction - F1: 0.359233
-    b'0.15s_16-3.pk1' - kd_rpca_prediction - F1: 0.346984
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_16.pk1' - md_rpca_prediction - F1: 0.322176
-    b'0.15s_16.pk1' - sd_rpca_prediction - F1: 0.352510
-    b'0.15s_16.pk1' - kd_rpca_prediction - F1: 0.413180
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_17.pk1
-    ### Cross-Validation. Contamination: 0.6502725199396977
-    b'0.15s_17.pk1' - md_rpca_prediction - F1: 0.663344
-    b'0.15s_17.pk1' - sd_rpca_prediction - F1: 0.637189
-    b'0.15s_17.pk1' - kd_rpca_prediction - F1: 0.667188
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18-2.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_18-2.pk1' - md_rpca_prediction - F1: 0.641441
-    b'0.15s_18-2.pk1' - sd_rpca_prediction - F1: 0.493694
-    b'0.15s_18-2.pk1' - kd_rpca_prediction - F1: 0.371171
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_18.pk1' - md_rpca_prediction - F1: 0.717517
-    b'0.15s_18.pk1' - sd_rpca_prediction - F1: 0.491345
-    b'0.15s_18.pk1' - kd_rpca_prediction - F1: 0.348719
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_19.pk1
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'0.15s_19.pk1' - md_rpca_prediction - F1: 0.425403
-    b'0.15s_19.pk1' - sd_rpca_prediction - F1: 0.484879
-    b'0.15s_19.pk1' - kd_rpca_prediction - F1: 0.473790
-    l_mean: 0.44030190908492595
-    s_mean: 0.4053936799375174
-    k_mean: 0.3641007062009192
-    --- 193.96669912338257 seconds ---
-['n_conn', 'mdn_duration', 'p95_duration', 'n_s_a_p_address', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024']80_10_10
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_10.pk1
-    ### Cross-Validation. Contamination: 0.34205709197051404
-    b'0.15s_10.pk1' - md_rpca_prediction - F1: 0.223170
-    b'0.15s_10.pk1' - sd_rpca_prediction - F1: 0.590396
-    b'0.15s_10.pk1' - kd_rpca_prediction - F1: 0.551200
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_11.pk1
-    ### Cross-Validation. Contamination: 0.3349852071005917
-    b'0.15s_11.pk1' - md_rpca_prediction - F1: 0.243100
-    b'0.15s_11.pk1' - sd_rpca_prediction - F1: 0.564363
-    b'0.15s_11.pk1' - kd_rpca_prediction - F1: 0.549349
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_12.pk1
-    ### Cross-Validation. Contamination: 0.10631746325539916
-    b'0.15s_12.pk1' - md_rpca_prediction - F1: 0.115296
-    b'0.15s_12.pk1' - sd_rpca_prediction - F1: 0.060403
-    b'0.15s_12.pk1' - kd_rpca_prediction - F1: 0.030570
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-2.pk1
-    ### Cross-Validation. Contamination: 0.2642384105960265
-    b'0.15s_15-2.pk1' - md_rpca_prediction - F1: 0.265664
-    b'0.15s_15-2.pk1' - sd_rpca_prediction - F1: 0.285714
-    b'0.15s_15-2.pk1' - kd_rpca_prediction - F1: 0.288221
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-3.pk1
-    ### Cross-Validation. Contamination: 0.33489300768408525
-    b'0.15s_15-3.pk1' - md_rpca_prediction - F1: 0.329118
-    b'0.15s_15-3.pk1' - sd_rpca_prediction - F1: 0.283800
-    b'0.15s_15-3.pk1' - kd_rpca_prediction - F1: 0.288294
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15.pk1
-    ### Cross-Validation. Contamination: 0.0716920457769791
-    b'0.15s_15.pk1' - md_rpca_prediction - F1: 0.081794
-    b'0.15s_15.pk1' - sd_rpca_prediction - F1: 0.093668
-    b'0.15s_15.pk1' - kd_rpca_prediction - F1: 0.062005
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-2.pk1
-    ### Cross-Validation. Contamination: 0.015606242496998799
-    b'0.15s_16-2.pk1' - md_rpca_prediction - F1: 0.000000
-    b'0.15s_16-2.pk1' - sd_rpca_prediction - F1: 0.076923
-    b'0.15s_16-2.pk1' - kd_rpca_prediction - F1: 0.153846
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-3.pk1
-    ### Cross-Validation. Contamination: 0.03218277301494681
-    b'0.15s_16-3.pk1' - md_rpca_prediction - F1: 0.013250
-    b'0.15s_16-3.pk1' - sd_rpca_prediction - F1: 0.042538
-    b'0.15s_16-3.pk1' - kd_rpca_prediction - F1: 0.043933
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16.pk1
-    ### Cross-Validation. Contamination: 0.08836606150426084
-    b'0.15s_16.pk1' - md_rpca_prediction - F1: 0.102725
-    b'0.15s_16.pk1' - sd_rpca_prediction - F1: 0.102725
-    b'0.15s_16.pk1' - kd_rpca_prediction - F1: 0.067086
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_17.pk1
-    ### Cross-Validation. Contamination: 0.7737335949957072
-    b'0.15s_17.pk1' - md_rpca_prediction - F1: 0.783934
-    b'0.15s_17.pk1' - sd_rpca_prediction - F1: 0.771767
-    b'0.15s_17.pk1' - kd_rpca_prediction - F1: 0.790473
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18-2.pk1
-    ### Cross-Validation. Contamination: 0.3398773006134969
-    b'0.15s_18-2.pk1' - md_rpca_prediction - F1: 0.794224
-    b'0.15s_18-2.pk1' - sd_rpca_prediction - F1: 0.765343
-    b'0.15s_18-2.pk1' - kd_rpca_prediction - F1: 0.696751
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18.pk1
-    ### Cross-Validation. Contamination: 0.17104951433309643
-    b'0.15s_18.pk1' - md_rpca_prediction - F1: 0.650508
-    b'0.15s_18.pk1' - sd_rpca_prediction - F1: 0.556325
-    b'0.15s_18.pk1' - kd_rpca_prediction - F1: 0.514312
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_19.pk1
-    ### Cross-Validation. Contamination: 0.14981840193704601
-    b'0.15s_19.pk1' - md_rpca_prediction - F1: 0.197980
-    b'0.15s_19.pk1' - sd_rpca_prediction - F1: 0.258586
-    b'0.15s_19.pk1' - kd_rpca_prediction - F1: 0.250505
-    l_mean: 0.2923663902544228
-    s_mean: 0.34250396940391814
-    k_mean: 0.3297341693168737
-['n_conn', 'mdn_duration', 'p95_duration', 'n_s_a_p_address', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024']40_30_30
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_10.pk1
-    ### Cross-Validation. Contamination: 0.14769401661931514
-    b'0.15s_10.pk1' - md_rpca_prediction - F1: 0.148250
-    b'0.15s_10.pk1' - sd_rpca_prediction - F1: 0.145791
-    b'0.15s_10.pk1' - kd_rpca_prediction - F1: 0.147816
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_11.pk1
-    ### Cross-Validation. Contamination: 0.1437686496095486
-    b'0.15s_11.pk1' - md_rpca_prediction - F1: 0.115036
-    b'0.15s_11.pk1' - sd_rpca_prediction - F1: 0.309119
-    b'0.15s_11.pk1' - kd_rpca_prediction - F1: 0.300066
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_12.pk1
-    ### Cross-Validation. Contamination: 0.03814252512752407
-    b'0.15s_12.pk1' - md_rpca_prediction - F1: 0.028250
-    b'0.15s_12.pk1' - sd_rpca_prediction - F1: 0.028963
-    b'0.15s_12.pk1' - kd_rpca_prediction - F1: 0.010060
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-2.pk1
-    ### Cross-Validation. Contamination: 0.1068559185859668
-    b'0.15s_15-2.pk1' - md_rpca_prediction - F1: 0.090226
-    b'0.15s_15-2.pk1' - sd_rpca_prediction - F1: 0.112782
-    b'0.15s_15-2.pk1' - kd_rpca_prediction - F1: 0.115288
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15-3.pk1
-    ### Cross-Validation. Contamination: 0.14371770570976033
-    b'0.15s_15-3.pk1' - md_rpca_prediction - F1: 0.148931
-    b'0.15s_15-3.pk1' - sd_rpca_prediction - F1: 0.166275
-    b'0.15s_15-3.pk1' - kd_rpca_prediction - F1: 0.119768
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_15.pk1
-    ### Cross-Validation. Contamination: 0.025096844684302885
-    b'0.15s_15.pk1' - md_rpca_prediction - F1: 0.019789
-    b'0.15s_15.pk1' - sd_rpca_prediction - F1: 0.014512
-    b'0.15s_15.pk1' - kd_rpca_prediction - F1: 0.013193
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-2.pk1
-    ### Cross-Validation. Contamination: 0.005254648342764754
-    b'0.15s_16-2.pk1' - md_rpca_prediction - F1: 0.000000
-    b'0.15s_16-2.pk1' - sd_rpca_prediction - F1: 0.000000
-    b'0.15s_16-2.pk1' - kd_rpca_prediction - F1: 0.000000
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16-3.pk1
-    ### Cross-Validation. Contamination: 0.010962716062596039
-    b'0.15s_16-3.pk1' - md_rpca_prediction - F1: 0.006974
-    b'0.15s_16-3.pk1' - sd_rpca_prediction - F1: 0.010460
-    b'0.15s_16-3.pk1' - kd_rpca_prediction - F1: 0.007671
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_16.pk1
-    ### Cross-Validation. Contamination: 0.031297158979069616
-    b'0.15s_16.pk1' - md_rpca_prediction - F1: 0.044025
-    b'0.15s_16.pk1' - sd_rpca_prediction - F1: 0.048218
-    b'0.15s_16.pk1' - kd_rpca_prediction - F1: 0.037736
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_17.pk1
-    ### Cross-Validation. Contamination: 0.5326789107029766
-    b'0.15s_17.pk1' - md_rpca_prediction - F1: 0.549439
-    b'0.15s_17.pk1' - sd_rpca_prediction - F1: 0.572702
-    b'0.15s_17.pk1' - kd_rpca_prediction - F1: 0.509492
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18-2.pk1
-    ### Cross-Validation. Contamination: 0.1464059196617336
-    b'0.15s_18-2.pk1' - md_rpca_prediction - F1: 0.696751
-    b'0.15s_18-2.pk1' - sd_rpca_prediction - F1: 0.545126
-    b'0.15s_18-2.pk1' - kd_rpca_prediction - F1: 0.335740
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_18.pk1
-    ### Cross-Validation. Contamination: 0.06435319983362053
-    b'0.15s_18.pk1' - md_rpca_prediction - F1: 0.521699
-    b'0.15s_18.pk1' - sd_rpca_prediction - F1: 0.335642
-    b'0.15s_18.pk1' - kd_rpca_prediction - F1: 0.170822
-    ## Sample File:  data/ctu_13/agg_pkl/0.15/0.15s_19.pk1
-    ### Cross-Validation. Contamination: 0.055468399820708204
-    b'0.15s_19.pk1' - md_rpca_prediction - F1: 0.088889
-    b'0.15s_19.pk1' - sd_rpca_prediction - F1: 0.082828
-    b'0.15s_19.pk1' - kd_rpca_prediction - F1: 0.078788
-    l_mean: 0.18909684019131207
-    s_mean: 0.18249375710998286
-    k_mean: 0.14203373107146539
-    --- 152.98520493507385 seconds ---
-['normal_flow_count', 'n_conn', 'mdn_duration', 'p95_duration', 'n_s_a_p_address', 'n_s_b_p_address', 'std_duration', 'p05_duration', 'avg_duration']40_30_30
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_10.pk1
-    ### Cross-Validation. Contamination: 0.6599063962558502
-    b'2s_10.pk1' - md_rpca_prediction - F1: 0.686930
-    b'2s_10.pk1' - sd_rpca_prediction - F1: 0.622763
-    b'2s_10.pk1' - kd_rpca_prediction - F1: 0.625464
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_11.pk1
-    ### Cross-Validation. Contamination: 0.5735548632744895
-    b'2s_11.pk1' - md_rpca_prediction - F1: 0.484611
-    b'2s_11.pk1' - sd_rpca_prediction - F1: 0.672903
-    b'2s_11.pk1' - kd_rpca_prediction - F1: 0.594448
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_12.pk1
-    ### Cross-Validation. Contamination: 0.20425206874602164
-    b'2s_12.pk1' - md_rpca_prediction - F1: 0.206931
-    b'2s_12.pk1' - sd_rpca_prediction - F1: 0.107455
-    b'2s_12.pk1' - kd_rpca_prediction - F1: 0.091872
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15-2.pk1
-    ### Cross-Validation. Contamination: 0.5909090909090909
-    b'2s_15-2.pk1' - md_rpca_prediction - F1: 0.850962
-    b'2s_15-2.pk1' - sd_rpca_prediction - F1: 0.764423
-    b'2s_15-2.pk1' - kd_rpca_prediction - F1: 0.865385
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15-3.pk1
-    ### Cross-Validation. Contamination: 0.8838586996270021
-    b'2s_15-3.pk1' - md_rpca_prediction - F1: 0.883326
-    b'2s_15-3.pk1' - sd_rpca_prediction - F1: 0.885312
-    b'2s_15-3.pk1' - kd_rpca_prediction - F1: 0.884319
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15.pk1
-    ### Cross-Validation. Contamination: 0.17593737124021425
-    b'2s_15.pk1' - md_rpca_prediction - F1: 0.206089
-    b'2s_15.pk1' - sd_rpca_prediction - F1: 0.217799
-    b'2s_15.pk1' - kd_rpca_prediction - F1: 0.227166
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16-2.pk1
-    ### Cross-Validation. Contamination: 0.0425531914893617
-    b'2s_16-2.pk1' - md_rpca_prediction - F1: 0.250000
-    b'2s_16-2.pk1' - sd_rpca_prediction - F1: 0.250000
-    b'2s_16-2.pk1' - kd_rpca_prediction - F1: 0.000000
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16-3.pk1
-    ### Cross-Validation. Contamination: 0.09709094246122786
-    b'2s_16-3.pk1' - md_rpca_prediction - F1: 0.065217
-    b'2s_16-3.pk1' - sd_rpca_prediction - F1: 0.083176
-    b'2s_16-3.pk1' - kd_rpca_prediction - F1: 0.067108
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16.pk1
-    ### Cross-Validation. Contamination: 0.2986111111111111
-    b'2s_16.pk1' - md_rpca_prediction - F1: 0.204134
-    b'2s_16.pk1' - sd_rpca_prediction - F1: 0.503876
-    b'2s_16.pk1' - kd_rpca_prediction - F1: 0.186047
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_17.pk1
-    ### Cross-Validation. Contamination: 0.6399893645307099
-    b'2s_17.pk1' - md_rpca_prediction - F1: 0.832987
-    b'2s_17.pk1' - sd_rpca_prediction - F1: 0.484005
-    b'2s_17.pk1' - kd_rpca_prediction - F1: 0.714582
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_18-2.pk1
-    ### Cross-Validation. Contamination: 0.22602739726027396
-    b'2s_18-2.pk1' - md_rpca_prediction - F1: 0.484848
-    b'2s_18-2.pk1' - sd_rpca_prediction - F1: 0.575758
-    b'2s_18-2.pk1' - kd_rpca_prediction - F1: 0.606061
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_18.pk1
-    ### Cross-Validation. Contamination: 0.12962271199103473
-    b'2s_18.pk1' - md_rpca_prediction - F1: 0.530259
-    b'2s_18.pk1' - sd_rpca_prediction - F1: 0.406340
-    b'2s_18.pk1' - kd_rpca_prediction - F1: 0.538905
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_19.pk1
-    ### Cross-Validation. Contamination: 0.2830188679245283
-    b'2s_19.pk1' - md_rpca_prediction - F1: 0.185714
-    b'2s_19.pk1' - sd_rpca_prediction - F1: 0.304762
-    b'2s_19.pk1' - kd_rpca_prediction - F1: 0.204762
-    l_mean: 0.4516930583275632
-    s_mean: 0.45219771194416497
-    k_mean: 0.4312399195550615
-    --- 12.329779386520386 seconds ---
-['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration'] 80_10_10
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_10.pk1
-    ### Cross-Validation. Contamination: 0.8535601037763044
-    b'2s_10.pk1' - md_rpca_prediction - F1: 0.838568
-    b'2s_10.pk1' - sd_rpca_prediction - F1: 0.880446
-    b'2s_10.pk1' - kd_rpca_prediction - F1: 0.845660
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_11.pk1
-    ### Cross-Validation. Contamination: 0.8016448959845186
-    b'2s_11.pk1' - md_rpca_prediction - F1: 0.752565
-    b'2s_11.pk1' - sd_rpca_prediction - F1: 0.757996
-    b'2s_11.pk1' - kd_rpca_prediction - F1: 0.754979
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_12.pk1
-    ### Cross-Validation. Contamination: 0.4350561310266283
-    b'2s_12.pk1' - md_rpca_prediction - F1: 0.440040
-    b'2s_12.pk1' - sd_rpca_prediction - F1: 0.443530
-    b'2s_12.pk1' - kd_rpca_prediction - F1: 0.443406
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15-2.pk1
-    ### Cross-Validation. Contamination: 0.8125
-    b'2s_15-2.pk1' - md_rpca_prediction - F1: 0.802885
-    b'2s_15-2.pk1' - sd_rpca_prediction - F1: 0.802885
-    b'2s_15-2.pk1' - kd_rpca_prediction - F1: 0.807692
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15-3.pk1
-    ### Cross-Validation. Contamination: 0.9580624702711273
-    b'2s_15-3.pk1' - md_rpca_prediction - F1: 0.957716
-    b'2s_15-3.pk1' - sd_rpca_prediction - F1: 0.957468
-    b'2s_15-3.pk1' - kd_rpca_prediction - F1: 0.957799
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_15.pk1
-    ### Cross-Validation. Contamination: 0.39066788655077767
-    b'2s_15.pk1' - md_rpca_prediction - F1: 0.264637
-    b'2s_15.pk1' - sd_rpca_prediction - F1: 0.543326
-    b'2s_15.pk1' - kd_rpca_prediction - F1: 0.327869
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16-2.pk1
-    ### Cross-Validation. Contamination: 0.11764705882352941
-    b'2s_16-2.pk1' - md_rpca_prediction - F1: 0.125000
-    b'2s_16-2.pk1' - sd_rpca_prediction - F1: 0.750000
-    b'2s_16-2.pk1' - kd_rpca_prediction - F1: 0.875000
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16-3.pk1
-    ### Cross-Validation. Contamination: 0.24394742909845515
-    b'2s_16-3.pk1' - md_rpca_prediction - F1: 0.150284
-    b'2s_16-3.pk1' - sd_rpca_prediction - F1: 0.325142
-    b'2s_16-3.pk1' - kd_rpca_prediction - F1: 0.277883
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_16.pk1
-    ### Cross-Validation. Contamination: 0.5608695652173913
-    b'2s_16.pk1' - md_rpca_prediction - F1: 0.387597
-    b'2s_16.pk1' - sd_rpca_prediction - F1: 0.568475
-    b'2s_16.pk1' - kd_rpca_prediction - F1: 0.609819
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_17.pk1
-    ### Cross-Validation. Contamination: 0.8421973407977607
-    b'2s_17.pk1' - md_rpca_prediction - F1: 0.901953
-    b'2s_17.pk1' - sd_rpca_prediction - F1: 0.835480
-    b'2s_17.pk1' - kd_rpca_prediction - F1: 0.872455
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_18-2.pk1
-    ### Cross-Validation. Contamination: 0.4714285714285714
-    b'2s_18-2.pk1' - md_rpca_prediction - F1: 0.696970
-    b'2s_18-2.pk1' - sd_rpca_prediction - F1: 0.666667
-    b'2s_18-2.pk1' - kd_rpca_prediction - F1: 0.666667
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_18.pk1
-    ### Cross-Validation. Contamination: 0.3089937666963491
-    b'2s_18.pk1' - md_rpca_prediction - F1: 0.622478
-    b'2s_18.pk1' - sd_rpca_prediction - F1: 0.524496
-    b'2s_18.pk1' - kd_rpca_prediction - F1: 0.616715
-    ## Sample File:  data/ctu_13/agg_pkl/2/2s_19.pk1
-    ### Cross-Validation. Contamination: 0.5426356589147286
-    b'2s_19.pk1' - md_rpca_prediction - F1: 0.528571
-    b'2s_19.pk1' - sd_rpca_prediction - F1: 0.528571
-    b'2s_19.pk1' - kd_rpca_prediction - F1: 0.542857
-    l_mean: 0.5745587088977503
-    s_mean: 0.6603447227577741
-    k_mean: 0.6614462008501737
-    --- 20.476320028305054 seconds ---
-['Dur', 'Proto', 'Sport', 'Dir', 'Dport', 'State', 'sTos', 'dTos', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate']_50_33
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110810.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110810.binetflow' - md_rpca_prediction - F1: 0.351361
-    b'capture20110810.binetflow' - sd_rpca_prediction - F1: 0.020068
-    b'capture20110810.binetflow' - kd_rpca_prediction - F1: 0.182637
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110811.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110811.binetflow' - md_rpca_prediction - F1: 0.673273
-    b'capture20110811.binetflow' - sd_rpca_prediction - F1: 0.435700
-    b'capture20110811.binetflow' - kd_rpca_prediction - F1: 0.096079
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110812.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110812.binetflow' - md_rpca_prediction - F1: 0.737678
-    b'capture20110812.binetflow' - sd_rpca_prediction - F1: 0.002423
-    b'capture20110812.binetflow' - kd_rpca_prediction - F1: 0.002461
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815-2.binetflow' - md_rpca_prediction - F1: 0.685905
-    b'capture20110815-2.binetflow' - sd_rpca_prediction - F1: 0.586016
-    b'capture20110815-2.binetflow' - kd_rpca_prediction - F1: 0.296337
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815-3.binetflow' - md_rpca_prediction - F1: 0.791866
-    b'capture20110815-3.binetflow' - sd_rpca_prediction - F1: 0.640402
-    b'capture20110815-3.binetflow' - kd_rpca_prediction - F1: 0.690348
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815.binetflow' - md_rpca_prediction - F1: 0.672868
-    b'capture20110815.binetflow' - sd_rpca_prediction - F1: 0.328682
-    b'capture20110815.binetflow' - kd_rpca_prediction - F1: 0.322481
+['State', 'dTos', 'Dport', 'Sport', 'TotPkts', 'TotBytes', 'SrcBytes']_semisupervised
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816-2.binetflow' - md_rpca_prediction - F1: 0.412698
-    b'capture20110816-2.binetflow' - sd_rpca_prediction - F1: 0.285714
-    b'capture20110816-2.binetflow' - kd_rpca_prediction - F1: 0.253968
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816-3.binetflow' - md_rpca_prediction - F1: 0.773788
-    b'capture20110816-3.binetflow' - sd_rpca_prediction - F1: 0.521420
-    b'capture20110816-3.binetflow' - kd_rpca_prediction - F1: 0.023339
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816.binetflow' - md_rpca_prediction - F1: 0.814471
-    b'capture20110816.binetflow' - sd_rpca_prediction - F1: 0.322246
-    b'capture20110816.binetflow' - kd_rpca_prediction - F1: 0.002808
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110817.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110817.binetflow' - md_rpca_prediction - F1: 0.546233
-    b'capture20110817.binetflow' - sd_rpca_prediction - F1: 0.360771
-    b'capture20110817.binetflow' - kd_rpca_prediction - F1: 0.200447
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110818-2.binetflow' - md_rpca_prediction - F1: 0.973135
-    b'capture20110818-2.binetflow' - sd_rpca_prediction - F1: 0.972817
-    b'capture20110818-2.binetflow' - kd_rpca_prediction - F1: 0.971170
+    b'capture20110816-2.binetflow' - md_rpca_prediction - F1: 0.873016
+    b'capture20110816-2.binetflow' - sd_rpca_prediction - F1: 0.507937
+    b'capture20110816-2.binetflow' - kd_rpca_prediction - F1: 0.507937
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110818.binetflow' - md_rpca_prediction - F1: 0.983413
-    b'capture20110818.binetflow' - sd_rpca_prediction - F1: 0.958462
-    b'capture20110818.binetflow' - kd_rpca_prediction - F1: 0.968549
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110819.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110819.binetflow' - md_rpca_prediction - F1: 0.194188
-    b'capture20110819.binetflow' - sd_rpca_prediction - F1: 0.169280
-    b'capture20110819.binetflow' - kd_rpca_prediction - F1: 0.268450
-    l_mean: 0.6623751318388826
-    s_mean: 0.43107712140281396
-    k_mean: 0.3291595412517596
-    --- 3343.9124479293823 seconds ---
-###unsupervised### 'State', 'sTos', 'dTos', 'Dport', 'Sport', 'TotPkts']
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-2.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816-2.binetflow' - md_rpca_prediction - F1: 0.554622
-    b'capture20110816-2.binetflow' - sd_rpca_prediction - F1: 0.460317
-    b'capture20110816-2.binetflow' - kd_rpca_prediction - F1: 0.460317
-    ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818.binetflow
-    ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110818.binetflow' - md_rpca_prediction - F1: 0.161246
-    b'capture20110818.binetflow' - sd_rpca_prediction - F1: 0.759352
-    b'capture20110818.binetflow' - kd_rpca_prediction - F1: 0.738471
+    b'capture20110818.binetflow' - md_rpca_prediction - F1: 0.833468
+    b'capture20110818.binetflow' - sd_rpca_prediction - F1: 0.828795
+    b'capture20110818.binetflow' - kd_rpca_prediction - F1: 0.832866
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-2.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815-2.binetflow' - md_rpca_prediction - F1: 0.662597
-    b'capture20110815-2.binetflow' - sd_rpca_prediction - F1: 0.509434
-    b'capture20110815-2.binetflow' - kd_rpca_prediction - F1: 0.748058
+    b'capture20110815-2.binetflow' - md_rpca_prediction - F1: 0.786903
+    b'capture20110815-2.binetflow' - sd_rpca_prediction - F1: 0.501665
+    b'capture20110815-2.binetflow' - kd_rpca_prediction - F1: 0.570477
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816-3.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816-3.binetflow' - md_rpca_prediction - F1: 0.325934
-    b'capture20110816-3.binetflow' - sd_rpca_prediction - F1: 0.528274
-    b'capture20110816-3.binetflow' - kd_rpca_prediction - F1: 0.584462
+    b'capture20110816-3.binetflow' - md_rpca_prediction - F1: 0.808226
+    b'capture20110816-3.binetflow' - sd_rpca_prediction - F1: 0.773625
+    b'capture20110816-3.binetflow' - kd_rpca_prediction - F1: 0.802513
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110810.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110810.binetflow' - md_rpca_prediction - F1: 0.361714
-    b'capture20110810.binetflow' - sd_rpca_prediction - F1: 0.361661
-    b'capture20110810.binetflow' - kd_rpca_prediction - F1: 0.717031
+    b'capture20110810.binetflow' - md_rpca_prediction - F1: 0.835425
+    b'capture20110810.binetflow' - sd_rpca_prediction - F1: 0.256463
+    b'capture20110810.binetflow' - kd_rpca_prediction - F1: 0.764190
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815-3.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815-3.binetflow' - md_rpca_prediction - F1: 0.837337
-    b'capture20110815-3.binetflow' - sd_rpca_prediction - F1: 0.752969
-    b'capture20110815-3.binetflow' - kd_rpca_prediction - F1: 0.641852
+    b'capture20110815-3.binetflow' - md_rpca_prediction - F1: 0.876484
+    b'capture20110815-3.binetflow' - sd_rpca_prediction - F1: 0.754643
+    b'capture20110815-3.binetflow' - kd_rpca_prediction - F1: 0.761768
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110815.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110815.binetflow' - md_rpca_prediction - F1: 0.338372
-    b'capture20110815.binetflow' - sd_rpca_prediction - F1: 0.613178
-    b'capture20110815.binetflow' - kd_rpca_prediction - F1: 0.398450
+    b'capture20110815.binetflow' - md_rpca_prediction - F1: 0.787127
+    b'capture20110815.binetflow' - sd_rpca_prediction - F1: 0.648837
+    b'capture20110815.binetflow' - kd_rpca_prediction - F1: 0.824940
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110811.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110811.binetflow' - md_rpca_prediction - F1: 0.483882
-    b'capture20110811.binetflow' - sd_rpca_prediction - F1: 0.752871
-    b'capture20110811.binetflow' - kd_rpca_prediction - F1: 0.731102
+    b'capture20110811.binetflow' - md_rpca_prediction - F1: 0.791175
+    b'capture20110811.binetflow' - sd_rpca_prediction - F1: 0.756077
+    b'capture20110811.binetflow' - kd_rpca_prediction - F1: 0.767919
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110818-2.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110818-2.binetflow' - md_rpca_prediction - F1: 0.128491
-    b'capture20110818-2.binetflow' - sd_rpca_prediction - F1: 0.699847
-    b'capture20110818-2.binetflow' - kd_rpca_prediction - F1: 0.688883
+    b'capture20110818-2.binetflow' - md_rpca_prediction - F1: 0.821166
+    b'capture20110818-2.binetflow' - sd_rpca_prediction - F1: 0.817491
+    b'capture20110818-2.binetflow' - kd_rpca_prediction - F1: 0.818471
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110817.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110817.binetflow' - md_rpca_prediction - F1: 0.392282
-    b'capture20110817.binetflow' - sd_rpca_prediction - F1: 0.416400
-    b'capture20110817.binetflow' - kd_rpca_prediction - F1: 0.786742
+    b'capture20110817.binetflow' - md_rpca_prediction - F1: 0.825636
+    b'capture20110817.binetflow' - sd_rpca_prediction - F1: 0.338899
+    b'capture20110817.binetflow' - kd_rpca_prediction - F1: 0.732617
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110819.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110819.binetflow' - md_rpca_prediction - F1: 0.638838
-    b'capture20110819.binetflow' - sd_rpca_prediction - F1: 0.508764
-    b'capture20110819.binetflow' - kd_rpca_prediction - F1: 0.498616
+    b'capture20110819.binetflow' - md_rpca_prediction - F1: 0.510148
+    b'capture20110819.binetflow' - sd_rpca_prediction - F1: 0.214823
+    b'capture20110819.binetflow' - kd_rpca_prediction - F1: 0.487546
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110812.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110812.binetflow' - md_rpca_prediction - F1: 0.096190
-    b'capture20110812.binetflow' - sd_rpca_prediction - F1: 0.351222
-    b'capture20110812.binetflow' - kd_rpca_prediction - F1: 0.544363
+    b'capture20110812.binetflow' - md_rpca_prediction - F1: 0.958016
+    b'capture20110812.binetflow' - sd_rpca_prediction - F1: 0.349079
+    b'capture20110812.binetflow' - kd_rpca_prediction - F1: 0.908210
     ## Sample File:  data/ctu_13/raw_clean_pkl/capture20110816.binetflow
     ### Cross-Validation. Contamination: 0.3333333333333333
-    b'capture20110816.binetflow' - md_rpca_prediction - F1: 0.049892
-    b'capture20110816.binetflow' - sd_rpca_prediction - F1: 0.481641
-    b'capture20110816.binetflow' - kd_rpca_prediction - F1: 0.280099
-    l_mean: 0.3870305229987035
-    s_mean: 0.5535331704026002
-    k_mean: 0.601418963809594
-    --- 234.61440896987915 seconds ---
+    b'capture20110816.binetflow' - md_rpca_prediction - F1: 0.950324
+    b'capture20110816.binetflow' - sd_rpca_prediction - F1: 0.861339
+    b'capture20110816.binetflow' - kd_rpca_prediction - F1: 0.914039
+    l_mean: 0.8197780886128391
+    s_mean: 0.5853595588686182
+    k_mean: 0.7456533645346102

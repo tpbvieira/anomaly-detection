@@ -39,11 +39,11 @@ from pyod.models.ocsvm import OCSVM
 from pyod.models.pca import PCA
 from pyod.models.sos import SOS
 from pyod.models.lscp import LSCP
-from botnet_detection_utils import data_splitting_50_25, get_classification_report
+from botnet_detection_utils import data_splitting_50_10, get_classification_report
 
 
-# col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address', 'n_dports<1024', 'p95_duration']
-
+# col_list = ['n_conn', 'n_s_a_p_address', 'mdn_duration', 'n_s_b_p_address', 'n_s_na_p_address', 'n_s_c_p_address',
+# 'n_dports<1024', 'p95_duration']
 col_list = ['State', 'dTos', 'Dport', 'Sport', 'TotPkts', 'TotBytes', 'SrcBytes']
 
 raw_path = os.path.join('data/ctu_13/raw_clean_pkl/')
@@ -63,7 +63,7 @@ for sample_file in file_list:
         df = pd.read_pickle(pkl_file_path)
 
     # data splitting
-    norm_train_df, test_df, test_label_df = data_splitting_50_25(df, col_list)
+    norm_train_df, test_df, test_label_df = data_splitting_50_10(df, col_list)
 
     test_label_vc = test_label_df.value_counts()
     ones = test_label_vc.get(1)
@@ -87,28 +87,25 @@ for sample_file in file_list:
     ground_truth = test_label_df.astype(np.int8)
 
     # initialize a set of detectors for LSCP
-    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15), LOF(n_neighbors=20), LOF(n_neighbors=25),
-                     LOF(n_neighbors=30), LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45), LOF(n_neighbors=50)]
+    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15), LOF(n_neighbors=20),
+                     LOF(n_neighbors=25), LOF(n_neighbors=30), LOF(n_neighbors=35), LOF(n_neighbors=40),
+                     LOF(n_neighbors=45), LOF(n_neighbors=50)]
 
     # Show the statics of the data
     print('Number of inliers: %i' % n_inliers)
     print('Number of outliers: %i' % n_outliers)
-    print('Ground truth shape is {shape}. Outlier are 1 and inliers are 0.\n'.format( shape=ground_truth.shape))
-    # print(ground_truth, '\n')
 
     random_state = np.random.RandomState(42)
-
     # Define nine outlier detection tools to be compared
     classifiers = {
-        'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
-        'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction,
-                                                            check_estimator=False, random_state=random_state),
-        'Feature Bagging':FeatureBagging(LOF(n_neighbors=35),contamination=outliers_fraction,random_state=random_state),
+        # 'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
+        'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, check_estimator=False, random_state=random_state),
+        # 'Feature Bagging':FeatureBagging(LOF(n_neighbors=35),contamination=outliers_fraction,random_state=random_state),
         'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
         'Isolation Forest': IForest(contamination=outliers_fraction,random_state=random_state),
         'K Nearest Neighbors (KNN)': KNN(contamination=outliers_fraction),
-        'Average KNN': KNN(method='mean',contamination=outliers_fraction),
-        'Median KNN': KNN(method='median',contamination=outliers_fraction),
+        # 'Average KNN': KNN(method='mean',contamination=outliers_fraction),
+        # 'Median KNN': KNN(method='median',contamination=outliers_fraction),
         'Local Outlier Factor (LOF)':LOF(n_neighbors=35, contamination=outliers_fraction),
         # 'Local Correlation Integral (LOCI)':LOCI(contamination=outliers_fraction),
         'Minimum Covariance Determinant (MCD)': MCD(contamination=outliers_fraction, random_state=random_state),
@@ -118,10 +115,6 @@ for sample_file in file_list:
         # 'Locally Selective Combination (LSCP)': LSCP(detector_list, contamination=outliers_fraction,
         #                                              random_state=random_state)
     }
-
-    # # Show all detectors
-    # for i, clf in enumerate(classifiers.keys()):
-    #     print('Model', i + 1, clf)
 
     # Fit the models with the generated data and compare model performances
     for i, offset in enumerate(clusters_separation):

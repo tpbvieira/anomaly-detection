@@ -607,6 +607,69 @@ def data_splitting_50_25(df, m_col_list):
     # Length and indexes
     norm_len = len(norm_df)                         # total number of normal flows
     anom_len = len(anom_df)                         # total number of anomalies refers to 25% of total testing
+    norm_test_len = anom_len * 3                    # 75% of normal for testing
+
+    norm_train_end = norm_len // 2                  # 50% of normal for training
+    norm_test_start = norm_train_end + 1
+
+    # training with normal and anomalous data
+    norm_train_df = norm_df[:norm_train_end]        # 50% of normal for training
+    if (norm_test_start + norm_test_len) < norm_len:
+        norm_test_df = norm_df[norm_test_start:(norm_test_start + norm_test_len)]
+    else:
+        norm_test_df = norm_df[(norm_len - norm_test_len - anom_len):norm_len]
+    gc.collect()
+
+    # testing with normal and anomalous data
+    train_df = norm_train_df
+    test_df = pd.concat([norm_test_df, anom_df], axis=0)
+    df_shape = test_df.shape
+    gc.collect()
+
+    # Sort data by index
+    train_df = train_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    test_label_df = test_df["Label"]
+    train_df = train_df[m_col_list]
+    test_df = test_df[m_col_list]
+    gc.collect()
+
+    return train_df, test_df, test_label_df
+
+
+def data_splitting_50_33(df, m_col_list):
+
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
+
+    df_shape = df.shape
+
+    # split into normal and anomaly
+    norm_df = df[df["Label"] == 0]
+    anom_df = df[df["Label"] == 1]
+    gc.collect()
+
+    # Length and indexes
+    norm_len = len(norm_df)                         # total number of normal flows
+    anom_len = len(anom_df)                         # total number of anomalies refers to 25% of total testing
     norm_test_len = anom_len * 2                    # 75% of normal for testing
 
     norm_train_end = norm_len // 2                  # 50% of normal for training
@@ -639,6 +702,68 @@ def data_splitting_50_25(df, m_col_list):
 
     return train_df, test_df, test_label_df
 
+
+def data_splitting_50_10(df, m_col_list):
+
+    if 'PktsRate' in m_col_list:
+        df['PktsRate'] = df.TotPkts / df.Dur
+        df['PktsRate'] = df['PktsRate'].replace(-np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].replace(np.inf, np.nan)
+        df['PktsRate'] = df['PktsRate'].fillna(-1)
+
+    if 'BytesRate' in m_col_list:
+        df['BytesRate'] = df.TotBytes / df.Dur
+        df['BytesRate'] = df['BytesRate'].replace(-np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].replace(np.inf, np.nan)
+        df['BytesRate'] = df['BytesRate'].fillna(-1)
+
+    if 'MeanPktsRate' in m_col_list:
+        df['MeanPktsRate'] = df.TotBytes / df.TotPkts
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(-np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].replace(np.inf, np.nan)
+        df['MeanPktsRate'] = df['MeanPktsRate'].fillna(-1)
+
+    df_shape = df.shape
+
+    # split into normal and anomaly
+    norm_df = df[df["Label"] == 0]
+    anom_df = df[df["Label"] == 1]
+    gc.collect()
+
+    # Length and indexes
+    norm_len = len(norm_df)                         # total number of normal flows
+    anom_len = len(anom_df)                         # total number of anomalies refers to 25% of total testing
+    norm_test_len = anom_len * 9                    # 75% of normal for testing
+
+    norm_train_end = norm_len // 2                  # 50% of normal for training
+    norm_test_start = norm_train_end + 1
+
+    # training with normal and anomalous data
+    norm_train_df = norm_df[:norm_train_end]        # 50% of normal for training
+    if (norm_test_start + norm_test_len) < norm_len:
+        norm_test_df = norm_df[norm_test_start:(norm_test_start + norm_test_len)]
+    else:
+        norm_test_df = norm_df[(norm_len - norm_test_len - anom_len):norm_len]
+    gc.collect()
+
+    # testing with normal and anomalous data
+    train_df = norm_train_df
+    test_df = pd.concat([norm_test_df, anom_df], axis=0)
+    df_shape = test_df.shape
+    gc.collect()
+
+    # Sort data by index
+    train_df = train_df.sort_index()
+    test_df = test_df.sort_index()
+    gc.collect()
+
+    # save labels and drop label from data
+    test_label_df = test_df["Label"]
+    train_df = train_df[m_col_list]
+    test_df = test_df[m_col_list]
+    gc.collect()
+
+    return train_df, test_df, test_label_df
 
 def print_classification_report(y_test, y_predic):
     f1 = f1_score(y_test, y_predic, average="binary")

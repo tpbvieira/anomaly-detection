@@ -13,6 +13,7 @@ from __future__ import print_function
 import os
 import sys
 import warnings
+
 warnings.filterwarnings("ignore")
 import numpy as np
 import seaborn as sns
@@ -20,7 +21,6 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager
 from scipy.stats import weibull_min
 from numpy import percentile
-
 # Import all models
 from pyod.models.abod import ABOD
 from pyod.models.cblof import CBLOF
@@ -50,16 +50,17 @@ from scipy.stats import skewnorm
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname("__file__"), '..')))
 
+
 def fit_m_rpca(data, m_reg_J=1):
     """
     Robust PCA based estimation of mean, covariance, skewness and kurtosis.
-    
+
     :param data: MxN matrix with M observations and N features, where M>N 
     :param m_reg_J: regularization. Default value is 1
     :return: 
         L: array-like, shape (m_obserations, n_features,)
             Robust data
-        
+
         rob_mean:
         rob_cov:
         rob_dist:
@@ -252,9 +253,9 @@ def md_rpca_prediction(test_df, location, precision, contamination):
     if contamination is not None:
         # malhalanobis distance
         mahal_dist = pairwise_distances(test_df, location[np.newaxis, :], metric='mahalanobis', VI=precision)
-        mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2  #MD squared
+        mahal_dist = np.reshape(mahal_dist, (len(test_df),)) ** 2  # MD squared
         # detect outliers
-        contamination_threshold = np.percentile(mahal_dist,  100. * (1. - contamination))
+        contamination_threshold = np.percentile(mahal_dist, 100. * (1. - contamination))
         pred_label[mahal_dist > contamination_threshold] = 1
     else:
         raise NotImplementedError("You must provide a contamination rate.")
@@ -277,9 +278,9 @@ def predict_by_location_centered_contamination(X, location, precision, contamina
         # malhalanobis distance
         X = X - location
         mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
-        mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
+        mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  # MD squared
         # detect outliers
-        contamination_threshold = np.percentile(mahal_dist,  100. * (1. - contamination))
+        contamination_threshold = np.percentile(mahal_dist, 100. * (1. - contamination))
         pred_label[mahal_dist > contamination_threshold] = 1
     else:
         raise NotImplementedError("You must provide a contamination rate.")
@@ -301,7 +302,7 @@ def predict_by_location_threshold(X, location, precision, threshold):
 
     # malhalanobis distance
     mahal_dist = pairwise_distances(X, location[np.newaxis, :], metric='mahalanobis', VI=precision)
-    mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  #MD squared
+    mahal_dist = np.reshape(mahal_dist, (len(X),)) ** 2  # MD squared
     # detect outliers
     pred_label[mahal_dist > threshold] = 1
 
@@ -349,7 +350,7 @@ def predict_by_skewness_centered_contamination(X, precision, skewness, contamina
 
     # malhalanobis distance
     mahal_dist = pairwise_distances(X_skew, skewness[np.newaxis, :], metric='mahalanobis', VI=precision)
-    mahal_dist = np.reshape(mahal_dist, (len(X_skew),)) ** 2 #MD squared
+    mahal_dist = np.reshape(mahal_dist, (len(X_skew),)) ** 2  # MD squared
     pred_skew_dist = -mahal_dist
 
     # detect outliers
@@ -449,7 +450,7 @@ def predict_by_kurtosis_centered_contamination(X, precision, m_kurtosis, contami
 
     # malhalanobis distance
     mahal_dist = pairwise_distances(X_kurt, m_kurtosis[np.newaxis, :], metric='mahalanobis', VI=precision)
-    mahal_dist = np.reshape(mahal_dist, (len(X_kurt),)) ** 2 #MD squared
+    mahal_dist = np.reshape(mahal_dist, (len(X_kurt),)) ** 2  # MD squared
     pred_kurt_dist = -mahal_dist
 
     # detect outliers
@@ -507,6 +508,7 @@ def predict_by_kurtosis_centered_threshold(X, precision, m_kurtosis, threshold):
 
     return pred_label
 
+
 # Define the number of inliers and outliers
 n_samples = 2400
 outliers_fraction = 0.33
@@ -517,7 +519,7 @@ result_path = 'output/synthetic/'
 n_inliers = int((1. - outliers_fraction) * n_samples)
 n_outliers = int(n_samples - n_inliers)
 ground_truth = np.zeros(n_samples, dtype=int)
-ground_truth[-n_outliers:] = 1 #put outliers into the end
+ground_truth[-n_outliers:] = 1  # put outliers into the end
 
 print('n_samples:', n_samples)
 print('n_inliers:', n_inliers)
@@ -527,41 +529,46 @@ print('ground_truth:', ground_truth.shape)
 # Data generation
 np.random.seed(11)
 X1 = 0.3 * np.random.randn(n_inliers, 2)
-X2 = 0.3 * np.random.randn(n_inliers, 2) 
+X2 = 0.3 * np.random.randn(n_inliers, 2)
 Xgaussian = np.r_[X1, X2]
 Xgaussian_t = Xgaussian[:n_inliers]
 Xgaussian = Xgaussian[n_inliers:]
 print('Xgaussian:', Xgaussian.shape)
-sns.distplot(Xgaussian[:, 0], color="black", label="Feature 1")
-# sns.distplot(Xgaussian[:, 1], color="red", label="Feature 2")
+sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
+sns.distplot(Xgaussian[:, 1], color="red", label="Gaussian")
 plt.legend()
 plt.savefig("%sXgaussian.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
 print('Xgaussian_t:', Xgaussian_t.shape)
-sns.distplot(Xgaussian_t[:, 0], color="black", label="Feature 1")
-# sns.distplot(Xgaussian_t[:, 1], color="red", label="Feature 2")
+sns.distplot(Xgaussian_t[:, 0], color="blue", label="Gaussian")
+sns.distplot(Xgaussian_t[:, 1], color="red", label="Gaussian")
 plt.legend()
 plt.savefig("%sXgaussian_t.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
 
 # Append outliers
 Cuniform = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
 print('Cuniform:', Cuniform.shape)
-sns.distplot(Cuniform[:, 0], color="pink", label="Feature 1")
-# sns.distplot(Cuniform[:, 1], color="red", label="Feature 2")
+sns.distplot(Cuniform[:, 0], color="blue", label="Uniform")
 plt.legend()
 plt.savefig("%sCuniform.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
-Xgu = np.r_[Xgaussian,Cuniform]
+Xgu = np.r_[Xgaussian, Cuniform]
 print('Xgu:', Xgu.shape)
-sns.distplot(Xgu[:, 0], color="skyblue", label="Feature 1")
-# sns.distplot(Xgu[:, 1], color="blue", label="Feature 2")
+sns.distplot(Xgu[:, 0], color="blue", label="Gaussian + Uniform")
 plt.legend()
 plt.savefig("%sXgu.png" % result_path)
-# plt.show()
+#plt.show()
+plt.legend()
+plt.close()
+sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
+sns.distplot(Cuniform[:, 0], color="red", label="Uniform")
+plt.legend()
+plt.savefig("%sXgu2.png" % result_path)
+#plt.show()
 plt.close()
 
 print('### Train: Gaussian')
@@ -600,21 +607,20 @@ classifiers = {
     'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
     'Principal Component Analysis (PCA)': PCA(
         contamination=outliers_fraction, random_state=random_state),
-   # 'Locally Selective Combination (LSCP)': LSCP(
-   #     detector_list, contamination=outliers_fraction,
-   #     random_state=random_state)
+    # 'Locally Selective Combination (LSCP)': LSCP(
+    #     detector_list, contamination=outliers_fraction,
+    #     random_state=random_state)
 }
 
-
-for i, (clf_name, clf) in enumerate(classifiers.items()):    
+for i, (clf_name, clf) in enumerate(classifiers.items()):
     # fit the data and tag outliers
     clf.fit(Xgu)
     scores_pred = clf.decision_function(Xgu) * -1
     y_pred = clf.predict(Xgu)
-    threshold = percentile(scores_pred, 100 * outliers_fraction)    
+    threshold = percentile(scores_pred, 100 * outliers_fraction)
     f1 = f1_score(y_pred, ground_truth, average='macro')
     print(i + 1, 'fitting', clf_name, f1)
-    
+
 # Train
 r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_t)
 # Testing md-rpca
@@ -649,38 +655,35 @@ print('kd_rpca - F1: %f' % (kd_f1))
 np.random.seed(42)
 a = 3.  # shape
 m = 1.  # mode
-p1 = (np.random.pareto(a, n_inliers) + 1) * m
-p2 = (np.random.pareto(a, n_inliers) + 1) * m
-Xpareto = np.vstack((p1,p2)).transpose()
 
 p1 = (np.random.pareto(a, n_inliers) + 1) * m
 p2 = (np.random.pareto(a, n_inliers) + 1) * m
-Xpareto_t = np.vstack((p1,p2)).transpose()
+Xpareto = np.vstack((p1, p2)).transpose()
+print('Xpareto:', Xpareto.shape)
+
+count, bins, _ = plt.hist(p1, 100, density=True)
+fit = a * m ** a / bins ** (a + 1)
+plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
+plt.savefig("%sPareto1.png" % result_path)
+#plt.show()
+plt.close()
+count, bins, _ = plt.hist(p2, 100, density=True)
+fit = a * m ** a / bins ** (a + 1)
+plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
+plt.savefig("%sPareto2.png" % result_path)
+#plt.show()
+plt.close()
+
+p1 = (np.random.pareto(a, n_inliers) + 1) * m
+p2 = (np.random.pareto(a, n_inliers) + 1) * m
+Xpareto_t = np.vstack((p1, p2)).transpose()
+print('Xpareto_t:', Xpareto_t.shape)
 
 # Add outliers
 Cgaussian = 0.1 * np.random.randn(n_outliers, 2)
-Xpg = np.r_[Xpareto, Cgaussian]
-
-print('Xpareto:', Xpareto.shape)
-print('Xpareto_t:', Xpareto_t.shape)
 print('Cgaussian:', Cgaussian.shape)
+Xpg = np.r_[Xpareto, Cgaussian]
 print('Xpg:', Xpg.shape)
-
-count, bins, _ = plt.hist(Xpareto[:,0], 100, density=True)
-fit = a*m**a / bins**(a+1)
-plt.plot(bins, max(count)*fit/max(fit), linewidth=2, color='r', label="Pareto")
-plt.legend()
-plt.savefig("%sXhist_pareto.png" % result_path)
-# plt.show()
-plt.close()
-
-count, bins, _ = plt.hist(Xpg[:,0], 100, density=True)
-fit = a*m**a / bins**(a+1)
-plt.plot(bins, linewidth=2, color='r', label="Pareto")
-plt.legend()
-plt.savefig("%sXhist_pareto_c.png" % result_path)
-# plt.show()
-plt.close()
 
 print('### Train: Pareto')
 print('### Test: Pareto contaminated by Gaussian')
@@ -737,7 +740,7 @@ classifiers = {
         contamination=outliers_fraction, random_state=random_state),
     # 'Stochastic Outlier Selection (SOS)': SOS(
     #     contamination=outliers_fraction),
-    #'Locally Selective Combination (LSCP)': LSCP(
+    # 'Locally Selective Combination (LSCP)': LSCP(
     #    detector_list, contamination=outliers_fraction,
     #    random_state=random_state)
 }
@@ -747,20 +750,20 @@ clusters_separation = [0]
 # Fit the models with the generated data and
 # compare model performances
 for i, offset in enumerate(clusters_separation):
-    
+
     # Fit the model
     plt.figure(figsize=(15, 12))
-    for i, (clf_name, clf) in enumerate(classifiers.items()):        
+    for i, (clf_name, clf) in enumerate(classifiers.items()):
         # fit the data and tag outliers
         clf.fit(Xpg)
         scores_pred = clf.decision_function(Xpg) * -1
         y_pred = clf.predict(Xpg)
         threshold = percentile(scores_pred, 100 * outliers_fraction)
-        #n_errors = (y_pred != ground_truth).sum()
+        # n_errors = (y_pred != ground_truth).sum()
         f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)  
-        
-#        # plot the levels lines and the points
+        print(i + 1, 'fitting', clf_name, f1)
+
+    #        # plot the levels lines and the points
 #        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
 #        Z = Z.reshape(xx.shape)
 #        subplot = plt.subplot(3, 4, i + 1)
@@ -785,8 +788,8 @@ for i, offset in enumerate(clusters_separation):
 #        subplot.set_ylim((-7, 7))
 #    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
 #    plt.suptitle("Outlier detection")
-#plt.savefig('ALL.png', dpi=300)
-#plt.show()
+plt.savefig('ALL.png', dpi=300)
+# #plt.show()
 
 
 # Train
@@ -820,29 +823,22 @@ kd_f1 = f1_score(ground_truth, kd_pred_label)
 print('kd_rpca - F1: %f' % (kd_f1))
 
 print('Xpareto', Xpareto.shape)
-sns.distplot(Xpareto[:, 0] , color="blue", label="Feature 1")
+sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
 plt.legend()
-plt.savefig("%sXpareto1.png" % result_path)
-# plt.show()
-plt.close()
-sns.distplot(Xpareto[:, 1] , color="green", label="Feature 2")
-plt.legend()
-plt.savefig("%sXpareto2.png" % result_path)
-# plt.show()
-plt.close()
-print('Cgaussian', Cgaussian.shape)
-sns.distplot(Cgaussian[:, 0] , color="firebrick", label="Feature 1")
-# sns.distplot(Cgaussian[:, 1] , color="salmon", label="Feature 2")
-plt.legend()
-plt.savefig("%sCgaussian.png" % result_path)
-# plt.show()
+plt.savefig("%sXpareto3.png" % result_path)
+#plt.show()
 plt.close()
 print('Xpg', Xpg.shape)
-sns.distplot(Xpg[:, 0] , color="black", label="Feature 1")
-# sns.distplot(Xpg[:, 1] , color="gray", label="Feature 2")
+sns.distplot(Xpg[:, 0], color="blue", label="Pareto + Gaussian")
 plt.legend()
-plt.savefig("%sXpg.png" % result_path)
-# plt.show()
+plt.savefig("%sXpg1.png" % result_path)
+#plt.show()
+plt.close()
+sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
+sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
+plt.legend()
+plt.savefig("%sXpg2.png" % result_path)
+#plt.show()
 plt.close()
 
 print('### Train: Pareto conaminated by Gaussian')
@@ -904,7 +900,7 @@ classifiers = {
         contamination=outliers_fraction, random_state=random_state),
     # 'Stochastic Outlier Selection (SOS)': SOS(
     #     contamination=outliers_fraction),
-    #'Locally Selective Combination (LSCP)': LSCP(
+    # 'Locally Selective Combination (LSCP)': LSCP(
     #    detector_list, contamination=outliers_fraction,
     #    random_state=random_state)
 }
@@ -915,20 +911,20 @@ clusters_separation = [0]
 # compare model performances
 for i, offset in enumerate(clusters_separation):
     # Add outliers
-    
+
     # Fit the model
     plt.figure(figsize=(15, 12))
-    for i, (clf_name, clf) in enumerate(classifiers.items()):        
+    for i, (clf_name, clf) in enumerate(classifiers.items()):
         # fit the data and tag outliers
         clf.fit(Xpg)
         scores_pred = clf.decision_function(Xpg) * -1
         y_pred = clf.predict(Xpg)
         threshold = percentile(scores_pred, 100 * outliers_fraction)
-        #n_errors = (y_pred != ground_truth).sum()
+        # n_errors = (y_pred != ground_truth).sum()
         f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)  
-        
-#        # plot the levels lines and the points
+        print(i + 1, 'fitting', clf_name, f1)
+
+    #        # plot the levels lines and the points
 #        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
 #        Z = Z.reshape(xx.shape)
 #        subplot = plt.subplot(3, 4, i + 1)
@@ -953,8 +949,8 @@ for i, offset in enumerate(clusters_separation):
 #        subplot.set_ylim((-7, 7))
 #    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
 #    plt.suptitle("Outlier detection")
-#plt.savefig('ALL.png', dpi=300)
-#plt.show()
+plt.savefig('ALL.png', dpi=300)
+# #plt.show()
 
 # Train
 r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
@@ -987,60 +983,47 @@ kd_f1 = f1_score(ground_truth, kd_pred_label)
 print('kd_rpca - F1: %f' % (kd_f1))
 
 print('Xpareto_tc', Xpareto_tc.shape)
-sns.distplot(Xpareto_tc[:, 0] , color="yellow", label="Feature 1")
-# sns.distplot(Xpareto_tc[:, 1] , color="green", label="Feature 2")
+sns.distplot(Xpareto_tc[:, 0], color="blue", label="Pareto+Gaussian")
 plt.legend()
 plt.savefig("%sXpareto_tc.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
-print('Xpareto', Xpareto.shape)
-sns.distplot(Xpareto[:, 0] , color="blue", label="Feature 1")
-# sns.distplot(Xpareto[:, 1] , color="green", label="Feature 2")
+sns.distplot(Ct[:, 0], color="blue", label="Gaussian")
 plt.legend()
-plt.savefig("%sXpareto.png" % result_path)
-# plt.show()
+plt.savefig("%sGaussian_contamination.png" % result_path)
+#plt.show()
 plt.close()
-print('Cgaussian', Cgaussian.shape)
-sns.distplot(Cgaussian[:, 0] , color="firebrick", label="Feature 1")
-# sns.distplot(Cgaussian[:, 1] , color="salmon", label="Feature 2")
+sns.distplot(Xpareto_t[:, 0], color="blue", label="Pareto")
+sns.distplot(Ct[:, 0], color="red", label="Gaussian")
 plt.legend()
-plt.savefig("%sCgaussian.png" % result_path)
-# plt.show()
-plt.close()
-print('Xpg', Xpg.shape)
-sns.distplot(Xpg[:, 0] , color="black", label="Feature 1")
-# sns.distplot(Xpg[:, 1] , color="gray", label="Feature 2")
-plt.legend()
-plt.savefig("%sXpg.png" % result_path)
-# plt.show()
+plt.savefig("%sXgc.png" % result_path)
+#plt.show()
 plt.close()
 
-mu = 0.    # mean 
-sigma = 1. # standard deviation
+mu = 0.  # mean 
+sigma = 1.  # standard deviation
 
 ln1 = np.random.lognormal(mu, sigma, n_inliers)
 count, bins, ignored = plt.hist(ln1, 100, density=True, align='mid')
 x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2)) / (x * sigma * np.sqrt(2 * np.pi)))
+pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
 plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
 plt.axis('tight')
-plt.legend()
-plt.savefig("%slognormal1.png" % result_path)
-# plt.show()
+plt.savefig("%sLognormal1.png" % result_path)
+#plt.show()
 plt.close()
 
 ln2 = np.random.lognormal(mu, sigma, n_inliers)
 count, bins, ignored = plt.hist(ln2, 100, density=True, align='mid')
 x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2)) / (x * sigma * np.sqrt(2 * np.pi)))
+pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
 plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
 plt.axis('tight')
-plt.legend()
-plt.savefig("%slognormal2.png" % result_path)
-# plt.show()
+plt.savefig("%sLognormal2.png" % result_path)
+#plt.show()
 plt.close()
 
-Xlogn = np.vstack((ln1,ln2)).transpose()
+Xlogn = np.vstack((ln1, ln2)).transpose()
 print('Xlogn:', Xlogn.shape)
 
 # Add gaussian outliers
@@ -1048,45 +1031,10 @@ Xlogng = np.r_[Xlogn, Cgaussian]
 
 ln1 = np.random.lognormal(mu, sigma, n_inliers)
 ln2 = np.random.lognormal(mu, sigma, n_inliers)
-Xlogn_t = np.vstack((ln1,ln2)).transpose()
+Xlogn_t = np.vstack((ln1, ln2)).transpose()
 
 print('### Train: Log-normal')
 print('### Test: Log-normal contaminated by Gaussian')
-
-mu = 0.    # mean
-sigma = 1. # standard deviation
-
-ln1 = np.random.lognormal(mu, sigma, n_inliers)
-count, bins, ignored = plt.hist(Xlogn[:,0], 100, density=True, align='mid')
-x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2)) / (x * sigma * np.sqrt(2 * np.pi)))
-plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
-plt.axis('tight')
-plt.legend()
-plt.savefig("%slognormal3.png" % result_path)
-# plt.show()
-plt.close()
-
-ln2 = np.random.lognormal(mu, sigma, n_inliers)
-count, bins, ignored = plt.hist(Xlogng[:,0], 100, density=True, align='mid')
-x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2)) / (x * sigma * np.sqrt(2 * np.pi)))
-plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
-plt.axis('tight')
-plt.legend()
-plt.savefig("%slognormal4.png" % result_path)
-# plt.show()
-plt.close()
-
-Xlogn = np.vstack((ln1,ln2)).transpose()
-print('Xlogn:', Xlogn.shape)
-
-# Add gaussian outliers
-Xlogng = np.r_[Xlogn, Cgaussian]
-
-ln1 = np.random.lognormal(mu, sigma, n_inliers)
-ln2 = np.random.lognormal(mu, sigma, n_inliers)
-Xlogn_t = np.vstack((ln1,ln2)).transpose()
 
 # Compare given detectors under given settings
 # Initialize the data
@@ -1141,7 +1089,7 @@ classifiers = {
         contamination=outliers_fraction, random_state=random_state),
     # 'Stochastic Outlier Selection (SOS)': SOS(
     #     contamination=outliers_fraction),
-    #'Locally Selective Combination (LSCP)': LSCP(
+    # 'Locally Selective Combination (LSCP)': LSCP(
     #    detector_list, contamination=outliers_fraction,
     #    random_state=random_state)
 }
@@ -1151,20 +1099,20 @@ clusters_separation = [0]
 # Fit the models with the generated data and
 # compare model performances
 for i, offset in enumerate(clusters_separation):
-    
+
     # Fit the model
     plt.figure(figsize=(15, 12))
-    for i, (clf_name, clf) in enumerate(classifiers.items()):        
+    for i, (clf_name, clf) in enumerate(classifiers.items()):
         # fit the data and tag outliers
         clf.fit(Xlogng)
         scores_pred = clf.decision_function(Xlogng) * -1
         y_pred = clf.predict(Xlogng)
         threshold = percentile(scores_pred, 100 * outliers_fraction)
-        #n_errors = (y_pred != ground_truth).sum()
+        # n_errors = (y_pred != ground_truth).sum()
         f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)  
-        
-#        # plot the levels lines and the points
+        print(i + 1, 'fitting', clf_name, f1)
+
+    #        # plot the levels lines and the points
 #        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
 #        Z = Z.reshape(xx.shape)
 #        subplot = plt.subplot(3, 4, i + 1)
@@ -1189,8 +1137,8 @@ for i, offset in enumerate(clusters_separation):
 #        subplot.set_ylim((-7, 7))
 #    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
 #    plt.suptitle("Outlier detection")
-#plt.savefig('ALL.png', dpi=300)
-#plt.show()
+plt.savefig('ALL.png', dpi=300)
+# #plt.show()
 
 
 # Train
@@ -1224,30 +1172,26 @@ kd_f1 = f1_score(ground_truth, kd_pred_label)
 print('kd_rpca_prediction - F1: %f' % (kd_f1))
 
 print('Xlogn', Xlogn.shape)
-sns.distplot(Xlogn[:, 0] , color="blue", label="Feature 1")
-# sns.distplot(Xlogn[:, 1] , color="green", label="Feature 2")
+sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
 plt.legend()
 plt.savefig("%sXlogn.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
 print('Xlogn_t', Xlogn_t.shape)
-sns.distplot(Xlogn_t[:, 0] , color="yellow", label="Feature 1")
-# sns.distplot(Xlogn_t[:, 1] , color="green", label="Feature 2")
+sns.distplot(Xlogn_t[:, 0], color="blue", label="Lognormal")
 plt.legend()
 plt.savefig("%sXlogn_t.png" % result_path)
-# plt.show()
-plt.close()
-print('Cgaussian', Cgaussian.shape)
-sns.distplot(Cgaussian[:, 0] , color="firebrick", label="Feature 1")
-# sns.distplot(Cgaussian[:, 1] , color="salmon", label="Feature 2")
-plt.legend()
-plt.savefig("%sCgaussian.png" % result_path)
-# plt.show()
+#plt.show()
 plt.close()
 print('Xlogng', Xlogng.shape)
-sns.distplot(Xlogng[:, 0] , color="black", label="Feature 1")
-# sns.distplot(Xlogng[:, 1] , color="gray", label="Feature 2")
+sns.distplot(Xlogng[:, 0], color="blue", label="Lognormal+Gaussian")
 plt.legend()
-plt.savefig("%sXlogng.png" % result_path)
-# plt.show()
+plt.savefig("%sXlogng1.png" % result_path)
+#plt.show()
+plt.close()
+sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
+sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
+plt.legend()
+plt.savefig("%sXlogng2.png" % result_path)
+#plt.show()
 plt.close()
