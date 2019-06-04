@@ -43,7 +43,7 @@ for sample_file in file_list:
 
     # Train
     L, rob_mean, rob_cov, rob_dist, rob_precision, rob_skew, rob_skew_dist, rob_kurt, rob_kurt_dist = fit(
-        np.array(test_df, dtype=float))
+        np.array(norm_train_df, dtype=float))
 
     # Cross-Validation for best_contamination
     test_label_vc = test_label_df.value_counts()

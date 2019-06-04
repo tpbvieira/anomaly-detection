@@ -40,7 +40,6 @@ import pandas as pd
 from scipy import linalg
 from scipy.stats import skew, kurtosis
 from sklearn.metrics import pairwise_distances, f1_score
-
 from tensorly.decomposition.robust_decomposition import robust_pca
 
 from scipy.stats import skewnorm
@@ -55,9 +54,9 @@ def fit_m_rpca(data, m_reg_J=1):
     """
     Robust PCA based estimation of mean, covariance, skewness and kurtosis.
 
-    :param data: MxN matrix with M observations and N features, where M>N 
+    :param data: MxN matrix with M observations and N features, where M>N
     :param m_reg_J: regularization. Default value is 1
-    :return: 
+    :return:
         L: array-like, shape (m_obserations, n_features,)
             Robust data
 
@@ -105,7 +104,7 @@ def cv_location_contamination(cv_df, cv_labels, location, precision):
         contamination += 0.01
         contamination = round(contamination, 2)
         pred_label = predict_by_location_contamination(cv_df, location, precision, contamination)
-        contamination_prediction_list.append((contamination, f1_score(labels, pred_label)))
+        contamination_prediction_list.append((contamination, f1_score(labels, pred_label, average="binary")))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     contamination_best_f1 = contamination_prediction_list[0][0]
@@ -130,7 +129,7 @@ def cv_location_threshold(cv_df, cv_labels, location, precision, dist):
 
     for m_threshold in np.linspace(min_dist, max_dist, 40):
         pred_label = predict_by_location_threshold(cv_df, location, precision, m_threshold)
-        threshold_prediction_list.append((m_threshold, f1_score(labels, pred_label)))
+        threshold_prediction_list.append((m_threshold, f1_score(labels, pred_label, average="binary")))
 
     threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_threshold = threshold_prediction_list[0][0]
@@ -155,7 +154,7 @@ def cv_skewness_contamination(cv_df, cv_labels, skewness, precision):
         contamination += 0.01
         contamination = round(contamination, 2)
         pred_label = predict_by_skewness_contamination(cv_df, precision, skewness, contamination)
-        contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label)))
+        contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label, average="binary")))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_contamination = contamination_prediction_list[0][0]
@@ -181,7 +180,7 @@ def cv_skewness_threshold(cv_df, cv_labels, skewness, precision, skew_dist):
 
     for m_threshold in np.linspace(min_dist, max_dist, 40):
         pred_label = predict_by_skewness_threshold(cv_df, precision, skewness, m_threshold)
-        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label)))
+        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label, average="binary")))
 
     threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_threshold = threshold_prediction_list[0][0]
@@ -205,7 +204,7 @@ def cv_kurtosis_contamination(cv_df, cv_labels, m_kurtosis, precision):
         contamination += 0.01
         contamination = round(contamination, 2)
         pred_label = predict_by_kurtosis_contamination(cv_df, precision, m_kurtosis, contamination)
-        contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label)))
+        contamination_prediction_list.append((contamination, f1_score(actual_anomalies, pred_label, average="binary")))
 
     contamination_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_contamination = contamination_prediction_list[0][0]
@@ -231,7 +230,7 @@ def cv_kurtosis_threshold(cv_df, cv_labels, kurtosis, precision, kurt_dist):
 
     for m_threshold in np.linspace(min_dist, max_dist, 40):
         pred_label = predict_by_kurtosis_threshold(cv_df, precision, kurtosis, m_threshold)
-        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label)))
+        threshold_prediction_list.append((m_threshold, f1_score(actual_anomalies, pred_label, average="binary")))
 
     threshold_prediction_list.sort(key=lambda tup: tup[1], reverse=True)
     best_threshold = threshold_prediction_list[0][0]
@@ -511,687 +510,1100 @@ def predict_by_kurtosis_centered_threshold(X, precision, m_kurtosis, threshold):
 
 # Define the number of inliers and outliers
 n_samples = 2400
-outliers_fraction = 0.33
+# outliers_fraction = 0.33
+# outliers_fraction = 0.25
+outliers_fraction = 0.10
 
 result_path = 'output/synthetic/'
+data_path = 'data/synthetic/'
 
-# Initialize the data
-n_inliers = int((1. - outliers_fraction) * n_samples)
-n_outliers = int(n_samples - n_inliers)
-ground_truth = np.zeros(n_samples, dtype=int)
-ground_truth[-n_outliers:] = 1  # put outliers into the end
+# # Initialize the data
+# n_inliers = int((1. - outliers_fraction) * n_samples)
+# n_outliers = int(n_samples - n_inliers)
+# ground_truth = np.zeros(n_samples, dtype=int)
+# ground_truth[-n_outliers:] = 1  # put outliers into the end
+#
+# print('n_samples:', n_samples)
+# print('n_inliers:', n_inliers)
+# print('n_outliers:', n_outliers)
+# print('ground_truth:', ground_truth.shape)
+#
+# # Data generation
+# # Gaussian
+# np.random.seed(11)
+# X1 = 0.3 * np.random.randn(n_inliers, 2)
+# X2 = 0.3 * np.random.randn(n_inliers, 2)
+# Xgaussian = np.r_[X1, X2]
+# Xgaussian_t = Xgaussian[:n_inliers]
+# Xgaussian = Xgaussian[n_inliers:]
+#
+# # Append uniform outliers
+# Cuniform = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+# Xgu = np.r_[Xgaussian, Cuniform]
+#
+# Ctuniform = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+# Xgaussian_tc = np.r_[Xgaussian_t, Ctuniform]
+#
+# sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
+# sns.distplot(Xgaussian[:, 1], color="red", label="Gaussian")
+# plt.legend()
+# # plt.savefig("%sXgaussian.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# print('Xgaussian_t:', Xgaussian_t.shape)
+# sns.distplot(Xgaussian_t[:, 0], color="blue", label="Gaussian")
+# sns.distplot(Xgaussian_t[:, 1], color="red", label="Gaussian")
+# plt.legend()
+# # plt.savefig("%sXgaussian_t.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# # Append outliers
+# print('Cuniform:', Cuniform.shape)
+# sns.distplot(Cuniform[:, 0], color="blue", label="Uniform")
+# plt.legend()
+# # plt.savefig("%sCuniform.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# print('Xgu:', Xgu.shape)
+# sns.distplot(Xgu[:, 0], color="blue", label="Gaussian + Uniform")
+# plt.legend()
+# # plt.savefig("%sXgu.png" % result_path)
+# plt.show()
+# plt.legend()
+# plt.close()
+#
+# sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
+# sns.distplot(Cuniform[:, 0], color="red", label="Uniform")
+# plt.legend()
+# # plt.savefig("%sXgu2.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# print('### Gaussian contaminated by Uniform')
+# # initialize a set of detectors for LSCP
+# detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+#                  LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+#                  LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+#                  LOF(n_neighbors=50)]
+#
+# # Show the statics of the data
+# print('Number of inliers: %i' % n_inliers)
+# print('Number of outliers: %i' % n_outliers)
+# print('Contamination: %6.2f' % outliers_fraction)
+#
+# random_state = np.random.RandomState(42)
+#
+# # Define nine outlier detection tools to be compared
+# classifiers = {
+#     #     'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
+#     'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, check_estimator=False,
+#                                                         random_state=random_state),
+#     #     'Feature Bagging': FeatureBagging(LOF(n_neighbors=35), contamination=outliers_fraction, random_state=random_state),
+#     'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
+#     'Isolation Forest': IForest(contamination=outliers_fraction, random_state=random_state),
+#     'K Nearest Neighbors (KNN)': KNN(contamination=outliers_fraction),
+#     #     'Average KNN': KNN(method='mean', contamination=outliers_fraction),
+#     'Local Outlier Factor (LOF)': LOF(n_neighbors=35, contamination=outliers_fraction),
+#     'Minimum Covariance Determinant (MCD)': MCD(contamination=outliers_fraction, random_state=random_state),
+#     'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
+#     'Principal Component Analysis (PCA)': PCA(contamination=outliers_fraction, random_state=random_state),
+#     # 'Locally Selective Combination (LSCP)': LSCP(detector_list, contamination=outliers_fraction, random_state=random_state)
+# }
+#
+# for i, (clf_name, clf) in enumerate(classifiers.items()):
+#     # fit the data and tag outliers
+#     clf.fit(Xgu)
+#     scores_pred = clf.decision_function(Xgu) * -1
+#     y_pred = clf.predict(Xgu)
+#     threshold = percentile(scores_pred, 100 * outliers_fraction)
+#     f1 = f1_score(ground_truth, y_pred, average="binary")
+#     print(i + 1, 'fitting', clf_name, f1)
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_t)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('ss_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('ss_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('ss_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_tc)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('css_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('css_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('css_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgu)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('u_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('u_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('u_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Pareto distribution
+# np.random.seed(42)
+# a = 3.  # shape
+# m = 1.  # mode
+#
+# p1 = (np.random.pareto(a, n_inliers) + 1) * m
+# p2 = (np.random.pareto(a, n_inliers) + 1) * m
+# Xpareto = np.vstack((p1, p2)).transpose()
+# print('Xpareto:', Xpareto.shape)
+#
+# count, bins, _ = plt.hist(p1, 100, density=True)
+# fit = a * m ** a / bins ** (a + 1)
+# plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
+# # plt.savefig("%sPareto1.png" % result_path)
+# plt.show()
+# plt.close()
+# count, bins, _ = plt.hist(p2, 100, density=True)
+# fit = a * m ** a / bins ** (a + 1)
+# plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
+# # plt.savefig("%sPareto2.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# p1 = (np.random.pareto(a, n_inliers) + 1) * m
+# p2 = (np.random.pareto(a, n_inliers) + 1) * m
+# Xpareto_t = np.vstack((p1, p2)).transpose()
+# print('Xpareto_t:', Xpareto_t.shape)
+#
+# # Add outliers
+# Cgaussian = 0.1 * np.random.randn(n_outliers, 2)
+# print('Cgaussian:', Cgaussian.shape)
+# Xpg = np.r_[Xpareto, Cgaussian]
+# print('Xpg:', Xpg.shape)
+#
+# np.random.seed(42)
+# Ct = 0.1 * np.random.randn(n_outliers, 2)
+# Xpareto_tc = np.r_[Xpareto_t, Ct]
+#
+# print('### Pareto contaminated by Gaussian')
+# # Compare given detectors under given settings
+# # Initialize the data
+# xx, yy = np.meshgrid(np.linspace(-7, 7, 100), np.linspace(-7, 7, 100))
+# ground_truth = np.zeros(n_samples, dtype=int)
+# ground_truth[-n_outliers:] = 1
+#
+# # initialize a set of detectors for LSCP
+# detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+#                  LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+#                  LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+#                  LOF(n_neighbors=50)]
+#
+# # Show the statics of the data
+# print('Number of inliers: %i' % n_inliers)
+# print('Number of outliers: %i' % n_outliers)
+# print('Contamination: %6.2f' % outliers_fraction)
+#
+# random_state = np.random.RandomState(42)
+# # Define nine outlier detection tools to be compared
+# classifiers = {
+#     #     'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
+#     'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, check_estimator=False,
+#                                                         random_state=random_state),
+#     #     'Feature Bagging': FeatureBagging(LOF(n_neighbors=35), contamination=outliers_fraction, random_state=random_state),
+#     'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
+#     'Isolation Forest': IForest(contamination=outliers_fraction, random_state=random_state),
+#     'K Nearest Neighbors (KNN)': KNN(contamination=outliers_fraction),
+#     #     'Average KNN': KNN(method='mean', contamination=outliers_fraction),
+#     'Local Outlier Factor (LOF)': LOF(n_neighbors=35, contamination=outliers_fraction),
+#     'Minimum Covariance Determinant (MCD)': MCD(contamination=outliers_fraction, random_state=random_state),
+#     'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
+#     'Principal Component Analysis (PCA)': PCA(contamination=outliers_fraction, random_state=random_state),
+#     # 'Locally Selective Combination (LSCP)': LSCP(detector_list, contamination=outliers_fraction, random_state=random_state)
+# }
+#
+# clusters_separation = [0]
+#
+# # Fit the models with the generated data and
+# # compare model performances
+# for i, offset in enumerate(clusters_separation):
+#
+#     # Fit the model
+#     plt.figure(figsize=(15, 12))
+#     for i, (clf_name, clf) in enumerate(classifiers.items()):
+#         # fit the data and tag outliers
+#         clf.fit(Xpg)
+#         scores_pred = clf.decision_function(Xpg) * -1
+#         y_pred = clf.predict(Xpg)
+#         threshold = percentile(scores_pred, 100 * outliers_fraction)
+#         # n_errors = (y_pred != ground_truth).sum()
+#         f1 = f1_score(ground_truth, y_pred, average="binary")
+#         print(i + 1, 'fitting', clf_name, f1)
+#
+#     #        # plot the levels lines and the points
+# #        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
+# #        Z = Z.reshape(xx.shape)
+# #        subplot = plt.subplot(3, 4, i + 1)
+# #        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
+# #                         cmap=plt.cm.Blues_r)
+# #        a = subplot.contour(xx, yy, Z, levels=[threshold],
+# #                            linewidths=2, colors='red')
+# #        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
+# #                         colors='orange')
+# #        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
+# #                            s=20, edgecolor='k')
+# #        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
+# #                            s=20, edgecolor='k')
+# #        subplot.axis('tight')
+# #        subplot.legend(
+# #            [a.collections[0], b, c],
+# #            ['learned decision function', 'true inliers', 'true outliers'],
+# #            prop=matplotlib.font_manager.FontProperties(size=10),
+# #            loc='lower right')
+# #        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
+# #       subplot.set_xlim((-7, 7))
+# #        subplot.set_ylim((-7, 7))
+# #    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
+# #    plt.suptitle("Outlier detection")
+# # plt.savefig('ALL.png', dpi=300)
+# # plt.show()
+#
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_t)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('ss_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('ss_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('ss_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('css_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('css_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('css_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('u_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('u_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('u_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
+# plt.legend()
+# # plt.savefig("%sXpareto3.png" % result_path)
+# plt.show()
+# plt.close()
+# print('Xpg', Xpg.shape)
+# sns.distplot(Xpg[:, 0], color="blue", label="Pareto + Gaussian")
+# plt.legend()
+# # plt.savefig("%sXpg1.png" % result_path)
+# plt.show()
+# plt.close()
+# sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
+# sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
+# plt.legend()
+# # plt.savefig("%sXpg2.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# mu = 0.  # mean
+# sigma = 1.  # standard deviation
+#
+# ln1 = np.random.lognormal(mu, sigma, n_inliers)
+# count, bins, ignored = plt.hist(ln1, 100, density=True, align='mid')
+# x = np.linspace(min(bins), max(bins), 10000)
+# pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
+# plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
+# plt.axis('tight')
+# # plt.savefig("%sLognormal1.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# ln2 = np.random.lognormal(mu, sigma, n_inliers)
+# count, bins, ignored = plt.hist(ln2, 100, density=True, align='mid')
+# x = np.linspace(min(bins), max(bins), 10000)
+# pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
+# plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
+# plt.axis('tight')
+# # plt.savefig("%sLognormal2.png" % result_path)
+# plt.show()
+# plt.close()
+#
+# Xlogn = np.vstack((ln1, ln2)).transpose()
+# print('Xlogn:', Xlogn.shape)
+#
+# # Add gaussian outliers
+# Xlogng = np.r_[Xlogn, Cgaussian]
+#
+# ln1 = np.random.lognormal(mu, sigma, n_inliers)
+# ln2 = np.random.lognormal(mu, sigma, n_inliers)
+# Xlogn_t = np.vstack((ln1, ln2)).transpose()
+#
+# np.random.seed(42)
+# Xlogn_tc = np.r_[Xlogn_t, Ct]
+#
+# print('### Log-normal contaminated by Gaussian')
+#
+# # Compare given detectors under given settings
+# # Initialize the data
+# xx, yy = np.meshgrid(np.linspace(-7, 7, 100), np.linspace(-7, 7, 100))
+# ground_truth = np.zeros(n_samples, dtype=int)
+# ground_truth[-n_outliers:] = 1
+#
+# # initialize a set of detectors for LSCP
+# detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+#                  LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+#                  LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+#                  LOF(n_neighbors=50)]
+#
+# # Show the statics of the data
+# print('Number of inliers: %i' % n_inliers)
+# print('Number of outliers: %i' % n_outliers)
+# print('Contamination: %6.2f' % outliers_fraction)
+#
+# random_state = np.random.RandomState(42)
+# # Define nine outlier detection tools to be compared
+# classifiers = {
+#     #     'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
+#     'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, check_estimator=False,
+#                                                         random_state=random_state),
+#     #     'Feature Bagging': FeatureBagging(LOF(n_neighbors=35), contamination=outliers_fraction, random_state=random_state),
+#     'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
+#     'Isolation Forest': IForest(contamination=outliers_fraction, random_state=random_state),
+#     'K Nearest Neighbors (KNN)': KNN(contamination=outliers_fraction),
+#     #     'Average KNN': KNN(method='mean', contamination=outliers_fraction),
+#     'Local Outlier Factor (LOF)': LOF(n_neighbors=35, contamination=outliers_fraction),
+#     'Minimum Covariance Determinant (MCD)': MCD(contamination=outliers_fraction, random_state=random_state),
+#     'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
+#     'Principal Component Analysis (PCA)': PCA(contamination=outliers_fraction, random_state=random_state),
+#     # 'Locally Selective Combination (LSCP)': LSCP(detector_list, contamination=outliers_fraction, random_state=random_state)
+# }
+#
+# clusters_separation = [0]
+#
+# # Fit the models with the generated data and
+# # compare model performances
+# for i, offset in enumerate(clusters_separation):
+#
+#     # Fit the model
+#     plt.figure(figsize=(15, 12))
+#     for i, (clf_name, clf) in enumerate(classifiers.items()):
+#         # fit the data and tag outliers
+#         clf.fit(Xlogng)
+#         scores_pred = clf.decision_function(Xlogng) * -1
+#         y_pred = clf.predict(Xlogng)
+#         threshold = percentile(scores_pred, 100 * outliers_fraction)
+#         # n_errors = (y_pred != ground_truth).sum()
+#         f1 = f1_score(ground_truth, y_pred, average="binary")
+#         print(i + 1, 'fitting', clf_name, f1)
+#
+#     #        # plot the levels lines and the points
+# #        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
+# #        Z = Z.reshape(xx.shape)
+# #        subplot = plt.subplot(3, 4, i + 1)
+# #        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
+# #                         cmap=plt.cm.Blues_r)
+# #        a = subplot.contour(xx, yy, Z, levels=[threshold],
+# #                            linewidths=2, colors='red')
+# #        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
+# #                         colors='orange')
+# #        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
+# #                            s=20, edgecolor='k')
+# #        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
+# #                            s=20, edgecolor='k')
+# #        subplot.axis('tight')
+# #        subplot.legend(
+# #            [a.collections[0], b, c],
+# #            ['learned decision function', 'true inliers', 'true outliers'],
+# #            prop=matplotlib.font_manager.FontProperties(size=10),
+# #            loc='lower right')
+# #        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
+# #       subplot.set_xlim((-7, 7))
+# #        subplot.set_ylim((-7, 7))
+# #    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
+# #    plt.suptitle("Outlier detection")
+# # plt.savefig('ALL.png', dpi=300)
+# # plt.show()
+#
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_t)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('ss_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('ss_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('ss_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_tc)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('css_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('css_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('css_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# # Train
+# r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogng)
+# # Testing md-rpca
+# md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+# md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+# print('u_md_rpca - F1: %6.2f' % (md_f1))
+# # Testing sd-rpca
+# sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+# sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+# print('u_sd_rpca - F1: %6.2f' % (sd_f1))
+# # Testing kd-rpca
+# kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+# kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+# print('u_kd_rpca - F1: %6.2f' % (kd_f1))
+#
+# sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
+# plt.legend()
+# # plt.savefig("%sXlogn.png" % result_path)
+# plt.show()
+# plt.close()
+# print('Xlogn_t', Xlogn_t.shape)
+# sns.distplot(Xlogn_t[:, 0], color="blue", label="Lognormal")
+# plt.legend()
+# # plt.savefig("%sXlogn_t.png" % result_path)
+# plt.show()
+# plt.close()
+# print('Xlogng', Xlogng.shape)
+# sns.distplot(Xlogng[:, 0], color="blue", label="Lognormal+Gaussian")
+# plt.legend()
+# # plt.savefig("%sXlogng1.png" % result_path)
+# plt.show()
+# plt.close()
+# sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
+# sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
+# plt.legend()
+# # plt.savefig("%sXlogng2.png" % result_path)
+# plt.show()
+# plt.close()
 
-print('n_samples:', n_samples)
-print('n_inliers:', n_inliers)
-print('n_outliers:', n_outliers)
-print('ground_truth:', ground_truth.shape)
 
-# Data generation
-np.random.seed(11)
-X1 = 0.3 * np.random.randn(n_inliers, 2)
-X2 = 0.3 * np.random.randn(n_inliers, 2)
-Xgaussian = np.r_[X1, X2]
-Xgaussian_t = Xgaussian[:n_inliers]
-Xgaussian = Xgaussian[n_inliers:]
-print('Xgaussian:', Xgaussian.shape)
-sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
-sns.distplot(Xgaussian[:, 1], color="red", label="Gaussian")
-plt.legend()
-plt.savefig("%sXgaussian.png" % result_path)
-#plt.show()
-plt.close()
-print('Xgaussian_t:', Xgaussian_t.shape)
-sns.distplot(Xgaussian_t[:, 0], color="blue", label="Gaussian")
-sns.distplot(Xgaussian_t[:, 1], color="red", label="Gaussian")
-plt.legend()
-plt.savefig("%sXgaussian_t.png" % result_path)
-#plt.show()
-plt.close()
+# configure GridSearchCV for Gaussian + Uniform
+cv_df = pd.DataFrame()
+for m_contamination in np.linspace(0.01, 0.50, 50):
+    outliers_fraction = m_contamination
 
-# Append outliers
-Cuniform = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
-print('Cuniform:', Cuniform.shape)
-sns.distplot(Cuniform[:, 0], color="blue", label="Uniform")
-plt.legend()
-plt.savefig("%sCuniform.png" % result_path)
-#plt.show()
-plt.close()
-Xgu = np.r_[Xgaussian, Cuniform]
-print('Xgu:', Xgu.shape)
-sns.distplot(Xgu[:, 0], color="blue", label="Gaussian + Uniform")
-plt.legend()
-plt.savefig("%sXgu.png" % result_path)
-#plt.show()
-plt.legend()
-plt.close()
-sns.distplot(Xgaussian[:, 0], color="blue", label="Gaussian")
-sns.distplot(Cuniform[:, 0], color="red", label="Uniform")
-plt.legend()
-plt.savefig("%sXgu2.png" % result_path)
-#plt.show()
-plt.close()
+    # Initialize the data
+    n_inliers = int((1. - outliers_fraction) * n_samples)
+    n_outliers = int(n_samples - n_inliers)
+    ground_truth = np.zeros(n_samples, dtype=int)
+    ground_truth[-n_outliers:] = 1  # put outliers into the end
 
-print('### Train: Gaussian')
-print('### Test: Gaussian contaminated by Uniform')
-# initialize a set of detectors for LSCP
-detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                 LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                 LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                 LOF(n_neighbors=50)]
+    # gaussian
+    gaussian_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian', n_samples, m_contamination,)
+    if not os.path.isfile(gaussian_df_name):
+        np.random.seed(11)
+        X1 = 0.3 * np.random.randn(n_inliers, 2)
+        X2 = 0.3 * np.random.randn(n_inliers, 2)
+        gaussian = np.r_[X1, X2]
+        gaussian_df = pd.DataFrame(gaussian)
+        gaussian_df.to_csv(gaussian_df_name, index=False)
+    else:
+        gaussian_df = pd.read_csv(gaussian_df_name)
+        gaussian = gaussian_df.values
 
-random_state = np.random.RandomState(42)
+    # Gaussian for training
+    gaussian_t = gaussian[:n_inliers]
 
-# Define nine outlier detection tools to be compared
-classifiers = {
-    'Angle-based Outlier Detector (ABOD)':
-        ABOD(contamination=outliers_fraction),
-    'Cluster-based Local Outlier Factor (CBLOF)':
-        CBLOF(contamination=outliers_fraction,
-              check_estimator=False, random_state=random_state),
-    'Feature Bagging':
-        FeatureBagging(LOF(n_neighbors=35),
-                       contamination=outliers_fraction,
-                       random_state=random_state),
-    'Histogram-base Outlier Detection (HBOS)': HBOS(
-        contamination=outliers_fraction),
-    'Isolation Forest': IForest(contamination=outliers_fraction,
-                                random_state=random_state),
-    'K Nearest Neighbors (KNN)': KNN(
-        contamination=outliers_fraction),
-    'Average KNN': KNN(method='mean',
-                       contamination=outliers_fraction),
-    'Local Outlier Factor (LOF)':
-        LOF(n_neighbors=35, contamination=outliers_fraction),
-    'Minimum Covariance Determinant (MCD)': MCD(
-        contamination=outliers_fraction, random_state=random_state),
-    'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
-    'Principal Component Analysis (PCA)': PCA(
-        contamination=outliers_fraction, random_state=random_state),
-    # 'Locally Selective Combination (LSCP)': LSCP(
-    #     detector_list, contamination=outliers_fraction,
-    #     random_state=random_state)
-}
+    # Gaussian
+    gaussian = gaussian[n_inliers:]
 
-for i, (clf_name, clf) in enumerate(classifiers.items()):
-    # fit the data and tag outliers
-    clf.fit(Xgu)
-    scores_pred = clf.decision_function(Xgu) * -1
-    y_pred = clf.predict(Xgu)
-    threshold = percentile(scores_pred, 100 * outliers_fraction)
-    f1 = f1_score(y_pred, ground_truth, average='macro')
-    print(i + 1, 'fitting', clf_name, f1)
+    # uniform_c
+    uniform_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c', n_samples, m_contamination,)
+    if not os.path.isfile(uniform_c_df_name):
+        np.random.seed(111)
+        uniform_c = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+        uniform_c_df = pd.DataFrame(uniform_c)
+        uniform_c_df.to_csv(uniform_c_df_name, index=False)
+    else:
+        uniform_c_df = pd.read_csv(uniform_c_df_name)
+        uniform_c = uniform_c_df.values
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_t)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
+    # uniform_c_t
+    uniform_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c_t', n_samples, m_contamination,)
+    if not os.path.isfile(uniform_c_t_df_name):
+        np.random.seed(110)
+        uniform_c_t = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+        uniform_c_t_df = pd.DataFrame(uniform_c_t)
+        uniform_c_t_df.to_csv(uniform_c_t_df_name, index=False)
+    else:
+        uniform_c_t_df = pd.read_csv(uniform_c_t_df_name)
+        uniform_c_t = uniform_c_t_df.values
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgu)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
+    # Gaussian and uniform anomalies
+    Xgu = np.r_[gaussian, uniform_c]
 
-# Pareto distribution
-np.random.seed(42)
-a = 3.  # shape
-m = 1.  # mode
+    # Contaminated Gaussian for training
+    Xgaussian_tc = np.r_[gaussian_t, uniform_c_t]
 
-p1 = (np.random.pareto(a, n_inliers) + 1) * m
-p2 = (np.random.pareto(a, n_inliers) + 1) * m
-Xpareto = np.vstack((p1, p2)).transpose()
-print('Xpareto:', Xpareto.shape)
+    # initialize a set of detectors for LSCP
+    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                     LOF(n_neighbors=50)]
+    random_state = np.random.RandomState(42)
 
-count, bins, _ = plt.hist(p1, 100, density=True)
-fit = a * m ** a / bins ** (a + 1)
-plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
-plt.savefig("%sPareto1.png" % result_path)
-#plt.show()
-plt.close()
-count, bins, _ = plt.hist(p2, 100, density=True)
-fit = a * m ** a / bins ** (a + 1)
-plt.plot(bins, max(count) * fit / max(fit), linewidth=2, color='r', label="Pareto")
-plt.savefig("%sPareto2.png" % result_path)
-#plt.show()
-plt.close()
+    # Define nine outlier detection tools to be compared
+    classifiers = {
+        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+        'KNN': KNN(contamination=outliers_fraction),
+        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+        'OCSVM': OCSVM(contamination=outliers_fraction),
+        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+    }
 
-p1 = (np.random.pareto(a, n_inliers) + 1) * m
-p2 = (np.random.pareto(a, n_inliers) + 1) * m
-Xpareto_t = np.vstack((p1, p2)).transpose()
-print('Xpareto_t:', Xpareto_t.shape)
+    for i, (clf_name, clf) in enumerate(classifiers.items()):
+        # fit the data and tag outliers
+        clf.fit(Xgu)
+        scores_pred = clf.decision_function(Xgu) * -1
+        y_pred = clf.predict(Xgu)
+        threshold = percentile(scores_pred, 100 * outliers_fraction)
+        f1 = f1_score(ground_truth, y_pred, average="binary")
+        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                             ignore_index=True)
 
-# Add outliers
-Cgaussian = 0.1 * np.random.randn(n_outliers, 2)
-print('Cgaussian:', Cgaussian.shape)
-Xpg = np.r_[Xpareto, Cgaussian]
-print('Xpg:', Xpg.shape)
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(gaussian)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                         ignore_index=True)
 
-print('### Train: Pareto')
-print('### Test: Pareto contaminated by Gaussian')
-# Compare given detectors under given settings
-# Initialize the data
-xx, yy = np.meshgrid(np.linspace(-7, 7, 100), np.linspace(-7, 7, 100))
-ground_truth = np.zeros(n_samples, dtype=int)
-ground_truth[-n_outliers:] = 1
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_tc)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                         ignore_index=True)
 
-# initialize a set of detectors for LSCP
-detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                 LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                 LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                 LOF(n_neighbors=50)]
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgu)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                         ignore_index=True)
 
-# Show the statics of the data
-print('Number of inliers: %i' % n_inliers)
-print('Number of outliers: %i' % n_outliers)
-print(
-    'Ground truth shape is {shape}. Outlier are 1 and inliers are 0.\n'.format(
-        shape=ground_truth.shape))
-print(ground_truth, '\n')
+    # ROBPCA-AO from saved files
+    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_gaussian_2400_%.2f.csv' % m_contamination
+    if os.path.isfile(robpca_result_file):
+        # print(robpca_result_file)
+        robpca_pred = pd.read_csv(robpca_result_file, header=None)
+        robpca_pred = robpca_pred[0]
+        robpca_pred[robpca_pred == True] = -1
+        robpca_pred[robpca_pred == False] = 1
+        robpca_pred[robpca_pred == -1] = 0
+        robpca_f1 = f1_score(ground_truth, robpca_pred)
+        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                             ignore_index=True)
 
-random_state = np.random.RandomState(42)
-# Define nine outlier detection tools to be compared
-classifiers = {
-    'Angle-based Outlier Detector (ABOD)':
-        ABOD(contamination=outliers_fraction),
-    'Cluster-based Local Outlier Factor (CBLOF)':
-        CBLOF(contamination=outliers_fraction,
-              check_estimator=False, random_state=random_state),
-    'Feature Bagging':
-        FeatureBagging(LOF(n_neighbors=35),
-                       contamination=outliers_fraction,
-                       random_state=random_state),
-    'Histogram-base Outlier Detection (HBOS)': HBOS(
-        contamination=outliers_fraction),
-    'Isolation Forest': IForest(contamination=outliers_fraction,
-                                random_state=random_state),
-    'K Nearest Neighbors (KNN)': KNN(
-        contamination=outliers_fraction),
-    'Average KNN': KNN(method='mean',
-                       contamination=outliers_fraction),
-    # 'Median KNN': KNN(method='median',
-    #                   contamination=outliers_fraction),
-    'Local Outlier Factor (LOF)':
-        LOF(n_neighbors=35, contamination=outliers_fraction),
-    # 'Local Correlation Integral (LOCI)':
-    #     LOCI(contamination=outliers_fraction),
-    'Minimum Covariance Determinant (MCD)': MCD(
-        contamination=outliers_fraction, random_state=random_state),
-    'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
-    'Principal Component Analysis (PCA)': PCA(
-        contamination=outliers_fraction, random_state=random_state),
-    # 'Stochastic Outlier Selection (SOS)': SOS(
-    #     contamination=outliers_fraction),
-    # 'Locally Selective Combination (LSCP)': LSCP(
-    #    detector_list, contamination=outliers_fraction,
-    #    random_state=random_state)
-}
+dash_styles = ["",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               ""
+               ]
+fig_dims = (8, 8)
+colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+sns.set_style("whitegrid")
+fig, ax = plt.subplots(figsize=fig_dims)
+ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                  style="Algorithm", dashes=dash_styles,
+                  palette=sns.xkcd_palette(colors), lw=2,
+                  data=cv_df)
+# Put the legend out of the figure
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.savefig("%sgaussian_f1_contamination.png" % result_path,  bbox_inches='tight')
 
-clusters_separation = [0]
 
-# Fit the models with the generated data and
-# compare model performances
-for i, offset in enumerate(clusters_separation):
+# configure GridSearchCV for Pareto + Guassian
+cv_df = pd.DataFrame()
+for m_contamination in np.linspace(0.01, 0.50, 50):
+    outliers_fraction = m_contamination
 
-    # Fit the model
-    plt.figure(figsize=(15, 12))
+    # Initialize the data
+    n_inliers = int((1. - outliers_fraction) * n_samples)
+    n_outliers = int(n_samples - n_inliers)
+    ground_truth = np.zeros(n_samples, dtype=int)
+    ground_truth[-n_outliers:] = 1  # put outliers into the end
+
+    a = 3.  # shape
+    m = 1.  # mode
+
+    # Pareto
+    pareto_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto', n_samples, m_contamination,)
+    if not os.path.isfile(pareto_df_name):
+        np.random.seed(42)
+        p1 = (np.random.pareto(a, n_inliers) + 1) * m
+        p2 = (np.random.pareto(a, n_inliers) + 1) * m
+        pareto = np.vstack((p1, p2)).transpose()
+        pareto_df = pd.DataFrame(pareto)
+        pareto_df.to_csv(pareto_df_name, index=False)
+    else:
+        pareto_df = pd.read_csv(pareto_df_name)
+        pareto = pareto_df.values
+
+    # Pareto_t
+    pareto_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto_t', n_samples, m_contamination,)
+    if not os.path.isfile(pareto_t_df_name):
+        np.random.seed(12)
+        p1 = (np.random.pareto(a, n_inliers) + 1) * m
+        p2 = (np.random.pareto(a, n_inliers) + 1) * m
+        pareto_t = np.vstack((p1, p2)).transpose()
+        pareto_t_df = pd.DataFrame(pareto_t)
+        pareto_t_df.to_csv(pareto_t_df_name, index=False)
+    else:
+        pareto_t_df = pd.read_csv(pareto_t_df_name)
+        pareto_t = pareto_t_df.values
+
+    # gaussian_c
+    gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
+    if not os.path.isfile(gaussian_c_df_name):
+        np.random.seed(2)
+        gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
+        gaussian_c_df = pd.DataFrame(gaussian_c)
+        gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
+    else:
+        gaussian_c_df = pd.read_csv(gaussian_c_df_name)
+        gaussian_c = gaussian_c_df.values
+
+    # gaussian_c_t
+    gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
+    if not os.path.isfile(gaussian_c_t_df_name):
+        np.random.seed(20)
+        gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
+        gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
+        gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
+    else:
+        gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
+        gaussian_c_t = gaussian_c_t_df.values
+
+    # Pareto and gaussian anomalies
+    Xpg = np.r_[pareto, gaussian_c]
+
+    # Contaminated Pareto for training
+    Xpareto_tc = np.r_[pareto_t, gaussian_c_t]
+
+    # initialize a set of detectors for LSCP
+    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                     LOF(n_neighbors=50)]
+    random_state = np.random.RandomState(42)
+
+    # Define nine outlier detection tools to be compared
+    classifiers = {
+        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+        'KNN': KNN(contamination=outliers_fraction),
+        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+        'OCSVM': OCSVM(contamination=outliers_fraction),
+        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+    }
+
     for i, (clf_name, clf) in enumerate(classifiers.items()):
         # fit the data and tag outliers
         clf.fit(Xpg)
         scores_pred = clf.decision_function(Xpg) * -1
         y_pred = clf.predict(Xpg)
         threshold = percentile(scores_pred, 100 * outliers_fraction)
-        # n_errors = (y_pred != ground_truth).sum()
-        f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)
+        f1 = f1_score(ground_truth, y_pred, average="binary")
+        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                             ignore_index=True)
 
-    #        # plot the levels lines and the points
-#        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
-#        Z = Z.reshape(xx.shape)
-#        subplot = plt.subplot(3, 4, i + 1)
-#        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
-#                         cmap=plt.cm.Blues_r)
-#        a = subplot.contour(xx, yy, Z, levels=[threshold],
-#                            linewidths=2, colors='red')
-#        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
-#                         colors='orange')
-#        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
-#                            s=20, edgecolor='k')
-#        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
-#                            s=20, edgecolor='k')
-#        subplot.axis('tight')
-#        subplot.legend(
-#            [a.collections[0], b, c],
-#            ['learned decision function', 'true inliers', 'true outliers'],
-#            prop=matplotlib.font_manager.FontProperties(size=10),
-#            loc='lower right')
-#        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
-#       subplot.set_xlim((-7, 7))
-#        subplot.set_ylim((-7, 7))
-#    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
-#    plt.suptitle("Outlier detection")
-plt.savefig('ALL.png', dpi=300)
-# #plt.show()
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(pareto)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                         ignore_index=True)
+
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                         ignore_index=True)
+
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                         ignore_index=True)
+
+    # ROBPCA-AO from saved files
+    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_pareto_2400_%.2f.csv' % m_contamination
+    if os.path.isfile(robpca_result_file):
+        robpca_pred = pd.read_csv(robpca_result_file, header=None)
+        robpca_pred = robpca_pred[0]
+        robpca_pred[robpca_pred == True] = -1
+        robpca_pred[robpca_pred == False] = 1
+        robpca_pred[robpca_pred == -1] = 0
+        robpca_f1 = f1_score(ground_truth, robpca_pred)
+        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                             ignore_index=True)
 
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_t)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
+dash_styles = ["",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               ""
+               ]
+fig_dims = (8, 8)
+colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+sns.set_style("whitegrid")
+fig, ax = plt.subplots(figsize=fig_dims)
+ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                  style="Algorithm", dashes=dash_styles,
+                  palette=sns.xkcd_palette(colors), lw=2,
+                  data=cv_df)
+# Put the legend out of the figure
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.savefig("%spareto_f1_contamination.png" % result_path,  bbox_inches='tight')
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
 
-print('Xpareto', Xpareto.shape)
-sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
-plt.legend()
-plt.savefig("%sXpareto3.png" % result_path)
-#plt.show()
-plt.close()
-print('Xpg', Xpg.shape)
-sns.distplot(Xpg[:, 0], color="blue", label="Pareto + Gaussian")
-plt.legend()
-plt.savefig("%sXpg1.png" % result_path)
-#plt.show()
-plt.close()
-sns.distplot(Xpareto[:, 0], color="blue", label="Pareto")
-sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
-plt.legend()
-plt.savefig("%sXpg2.png" % result_path)
-#plt.show()
-plt.close()
+# configure GridSearchCV for Lognormal + Guassian
+cv_df = pd.DataFrame()
+for m_contamination in np.linspace(0.01, 0.50, 50):
+    outliers_fraction = m_contamination
 
-print('### Train: Pareto conaminated by Gaussian')
-print('### Test: Pareto contaminated by Gaussian')
-np.random.seed(42)
-Ct = 0.1 * np.random.randn(n_outliers * 2, 2)
-Xpareto_tc = np.r_[Xpareto_t, Ct]
+    # Initialize the data
+    n_inliers = int((1. - outliers_fraction) * n_samples)
+    n_outliers = int(n_samples - n_inliers)
+    ground_truth = np.zeros(n_samples, dtype=int)
+    ground_truth[-n_outliers:] = 1  # put outliers into the end
 
-# Compare given detectors under given settings
-# Initialize the data
-xx, yy = np.meshgrid(np.linspace(-7, 7, 100), np.linspace(-7, 7, 100))
-ground_truth = np.zeros(n_samples, dtype=int)
-ground_truth[-n_outliers:] = 1
+    mu = 0.  # Lognormal mean
+    sigma = 1.  # Lognormal standard deviation
 
-# initialize a set of detectors for LSCP
-detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                 LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                 LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                 LOF(n_neighbors=50)]
+    # Lognormal
+    lognormal_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal', n_samples, m_contamination,)
+    if not os.path.isfile(lognormal_df_name):
+        np.random.seed(42)
+        ln1 = np.random.lognormal(mu, sigma, n_inliers)
+        ln2 = np.random.lognormal(mu, sigma, n_inliers)
+        lognormal = np.vstack((ln1, ln2)).transpose()
+        lognormal_df = pd.DataFrame(lognormal)
+        lognormal_df.to_csv(lognormal_df_name, index=False)
+    else:
+        lognormal_df = pd.read_csv(lognormal_df_name)
+        lognormal = lognormal_df.values
 
-# Show the statics of the data
-print('Number of inliers: %i' % n_inliers)
-print('Number of outliers: %i' % n_outliers)
-print(
-    'Ground truth shape is {shape}. Outlier are 1 and inliers are 0.\n'.format(
-        shape=ground_truth.shape))
-print(ground_truth, '\n')
+    # Lognormal_t
+    lognormal_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal_t', n_samples, m_contamination,)
+    if not os.path.isfile(lognormal_t_df_name):
+        np.random.seed(142)
+        ln1 = np.random.lognormal(mu, sigma, n_inliers)
+        ln2 = np.random.lognormal(mu, sigma, n_inliers)
+        lognormal_t = np.vstack((ln1, ln2)).transpose()
+        lognormal_t_df = pd.DataFrame(lognormal_t)
+        lognormal_t_df.to_csv(lognormal_t_df_name, index=False)
+    else:
+        lognormal_t_df = pd.read_csv(lognormal_t_df_name)
+        lognormal_t = lognormal_t_df.values
 
-random_state = np.random.RandomState(42)
-# Define nine outlier detection tools to be compared
-classifiers = {
-    'Angle-based Outlier Detector (ABOD)':
-        ABOD(contamination=outliers_fraction),
-    'Cluster-based Local Outlier Factor (CBLOF)':
-        CBLOF(contamination=outliers_fraction,
-              check_estimator=False, random_state=random_state),
-    'Feature Bagging':
-        FeatureBagging(LOF(n_neighbors=35),
-                       contamination=outliers_fraction,
-                       random_state=random_state),
-    'Histogram-base Outlier Detection (HBOS)': HBOS(
-        contamination=outliers_fraction),
-    'Isolation Forest': IForest(contamination=outliers_fraction,
-                                random_state=random_state),
-    'K Nearest Neighbors (KNN)': KNN(
-        contamination=outliers_fraction),
-    'Average KNN': KNN(method='mean',
-                       contamination=outliers_fraction),
-    # 'Median KNN': KNN(method='median',
-    #                   contamination=outliers_fraction),
-    'Local Outlier Factor (LOF)':
-        LOF(n_neighbors=35, contamination=outliers_fraction),
-    # 'Local Correlation Integral (LOCI)':
-    #     LOCI(contamination=outliers_fraction),
-    'Minimum Covariance Determinant (MCD)': MCD(
-        contamination=outliers_fraction, random_state=random_state),
-    'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
-    'Principal Component Analysis (PCA)': PCA(
-        contamination=outliers_fraction, random_state=random_state),
-    # 'Stochastic Outlier Selection (SOS)': SOS(
-    #     contamination=outliers_fraction),
-    # 'Locally Selective Combination (LSCP)': LSCP(
-    #    detector_list, contamination=outliers_fraction,
-    #    random_state=random_state)
-}
+    # gaussian_c
+    gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
+    if not os.path.isfile(gaussian_c_df_name):
+        np.random.seed(2)
+        gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
+        gaussian_c_df = pd.DataFrame(gaussian_c)
+        gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
+    else:
+        gaussian_c_df = pd.read_csv(gaussian_c_df_name)
+        gaussian_c = gaussian_c_df.values
 
-clusters_separation = [0]
+    # gaussian_c_t
+    gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
+    if not os.path.isfile(gaussian_c_t_df_name):
+        np.random.seed(20)
+        gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
+        gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
+        gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
+    else:
+        gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
+        gaussian_c_t = gaussian_c_t_df.values
 
-# Fit the models with the generated data and
-# compare model performances
-for i, offset in enumerate(clusters_separation):
-    # Add outliers
+    # Lognormal and gaussian anomalies
+    Xlogng = np.r_[lognormal, gaussian_c]
 
-    # Fit the model
-    plt.figure(figsize=(15, 12))
-    for i, (clf_name, clf) in enumerate(classifiers.items()):
-        # fit the data and tag outliers
-        clf.fit(Xpg)
-        scores_pred = clf.decision_function(Xpg) * -1
-        y_pred = clf.predict(Xpg)
-        threshold = percentile(scores_pred, 100 * outliers_fraction)
-        # n_errors = (y_pred != ground_truth).sum()
-        f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)
+    # Contaminated Lognormal for training
+    Xlogn_tc = np.r_[lognormal_t, gaussian_c_t]
 
-    #        # plot the levels lines and the points
-#        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
-#        Z = Z.reshape(xx.shape)
-#        subplot = plt.subplot(3, 4, i + 1)
-#        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
-#                         cmap=plt.cm.Blues_r)
-#        a = subplot.contour(xx, yy, Z, levels=[threshold],
-#                            linewidths=2, colors='red')
-#        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
-#                         colors='orange')
-#        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
-#                            s=20, edgecolor='k')
-#        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
-#                            s=20, edgecolor='k')
-#        subplot.axis('tight')
-#        subplot.legend(
-#            [a.collections[0], b, c],
-#            ['learned decision function', 'true inliers', 'true outliers'],
-#            prop=matplotlib.font_manager.FontProperties(size=10),
-#            loc='lower right')
-#        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
-#       subplot.set_xlim((-7, 7))
-#        subplot.set_ylim((-7, 7))
-#    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
-#    plt.suptitle("Outlier detection")
-plt.savefig('ALL.png', dpi=300)
-# #plt.show()
+    # initialize a set of detectors for LSCP
+    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                     LOF(n_neighbors=50)]
+    random_state = np.random.RandomState(42)
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
+    # Define nine outlier detection tools to be compared
+    classifiers = {
+        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+        'KNN': KNN(contamination=outliers_fraction),
+        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+        'OCSVM': OCSVM(contamination=outliers_fraction),
+        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+    }
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca - F1: %f' % (kd_f1))
-
-print('Xpareto_tc', Xpareto_tc.shape)
-sns.distplot(Xpareto_tc[:, 0], color="blue", label="Pareto+Gaussian")
-plt.legend()
-plt.savefig("%sXpareto_tc.png" % result_path)
-#plt.show()
-plt.close()
-sns.distplot(Ct[:, 0], color="blue", label="Gaussian")
-plt.legend()
-plt.savefig("%sGaussian_contamination.png" % result_path)
-#plt.show()
-plt.close()
-sns.distplot(Xpareto_t[:, 0], color="blue", label="Pareto")
-sns.distplot(Ct[:, 0], color="red", label="Gaussian")
-plt.legend()
-plt.savefig("%sXgc.png" % result_path)
-#plt.show()
-plt.close()
-
-mu = 0.  # mean 
-sigma = 1.  # standard deviation
-
-ln1 = np.random.lognormal(mu, sigma, n_inliers)
-count, bins, ignored = plt.hist(ln1, 100, density=True, align='mid')
-x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
-plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
-plt.axis('tight')
-plt.savefig("%sLognormal1.png" % result_path)
-#plt.show()
-plt.close()
-
-ln2 = np.random.lognormal(mu, sigma, n_inliers)
-count, bins, ignored = plt.hist(ln2, 100, density=True, align='mid')
-x = np.linspace(min(bins), max(bins), 10000)
-pdf = (np.exp(-(np.log(x) - mu) ** 2 / (2 * sigma ** 2)) / (x * sigma * np.sqrt(2 * np.pi)))
-plt.plot(x, pdf, linewidth=2, color='r', label="Lognormal")
-plt.axis('tight')
-plt.savefig("%sLognormal2.png" % result_path)
-#plt.show()
-plt.close()
-
-Xlogn = np.vstack((ln1, ln2)).transpose()
-print('Xlogn:', Xlogn.shape)
-
-# Add gaussian outliers
-Xlogng = np.r_[Xlogn, Cgaussian]
-
-ln1 = np.random.lognormal(mu, sigma, n_inliers)
-ln2 = np.random.lognormal(mu, sigma, n_inliers)
-Xlogn_t = np.vstack((ln1, ln2)).transpose()
-
-print('### Train: Log-normal')
-print('### Test: Log-normal contaminated by Gaussian')
-
-# Compare given detectors under given settings
-# Initialize the data
-xx, yy = np.meshgrid(np.linspace(-7, 7, 100), np.linspace(-7, 7, 100))
-ground_truth = np.zeros(n_samples, dtype=int)
-ground_truth[-n_outliers:] = 1
-
-# initialize a set of detectors for LSCP
-detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                 LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                 LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                 LOF(n_neighbors=50)]
-
-# Show the statics of the data
-print('Number of inliers: %i' % n_inliers)
-print('Number of outliers: %i' % n_outliers)
-print(
-    'Ground truth shape is {shape}. Outlier are 1 and inliers are 0.\n'.format(
-        shape=ground_truth.shape))
-print(ground_truth, '\n')
-
-random_state = np.random.RandomState(42)
-# Define nine outlier detection tools to be compared
-classifiers = {
-    'Angle-based Outlier Detector (ABOD)':
-        ABOD(contamination=outliers_fraction),
-    'Cluster-based Local Outlier Factor (CBLOF)':
-        CBLOF(contamination=outliers_fraction,
-              check_estimator=False, random_state=random_state),
-    'Feature Bagging':
-        FeatureBagging(LOF(n_neighbors=35),
-                       contamination=outliers_fraction,
-                       random_state=random_state),
-    'Histogram-base Outlier Detection (HBOS)': HBOS(
-        contamination=outliers_fraction),
-    'Isolation Forest': IForest(contamination=outliers_fraction,
-                                random_state=random_state),
-    'K Nearest Neighbors (KNN)': KNN(
-        contamination=outliers_fraction),
-    'Average KNN': KNN(method='mean',
-                       contamination=outliers_fraction),
-    # 'Median KNN': KNN(method='median',
-    #                   contamination=outliers_fraction),
-    'Local Outlier Factor (LOF)':
-        LOF(n_neighbors=35, contamination=outliers_fraction),
-    # 'Local Correlation Integral (LOCI)':
-    #     LOCI(contamination=outliers_fraction),
-    'Minimum Covariance Determinant (MCD)': MCD(
-        contamination=outliers_fraction, random_state=random_state),
-    'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
-    'Principal Component Analysis (PCA)': PCA(
-        contamination=outliers_fraction, random_state=random_state),
-    # 'Stochastic Outlier Selection (SOS)': SOS(
-    #     contamination=outliers_fraction),
-    # 'Locally Selective Combination (LSCP)': LSCP(
-    #    detector_list, contamination=outliers_fraction,
-    #    random_state=random_state)
-}
-
-clusters_separation = [0]
-
-# Fit the models with the generated data and
-# compare model performances
-for i, offset in enumerate(clusters_separation):
-
-    # Fit the model
-    plt.figure(figsize=(15, 12))
     for i, (clf_name, clf) in enumerate(classifiers.items()):
         # fit the data and tag outliers
         clf.fit(Xlogng)
         scores_pred = clf.decision_function(Xlogng) * -1
         y_pred = clf.predict(Xlogng)
         threshold = percentile(scores_pred, 100 * outliers_fraction)
-        # n_errors = (y_pred != ground_truth).sum()
-        f1 = f1_score(y_pred, ground_truth, average='macro')
-        print(i + 1, 'fitting', clf_name, f1)
+        f1 = f1_score(ground_truth, y_pred, average="binary")
+        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                             ignore_index=True)
 
-    #        # plot the levels lines and the points
-#        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
-#        Z = Z.reshape(xx.shape)
-#        subplot = plt.subplot(3, 4, i + 1)
-#        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
-#                         cmap=plt.cm.Blues_r)
-#        a = subplot.contour(xx, yy, Z, levels=[threshold],
-#                            linewidths=2, colors='red')
-#        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
-#                         colors='orange')
-#        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
-#                            s=20, edgecolor='k')
-#        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
-#                            s=20, edgecolor='k')
-#        subplot.axis('tight')
-#        subplot.legend(
-#            [a.collections[0], b, c],
-#            ['learned decision function', 'true inliers', 'true outliers'],
-#            prop=matplotlib.font_manager.FontProperties(size=10),
-#            loc='lower right')
-#        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
-#       subplot.set_xlim((-7, 7))
-#        subplot.set_ylim((-7, 7))
-#    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
-#    plt.suptitle("Outlier detection")
-plt.savefig('ALL.png', dpi=300)
-# #plt.show()
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(lognormal_t)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                         ignore_index=True)
 
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_tc)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                         ignore_index=True)
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_t)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca_prediction - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca_prediction - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca_prediction - F1: %f' % (kd_f1))
+    # Train
+    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogng)
+    # Testing md-rpca
+    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                         ignore_index=True)
+    # Testing sd-rpca
+    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                         ignore_index=True)
+    # Testing kd-rpca
+    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                         ignore_index=True)
 
-# Train
-r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogng)
-# Testing md-rpca
-md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
-md_f1 = f1_score(ground_truth, md_pred_label)
-print('md_rpca_prediction - F1: %f' % (md_f1))
-# Testing sd-rpca
-sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
-sd_f1 = f1_score(ground_truth, sd_pred_label)
-print('sd_rpca_prediction - F1: %f' % (sd_f1))
-# Testing kd-rpca
-kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
-kd_f1 = f1_score(ground_truth, kd_pred_label)
-print('kd_rpca_prediction - F1: %f' % (kd_f1))
+    # ROBPCA-AO from saved files
+    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_lognormal_2400_%.2f.csv' % m_contamination
+    if os.path.isfile(robpca_result_file):
+        robpca_pred = pd.read_csv(robpca_result_file, header=None)
+        robpca_pred = robpca_pred[0]
+        robpca_pred[robpca_pred == True] = -1
+        robpca_pred[robpca_pred == False] = 1
+        robpca_pred[robpca_pred == -1] = 0
+        robpca_f1 = f1_score(ground_truth, robpca_pred)
+        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                             ignore_index=True)
 
-print('Xlogn', Xlogn.shape)
-sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
-plt.legend()
-plt.savefig("%sXlogn.png" % result_path)
-#plt.show()
-plt.close()
-print('Xlogn_t', Xlogn_t.shape)
-sns.distplot(Xlogn_t[:, 0], color="blue", label="Lognormal")
-plt.legend()
-plt.savefig("%sXlogn_t.png" % result_path)
-#plt.show()
-plt.close()
-print('Xlogng', Xlogng.shape)
-sns.distplot(Xlogng[:, 0], color="blue", label="Lognormal+Gaussian")
-plt.legend()
-plt.savefig("%sXlogng1.png" % result_path)
-#plt.show()
-plt.close()
-sns.distplot(Xlogn[:, 0], color="blue", label="Lognormal")
-sns.distplot(Cgaussian[:, 0], color="red", label="Gaussian")
-plt.legend()
-plt.savefig("%sXlogng2.png" % result_path)
-#plt.show()
-plt.close()
+dash_styles = ["",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               "",
+               (1, 1),
+               (5, 2),
+               ""
+               ]
+fig_dims = (8, 8)
+colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+sns.set_style("whitegrid")
+fig, ax = plt.subplots(figsize=fig_dims)
+ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                  style="Algorithm", dashes=dash_styles,
+                  palette=sns.xkcd_palette(colors), lw=2,
+                  data=cv_df)
+# Put the legend out of the figure
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.savefig("%slognormal_f1_contamination.png" % result_path,  bbox_inches='tight')

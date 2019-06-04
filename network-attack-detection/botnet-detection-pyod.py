@@ -99,9 +99,9 @@ for sample_file in file_list:
     # Define nine outlier detection tools to be compared
     classifiers = {
         # 'Angle-based Outlier Detector (ABOD)': ABOD(contamination=outliers_fraction),
-        'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, check_estimator=False, random_state=random_state),
+        # 'Cluster-based Local Outlier Factor (CBLOF)': CBLOF(contamination=outliers_fraction, c heck_estimator=False, random_state=random_state),
         # 'Feature Bagging':FeatureBagging(LOF(n_neighbors=35),contamination=outliers_fraction,random_state=random_state),
-        'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
+        # 'Histogram-base Outlier Detection (HBOS)': HBOS(contamination=outliers_fraction),
         'Isolation Forest': IForest(contamination=outliers_fraction,random_state=random_state),
         'K Nearest Neighbors (KNN)': KNN(contamination=outliers_fraction),
         # 'Average KNN': KNN(method='mean',contamination=outliers_fraction),
@@ -109,7 +109,7 @@ for sample_file in file_list:
         'Local Outlier Factor (LOF)':LOF(n_neighbors=35, contamination=outliers_fraction),
         # 'Local Correlation Integral (LOCI)':LOCI(contamination=outliers_fraction),
         'Minimum Covariance Determinant (MCD)': MCD(contamination=outliers_fraction, random_state=random_state),
-        # 'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
+        'One-class SVM (OCSVM)': OCSVM(contamination=outliers_fraction),
         'Principal Component Analysis (PCA)': PCA(contamination=outliers_fraction, random_state=random_state),
         # 'Stochastic Outlier Selection (SOS)': SOS(contamination=outliers_fraction),
         # 'Locally Selective Combination (LSCP)': LSCP(detector_list, contamination=outliers_fraction,

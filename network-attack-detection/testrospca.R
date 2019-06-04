@@ -1,92 +1,66 @@
 library(rospca)
+library(dplyr)
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_10.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_10pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_10.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_10pk1_test_df", sep = "\n")
+dataPath <- "/home/thiago/dev/anomaly-detection/network-attack-detection/data/synthetic/"
+resultPath <- "/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/"
+fileList <- list.files(dataPath, pattern=glob2rx("*aussian_2400_0.33.csv"))
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_11.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_11pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_11.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_11pk1_test_df", sep = "\n")
+c = 0.01
+for(i in 1:50) {
+	gaussianFilePath <- paste(dataPath, "gaussian_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
+	paretoFilePath <- paste(dataPath, "pareto_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
+	lognormalFilePath <- paste(dataPath, "lognormal_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
+	uniformCFilePath <- paste(dataPath, "uniform_c_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
+	gaussianCFilePath <- paste(dataPath, "gaussian_c_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
+	XguFilePath <- paste(resultPath, "robpca_k2_gaussian_2400_", format(round(c, 2), nsmall=2), ".csv", sep="")
+	XpgFilePath <- paste(resultPath, "robpca_k2_pareto_2400_", format(round(c, 2), nsmall=2), ".csv", sep="")
+	XlgFilePath <- paste(resultPath, "robpca_k2_lognormal_2400_", format(round(c, 2), nsmall=2), ".csv", sep="")
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_12.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_12pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_12.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_12pk1_test_df", sep = "\n")
+	# Gaussian with uniform anomalies
+	if (!file.exists(XguFilePath)){
+		gaussian_df <- read.csv(gaussianFilePath, header=TRUE, sep=",")
+		gaussian_size = dim(gaussian_df)[1]
+		gt_end = gaussian_size %/% 2
+		gaussian = gaussian_df[1:gt_end,]		
+		
+		uniform_c_df <- read.csv(uniformCFilePath, header=TRUE, sep=",")
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_15-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_15-2pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_15-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_15-2pk1_test_df", sep = "\n")
+		Xgu = bind_rows(gaussian,uniform_c_df)
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_15-3.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_15-3pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_15-3.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_15-3pk1_test_df", sep = "\n")
+		print(c)
+		resRS <- robpca(Xgu, k=2, skew=TRUE, ndir=5000)
+		
+		print(XguFilePath)
+		write(resRS$flag.all, file=XguFilePath, sep = "\n")	
+	}
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_15.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_15pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_15.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_15pk1_test_df", sep = "\n")
+	# Pareto with gaussian anomalies
+	if (!file.exists(XpgFilePath)){
+		pareto_df <- read.csv(paretoFilePath, header=TRUE, sep=",")		
+		gaussian_c_df <- read.csv(gaussianCFilePath, header=TRUE, sep=",")
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_16-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_16-2pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_16-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_16-2pk1_test_df", sep = "\n")
+		Xpg = bind_rows(pareto_df,gaussian_c_df)
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_16-3.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_16-3pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_16-3.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_16-3pk1_test_df", sep = "\n")
+		print(c)
+		resRS <- robpca(Xpg, k=2, skew=TRUE, ndir=5000)
+		
+		print(XpgFilePath)
+		write(resRS$flag.all, file=XpgFilePath, sep = "\n")
+	}
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_16.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_16pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_16.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_16pk1_test_df", sep = "\n")
+	# Lognormal with gaussian anomalies
+	if (!file.exists(XlgFilePath)){
+		lognormal_df <- read.csv(lognormalFilePath, header=TRUE, sep=",")		
+		gaussian_c_df <- read.csv(gaussianCFilePath, header=TRUE, sep=",")
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_17.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_17pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_17.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_17pk1_test_df", sep = "\n")
+		Xpg = bind_rows(lognormal_df,gaussian_c_df)
 
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_18.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_18pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_18.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_18pk1_test_df", sep = "\n")
-
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_19.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_19pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_19.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_19pk1_test_df", sep = "\n")
-
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/15s_18-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum015s_18-2pk1_test_df", sep = "\n")
-test_df <- read.csv("/home/thiago/dev/anomaly-detection/network-attack-detection/data/ctu_13/agg_test_csv/25s_18-2.pk1_test_df.csv", header=TRUE, sep=",")
-resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
-write(resRS$flag.all, file = "robpca_k2_datactu_13pkl_sum025s_18-2pk1_test_df", sep = "\n")
+		print(c)
+		resRS <- robpca(Xpg, k=2, skew=TRUE, ndir=5000)
+		
+		print(XlgFilePath)
+		write(resRS$flag.all, file=XlgFilePath, sep = "\n")
+	}
+	
+	c = c + 0.01
+}
