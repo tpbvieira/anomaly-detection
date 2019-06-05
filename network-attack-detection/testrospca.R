@@ -1,10 +1,9 @@
 library(rospca)
 library(dplyr)
 
-dataPath <- "/home/thiago/dev/anomaly-detection/network-attack-detection/data/synthetic/"
-resultPath <- "/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/"
-fileList <- list.files(dataPath, pattern=glob2rx("*aussian_2400_0.33.csv"))
-
+# Simulated Data Set
+dataPath <- "data/synthetic/"
+resultPath <- "output/synthetic/robpca/"
 c = 0.01
 for(i in 1:50) {
 	gaussianFilePath <- paste(dataPath, "gaussian_2400_  ", format(round(c, 2), nsmall=2), ".csv", sep="")
@@ -63,4 +62,20 @@ for(i in 1:50) {
 	}
 	
 	c = c + 0.01
+}
+
+# CTU-13 Data Set
+dataPath <- "data/ctu_13/raw_clean_test_robpca_csv/33/data/"
+resultPath <- "output/ctu_13/results/robpca/33/"
+fileList <- list.files(dataPath, pattern=glob2rx("*.binetflow'"))
+fileList <- list.files(dataPath, pattern=glob2rx("*.binetflow'"))
+for(fileName in fileList){
+	dataFilePath  <- paste(dataPath, fileName, sep="")
+	print(dataFilePath)
+	test_df <- read.csv(dataFilePath, header=TRUE, sep=",")	
+	test_df <- test_df[,c("State", "dTos", "Dport", "Sport", "TotPkts", "TotBytes", "SrcBytes")]
+	resRS <- robpca(test_df, k=2, skew=TRUE,ndir=5000)
+	resultFilePath  <- paste(resultPath, fileName, sep="")
+	print(resultFilePath)
+	write(resRS$flag.all, file=resultFilePath, sep = "\n")
 }

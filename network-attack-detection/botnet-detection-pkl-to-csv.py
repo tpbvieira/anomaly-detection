@@ -6,13 +6,13 @@ import os, gc, time
 start_time = time.time()
 
 # pickle files have the same names
-pkl_path = os.path.join('/opt/data/pkl/')
+pkl_path = os.path.join('data/ctu_13/raw_clean_pkl/')
 pkl_directory = os.fsencode(pkl_path)
 pkl_files = os.listdir(pkl_directory)
 print("### Pkl Directory: ", pkl_directory)
 print("### Files: ", pkl_files)
 
-csv_path = os.path.join('/opt/data/csv/')
+csv_path = os.path.join('data/ctu_13/raw_clean_csv/')
 csv_directory = os.fsencode(csv_path)
 
 for sample_file in pkl_files:
