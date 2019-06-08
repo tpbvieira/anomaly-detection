@@ -1,6 +1,9 @@
 # coding=utf-8
+import os
+import gc
+import time
 import pandas as pd
-import os, gc, time
+
 
 # track execution time
 start_time = time.time()
