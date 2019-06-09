@@ -6,7 +6,7 @@ import warnings
 import numpy as np
 import pandas as pd
 from sklearn.metrics import f1_score
-from moment_rpca import fit, md_rpca_prediction, sd_rpca_prediction, kd_rpca_prediction
+from m_rpca import fit, md_rpca_prediction, sd_rpca_prediction, kd_rpca_prediction
 from botnet_detection_utils import data_splitting_50_25, ctu13_data_cleasing, ctu13_raw_column_types
 warnings.filterwarnings("ignore")
 

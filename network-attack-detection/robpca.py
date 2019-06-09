@@ -20,7 +20,7 @@ for result_file in result_file_list:
     robpca_label_file = '%s/label_%s' % (label_dir, result_file)
     ground_truth = pd.read_csv(robpca_label_file, header=None)
     ground_truth = ground_truth[1]
-    print(f1_score(ground_truth, robpca_pred))
+    print(result_file, f1_score(ground_truth, robpca_pred))
 
 print('### Contamination: 25%')
 label_dir = 'data/ctu_13/raw_clean_test_robpca_csv/25/label/'
@@ -36,7 +36,7 @@ for result_file in result_file_list:
     robpca_label_file = '%s/label_%s' % (label_dir, result_file)
     ground_truth = pd.read_csv(robpca_label_file, header=None)
     ground_truth = ground_truth[1]
-    print(f1_score(ground_truth, robpca_pred))
+    print(result_file, f1_score(ground_truth, robpca_pred))
 
 label_dir = 'data/ctu_13/raw_clean_test_robpca_csv/33/label/'
 result_dir = 'output/ctu_13/results/robpca/33/'
@@ -52,4 +52,4 @@ for result_file in result_file_list:
     robpca_label_file = '%s/label_%s' % (label_dir, result_file)
     ground_truth = pd.read_csv(robpca_label_file, header=None)
     ground_truth = ground_truth[1]
-    print(f1_score(ground_truth, robpca_pred))
+    print(result_file, f1_score(ground_truth, robpca_pred))

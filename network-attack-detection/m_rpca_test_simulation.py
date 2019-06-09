@@ -13,8 +13,8 @@ from __future__ import print_function
 import os
 import sys
 import warnings
-
 warnings.filterwarnings("ignore")
+
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -514,8 +514,8 @@ n_samples = 2400
 # outliers_fraction = 0.25
 outliers_fraction = 0.10
 
-result_path = 'output/synthetic/'
-data_path = 'data/synthetic/'
+result_path = 'output/simulation/'
+data_path = 'data/simulation/'
 
 # # Initialize the data
 # n_inliers = int((1. - outliers_fraction) * n_samples)
@@ -1040,341 +1040,599 @@ data_path = 'data/synthetic/'
 # plt.show()
 # plt.close()
 
+result_file_path = "%sgaussian_f1_contamination.png" % result_path
+if not os.path.isfile(result_file_path):
+    # configure GridSearchCV for Gaussian + Uniform
+    cv_df = pd.DataFrame()
+    for m_contamination in np.linspace(0.01, 0.50, 50):
+        outliers_fraction = m_contamination
+    
+        # Initialize the data
+        n_inliers = int((1. - outliers_fraction) * n_samples)
+        n_outliers = int(n_samples - n_inliers)
+        ground_truth = np.zeros(n_samples, dtype=int)
+        ground_truth[-n_outliers:] = 1  # put outliers into the end
+    
+        # gaussian
+        gaussian_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian', n_samples, m_contamination,)
+        if not os.path.isfile(gaussian_df_name):
+            np.random.seed(11)
+            X1 = 0.3 * np.random.randn(n_inliers, 2)
+            X2 = 0.3 * np.random.randn(n_inliers, 2)
+            gaussian = np.r_[X1, X2]
+            gaussian_df = pd.DataFrame(gaussian)
+            gaussian_df.to_csv(gaussian_df_name, index=False)
+        else:
+            gaussian_df = pd.read_csv(gaussian_df_name)
+            gaussian = gaussian_df.values
+    
+        # Gaussian for training
+        gaussian_t = gaussian[:n_inliers]
+    
+        # Gaussian
+        gaussian = gaussian[n_inliers:]
+    
+        # uniform_c
+        uniform_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c', n_samples, m_contamination,)
+        if not os.path.isfile(uniform_c_df_name):
+            np.random.seed(111)
+            uniform_c = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+            uniform_c_df = pd.DataFrame(uniform_c)
+            uniform_c_df.to_csv(uniform_c_df_name, index=False)
+        else:
+            uniform_c_df = pd.read_csv(uniform_c_df_name)
+            uniform_c = uniform_c_df.values
+    
+        # uniform_c_t
+        uniform_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c_t', n_samples, m_contamination,)
+        if not os.path.isfile(uniform_c_t_df_name):
+            np.random.seed(110)
+            uniform_c_t = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
+            uniform_c_t_df = pd.DataFrame(uniform_c_t)
+            uniform_c_t_df.to_csv(uniform_c_t_df_name, index=False)
+        else:
+            uniform_c_t_df = pd.read_csv(uniform_c_t_df_name)
+            uniform_c_t = uniform_c_t_df.values
+    
+        # Gaussian and uniform anomalies
+        Xgu = np.r_[gaussian, uniform_c]
+    
+        # Contaminated Gaussian for training
+        Xgaussian_tc = np.r_[gaussian_t, uniform_c_t]
+    
+        # initialize a set of detectors for LSCP
+        detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                         LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                         LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                         LOF(n_neighbors=50)]
+        random_state = np.random.RandomState(42)
+    
+        # Define nine outlier detection tools to be compared
+        classifiers = {
+            'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+            'KNN': KNN(contamination=outliers_fraction),
+            'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+            'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+            'OCSVM': OCSVM(contamination=outliers_fraction),
+            'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+        }
+    
+        for i, (clf_name, clf) in enumerate(classifiers.items()):
+            # fit the data and tag outliers
+            clf.fit(Xgu)
+            scores_pred = clf.decision_function(Xgu) * -1
+            y_pred = clf.predict(Xgu)
+            threshold = percentile(scores_pred, 100 * outliers_fraction)
+            f1 = f1_score(ground_truth, y_pred, average="binary")
+            cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                                 ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(gaussian)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                             ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_tc)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                             ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgu)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                             ignore_index=True)
+    
+        # ROBPCA-AO from saved files
+        robpca_result_file = 'output/simulation/robpca/robpca_k2_gaussian_2400_%.2f.csv' % m_contamination
+        if os.path.isfile(robpca_result_file):
+            # print(robpca_result_file)
+            robpca_pred = pd.read_csv(robpca_result_file, header=None)
+            robpca_pred = robpca_pred[0]
+            robpca_pred[robpca_pred == True] = -1
+            robpca_pred[robpca_pred == False] = 1
+            robpca_pred[robpca_pred == -1] = 0
+            robpca_f1 = f1_score(ground_truth, robpca_pred)
+            cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                                 ignore_index=True)
+    
+    dash_styles = ["",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   ""
+                   ]
+    fig_dims = (8, 8)
+    colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+              "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+    sns.set_style("whitegrid")
+    fig, ax = plt.subplots(figsize=fig_dims)
+    ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                      style="Algorithm", dashes=dash_styles,
+                      palette=sns.xkcd_palette(colors), lw=2,
+                      data=cv_df)
+    # Put the legend out of the figure
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.savefig("%sgaussian_f1_contamination.png" % result_path,  bbox_inches='tight')
 
-# configure GridSearchCV for Gaussian + Uniform
-cv_df = pd.DataFrame()
-for m_contamination in np.linspace(0.01, 0.50, 50):
-    outliers_fraction = m_contamination
+
+result_file_path = "%spareto_f1_contamination.png" % result_path
+if not os.path.isfile(result_file_path):
+    # configure GridSearchCV for Pareto + Guassian
+    cv_df = pd.DataFrame()
+    for m_contamination in np.linspace(0.01, 0.50, 50):
+        outliers_fraction = m_contamination
+    
+        # Initialize the data
+        n_inliers = int((1. - outliers_fraction) * n_samples)
+        n_outliers = int(n_samples - n_inliers)
+        ground_truth = np.zeros(n_samples, dtype=int)
+        ground_truth[-n_outliers:] = 1  # put outliers into the end
+    
+        a = 3.  # shape
+        m = 1.  # mode
+    
+        # Pareto
+        pareto_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto', n_samples, m_contamination,)
+        if not os.path.isfile(pareto_df_name):
+            np.random.seed(42)
+            p1 = (np.random.pareto(a, n_inliers) + 1) * m
+            p2 = (np.random.pareto(a, n_inliers) + 1) * m
+            pareto = np.vstack((p1, p2)).transpose()
+            pareto_df = pd.DataFrame(pareto)
+            pareto_df.to_csv(pareto_df_name, index=False)
+        else:
+            pareto_df = pd.read_csv(pareto_df_name)
+            pareto = pareto_df.values
+    
+        # Pareto_t
+        pareto_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto_t', n_samples, m_contamination,)
+        if not os.path.isfile(pareto_t_df_name):
+            np.random.seed(12)
+            p1 = (np.random.pareto(a, n_inliers) + 1) * m
+            p2 = (np.random.pareto(a, n_inliers) + 1) * m
+            pareto_t = np.vstack((p1, p2)).transpose()
+            pareto_t_df = pd.DataFrame(pareto_t)
+            pareto_t_df.to_csv(pareto_t_df_name, index=False)
+        else:
+            pareto_t_df = pd.read_csv(pareto_t_df_name)
+            pareto_t = pareto_t_df.values
+    
+        # gaussian_c
+        gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
+        if not os.path.isfile(gaussian_c_df_name):
+            np.random.seed(2)
+            gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
+            gaussian_c_df = pd.DataFrame(gaussian_c)
+            gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
+        else:
+            gaussian_c_df = pd.read_csv(gaussian_c_df_name)
+            gaussian_c = gaussian_c_df.values
+    
+        # gaussian_c_t
+        gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
+        if not os.path.isfile(gaussian_c_t_df_name):
+            np.random.seed(20)
+            gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
+            gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
+            gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
+        else:
+            gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
+            gaussian_c_t = gaussian_c_t_df.values
+    
+        # Pareto and gaussian anomalies
+        Xpg = np.r_[pareto, gaussian_c]
+    
+        # Contaminated Pareto for training
+        Xpareto_tc = np.r_[pareto_t, gaussian_c_t]
+    
+        # initialize a set of detectors for LSCP
+        detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                         LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                         LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                         LOF(n_neighbors=50)]
+        random_state = np.random.RandomState(42)
+    
+        # Define nine outlier detection tools to be compared
+        classifiers = {
+            'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+            'KNN': KNN(contamination=outliers_fraction),
+            'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+            'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+            'OCSVM': OCSVM(contamination=outliers_fraction),
+            'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+        }
+    
+        for i, (clf_name, clf) in enumerate(classifiers.items()):
+            # fit the data and tag outliers
+            clf.fit(Xpg)
+            scores_pred = clf.decision_function(Xpg) * -1
+            y_pred = clf.predict(Xpg)
+            threshold = percentile(scores_pred, 100 * outliers_fraction)
+            f1 = f1_score(ground_truth, y_pred, average="binary")
+            cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                                 ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(pareto)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                             ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                             ignore_index=True)
+    
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                             ignore_index=True)
+    
+        # ROBPCA-AO from saved files
+        robpca_result_file = 'output/simulation/robpca/robpca_k2_pareto_2400_%.2f.csv' % m_contamination
+        if os.path.isfile(robpca_result_file):
+            robpca_pred = pd.read_csv(robpca_result_file, header=None)
+            robpca_pred = robpca_pred[0]
+            robpca_pred[robpca_pred == True] = -1
+            robpca_pred[robpca_pred == False] = 1
+            robpca_pred[robpca_pred == -1] = 0
+            robpca_f1 = f1_score(ground_truth, robpca_pred)
+            cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                                 ignore_index=True)
+        
+    dash_styles = ["",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   ""
+                   ]
+    fig_dims = (8, 8)
+    colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+              "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+    sns.set_style("whitegrid")
+    fig, ax = plt.subplots(figsize=fig_dims)
+    ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                      style="Algorithm", dashes=dash_styles,
+                      palette=sns.xkcd_palette(colors), lw=2,
+                      data=cv_df)
+    # Put the legend out of the figure
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.savefig("%spareto_f1_contamination.png" % result_path,  bbox_inches='tight')
+
+
+result_file_path = "%slognormal_f1_contamination.png" % result_path
+if not os.path.isfile(result_file_path):
+    # configure GridSearchCV for Lognormal + Guassian
+    cv_df = pd.DataFrame()
+    for m_contamination in np.linspace(0.01, 0.50, 50):
+        outliers_fraction = m_contamination
+
+        # Initialize the data
+        n_inliers = int((1. - outliers_fraction) * n_samples)
+        n_outliers = int(n_samples - n_inliers)
+        ground_truth = np.zeros(n_samples, dtype=int)
+        ground_truth[-n_outliers:] = 1  # put outliers into the end
+
+        mu = 0.  # Lognormal mean
+        sigma = 1.  # Lognormal standard deviation
+
+        # Lognormal
+        lognormal_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal', n_samples, m_contamination,)
+        if not os.path.isfile(lognormal_df_name):
+            np.random.seed(42)
+            ln1 = np.random.lognormal(mu, sigma, n_inliers)
+            ln2 = np.random.lognormal(mu, sigma, n_inliers)
+            lognormal = np.vstack((ln1, ln2)).transpose()
+            lognormal_df = pd.DataFrame(lognormal)
+            lognormal_df.to_csv(lognormal_df_name, index=False)
+        else:
+            lognormal_df = pd.read_csv(lognormal_df_name)
+            lognormal = lognormal_df.values
+
+        # Lognormal_t
+        lognormal_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal_t', n_samples, m_contamination,)
+        if not os.path.isfile(lognormal_t_df_name):
+            np.random.seed(142)
+            ln1 = np.random.lognormal(mu, sigma, n_inliers)
+            ln2 = np.random.lognormal(mu, sigma, n_inliers)
+            lognormal_t = np.vstack((ln1, ln2)).transpose()
+            lognormal_t_df = pd.DataFrame(lognormal_t)
+            lognormal_t_df.to_csv(lognormal_t_df_name, index=False)
+        else:
+            lognormal_t_df = pd.read_csv(lognormal_t_df_name)
+            lognormal_t = lognormal_t_df.values
+
+        # gaussian_c
+        gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
+        if not os.path.isfile(gaussian_c_df_name):
+            np.random.seed(2)
+            gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
+            gaussian_c_df = pd.DataFrame(gaussian_c)
+            gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
+        else:
+            gaussian_c_df = pd.read_csv(gaussian_c_df_name)
+            gaussian_c = gaussian_c_df.values
+
+        # gaussian_c_t
+        gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
+        if not os.path.isfile(gaussian_c_t_df_name):
+            np.random.seed(20)
+            gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
+            gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
+            gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
+        else:
+            gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
+            gaussian_c_t = gaussian_c_t_df.values
+
+        # Lognormal and gaussian anomalies
+        Xlogng = np.r_[lognormal, gaussian_c]
+
+        # Contaminated Lognormal for training
+        Xlogn_tc = np.r_[lognormal_t, gaussian_c_t]
+
+        # initialize a set of detectors for LSCP
+        detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
+                         LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
+                         LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
+                         LOF(n_neighbors=50)]
+        random_state = np.random.RandomState(42)
+
+        # Define nine outlier detection tools to be compared
+        classifiers = {
+            'IF': IForest(contamination=outliers_fraction, random_state=random_state),
+            'KNN': KNN(contamination=outliers_fraction),
+            'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
+            'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
+            'OCSVM': OCSVM(contamination=outliers_fraction),
+            'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
+        }
+
+        for i, (clf_name, clf) in enumerate(classifiers.items()):
+            # fit the data and tag outliers
+            clf.fit(Xlogng)
+            scores_pred = clf.decision_function(Xlogng) * -1
+            y_pred = clf.predict(Xlogng)
+            threshold = percentile(scores_pred, 100 * outliers_fraction)
+            f1 = f1_score(ground_truth, y_pred, average="binary")
+            cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
+                                 ignore_index=True)
+
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(lognormal_t)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
+                             ignore_index=True)
+
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_tc)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
+                             ignore_index=True)
+
+        # Train
+        r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogng)
+        # Testing md-rpca
+        md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
+        md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
+                             ignore_index=True)
+        # Testing sd-rpca
+        sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
+        sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
+                             ignore_index=True)
+        # Testing kd-rpca
+        kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
+        kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
+        cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
+                             ignore_index=True)
+
+        # ROBPCA-AO from saved files
+        robpca_result_file = 'output/simulation/robpca/robpca_k2_lognormal_2400_%.2f.csv' % m_contamination
+        if os.path.isfile(robpca_result_file):
+            robpca_pred = pd.read_csv(robpca_result_file, header=None)
+            robpca_pred = robpca_pred[0]
+            robpca_pred[robpca_pred == True] = -1
+            robpca_pred[robpca_pred == False] = 1
+            robpca_pred[robpca_pred == -1] = 0
+            robpca_f1 = f1_score(ground_truth, robpca_pred)
+            cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
+                                 ignore_index=True)
+
+    dash_styles = ["",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   "",
+                   (1, 1),
+                   (5, 2),
+                   ""
+                   ]
+    fig_dims = (8, 8)
+    colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
+              "blue", "red", "red", "red", "green", "green", "green", "cyan"]
+    sns.set_style("whitegrid")
+    fig, ax = plt.subplots(figsize=fig_dims)
+    ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
+                      style="Algorithm", dashes=dash_styles,
+                      palette=sns.xkcd_palette(colors), lw=2,
+                      data=cv_df)
+    # Put the legend out of the figure
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.savefig("%slognormal_f1_contamination.png" % result_path,  bbox_inches='tight')
+
+
+for m_contamination in [0.10, 0.25, 0.33]:
 
     # Initialize the data
+    outliers_fraction = m_contamination
     n_inliers = int((1. - outliers_fraction) * n_samples)
     n_outliers = int(n_samples - n_inliers)
     ground_truth = np.zeros(n_samples, dtype=int)
     ground_truth[-n_outliers:] = 1  # put outliers into the end
 
-    # gaussian
-    gaussian_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian', n_samples, m_contamination,)
-    if not os.path.isfile(gaussian_df_name):
-        np.random.seed(11)
-        X1 = 0.3 * np.random.randn(n_inliers, 2)
-        X2 = 0.3 * np.random.randn(n_inliers, 2)
-        gaussian = np.r_[X1, X2]
-        gaussian_df = pd.DataFrame(gaussian)
-        gaussian_df.to_csv(gaussian_df_name, index=False)
-    else:
-        gaussian_df = pd.read_csv(gaussian_df_name)
-        gaussian = gaussian_df.values
-
-    # Gaussian for training
-    gaussian_t = gaussian[:n_inliers]
-
-    # Gaussian
-    gaussian = gaussian[n_inliers:]
-
-    # uniform_c
-    uniform_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c', n_samples, m_contamination,)
-    if not os.path.isfile(uniform_c_df_name):
-        np.random.seed(111)
-        uniform_c = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
-        uniform_c_df = pd.DataFrame(uniform_c)
-        uniform_c_df.to_csv(uniform_c_df_name, index=False)
-    else:
-        uniform_c_df = pd.read_csv(uniform_c_df_name)
-        uniform_c = uniform_c_df.values
-
-    # uniform_c_t
-    uniform_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'uniform_c_t', n_samples, m_contamination,)
-    if not os.path.isfile(uniform_c_t_df_name):
-        np.random.seed(110)
-        uniform_c_t = np.random.uniform(low=-6, high=6, size=(n_outliers, 2))
-        uniform_c_t_df = pd.DataFrame(uniform_c_t)
-        uniform_c_t_df.to_csv(uniform_c_t_df_name, index=False)
-    else:
-        uniform_c_t_df = pd.read_csv(uniform_c_t_df_name)
-        uniform_c_t = uniform_c_t_df.values
-
-    # Gaussian and uniform anomalies
-    Xgu = np.r_[gaussian, uniform_c]
-
-    # Contaminated Gaussian for training
-    Xgaussian_tc = np.r_[gaussian_t, uniform_c_t]
-
-    # initialize a set of detectors for LSCP
-    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                     LOF(n_neighbors=50)]
-    random_state = np.random.RandomState(42)
-
-    # Define nine outlier detection tools to be compared
-    classifiers = {
-        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
-        'KNN': KNN(contamination=outliers_fraction),
-        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
-        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
-        'OCSVM': OCSVM(contamination=outliers_fraction),
-        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
-    }
-
-    for i, (clf_name, clf) in enumerate(classifiers.items()):
-        # fit the data and tag outliers
-        clf.fit(Xgu)
-        scores_pred = clf.decision_function(Xgu) * -1
-        y_pred = clf.predict(Xgu)
-        threshold = percentile(scores_pred, 100 * outliers_fraction)
-        f1 = f1_score(ground_truth, y_pred, average="binary")
-        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
-                             ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(gaussian)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgaussian_tc)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xgu)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xgu, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xgu, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xgu, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
-                         ignore_index=True)
-
-    # ROBPCA-AO from saved files
-    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_gaussian_2400_%.2f.csv' % m_contamination
+    robpca_result_file = 'output/simulation/robpca/robpca_k2_gaussian_2400_%.2f.csv' % m_contamination
     if os.path.isfile(robpca_result_file):
-        # print(robpca_result_file)
         robpca_pred = pd.read_csv(robpca_result_file, header=None)
         robpca_pred = robpca_pred[0]
         robpca_pred[robpca_pred == True] = -1
         robpca_pred[robpca_pred == False] = 1
         robpca_pred[robpca_pred == -1] = 0
         robpca_f1 = f1_score(ground_truth, robpca_pred)
-        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
-                             ignore_index=True)
+        print('robpca_k2_gaussian_2400_%.2f: %.2f' % (m_contamination, robpca_f1))
 
-dash_styles = ["",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               ""
-               ]
-fig_dims = (8, 8)
-colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
-          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
-sns.set_style("whitegrid")
-fig, ax = plt.subplots(figsize=fig_dims)
-ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
-                  style="Algorithm", dashes=dash_styles,
-                  palette=sns.xkcd_palette(colors), lw=2,
-                  data=cv_df)
-# Put the legend out of the figure
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.savefig("%sgaussian_f1_contamination.png" % result_path,  bbox_inches='tight')
-
-
-# configure GridSearchCV for Pareto + Guassian
-cv_df = pd.DataFrame()
-for m_contamination in np.linspace(0.01, 0.50, 50):
-    outliers_fraction = m_contamination
-
-    # Initialize the data
-    n_inliers = int((1. - outliers_fraction) * n_samples)
-    n_outliers = int(n_samples - n_inliers)
-    ground_truth = np.zeros(n_samples, dtype=int)
-    ground_truth[-n_outliers:] = 1  # put outliers into the end
-
-    a = 3.  # shape
-    m = 1.  # mode
-
-    # Pareto
-    pareto_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto', n_samples, m_contamination,)
-    if not os.path.isfile(pareto_df_name):
-        np.random.seed(42)
-        p1 = (np.random.pareto(a, n_inliers) + 1) * m
-        p2 = (np.random.pareto(a, n_inliers) + 1) * m
-        pareto = np.vstack((p1, p2)).transpose()
-        pareto_df = pd.DataFrame(pareto)
-        pareto_df.to_csv(pareto_df_name, index=False)
-    else:
-        pareto_df = pd.read_csv(pareto_df_name)
-        pareto = pareto_df.values
-
-    # Pareto_t
-    pareto_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'pareto_t', n_samples, m_contamination,)
-    if not os.path.isfile(pareto_t_df_name):
-        np.random.seed(12)
-        p1 = (np.random.pareto(a, n_inliers) + 1) * m
-        p2 = (np.random.pareto(a, n_inliers) + 1) * m
-        pareto_t = np.vstack((p1, p2)).transpose()
-        pareto_t_df = pd.DataFrame(pareto_t)
-        pareto_t_df.to_csv(pareto_t_df_name, index=False)
-    else:
-        pareto_t_df = pd.read_csv(pareto_t_df_name)
-        pareto_t = pareto_t_df.values
-
-    # gaussian_c
-    gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
-    if not os.path.isfile(gaussian_c_df_name):
-        np.random.seed(2)
-        gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
-        gaussian_c_df = pd.DataFrame(gaussian_c)
-        gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
-    else:
-        gaussian_c_df = pd.read_csv(gaussian_c_df_name)
-        gaussian_c = gaussian_c_df.values
-
-    # gaussian_c_t
-    gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
-    if not os.path.isfile(gaussian_c_t_df_name):
-        np.random.seed(20)
-        gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
-        gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
-        gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
-    else:
-        gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
-        gaussian_c_t = gaussian_c_t_df.values
-
-    # Pareto and gaussian anomalies
-    Xpg = np.r_[pareto, gaussian_c]
-
-    # Contaminated Pareto for training
-    Xpareto_tc = np.r_[pareto_t, gaussian_c_t]
-
-    # initialize a set of detectors for LSCP
-    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                     LOF(n_neighbors=50)]
-    random_state = np.random.RandomState(42)
-
-    # Define nine outlier detection tools to be compared
-    classifiers = {
-        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
-        'KNN': KNN(contamination=outliers_fraction),
-        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
-        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
-        'OCSVM': OCSVM(contamination=outliers_fraction),
-        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
-    }
-
-    for i, (clf_name, clf) in enumerate(classifiers.items()):
-        # fit the data and tag outliers
-        clf.fit(Xpg)
-        scores_pred = clf.decision_function(Xpg) * -1
-        y_pred = clf.predict(Xpg)
-        threshold = percentile(scores_pred, 100 * outliers_fraction)
-        f1 = f1_score(ground_truth, y_pred, average="binary")
-        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
-                             ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(pareto)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpareto_tc)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xpg)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xpg, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xpg, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xpg, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
-                         ignore_index=True)
-
-    # ROBPCA-AO from saved files
-    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_pareto_2400_%.2f.csv' % m_contamination
+    robpca_result_file = 'output/simulation/robpca/robpca_k2_pareto_2400_%.2f.csv' % m_contamination
     if os.path.isfile(robpca_result_file):
         robpca_pred = pd.read_csv(robpca_result_file, header=None)
         robpca_pred = robpca_pred[0]
@@ -1382,192 +1640,9 @@ for m_contamination in np.linspace(0.01, 0.50, 50):
         robpca_pred[robpca_pred == False] = 1
         robpca_pred[robpca_pred == -1] = 0
         robpca_f1 = f1_score(ground_truth, robpca_pred)
-        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
-                             ignore_index=True)
+        print('robpca_k2_pareto_2400_%.2f: %.2f' % (m_contamination, robpca_f1))
 
-
-dash_styles = ["",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               ""
-               ]
-fig_dims = (8, 8)
-colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
-          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
-sns.set_style("whitegrid")
-fig, ax = plt.subplots(figsize=fig_dims)
-ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
-                  style="Algorithm", dashes=dash_styles,
-                  palette=sns.xkcd_palette(colors), lw=2,
-                  data=cv_df)
-# Put the legend out of the figure
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.savefig("%spareto_f1_contamination.png" % result_path,  bbox_inches='tight')
-
-
-# configure GridSearchCV for Lognormal + Guassian
-cv_df = pd.DataFrame()
-for m_contamination in np.linspace(0.01, 0.50, 50):
-    outliers_fraction = m_contamination
-
-    # Initialize the data
-    n_inliers = int((1. - outliers_fraction) * n_samples)
-    n_outliers = int(n_samples - n_inliers)
-    ground_truth = np.zeros(n_samples, dtype=int)
-    ground_truth[-n_outliers:] = 1  # put outliers into the end
-
-    mu = 0.  # Lognormal mean
-    sigma = 1.  # Lognormal standard deviation
-
-    # Lognormal
-    lognormal_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal', n_samples, m_contamination,)
-    if not os.path.isfile(lognormal_df_name):
-        np.random.seed(42)
-        ln1 = np.random.lognormal(mu, sigma, n_inliers)
-        ln2 = np.random.lognormal(mu, sigma, n_inliers)
-        lognormal = np.vstack((ln1, ln2)).transpose()
-        lognormal_df = pd.DataFrame(lognormal)
-        lognormal_df.to_csv(lognormal_df_name, index=False)
-    else:
-        lognormal_df = pd.read_csv(lognormal_df_name)
-        lognormal = lognormal_df.values
-
-    # Lognormal_t
-    lognormal_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'lognormal_t', n_samples, m_contamination,)
-    if not os.path.isfile(lognormal_t_df_name):
-        np.random.seed(142)
-        ln1 = np.random.lognormal(mu, sigma, n_inliers)
-        ln2 = np.random.lognormal(mu, sigma, n_inliers)
-        lognormal_t = np.vstack((ln1, ln2)).transpose()
-        lognormal_t_df = pd.DataFrame(lognormal_t)
-        lognormal_t_df.to_csv(lognormal_t_df_name, index=False)
-    else:
-        lognormal_t_df = pd.read_csv(lognormal_t_df_name)
-        lognormal_t = lognormal_t_df.values
-
-    # gaussian_c
-    gaussian_c_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c', n_samples, m_contamination,)
-    if not os.path.isfile(gaussian_c_df_name):
-        np.random.seed(2)
-        gaussian_c = 0.1 * np.random.randn(n_outliers, 2)
-        gaussian_c_df = pd.DataFrame(gaussian_c)
-        gaussian_c_df.to_csv(gaussian_c_df_name, index=False)
-    else:
-        gaussian_c_df = pd.read_csv(gaussian_c_df_name)
-        gaussian_c = gaussian_c_df.values
-
-    # gaussian_c_t
-    gaussian_c_t_df_name = "%s/%s_%d_%6.2f.csv" % (data_path, 'gaussian_c_t', n_samples, m_contamination,)
-    if not os.path.isfile(gaussian_c_t_df_name):
-        np.random.seed(20)
-        gaussian_c_t = 0.1 * np.random.randn(n_outliers, 2)
-        gaussian_c_t_df = pd.DataFrame(gaussian_c_t)
-        gaussian_c_t_df.to_csv(gaussian_c_t_df_name, index=False)
-    else:
-        gaussian_c_t_df = pd.read_csv(gaussian_c_t_df_name)
-        gaussian_c_t = gaussian_c_t_df.values
-
-    # Lognormal and gaussian anomalies
-    Xlogng = np.r_[lognormal, gaussian_c]
-
-    # Contaminated Lognormal for training
-    Xlogn_tc = np.r_[lognormal_t, gaussian_c_t]
-
-    # initialize a set of detectors for LSCP
-    detector_list = [LOF(n_neighbors=5), LOF(n_neighbors=10), LOF(n_neighbors=15),
-                     LOF(n_neighbors=20), LOF(n_neighbors=25), LOF(n_neighbors=30),
-                     LOF(n_neighbors=35), LOF(n_neighbors=40), LOF(n_neighbors=45),
-                     LOF(n_neighbors=50)]
-    random_state = np.random.RandomState(42)
-
-    # Define nine outlier detection tools to be compared
-    classifiers = {
-        'IF': IForest(contamination=outliers_fraction, random_state=random_state),
-        'KNN': KNN(contamination=outliers_fraction),
-        'LOF': LOF(n_neighbors=35, contamination=outliers_fraction),
-        'MCD': MCD(contamination=outliers_fraction, random_state=random_state),
-        'OCSVM': OCSVM(contamination=outliers_fraction),
-        'PCA': PCA(contamination=outliers_fraction, random_state=random_state),
-    }
-
-    for i, (clf_name, clf) in enumerate(classifiers.items()):
-        # fit the data and tag outliers
-        clf.fit(Xlogng)
-        scores_pred = clf.decision_function(Xlogng) * -1
-        y_pred = clf.predict(Xlogng)
-        threshold = percentile(scores_pred, 100 * outliers_fraction)
-        f1 = f1_score(ground_truth, y_pred, average="binary")
-        cv_df = cv_df.append({'F-measure': f1, 'Contamination': outliers_fraction, 'Algorithm': clf_name},
-                             ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(lognormal_t)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_md-rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ss_sd-rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ks_md-rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogn_tc)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'css_kd_rpca'},
-                         ignore_index=True)
-
-    # Train
-    r_L, r_mu, r_cov, r_dist, r_precision, r_skew, _, r_kurt, _ = fit_m_rpca(Xlogng)
-    # Testing md-rpca
-    md_pred_label = md_rpca_prediction(Xlogng, r_mu, r_precision, outliers_fraction)
-    md_f1 = f1_score(ground_truth, md_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': md_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_md_rpca'},
-                         ignore_index=True)
-    # Testing sd-rpca
-    sd_pred_label = sd_rpca_prediction(Xlogng, r_skew, r_precision, outliers_fraction)
-    sd_f1 = f1_score(ground_truth, sd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': sd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_sd_rpca'},
-                         ignore_index=True)
-    # Testing kd-rpca
-    kd_pred_label = kd_rpca_prediction(Xlogng, r_kurt, r_precision, outliers_fraction)
-    kd_f1 = f1_score(ground_truth, kd_pred_label, average="binary")
-    cv_df = cv_df.append({'F-measure': kd_f1, 'Contamination': outliers_fraction, 'Algorithm': 'u_kd_rpca'},
-                         ignore_index=True)
-
-    # ROBPCA-AO from saved files
-    robpca_result_file = '/home/thiago/dev/anomaly-detection/network-attack-detection/output/synthetic/robpca/robpca_k2_lognormal_2400_%.2f.csv' % m_contamination
+    robpca_result_file = 'output/simulation/robpca/robpca_k2_lognormal_2400_%.2f.csv' % m_contamination
     if os.path.isfile(robpca_result_file):
         robpca_pred = pd.read_csv(robpca_result_file, header=None)
         robpca_pred = robpca_pred[0]
@@ -1575,35 +1650,4 @@ for m_contamination in np.linspace(0.01, 0.50, 50):
         robpca_pred[robpca_pred == False] = 1
         robpca_pred[robpca_pred == -1] = 0
         robpca_f1 = f1_score(ground_truth, robpca_pred)
-        cv_df = cv_df.append({'F-measure': robpca_f1, 'Contamination': outliers_fraction, 'Algorithm': 'ROBPCA'},
-                             ignore_index=True)
-
-dash_styles = ["",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               "",
-               (1, 1),
-               (5, 2),
-               ""
-               ]
-fig_dims = (8, 8)
-colors = ["black", "black", "black", "amber", "amber", "amber", "blue", "blue",
-          "blue", "red", "red", "red", "green", "green", "green", "cyan"]
-sns.set_style("whitegrid")
-fig, ax = plt.subplots(figsize=fig_dims)
-ax = sns.lineplot(ax=ax, x="Contamination", y="F-measure", hue="Algorithm",
-                  style="Algorithm", dashes=dash_styles,
-                  palette=sns.xkcd_palette(colors), lw=2,
-                  data=cv_df)
-# Put the legend out of the figure
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.savefig("%slognormal_f1_contamination.png" % result_path,  bbox_inches='tight')
+        print('robpca_k2_lognormal_2400_%.2f: %.2f' % (m_contamination, robpca_f1))
