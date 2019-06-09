@@ -72,55 +72,41 @@ We propose an approach based on higher moments distances from robust subspace fo
 \section{Data Model}
 \label{sec:4_datamodel}
 
-In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $\alpha$, $\beta$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. The Frobenius norm is denoted as $\left\| \mathord{\cdot} \right\|_F$, while $\left\| \mathord{\cdot} \right\|_*$ denotes the nuclear norm of a matrix and $\left\| \mathord{\cdot} \right\|_1$ means the sum of the absolute values of matrix entries. We also define the operator $\langle \mathord{\cdot} \rangle$, that is the standard trace inner product, and $[ \mathord{\cdot} ]^n$, which denotes the $n$ largest values of a vector.
+In this paper, scalars are denoted by italic letters (\emph{a, b, A, B, $\alpha$, $\beta$}), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. The Frobenius norm is denoted as $\left\| \mathord{\cdot} \right\|_F$, while $\left\| \mathord{\cdot} \right\|_*$ denotes the nuclear norm of a matrix and $\left\| \mathord{\cdot} \right\|_1$ means the sum of the absolute values of matrix entries. We also define the operator $\langle \mathord{\cdot} \rangle$, that is the standard trace inner product, and $[ \mathord{\cdot} ]^s$, which denotes the $n$ largest values of a vector.
 
 This section also presents a description of the synthetic data model in Subsection \ref{sec:4_synthetic} and in Subsection \ref{sec:4_CTU-13} we describe the data model for the CTU-13 data set.
 
 \subsection{The Synthetic data set}
 \label{sec:4_synthetic}
 
-In order to evaluate the null hypothesis $H_{0rob.sub}$, which assumes that the robust subspace learning does not improves the anomaly detection from imbalanced and skewed, we create two synthetic data sets characterized by skewed and heavy tailed distributions. We selected Pareto and Lognormal distributions to evaluate the anomaly detection capacity of our proposal, considering that these distributions have been adopted to represent network traffic in the internet and data centers \cite{benson2010network,leon2017probability}.
+In order to analyse the null hypotheses $H_{1rob.sub}$ and $H_{0rob.sub}$, which evaluate if the robust subspace learning can improves the anomaly detection from imbalanced and skewed data, we create two synthetic data sets characterized by skewed and heavy tailed distributions. We selected Pareto and Lognormal distributions to evaluate the anomaly detection capacity of our proposal, considering that these distributions are skewed and heavy-tailed, and have been adopted to characterize network traffic of the Internet and data centers \cite{benson2010network,leon2017probability}. We also evaluate our proposal and the selected algorithms for anomaly detection on gaussian distributed data set, in order to analyse the detection rate for not skewed and not heavy tailed distributions.
 
-We adopt a contamination rate of 33\% to reproduce the imbalanced data of anomaly detection problems, and select the gaussian distribution for the addictive anomalies into Pareto and Lognormal distributions. Therefore, we generate $\boldsymbol{Y}_p$ and $\boldsymbol{Y}_l$ with 2,400 samples and two features, where 793 samples are gaussian anomalies, also referred as noise or contamination, while 1,607 samples are legitimate signals. The data set $\boldsymbol{Y}_p$ is composed by random Pareto distribution with random gaussian noise, while $\boldsymbol{Y}_l$ is composed by random Lognormal distribution with random gaussian noise.
+The addictive anomalies for Pareto and Lognormal distributions are gaussian distributed, while an uniform noise is used to add anomalies into the gaussian distributed data set. We generate $\boldsymbol{Y}_p$, $\boldsymbol{Y}_l$ and $\boldsymbol{Y}_g$ for Pareto, Lognormal and Gaussian multivariate distributions, respectively, with 2 features. Each contaminated data set is composed by a number of legitimate observations and the contaminated samples, defined by the adopted $c$.
 
-The Figure \ref{fig:4.03} shows the histogram and the PDF of the Pareto distribution for two features of $\boldsymbol{Y}_p$.
+The Pareto distribution contaminated by gaussian noise is denoted as $\boldsymbol{Y}_p^c$, while $\boldsymbol{Y}_l^c$ denotes the Lognormal distribution contaminated by gaussian noise, and $\boldsymbol{Y}_g^c$ denotes the contaminated gaussian data contaminated by an uniform distribution.
+
+This synthetic data set simulate a total of 2400 events for each scenario, where the number of legitimate observations is simulated according to the desired contamination rate. We evaluate contamination rates $c$ between 1\% and 50\%, to simulate the imbalanced data of anomaly detection problems during our experiments.
+
+The Figure \ref{fig:4.01} depicts the distribution of Pareto and gaussian contamination of one variable, as a visual example of $\boldsymbol{Y}_p^c$, while the Figure \ref{fig:4.02} shows one example of Lognormal contaminated by gaussian noise, generated for $\boldsymbol{Y}_l^c$.
 
 \begin{figure}[!htb]
 	\centering
-	\subfigure[Feature 1]{%
-		\includegraphics[width=0.48\textwidth]{figures/pareto1.png}
+	\subfigure[Pareto and Gaussian Anomalies]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/4_Xpg2.png}
 		\label{fig:4.01}
 	}
-	\subfigure[Feature 2]{%
-		\includegraphics[width=0.48\textwidth]{figures/pareto2.png}
+	\subfigure[Lognormal and Gaussian Anomalies]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/4_Xlogng2.png}
 		\label{fig:4.02}
 	}
-	\caption[Pareto Distribution]{Pareto Distribution}
+	\caption[Examples of skewed and heavy tailed distributions]{Examples of skewed and heavy tailed distributions}
 	\label{fig:4.03}
 \end{figure}
-
-The Figure \ref{fig:4.06} shows the histogram and the PDF of the Lognormal distribution for two features of $\boldsymbol{Y}_l$.
-
-\begin{figure}[!htb]
-	\centering
-	\subfigure[Feature 1]{
-		\includegraphics[width=0.48\textwidth]{figures/lognormal3.png}
-		\label{fig:4.04}
-	}
-	\subfigure[Feature 2]{
-		\includegraphics[width=0.48\textwidth]{figures/lognormal4.png}
-		\label{fig:4.05}
-	}
-	\caption[Lognormal Distribution]{Lognormal Distribution}
-	\label{fig:4.06}
-\end{figure}
-
-The Pareto distribution contaminated by gaussian noise is denoted as $\boldsymbol{Y}_p^c$, while $\boldsymbol{Y}_l^c$ denotes the Lognormal distribution contaminated by gaussian noise. Taking into account that semi-supervised algorithms requires training from normal data, we also generate $\boldsymbol{Y}_p^t$, while $\boldsymbol{Y}_l^t$, which are data sets of Pareto and Lognormal distributions for training, without contamination and composed by 1,607 samples and two features.
 
 \subsection{The CTU-13 data set}
 \label{sec:4_CTU-13}
 
-The CTU-13 is a data set of botnet traffic that was captured in the Czech Technical University \cite{garcia2014empirical}, by means of a testbed and execution of malwares in a real network. The CTU-13 data set contains 13 scenarios with network flows of botnet malwares, that are: neris, rbot, virut, menti, sogou, nsys.ay and murlo. The botnet traffic is also classified as attack or command and control (C\&C), while the legitimate flows can also be classified as normal or background. It is important to note that the CTU-13 data set can also be formulated as a superposition of signal, artefact and noise, which refer to background, normal a botnet traffic, respectively.
+The CTU-13 \cite{garcia2014empirical} is a data set of botnet traffic that was captured in the Czech Technical University, by means of a testbed and malware execution in a real network. The CTU-13 data set contains 13 scenarios with network flows of botnet malwares, that are: neris, rbot, virut, menti, sogou, nsys.ay and murlo. The botnet traffic is also classified as attack or command and control (C\&C), while the legitimate flows can also be classified as normal or background. It is important to note that the CTU-13 data set can also be formulated as a superposition of signal, artefact and noise, which refer to background, normal a botnet traffic, respectively.
 
 The types of C\&C and attack flows present in CTU-13 data set are:
 
@@ -129,11 +115,11 @@ The types of C\&C and attack flows present in CTU-13 data set are:
 	\item \textbf{C\&C:} IRC, P2P and HTTP.
 \end{itemize}
 
-We refer to Garcia \cite{garcia2014identifying} and Garcia \emph{et al.} \cite{garcia2014empirical} for a detailed description of the performed attacks and C\&C flows, also including the topology of the adopted testbed, rules for classifying normal flows, and an analysis of behaviors or patterns of the malware's traffic.
+We refer to Garcia \cite{garcia2014identifying} and Garcia \emph{et al.} \cite{garcia2014empirical} for a detailed description of the performed attacks and C\&C flows, as well as for more information about the topology of the adopted testbed, rules for classifying normal flows, and an analysis of behaviors or patterns of the malware's traffic.
 
-For all the scenarios, the authors of the CTU-13 data set convert the captured pcap files to NetFlows and release the processed flows. The data set contains ground-truth labels for flows as follows: flows from or to the infected machines are labeled as “botnet”; flows from or to well known and controlled machines are labeled as “normal”; all other flows are labeled as “background.”
+For all the scenarios, the authors of the CTU-13 data set convert the captured pcap files to NetFlows and release the processed flows. The data set provides ground-truth labels for flows as follows: flows from or to the infected machines are labeled as “botnet”; flows from or to well known and controlled machines are labeled as “normal”; all other flows are labeled as “background.”
 
-Table \ref{tab:4.01} presents an overview organized by scenario and shows the malwares used for botnet attacks, the types of attacks and C\&C types, the total number of flows, the number of malicious flows, which includes flows of C\&C and attacks, and finally shows the number of normal flows.
+Table \ref{tab:4.01} presents an overview grouped by scenario, according to the column ID, and shows the malwares used for botnet attacks, the types of attacks or C\&C, the total number of flows, the number of malicious flows which includes flows of C\&C and attacks, and finally shows the number of normal flows.
 
 \begin{table}[h!]
 	\scriptsize
@@ -157,7 +143,9 @@ Table \ref{tab:4.01} presents an overview organized by scenario and shows the ma
 	\end{tabular}
 \end{table}
 
-The CTU-13 data set originally contains the following features:  
+The full data set and scenarios can be denoted as $\boldsymbol{X} = \{\boldsymbol{X}_{10}, \boldsymbol{X}_{11}, \ldots , \boldsymbol{X}_{18-2}, \boldsymbol{X}_{19}\}$, in accordance to IDs presented in Table \ref{tab:4.01}. In our experiment each contaminated scenario $\boldsymbol{X}_i$ is split into $\boldsymbol{X}_i^s$ containing 50\% of the the normal data, and into $\boldsymbol{X}_i^c$ that is composed by all anomalous flows and the necessary number of normal flows to have a testing data with the desired contamination rate.
+
+The CTU-13 data set originally contains the following features for each flow:  
 
 \begin{itemize}
 	\item Start Time;
@@ -168,35 +156,56 @@ The CTU-13 data set originally contains the following features:
 	\item Direction;
 	\item Destination IP Address;
 	\item Destination Port;
-	\item State;
-	\item Type of service from source to destination;
-	\item Type of service from destination to source;
-	\item Total of Packets;
-	\item Total of Bytes;
+	\item State of TCP flags;
+	\item Destination Type of Service;
+	\item Source Type of Service;
+	\item Total number of Packets;
+	\item Total number of Bytes;
 \end{itemize}
 
-Our analysis of the available features leads to discard some features, considering that highly correlated features can bias or not improve the model, and that source or destination IP addresses can insert some false bias into learning models, since they can be changed by IP spoofing or other techniques.
+Our analysis of the available features leads to discard some features, considering that highly correlated features can bias or not improve the model, and that source or destination IP addresses can insert some false bias into learning models, since they can be changed by IP spoofing. Other risk related to adopt IP address for training models is the training model to learn that
+one IP is legitimate and this IP be infected subsequently, which can result into false negative classifications.
 
-TODO: talk about the feature distribution, that arent similar to pareto or lognormal, but it is not normal too
+We conducted and Exploratory Data Analysis (EDA) on the CTU-13 and observed that some features are skewed and present an overlapping between normal and anomalous flows, as can be seen in Figure \ref{fig:4.05} and Figure \ref{fig:4.05}, that present the distributions of TCP state of scenario 16 and the type of services from destination of scenario 10.
 
-An Exploratory Data Analysis (EDA) reveals that distributions of some features are skewed and present an overlapping between normal and anomalous flows, as can be seen in  \ref{fig:4.01}, that presents the distribution of transaction state of scenario 16, and exemplifies the data skewness, the overlapping and the long tail distribution of normal data. 
-\begin{figure}[h!]
-     \centering
-     \includegraphics[width=10cm]{figures/raw_distplot_capture20110816_State.png}
-     \caption{Distribution of flow duration for scenario 12.}
-     \label{fig:4.01}
+\begin{figure}[!htb]
+	\centering
+	\subfigure[State of scenario 16.]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110816_State.png}
+		\label{fig:4.04}
+	}
+	\subfigure[Destination Type of service of scenario 10.]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110810_dTos.png}
+		\label{fig:4.05}
+	}
+	\caption[Skewness and Overlapping]{Example of skewness and overlapping}
+	\label{fig:4.06}
 \end{figure}
 
-Due to the number of available features and the class overlapping, we performed an correlation analysis and cross validation in order to identify the best set of features for network attack detection. Therefore, we adopt the following features: State, Type of service from source to destination, Type of service from destination to source, destination port, source port, and the total number of packets.
+However, it is not possible to observe a pattern on distributions of all the features, as depicted by Figures \ref{fig:4.07} and \ref{fig:4.08}, that show the distributions of TCP states of the scenario 10 and source ports of scenario 16, and highlight the distributions of normal and anomalous flows.
 
-The full data set and scenarios can be denoted as $\boldsymbol{X} = \{\boldsymbol{X}_{10}, \boldsymbol{X}_{11}, \ldots , \boldsymbol{X}_{18-2}, \boldsymbol{X}_{19}\}$, in accordance to IDs presented in Table \ref{tab:4.01}. Each contaminated scenario $\boldsymbol{X}_i$ is split into $\boldsymbol{X}_i^n$ containing 50\% of the the normal data, and into $\boldsymbol{X}_i^t$ that is composed by all anomalous flows and ne needed number of normal flows to have a testing data with 33\% of contamination.
+\begin{figure}[!htb]
+	\centering
+	\subfigure[State of scenario 10.]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110810_State.png}
+		\label{fig:4.07}
+	}
+	\subfigure[Source Port of scenario 16.]{%
+		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110816_Sport.png}
+		\label{fig:4.08}
+	}
+	\caption[Skewness and Overlapping]{Skewness and Overlapping}
+	\label{fig:4.09}
+\end{figure}
+
+Due to the number of available features and the class overlapping between normal and anomalous flows, we performed an correlation analysis and cross validation in order to identify the best set of features for network attack detection. Therefore, we adopt the following features: state, destination type of service, destination port, source port, total number of packets, total number of bytes and number of bytes from the source.
 
 \section{Moment Distances from Robust Subspace for Botnet Detection}
 \label{sec:4_proposal}
 
 This section describes the proposed approach for network attack detection by means of a distance analysis between moments computed from a robust subspace and new observations of network traffic. 
 
-Robust subspace learning can be defined as the decomposition of a given data matrix $\textbf{X}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. We propose to learn a robust subspace $\textbf{L}$ from the normal traffic $\textbf{X}^r$ for computing $\textbf{L}^r$, $\textbf{S}^r$ and the robust moments, i.e. the mean $\boldsymbol{\bar{x}}$, skewness $\boldsymbol{\bar{s}}$ and kurtosis $\boldsymbol{\bar{k}}$, in order to evaluate the distance $\boldsymbol{d}$ of new observations $\boldsymbol{X}^t$ to these moments and classify as anomalous the observations with the largest distances.
+Robust subspace learning can be defined as the decomposition of a given data matrix $\textbf{X}$ into the sum of a low rank matrix $\textbf{L}$, whose column subspace gives the principal components, and a sparse matrix $\textbf{S}$, with outliers or noise. We propose to learn a robust subspace $\textbf{L}$ from the normal traffic $\textbf{X}^s$ for computing $\textbf{L}^s$, $\textbf{S}^s$ and the robust moments, i.e. the mean $\boldsymbol{\bar{x}}$, skewness $\boldsymbol{\bar{s}}$ and kurtosis $\boldsymbol{\bar{k}}$, in order to evaluate the distance $\boldsymbol{d}$ of new observations $\boldsymbol{X}^c$ to these moments and classify as anomalous the observations with the largest distances.
 
 Robust PCA is a well known method to recover a low-rank matrix $\textbf{L}$ and sparse matrix $\textbf{S}$ from corrupted measurements modeled as $\textbf{X} = \textbf{L} + \textbf{S}$. This decomposition in low-rank and sparse matrices can be achieved by techniques such as Principal Component Pursuit method (PCP), and by optimization methods, such as the Augmented Lagrange Multiplier Method (ALM), Alternating Direction Method (ADM), Fast Alternating Minimization (FAM) or Iteratively Reweighted Least Squares (IRLS) \cite{candes2011robust,vaswani2018robust,lerman2018overview}.
 
@@ -213,7 +222,7 @@ According to Wright et al. \cite{wright2009robust}, under rather broad condition
 \end{equation}
 where $\lambda$ is a positive weighting parameter, which determines the sparsity of $\boldsymbol{S}$, $\sigma$ denotes the singular values of a matrix. 
 
-Before ALM, some methods were proposed to solve that convex optimization problem, such as Iterative Thresholding (IT) and Accelerated Proximal Gradient (APG). However, according to \cite{lin2010augmented}, both approaches have scalability problems and require a large number of iterations to converge. The Augmented Lagrange Multiplier is proven to have a \emph{Q-linear} convergence speed and experimental results show that ALM is five times faster than APG, which in theory is sub-linear \cite{lin2010augmented}. Furthermore, ALM reaches more accurate results with less iterations.
+Before ALM, some methods were proposed to solve that convex optimization problem, such as Iterative Thresholding (IT) and Accelerated Proximal Gradient (APG). However, according to Zhouchen \emph{et al.} \cite{lin2010augmented}, both approaches have scalability problems and require a large number of iterations to converge. The Augmented Lagrange Multiplier is proven to have a \emph{Q-linear} convergence speed and experimental results show that ALM is five times faster than APG, which in theory is sub-linear \cite{lin2010augmented}. Furthermore, ALM reaches more accurate results with less iterations.
 
 The RPCA with ALM can be formulated:
 \begin{equation}\label{eq:4.04}
@@ -268,7 +277,7 @@ and the kurtosis as
 	\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2}.
 \end{equation}
 
-We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from the robust subspace $\boldsymbol{L}^r$, after to minimize the Equation \ref{eq:4.06} for $\textbf{X}^r$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies between new observations and the moments calculated from a robust subspace computed by RPCA. 
+We propose to compute the mean $\boldsymbol{\bar{x}}$, the skewness $\boldsymbol{\bar{s}}$, the kurtosis $\boldsymbol{\bar{k}}$ and the covariance matrix $\boldsymbol{\bar{\Sigma}}$ from the robust subspace $\boldsymbol{L}^s$, after to minimize the Equation \ref{eq:4.06} for $\textbf{X}^s$. We also propose to compute the Mahalanobis Distance (MD) for detecting anomalies between new observations and the moments calculated from a robust subspace computed by RPCA. 
 
 The classical Mahalanobis Distance is defined as		
 \begin{equation}\label{eq:4.12}
@@ -288,23 +297,23 @@ We finally propose to extend the Equation \ref{eq:4.12} to implement a Kurtosis-
 
 The distances $\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}})$, $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}})$ and $\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}})$ shall be computed and evaluated separately for botnet detection. Therefore, the robust subspace learning from normal data combined to MD can be called md-RPCA when using mean-based MD, sd-RPCA when using skewness-based MD, and kd-RPCA when using kurtosis-based MD.
 
-The contamination rate parameter is widely adopted for well established outlier detection algorithms \cite{zhao2019pyod}, and refers to the percentage of observations that are classified as anomalous. The contamination rate can be well known for some areas, or can be computed by cross-validation or can be assumed according to previous observations. In our proposal, the contamination define the rate of highest distances $\boldsymbol{d}$ that shall be classified as anomalous. Therefore, the resulting $\boldsymbol{\bar{t}}$ refers to observations classified as anomalous according to the contamiation $c$.
+The contamination rate parameter is widely adopted for well established outlier detection algorithms \cite{zhao2019pyod}, and refers to the percentage of observations that are classified as anomalous. The contamination rate can be well known for some areas, or can be computed by cross-validation or can be assumed according to previous observations. In our proposal, the contamination define the rate of the largest distances $\boldsymbol{d}$ that shall be classified as anomalous. Therefore, the resulting $\boldsymbol{\bar{t}}$ refers to observations classified as anomalous according to the contamination $c$.
 
 The Algorithm \ref{alg:4.01} presents how the m-RPCA can be algorithmically described.
 \begin{algorithm}
 	\label{alg:4.01}
 	\SetAlgoLined
 	\KwResult{$\boldsymbol{\bar{t}}_{\bar{\boldsymbol{x}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{s}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{k}}}$}
-	Given $\boldsymbol{X}$ split into $\boldsymbol{X}^n$ and $\boldsymbol{X}^t$\;
-	\While{not $\min_{L,S}\left \| \boldsymbol{L} \right \|_{*} + \lambda \left \| \boldsymbol{S} \right \|_{1}$ of $\boldsymbol{X}^n$}{
+	Given $\boldsymbol{X}$ split into $\boldsymbol{X}^s$ and $\boldsymbol{X}^c$\;
+	\While{not $\min_{L,S}\left \| \boldsymbol{L} \right \|_{*} + \lambda \left \| \boldsymbol{S} \right \|_{1}$ of $\boldsymbol{X}^s$}{
 		$\boldsymbol{L}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{L} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}, \boldsymbol{S}_{k}, \boldsymbol{Y}_{k})\}$\;
 		$\boldsymbol{S}_{k+1} \in \operatorname*{argmin}_{\boldsymbol{S} \in \mathbb{R}^{m \times n}}\{l(\boldsymbol{L}_{k+1}, \boldsymbol{S}, \boldsymbol{Y}_{k})\}$\;
 		$\boldsymbol{Y}_{k+1} = \boldsymbol{Y}_{k} + \mu(\boldsymbol{X} - \boldsymbol{L}_{k} - \boldsymbol{S}_{k})$\;
-	}	
-	$\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} \boldsymbol{x}_i$, for $\boldsymbol{L}^n$\;
-	$\boldsymbol{\bar{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} (\boldsymbol{x}_i - \bar{\boldsymbol{x}})(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime$, for $\boldsymbol{L}^n$\;
-	$\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}}$, for $\boldsymbol{L}^n$\;
-	$\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2}$, for $\boldsymbol{L}^n$\;
+	}
+	$\bar{\boldsymbol{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} \boldsymbol{x}_i$, for $\boldsymbol{L}^s$\;
+	$\boldsymbol{\bar{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \boldsymbol{h}} (\boldsymbol{x}_i - \bar{\boldsymbol{x}})(\boldsymbol{x}_i - \bar{\boldsymbol{x}})^\prime$, for $\boldsymbol{L}^s$\;
+	$\boldsymbol{\bar{s}} = \frac{m_3}{m_2^{\frac{3}{2}}}$, for $\boldsymbol{L}^s$\;
+	$\boldsymbol{\bar{k}} = \frac{m_4}{m_2^2}$, for $\boldsymbol{L}^s$\;
 	$\boldsymbol{d}(\boldsymbol{x},\bar{\boldsymbol{x}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{x}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{x}})^\prime}$\;
 	$\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{s}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{s}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{s}})^\prime}$\;
 	$\boldsymbol{d}(\boldsymbol{x}, \bar{\boldsymbol{k}}, \boldsymbol{\bar{\Sigma}}) = \sqrt{(\boldsymbol{x} - \bar{\boldsymbol{k}}) \boldsymbol{\bar{\Sigma}}^{-1}(\boldsymbol{x} - \bar{\boldsymbol{k}})^\prime}$\;
@@ -314,33 +323,19 @@ The Algorithm \ref{alg:4.01} presents how the m-RPCA can be algorithmically desc
 	\caption{Moment Distances from Robust Subspace}
 \end{algorithm}
 
-The steps between 1 and 10 of the Algorithm \ref{alg:4.01} are the training from normal data $\boldsymbol{X}^n$, while the steps between 11 and 16 aim the anomaly detection on new contaminated observations. Note that the steps 11 and 14 refers to the md-RPCA, while the steps 12 and 15 refers to the sd-RPCA, and the steps 13 and 16 refers to the kd-RPCA. It is also important to observe that the anomaly detection from new observations does not require new robust subspace learning, it is only necessary to compute a moment-based Mahalanobis distance to classify the $c$ largest distances as anomalous.
+The steps between 1 and 10 of the Algorithm \ref{alg:4.01} are the training from normal data $\boldsymbol{X}^s$, while the steps between 11 and 16 aim the anomaly detection from new contaminated observations. Note that the steps 11 and 14 refer to the md-RPCA, while the steps 12 and 15 refer to the sd-RPCA, and the steps 13 and 16 refer to the kd-RPCA. It is also important to observe that the anomaly detection from new observations does not require new robust subspace learning, it is only necessary to compute a moment-based Mahalanobis distance to classify the $c$ largest distances as anomalous.
 
-However, m-RPCA can also be adopted as unsupervised algorithm through changing the lines 1 and 2 of the Algorithm \ref{alg:4.01} to substitute $\boldsymbol{X}^n$ by $\boldsymbol{X}^t$. Hence, the robust subspace is learned from contaminated data and used for comparing the distance between higher moments  from robust estimate and moments of new observations.
+The m-RPCA can also be adopted as unsupervised algorithm if the lines 1 and 2 of the Algorithm \ref{alg:4.01} are changed to substitute $\boldsymbol{X}^s$ by $\boldsymbol{X}^c$. Hence, the robust subspace is learned from contaminated data and used for comparing the distance between higher moments from robust estimate and moments of the observations of the same data. It is important to note that this unsupervised approach requires the computational cost of the subspace learning for any new observation.
 
 \section{Experiments}
 \label{sec:4_experiments}
 
-This section presents the performed experiments and the acquired results. First, in Section \ref{sec:4_AnalyzedScenario}, the experimental scenario adopted in the experiments is summarized. Section \ref{sec:4_results} shows the results of the proposed approach, compares to selected anomaly detection algorithms, and presents a discussion about the results.
+This section presents the performed experiments on simulated and real data set for anomaly detection. First, in Section \ref{sec:4_metric} we present the adopted metric to evaluate imbalanced data in the context of anomaly detection. The Section \ref{sec:4_SimulatedScenario} describes the experiment for anomaly detection on simulated skewed and heavy-tailed data set, and the Section \ref{sec:4_CTU-13} presents the experiment for network anomaly detection on CTU-13 data set.
 
-\subsection{Experimental Scenario}
-\label{sec:4_AnalyzedScenario}
+\subsection{The metric}
+\label{sec:4_metric}
 
-Anomaly detection algorithms usually rely on supervised or unsupervised methods, where the former requires labeled normal and anomalous data for training anomaly detection models, while the latter does not require labeled data or training. However, the availability of labeled data is a challenging concern in real world problems of anomalous detection, where anomalies are rare or even unkown events. 
-
-Semi-supervised algorithms are an alternative for the anomaly detection problem, considering that this method only relies on normal data for training and that non-malicious data can be obtained from historical information and from rule-based approaches. The proposed approach is semi-supervised and relies on normal data $\boldsymbol{X}^n$ and on contamination rate $c$ for training and anomaly detection, respectively.
-
-Only for evaluation purpose, we use part of the contaminated data, denoted as $\textbf{X}^v$, for cross-validation, in order to estimate the contamination rate $c$ that best detect anomalies from $\textbf{X}^v$. However, we assume that the $c$ is well known or can be estimated for real world problems of anomaly detection.
-
-Clustering methods for anomaly detection rely on three key assumptions: legitimate data instances often fall into a cluster whereas attacks do not, legitimate data instances are usually located near the closest cluster centroid while anomaly ones are often far away from it, legitimate data instances fall into vast and dense clusters and anomalies into small or spare ones \cite{ahmed2016survey, moustafa2019holistic}. Gaussian Mixture Model (GMM) is a statistical-based and parametric approach algorithm that estimates the distribution of the normal class from a training set and is typically based on a set of kernels \cite{moustafa2019holistic}.
-
-This experimental evaluation compares our proposal to widely adopted algorithms for anomaly detection based on clustering and statistical approaches. As clustering-based method, we compare to K-means, which is the clustering algorithm most adopted for general purposes and for network anomaly detection \cite{gaddam2007kmeans,moustafa2019holistic}. It is observed that network traffic do not belong to a Gaussian distribution \cite{benson2010network,moustafa2019holistic}, and that algorithms based on non-Gaussian distributions, such as GMM, has been adopted for network anomaly detection \cite{moustafa2019holistic}. Therefore, we compare our proposal to GMM. We also evaluate the results of ROBPCA for anomaly detection on CTU-13, considering that ROBPCA also relies on robust estimates with adjusted outlyingness based on robust skewness \cite{hubert2009robustskewed}. 
-
-In contrast to Garcia \emph{et al.} \cite{garcia2014empirical}, we propose to evaluate each scenario of the CTU-13 data set individually, in a semi-supervised approach that does not rely on training data with labeled anomalies, in order to evaluate our proposed approach to all botnet malwares of the CTU-13. 
-
-Therefore, the full data set and scenarios can be denoted as $\boldsymbol{X} = \{\boldsymbol{X}_{10}, \boldsymbol{X}_{11}, \\\ldots , \boldsymbol{X}_{18-2}, \boldsymbol{X}_{19}\}$, in accordance to IDs presented in Table \ref{tab:4.01}. In our experiment setup each contaminated scenario $\boldsymbol{X}_i$ is split into $\boldsymbol{X}_i^n$ containing 50\% of the the normal data, and into the cross validation $\boldsymbol{X}_i^v$, composed by 25\% of the normal and 50\% of the anomalous data, and into test $\boldsymbol{X}_i^t$ containing 25\% of the normal and 50\% of the anomalous data. 
-
-In anomalous detection problems, where anomalies are rare events, if one classify all observations as normal and apply an accuracy evaluation, one would have high accuracy but poor true-positive detection. Due to the importance given by the F-measure to true-positive detection, it is the preferable measure for imbalanced data sets \cite{powers2011evaluation,moustafa2019holistic} and it is the metric used for validation of this experiment.
+In anomalous detection problems, where anomalies are rare events, if one classify all observations as normal and apply an accuracy evaluation, one would have high accuracy but poor true-positive detection. Due to the importance given by the F-measure to true-positive detection in scenarios such as the network attack detection, it is the preferable measure for imbalanced data sets \cite{powers2011evaluation,moustafa2019holistic}. Therefore, F1-measure is the metric used for validation of our experiments.
 
 The F-measure is the harmonic mean of precision and recall and is defined by:
 \begin{equation}\label{eq:4.15}
@@ -355,96 +350,235 @@ and $rc$ is the recall, defined by
 	rc = \frac{True Positive}{True Positive + False Negative}.
 \end{equation}
 
-It is from $\boldsymbol{X}_i^n$ that we perform the training steps, which are the steps between 1 and 10 described in Algorithm \ref{alg:4.01}, resulting into $\boldsymbol{\bar{x}}$, $\boldsymbol{\bar{\Sigma}}$, $\boldsymbol{\bar{s}}$ and $\boldsymbol{\bar{k}}$. The next step of the experiment is the cross validation, which is an empirical testing to identify the contamination $c$ that obtains the best F-measure on anomaly detection, aiming the maximum precision and recall. During the cross validation for $\boldsymbol{X}_i^v$ we compute the steps 11, 12 and 13, and iterate over the steps between 14 and 16 for selected values of $c$, and validate the results of $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{x}}}^v$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{s}}}^v$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{k}}}^v$ to the ground truth results for $\boldsymbol{X}_i^v$, in order to identify the $c$ that best classify the anomalies of $\boldsymbol{X}_i^v$. 
+This experimental evaluation compares our proposal to widely adopted algorithms for anomaly detection that also rely on contamination rate for anomaly detection, which are: PCA based on the sum of weighted projected distances to the eigenvector hyperplanes \cite{shyu2003novel}; MCD \cite{rousseeuw1984mcd,rousseeuw1999fastmcd}; One-Class Support Vector Machines \cite{scholkopf2001estimating}; Local Outlier Factor (LOF) \cite{breunig2000lof}; k-Nearest Neighbors \cite{angiulli2002fast}; and Isolation Forest \cite{liu2008isolation}.
 
-Finally, we test the proposed approach to anomaly detection on $\boldsymbol{X}_i^t$ by means of the steps between 11 and 16 of Algorithm \ref{alg:4.01}, and compare the results of $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{x}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{s}}}$, $\boldsymbol{\bar{t}}_{\bar{\boldsymbol{k}}}$ to the ground truth results for $\boldsymbol{X}_i^t$.
+% ToDO: We also evaluate the results of ROBPCA for anomaly detection on CTU-13, considering that ROBPCA also relies on robust estimates with adjusted outlyingness based on robust skewness \cite{hubert2009robustskewed}.
 
-\subsection{Results}
-\label{sec:4_results}
+\subsection{Simulated Experiment}
+\label{sec:4_SimulatedScenario}
 
-The Table \ref{tab:4.02} presents the results of the proposed approach and selected methods applied to botnet detection for each scenario of the CTU-13 data set. The Table \ref{tab:4.02} shows the F-measure of GMM, K-means, ROBPCA, md-RPCA, kd-RPCA and sd-RPCA by scenario and by an average of all scenarios.
+Anomaly detection algorithms usually rely on supervised or unsupervised methods, where the former requires labeled normal and anomalous data for training anomaly detection models, while the latter does not require labeled data or training. 
+
+Semi-supervised algorithms are an alternative for the anomaly detection problem, considering that this method only relies on normal data for training and that non-malicious data can be obtained from historical information and from rule-based approaches. We propose semi-supervised and unsupervised approaches for m-RPCA, where the former relies on normal data $\boldsymbol{X}^s$ for training and on contamination rate $c$ for anomaly detection, while the latter relies only on contaminated data. We assume that the $c$ is well known or can be estimated for real world problems of anomaly detection, in accordance to the selected algorithms for comparison, that also rely on contamination rate.
+
+The availability of labeled data is a challenging concern in real world problems of anomalous detection, where anomalies are rare or even unknown events. Considering that RPCA has already been adopted to isolate outliers from training data \cite{zhou2017anomaly}, we also propose to evaluate the m-RPCA from a semi-supervised approach based on training from contaminated data.
+
+Therefore, we propose to evaluate the following approaches for m-RPCA:
+\begin{enumerate}
+	\item Semi-supervised;
+	\item Contaminated Semi-supervised;
+	\item Unsupervised.
+\end{enumerate}
+
+For the semi-supervised approach we propose to learn the robust subspace and compute the moments from the normal data set $\boldsymbol{Y}_g$, $\boldsymbol{Y}_p$ and $\boldsymbol{Y}_l$ with Gaussian, Pareto and Lognormal distributions, respectively, and test the anomaly detection for contaminated data set $\boldsymbol{Y}_g^c$, $\boldsymbol{Y}_p^c$ and $\boldsymbol{Y}_l^c$. 
+
+In the Contaminated Semi-supervised approach we evaluate the robustness of the m-RPCA for learning from contaminated training data, in order to analyse if m-RPCA can be an alternative for the lack of known normal data. Therefore we propose to train the model from a contaminated normal data $\boldsymbol{Y}_g^{c'}$, $\boldsymbol{Y}_p^{c'}$ and $\boldsymbol{Y}_l^{c'}$, with the same contamination rate of the testing data, but without data sharing between training and testing, taking into account that we shall consider a different contamination data but the same contamination rate.
+
+We finally evaluate the unsupervised approach, that relies on the test data sets $\boldsymbol{Y}_g^c$, $\boldsymbol{Y}_p^c$ and $\boldsymbol{Y}_l^c$ for robust subspace learning, and then classify the results according to the distance between the contaminated data $\boldsymbol{Y}_g^c$, $\boldsymbol{Y}_p^c$ and $\boldsymbol{Y}_l^c$, and the moments computed from the learned robust subspace.
+
+\subsection{Experiment for CTU-13}
+\label{sec:4_CTU13Scenario}
+
+In contrast to Garcia \emph{et al.} \cite{garcia2014empirical}, we propose to evaluate each scenario of the CTU-13 data set individually, in a semi-supervised approach that does not rely on training data with labeled anomalies, in order to evaluate our proposed approach to all botnet malwares of the CTU-13. 
+
+In our experiment setup each contaminated scenario $\boldsymbol{X}_i$ is split into $\boldsymbol{X}_i^s$ containing 50\% of the the normal data, and into test data $\boldsymbol{X}_i^c$ containing 33\% of normal and 67\% of anomalous data. 
+
+This experiment consider only the semi-supervised approach due to results of simulated experiments on synthetic data set to be present in Subsection \ref{sec:4_simulated_result}, that shows better results for the semi-supervised approach and highlight that the this approach can obtain good results even when trained with contaminated data set.
+
+\section{Results of Simulated Experiment}
+\label{sec:4_simulated_result}
+
+We initially evaluated the F1-measure of the selected algorithms and m-RPCA approaches for anomaly detection on gaussian distributed legitimate data contaminated by uniform distributed anomalies. 
+
+The Figure \ref{fig:4.10} shows the F1-measure over the contamination rate between 1\% and 50\% for m-RPCA approaches and Isolation Forest (IF) \cite{liu2008isolation}, k-Nearest Neighbors (KNN) \cite{angiulli2002fast}, Local Outlier Factor (LOF) \cite{breunig2000lof}, Minimum Covariance Deteminant (MCD) \cite{rousseeuw1999fastmcd}, One-Class Support Vector Machines (OCSVM) \cite{scholkopf2001estimating} and PCA \cite{shyu2003novel}. We adopt prefixes to denote the adopted approaches for md-RPCA, sd-RPCA and kd-RPCA, which are ss\_ to denote semi-supervised, css\_ to denote contaminated semi supervised and u\_ for unsupervised.
+
+It is possible to observe that LOF, PCA, css\_kd-RPCA and u\_kd-RPCA present lower performance than the remain algorithms, that obtain results higher than 0.95 in average. Note that the css\_kd-RPCA and u\_kd-RPCA are the contaminated semi-supervised and unsupervised versions of kd-RPCA, that obtain worse results than the semi-supervised approach of kd-RPCA. 
+
+However, the unsupervised versions of md-RPCA and sd-RPCA presented similar results to widely adopted unsupervised algorithms for outlier detection. The results also show that the semi-supervised approach of md-RPCA, sd-RPCA and kd-RPCA obtain high anomaly detection rate and presented similar results to the unsupervised algorithms IF, KNN, MCD and OCSVM. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figures/ch4/gaussian_f1_contamination.png}
+	\caption{Anomaly detection on gaussian distributed with uniform anomalies}
+	\label{fig:4.10}
+\end{figure}
+
+The Figures \ref{fig:4.11} and \ref{fig:4.12} show the results for anomaly detection on skewed and heavy tailed distributions, where the Figure \ref{fig:4.11} presents the results for Pareto with gaussian anomalies, and the Figure \ref{fig:4.12} presents the results for Lognormal with gaussian anomalies.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figures/ch4/pareto_f1_contamination.png}
+	\caption{Anomaly detection on Pareto distributed with gaussian anomalies}
+	\label{fig:4.11}
+\end{figure}
+
+The results for anomaly detection on Pareto with gaussian anomalies, depicted by Figure \ref{fig:4.11}, show that IF, KNN, LOF, OCSVM, css\_md-RPCA and u\_md-RPCA performed worse than the remain algorithms, with results lower than 0.6 even with higher contamination. Note that css\_md-RPCA and u\_md-RPCA are mean-based approaches of m-RPCA, however the ss\_md-RPCA presented lower results for lower contamination but achieved more than 0.8 with contamination near of 0.2 or higher.
+
+It is possible to observe in Figure \ref{fig:4.11} that all approaches based on kd-RPCA achieve the best results initially, but the results for the unsupervised and contaminated semi-supervised variate with contamination near of 0.2 or higher, while the ss\_kd-RPCA presents stable results near of 1.0 F1-measure for all evaluated contamination rates.
+
+The approaches based on sd-RPCA obtained anomaly detection higher than 0.8, however the unsupervised and contaminated semi-supervised presented high variation of F-measure and lower results in comparison to the semi-supervised sd-RPCA.
+
+The contaminated semi-supervised approaches of sd-RPCA and kd-RPCA presented results higher than 0.8 and similar to the semi-supervised and unsupervised approaches of sd-RPCA and kd-RPCA. These results highlight the resilience of the robust subspace learning even for contaminated training data.
+
+The unsupervised approaches of sd-RPCA and kd-RPCA presented more than 0.8 for all contamination rate, showing better results than the widely adopted unsupervised algorithms for outlier detection. However, u\_kd-RPCA and u\_sd-RPCA presented lower results than ss\_kd-RPCA and ss\_sd-RPCA.
+
+Therefore, the semi-supervised approaches of m-RPCA overcome other approaches of m-RPCA and of the selected algorithms for anomaly detection on Pareto distributed data with gaussian anomalies. It is possible to highlight the semi-supervised kd-RPCA, which obtained stable results near of 1.0 F-measure for all evaluated contamination.
+
+The results for anomaly detection on Lognormal with gaussian anomalies, depicted by Figure \ref{fig:4.12}, show that IF, KNN, LOF, MCD, OCSVM, css\_md-RPCA and u\_md-RPCA perform worse than the remain algorithms, with results lower than 0.6 even with higher contamination. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{figures/ch4/lognormal_f1_contamination.png}
+	\caption{Anomaly detection on Lognormal distributed with gaussian anomalies}
+	\label{fig:4.12}
+\end{figure}
+
+The ss\_md-RPCA and PCA algorithms perform similar, with worse detection rate for lower contamination and better performance with contamination higher than 0.4. However, the results of ss\_md-RPCA and PCA are lower than all approaches of sd-RPCA and kd-RPCA. 
+
+It is important to note that all mean-based approaches of m-RPCA presented lower results for anomaly detection on Lognormal data, in comparison to approaches based on skewness (sd-RPCA) and kurtosis (kd-RPCA), that achieved the best anomaly detection rates. However, the approaches of md-RPCA presented better results than IF, KNN, MCD and OCSVM.
+
+The approaches based on kd-RPCA presented higher detection rate for all contamination, with anomaly detection rate near of 1.0. The semi-supervised and contaminated semi-supervised approaches for sd-RPCA performed similarly, but the unsupervised approach of sd-RPCA presented lower anomaly detection for lower contamination.
+
+It is possible to note that the contaminated semi-supervised approaches of kd-RPCA and sd-RPCA performed similar to the semi-supervised approach of the same algorithms. These results highlight the resilience of the robust subspace learning even from contaminated training data for anomaly detection on Lognormal data.
+
+Therefore, it is possible to observe that the semi-supervised approaches of m-RPCA overcome other approaches of m-RPCA and all the selected algorithms for anomaly detection on Lognormal distributed data with gaussian anomalies.
+
+Following we present the Tables \ref{tab:4.02},  \ref{tab:4.03} and \ref{tab:4.04} to show the results of the selected algorithms and of our proposals for anomaly detection on gaussian, Pareto and Lognormal distributions, with 10\%, 25\% and 35\% of contamination rate.
+
+\begin{table}[h!]
+    \centering
+	\scriptsize
+	\caption{Results for Simulated data set with 33\% of contamination}
+	\label{tab:4.02}
+	\begin{tabular}{| l | l | l | l |}
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}c@{}}\textbf{Algorithm}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Gaussian + Uniform}\\\textbf{(F-Measure)}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Pareto + Gaussian}\\\textbf{(F-Measure)}\end{tabular}	 &\begin{tabular}[x]{@{}c@{}}\textbf{Lognormal + Gaussian}\\\textbf{(F-Measure)}\end{tabular}\\ \hline
+            Isolation Forest	&0.98	&0.44	&0.05\\ \hline
+            KNN	&0.98	&0.08	&0.00\\ \hline
+            LOF	&0.35	&0.40	&0.36\\ \hline
+            MCD	&0.98	&0.02	&0.00\\ \hline
+            One-class SVM	&0.98	&0.24	&0.00\\ \hline
+            PCA	&0.87	&0.76	&0.62\\ \hline
+            Semi-Supervised md-RPCA	&0.98	&0.90	&0.66\\ \hline
+            Semi-Supervised sd-RPCA	&0.98	&0.99	&0.97\\ \hline
+            Semi-Supervised kd-RPCA	&0.97	&0.99	&0.98\\ \hline
+            Contaminated Semi-Supervised md-RPCA	&0.98	&0.55	&0.35\\ \hline
+            Contaminated Semi-Supervised sd-RPCA	&0.98	&0.94	&0.96\\ \hline
+            Contaminated Semi-Supervised kd-RPCA	&0.76	&0.99	&0.98\\ \hline
+            Unsupervised md-RPCA	&0.98	&0.54	&0.31\\ \hline
+            Unsupervised sd-RPCA	&0.98	&0.82	&0.93\\ \hline
+            Unsupervised kd-RPCA	&0.74	&0.86	&0.99\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+	\scriptsize
+	\caption{Results for Simulated data set with 25\% of contamination}
+	\label{tab:4.03}
+	\begin{tabular}{| l | l | l | l |}
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}c@{}}\textbf{Algorithm}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Gaussian + Uniform}\\\textbf{(F-Measure)}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Pareto + Gaussian}\\\textbf{(F-Measure)}\end{tabular}	 &\begin{tabular}[x]{@{}c@{}}\textbf{Lognormal + Gaussian}\\\textbf{(F-Measure)}\end{tabular}\\ \hline
+            Isolation Forest	&0.97	&0.46	&0.05\\ \hline
+            KNN	&0.97	&0.05	&0.00\\ \hline
+            LOF	&0.27	&0.33	&0.30\\ \hline
+            MCD	&0.97	&0.79	&0.00\\ \hline
+            One-class SVM	&0.97	&0.11	&0.00\\ \hline
+            PCA	&0.91	&0.75	&0.56\\ \hline
+            Semi-Supervised md-RPCA	&0.97	&0.85	&0.49\\ \hline
+            Semi-Supervised sd-RPCA	&0.97	&0.99	&0.96\\ \hline
+            Semi-Supervised kd-RPCA	&0.96	&1.00	&0.98\\ \hline
+            Contaminated Semi-Supervised md-RPCA	&0.97	&0.54	&0.17\\ \hline
+            Contaminated Semi-Supervised sd-RPCA	&0.97	&0.91	&0.95\\ \hline
+            Contaminated Semi-Supervised kd-RPCA	&0.63	&1.00	&0.97\\ \hline
+            Unsupervised md-RPCA	&0.97	&0.53	&0.14\\ \hline
+            Unsupervised sd-RPCA	&0.97	&0.88	&0.91\\ \hline
+            Unsupervised kd-RPCA	&0.62	&0.97	&0.99\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+	\scriptsize
+	\caption{Results for Simulated data set with 10\% of contamination}
+	\label{tab:4.04}
+	\begin{tabular}{| l | l | l | l |}
+		\hline \rowcolor{Gray} \begin{tabular}[x]{@{}c@{}}\textbf{Algorithm}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Gaussian + Uniform}\\\textbf{(F-Measure)}\end{tabular}	&\begin{tabular}[x]{@{}c@{}}\textbf{Pareto + Gaussian}\\\textbf{(F-Measure)}\end{tabular}	 &\begin{tabular}[x]{@{}c@{}}\textbf{Lognormal + Gaussian}\\\textbf{(F-Measure)}\end{tabular}\\ \hline
+            Isolation Forest	&0.97	&0.43	&0.00\\ \hline
+            KNN	&0.97	&0.01	&0.00\\ \hline
+            LOF	&0.29	&0.27	&0.24\\ \hline
+            MCD	&0.97	&0.40	&0.00\\ \hline
+            One-class SVM	&0.97	&0.26	&0.00\\ \hline
+            PCA	&0.92	&0.65	&0.06\\ \hline
+            Semi-Supervised md-RPCA	&0.97	&0.59	&0.00\\ \hline
+            Semi-Supervised sd-RPCA	&0.97	&0.98	&0.84\\ \hline
+            Semi-Supervised kd-RPCA	&0.97	&1.00	&0.95\\ \hline
+            Contaminated Semi-Supervised md-RPCA	&0.97	&0.28	&0.00\\ \hline
+            Contaminated Semi-Supervised sd-RPCA	&0.96	&0.90	&0.82\\ \hline
+            Contaminated Semi-Supervised kd-RPCA	&0.48	&1.00	&0.94\\ \hline
+            Unsupervised md-RPCA	&0.97	&0.31	&0.00\\ \hline
+            Unsupervised sd-RPCA	&0.97	&0.93	&0.70\\ \hline
+            Unsupervised kd-RPCA	&0.50	&0.97	&0.98\\ \hline
+	\end{tabular}
+\end{table}
+
+Taking into account the null hypothesis $H_{0rob.sub}$ and the presented results, we can conclude that the robust subspace learning, adopted by md-RPCA, sd-RPCA and kd-RPCA, presented higher anomaly detection from imbalanced and skewed data than widely adopted algorithms for anomaly detection. Therefore, the presented results refute the null hypothesis $H_{0rob.sub}$, which defines that the robust subspace learning does not improves the anomaly detection from imbalanced and skewed data.
+
+
+\section{Results of CTU-13 Experiment}
+\label{sec:4_ctu13_result}
+
+In this section we present the experiment on network anomaly detection from the CTU-13 data set, evaluating the results of md-RPCA, sd-RPCA, kd-RPCA, Isolation Forest (IF) \cite{liu2008isolation}, k-Nearest Neighbors (KNN) \cite{angiulli2002fast}, Local Outlier Factor (LOF) \cite{breunig2000lof}, Minimum Covariance Deteminant (MCD) \cite{rousseeuw1999fastmcd}, One-Class Support Vector Machines (OCSVM) \cite{scholkopf2001estimating} and PCA \cite{shyu2003novel}.
+
+For this experiment we only evaluate the semi-supervised approach of md-RPCA, sd-RPCA and kd-RPCA, considering that the semi-supervised algorithms presented the best results on the simulated experiment and taking into account the observed resilience of the semi-supervised approach when the training data is contaminated. Additionally, the semi-supervised approach only requires the robust subspace learning for training, what can indicate less computational cost for network anomaly detection on new observations.
+
+The CTU-13 data set is very imbalanced, with contamination rate between 0.06\% and 8.86\%. Therefore we adopted a uniform contamination rate of 33\% for this experiment, considering that the simulated experiment showed better results for contamination higher than 30\% for m-RPCA and for the selected anomaly detection algorithms.
+
+The Table \ref{tab:4.03} present the F-measure of each algorithm for all scenarios of CTU-13, and the last column presents the average F-measure of each algorithm for all scenarios.
 
 \begin{table}[h!]
   \centering
   \scriptsize
-  \caption{Results grouped by algorithm and scenario}
-  \label{tab:4.02}
-  \begin{tabular}{ c|c c|c c|c c|c c|c c|c c }
+  \caption{Network anomaly detection from CTU-13 with 33\% of contamination}
+  \label{tab:4.03}
+  \begin{tabular}{ c|c|c|c|c|c|c|c|c|c|c|c|c|c|c }
 	\toprule
-	\multirow{2}{*}{\textbf{Scenario}}   &\multicolumn{2}{c}{\textbf{GMM}} &\multicolumn{2}{c}{\textbf{K-Means}} &\multicolumn{2}{c}{\textbf{ROBPCA}} &\multicolumn{2}{c}{\textbf{md-RPCA}} &\multicolumn{2}{c}{\textbf{kd-RPCA}} &\multicolumn{2}{c}{\textbf{sd-RPCA}}\\ 
-			\hhline{~------------}
-			&\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25} &\textbf{0.15} &\textbf{0.25}\\
-	\midrule
-		10 & 0.34 & 0.45 & 0.20 & 0.25 & 0.29 & 0.34 & 0.97 & 0.96 & 0.99 & 0.99 & 0.99 & 0.99 \\ \hline
-		11 & 0.34 & 0.47 & 0.12 & 0.14 & 0.27 & 0.37 & 0.98 & 0.96 & 0.99 & 0.99 & 0.99 & 0.99 \\ \hline
-		12 & 0.00 & 0.00 & 0.09 & 0.11 & 0.08 & 0.11 & 0.86 & 0.80 & 0.00 & 0.00 & 0.94 & 0.90 \\ \hline
-		15 & 0.14 & 0.21 & 0.08 & 0.11 & 0.05 & 0.07 & 0.85 & 0.79 & 1,00 & 0.96 & 0.99 & 0.96 \\ \hline
-		15-2 & 0.32 & 0.14 & 0.18 & 0.25 & 0.21 & 0.30 & 0.85 & 0.82 & 0.98 & 0.99 & 0.98 & 0.99 \\ \hline
-		15-3 & 0.00 & 0.01 & 0.22 & 0.28 & 0.28 & 0.38 & 0.95 & 0.96 & 0.00 & 0.00 & 0.99 & 0.98 \\ \hline
-		16 & 0.50 & 0.48 & 0.06 & 0.16 & 0.06 & 0.10 & 0.85 & 0.83 & 0.00 & 0.00 & 0.96 & 0.00 \\ \hline
-		16-2 & 0.02 & 0.08 & 0.03 & 0.02 & 0.00 & 0.00 & 0.22 & 0.26 & 0.80 & 1,00 & 0.80 & 1,00 \\ \hline
-		16-3 & 0.00 & 0.01 & 0.02 & 0.04 & 0.01 & 0.03 & 0.60 & 0.66 & 0.00 & 0.00 & 0.84 & 0.98 \\ \hline
-		17 & 0.16 & 0.46 & 0.35 & 0.38 & 0.72 & 0.75 & 0.81 & 0.78 & 0.02 & 0.78 & 0.81 & 0.78 \\ \hline
-		18 & 0.21 & 0.17 & 0.13 & 0.19 & 0.13 & 0.15 & 0.91 & 0.88 & 0.97 & 0.98 & 0.97 & 0.98 \\ \hline
-		18-2 & 0.50 & 0.54 & 0.61 & 0.70 & 0.27 & 0.24 & 0.80 & 0.85 & 0.99 & 0.98 & 0.99 & 0.98 \\ \hline
-		19 & 0.16 & 0.20 & 0.19 & 0.17 & 0.10 & 0.13 & 0.91 & 0.91 & 0.96 & 0.99 & 0.96 & 0.99 \\ \hline
-		\rowcolor{Gray} \textbf{avg} &\textbf{0.21} &\textbf{0.25} &\textbf{0.18} & \textbf{0.21} & \textbf{0.19} &\textbf{0.23} &\textbf{0.81} &\textbf{0.80} &\textbf{0.59} &\textbf{0.67} &\textbf{0.94} &\textbf{0.89} \\
+        \textbf{Algorithm}	&\textbf{10}	&\textbf{11}	&\textbf{12}	&\textbf{15}	&\textbf{15-2}	&\textbf{15-3}	&\textbf{16}	&\textbf{16-2}	&\textbf{16-3}	&\textbf{17}	&\textbf{18}	&\textbf{18-2}	&\textbf{19}	&\textbf{Avg} \\ \hline
+        IF	&0.36	&0.34	&0.09	&0.21	&0.40	&0.44	&0.16	&0.34	&0.34	&0.41	&0.12	&0.16	&0.46	&0.29\\ \hline
+        KNN	&0.05	&0.17	&0.01	&0.03	&0.33	&0.23	&0.01	&0.25	&0.03	&0.12	&0.00	&0.00	&0.24	&0.11\\ \hline
+        LOF	&0.15	&0.14	&0.13	&0.17	&0.29	&0.22	&0.29	&0.38	&0.25	&0.24	&0.00	&0.04	&0.38	&0.21\\ \hline
+        MCD	&0.18	&0.29	&0.09	&0.34	&0.79	&0.62	&0.04	&0.58	&0.20	&0.41	&0.20	&0.20	&0.36	&0.33\\ \hline
+        PCA	&0.33	&0.64	&0.69	&0.65	&0.55	&0.62	&0.75	&0.50	&0.77	&0.33	&0.82	&0.01	&0.61	&0.56\\ \hline
+        md-RPCA &0.83	&0.79	&0.95	&0.78	&0.78	&0.87	&0.95	&0.87	&0.80	&0.82	&0.83	&0.82	&0.51	&0.81\\ \hline
+        sd-RPCA &0.25	&0.75	&0.34	&0.64	&0.50	&0.75	&0.86	&0.50	&0.77	&0.33	&0.82	&0.81	&0.21	&0.57\\ \hline
+        kd-RPCA &0.76	&0.76	&0.90	&0.82	&0.57	&0.76	&0.91	&0.50	&0.80	&0.73	&0.83	&0.81	&0.48	&0.74\\ \hline
     \bottomrule
   \end{tabular}
 \end{table}
 
-It is possible to observe that the results of md-RPCA, kd-RPCA and sd-RPCA overcome the remain methods in a comparison by scenario and by average F-measure. 
+It is possible to observe that md-RPCA, kd-RPCA and sd-RPCA overcome the remain algorithms in average results for all scenarios, according to the column \textbf{avg}. The sd-PRCA presented an average of 0.57 while md-RPCA obtained 0.81 and kd-RPCA 0.74 in average. The PCA algorithm performed similar to sd-RPCA in average, with results of 0.56 and 0.57, respectively. However the results of PCA and sd-RPCA for scenarios 12, 18-2 and 19 presented a large variation.
 
-% 10: moment are better
-% 11: moment are better
-% 12: kd-RPCA is poor for scenario 12, as well as GMM, K-Means and ROBPCA
-% 15: moment are better
-% 15-2: moment are better
-% 15-3: kd-RPCA is poor for , whilhe ROBPCA obtain 0.38 and other moment based has good results
-% 16: kd-RPCA is poor for , as well as sd-RPCA with 0.25s, while GMM obtain 0.50 and other moment based has good results. Explain based on data
-% 16-2: md-RPCA is poor for , as well as GMM, K-means and ROBPCA, but kd-RPCA and sd-RPCA goes well
-% 16-3: kd_RPCA is poor, as well as GMM, K-means and ROBPCA
-% 17: robpca has high result, higher than kd-RPCA, GMM, K-means, but md and sd are better and equal
-% 18: moment based is better
-% 18-2: high GMM e Kmeans, but moment are even better
-% 19: moment are better
-% there are no lots of researches using CTU-13, although it is been growing poor results for GMM, K-Means and MGM are ok and in accordance to \cite{wang2017botnet}, which also evaluate \cite{gu2007bothunter}
+The md-RPCA algorithm presented an anomaly detection rate higher than 0.78 for almost all scenarios, with exception to scenario 19, where the anomaly detection rate of md-RPCA was 0.51. The anomalies of the scenario 19 are peer-to-peer botnet traffic generated by nsys.ay, which are related to botnet synchronization and not to network attacks, what can explain the low network detection rate of all evaluated algorithms, where the largest F1-measure was 0.61 achieved by PCA.
 
-% a questão é diferenciar aquilo que é malicioso ou não, dentre os outliers ou novelties (esses termos são sinônimos para alguns autores)
-% como eu posso diferenciar isto? Eu suponho que a partir de um modelo de tráfego normal eu possa detectar grandes deviations e classificar estas como ataques
-% a hipotese é esta
-% em outra área (compressive sensing), se utiliza dicionários, que são representações compactas de todas as caracteristicas de um dado
-% no nosso caso, o treinamento nos gera uma especie de dicionário, em que os dados normais são representados de forma robusta
-% onde uma forma robusta seria uma forma menos sensível a outliers. Isso pode ser visto como a diferenca entre calcular a média e a mediana de um conjunto. A presença de um outlier no conjunto irá corromper a média de uma forma maior que a mediana. Desta forma, se considera a mediana como sendo robusta
+The md-RPCA showed the best anomaly detection for 10 scenarios of a total with 13 scenarios. In the scenario 15 the best result was obtained by kd-RPCA, for the 15-2 scenario the best result was for MCD, and PCA was the best algorithm for anomaly detection on scenario 19. Even thought md-RPCA not be the best result for scenarios 15, 15-2 and 19, the results of md-RPCA are very close to the best results for scenarios 5 and 15-2.
 
-\section{Results}
-\label{sec:4_results}
+It is important to note that IF, KNN, LOF and MCD algorithms performed poorly for unsupervised network anomaly detection on all scenarios of the CTU-13 data set, with average of 0.29, 0.11, 0.21 and 0.33 respectively. From these algorithms, only MCD presented high result for one scenario, which was 0.79 for 15-2.
 
+Unfortunately, was not possible to observe Pareto or Lognormal distributions on features of CTU-13, even though the finds of researches that highlight the fitting between these distributions and Internet traffic \cite{benson2010network, leon2017probability}. The CTU-13 data set is very challenging for anomaly detection approaches, due to the high imbalance and large volume of flows. However, CTU-13 is one of the up-to-date data sets for network attack detection and is one that provides the data imbalance observed in real anomaly detection problems.
+
+The results of anomaly detection on CTU-13 reveals that m-RPCA algorithms obtain good results for network anomaly detection on contaminated data, overcoming widely adopted algorithms for outlier detection. 
 
 
 \section{Conclusion}
-\label{sec:4_conclusion}
+\label{sec:6_conclusion}
 
+This work proposed the m-RPCA, which is approaches based on distances of moments computed from a robust subspace learned by RPCA, for anomaly detection on imbalanced and skewed data. We evaluated the anomaly detection rate of m-RPCA on simulated data and on the CTU-13 data set, which is composed by network traffic of botnets, attacks and background flows.
 
-This paper models the network traffic as a signal processing formulation for applying to the framework for detection and identification of network attacks, which is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
+The m-RPCA can be divided into md-RPCA, sd-RPCA and kd-RPCA algorithms, to denote approaches of m-RPCA based distances of mean, skewness and kurtosis, respectively. We also proposed to evaluate m-RPCA for semi-supervised, contaminated semi-supervised and unsupervised methods of anomaly detection.
 
-The proposed framework is evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and eigen similarity analysis. The main contributions of this work were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting F-measure of timely detection and identification of TCP/UDP ports under attack, as well as presenting acceptable complexity and performance regarding the processing time.
+The experimental results show that moment distances computed from robust subspace can improve the anomaly detection on skewed and imbalanced data set. The results also show that the m-RPCA can be adopted for network attack detection, with better results than widely adopted algorithms for outlier detection on the CTU-13 data set. Therefore, the observed results rejects the null hypothesis  $H_{0rob.sub}$ and confirms the alternative
+hypothesis $H_{1rob.sub}$.
 
-This paper evaluated the effectiveness of MOS schemes for fraggle attack detection, extending our previous work and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
+The results shows that the semi-supervised approach for m-RPCA obtained better results than the contaminated semi-supervised and unsupervised approaches, and that m-RPCA presented good results even when the semi-supervised training was computed from contaminated data. This highlights the resilience of the robust subspace learning for the semi-supervised anomaly detection approach to deal with possible lack of known normal data for training. 
 
-The incremental individualized approach of eigen similarity analysis, is able to detect low similarity for all evaluated scenarios and types of network attack, while the other approaches present false positives or low sensibility to eigen similarity analysis for network attack detection. Therefore, the incremental individualized approach is able to gradually and incrementally adapt to network traffic changing, preserving the sensibility to identify outliers or anomalies by time or network port, and reducing the occurrence of false positives.
+The main contributions of this work were: the development and evaluation of novel approaches for anomaly detection on skewed and imbalanced data sets, by means of moments computed from a robust subspace learned by RPCA.
 
-According to the significant similarity difference between legitimate and malicious traffic, it is possible to adopt safe thresholds for flood and port scan detection through eigen similarity analysis.
-
-Future research is directed to improvements for obtaining better false positive rates, as well as for make the proposed framework able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel data sets. Distributed or parallel processing can also be evaluated to analyze the scalability and processing capacity for monitoring02       rch can evaluate the application of the proposed approach to different attack types and domains, considering cases that are aware to behavioral analysis.
-
-Test distribution fit again e present results 
-Conclude this presentation.
-Evaluate eigensim for CTU-13 and others algorithms for Danilo's data set.
-Compare to vanilla RPCA (Eduardo is working on it).
-Write a paper for JNCA (April).
-Write the thesis (May and June).
-
-say that more studies about skewness and subspace learning can be done in order to explore it inside algorithms and non gaussian data
-
-note that the semi supervised approach requires subspace learning only for training and not for testing, while unsupervised requires subspace learning for each evaluations
+Future research can be directed to evaluate the application of the proposed approaches to different data sets and field of anomaly detection, as well as for the extension of m-RPCA to estimate the contamination or to not rely on previously defined contamination.
