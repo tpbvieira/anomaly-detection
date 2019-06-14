@@ -45,7 +45,7 @@ NSL-KDD \cite{tavallaee2009detailed} data set is the refined version of the KDD 
 \section{Data Model}
 \label{sec:2_datamodel}
 
-In this work, scalars are denoted by italic letters ($a, b, A, B, \alpha, \beta$), vectors by lowercase bold letters (\textbf{a, b}), matrices by uppercase bold letters (\textbf{A, B}), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix \textbf{A}. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. We define the operator $\rm diag(\cdot)$ that returns the vector of the main diagonal of a given matrix, the operator $\rightarrow$, which denotes the deletion of a given element from a set and the operator $\#$, that returns the rank of a matrix, and the operator $\sim$ that sorts the elements of a vector in ascending order.
+In this work, scalars are denoted by italic letters ($a, b, A, B, \alpha, \beta$), vectors by lowercase bold letters ($\pmb{a}, \pmb{b}$), matrices by uppercase bold letters ($\pmb{A}, \pmb{B}$), and $a_i,_j$ denotes the (\emph{i, j}) elements of the matrix $\pmb{A}$. The superscripts \textsuperscript{T} and \textsuperscript{-1} are used for matrix transposition and matrix inversion, respectively. We define the operator $\rm diag(\cdot)$ that returns the vector of the main diagonal of a given matrix, the operator $\rightarrow$, which denotes the deletion of a given element from a set and the operator $\#$, that returns the rank of a matrix, and the operator $\sim$ that sorts the elements of a vector in ascending order.
 
 This section also presents details of the experimental scenario and the selected cases of the DARPA data set, along with a description of the data set model as a signal superposition of signal, artifact and noise, that refer to legitimate, control and malicious traffic. Subsection \ref{sec:2_DataCollection} describes the environment and scenario adopted in order to reproduce flood and probe attacks. Subsection \ref{sec:2_ModelingData} presents how network traffic can be modeled as signal superposition. Subsection \ref{sec:2_SynfloodFraggleandPortscan} details the traffic of synflood, fraggle and port scan attacks, and Subsection \ref{sec:2_Darpadata set} discusses the use of the DARPA data set for evaluation of the proposed approach.
 
@@ -57,7 +57,7 @@ The environment of the analyzed scenario is composed by two computers and one ro
 %TODO - recreate the figure and change the concepts
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig09.png}
+     \includegraphics[width=11cm]{figures/ch2/fig09.png}
      \caption{Scenario to reproduce legitimate traffic, noise, flood and port scan.}
      \label{fig:2.01}
 \end{figure}
@@ -81,34 +81,34 @@ In the proposed framework, the goal is to detect the anomalies only taking into 
 \subsection{Modeling Data}
 \label{sec:2_ModelingData}
 
-By modeling the data set as a signal superposition, the network traffic (\textbf{X}) can be characterized as a mixture of three components: legitimate traffic (\textbf{U}), artifact (\textbf{A}) and malicious traffic (\textbf{N}), according to the following expression:
+By modeling the data set as a signal superposition, the network traffic ($\pmb{X}$) can be characterized as a mixture of three components: legitimate traffic ($\pmb{U}$), artifact ($\pmb{A}$) and malicious traffic ($\pmb{N}$), according to the following expression:
 
 \begin{equation}\label{eq:2.01}
-	\boldsymbol{X}^{(q)} = \boldsymbol{U}^{(q)} + \boldsymbol{A}^{(q)} + \boldsymbol{N}^{(q)},
+	\pmb{X}^{(q)} = \pmb{U}^{(q)} + \pmb{A}^{(q)} + \pmb{N}^{(q)},
 \end{equation}
-where $q$ represents the $q$-th time frame, which is a time aggregation of network traffic. The matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{M \times N}$ consists of \emph{M} rows and \emph{N} columns, where each row represents a communication port, and each column represents time bins of a defined size, such as one minute. Each element $x_{m,n}^{(q)}$ stands for the number packets that appears at $n$-th minute for the port $m$, during the $q$-th time frame.
+where $q$ represents the $q$-th time frame, which is a time aggregation of network traffic. The matrix $\pmb{X}^{(q)} \in \mathbb{R}^{M \times N}$ consists of \emph{M} rows and \emph{N} columns, where each row represents a communication port, and each column represents time bins of a defined size, such as one minute. Each element $x_{m,n}^{(q)}$ stands for the number packets that appears at $n$-th minute for the port $m$, during the $q$-th time frame.
 
-The legitimate traffic $\boldsymbol{U}^{(q)}$ is characterized by the traffic from user's ordinary operations, such as when performing access to web pages, as well when there is the traffic required to domain name resolution. Figure \ref{fig:2.03} depicts an example of the legitimate traffic simulated during the experiments.
+The legitimate traffic $\pmb{U}^{(q)}$ is characterized by the traffic from user's ordinary operations, such as when performing access to web pages, as well when there is the traffic required to domain name resolution. Figure \ref{fig:2.03} depicts an example of the legitimate traffic simulated during the experiments.
 
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig03.png}
+     \includegraphics[width=11cm]{figures/ch2/fig03.png}
      \caption{Traffic from user's operations, that can be characterized by web access, traffic of well-known applications or network protocols.}
      \label{fig:2.03}
 \end{figure}
 
-The traffic that is not associated with user's operations and with malicious traffic is modeled as artifact $\boldsymbol{A}^{(q)}$. The acquisition of logical IP network address (DHCP) is an example of artifact, where independently of any user operation, the machine receives an IP address, since it is configured to automatically perform a DHCP address request. Figure \ref{fig:2.04} depicts an example of artifact in a network traffic, by means of traffic to ports 67 and 68. The traffic coming from a malicious activity, i.e. port scanning, synflood or fraggle attacks, is represented by the matrix $\boldsymbol{N}^{(q)}$.
+The traffic that is not associated with user's operations and with malicious traffic is modeled as artifact $\pmb{A}^{(q)}$. The acquisition of logical IP network address (DHCP) is an example of artifact, where independently of any user operation, the machine receives an IP address, since it is configured to automatically perform a DHCP address request. Figure \ref{fig:2.04} depicts an example of artifact in a network traffic, by means of traffic to ports 67 and 68. The traffic coming from a malicious activity, i.e. port scanning, synflood or fraggle attacks, is represented by the matrix $\pmb{N}^{(q)}$.
 
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig04.png}
+     \includegraphics[width=11cm]{figures/ch2/fig04.png}
      \caption{Network traffic of user independent operations for network management.}
      \label{fig:2.04}
 \end{figure}
 
-We define that if the $\#\boldsymbol{X}^{(q)} ≠ 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\boldsymbol{X}^{(q)} = 0$, then there is no malicious traffic. We show how to detect the $\#\boldsymbol{X}^{(q)}$, given only the matrix $\boldsymbol{X}^{(q)}$, in order to identify malicious traffic.
+We define that if the $\#\pmb{X}^{(q)} ≠ 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\pmb{X}^{(q)} = 0$, then there is no malicious traffic. We show how to detect the $\#\pmb{X}^{(q)}$, given only the matrix $\pmb{X}^{(q)}$, in order to identify malicious traffic.
 
 \subsection{Synflood, Fraggle and Port scan}
 \label{sec:2_SynfloodFraggleandPortscan}
@@ -124,7 +124,7 @@ With respect to the synflood attacks, the attacker sends a large quantity and co
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig05.png}
+     \includegraphics[width=11cm]{figures/ch2/fig05.png}
      \caption{A large quantity of SYN requests to a target, in order to cause a DoS.}
      \label{fig:2.05}
 \end{figure}
@@ -136,7 +136,7 @@ The fraggle attack can affect the entire network, since all hosts receive severa
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig06.png}
+     \includegraphics[width=11cm]{figures/ch2/fig06.png}
      \caption{Large amount of “UDP echo” requests and replies, causing packet flooding.}
      \label{fig:2.06}
 \end{figure}
@@ -151,7 +151,7 @@ The UDP scan technique sends UDP packets to the destination port, and if it resp
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/fig07.png}
+     \includegraphics[width=11cm]{figures/ch2/fig07.png}
      \caption{Connection attempts in order to identify active ports.}
      \label{fig:2.07}
 \end{figure}
@@ -167,7 +167,6 @@ We observe that the most cases of DoS of DARPA 98 focus on exploit system vulner
 
 The data modeling follows the method described by the Subsection \ref{sec:2_ModelingData}, with time frames of 20 minutes, packet aggregation counting by minute and considering the traffic to the following ports: 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389, 443.
 
-
 \section{Proposed Framework for Detection and Identification of Network Attacks}
 \label{sec:2_prop_getv}
 
@@ -175,7 +174,7 @@ This section describes the proposed technique to detect synflood, fraggle and po
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/mos_eigen_similarity.eps}
+     \includegraphics[width=11cm]{figures/ch2/mos_eigen_similarity.eps}
      \caption{Overview of The Framework for Detection and Identification of Network Attacks.}
      \label{fig:2.08}
 \end{figure}
@@ -185,54 +184,54 @@ This section describes the proposed technique to detect synflood, fraggle and po
 
 The proposed attack detection algorithm starts by the data pre-processing of a network traffic log containing IP, ports and timestamp of senders and receivers. During this step, the desired information is extracted in order to classify and to count packets according to the origin and destination ports. Subsequently, this information is grouped by minutes and by time frames.
 
-With the data grouped into $Q$ time frames, the framework considers the time variations of the matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the attack. 
+With the data grouped into $Q$ time frames, the framework considers the time variations of the matrix $\pmb{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the attack. 
 
 According to flood and port scan attacks' behavior, flood attacks and port scan attacks can be characterized as covariance aware attack \citep{jin2004covariance} and correlation aware attack \citep{lakhina2005mining}, respectively. These characteristics are substantiated by the results obtained through the analysis based on sample covariance of zero mean variables and on covariance of zero mean and unitary standard deviation variables, described in Section \ref{sec:2_experimentalresults}, which shows that the main components of flood attacks are dominated by the variables with more variance and that the traffic associated with port scan attack does not generate many logs, however, it presents high covariance of zero mean and unitary standard deviation variables.
 
-Therefore, to detect flood attacks, it is necessary to calculate the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ of the zero mean samples given by
+Therefore, to detect flood attacks, it is necessary to calculate the sample covariance matrix $\hat{\pmb{R}}_{yy}^{(q)}$ of the zero mean samples given by
 
 \begin{equation}
 \label{eq:2.02}
-\boldsymbol{y}_{m}^{(q)} = \boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}.
+\pmb{y}_{m}^{(q)} = \pmb{x}_{m}^{(q)} - \bar{\pmb{x}}_{m}^{(q)}.
 \end{equation}
 
-The set of obtained vectors $\boldsymbol{y}_{m}^{(q)}$ composes the zero mean matrix $\boldsymbol{Y}^{(q)}$, then the sample covariance matrix $\boldsymbol{\hat{R}}_{yy}^{(q)}$ can be calculated as follows
+The set of obtained vectors $\pmb{y}_{m}^{(q)}$ composes the zero mean matrix $\pmb{Y}^{(q)}$, then the sample covariance matrix $\hat{\pmb{R}}_{yy}^{(q)}$ can be calculated as follows
 
 \begin{equation}\label{eq:2.03}
-\boldsymbol{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\boldsymbol{Y}^{(q)}\boldsymbol{Y}^{(q)^{\rm T}}.
+\hat{\pmb{R}}_{yy}^{(q)} = \frac{1}{N}\pmb{Y}^{(q)}\pmb{Y}^{(q)^{\rm T}}.
 \end{equation}
 
-For the detection of the port scan attack, the main components are not dominated by the variables with large variance. Moreover, the port scan traffic presents a highly correlated network traffic between the monitored ports. In order to exploit such structure, we compute the sample covariance $\boldsymbol{\hat{R}}_{zz}^{(q)}$ whose variables have zero mean and unitary standard deviation as follows
+For the detection of the port scan attack, the main components are not dominated by the variables with large variance. Moreover, the port scan traffic presents a highly correlated network traffic between the monitored ports. In order to exploit such structure, we compute the sample covariance $\hat{\pmb{R}}_{zz}^{(q)}$ whose variables have zero mean and unitary standard deviation as follows
 
 \begin{equation}
 \label{eq:2.04}
-\boldsymbol{z}_{m}^{(q)} = \frac{\boldsymbol{x}_{m}^{(q)} - \bar{\boldsymbol{x}}_{m}^{(q)}}{\boldsymbol{\sigma}_{m}^{(q)}}.
+\pmb{z}_{m}^{(q)} = \frac{\pmb{x}_{m}^{(q)} - \bar{\pmb{x}}_{m}^{(q)}}{\pmb{\sigma}_{m}^{(q)}}.
 \end{equation}
 
-The set of vectors $\boldsymbol{z}_{m}^{(q)}$ composes the matrix $\boldsymbol{Z}^{(q)}$, then the sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)}$ can be calculated via 
+The set of vectors $\pmb{z}_{m}^{(q)}$ composes the matrix $\pmb{Z}^{(q)}$, then the sample covariance matrix $\hat{\pmb{R}}_{zz}^{(q)}$ can be calculated via 
 
 \begin{equation}\label{eq:2.05}
-\boldsymbol{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\boldsymbol{Z}^{(q)}\boldsymbol{Z}^{(q)^{\rm T}}.
+\hat{\pmb{R}}_{zz}^{(q)} = \frac{1}{N}\pmb{Z}^{(q)}\pmb{Z}^{(q)^{\rm T}}.
 \end{equation}
 
-Once the $\boldsymbol{\hat{R}}_{yy}^{(q)}$ and $\boldsymbol{\hat{R}}_{zz}^{(q)}$ have been obtained for flood and port scan detection, respectively, and since the next steps are the same for both sample covariance matrices, we refer to $\boldsymbol{\hat{R}}_{yy}$ and $\boldsymbol{\hat{R}}_{zz}$ as a matrix $\boldsymbol{\hat{R}}$. Therefore, the following step of the algorithm is the eigenvalue decomposition (EVD), calculated according to (\ref{eq:2.06}), in order to obtain the vector of eigenvalues $\boldsymbol{e}^{(q)}$ associated with each matrix, according to (\ref{eq:2.06}).
+Once the $\hat{\pmb{R}}_{yy}^{(q)}$ and $\hat{\pmb{R}}_{zz}^{(q)}$ have been obtained for flood and port scan detection, respectively, and since the next steps are the same for both sample covariance matrices, we refer to $\hat{\pmb{R}}_{yy}$ and $\hat{\pmb{R}}_{zz}$ as a matrix $\hat{\pmb{R}}$. Therefore, the following step of the algorithm is the eigenvalue decomposition (EVD), calculated according to (\ref{eq:2.06}), in order to obtain the vector of eigenvalues $\pmb{e}^{(q)}$ associated with each matrix, according to (\ref{eq:2.06}).
 
 \begin{equation}\label{eq:2.06}
-\boldsymbol{\hat{R}}^{(q)} = \boldsymbol{V}^{(q)}\boldsymbol{\Lambda}^{(q)}\boldsymbol{V}^{(q)^{\rm T}},
+\hat{\pmb{R}}^{(q)} = \pmb{V}^{(q)}\pmb{\Lambda}^{(q)}\pmb{V}^{(q)^{\rm T}},
 \end{equation}
 
 \begin{equation}\label{eq:2.060}
-\boldsymbol{e}^{(q)} = \rm diag(\boldsymbol{\Lambda}^{(q)}),
+\pmb{e}^{(q)} = \rm diag(\pmb{\Lambda}^{(q)}),
 \end{equation}
 
 where the operator diag$(\cdot)$ extracts the main diagonal of a matrix.
 
 The eigenvalues should be sorted in descending order, i.e., $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > ... > \lambda_{m}^{(q)}$. Therefore, the largest eigenvalue of the $q$-th time frame evaluated for the attack detect is given by $\lambda_{1}^{(q)}$.
 
-The concatenation of the eigenvalues vector $\boldsymbol{e}^{(q)}$ for $q = 1, \ldots, Q$ is represented by
+The concatenation of the eigenvalues vector $\pmb{e}^{(q)}$ for $q = 1, \ldots, Q$ is represented by
 
 \begin{equation}\label{eq:2.07}
-\boldsymbol{E} =
+\pmb{E} =
 \begin{bmatrix}
   \lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
   \lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
@@ -242,55 +241,55 @@ The concatenation of the eigenvalues vector $\boldsymbol{e}^{(q)}$ for $q = 1, \
 \end{bmatrix}.
 \end{equation}
 
-Note that since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\boldsymbol{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the Greatest Eigenvalue Time
+Note that since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\pmb{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the Greatest Eigenvalue Time
 Vector (GETV) \cite{tenorio2013greatest}, denoted as 
 
 \begin{equation}\label{eq:2.08}
-\boldsymbol{e}_{\rm max} = [ \lambda_1^{(1)}, \lambda_1^{(2)} ... \lambda_1^{(Q)}]
+\pmb{e}_{\rm max} = [ \lambda_1^{(1)}, \lambda_1^{(2)} ... \lambda_1^{(Q)}]
 \end{equation}
 
 \subsection{MOS Schemes}
 \label{sec:2_prop_MOSSchemes}
 
-Traditionally the MOS schemes are applied for the eigenvalues of the vector $\boldsymbol{e}^{(q)}$. However, the goal here is to detect the variations of the eigenvalues for different values of $q$. Therefore, instead of using a certain $q$, the proposed approach applies MOS schemes for a vector of the largest eigenvalues of each $q$-th time frame, in order to identify variations and estimate the model order $\hat{d}$, which is the estimated number of time frames under attack. Therefore, $\boldsymbol{e}_{\rm max}$ is sorted in descending order, producing $\sim\boldsymbol{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\boldsymbol{e}_{\rm max})$. Note that some MOS schemes may also require the number of minutes that compose a time frame, as $\hat{d} = \rm{MOS}(\boldsymbol{e}_{\rm max},\emph{Q})$. For more information about MOS, we refer to the Appendix \ref{apx:a_mos}.
+Traditionally the MOS schemes are applied for the eigenvalues of the vector $\pmb{e}^{(q)}$. However, the goal here is to detect the variations of the eigenvalues for different values of $q$. Therefore, instead of using a certain $q$, the proposed approach applies MOS schemes for a vector of the largest eigenvalues of each $q$-th time frame, in order to identify variations and estimate the model order $\hat{d}$, which is the estimated number of time frames under attack. Therefore, $\pmb{e}_{\rm max}$ is sorted in descending order, producing $\sim\pmb{e}_{\rm max}$, that is used as input parameter for MOS schemes, according to $\hat{d} = \rm{MOS}(\sim\pmb{e}_{\rm max})$. Note that some MOS schemes may also require the number of minutes that compose a time frame, as $\hat{d} = \rm{MOS}(\pmb{e}_{\rm max},\emph{Q})$. For more information about MOS, we refer to the Appendix \ref{apx:a_mos}.
 
 In our previous work \cite{tenorio2013greatest}, the accuracy of AIC, MDL, EDC, RADOI, EFT and SURE schemes are evaluated for synflood and port scan attack detection, showing that EDC and EFT are effective for detecting this kind of attacks. The present work extends that evaluation to also analyze the effectiveness of the listed MOS schemes for fraggle attack detection, as shown in Section \ref{sec:2_experimentalresults}.
 
 \subsection{Eigenvalue Analysis}
 \label{sec:2_prop_EigenvalueAnalysis}
 
-After applying the MOS schemes to the vector $\sim\boldsymbol{e}_{\rm max}$, we obtain the estimate of the $\#\boldsymbol{X}$. For instance, in the case of fraggle, synflood and ports can, if $\hat{d} = 1$, , then $\#\boldsymbol{X} = 1$, which means that during the during the $Q$ time frames one attack is present. However, if $\hat{d} = 0$, then $\#\boldsymbol{X} = 0$, and this means that none of these attacks are present. Note that $\hat{d}$ can be greater than 1, indicating the presence of more than one attack.
+After applying the MOS schemes to the vector $\sim\pmb{e}_{\rm max}$, we obtain the estimate of the $\#\pmb{X}$. For instance, in the case of fraggle, synflood and ports can, if $\hat{d} = 1$, , then $\#\pmb{X} = 1$, which means that during the during the $Q$ time frames one attack is present. However, if $\hat{d} = 0$, then $\#\pmb{X} = 0$, and this means that none of these attacks are present. Note that $\hat{d}$ can be greater than 1, indicating the presence of more than one attack.
 
 In Subsection \ref{sec:2_prop_MOSSchemes}, we obtained only if $\hat{d} = 1$ or $\hat{d} = 0$. However, if $\hat{d} = 1$, the MOS schemes do not provide any information about the $q$-th time frame under attack. The identification of the $q$-th time frame under attack can be carried out through a eigenvalues analysis.
 
-The largest eigenvalue analysis for estimating the $q$-th time frames that are under attack can be expressed according to Algorithm \ref{alg:2.01}, where $\rm{\boldsymbol{\hat{q}}}_{\rm max} \in \mathbb{R}^{\hat{d}}$ denotes a vector of the $q$-th time frames under attack, which is the $q$-th indexes corresponding to the $\hat{d}$ largest eigenvalues of $\boldsymbol{e}_{\rm max}$. Algorithm \ref{alg:2.01} initially identifies the largest value of $\boldsymbol{e}_{\rm max}$, according to Line 3 of Algorithm \ref{alg:2.01}, and its correspondent index, according to Line 7. Subsequently, the largest value is removed of $\boldsymbol{e}_{\rm max}$, according to Line 11 of Algorithm \ref{alg:2.01}, and a new iteration is performed until $\boldsymbol{e}_{\rm max} = []$.
+The largest eigenvalue analysis for estimating the $q$-th time frames that are under attack can be expressed according to Algorithm \ref{alg:2.01}, where $\rm{\hat{\pmb{q}}}_{\rm max} \in \mathbb{R}^{\hat{d}}$ denotes a vector of the $q$-th time frames under attack, which is the $q$-th indexes corresponding to the $\hat{d}$ largest eigenvalues of $\pmb{e}_{\rm max}$. Algorithm \ref{alg:2.01} initially identifies the largest value of $\pmb{e}_{\rm max}$, according to Line 3 of Algorithm \ref{alg:2.01}, and its correspondent index, according to Line 7. Subsequently, the largest value is removed of $\pmb{e}_{\rm max}$, according to Line 11 of Algorithm \ref{alg:2.01}, and a new iteration is performed until $\pmb{e}_{\rm max} = []$.
 
 \begin{algorithm}
 	\label{alg:2.01}
 	\SetAlgoLined
-	\KwResult{$\rm{\boldsymbol{\hat{q}}}_{\rm max}$}
+	\KwResult{$\rm{\hat{\pmb{q}}}_{\rm max}$}
 	Given $f = 1$\;
 	\While{$f < \hat{d}$}{
-		$q_{\rm value} = \operatorname*{argmax}_{\lambda}  \hspace{1 mm} \boldsymbol{e}_{\rm max}$\;
+		$q_{\rm value} = \operatorname*{argmax}_{\lambda}  \hspace{1 mm} \pmb{e}_{\rm max}$\;
 		$i = 1$\;
     	\While{$i < Q$}{
-    		\If{$\boldsymbol{e}_{\rm max}^{(i)} == q_{\rm value}$}{
-    			$\boldsymbol{\hat{q}}_{\rm max}^{(f)} = i$\;
+    		\If{$\pmb{e}_{\rm max}^{(i)} == q_{\rm value}$}{
+    			$\hat{\pmb{q}}_{\rm max}^{(f)} = i$\;
     		}
     		$i = i + 1$\;
     	}
-    	$\boldsymbol{e}_{\rm max} \rightarrow \boldsymbol{\hat{q}}_{\rm max}^{(f)}$\;
+    	$\pmb{e}_{\rm max} \rightarrow \hat{\pmb{q}}_{\rm max}^{(f)}$\;
 		$f = f + 1$\;
 	}
 	\caption{Detection of Time Frames Under Attack}
 \end{algorithm}
 
-After the estimation of the $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected Attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analyzing the effectiveness of cosine similarity to highlight abnormalities inserted by network traffic attacks. 
+After the estimation of the $\rm{\hat{\pmb{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected Attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analyzing the effectiveness of cosine similarity to highlight abnormalities inserted by network traffic attacks. 
 
 \subsection{Eigen Similarity Analysis}
 \label{sec:2_prop_EigenSimilarityAnalysis}
 
-Cosine similarity calculates the cosine of the angle between two vectors, which represents the similarity of values between the selected vectors. Therefore, cosine similarity can be used to evaluate the variation of the most significant eigenvectors of $\boldsymbol{V}^{(q)}$ against the most significant eigenvectors of time frame detected as under attack, to analyze similarity changes into the most significant eigenvectors caused by the insertion of anomalous traffic \cite{Lee2013}. 
+Cosine similarity calculates the cosine of the angle between two vectors, which represents the similarity of values between the selected vectors. Therefore, cosine similarity can be used to evaluate the variation of the most significant eigenvectors of $\pmb{V}^{(q)}$ against the most significant eigenvectors of time frame detected as under attack, to analyze similarity changes into the most significant eigenvectors caused by the insertion of anomalous traffic \cite{Lee2013}. 
 
 This subsection describes the proposed eigen similarity analysis for detailed attack identification, in complement to the attack estimation carried out through MOS schemes and eigenvalue analysis. In Subsection \ref{sec:2_prop_TimeSimilarityAnalysis} we present the eigen similarity analysis for identification of time under attack. Next, in Subsection \ref{sec:2_prop_PortSimilarityAnalysis}, we show how to apply the eigen similarity analysis in order to identify network ports under attack.
 
@@ -300,66 +299,66 @@ This subsection describes the proposed eigen similarity analysis for detailed at
 For eigen similarity analysis, we evaluate the cosine similarity in order to identify lacks of similarity between legitimate and malicious traffic, as follows
 
 \begin{equation}\label{eq:2.11}
-s_n = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(n)}^{(q)}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(n)}^{(q)}}},
+s_n = \frac{\abs{\pmb{v}^{(q)} \cdot \pmb{v}_{(n)}^{(q)}}}{\norm{\pmb{v}^{(q)}}\norm{\pmb{v}_{(n)}^{(q)}}},
 \end{equation}
-where $s_n$ denotes the absolute similarity degree of the $n$-th minute, $\boldsymbol{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack, according the attack detection described by Algorithm \ref{alg:2.01}, and $\boldsymbol{v}_{(n)}^{(q)}$ is the most significant eigenvectors obtained after append each target $n$-th minute of traffic that needs the identification of flood and port scan attacks.
+where $s_n$ denotes the absolute similarity degree of the $n$-th minute, $\pmb{v}^{(q)}$ is the most significant eigenvectors of a selected set of minutes without network attack, according the attack detection described by Algorithm \ref{alg:2.01}, and $\pmb{v}_{(n)}^{(q)}$ is the most significant eigenvectors obtained after append each target $n$-th minute of traffic that needs the identification of flood and port scan attacks.
 
-The most significant eigenvector $\boldsymbol{v}^{(q)}$, of a time frame $q$ without attack, can be computed from (\ref{eq:2.06}) and selected according to the eigenvector of the largest eigenvalue $\lambda_1^{(q)}$, which is the principal component of the selected time frame $q$. The same calculation shall be performed in order to obtain the target eigenvectors $\boldsymbol{v}_{(n)}^{(q)}$, calculated from the time frame without attack appended by selected minutes of a time frame estimated as under attack.
+The most significant eigenvector $\pmb{v}^{(q)}$, of a time frame $q$ without attack, can be computed from (\ref{eq:2.06}) and selected according to the eigenvector of the largest eigenvalue $\lambda_1^{(q)}$, which is the principal component of the selected time frame $q$. The same calculation shall be performed in order to obtain the target eigenvectors $\pmb{v}_{(n)}^{(q)}$, calculated from the time frame without attack appended by selected minutes of a time frame estimated as under attack.
 
-Therefore, the reference eigenvectors $\boldsymbol{v}^{(q)}$ is calculated from the traffic without attack, in a time frame $q$ composed of $Q$ minutes of legitimate network traffic, estimated as normal by Algorithm \ref{alg:2.01}. For the detailed attack identification, each $\boldsymbol{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ time frames shall be individually appended into $\boldsymbol{X}^{(q)}$, as represented by
+Therefore, the reference eigenvectors $\pmb{v}^{(q)}$ is calculated from the traffic without attack, in a time frame $q$ composed of $Q$ minutes of legitimate network traffic, estimated as normal by Algorithm \ref{alg:2.01}. For the detailed attack identification, each $\pmb{x}^{(\hat{q})}_{(n)}$ vector of each $n$-th minutes of the estimated $\rm{\hat{\pmb{q}}}_{\rm max}$ time frames shall be individually appended into $\pmb{X}^{(q)}$, as represented by
 
 \begin{equation}\label{eq:2.12}
-\boldsymbol{X}_{n} = \{\boldsymbol{X}^{(q)} | \boldsymbol{x}^{(\hat{q})}_{(n)}\}.
+\pmb{X}_{n} = \{\pmb{X}^{(q)} | \pmb{x}^{(\hat{q})}_{(n)}\}.
 \end{equation}
 
-Subsequently, the resultant $\boldsymbol{X}_{(n)}$ is used to obtain $\boldsymbol{v}_{(n)}^{(q)}$, through (\ref{eq:2.06}), for calculating the similarity degree $s_n$, ranging from 0 to 1, for each $n$-th minute. The $s_n$ denotes the absolute similarity degree of the $n$-th minute in comparison to a well-known traffic without attack, detected through MOS schemes and eigenvalue analysis.
+Subsequently, the resultant $\pmb{X}_{(n)}$ is used to obtain $\pmb{v}_{(n)}^{(q)}$, through (\ref{eq:2.06}), for calculating the similarity degree $s_n$, ranging from 0 to 1, for each $n$-th minute. The $s_n$ denotes the absolute similarity degree of the $n$-th minute in comparison to a well-known traffic without attack, detected through MOS schemes and eigenvalue analysis.
 
 We propose three approaches for eigen similarity analysis, which are the incremental, the individual and the incremental individualized.
 
-The incremental approach for eigen similarity analysis is based on the incremental appending of network traffic into $\boldsymbol{X}^{(q)}$, where the first evaluation is based on (\ref{eq:2.12}) and the subsequent evaluations are based on (\ref{eq:2.13}), that denotes the appending of the $n$-th minute $\boldsymbol{x}^{(\hat{q})}_{(n)}$ into $\boldsymbol{X_n}$. The incremental approach repeats the Equation \ref{eq:2.13} while $n \leq N$ and compute $\boldsymbol{v}^{(q)}$, $\boldsymbol{v}_{(n)}^{(q)}$ and the Equation \ref{eq:2.11} for each increment.
+The incremental approach for eigen similarity analysis is based on the incremental appending of network traffic into $\pmb{X}^{(q)}$, where the first evaluation is based on (\ref{eq:2.12}) and the subsequent evaluations are based on (\ref{eq:2.13}), that denotes the appending of the $n$-th minute $\pmb{x}^{(\hat{q})}_{(n)}$ into $\pmb{X_n}$. The incremental approach repeats the Equation \ref{eq:2.13} while $n \leq N$ and compute $\pmb{v}^{(q)}$, $\pmb{v}_{(n)}^{(q)}$ and the Equation \ref{eq:2.11} for each increment.
 
 \begin{equation}\label{eq:2.13}
-\boldsymbol{X}_{n} = \{\boldsymbol{X}_{n} | \boldsymbol{x}^{(\hat{q})}_{(n)}\},
+\pmb{X}_{n} = \{\pmb{X}_{n} | \pmb{x}^{(\hat{q})}_{(n)}\},
 \end{equation}
 
-Figure \ref{fig:2.08} illustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\boldsymbol{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected by Algorithm \ref{alg:2.01}. 
+Figure \ref{fig:2.08} illustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\pmb{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected by Algorithm \ref{alg:2.01}. 
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/incremental.eps}
+     \includegraphics[width=15cm]{figures/ch2/incremental.eps}
      \caption{Traffic selection for incremental approach.}
      \label{fig:2.08}
 \end{figure}
 
-For the scenario depicted by Figure \ref{fig:2.08}, the eigen similarity analysis starts at $\boldsymbol{x}^{(3)}_{(41)}$ and is incrementally performed until $\boldsymbol{x}^{(3)}_{(60)}$, in order to calculate the $s_n$. We assume that $s_n < l$ means an attack identification, according the anomaly on similarity of $s_n$ compared to a defined limiar $l$. 
+For the scenario depicted by Figure \ref{fig:2.08}, the eigen similarity analysis starts at $\pmb{x}^{(3)}_{(41)}$ and is incrementally performed until $\pmb{x}^{(3)}_{(60)}$, in order to calculate the $s_n$. We assume that $s_n < l$ means an attack identification, according the anomaly on similarity of $s_n$ compared to a defined limiar $l$. 
 
-Therefore, after obtaining the most significant eigenvector $\boldsymbol{v}^{(q)}$ and the target eigenvectors $\boldsymbol{v}_{(n)}^{(q)}$ for eigen similarity analysis, the $s_n$ is calculated according to (\ref{eq:2.11}). If $s_n = 1$, then the two eigenvectors are completely similar and no anomaly is detected. Smaller values of $s_n$ mean less similarity and can indicate an anomaly if $s_n < l$, what denotes that a network attack is identified during the $n$-th minute. 
+Therefore, after obtaining the most significant eigenvector $\pmb{v}^{(q)}$ and the target eigenvectors $\pmb{v}_{(n)}^{(q)}$ for eigen similarity analysis, the $s_n$ is calculated according to (\ref{eq:2.11}). If $s_n = 1$, then the two eigenvectors are completely similar and no anomaly is detected. Smaller values of $s_n$ mean less similarity and can indicate an anomaly if $s_n < l$, what denotes that a network attack is identified during the $n$-th minute. 
 
 The Equation \ref{eq:2.14} shows how the $s_n$ of each $n$-th minute shall be compared with the threshold $l$ to evaluate if a attack is identified, where
 
 \begin{equation}\label{eq:2.14}
-  \boldsymbol{\hat{n}_{(n)}}=\left\{
+  \hat{\pmb{n}}_{(n)}=\left\{
   \begin{array}{@{}ll@{}}
     1, & \text{if}\ s_n < l \\
     0, & \text{otherwise}
   \end{array}\right.,
 \end{equation}
-and $\boldsymbol{\hat{n}}_{(n)}$ denotes a vector of $n$-th minutes detected as under attack.
+and $\hat{\pmb{n}}_{(n)}$ denotes a vector of $n$-th minutes detected as under attack.
 
-The eigen similarity analysis can also be applied by means of the individual approach, where each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, as shown by Figure \ref{fig:2.09}. In the individual approach there is no incremental appending, therefore only individual $n$-th minute are appended to $\boldsymbol{X_n}$, according to \ref{eq:2.12}, in order to compute $\boldsymbol{v}^{(q)}$, $\boldsymbol{v}_{(n)}^{(q)}$ and the Equation \ref{eq:2.11} for individual $n$-th minute.
+The eigen similarity analysis can also be applied by means of the individual approach, where each $n$-th minute must be individually appended into $\pmb{X}^{(q)}$, as shown by Figure \ref{fig:2.09}. In the individual approach there is no incremental appending, therefore only individual $n$-th minute are appended to $\pmb{X_n}$, according to \ref{eq:2.12}, in order to compute $\pmb{v}^{(q)}$, $\pmb{v}_{(n)}^{(q)}$ and the Equation \ref{eq:2.11} for individual $n$-th minute.
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/individualized.eps}
+     \includegraphics[width=15cm]{figures/ch2/individualized.eps}
      \caption{Traffic selection for individual approach.}
      \label{fig:2.09}
 \end{figure}
 
-The incremental and the individual approaches can be combined to obtain the incremental individualized approach, where each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}^{(q)}$ to compute similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack, i.e. $s_n < l$. Subsequently, $\boldsymbol{X}_{n-1}$ becomes the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated, as shown in Figure \ref{fig:2.02}.
+The incremental and the individual approaches can be combined to obtain the incremental individualized approach, where each minute is incrementally appended into the selected $\pmb{X}^{(q)}$ for obtaining $\pmb{v}_{(n)}^{(q)}$ to compute similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack, i.e. $s_n < l$. Subsequently, $\pmb{X}_{n-1}$ becomes the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated, as shown in Figure \ref{fig:2.02}.
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/incremental_individualized.eps}
+     \includegraphics[width=15cm]{figures/ch2/incremental_individualized.eps}
      \caption{Traffic selection for incremental individualized approach.}
      \label{fig:2.02}
 \end{figure}
@@ -369,11 +368,11 @@ The incremental similarity analysis followed by individual analysis after an att
 \subsubsection{Port Similarity Analysis}
 \label{sec:2_prop_PortSimilarityAnalysis}
 
-Given $\boldsymbol{\hat{n}}$, which is the set of $n$-th minutes under attack, it is still necessary to obtain more details about the identified network attack, such as the network ports that are attacked during each $n$-th minute identified as under attack. Hence, it is also applied the cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port during a $n$-th minute. 
+Given $\hat{\pmb{n}}$, which is the set of $n$-th minutes under attack, it is still necessary to obtain more details about the identified network attack, such as the network ports that are attacked during each $n$-th minute identified as under attack. Hence, it is also applied the cosine similarity analysis to identify variation of the most significant eigenvectors, caused by the insertion of anomalous network traffic by a selected $m$-th port during a $n$-th minute. 
 
-For detection of ports under attack, the last most significant eigenvectors without attack $\boldsymbol{v}^{(q)}$ shall be used as reference for similarity analysis against the $\boldsymbol{v}_{(n)}^{(q)}$ identified as under attack, and evaluate individually the cosine similarity of each $m$-th port of all $\boldsymbol{\hat{n}}$ minutes. Therefore, $\boldsymbol{v}^{(q)}$ should be calculated from the last $\boldsymbol{X}^{(q)}$ time frame without attack, and $\boldsymbol{v}_{(m,\hat{n})}$ should be calculated from the same traffic appended of all $n$-th minutes until the identified minute under attack, denoted as $\boldsymbol{X}_n$. 
+For detection of ports under attack, the last most significant eigenvectors without attack $\pmb{v}^{(q)}$ shall be used as reference for similarity analysis against the $\pmb{v}_{(n)}^{(q)}$ identified as under attack, and evaluate individually the cosine similarity of each $m$-th port of all $\hat{\pmb{n}}$ minutes. Therefore, $\pmb{v}^{(q)}$ should be calculated from the last $\pmb{X}^{(q)}$ time frame without attack, and $\pmb{v}_{(m,\hat{n})}$ should be calculated from the same traffic appended of all $n$-th minutes until the identified minute under attack, denoted as $\pmb{X}_n$. 
 
-For similarity analysis, each $m$-th port of the last $n$-th minute of $\boldsymbol{X}_n$, denoted as $x_{(m,n)}$, shall be individually replaced by the traffic of the evaluated $m$-th port of the $\hat{n}$-th minute under attack, denoted as $x^{(\hat{q})}_{(m,\hat{n})}$, in order to identify significant variation on similarity caused by the traffic of the $m$-th port. 
+For similarity analysis, each $m$-th port of the last $n$-th minute of $\pmb{X}_n$, denoted as $x_{(m,n)}$, shall be individually replaced by the traffic of the evaluated $m$-th port of the $\hat{n}$-th minute under attack, denoted as $x^{(\hat{q})}_{(m,\hat{n})}$, in order to identify significant variation on similarity caused by the traffic of the $m$-th port. 
 
 This approach for detection of ports under attack via similarity analysis is given by
 
@@ -382,14 +381,14 @@ This approach for detection of ports under attack via similarity analysis is giv
   \begin{array}{@{}ll@{}}
     x_{(m,n)} = x^{(\hat{q})}_{(m,\hat{n})} \\
     \\
-    s_{m,\hat{n}} = \frac{\abs{\boldsymbol{v}^{(q)} \cdot \boldsymbol{v}_{(m,\hat{n})}}}{\norm{\boldsymbol{v}^{(q)}}\norm{\boldsymbol{v}_{(m,\hat{n})}}},
+    s_{m,\hat{n}} = \frac{\abs{\pmb{v}^{(q)} \cdot \pmb{v}_{(m,\hat{n})}}}{\norm{\pmb{v}^{(q)}}\norm{\pmb{v}_{(m,\hat{n})}}},
   \end{array}\right.
 \end{equation}
-where $x^{(\hat{q})}_{(m,\hat{n})}$ denotes the $m$-th port of the selected $n$-th minute and $q$-th time frame identified as under attack and $x_{(m,n)}$ denotes the $m$-th port of the last $n$-th minute of $\boldsymbol{X}_n$, which is used to calculate the $\boldsymbol{v}_{(m,\hat{n})}$ most significant eigenvectors that contains the traffic of the $m$-th port of the $\hat{n}$-th minute identified as under attack.
+where $x^{(\hat{q})}_{(m,\hat{n})}$ denotes the $m$-th port of the selected $n$-th minute and $q$-th time frame identified as under attack and $x_{(m,n)}$ denotes the $m$-th port of the last $n$-th minute of $\pmb{X}_n$, which is used to calculate the $\pmb{v}_{(m,\hat{n})}$ most significant eigenvectors that contains the traffic of the $m$-th port of the $\hat{n}$-th minute identified as under attack.
 
-Once $\boldsymbol{v}^{(q)}$ and $\boldsymbol{v}_{(m,\hat{n})}$ are obtained, then the $s_{m,\hat{n}}$ similarity degree can be calculated in order to identify if the traffic replacement highlights the adition of anomalous traffic by the evaluated $m$-th port during the $\hat{n}$-th minute previously identified as under attack. 
+Once $\pmb{v}^{(q)}$ and $\pmb{v}_{(m,\hat{n})}$ are obtained, then the $s_{m,\hat{n}}$ similarity degree can be calculated in order to identify if the traffic replacement highlights the adition of anomalous traffic by the evaluated $m$-th port during the $\hat{n}$-th minute previously identified as under attack. 
 
-This procedure should be repeated for each $m$-th target port of $\boldsymbol{\hat{n}}$, in order to individually identify the network ports under attack during each $\hat{q}$-th time frame.
+This procedure should be repeated for each $m$-th target port of $\hat{\pmb{n}}$, in order to individually identify the network ports under attack during each $\hat{q}$-th time frame.
 
 
 \section{Experiments and Results}
@@ -400,7 +399,7 @@ This section presents the performed experiments and the acquired results for the
 \subsection{Experimental Scenario}
 \label{sec:2_AnalyzedScenario}
 
-This experiment consider a simulated scenario of a real network monitored during 120 minutes, that are separated into six time frames of twenty minutes. Therefore, as the time of each sampling period is one minute, then $N = 20$. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ was obtained, as well as a covariance $\boldsymbol{\hat{R}}_{yy}^{(q)} \in \mathbb{R}^{17 \times 17}$ (calculated via (\ref{eq:2.03})) and a sample covariance matrix $\boldsymbol{\hat{R}}_{zz}^{(q)} \in \mathbb{R}^{17x17}$, assuming that $q = 1, 2, 3, 4, 5$ and $6$. 
+This experiment consider a simulated scenario of a real network monitored during 120 minutes, that are separated into six time frames of twenty minutes. Therefore, as the time of each sampling period is one minute, then $N = 20$. For each time frame $q$, a traffic matrix $\pmb{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ was obtained, as well as a covariance $\hat{\pmb{R}}_{yy}^{(q)} \in \mathbb{R}^{17 \times 17}$ (calculated via (\ref{eq:2.03})) and a sample covariance matrix $\hat{\pmb{R}}_{zz}^{(q)} \in \mathbb{R}^{17x17}$, assuming that $q = 1, 2, 3, 4, 5$ and $6$. 
 
 The simulation started at 21:00h, the first time frame was from 21:00h until 21:20h ($q = 1$), the second was from 21:20h until 21:40h ($q = 2$), the third was from 21:40h to 22:00h ($q = 3$), the fourth was from 22:00h until 22:20h ($q = 4$), the fifth was from 22:20h until 22:40h ($q = 5$), and finally, the sixth was from 22:40h until 23.00h ($q = 6$). During the simulation, the victim made legitimate access, and the attacker performed the following attacks: at 21:54h ($q = 3$) was performed a port scan, at the interval ranging from 22:10h to 22:20h ($q = 4$) a synflood attack was simulated, and at the interval from 22:30h to 22:40h ($q = 5$) a fraggle attack was performed.
 
@@ -411,7 +410,7 @@ For the evaluation of MOS Schemes accuracy for flood and port scan detection, th
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/eigenvalues_synflood.eps} 
+     \includegraphics[width=11cm]{figures/ch2/eigenvalues_synflood.eps} 
      \caption{Eigenvalues of the sample covariance matrix (synflood).}
      \label{fig:2.10}
 \end{figure}
@@ -422,7 +421,7 @@ Figure \ref{fig:2.11} illustrates the eigenvalues calculated from sample covaria
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/eigenvalues_fraggle.eps}
+     \includegraphics[width=11cm]{figures/ch2/eigenvalues_fraggle.eps}
      \caption{Eigenvalues of the sample covariance matrix (fraggle).}
      \label{fig:2.11}
 \end{figure}
@@ -431,7 +430,7 @@ Figure \ref{fig:2.12} depicts the eigenvalues calculated from covariance matrix 
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/eigenvalues_portscan.eps}
+     \includegraphics[width=11cm]{figures/ch2/eigenvalues_portscan.eps}
      \caption{Eigenvalues of the covariance matrix of zero mean and unitary standard deviation (port scan).}
      \label{fig:2.12}
 \end{figure}
@@ -476,21 +475,21 @@ In \cite{tenorio2013greatest}, we evaluate the accuracy of AIC, MDL, EDC, RADOI,
   \label{tab:2.04}
   \begin{tabular}{ c c c c c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{\textbf{MOS schemes (estimated model order $\hat{d}$)}} &{\textbf{(d)}}\\ 
+	\multirow{2}{*}{\textbf{Type of analysis} $q$} &\multicolumn{6}{c}{MOS schemes (estimated model order $\hat{d}$)} &{(d)}\\ 
 			\hhline{~------~}
-		&\textbf{AIC} &\textbf{MDL} &\textbf{EDC} &\textbf{RADOI} &\textbf{EFT} &\textbf{SURE}\\
+		&\pmb{AIC} &\pmb{MDL} &\pmb{EDC} &\pmb{RADOI} &\pmb{EFT} &\pmb{SURE}\\
 	\midrule
-	Detection of synflood \\(presence of attack) &2 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-	Detection of synflood \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+	Detection of synflood \\(presence of attack) &2 &1 &\pmb{1} &5 &\pmb{1} &4 &\pmb{1} \\
+	Detection of synflood \\(absence of attack) &1 &1 &\pmb{0} &1 &\pmb{0} &3 &\pmb{0} \\
 	\midrule
-	Detection of fraggle \\(presence of attack) &1 &1 &\textbf{1} &5 &\textbf{1} &4 &\textbf{1} \\
-	Detection of fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+	Detection of fraggle \\(presence of attack) &1 &1 &\pmb{1} &5 &\pmb{1} &4 &\pmb{1} \\
+	Detection of fraggle \\(absence of attack) &1 &1 &\pmb{0} &1 &\pmb{0} &3 &\pmb{0} \\
 	\midrule
-	Detection of port scan \\(presence of attack) &1 &1 &\textbf{1} &1 &\textbf{1} &9 &\textbf{1} \\
-	Detection of port scan \\(absence of attack) &0 &0 &\textbf{0} &1 &\textbf{0} &1 &\textbf{0} \\
+	Detection of port scan \\(presence of attack) &1 &1 &\pmb{1} &1 &\pmb{1} &9 &\pmb{1} \\
+	Detection of port scan \\(absence of attack) &0 &0 &\pmb{0} &1 &\pmb{0} &1 &\pmb{0} \\
 	\midrule
-	Detection of synflood/fraggle \\(presence of attack) &2 &2 &\textbf{2} &5 &\textbf{2} &5 &\textbf{2} \\
-	Detection of synflood/fraggle \\(absence of attack) &1 &1 &\textbf{0} &1 &\textbf{0} &3 &\textbf{0} \\
+	Detection of synflood/fraggle \\(presence of attack) &2 &2 &\pmb{2} &5 &\pmb{2} &5 &\pmb{2} \\
+	Detection of synflood/fraggle \\(absence of attack) &1 &1 &\pmb{0} &1 &\pmb{0} &3 &\pmb{0} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -508,17 +507,17 @@ According to Table \ref{tab:2.04}, EDC and EFT estimated correctly the number of
 
 According to the results presented in Section \ref{sec:2_largesteigenvaluesanalysis}, the largest eigenvalue stands out significantly from the others eigenvalues of an evaluated $q$-th time frame. This behavior can also be observed in the largest eigenvalues analysis, according to results presented in Table \ref{tab:2.03}, where it is possible to observe that the $\hat{d}$ largest eigen values of the time frames under attacks stand out significantly from the others largest eigenvalues. 
 
-Therefore, we conclude that the $\hat{d}$ largest eigenvalues correspond to the respective $q$-th time frames under attack, which is denoted by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$ and can be calculated according to Algorithm \ref{alg:2.01}.
+Therefore, we conclude that the $\hat{d}$ largest eigenvalues correspond to the respective $q$-th time frames under attack, which is denoted by $\rm{\hat{\pmb{q}}}_{\rm max}$ and can be calculated according to Algorithm \ref{alg:2.01}.
 
 \subsection{Eigen Similarity Analysis}
 \label{sec:2_EigenSimilarityAnalysis}
 
-This work proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\boldsymbol{\hat{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
+This work proposes applying eigen similarity analysis to detect time and ports under attack, from each $q$-th time frames under attack defined by $\rm{\hat{\pmb{q}}}_{\rm max}$. Hence, the proposed framework is applied to the time frames where $q=3$, $q=4$ and $q=5$ to respectively evaluate its effectiveness for port scan, synflood and fraggle attack detection.
 
 \subsubsection{Time Analysis}
 \label{sec:2_TimeAnalysis}
 
-Three approaches were evaluated for eigen similarity analysis: incremental, individual and incremental individualized approaches. For the incremental individualized approach, each minute is incrementally appended into the selected $\boldsymbol{X}^{(q)}$ for obtaining $\boldsymbol{v}_{(n)}^{(q)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\boldsymbol{X}_n$ became the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated. For the incremental approach, each $n$-th minute must be incrementally appended into $\boldsymbol{X}^{(q)}$, for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}^{(q)}$ for individual time similarity analysis. For the individual approach, each $n$-th minute must be individually appended into $\boldsymbol{X}^{(q)}$, without incremental append, but doing individual appended into $\boldsymbol{X}^{(q)}$ for obtaining the next eigenvectors $\boldsymbol{v}_{(n)}^{(q)}$ for individual similarity analyis.
+Three approaches were evaluated for eigen similarity analysis: incremental, individual and incremental individualized approaches. For the incremental individualized approach, each minute is incrementally appended into the selected $\pmb{X}^{(q)}$ for obtaining $\pmb{v}_{(n)}^{(q)}$ to similarity analysis of the $n$-th minute, until detect the first $n$-th minute under attack. Subsequently, $\pmb{X}_n$ became the new reference of traffic without network attack and each subsequent minute must have its similarity individually evaluated. For the incremental approach, each $n$-th minute must be incrementally appended into $\pmb{X}^{(q)}$, for obtaining the next eigenvectors $\pmb{v}_{(n)}^{(q)}$ for individual time similarity analysis. For the individual approach, each $n$-th minute must be individually appended into $\pmb{X}^{(q)}$, without incremental append, but doing individual appended into $\pmb{X}^{(q)}$ for obtaining the next eigenvectors $\pmb{v}_{(n)}^{(q)}$ for individual similarity analyis.
 
 Table \ref{tab:2.05} presents the results of the evaluation of three approaches for similarity analysis of eigenvectors for port scan detection.
 
@@ -529,9 +528,9 @@ Table \ref{tab:2.05} presents the results of the evaluation of three approaches 
   \label{tab:2.05}
   \begin{tabular}{ c c c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Time Frame} $q$} &\multirow{2}{*}{\pmb{Time} $n$}   &\multicolumn{3}{c}{\pmb{Similarity Analysis}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+			& &\pmb{Incremental Individualized} &\pmb{Incremental} &\pmb{Individual}\\
 	\midrule
 	3 &1 &0.9946 &0.9946 &0.9946 &no \\
 	3 &2 &0.9934 &0.9934 &0.9999 &no \\
@@ -570,9 +569,9 @@ Table \ref{tab:2.06} presents the results of the evaluation of the similarity an
   \label{tab:2.06}
   \begin{tabular}{ c c c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Time Frame} $q$} &\multirow{2}{*}{\pmb{Time} $n$}   &\multicolumn{3}{c}{\pmb{Similarity Analysis}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+			& &\pmb{Incremental Individualized} &\pmb{Incremental} &\pmb{Individual}\\
 	\midrule
 	4 &1 &1.0000 &1.0000 &1.0000 &no \\
 	4 &2 &0.9999 &0.9999 &1.0000 &no \\
@@ -611,9 +610,9 @@ Table \ref{tab:2.07} presents the results of the eigen similarity analysis evalu
   \label{tab:2.07}
   \begin{tabular}{ c c c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Time Frame} $q$} &\multirow{2}{*}{\textbf{Time} $n$}   &\multicolumn{3}{c}{\textbf{Similarity Analysis}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Time Frame} $q$} &\multirow{2}{*}{\pmb{Time} $n$}   &\multicolumn{3}{c}{\pmb{Similarity Analysis}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~~---~}
-			& &\textbf{Incremental Individualized} &\textbf{Incremental} &\textbf{Individual}\\
+			& &\pmb{Incremental Individualized} &\pmb{Incremental} &\pmb{Individual}\\
 	\midrule
 	5 &1 &1.0000 &1.0000 &1.0000 &no \\
 	5 &2 &0.9999 &0.9999 &1.0000 &no \\
@@ -661,9 +660,9 @@ Table \ref{tab:2.08} presents the results of the evaluation of eigen similarity 
   \label{tab:2.08}
   \begin{tabular}{ c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Port} $p$}   &\multicolumn{2}{c}{\pmb{Approaches}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
+			&\pmb{Incremental Individualized} &\pmb{Individual}\\
 	\midrule
 	80 &0.9999 &0.9999 &no \\
 	443 &0.9999 &0.9999 &no \\
@@ -699,9 +698,9 @@ Table \ref{tab:2.09} presents the results of the evaluation of eigen similarity 
   \label{tab:2.09}
   \begin{tabular}{ c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Port} $p$}   &\multicolumn{2}{c}{\pmb{Approaches}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
+			&\pmb{Incremental Individualized} &\pmb{Individual}\\
 	\midrule
 	80 &1.0000 &1.0000 &no \\
 	443 &1.0000 &1.0000 &no \\
@@ -735,9 +734,9 @@ Table \ref{tab:2.10} presents the results of the evaluation of eigen similarity 
   \label{tab:2.10}
   \begin{tabular}{ c c c c }
 	\toprule
-	\multirow{2}{*}{\textbf{Port} $p$}   &\multicolumn{2}{c}{\textbf{Approaches}} &\multirow{2}{*}{\textbf{Ground Truth}}\\ 
+	\multirow{2}{*}{\pmb{Port} $p$}   &\multicolumn{2}{c}{\pmb{Approaches}} &\multirow{2}{*}{\pmb{Ground Truth}}\\ 
 			\hhline{~--~}
-			&\textbf{Incremental Individualized} &\textbf{Individual}\\
+			&\pmb{Incremental Individualized} &\pmb{Individual}\\
 	\midrule
 	80 &1.0000 &1.0000 &no \\
 	443 &1.0000 &1.0000 &no \\
@@ -772,7 +771,7 @@ According to the shown significant lack of similarity between legitimate and mal
 This subsection presents a summarized view of results obtained from the application of the Eigensim, focusing on the largest eigenvalue analysis, model order selection and the eigenvalue analysis, for flood and probe attack detection in the DARPA 1998 data set. Since the proposed framework is detailed in Section \ref{sec:2_prop_getv} and in Subsections \ref{sec:2_AnalyzedScenario}, \ref{sec:2_largesteigenvaluesanalysis}, \ref{sec:2_MOSSchemesEvaluation}, \ref{sec:2_EigenvalueAnalysis} and \ref{sec:2_EigenSimilarityAnalysis}, here the focus is on the parameter selection, data set evaluation and results for flood and probe attack identification.
 
 The DARPA data set includes 7 weeks of sniffed traffic saved into raw network packet data, i.e. pcap files. The traffic and the labeled attacks are grouped by week and day, with information of the number and types of attacks per day, but also providing the start time for each labeled attack. For this evaluation, an evaluation per day was performed, considering the network traffic of 24 hours split into $Q$ time frames of 60 minute
-s ($N = 60$) and aggregate by minute and by port number. For each time frame $q$, a traffic matrix $\boldsymbol{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ is obtained, considering the ports 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389 and 443.
+s ($N = 60$) and aggregate by minute and by port number. For each time frame $q$, a traffic matrix $\pmb{X}^{(q)} \in \mathbb{R}^{17 \times 20}$ is obtained, considering the ports 20, 21, 22, 23, 25, 79, 80, 88, 107, 109, 110, 113, 115, 143, 161, 389 and 443.
 
 Since the proposed framework focus on flood and probe attack detection, only the attacks with behavior similar to flood or probe attack were evaluated. Initially all DoS and probe attacks were selected, but it was observed that the most cases of DoS focus on exploit system vulnerabilities instead of flooding attack, and most of probe attacks focus on ICMP instead of port scanning. Therefore, for evaluation of the proposed approach for flood and probe attack detection, it is necessary to select cases that implements flood or port scan behaviors. The following week-day-attack cases  were selected: 
 

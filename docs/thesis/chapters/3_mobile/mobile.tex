@@ -58,7 +58,7 @@ The core set of functions and protocols of the proposed architecture can be divi
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/fig01.eps}
+	\includegraphics[width=8cm]{figures/ch3/fig01.eps}
 	\caption{The core set of functions and protocols of the mobile cloud security infrastructure}
 	\label{fig:3_01}
 \end{figure}
@@ -77,7 +77,7 @@ In summary, all security procedures are connected to 4 groups of operations: fil
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=12cm]{figures/fig02.eps}
+	\includegraphics[width=12cm]{figures/ch3/fig02.eps}
 	\caption{The Client-side Architecture}
 	\label{fig:3_02}
 \end{figure}
@@ -103,7 +103,7 @@ In the online mode the mobile client uses the secure communication with the serv
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=15cm]{figures/fig03.eps}
+	\includegraphics[width=15cm]{figures/ch3/fig03.eps}
 	\caption{Proposed Architecture for Offline Mobile Security}
 	\label{fig:3_03}
 \end{figure}
@@ -111,9 +111,9 @@ In the online mode the mobile client uses the secure communication with the serv
 The Figure \ref{fig:3_03} describes the proposed architecture for offline mobile security, showing the modules responsible for securing the mobile client, which includes:
 
 \begin{enumerate}
-	\item \textbf{Protected Storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files.
-	\item \textbf{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal,vieira2017model} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec:3_results}. Moreover, the Eigensim, which is an approach based on subspace learning and on effective signal processing technique to separate noise components from the principal components, named Model Order Selection (MOS), can be applied into anomaly and attack detection \cite{tenorio2013greatest, vieira2017model}, to identify and separate malicious behaviors from the legitimate ones. The TIM is an internal module of the mobile client that implements offline anomaly detection through signal processing techniques.
-	\item \textbf{Key Management Center}: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
+	\item \pmb{Protected Storage}: the storage is protected with the shared user key and contains the ABE keys giving access to the file keys which allow decrypting the stored files.
+	\item \pmb{Threat Intelligence Manager (TIM)}: most attacks incur into significant variation on the legitimate behavior of information systems, or they adopt well-known patterns that can be easily detected by monitoring the system in the case of the offline mode. Signal processing techniques have been successfully applied to anomaly detection \cite{lu2009network, huang2009signal,vieira2017model} and have become a solution to a problem of improving detection accuracy, adaptability and computational cost for application on resource-constrained scenarios. Therefore, signal processing can be applied in offline mobile client security, for evaluating anomalies on user's behavior, according to the scenarios in Section \ref{sec:3_results}. Moreover, the Eigensim, which is an approach based on subspace learning and on effective signal processing technique to separate noise components from the principal components, named Model Order Selection (MOS), can be applied into anomaly and attack detection \cite{tenorio2013greatest, vieira2017model}, to identify and separate malicious behaviors from the legitimate ones. The TIM is an internal module of the mobile client that implements offline anomaly detection through signal processing techniques.
+	\item \pmb{Key Management Center}: it includes the functions for maintaining the key expiry period and deleting the expired keys. 
 \end{enumerate}
 
 
@@ -124,7 +124,7 @@ In the proposed client security architecture, the Threat Intelligence Manager (T
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{figures/fig06.eps}
+	\includegraphics[width=10cm]{figures/ch3/fig06.eps}
 	\caption{The Threat Intelligence Manager Workflow}
 	\label{fig:3_06}
 \end{figure}
@@ -139,47 +139,47 @@ The LAC performs the behavioral analysis through eigenvalue analysis and MOS sch
 \label{sec:3_eigensim}
 In the context of anomaly-based schemes for attack detection, the proposed behavioral analysis approach applies signal processing techniques, such as subspace learning by eigenvalue decomposition and Model Order Selection schemes \cite{tenorio2013greatest}, for automatic detection of attacks or malicious behaviors. Model Order Selection is an effective signal processing technique for several applications, allowing separating the only noise components from the principal components applying a rank reduction of the data. 
 
-Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, such as user operations, should be modeled as a matrix composed by the number of occurrences grouped by location and time, and splited into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\mathbf{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the mobile client.
+Applying MOS to the analysis of user operations can be effective in order to reveal the occurrence of malicious behavior during an offline session. MOS for threat intelligence requires that the target features, such as user operations, should be modeled as a matrix composed by the number of occurrences grouped by location and time, and splited into $Q$ time frames. Therefore, the framework considers the time variations of the matrix $\pmb{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, \ldots, Q$, in order to detect the occurrence of malicious behaviors. For example, one element of $\pmb{X}^{(q)}$ can represent the number of file readings on folder $m$ during the minute $n$, from file operations logged by the mobile client.
 
-The Eigensim can rely on sample covariance of zero mean variables (called as \textbf{zero mean covariance} for the sake of simplicity) and sample covariance of zero mean and unitary standard deviation (called as \textbf{zero mean and standardized covariance} for the sake of simplicity) variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
+The Eigensim can rely on sample covariance of zero mean variables (called as \pmb{zero mean covariance} for the sake of simplicity) and sample covariance of zero mean and unitary standard deviation (called as \pmb{zero mean and standardized covariance} for the sake of simplicity) variables, where the former is useful to identify abnormalities caused by large amounts of operations during a period, while the latter is applied to identify anomalies on sparse or subtle number of file operations.
 
-Classical approaches to model order selection require the computation of the sample covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\mathbf{X}$ of the zero mean samples given by
+Classical approaches to model order selection require the computation of the sample covariance matrix $\hat{\pmb{R}}_{yy}^{(q)}$ and of its eigenvalues, obtained from the measurement matrix $\pmb{X}$ of the zero mean samples given by
 
 \begin{equation}\label{eq:3.03}
-	\mathbf{y}_{m}^{(q)} = \mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}.
+	\pmb{y}_{m}^{(q)} = \pmb{x}_{m}^{(q)} - \bar{\pmb{x}}_{m}^{(q)}.
 \end{equation}
 
-The set of obtained vectors $\mathbf{y}_{m}^{(q)}$ composes the zero mean matrix $\mathbf{Y}^{(q)}$, then the zero mean covariance matrix $\mathbf{\hat{R}}_{yy}^{(q)}$ can be estimated as follows
+The set of obtained vectors $\pmb{y}_{m}^{(q)}$ composes the zero mean matrix $\pmb{Y}^{(q)}$, then the zero mean covariance matrix $\hat{\pmb{R}}_{yy}^{(q)}$ can be estimated as follows
 
 \begin{equation}\label{eq:3.04}
-	\mathbf{\hat{R}}_{yy}^{(q)} = \frac{1}{N}\mathbf{Y}^{(q)}\mathbf{Y}^{(q)^{\rm T}},
+	\hat{\pmb{R}}_{yy}^{(q)} = \frac{1}{N}\pmb{Y}^{(q)}\pmb{Y}^{(q)^{\rm T}},
 \end{equation}
-where $\mathbf{\hat{R}}_{yy}^{(q)}$ means the estimation of the sample covariance matrix from the measured zero mean matrix $\mathbf{Y}^{(q)}$ over $N$ minutes of the time frame $q$. 
+where $\hat{\pmb{R}}_{yy}^{(q)}$ means the estimation of the sample covariance matrix from the measured zero mean matrix $\pmb{Y}^{(q)}$ over $N$ minutes of the time frame $q$. 
 
 For Eigensim based on sample covariance of zero mean and unitary standard deviation, in order to identify anomalies with sparse or subtle behavior, it is required, for each variable, to make the standard deviation unitary as follows
 
 \begin{equation}\label{eq:3.05}
-	\mathbf{z}_{m}^{(q)} = \frac{\mathbf{x}_{m}^{(q)} - \bar{\mathbf{x}}_{m}^{(q)}}{\mathbf{\sigma}_{m}^{(q)}}.
+	\pmb{z}_{m}^{(q)} = \frac{\pmb{x}_{m}^{(q)} - \bar{\pmb{x}}_{m}^{(q)}}{\pmb{\sigma}_{m}^{(q)}}.
 \end{equation}
 
-The set of vectors $\mathbf{z}_{m}^{(q)}$ composes the matrix $\mathbf{Z}^{(q)}$, then the zero mean and standardized covariance matrix $\mathbf{\hat{R}}_{zz}^{(q)}$ can be calculated via 
+The set of vectors $\pmb{z}_{m}^{(q)}$ composes the matrix $\pmb{Z}^{(q)}$, then the zero mean and standardized covariance matrix $\hat{\pmb{R}}_{zz}^{(q)}$ can be calculated via 
 
 \begin{equation}\label{eq:3.06}
-	\mathbf{\hat{R}}_{zz}^{(q)} = \frac{1}{N}\mathbf{Z}^{(q)}\mathbf{Z}^{(q)^{\rm T}}.
+	\hat{\pmb{R}}_{zz}^{(q)} = \frac{1}{N}\pmb{Z}^{(q)}\pmb{Z}^{(q)^{\rm T}}.
 \end{equation}
 
-Once the $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ have been obtained for anomaly detection based on Eigensim, for the sake of simplicity, we refer to $\mathbf{\hat{R}}_{yy}$ or $\mathbf{\hat{R}}_{zz}$ as a matrix $\mathbf{\hat{R}}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\mathbf{\hat{R}}^{(q)} = \mathbf{V}^{(q)}\mathbf{\lambda}^{(q)}\mathbf{V}^{(q)^{\rm T}}$, in order to obtain the vector of eigenvalues $\textbf{e}$, as following:
+Once the $\hat{\pmb{R}}_{yy}$ or $\hat{\pmb{R}}_{zz}$ have been obtained for anomaly detection based on Eigensim, for the sake of simplicity, we refer to $\hat{\pmb{R}}_{yy}$ or $\hat{\pmb{R}}_{zz}$ as a matrix $\hat{\pmb{R}}$. Therefore, the next step of the algorithm is the eigenvalue decomposition (EVD), calculated according to $\hat{\pmb{R}}^{(q)} = \pmb{V}^{(q)}\pmb{\lambda}^{(q)}\pmb{V}^{(q)^{\rm T}}$, in order to obtain the vector of eigenvalues $\pmb{e}$, as following:
 
 \begin{equation}\label{eq:3.07}
-	\mathbf{e}^{(q)} = \rm diag(\mathbf{\lambda}^{(q)}),
+	\pmb{e}^{(q)} = \rm diag(\pmb{\lambda}^{(q)}),
 \end{equation}
 
 The eigenvalues should be sorted in descending order, as defined by $\lambda_{1}^{(q)} > \lambda_{2}^{(q)} > \lambda_{3}^{(q)} > \cdots > \lambda_{m}^{(q)}$, to make possible the selection of the first eigenvalue in the obtained sequence, represented by $\lambda_{1}^{(q)}$, which is the largest eigenvalue of the data evaluated for attack detection.
 
-The process of obtaining the $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and the matrix $\mathbf{\hat{R}}^{(q)}$, finding the largest eigenvalue for each $q$-th time frame, should be repeated until $q = Q$, in order to obtain the largest eigenvalue of all time frames, as presented by 
+The process of obtaining the $\pmb{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and the matrix $\hat{\pmb{R}}^{(q)}$, finding the largest eigenvalue for each $q$-th time frame, should be repeated until $q = Q$, in order to obtain the largest eigenvalue of all time frames, as presented by 
 
 \begin{equation}\label{eq:3.08}
-	\mathbf{E} =
+	\pmb{E} =
 	\begin{bmatrix}
 		\lambda_1^{(1)} & \lambda_1^{(2)} & \lambda_1^{(3)} & \cdots & \lambda_1^{(Q)} \\
 		\lambda_2^{(1)} & \lambda_2^{(2)} & \lambda_2^{(3)} & \cdots & \lambda_2^{(Q)} \\
@@ -189,19 +189,18 @@ The process of obtaining the $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$ and 
 	\end{bmatrix}.
 \end{equation}
 
-Since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\mathbf{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the expected input for MOS schemes and can be expressed as 
-
+Since $\lambda_1^{(q)} > \lambda_2^{(q)} > \lambda_3^{(q)} > \cdots > \lambda_{m-1}^{(q)} > \lambda_m^{(q)}$, then the first line of the matrix $\pmb{E}$ contains the largest eigenvalues of each $q$-th time frame, which is the expected input for MOS schemes and can be expressed as 
 \begin{equation}\label{eq:3.09}
-	\boldsymbol{e}_{\rm max} = [ \lambda_1^{(1)}, \lambda_1^{(2)} \cdots \lambda_1^{(Q)}]
+	\pmb{e}_{\rm max} = [ \lambda_1^{(1)}, \lambda_1^{(2)} \cdots \lambda_1^{(Q)}]
 \end{equation}
 
-Once obtained the largest eigenvalues of each $q$-th time frame, it is possible to apply a selected MOS scheme to estimate the model order $\hat{d}$, which is the estimated number of time frames with malicious behavior. Therefore, $\boldsymbol{e}_{\rm max}$ is used as input parameter for MOS schemes, according to the equation
+Once obtained the largest eigenvalues of each $q$-th time frame, it is possible to apply a selected MOS scheme to estimate the model order $\hat{d}$, which is the estimated number of time frames with malicious behavior. Therefore, $\pmb{e}_{\rm max}$ is used as input parameter for MOS schemes, according to the equation
 
 \begin{equation}\label{eq:3.10}
-	\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max})
+	\hat{d} = \textrm{MOS}(\pmb{e}_{\rm max})
 \end{equation}
 
-Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\boldsymbol{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to Appendix \ref{apx:a_mos} and to \cite{da2009comparison}.
+Note that some MOS schemes may also require the amount of time that compose a time frame, such as $\hat{d} = \textrm{MOS}(\pmb{e}_{\rm max}, M)$. For more information about MOS schemes, interested readers are referred to Appendix \ref{apx:a_mos} and to \cite{da2009comparison}.
 
 \section{Results and analysis}
 \label{sec:3_results}
@@ -271,7 +270,7 @@ This threat scenario, where the attacker uses expired password to perform unauth
 
 The Eigensim and MOS schemes are used in order to identify anomalous behavior that can indicate an attack and be used to prevent or avoid attack propagation. Therefore, it is necessary to analyze the data that can be collected from user operations on mobile client, to identify features that can be modeled and submitted to Eigensim, according to described in Section \ref{sec:3_eigensim}.
 
-The selected features shall be modeled as matrices which represents a signal superposition of signal, artifact and noise, which refer to normal, controlled and anomalous behaviors \cite{tenorio2013greatest,vieira2017model}. Thus, the data is grouped into time frames $\mathbf{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
+The selected features shall be modeled as matrices which represents a signal superposition of signal, artifact and noise, which refer to normal, controlled and anomalous behaviors \cite{tenorio2013greatest,vieira2017model}. Thus, the data is grouped into time frames $\pmb{X}^{(q)} \in \mathbb{R}^{M\times{N}}$, with $q = 1, 2, 3, \ldots, Q$ , where $M$ defines the decomposition of a selected feature, $N$ defines the time decomposition and represents the number of occurrences of the feature $m$ during the time $n$.
 
 In offline mode, the user is still allowed to get access to operations that do not require communication with the server side. These operations and their selected features shall be incrementally logged by the UAL of the mobile client, in order to be analyzed by the TIM to identify malicious behaviors. 
 
