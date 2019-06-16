@@ -1,10 +1,6 @@
 \chapter{Moment Distances from Robust Subspace for Network Anomaly Detection}
 \label{ch:4_m_rpca}
 
-\begin{quotation}[]{Paulo Freire}
-No one knows it all. No one is ignorant of everything. We all know something. We are all ignorant of something.
-\end{quotation}
-
 Some widely adopted algorithms for anomaly detection assume a Gaussian or symmetric distributed data, however this assumption may not be observed in some real world problems, such as the case of network traffic analysis, where network traffic features are usually more characterized by skewed and heavy-tailed distributions \cite{lakhina2005mining,benson2010network, leon2017probability}.
 
 Findings of Benson \emph{et al.}  \cite{benson2010network} indicate that certain positive skewed and heavy-tailed distributions can model data center switch traffic, and highlights a difference between the data center environment and the wide area network, where the long-tailed Pareto distribution typically shows the best fit \cite{benson2010network}. Leon-Garcia \cite{leon2017probability} also argues that Pareto distribution has been found to capture the behavior of many quantities of interest in the study of Internet behavior. Moreover, Benson \emph{et al.}  \cite{benson2010network} observes that the Lognormal distribution is the best fit to model arrival processes in a data center.
@@ -84,24 +80,24 @@ We selected Pareto (with scale $a=3$, mode $m=1$ and $\mu=1$) and Lognormal (wit
 The addictive anomalies for Pareto and Lognormal distributions are white Gaussian noise with mean $\mu=0$ and unitary standard deviation $\sigma=1$. The Pareto distribution contaminated by Gaussian noise is denoted as $\pmb{Y}_p^c$, while $\pmb{Y}_l^c$ denotes the Lognormal distribution contaminated by Gaussian noise. The $\pmb{Y}_p^c$ and $\pmb{Y}_l^c$ are depicted by the Figures \ref{fig:4.01} and \ref{fig:4.02}, in order to provide a visual example one variable of $\pmb{Y}_p^c$ and $\pmb{Y}_l^c$.
 
 \begin{figure}[!htb]
-	\centering
-	\subfigure[Pareto and Gaussian Anomalies]{%
-		\includegraphics[width=0.48\textwidth]{figures/ch4/4_Xpg2.png}
-		\label{fig:4.01}
-	}
-	\subfigure[Lognormal and Gaussian Anomalies]{%
-		\includegraphics[width=0.48\textwidth]{figures/ch4/4_Xlogng2.png}
-		\label{fig:4.02}
-	}
-	\caption[Examples of skewed and heavy tailed distributions]{Examples of skewed and heavy tailed distributions}
-	\label{fig:4.03}
+	% \centering
+	% \subfigure[Pareto and Gaussian Anomalies]{%
+	% 	\includegraphics[width=0.48\textwidth]{figs/ch4/4_Xpg2.png}
+	% 	\label{fig:4.01}
+	% }
+	% \subfigure[Lognormal and Gaussian Anomalies]{%
+	% 	\includegraphics[width=0.48\textwidth]{figs/ch4/4_Xlogng2.png}
+	% 	\label{fig:4.02}
+	% }
+	% \caption[Examples of skewed and heavy tailed distributions]{Examples of skewed and heavy tailed distributions}
+	% \label{fig:4.03}
 \end{figure}
 
 An uniform noise between $-6$ and $6$ is used to add anomalies into the Gaussian distributed data set, and $\pmb{Y}_g^c$ denotes the contaminated Gaussian data contaminated by an uniform distribution. The figure \ref{fig:4.04} shows an example of the Gaussian distribution of normal observations and the uniform distribution to simulate the addition of anomalies.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{figures/ch4/4_Xgu2.png}
+	\includegraphics[width=8cm]{figs/ch4/4_Xgu2.png}
 	\caption{Example of Gaussian and Uniform Anomalies}
 	\label{fig:4.04}
 \end{figure}
@@ -159,33 +155,33 @@ one IP is legitimate and this IP be infected subsequently, which can result into
 We conducted and Exploratory Data Analysis (EDA) on the CTU-13 and observed that some features are skewed and present an overlapping between normal and anomalous flows, as can be seen in Figure \ref{fig:4.05} and Figure \ref{fig:4.06}, that present the distributions of TCP state of scenario 16 and the type of services from destination of scenario 10.
 
 \begin{figure}[!htb]
-	\centering
-	\subfigure[State of scenario 16.]{%
-		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110816_State.png}
-		\label{fig:4.05}
-	}
-	\subfigure[Destination Type of service of scenario 10.]{%
-		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110810_dTos.png}
-		\label{fig:4.06}
-	}
-	\caption[Skewness and Overlapping]{Example of skewness and overlapping}
-	\label{fig:4.07}
+	% \centering
+	% \subfigure[State of scenario 16.]{%
+	% 	\includegraphics[width=0.47\textwidth]{figs/ch4/raw_distplot_capture20110816_State.png}
+	% 	\label{fig:4.05}
+	% }
+	% \subfigure[Destination Type of service of scenario 10.]{%
+	% 	\includegraphics[width=0.47\textwidth]{figs/ch4/raw_distplot_capture20110810_dTos.png}
+	% 	\label{fig:4.06}
+	% }
+	% \caption[Skewness and Overlapping]{Example of skewness and overlapping}
+	% \label{fig:4.07}
 \end{figure}
 
 However, it is not possible to observe a pattern on distributions of all the features and scenarios of CTU-13, as depicted by Figures \ref{fig:4.08} and \ref{fig:4.09}, that show the distributions of TCP states of the scenario 10 and source ports of scenario 16, and highlight the distributions of normal and anomalous flows.
 
 \begin{figure}[!htb]
-	\centering
-	\subfigure[State of scenario 10.]{%
-		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110810_State.png}
-		\label{fig:4.08}
-	}
-	\subfigure[Source Port of scenario 16.]{%
-		\includegraphics[width=0.47\textwidth]{figures/ch4/raw_distplot_capture20110816_Sport.png}
-		\label{fig:4.09}
-	}
-	\caption[Skewness and Overlapping]{Skewness and Overlapping}
-	\label{fig:4.10}
+	% \centering
+	% \subfigure[State of scenario 10.]{%
+	% 	\includegraphics[width=0.47\textwidth]{figs/ch4/raw_distplot_capture20110810_State.png}
+	% 	\label{fig:4.08}
+	% }
+	% \subfigure[Source Port of scenario 16.]{%
+	% 	\includegraphics[width=0.47\textwidth]{figs/ch4/raw_distplot_capture20110816_Sport.png}
+	% 	\label{fig:4.09}
+	% }
+	% \caption[Skewness and Overlapping]{Skewness and Overlapping}
+	% \label{fig:4.10}
 \end{figure}
 
 Due to the number of available features and the class overlapping between normal and anomalous flows, we performed an correlation analysis and an empirical cross validation in order to identify the best set of features for network attack detection. Therefore, we adopt the following features: state, destination type of service, destination port, source port, total number of packets, total number of bytes and number of bytes from the source.
@@ -296,24 +292,24 @@ The Algorithm \ref{alg:4.01} describes all possible steps of m-RPCA and the appr
 
 \begin{algorithm}
 	\label{alg:4.01}
-	\SetAlgoLined
-	\KwResult{$\bar{\pmb{t}}_{\bar{\pmb{x}}}$, $\bar{\pmb{t}}_{\bar{\pmb{s}}}$, $\bar{\pmb{t}}_{\bar{\pmb{k}}}$}
-	Given $\pmb{X}$ split into $\pmb{X}^s$ and $\pmb{X}^c$\;
-	\While{not $\min_{L,S}\left \| \pmb{L} \right \|_{*} + \lambda \left \| \pmb{S} \right \|_{1}$ of $\pmb{X}^s$}{
-		$\pmb{L}_{k+1} \in \operatorname*{argmin}_{\pmb{L} \in \mathbb{R}^{m \times n}}\{l(\pmb{L}, \pmb{S}_{k}, \pmb{Y}_{k})\}$\;
-		$\pmb{S}_{k+1} \in \operatorname*{argmin}_{\pmb{S} \in \mathbb{R}^{m \times n}}\{l(\pmb{L}_{k+1}, \pmb{S}, \pmb{Y}_{k})\}$\;
-		$\pmb{Y}_{k+1} = \pmb{Y}_{k} + \mu(\pmb{X} - \pmb{L}_{k} - \pmb{S}_{k})$\;
-	}
-	$\bar{\pmb{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \pmb{h}} \pmb{x}_i$, for $\pmb{L}^s$\;
-	$\bar{\pmb{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \pmb{h}} (\pmb{x}_i - \bar{\pmb{x}})(\pmb{x}_i - \bar{\pmb{x}})^\prime$, for $\pmb{L}^s$\;
-	$\bar{\pmb{s}} = \frac{\pmb{m}_3}{\pmb{m}_2^{\frac{3}{2}}}$, for $\pmb{L}^s$\;
-	$\bar{\pmb{k}} = \frac{\pmb{m}_4}{\pmb{m}_2^2}$, for $\pmb{L}^s$\;
-	$\pmb{d}(\pmb{x},\bar{\pmb{x}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{x}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{x}})^\prime}$\;
-	$\pmb{d}(\pmb{x}, \bar{\pmb{s}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{s}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{s}})^\prime}$\;
-	$\pmb{d}(\pmb{x}, \bar{\pmb{k}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{k}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{k}})^\prime}$\;
-	$\bar{\pmb{t}}_{\bar{\pmb{x}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{x}}, \bar{\pmb{\Sigma}})]^c$\;
-	$\bar{\pmb{t}}_{\bar{\pmb{s}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{s}}, \bar{\pmb{\Sigma}})]^c$\;
-	$\bar{\pmb{t}}_{\bar{\pmb{k}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{k}}, \bar{\pmb{\Sigma}})]^c$\;
+	% \SetAlgoLined
+	% \KwResult{$\bar{\pmb{t}}_{\bar{\pmb{x}}}$, $\bar{\pmb{t}}_{\bar{\pmb{s}}}$, $\bar{\pmb{t}}_{\bar{\pmb{k}}}$}
+	% Given $\pmb{X}$ split into $\pmb{X}^s$ and $\pmb{X}^c$\;
+	% \While{not $\min_{L,S}\left \| \pmb{L} \right \|_{*} + \lambda \left \| \pmb{S} \right \|_{1}$ of $\pmb{X}^s$}{
+	% 	$\pmb{L}_{k+1} \in \operatorname*{argmin}_{\pmb{L} \in \mathbb{R}^{m \times n}}\{l(\pmb{L}, \pmb{S}_{k}, \pmb{Y}_{k})\}$\;
+	% 	$\pmb{S}_{k+1} \in \operatorname*{argmin}_{\pmb{S} \in \mathbb{R}^{m \times n}}\{l(\pmb{L}_{k+1}, \pmb{S}, \pmb{Y}_{k})\}$\;
+	% 	$\pmb{Y}_{k+1} = \pmb{Y}_{k} + \mu(\pmb{X} - \pmb{L}_{k} - \pmb{S}_{k})$\;
+	% }
+	% $\bar{\pmb{x}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \pmb{h}} \pmb{x}_i$, for $\pmb{L}^s$\;
+	% $\bar{\pmb{\Sigma}} = \displaystyle\frac{1}{h}\displaystyle\sum_{i\in \pmb{h}} (\pmb{x}_i - \bar{\pmb{x}})(\pmb{x}_i - \bar{\pmb{x}})^\prime$, for $\pmb{L}^s$\;
+	% $\bar{\pmb{s}} = \frac{\pmb{m}_3}{\pmb{m}_2^{\frac{3}{2}}}$, for $\pmb{L}^s$\;
+	% $\bar{\pmb{k}} = \frac{\pmb{m}_4}{\pmb{m}_2^2}$, for $\pmb{L}^s$\;
+	% $\pmb{d}(\pmb{x},\bar{\pmb{x}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{x}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{x}})^\prime}$\;
+	% $\pmb{d}(\pmb{x}, \bar{\pmb{s}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{s}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{s}})^\prime}$\;
+	% $\pmb{d}(\pmb{x}, \bar{\pmb{k}}, \bar{\pmb{\Sigma}}) = \sqrt{(\pmb{x} - \bar{\pmb{k}}) \bar{\pmb{\Sigma}}^{-1}(\pmb{x} - \bar{\pmb{k}})^\prime}$\;
+	% $\bar{\pmb{t}}_{\bar{\pmb{x}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{x}}, \bar{\pmb{\Sigma}})]^c$\;
+	% $\bar{\pmb{t}}_{\bar{\pmb{s}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{s}}, \bar{\pmb{\Sigma}})]^c$\;
+	% $\bar{\pmb{t}}_{\bar{\pmb{k}}} = [\pmb{d}(\pmb{x}, \bar{\pmb{k}}, \bar{\pmb{\Sigma}})]^c$\;
 	\caption{Moment Distances from Robust Subspace}
 \end{algorithm}
 
@@ -385,7 +381,7 @@ We initially evaluated the $F_1$ of the selected algorithms and m-RPCA approache
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{figures/ch4/gaussian_f1_contamination.png}
+	\includegraphics[width=10cm]{figs/ch4/gaussian_f1_contamination.png}
 	\caption{Anomaly detection on Gaussian distributed with uniform anomalies}
 	\label{fig:4.10}
 \end{figure}
@@ -398,7 +394,7 @@ The Figure \ref{fig:4.11} and \ref{fig:4.12} show the results for anomaly detect
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{figures/ch4/pareto_f1_contamination.png}
+	\includegraphics[width=10cm]{figs/ch4/pareto_f1_contamination.png}
 	\caption{Anomaly detection on Pareto distributed with Gaussian anomalies}
 	\label{fig:4.11}
 \end{figure}
@@ -417,7 +413,7 @@ The results for anomaly detection on Lognormal with Gaussian anomalies, depicted
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{figures/ch4/lognormal_f1_contamination.png}
+	\includegraphics[width=10cm]{figs/ch4/lognormal_f1_contamination.png}
 	\caption{Anomaly detection on Lognormal distributed with Gaussian anomalies}
 	\label{fig:4.12}
 \end{figure}

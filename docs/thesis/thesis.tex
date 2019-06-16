@@ -1,162 +1,80 @@
-% class
-\documentclass[en, oneside, onehalfspacing]{risethesis}
-% \usepackage[mathletters]{ucs}
-\usepackage{ucs}
-\usepackage[utf8x]{inputenc}
-% table
-\usepackage{makecell}
-\usepackage{color, colortbl}
-\definecolor{Gray}{gray}{0.9}
-\definecolor{lightgray}{gray}{0.8}
-% packages and configurations
-\usepackage{enumitem}
-\usepackage{lineno, hyperref}
-\usepackage[numbers]{natbib}
-\usepackage{babel}
-\usepackage{fancybox}
-\usepackage{acronym}
-\usepackage{array}
-\usepackage{graphicx}
-\usepackage{rotating}
-\usepackage{booktabs}
-\usepackage{supertabular}
-\usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{color, colortbl}
-\usepackage{multirow}
-\usepackage{hhline}
-\usepackage{setspace}
-\usepackage{placeins}
-\usepackage{amsthm,amsmath}
-\usepackage{mathtools}
+%% These files were modified in Lyx by:
+%           Lus F. C. Fgueiredo, Fev., 2017.
+%% Git repo for Lyx version are available at:
+%%          https://github.com/lara-unb/DOCUMENTS/tree/master/templates
+%% Latex version for sharelatex and overleaf v2 ported by:
+%%          Vinícius Galvão Guimarães
+%% 
+%% Contributions of:
+%%          Miguel Eduardo Gutierrez Paredes
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 
-\usepackage[linesnumbered, ruled, vlined]{algorithm2e}
-\usepackage{listings}
-\usepackage{epstopdf}
-\usepackage{subfigure}
-\usepackage{courier}
-\usepackage{amsfonts}
-\usepackage{morefloats}
-\usepackage{lipsum}
-\usepackage{cleveref}
-\usepackage{hyperref}
+%\documentclass[11pt,oneside,portuguese]{book}
+\documentclass[12pt,oneside,english]{book}
+\input{setup/packages}
+\input{setup/other}
+\input{setup/theorem_lemma}
+\input{setup/languages}
+\input{setup/listing_def}
+\input{setup/glossaries_setup}
 
-
-% appendix
-\usepackage{appendix}
-\usepackage{hyperref}
-\usepackage{cleveref}
-
-\newtheorem{thm}{Scenario}
-\hypersetup{breaklinks=true}
-\urlstyle{same}
-\Urlmuskip=0mu plus 1mu\relax
-\lstset{numbers=left, 
-	stepnumber=1, 
-	firstnumber=1, 
-	numberstyle=\tiny, 
-	extendedchars=true, 
-	breaklines=true,
-	frame=tb,
-	basicstyle=\footnotesize, 
-	stringstyle=\ttfamily,
-	showstringspaces=false
-}
-
-\renewcommand{\lstlistingname}{Code}
-\renewcommand{\lstlistlistingname}{Lista de Listagens}
-
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\newcommand*\justify{%
-	\fontdimen2\font=0.4em% interword space
-	\fontdimen3\font=0.2em% interword stretch
-	\fontdimen4\font=0.1em% interword shrink
-	\fontdimen7\font=0.1em% extra space
-	%\hyphenchar\font=`\-% allowing hyphenation
-}
-	
-\address{BRASÍLIA}
-
-\universitypt{Universidade de Brasília}
-\universityen{Universidade de Brasília}
-
-\departmentpt{Departamento de Engenharia Elétrica - ENE/FT}
-\departmenten{Departamento de Engenharia Elétrica - ENE/FT}
-
-\programpt{Progama de Pós-Graduação em Engenharia Elétrica - PPGEE}
-\programen{Progama de Pós-Graduação em Engenharia Elétrica - PPGEE}
-
-\majorfieldpt{Engenharia Elétrica}
-\majorfielden{Electrical Engineering}
-
-\title{On The Subspace Learning for Network Attack Detection}
-\date{July/2019}
-
-\author{Thiago Pereira de Brito Vieira}
-\adviser{João Paulo Carvalho Lustosa da Costa}
-% \coadviser{?}
-
-\begin{document}
-
-\frontmatter
-\frontpage
-\presentationpage
-
-\begin{dedicatory}Ficha Catalográfica\end{dedicatory}
-
-\begin{dedicatory}Signatures\end{dedicatory}
-
-\begin{dedicatory}Dedicatory.\end{dedicatory}
-
-\agradecimentos
-First and foremost, I would like to thank God for giving me the life, strength, knowledge and opportunity to undertake this research study and to ..
-
-(...)
-
-Thank You!!
-
-\begin{epigraph}[]{Confucius}
-	Wherever you go, go with all your heart.
-\end{epigraph}
-
-\resumo
-\input{chapters/resumo}
-
-\abstract
-\input{chapters/abstract}
-
-\tableofcontents
-
-\makeatletter
-\renewcommand{\@thesubfigure}{\thesubfigure:\hskip\subfiglabelskip}
 \makeatother
-\setcounter{lofdepth}{2}
+\begin{document}
+\pagenumbering{roman}
 
-\listoffigures
-\listoftables
+\input{setup/title_author_etc}
+\input{parts/dedicated_to}
 
-\input{chapters/acronyms}
-\mainmatter
-	
-\include{chapters/1_introduction/introduction}
-\include{chapters/2_eigen_similarity/eigen_similarity}
-\include{chapters/3_mobile/mobile}
-\include{chapters/4_m_rpca/m_rpca}
-\include{chapters/5_conclusion_future_work/conclusion}
+\runfrontend{}
 
+\import{}{macros}
+\import{parts/}{abstract}
+
+\sumario
+
+\listadefiguras
+
+% \listadetabelas
+
+
+%-----------------------------------------------
+% Use os simbolos, acronimos e notacoes com as funcoes a seguir
+% To use this acronyms list, check the file glossaries-list/symbos.tex.
+	\listadesimbolos
+
+% To use this acronyms list, check the file glossaries-list/acronyms.tex.
+	\listadeacronimos
+
+% To use this acronyms list, check the file glossaries-list/notation.tex.
+	\listadenotacoes
+%-----------------------------------------------
+
+\markboth{}{}
+
+%Main Body
+\mainmatter 
+\setcounter{page}{1} \pagestyle{plain} 
+
+\import{parts/}{1_introduction}
+\import{parts/}{2_eigen_similarity}
+\import{parts/}{3_m_rpca}
+\import{parts/}{4_mobile}
+\import{parts/}{5_conclusion}
+
+%BIBLIOGRAPHY
+\addcontentsline{toc}{chapter}{REFERENCES}
+% Do not use \bibliographystyle{IEEEtran} with abntex2cite package!!!!!
+% Also, try not to use abntex2cite at all! just comment its package in setup/packages.tex
+%\bibliographystyle{chicago}
+%\bibliographystyle{acm}
+\bibliographystyle{IEEEtran}
+
+\bibliography{bibliography}
+
+%APPENDIX
+\part*{APPENDIX}
 \appendix
-\include{chapters/appendix/a_mos/a_mos}
-\include{chapters/appendix/b_pca_svm_cfa/pca_svm_cfa}
-\include{chapters/appendix/c_tensor_denoising/c_tensor_denoising}
-	
-\bibliographystyle{natbib}
-\addcontentsline{toc}{chapter}{Bibliography}
-\bibliography{references}
-
-\clearpage
-\addappheadtotoc
+\import{parts/}{a_mos}
+\import{parts/}{b_csf_pca_svm}
 
 \end{document}

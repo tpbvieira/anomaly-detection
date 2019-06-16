@@ -1,0 +1,69 @@
+%---------------------------------------
+
+% Example for Symbols (USE A TAG "symb:" for symbols):
+% \newglossaryentry{symb:pi}
+% {
+%     type=symbolslist,
+%     parent=greekletters,
+%     sort=a,
+%     symbol={\ensuremath{\pi}}
+%     name=pi,
+%     plural={pi},% the plural hardcoded
+%     description={Ratio of circumference of circle to its diameter}
+% }
+
+% In the text:
+%     use \gls{label}, for an first time extended name
+% In the text , for plural:
+%     \glspl{duck}
+% In the text , for Caps and/or plural:
+%     \Gls{duck} => Duck
+%     \Glspl{duck} => Ducks
+% \glsdesc{<your key>} for description in text
+% \Glsdesc{<your key>} for description in text 
+% \GLSdesc{<your key>} for description in text
+%
+%
+% To just add a Symbol without using it, do:
+% \glsaddall
+% \glsadd{label}
+
+%******** Groups ***********
+\newglossaryentry{greekletters}{name={Greek symbols},unit={},description={\nopostdesc\newline},sort=a}
+\newglossaryentry{latinletters}{name={Latin symbols},unit={},description={\nopostdesc\newline},sort=b}
+
+%******** Latins ***********
+\newglossaryentry{symb:E}
+{
+	type=symbolslist,
+	parent=latinletters,
+	name={E},
+	unit={\si{\joule}},
+	description={total energy consumed}
+}
+
+\newglossaryentry{symb:P}
+{
+	type=symbolslist,
+	parent=latinletters,
+	name={P},
+	unit={\si{\watt}},
+	description={average power consumption}
+}
+
+
+%******** Greeks ***********
+\newglossaryentry{symb:pi}
+{
+	type=symbolslist,
+	parent=greekletters,
+	sort=a,
+	unit={},
+	name={\ensuremath{\pi}},
+	description={ratio of circumference of circle to its diameter}
+}
+
+
+
+
+ 

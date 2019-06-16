@@ -7,13 +7,6 @@
 \chapter{Introduction}
 \label{ch:1_introduction}
 
-\begin{quotation}[]{Lao Tzu}
-The softest things in the world overcome the hardest things in the world.
-\end{quotation}
-
-
-\section{Motivation}
-\label{sc:motivation}
 
 Traditionally, cyber defense methods can be effective against ordinary and conventional types of attacks, yet may fail against innovative malicious techniques \cite{lakhina2005mining}. In order to be able to detect and avoid novel attacks and their variations, it is necessary to develop or improve techniques to achieve efficiency in resource consumption, processing capacity and response time. Moreover, it is crucial to obtain high detection accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes have been applied to detect malicious traffic in computer networks \cite{Lu2009,Huang2009,Zonglin2009,david2011blind,da2012improved,tenorio2013greatest, vieira2017model}, showing advances in network traffic analysis.
 
@@ -37,7 +30,7 @@ Considering the above described landscape, this thesis outlines the development 
 \subsection{Hypothesis Formulation}
 \label{sc:Hypothesis}
 
-For the experimental evaluation of our proposals, we adopt a methodology based on aspects of GQM (Goal-Question-Metric) template \citep{Basili1994} and define two questions to achieve our goal, which are:
+For the experimental evaluation of our proposals, we adopt a methodology based on aspects of Goal-Question-Metric (GQM) template \cite{Basili1994} and define two questions to achieve our goal, which are:
 
 \begin{itemize}
 	\item $Q_1$: Can the analysis of patterns from a learned subspace identify and detect anomalies in network traffic?
@@ -67,7 +60,7 @@ The metrics most adopted to evaluate experimental results of network attack dete
 
 In the context of anomaly-based schemes, this thesis proposes the Eigensim, which is a approach based on subspace learning techniques for detection of malicious traffic in computer networks. 
 
-Inspired by \cite{david2011blind,da2012improved}, Eigensim models the network traffic using a signal processing formulation as a composition of three components: signal, artifact and noise, taking into account the incoming and outgoing traffic in certain types of network ports (TCP or UDP). The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis. In contrast to \cite{david2011blind,da2012improved,tenorio2013greatest}, MOS and eigenvalue analysis are applied to detect detailed time frames under attack. We evaluate the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 data set \citep{osanaiye2016distributed}, which is a well known network traffic data set. Furthermore, this proposed approach is validated into a prove of concept regarding behavioral anomaly detection to detect possible threats to a offline corporate mobile app. 
+Inspired by \cite{david2011blind,da2012improved}, Eigensim models the network traffic using a signal processing formulation as a composition of three components: signal, artifact and noise, taking into account the incoming and outgoing traffic in certain types of network ports (TCP or UDP). The proposed technique is based on eigenvalue analysis, model order selection (MOS) and similarity analysis. In contrast to \cite{david2011blind,da2012improved,tenorio2013greatest}, MOS and eigenvalue analysis are applied to detect detailed time frames under attack. We evaluate the accuracy and performance of the proposed framework applied to a experimental scenario and to the DARPA 1998 data set \cite{osanaiye2016distributed}, which is a well known network traffic data set. Furthermore, this proposed approach is validated into a prove of concept regarding behavioral anomaly detection to detect possible threats to a offline corporate mobile app. 
 
 Network anomaly detection problems are usually characterized by skewed and imbalanced data \cite{Phua2004minority,he2008learning,benson2010network}. Learning algorithms for imbalanced data has been a challenging research topic, considering that the fundamental issue with the imbalanced learning problem is the ability of imbalanced data to significantly compromise the performance of most standard learning algorithms \cite{he2008learning}. 
 

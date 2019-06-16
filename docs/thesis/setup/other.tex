@@ -1,0 +1,116 @@
+
+%%###################%%###################
+%%################### 
+%%###################   NOVO AMBIENTE: laranote
+%%###################
+%%###################%%###################
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  leftline=false,
+  backgroundcolor=gray!15,
+  font=\small,
+    skipabove=\baselineskip,
+    skipbelow=\baselineskip,
+%  roundcorner=100mm,
+  leftmargin=10pt,
+  rightmargin=10pt,
+  innertopmargin=10pt,
+%  innerrightmargin=15pt,
+  innerbottommargin=10pt,
+%  linewidth = 3pt,
+%  linecolor=red!60!black!50,
+%    nobreak=false,
+]{laranote}
+
+
+
+
+
+
+
+
+
+
+%%###################%%###################
+%%################### 
+%%###################   NOVO AMBIENTE: Example
+%%###################
+%%###################%%###################
+\newtheoremstyle{myExamStyle}%(blank means default value)
+{}%Space above
+{}%Space below
+{}%Body font
+{}%Indent amount
+{\color{Maroon}\scshape\bfseries}%theorem head font
+{}%Punctuation after theorem head
+{.5em}%Space after theorem head
+{}%Theorem head spec
+
+%Define example with the new style
+\theoremstyle{myExamStyle}
+\newtheorem{reexample}{Example}[chapter]
+
+\renewenvironment{example}
+{%begin{<environment_name>} is replaced with the contents between these first curly brackets
+\begin{tcolorbox} [
+breakable,
+boxsep=8pt,%distance from the border
+left=0pt,%distance from the left
+right=0pt, %distance from the right
+top=0pt,%distance from the top
+arc=0pt,%radius of round corners
+boxrule=1pt,%border thickness
+toprule=1pt,%top border thickness
+%bottomrule=1pt,
+colframe=Maroon,%Border color
+colback=White%Background color
+]
+\begin{reexample}
+}
+%The argument of <environment_name> is placed in between
+{%end{<environment_name>} is replaced with the contents between these second curly brackets
+\end{reexample}
+\end{tcolorbox}
+}
+
+
+
+
+%%###################%%###################
+%%################### 
+%%###################   NOVO AMBIENTE: Definition
+%%###################
+%%###################%%###################
+\newtheoremstyle{myDefinitionStyle}%(blank means default value)
+{}{}{}{}%Space above and below | body font | Indent amount
+{\color{Maroon!80!orange!80!black!80}\scshape\bfseries}%theorem head font
+{}{.5em}{}%Punctuation after theorem head | %Space after theorem head | %Theorem head spec
+
+%Define example with the new style
+\theoremstyle{myDefinitionStyle}
+\newtheorem{reDefinition}{Definition}[chapter]
+
+\let\origdescription\defn
+\let\newdescription\reDefinition
+\renewenvironment{defn}{%\stepcounter{defn}%
+\noindent%
+\begin{tcolorbox}[%width=4in,
+breakable,
+boxsep=8pt,
+left=0pt,
+right=0pt,
+top=2pt,
+arc=2pt,
+boxrule=0pt,toprule=2pt,bottomrule=2pt,
+colframe=gray!30!black!30,
+colback=gray!10!orange!5]
+\newdescription
+}
+{
+\end{tcolorbox}\ignorespacesafterend 
+ 
+\vspace{10pt} 
+ 
+}

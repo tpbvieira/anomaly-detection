@@ -1,10 +1,6 @@
 \chapter{Eigensim - Model Order Selection and Eigen Similarity based Framework for Detection and Identification of Network Attacks}
 \label{ch:2_mos_eig_sim}
 
-\begin{quotation}[]{Lao Tzu}
-All difficult things have their origin in that which is easy, and great things in that which is small. 
-\end{quotation}
-
 Traditionally, cyber defense methods can be effective against ordinary and conventional types of attacks, yet may fail against innovative malicious techniques \cite{lakhina2005mining}. In order to be able to detect and avoid novel attacks and their variations, it is necessary to develop or improve techniques to achieve efficiency on resource consumption, processing capacity and response time. Moreover, it is crucial to obtain high detection accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes have being applied to the detection of malicious traffic in computer networks \cite{Lu2009,Huang2009,Zonglin2009,david2011blind,da2012improved,tenorio2013greatest}, showing advances in network traffic analysis.
 
 Information security may consist of both technical and procedural aspects. The former includes equipment and security systems, while the latter corresponds to security rules and recommendations. Intrusion detection and intrusion prevention systems are security systems used, respectively, to detect (passively) and prevent (proactively) threats to computer systems and computer networks. Such systems can work in the following fashions: signature-based, anomaly-based or hybrid \cite{Huang2009,mudzingwa2012study}. Additionally, anomaly detection techniques can be categorized in classification, statistical, information theory and clustering based, according to \cite{bhuyan2014network,ahmed2016survey,osanaiye2016distributed}.
@@ -57,7 +53,7 @@ The environment of the analyzed scenario is composed by two computers and one ro
 %TODO - recreate the figure and change the concepts
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig09.png}
+     \includegraphics[width=11cm]{figs/ch2/fig09.png}
      \caption{Scenario to reproduce legitimate traffic, noise, flood and port scan.}
      \label{fig:2.01}
 \end{figure}
@@ -93,7 +89,7 @@ The legitimate traffic $\pmb{U}^{(q)}$ is characterized by the traffic from user
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig03.png}
+     \includegraphics[width=11cm]{figs/ch2/fig03.png}
      \caption{Traffic from user's operations, that can be characterized by web access, traffic of well-known applications or network protocols.}
      \label{fig:2.03}
 \end{figure}
@@ -103,12 +99,12 @@ The traffic that is not associated with user's operations and with malicious tra
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig04.png}
+     \includegraphics[width=11cm]{figs/ch2/fig04.png}
      \caption{Network traffic of user independent operations for network management.}
      \label{fig:2.04}
 \end{figure}
 
-We define that if the $\#\pmb{X}^{(q)} ≠ 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\pmb{X}^{(q)} = 0$, then there is no malicious traffic. We show how to detect the $\#\pmb{X}^{(q)}$, given only the matrix $\pmb{X}^{(q)}$, in order to identify malicious traffic.
+We define that if the $\#\pmb{X}^{(q)} \neq 0$, then there is malicious traffic in the evaluated time frame $q$, on the other hand, if the $\#\pmb{X}^{(q)} = 0$, then there is no malicious traffic. We show how to detect the $\#\pmb{X}^{(q)}$, given only the matrix $\pmb{X}^{(q)}$, in order to identify malicious traffic.
 
 \subsection{Synflood, Fraggle and Port scan}
 \label{sec:2_SynfloodFraggleandPortscan}
@@ -124,7 +120,7 @@ With respect to the synflood attacks, the attacker sends a large quantity and co
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig05.png}
+     \includegraphics[width=11cm]{figs/ch2/fig05.png}
      \caption{A large quantity of SYN requests to a target, in order to cause a DoS.}
      \label{fig:2.05}
 \end{figure}
@@ -136,7 +132,7 @@ The fraggle attack can affect the entire network, since all hosts receive severa
 % TODO - Replace
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig06.png}
+     \includegraphics[width=11cm]{figs/ch2/fig06.png}
      \caption{Large amount of “UDP echo” requests and replies, causing packet flooding.}
      \label{fig:2.06}
 \end{figure}
@@ -151,7 +147,7 @@ The UDP scan technique sends UDP packets to the destination port, and if it resp
 
 \begin{figure}[h!]
      \centering 
-     \includegraphics[width=11cm]{figures/ch2/fig07.png}
+     \includegraphics[width=11cm]{figs/ch2/fig07.png}
      \caption{Connection attempts in order to identify active ports.}
      \label{fig:2.07}
 \end{figure}
@@ -174,7 +170,7 @@ This section describes the proposed technique to detect synflood, fraggle and po
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/ch2/mos_eigen_similarity.eps}
+     \includegraphics[width=11cm]{figs/ch2/mos_eigen_similarity.eps}
      \caption{Overview of The Framework for Detection and Identification of Network Attacks.}
      \label{fig:2.08}
 \end{figure}
@@ -266,22 +262,22 @@ The largest eigenvalue analysis for estimating the $q$-th time frames that are u
 
 \begin{algorithm}
 	\label{alg:2.01}
-	\SetAlgoLined
-	\KwResult{$\rm{\hat{\pmb{q}}}_{\rm max}$}
-	Given $f = 1$\;
-	\While{$f < \hat{d}$}{
-		$q_{\rm value} = \operatorname*{argmax}_{\lambda}  \hspace{1 mm} \pmb{e}_{\rm max}$\;
-		$i = 1$\;
-    	\While{$i < Q$}{
-    		\If{$\pmb{e}_{\rm max}^{(i)} == q_{\rm value}$}{
-    			$\hat{\pmb{q}}_{\rm max}^{(f)} = i$\;
-    		}
-    		$i = i + 1$\;
-    	}
-    	$\pmb{e}_{\rm max} \rightarrow \hat{\pmb{q}}_{\rm max}^{(f)}$\;
-		$f = f + 1$\;
-	}
-	\caption{Detection of Time Frames Under Attack}
+	% \SetAlgoLined
+	% \KwResult{$\rm{\hat{\pmb{q}}}_{\rm max}$}
+	% Given $f = 1$\;
+	% \While{$f < \hat{d}$}{
+	% 	$q_{\rm value} = \operatorname*{argmax}_{\lambda}  \hspace{1 mm} \pmb{e}_{\rm max}$\;
+	% 	$i = 1$\;
+ %    	\While{$i < Q$}{
+ %    		\If{$\pmb{e}_{\rm max}^{(i)} == q_{\rm value}$}{
+ %    			$\hat{\pmb{q}}_{\rm max}^{(f)} = i$\;
+ %    		}
+ %    		$i = i + 1$\;
+ %    	}
+ %    	$\pmb{e}_{\rm max} \rightarrow \hat{\pmb{q}}_{\rm max}^{(f)}$\;
+	% 	$f = f + 1$\;
+	% }
+	% \caption{Detection of Time Frames Under Attack}
 \end{algorithm}
 
 After the estimation of the $\rm{\hat{\pmb{q}}}_{\rm max}$ time frames under attack, it is necessary to obtain more details of the detected Attacks, such as the $n$-th minutes when the attacks happened and the $m$-th network ports that were attacked. To deal with this problem, the adoption of a similarity analysis between legitimate traffic and the traffic of time frames estimated as under attack is evaluated, analyzing the effectiveness of cosine similarity to highlight abnormalities inserted by network traffic attacks. 
@@ -321,13 +317,13 @@ The incremental approach for eigen similarity analysis is based on the increment
 \pmb{X}_{n} = \{\pmb{X}_{n} | \pmb{x}^{(\hat{q})}_{(n)}\},
 \end{equation}
 
-Figure \ref{fig:2.08} illustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\pmb{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected by Algorithm \ref{alg:2.01}. 
+Figure \ref{fig:2.88} illustrates the network traffic selection for the incremental approach of eigen similarity analysis, where the $\pmb{X}^{(1)}$ is chosen as reference for similarity analysis of the $m$-th minutes of the time frame $q=3$, where one network attack was previously detected by Algorithm \ref{alg:2.01}. 
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/ch2/incremental.eps}
+     \includegraphics[width=15cm]{figs/ch2/incremental.eps}
      \caption{Traffic selection for incremental approach.}
-     \label{fig:2.08}
+     \label{fig:2.88}
 \end{figure}
 
 For the scenario depicted by Figure \ref{fig:2.08}, the eigen similarity analysis starts at $\pmb{x}^{(3)}_{(41)}$ and is incrementally performed until $\pmb{x}^{(3)}_{(60)}$, in order to calculate the $s_n$. We assume that $s_n < l$ means an attack identification, according the anomaly on similarity of $s_n$ compared to a defined limiar $l$. 
@@ -349,7 +345,7 @@ The eigen similarity analysis can also be applied by means of the individual app
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/ch2/individualized.eps}
+     \includegraphics[width=15cm]{figs/ch2/individualized.eps}
      \caption{Traffic selection for individual approach.}
      \label{fig:2.09}
 \end{figure}
@@ -358,7 +354,7 @@ The incremental and the individual approaches can be combined to obtain the incr
 
 %TODO - fix figure that shows s_n > l where should the inverse
 \begin{figure}[h!]
-     \includegraphics[width=15cm]{figures/ch2/incremental_individualized.eps}
+     \includegraphics[width=15cm]{figs/ch2/incremental_individualized.eps}
      \caption{Traffic selection for incremental individualized approach.}
      \label{fig:2.02}
 \end{figure}
@@ -410,7 +406,7 @@ For the evaluation of MOS Schemes accuracy for flood and port scan detection, th
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/ch2/eigenvalues_synflood.eps} 
+     \includegraphics[width=11cm]{figs/ch2/eigenvalues_synflood.eps} 
      \caption{Eigenvalues of the sample covariance matrix (synflood).}
      \label{fig:2.10}
 \end{figure}
@@ -421,7 +417,7 @@ Figure \ref{fig:2.11} illustrates the eigenvalues calculated from sample covaria
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/ch2/eigenvalues_fraggle.eps}
+     \includegraphics[width=11cm]{figs/ch2/eigenvalues_fraggle.eps}
      \caption{Eigenvalues of the sample covariance matrix (fraggle).}
      \label{fig:2.11}
 \end{figure}
@@ -430,7 +426,7 @@ Figure \ref{fig:2.12} depicts the eigenvalues calculated from covariance matrix 
 
 \begin{figure}[h!]
 	\centering
-     \includegraphics[width=11cm]{figures/ch2/eigenvalues_portscan.eps}
+     \includegraphics[width=11cm]{figs/ch2/eigenvalues_portscan.eps}
      \caption{Eigenvalues of the covariance matrix of zero mean and unitary standard deviation (port scan).}
      \label{fig:2.12}
 \end{figure}

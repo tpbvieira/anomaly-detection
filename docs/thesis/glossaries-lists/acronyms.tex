@@ -1,0 +1,40 @@
+% Example for Glossary:
+% \newglossaryentry{latex}
+% {
+%     name=latex,
+%     description={Is a mark up language specially suited 
+%     for scientific documents}
+% }
+%
+% To include acronyms into the list of symbols, do as follow:
+% * add [parent=acronymslists] after every "\newacronym";
+% * Comment the line "\listadeacronimos" in file "thesis.tex";
+% * Remove the comment the following line:
+%\newglossaryentry{acronymslists}{name={Acronyms list},description={\glspar},sort=c}
+
+
+\newglossaryentry{maths}
+{
+    name=mathematic,
+    description={Mathematics is what mathematicians do}
+}
+
+% Example for Acronyms:
+% \newacronym{label}{Acronym}{Full name}
+\newacronym{uti}{UTI}{Unidade de Tratamento Intensivo}
+\newacronym{scuba}{SCUBA}{Self-Contained Underwater Breathing Apparatus}
+\newacronym{radar}{RADAR}{RAdio Detection And Ranging}
+\newacronym[description={Data Link layer/protocols}]{dl}{DL}{Data link}
+
+
+% In the text:
+%     use \gls{label}, for an first time extend name, plus acronyms
+%     use \acrshort{label}, for an acronym only
+%     use \acrlong{label}, for a full name only
+% In the text , for plural:
+%     \glspl{duck}
+% In the text , for Caps and/or plural:
+%     \Gls{duck}
+%     \Glspl{duck}
+
+
