@@ -1,0 +1,109 @@
+%%###################%%###################
+%%################### 
+%%###################   NEW-COMMANDS FOR THEOREM & LEMMA ENVIRONMENTS
+%%###################
+%%###################%%###################
+\newcommand\removenontitle[1]{%{#1}\ifx\tempa\empty
+%\if\relax\detokenize{#1}\relax vazio \else XX #1 \fi
+\ifthenelse{\equal{#1}{opt}}{}{#1}}
+
+
+% Verde original
+%\newcommand\corteoremafundo{gray!60!green!60}\newcommand\corteorematitle{black!95!green!70} 
+% Verde escuro
+\newcommand\corteoremafundo{black!80!green!70}\newcommand\corteorematitle{black!95!green!70} 
+% Marrom claro
+%\newcommand\corteoremafundo{Maroon!60!gray!60}\newcommand\corteorematitle{Maroon!80!orange!80!black!80}
+% Cor da numeracao capitulos
+%\newcommand\corteoremafundo{black!70!bananamania!70}\newcommand\corteorematitle{black!60!bananamania!95}
+
+
+\def\teoremaestilo{2} % SELECIONE ENTRE ESTILOS 1 e 2
+
+
+%%###################%%###################
+%%################### 
+%%###################   NOVO AMBIENTE: THEOREM
+%%###################
+%%###################%%###################
+
+%\newcommand{\testexyz}[1]{\textcolor{black}{\textbf{Theorem \thethm} \ \ \ifthenelse{\equal{#1}{x}}{}{#1}}}
+\newcommand{\newtheoremtitlemacro}[1]{\textcolor{black}{\textbf{Theorem \thethm} \ \ \removenontitle{#1}}}
+
+
+\newtheoremstyle{named}{}{}{}{}{\itshape}{ }{.0em}{\noindent \thmnote{#3's }}
+\theoremstyle{named}
+\newtheorem{theorem}{}[chapter] 
+ 
+\let\newteorema\theorem
+\renewenvironment{thm}{\newteorema}{}
+\let\origtheorem\thm 
+ 
+\renewenvironment{thm}[1][opt]{\addtocounter{thm}{+1}%\stepcounter{thm}%  
+\noindent%\centering\hspace{20pt}%\begin{minipage}[t]{0.90\linewidth}%
+\begin{tcolorbox}[%
+breakable,
+colback=gray!5!,
+colframe=\corteoremafundo,
+title={\ifthenelse{\equal{\teoremaestilo}{1}}{\newtheoremtitlemacro{#1}}{}}
+% 
+]% 
+\ifthenelse{\equal{\teoremaestilo}{1}}%
+{}%
+{\textcolor{\corteorematitle}{{\large \textbf{Theorem \thethm} \ \ \textbf{\textit{\removenontitle{#1}}}} }}%  
+\origtheorem
+}
+{\end{tcolorbox}%\end{minipage}
+\ignorespacesafterend
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%###################%%###################
+%%################### 
+%%###################   NOVO AMBIENTE: LEMMA
+%%###################
+%%###################%%###################
+\newtheoremstyle{myLemma}%(blank means default value)
+{}{}{}{}%Space above and below | body font | Indent amount
+{\color{Maroon!80!orange!80!black!80}\scshape\bfseries}%theorem head font
+{}{.5em}{}%Punctuation after theorem head | %Space after theorem head | %Theorem head spec
+
+%Define example with the new style
+%\theoremstyle{myLemmaStyle}
+\newtheorem{reLemma}{Lemma}[chapter]
+
+\let\origlemma\lem
+\let\newlemma\reLemma
+\renewenvironment{lem}{%\stepcounter{defn}%
+\noindent%
+\begin{tcolorbox}[%width=4in,
+breakable,
+boxsep=8pt,
+left=0pt,
+right=0pt,
+top=2pt,
+arc=2pt,
+boxrule=0pt,toprule=2pt,bottomrule=2pt,
+colback=gray!5,
+colframe=\corteoremafundo]
+\newlemma
+}
+{
+\end{tcolorbox}\ignorespacesafterend 
+ 
+\vspace{10pt} 
+ 
+}

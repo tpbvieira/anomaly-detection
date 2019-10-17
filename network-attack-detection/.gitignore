@@ -2,6 +2,8 @@
 *.out
 *.jpg
 *.png
+m_rpca.txt
+m_rpca_cv.txt
 
 .idea/
 .ipynb_checkpoints/
@@ -13,6 +15,11 @@ data/
 output/ctu_13/eda/
 output/ctu_13/results/pkl_sum_dict/
 output/ctu_13/results/m-rpca_r/
+output/ctu_13/results/.~*
+output/ctu_13/results/agg_dict_pkl/
+output/ctu_13/results/agg_robpca/
+output/ctu_13/results/robpca/
+output/simulation/robpca/
 
 BinetflowTrainer/.idea/
 BinetflowTrainer/__pycache__/
@@ -26,6 +33,3 @@ BinetflowTrainer/csv/
 BinetflowTrainer/pkl/
 BinetflowTrainer/15/
 BinetflowTrainer/saved_data (copy)/
-output/ctu_13/results/.~*
-output/ctu_13/results/agg_dict_pkl/
-output/ctu_13/results/agg_robpca/

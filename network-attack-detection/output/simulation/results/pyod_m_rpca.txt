@@ -1,0 +1,194 @@
+Contamination: 0.33
+	### Gaussian contaminated by Uniform
+	Number of inliers: 1607
+	Number of outliers: 793
+	Contamination: 0.330000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.9842271293375395
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.9833333333333333
+	3 fitting Isolation Forest 0.9804416403785489
+	4 fitting K Nearest Neighbors (KNN) 0.9803424223208624
+	5 fitting Local Outlier Factor (LOF) 0.35575679172056923
+	6 fitting Minimum Covariance Determinant (MCD) 0.9842271293375395
+	7 fitting One-class SVM (OCSVM) 0.9842271293375395
+	8 fitting Principal Component Analysis (PCA) 0.8769716088328074
+	ss_md_rpca - F1: 0.984227
+	ss_sd_rpca - F1: 0.980442
+	ss_kd_rpca - F1: 0.977918
+	css_md_rpca - F1: 0.984227
+	css_sd_rpca - F1: 0.984227
+	css_kd_rpca - F1: 0.768454
+	u_md_rpca - F1: 0.981703
+	u_sd_rpca - F1: 0.981703
+	u_kd_rpca - F1: 0.748265
+	Number of inliers: 1607
+	Number of outliers: 793
+	Contamination: 0.330000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.03406940063091483
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.44290220820189274
+	4 fitting K Nearest Neighbors (KNN) 0.0823767724510466
+	5 fitting Local Outlier Factor (LOF) 0.40156453715775753
+	6 fitting Minimum Covariance Determinant (MCD) 0.02145110410094637
+	7 fitting One-class SVM (OCSVM) 0.24100946372239748
+	8 fitting Principal Component Analysis (PCA) 0.7646687697160883
+	ss_md_rpca - F1: 0.903470
+	ss_sd_rpca - F1: 0.998107
+	ss_kd_rpca - F1: 0.999369
+	css_md_rpca - F1: 0.555205
+	css_sd_rpca - F1: 0.940063
+	css_kd_rpca - F1: 0.999369
+	u_md_rpca - F1: 0.545110
+	u_sd_rpca - F1: 0.823975
+	u_kd_rpca - F1: 0.860568
+	Number of inliers: 1607
+	Number of outliers: 793
+	Contamination: 0.330000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.0
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.05804416403785489
+	4 fitting K Nearest Neighbors (KNN) 0.001347708894878706
+	5 fitting Local Outlier Factor (LOF) 0.3619909502262444
+	6 fitting Minimum Covariance Determinant (MCD) 0.0
+	7 fitting One-class SVM (OCSVM) 0.007570977917981073
+	8 fitting Principal Component Analysis (PCA) 0.6296529968454259
+	ss_md_rpca - F1: 0.664984
+	ss_sd_rpca - F1: 0.972871
+	ss_kd_rpca - F1: 0.989274
+	css_md_rpca - F1: 0.350789
+	css_sd_rpca - F1: 0.965300
+	css_kd_rpca - F1: 0.981703
+	u_md_rpca - F1: 0.315457
+	u_sd_rpca - F1: 0.938801
+	u_kd_rpca - F1: 0.994322
+
+
+Contamination: 0.25
+	### Gaussian contaminated by Uniform
+	Number of inliers: 1800
+	Number of outliers: 600
+	Contamination: 0.250000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.9766666666666667
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.9804587935429057
+	3 fitting Isolation Forest 0.9766666666666667
+	4 fitting K Nearest Neighbors (KNN) 0.9723849372384938
+	5 fitting Local Outlier Factor (LOF) 0.2704081632653062
+	6 fitting Minimum Covariance Determinant (MCD) 0.9766666666666667
+	7 fitting One-class SVM (OCSVM) 0.9766666666666667
+	8 fitting Principal Component Analysis (PCA) 0.91
+	ss_md_rpca - F1: 0.976667
+	ss_sd_rpca - F1: 0.973333
+	ss_kd_rpca - F1: 0.966667
+	css_md_rpca - F1: 0.976667
+	css_sd_rpca - F1: 0.976667
+	css_kd_rpca - F1: 0.638333
+	u_md_rpca - F1: 0.975000
+	u_sd_rpca - F1: 0.973333
+	u_kd_rpca - F1: 0.621667
+	### Pareto contaminated by Gaussian
+	Number of inliers: 1800
+	Number of outliers: 600
+	Contamination: 0.250000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.0
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.4683333333333333
+	4 fitting K Nearest Neighbors (KNN) 0.056338028169014086
+	5 fitting Local Outlier Factor (LOF) 0.3399482312338222
+	6 fitting Minimum Covariance Determinant (MCD) 0.795
+	7 fitting One-class SVM (OCSVM) 0.115
+	8 fitting Principal Component Analysis (PCA) 0.755
+	ss_md_rpca - F1: 0.858333
+	ss_sd_rpca - F1: 0.996667
+	ss_kd_rpca - F1: 1.000000
+	css_md_rpca - F1: 0.540000
+	css_sd_rpca - F1: 0.915000
+	css_kd_rpca - F1: 1.000000
+	u_md_rpca - F1: 0.538333
+	u_sd_rpca - F1: 0.883333
+	u_kd_rpca - F1: 0.976667
+	### Log-normal contaminated by Gaussian
+	Number of inliers: 1800
+	Number of outliers: 600
+	Contamination: 0.250000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.0
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.05000000000000001
+	4 fitting K Nearest Neighbors (KNN) 0.0
+	5 fitting Local Outlier Factor (LOF) 0.3040136635354398
+	6 fitting Minimum Covariance Determinant (MCD) 0.0
+	7 fitting One-class SVM (OCSVM) 0.0
+	8 fitting Principal Component Analysis (PCA) 0.5616666666666666
+	ss_md_rpca - F1: 0.490000
+	ss_sd_rpca - F1: 0.966667
+	ss_kd_rpca - F1: 0.983333
+	css_md_rpca - F1: 0.175000
+	css_sd_rpca - F1: 0.956667
+	css_kd_rpca - F1: 0.971667
+	u_md_rpca - F1: 0.148333
+	u_sd_rpca - F1: 0.918333
+	u_kd_rpca - F1: 0.990000
+
+
+Contamination: 0.10
+	### Gaussian contaminated by Uniform
+	Number of inliers: 2160
+	Number of outliers: 240
+	Contamination: 0.100000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.975
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.983050847457627
+	3 fitting Isolation Forest 0.9708333333333333
+	4 fitting K Nearest Neighbors (KNN) 0.9727463312368972
+	5 fitting Local Outlier Factor (LOF) 0.2923728813559322
+	6 fitting Minimum Covariance Determinant (MCD) 0.975
+	7 fitting One-class SVM (OCSVM) 0.975
+	8 fitting Principal Component Analysis (PCA) 0.9291666666666667
+	ss_md_rpca - F1: 0.975000
+	ss_sd_rpca - F1: 0.975000
+	ss_kd_rpca - F1: 0.970833
+	css_md_rpca - F1: 0.975000
+	css_sd_rpca - F1: 0.962500
+	css_kd_rpca - F1: 0.487500
+	u_md_rpca - F1: 0.975000
+	u_sd_rpca - F1: 0.970833
+	u_kd_rpca - F1: 0.504167
+	### Pareto contaminated by Gaussian
+	Number of inliers: 2160
+	Number of outliers: 240
+	Contamination: 0.100000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.0
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.4375
+	4 fitting K Nearest Neighbors (KNN) 0.01348314606741573
+	5 fitting Local Outlier Factor (LOF) 0.2711864406779661
+	6 fitting Minimum Covariance Determinant (MCD) 0.4083333333333333
+	7 fitting One-class SVM (OCSVM) 0.26666666666666666
+	8 fitting Principal Component Analysis (PCA) 0.6583333333333333
+	ss_md_rpca - F1: 0.595833
+	ss_sd_rpca - F1: 0.987500
+	ss_kd_rpca - F1: 1.000000
+	css_md_rpca - F1: 0.283333
+	css_sd_rpca - F1: 0.904167
+	css_kd_rpca - F1: 1.000000
+	u_md_rpca - F1: 0.316667
+	u_sd_rpca - F1: 0.937500
+	u_kd_rpca - F1: 1.000000
+	### Log-normal contaminated by Gaussian
+	Number of inliers: 2160
+	Number of outliers: 240
+	Contamination: 0.100000
+	1 fitting Cluster-based Local Outlier Factor (CBLOF) 0.0
+	2 fitting Histogram-base Outlier Detection (HBOS) 0.0
+	3 fitting Isolation Forest 0.0
+	4 fitting K Nearest Neighbors (KNN) 0.0
+	5 fitting Local Outlier Factor (LOF) 0.2424242424242424
+	6 fitting Minimum Covariance Determinant (MCD) 0.0
+	7 fitting One-class SVM (OCSVM) 0.0
+	8 fitting Principal Component Analysis (PCA) 0.0625
+	ss_md_rpca - F1: 0.000000
+	ss_sd_rpca - F1: 0.845833
+	ss_kd_rpca - F1: 0.958333
+	css_md_rpca - F1: 0.000000
+	css_sd_rpca - F1: 0.825000
+	css_kd_rpca - F1: 0.945833
+	u_md_rpca - F1: 0.000000
+	u_sd_rpca - F1: 0.700000
+	u_kd_rpca - F1: 0.987500	

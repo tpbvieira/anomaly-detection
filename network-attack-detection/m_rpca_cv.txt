@@ -1,9 +1,0 @@
-['sTos', 'dTos', 'Proto', 'Dport', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.40114223427334667
-['State', 'dTos', 'Proto', 'Dport', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6619791558009224
-['State', 'sTos', 'Proto', 'Dport', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6621219740429736
-['State', 'sTos', 'dTos', 'Dport', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6621475742748835
-['State', 'sTos', 'dTos', 'Proto', 'Sport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6619795153742827
-['State', 'sTos', 'dTos', 'Proto', 'Dport', 'Dir', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6619795153742827
-['State', 'sTos', 'dTos', 'Proto', 'Dport', 'Sport', 'Dur', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6619843932895019
-['State', 'sTos', 'dTos', 'Proto', 'Dport', 'Sport', 'Dir', 'TotPkts', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6823381474366741
-['State', 'sTos', 'dTos', 'Proto', 'Dport', 'Sport', 'Dir', 'Dur', 'TotBytes', 'SrcBytes', 'PktsRate', 'BytesRate', 'MeanPktsRate'] 0.6629353918499038

@@ -1,0 +1,53 @@
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.3,0.3,0.3}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.8,0.8,0.8}
+
+\lstdefinestyle{global}{
+	backgroundcolor=\color{backcolour},%
+    commentstyle=\color{blue}\slshape,%
+    keywordstyle={[1]\bfseries\color{keycolor}},%
+    keywordstyle={[2]\bfseries\color{mbleu}},%
+    numberstyle=\color{Gray},
+    stringstyle=\itshape\color{magenta},%
+    basicstyle=\ttfamily\scriptsize\color{black!90},%
+    framexleftmargin=1mm,%
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=10pt,       
+    stepnumber=1,%           
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=5
+}
+
+\lstdefinestyle{makefile}{%
+	backgroundcolor=\color{backcolour},%
+	otherkeywords={.SUFFIXES},%
+	alsoletter={:},%
+	morekeywords=[1]{SUFFIX, CPP_},%
+	morekeywords=[2]{vasp:,makeparam:,zgemmtest:,dgemmtest:,ffttest:,kpoints:,clean:},%
+	style=global,%
+	morecomment=[l][commentstyle]{\#},%
+	emphstyle={\color{vimvert}},%
+	language=make,%
+	moredelim=[s][\color{vimvert}]{\$(}{)}%
+}
+
+\lstdefinestyle{C}{%
+	backgroundcolor=\color{backcolour},%
+	belowcaptionskip=1\baselineskip,%
+	breaklines=true,%
+	style=global,%
+	language=C,%
+	showstringspaces=false,%
+	basicstyle=\footnotesize\ttfamily,%
+	keywordstyle=\bfseries\color{green!40!black},%
+	commentstyle=\itshape\color{purple!40!black},%
+	identifierstyle=\color{blue},%
+	stringstyle=\color{orange},%
+}

@@ -1,0 +1,40 @@
+% Comment this as you don`t use it
+%-----------------------------------------------
+% Use os simbolos, acronimos e notacoes com as funcoes a seguir
+% To use this acronyms list, check the file glossaries-list/symbos.tex.
+\input{glossaries-lists/symbols}
+
+% To use this acronyms list, check the file glossaries-list/acronyms.tex.
+\input{glossaries-lists/acronyms}
+
+% To use this acronyms list, check the file glossaries-list/notation.tex.
+\input{glossaries-lists/notation}
+%-----------------------------------------------
+
+%---------------------------------------
+% List of symbols definition, do not change it!
+%---------------------------------------
+\newglossarystyle{symbolsstyle}{%
+% 	\setglossarystyle{index}% base this style on the list style
+	\renewcommand{\glsgroupskip}{}% make nothing happen between groups
+    \setglossarystyle{long3col}% base this style on the list style
+    \renewenvironment{theglossary}%
+    {\begin{longtable}{>{\raggedright}p{.10\textwidth}p{.75\textwidth}>{\raggedright}p{.20\textwidth}}}%
+    {\end{longtable}}%
+    
+    % If you need the header for this table...
+    % \renewcommand*{\glossaryheader}{%  Change the table header
+    %   \bfseries Sign & \bfseries Description & \bfseries Unit \\
+    %   \hline
+    %   \endhead}
+    
+    \renewcommand*{\glossentry}[2]{%  Change the displayed items
+        \mbox{\glstarget{##1}{\glossentryname{##1}}}
+        & & \tabularnewline
+    }
+    \renewcommand{\subglossentry}[3]{%  Change the displayed items
+        \glstarget{##2}{\glossentryname{##2}} %
+        & \Glossentrydesc{##2}% Description
+        & \glsentryunit{##2}  \tabularnewline
+    }
+}
