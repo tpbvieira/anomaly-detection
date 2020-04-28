@@ -3,7 +3,6 @@
 *.synctex.gz
 *.snm
 *.run.xml
-*.pdf
 *.out
 *.nav
 *.log
