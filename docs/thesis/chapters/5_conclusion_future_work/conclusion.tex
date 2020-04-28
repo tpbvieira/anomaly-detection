@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% na conclusao, evite apresentar os resultados mais fáceis de concluir. bons revisores olham o casamento do que vc escreve no abstract/intro com a conclusao. mantenha coerente. 
+% em geral, resultados que sao aparentemente obvios, enfraquecem as outras contribuicoes. p.ex, "Os resultados mostraram que o MapReduce apresenta uma boa solução para utilizar computadores comuns para obter alta capacidade de processamento e lidar com a análise massiva de tráfego de rede." pode ser reformulado ou retirado da conclusao.
+\chapter{Conclusion and Future Work}
+\label{ch:5_conclusionfuturework}
+
+% falar sobre uma contextualização de forma bem resumida'
+In the context of anomaly-based schemes, in thesis  we propose propose a statistical approach based on signal processing techniques for detection of malicious traffic in computer networks. The proposed technique is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis, where MOS and eigenvalue analysis are applied to detect time frames under attack. In addition, we evaluated the accuracy and performance of the proposed framework applied to an experimental scenario and to the DARPA 1998 data set. 
+
+We propose the m-RPCA, which an approach for anomaly detection on skewed and imbalanced data set, through distances of moments computed from a robust subspace learned by RPCA. The m-RPCA was evaluated for anomaly detection on simulated data and on the CTU-13 data set, which is composed by network traffic of botnets, network attacks and background flows.
+
+Finally, it is proposed a proof of concept of an architecture to evaluate the user behavior analysis on offline mobile clients through Eigensimilarity and Model Order Selection (MOS), in order to implement an anomaly detection module based on user behavioral analysis.
+
+This chapter is organized as follows. In Section \ref{sec:5_conc_conclusion}, we discuss the conclusion remarks, in Section \ref{sec:5_conc_contributions} it is present the main contributions and in \ref{sec:5_conc_futurework} we propose opportunities for future work.
+
+\section{Conclusion}
+\label{sec:5_conc_conclusion}
+
+In order to be able to detect and avoid novel attacks and their variations, it is necessary to develop or improve techniques to achieve efficiency on resource consumption, processing capacity and response time. Moreover, it is crucial to obtain high detection accuracy and capacity to detect variations of malicious patterns. Recently, signal processing schemes have being applied to detect malicious traffic in computer networks, showing advances in network traffic analysis.
+
+This thesis models the network traffic as a signal processing formulation for applying the Eigensimilarity, which is a framework for detection and identification of network attacks, that is based on eigenvalue analysis, model order selection (MOS) and eigen similarity analysis.
+
+The Eigensimilarity was evaluated and the experimental results show that synflood, fraggle and port scan attacks can be detected accurately and with great detail in an automatic and blind fashion, applying signal processing concepts for traffic modeling and through approaches based on MOS and similarity analysis of learned subspace of eigenvalues and eigenvectors. The main contributions of Eigensimilarity were: the extension of an approach based on MOS combined with eigen analysis to blindly detect time frames under network attack; the proposal and evaluation of an eigen similarity based framework to identify details of network attacks, presenting accuracy of timely detection and identification of TCP/UDP ports under attack, as well as presenting acceptable complexity and performance regarding the processing time.
+
+This thesis evaluated the effectiveness of MOS schemes for network attack detection, extending our previous work and showing that the analysis of the largest eigenvalues by time frames can be applied to detect the number of port scanning, and flood attacks, but still requiring more information for detailed attack detection. Therefore, we proposed a novel approach for detailed network attack detection, based on eigen similarity analysis.
+
+Considering the offline mobile security context, an important issue faced by corporations that use cloud-based systems is how to provide security mechanisms to support offline corporate mobile clients. Aware of this problem and its importance, we proposed an architecture based on Eigensimilarity for behavioral anomaly detection in offline corporate mobile apps. As proof of concept, a fully working mobile application was developed to test the proposed security solution and acquired results provide evidence that besides achieving the desired security features, the solution also has positive results in terms of performance. 
+
+Anomalies can be hard to identify and separate from legitimate data due to the rare occurrences of anomalies in comparison to legitimate events, therefore anomaly detection algorithms have to be high discriminative, robust to contamination and able to deal with the imbalanced data problem.
+
+This thesis has proposed and evaluated the m-RPCA, which can be divided into md-RPCA, sd-RPCA and kd-RPCA, that are algorithms based on moment distances from robust subspace for anomaly detection. These proposed algorithms were evaluated for semi-supervised, contaminated semi-supervised and unsupervised approaches. The experimental results show that moment distances computed fro robust subspace can improve the anomaly detection on skewed and imbalanced data set. The results also show that the m-RPCA can be adopted for network attack detection, with better results than widely adopted algorithms for outlier detection.
+
+\section{Contributions}
+\label{sec:5_conc_contributions}
+
+We analyze problems related to detection of anomalies and information security issues, and propose new approaches to improve malicious behavior detection through signal processing techniques and subspace learning. The results of the work presented in this thesis provided the following contributions:
+
+\begin{enumerate}
+	\item We proposed an approach based on eigen similarity analysis for extracting detailed information about accurate time and network ports under network attack, and evaluated the accuracy and performance of the proposed framework applied to an experimental scenario and to the DARPA 1998 data set;
+	\item We discussed the computational complexity of the proposed framework and evaluated the required processing time for tested scenarios;
+	\item We proposed an architecture and techniques for offline behavioral analysis of a corporate mobile client security architecture;
+	\item We discussed the processing time of the proposed framework for mobile devices;
+	\item We proposed approaches for network anomaly detection on skewed and imbalanced data set, through distances of moments computed from a robust subspace learned by RPCA;
+\end{enumerate}
+
+
+\section{Future Work}
+\label{sec:5_conc_futurework}
+
+This thesis addresses some problems, but some problems are still open and others are emerging from current results. Thus, the following issues should be investigated as future work:
+
+\begin{itemize}
+	\item Improvements for obtaining better false positive rates, as well as to make the Eigensimilarity able to identify sparse probe attacks or subtle behaviors, such as exfiltration or covert communication, considering the evaluation of a flow-based analysis and novel data sets;
+	\item Evaluate the application of the proposed approaches to different anomaly detection problems, considering cases that are aware to behavioral analysis;
+	\item Enhance the m-RPCA approaches to estimate the contamination or to not rely on previously defined contamination for anomaly detection;
+	\item The m-RPCA can also be extended to be online and to learn new subspace in an adaptive fashion, by means of new robust subspace learning from new observations or through robust subspace tracking;
+	\item Evaluate improvements given by a multidimensional modeling and adoption of tensor-based approaches for subspace learning, in order to analyze complex patterns that can be revealed by multidimensional analysis and tensor-based decomposition.
+\end{itemize}
